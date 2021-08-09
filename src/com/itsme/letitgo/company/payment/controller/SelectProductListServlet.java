@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.itsme.letitgo.company.payment.model.dto.ProductDTO;
 import com.itsme.letitgo.company.payment.model.service.SelectProductListService;
 
-@WebServlet("/payment/mainPage")
+@WebServlet("/productList/select")
 public class SelectProductListServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,9 +24,10 @@ public class SelectProductListServlet extends HttpServlet {
 		for(ProductDTO product : productList) {
 			System.out.println(product);
 		}
+
+		String path = "/WEB-INF/views/payment/paymentList.jsp";
 		
-		String path = "/WEB-INF/views/payment.jsp";
-		
+		request.setAttribute("productList", productList);
 		request.getRequestDispatcher(path).forward(request, response);
 		
 	}

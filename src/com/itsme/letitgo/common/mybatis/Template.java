@@ -10,7 +10,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 
-import com.itsme.letitgo.company.info.model.mapper.CompanyTestMapper;	
+import com.itsme.letitgo.company.info.model.mapper.CompanyTestMapper;
+import com.itsme.letitgo.company.payment.model.mapper.ProductMapper;	
 
 public class Template {
 	
@@ -32,6 +33,7 @@ public class Template {
 			Configuration configuration = new Configuration(environment);
 			
 			configuration.addMapper(CompanyTestMapper.class);
+			configuration.addMapper(ProductMapper.class);
 			
 			
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);

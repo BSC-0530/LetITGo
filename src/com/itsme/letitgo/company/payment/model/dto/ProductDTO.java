@@ -7,19 +7,19 @@ public class ProductDTO implements java.io.Serializable {
 	private Integer readingNum;
 	private String upperExposureHour;
 	private String productKinds;
-	private String exposureStatus;
+	private String productExposureStatus;
 	
 	public ProductDTO() {}
 
 	public ProductDTO(int productNo, int productPrice, Integer readingNum, String upperExposureHour,
-			String productKinds, String exposureStatus) {
+			String productKinds, String productExposureStatus) {
 		super();
 		this.productNo = productNo;
 		this.productPrice = productPrice;
 		this.readingNum = readingNum;
 		this.upperExposureHour = upperExposureHour;
 		this.productKinds = productKinds;
-		this.exposureStatus = exposureStatus;
+		this.productExposureStatus = productExposureStatus;
 	}
 
 	public int getProductNo() {
@@ -62,20 +62,22 @@ public class ProductDTO implements java.io.Serializable {
 		this.productKinds = productKinds;
 	}
 
-	public String getExposureStatus() {
-		return exposureStatus;
+	public String getProductExposureStatus() {
+		return productExposureStatus;
 	}
 
-	public void setExposureStatus(String exposureStatus) {
-		this.exposureStatus = exposureStatus;
+	public void setProductExposureStatus(String productExposureStatus) {
+		this.productExposureStatus = productExposureStatus;
 	}
 
 	@Override
 	public String toString() {
 		return "ProductDTO [productNo=" + productNo + ", productPrice=" + productPrice + ", readingNum=" + readingNum
-				+ ", upperExposureHour=" + upperExposureHour + ", productKinds=" + productKinds + ", exposureStatus="
-				+ exposureStatus + "]";
+				+ ", upperExposureHour=" + upperExposureHour + ", productKinds=" + productKinds
+				+ ", productExposureStatus=" + productExposureStatus + "]";
 	}
+
+	
 
 	
 	
