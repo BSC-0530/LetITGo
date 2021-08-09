@@ -4,11 +4,11 @@ public class SkillsCategoryDTO {
 
 	private int no;
 	private String name;
-	private String upperNo;
+	private int upperNo;
 	
 	public SkillsCategoryDTO() {}
 
-	public SkillsCategoryDTO(int no, String name, String upperNo) {
+	public SkillsCategoryDTO(int no, String name, int upperNo) {
 		super();
 		this.no = no;
 		this.name = name;
@@ -19,23 +19,23 @@ public class SkillsCategoryDTO {
 		return no;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public String getUpperNo() {
-		return upperNo;
-	}
-
 	public void setNo(int no) {
 		this.no = no;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public void setUpperNo(String upperNo) {
+	public int getUpperNo() {
+		return upperNo;
+	}
+
+	public void setUpperNo(int upperNo) {
 		this.upperNo = upperNo;
 	}
 
@@ -43,7 +43,8 @@ public class SkillsCategoryDTO {
 	public String toString() {
 		return "SkillsCategoryDTO [no=" + no + ", name=" + name + ", upperNo=" + upperNo + "]";
 	}
+
 	
-	
+
 	
 }
