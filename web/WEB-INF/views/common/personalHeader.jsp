@@ -37,7 +37,7 @@
                                     	<a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation" class="gc_main_navigation">스카우트</a>
                                     </li>
                                  	<li class="has-mega gc_main_navigation">
-                                    	<a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation" class="gc_main_navigation">이력서</a>
+                                    	<a href="${ pageContext.servletContext.contextPath }/resume/list" class="gc_main_navigation" class="gc_main_navigation">이력서</a>
                                     </li>
                                  	<li class="has-mega gc_main_navigation">
                                     	<a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation" class="gc_main_navigation">1:1문의</a>

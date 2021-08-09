@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.itsme.letitgo.personal.resume.model.mapper.ResumeMapper">
+	
+	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.ResumeDTO" id="resumeResultMap">
+		<id property="resumeNo" column="RESUME_NO"/>
+		<result property="inMemNo" column="IN_MEM_NO"/>
+		<result property="resumeWriteDate" column="RESUME_WRITE_DATE"/>
+		<result property="resumeScoutStatus" column="RESUME_SCOUT_STATUS"/>
+		<result property="jobNo" column="JOB_NO"/>
+	</resultMap>
+	
+	<select id="selectAllResumeList" resultMap="resumeResultMap">
+		SELECT /* com.itsme.letitgo.personal.resume.model.mapper.ResumeMapper#selectAllResumeList() */
+		       A.RESUME_NO
+		     , A.IN_MEM_NO
+		     , A.RESUME_WRITE_DATE
+		     , A.RESUME_SCOUT_STATUS
+		     , A.JOB_NO
+		  FROM TBL_RESUME A
+		 WHERE A.IN_MEM_NO = 3
+	</select>
+</mapper>
