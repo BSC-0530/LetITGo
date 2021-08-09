@@ -2,7 +2,7 @@ package com.itsme.letitgo.company.info.model.dto;
 
 import java.sql.Date;
 
-public class CompanyTestDTO {
+public class CompanyTestDTO implements java.io.Serializable {
 	
 	private int memNO;
 	private String memId;

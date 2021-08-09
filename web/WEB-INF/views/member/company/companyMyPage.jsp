@@ -9,7 +9,8 @@
 <body>
 	<jsp:include page="../../common/companyHeader.jsp"/>
 	
-	<jsp:include page="companyMyPageBody.jsp"/>
+<%-- 	<jsp:include page="companyMyPageBody.jsp"/> --%>
+	<jsp:include page="../../scout/selectScout.jsp"/>
 	
 	
 	<jsp:include page="../../common/footer.jsp"/>

@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itsme.letitgo.company.info.model.mapper.CompanyTestMapper">
+<!-- 	<resultMap type="com.itsme.letitgo.company.info.model.dto.CompanyAddInfoDTO" id="resultMap"> -->
+<!-- 		<id property="coMemNo" column="COM_MEM_NO"/> -->
+<!-- 		<result property="coIntro" column="CO_INTRO"/> -->
+<!-- 		<result property="coNo" column="CO_NO"/> -->
+<!-- 		<result property="coComName" column="CO_COM_NAME"/> -->
+<!-- 		<result property="coCeoName" column="CO_CEO_NAME"/> -->
+<!-- 		<result property="coAddress" column="CO_ADDRESS"/> -->
+<!-- 		<result property="coPhone" column="CO_PHONE"/> -->
+<!-- 		<result property="coPax" column="CO_PAX"/> -->
+<!-- 		<result property="coSectors" column="CO_SECTORS"/> -->
+<!-- 		<result property="coStatus" column="CO_STATUS"/> -->
+		
+<!-- 		<association property="memNo" resultMap="coMemresultMap"> -->
+		
+<!-- 	</resultMap> -->
 	
-	<resultMap type="com.itsme.letitgo.company.info.model.dto.CompanyTestDTO" id="resultMap">
+	<resultMap type="com.itsme.letitgo.company.info.model.dto.CompanyTestDTO" id="coMemresultMap">
 		<id property="memNO" column="MEM_NO"/>
 		<result property="memId" column="MEM_ID"/>
 		<result property="memPwd" column="MEM_PWD"/>
@@ -16,11 +31,11 @@
 		<result property="memEntNo" column="MEM_ENT_NO"/>
 	
 	</resultMap>
-	<select id="selectedInfoCompany">
+	<select id="selectedInfoCompany" resultMap="coMemresultMap">
 		SELECT
 			*
 		FROM TBL_MEMBER
-		WHERE MEM_KINDS = '기업'	
+		WHERE MEM_NO=2
 	
 	</select>
 </mapper>
