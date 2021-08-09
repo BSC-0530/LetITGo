@@ -11,15 +11,5 @@
 		<result property="exposureStatus" column="EXPOSURE_STATUS"/>	
 	</resultMap>
 
-	<select id="SelectProductList" resultType="productResulMap" >
-		SELECT /* com.itsme.letitgo.company.payment.model.mapper.ProductMapper#SelectProductList() */
-		       PRODUCT_NO
-		     , PRODUCT_PRICE
-		     , READING_NUM
-		     , UPPER_EXPOSURE_HOUR
-		     , PRODUCT_KINDS
-		     , EXPOSURE_STATUS
-		  FROM TBL_PRODUCT_LIST
-	</select>
 
 </mapper>
