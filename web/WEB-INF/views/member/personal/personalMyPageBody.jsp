@@ -47,7 +47,7 @@
                             <div class="jp_tittle_breadcrumb_wrapper">
                                 <ul>
                                     <li><a href="#">Home</a></li>
-                                    <li><a href="#">개인 마이페이지</a></li>
+                                    <li>></li>
                                     <li>개인 마이페이지</li>
                                 </ul>
                             </div>
@@ -100,17 +100,18 @@
 						</div>
 					</div>
 				</div>
+				
+				
 <!-- 옆에 넣으려면 여기에 넣어야함 -->
 				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="jp_listing_tabs_wrapper">
 								<div>
-                                	<label>ID</label><input id="myTextArea" type="text" name="" value="" placeholder="donggijjang" readonly>
-                                	<label>E-mail</label><input id="myTextArea" type="text" name="" value="" placeholder="donggi0427@naver.com" readonly>
-                                	<label>이름</label><input id="myTextArea" type="text" name="" value="" placeholder="김동기" readonly>
-                                	<label>핸드폰</label><input id="myTextArea" type="text" name="" value="" placeholder="01064354388" readonly>
-                                	
+                                	<label>ID</label><input id="myTextArea" type="text" name="" value="" placeholder="${ memberInfo.memId }" readonly>
+                                	<label>E-mail</label><input id="myTextArea" type="text" name="" value="" placeholder="${ memberInfo.memEmail }" readonly>
+                                	<label>이름</label><input id="myTextArea" type="text" name="" value="" placeholder="${ memberInfo.memName }" readonly>
+                                	<label>핸드폰</label><input id="myTextArea" type="text" name="" value="" placeholder="${ memberInfo.memPhone }" readonly>
                             	</div>
                     		</div>
                 		</div>

@@ -153,7 +153,6 @@
 		</div>
 	</div>
 	<!-- jp first sidebar Wrapper End -->
-
 	<!--main js file start-->
 	<script
 		src="${ pageContext.servletContext.contextPath }/resources/js/jquery_min.js"></script>
