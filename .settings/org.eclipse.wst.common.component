@@ -4,7 +4,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/mappers"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/log4j"/>
-        <property name="context-root" value="letitgo"/>
         <property name="java-output-path" value="/semi3-letitgo/web/WEB-INF/classes"/>
+        <property name="context-root" value="let"/>
     </wb-module>
 </project-modules>
