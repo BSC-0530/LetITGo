@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.itsme.letitgo.admin.resume.model.dto.SkillsCategoryDTO;
 import com.itsme.letitgo.admin.resume.service.SkillsCategoryService;
 
-@WebServlet("/skillscategoryinsert")
+/**
+ * Servlet implementation class SkillsCategoryInsertServlet
+ */
+@WebServlet("/skillscategory/insert")
 public class SkillsCategoryInsertServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,10 +29,12 @@ public class SkillsCategoryInsertServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
+		int no = Integer.parseInt(request.getParameter("no"));
 		String name = request.getParameter("name");
-		String upperNo = request.getParameter("upperNo");
+		int upperNo = Integer.parseInt(request.getParameter("upperNo"));
 		
 		SkillsCategoryDTO requestSkillsCategory = new SkillsCategoryDTO();
+		requestSkillsCategory.setNo(no);
 		requestSkillsCategory.setName(name);
 		requestSkillsCategory.setUpperNo(upperNo);
 		
