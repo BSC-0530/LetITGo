@@ -47,7 +47,7 @@
                             <div class="jp_tittle_breadcrumb_wrapper">
                                 <ul>
                                     <li><a href="#">Home</a></li>
-                                    <li><a href="#">개인 마이페이지</a></li>
+                                    <li.><a href="#">개인 마이페이지</a></li>
                                     <li>개인 마이페이지</li>
                                 </ul>
                             </div>
