@@ -89,13 +89,13 @@
                                         <!--Form Group-->
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
-                                            <input type="password" name="field-name" value="" placeholder="이메일">
+                                            <input type="text" name="field-name" value="" placeholder="이메일">
                                             <button type="button">인증번호 보내기</button>
                                         </div>
                                     
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
-                                            <input type="password" name="field-name" value="" placeholder="인증번호 입력">
+                                            <input type="text" name="field-name" value="" placeholder="인증번호 입력">
                                             <button type="button">인증 완료</button>
                                         </div>
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
@@ -146,48 +146,76 @@
                                     <div class="row clearfix">
                                         <!--Form Group-->
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="field-name" value="" placeholder="Username*">
+                                            <input type="text" name="field-name" value="" placeholder="아이디">
                                         </div>
                                         <!--Form Group-->
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="field-name" value="" placeholder="Email*">
+                                            <input type="text" name="field-name" value="" placeholder="이메일">
                                         </div>
                                         <!--Form Group-->
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-
-                                            <input type="password" name="field-name" value="" placeholder="password*">
+                                            <input type="text" name="field-name" value="" placeholder="인증번호 입력">
                                         </div>
-                                        <!--Form Group-->
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
-                                            <input type="password" name="field-name" value="" placeholder="re-enter password*">
-                                        </div>
-
-                                        <!--Form Group-->
-                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
-
-                                            <input type="text" name="field-name" value="" placeholder="phone">
-                                        </div>
-
-                                        <!--Form Group-->
-                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
-
-                                            <input type="text" name="field-name" value="" placeholder="company name">
-
-                                        </div>
-
-                                        <!--Form Group-->
-                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
-
-                                            <input type="text" name="field-name" value="" placeholder="website">
-
+                                            <input type="password" name="field-name" value="" placeholder="비밀번호">
                                         </div>
                                         <!--Form Group-->
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
-                                            <input type="text" name="field-name" value="" placeholder="address line">
+                                            <input type="password" name="field-name" value="" placeholder="비밀번호재입력">
                                         </div>
-
+                                        
+                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name="field-name" value="" placeholder="담당자 이름">
+                                        </div>
+                                        <!--Form Group-->
+                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name="field-name" value="" placeholder="담당자 전화번호">
+                                        </div>
+                                        
+                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name="field-name" value="" placeholder="사업자 등록번호">
+                                        </div>
+                                        <!--Form Group-->
+                                          <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name="field-name" value="" placeholder="기업이름">
+                                        </div>
+                                        <!--Form Group-->
+                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name="field-name" value="" placeholder="대표자이름">
+                                        </div>
+                                      
+                                      	 <!--Form Group-->
+                                          <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name="field-name" value="" placeholder="업종">
+                                        </div>
+                                        <!--Form Group-->
+                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name="field-name" value="" placeholder="업태">
+                                        </div>
+                                        
+                                         <!--Form Group-->
+                                          <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name="field-name" value="" placeholder="주소">
+                                        </div>
+                                        <!--Form Group-->
+                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name="field-name" value="" placeholder="상세 주소">
+                                        </div>
+                                        
+                                          <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name="field-name" value="" placeholder="웹사이트 주소">
+                                        </div>
+										
+										<div class="">
+											<textarea rows="35" cols="8"></textarea>
+										</div>
+										
+										<div></div>
+										<div></div>
+										<div></div>
+										
                                         <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="check-box text-center">
                                                 <input type="checkbox" name="shipping-option" id="account-option_2"> &ensp;
