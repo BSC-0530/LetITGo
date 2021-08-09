@@ -51,7 +51,7 @@
 
 								<ul class="float_left">
 									<li class="parent gc_main_navigation"><a href="" class="gc_main_navigation">채용공고 </a></li>
-									<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation">결제페이지</a></li>
+									<li class="has-mega gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }/productList/select" id="paymentMainPage" class="gc_main_navigation">결제페이지</a></li>
 									<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation">스카우트</a> </li>
 									<li class="has-mega gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }/testServlet" class="gc_main_navigation" >마이페이지</a></li>
 									<li class="gc_main_navigation parent"><a href="#" class="gc_main_navigation">문의하기</a></li>

@@ -6,6 +6,6 @@ import com.itsme.letitgo.company.payment.model.dto.ProductDTO;
 
 public interface ProductMapper {
 
-	List<ProductDTO> SelectProductList();
+	List<ProductDTO> selectProductList();
 
 }

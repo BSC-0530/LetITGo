@@ -8,8 +8,17 @@
 		<result property="readingNum" column="READING_NUM"/>
 		<result property="upperExposureHour" column="UPPER_EXPOSURE_HOUR"/>
 		<result property="productKinds" column="PRODUCT_KINDS"/>
-		<result property="exposureStatus" column="EXPOSURE_STATUS"/>	
+		<result property="productExposureStatus" column="PRODUCT_EXPOSURE_STATUS"/>	
 	</resultMap>
-
+	<select id="selectProductList" resultMap="productResulMap">
+	   SELECT /* com.itsme.letitgo.company.payment.model.mapper.ProductMapper#selectProductList() */
+	          PRODUCT_NO
+	        , PRODUCT_PRICE
+	        , READING_NUM
+	        , UPPER_EXPOSURE_HOUR
+	        , PRODUCT_KINDS
+	        , PRODUCT_EXPOSURE_STATUS
+	     FROM TBL_PRODUCT_LIST       
+	</select>
 
 </mapper>

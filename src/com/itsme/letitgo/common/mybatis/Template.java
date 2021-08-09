@@ -15,6 +15,7 @@ import com.itsme.letitgo.company.info.model.mapper.CompanyTestMapper;
 import com.itsme.letitgo.personal.info.model.mapper.personalMemberMapper;	
 
 import com.itsme.letitgo.personal.resume.model.mapper.ResumeMapper;	
+import com.itsme.letitgo.company.payment.model.mapper.ProductMapper;
 
 
 public class Template {
@@ -42,6 +43,7 @@ public class Template {
 			
 
 			configuration.addMapper(ResumeMapper.class);
+      configuration.addMapper(ProductMapper.class);
 
 			
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
@@ -51,3 +53,4 @@ public class Template {
 	}
 
 }
+

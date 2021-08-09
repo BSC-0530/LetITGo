@@ -17,7 +17,7 @@ public class SelectProductListService {
 		
 		ProductMapper productMapper = session.getMapper(ProductMapper.class);
 		
-		List<ProductDTO> productList = productMapper.SelectProductList();
+		List<ProductDTO> productList = productMapper.selectProductList();
 		
 		session.close();
 		
