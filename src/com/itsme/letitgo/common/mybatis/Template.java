@@ -39,7 +39,7 @@ public class Template {
 			
 			configuration.addMapper(CompanyTestMapper.class);
 
-			configuration.addMapper(personalMemberMapper.class);
+			configuration.addMapper(PersonalMemberMapper.class);
 			
 
 			configuration.addMapper(ResumeMapper.class);
