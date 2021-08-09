@@ -1,11 +1,13 @@
 window.onload = function() {
-	if(document.getElementById("myPage")) {
+	if(document.getElementById("personalMyPage")) {
 		
-		const $regist = document.getElementById("myPage");
+		const $regist = document.getElementById("personalMyPage");
 		$regist.onclick = function() {
-			location.href = "/letitgo/select/memberInfo"
+			location.href = "/let/select/memberInfo";
 		
 		}
 	}
 	
 }
+
+ 

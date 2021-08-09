@@ -5,9 +5,10 @@ import static com.itsme.letitgo.common.mybatis.Template.getSqlSession;
 import org.apache.ibatis.session.SqlSession;
 
 import com.itsme.letitgo.personal.info.model.dto.MemberDTO;
-import com.itsme.letitgo.personal.info.model.mapper.MemberMapper;
+import com.itsme.letitgo.personal.info.model.mapper.PersonalMemberMapper;
+import com.itsme.letitgo.personal.info.model.mapper.personalMemberMapper;
 
-public class MemberService {
+public class PersonalMemberService {
 
 	public MemberDTO selectMemberInfo() {
 		
@@ -15,10 +16,11 @@ public class MemberService {
 		
 		MemberDTO memberInfo = new MemberDTO();
 		
-		MemberMapper memberMapper = session.getMapper(MemberMapper.class);
+		PersonalMemberMapper memberMapper = session.getMapper(PersonalMemberMapper.class);
 		
 		memberInfo = memberMapper.selectMemberInfo();
 		
+		session.close();
 		
 		return memberInfo;
 	}
