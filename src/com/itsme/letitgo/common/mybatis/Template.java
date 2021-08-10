@@ -11,8 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 
 import com.itsme.letitgo.company.info.model.mapper.CompanyTestMapper;
-
-import com.itsme.letitgo.personal.info.model.mapper.personalMemberMapper;	
+import com.itsme.letitgo.personal.info.model.mapper.PersonalMemberMapper;	
 
 import com.itsme.letitgo.personal.resume.model.mapper.ResumeMapper;	
 import com.itsme.letitgo.company.payment.model.mapper.ProductMapper;
@@ -42,8 +41,12 @@ public class Template {
 			//configuration.addMapper(PersonalMemberMapper.class);
 			
 
-		    configuration.addMapper(ResumeMapper.class);
+
+			configuration.addMapper(ResumeMapper.class);
 			configuration.addMapper(ProductMapper.class);
+			
+			
+
 
 			
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);

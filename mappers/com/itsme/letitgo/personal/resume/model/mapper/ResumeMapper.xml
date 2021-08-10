@@ -8,8 +8,18 @@
 		<result property="inMemNo" column="IN_MEM_NO"/>
 		<result property="resumeWriteDate" column="RESUME_WRITE_DATE"/>
 		<result property="resumeScoutStatus" column="RESUME_SCOUT_STATUS"/>
-		<result property="jobNo" column="JOB_NO"/>
+		<result property="jobNo" column="JOB_NO"/>	
 	</resultMap>
+
+	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.ResumeDTO" id="resumeResultMap">
+		<id property="resumeNo" column="RESUME_NO"/>
+		<result property="inMemNo" column="IN_MEM_NO"/>
+		<result property="resumeWriteDate" column="RESUME_WRITE_DATE"/>
+		<result property="resumeScoutStatus" column="RESUME_SCOUT_STATUS"/>
+		<result property="jobNo" column="JOB_NO"/>	
+	</resultMap>
+	
+	
 	
 	<select id="selectAllResumeList" resultMap="resumeResultMap">
 		SELECT /* com.itsme.letitgo.personal.resume.model.mapper.ResumeMapper#selectAllResumeList() */
@@ -20,5 +30,53 @@
 		     , A.JOB_NO
 		  FROM TBL_RESUME A
 		 WHERE A.IN_MEM_NO = 3
+	</select>
+	
+	<select id="selectDetailResumeList">
+		SELECT /* com.itsme.letitgo.personal.resume.model.mapper.ResumeMapper#selectDetailResumeList() */
+		       R.RESUME_WRITE_DATE
+		     , P.POT_KINDS
+		     , SII.SELF_INTRO_ITEM_NAME
+		     , SIC.SELF_INTRO_ITEM_CONTENT
+		     , AH.AWD_NAME
+		     , AH.AWD_AGENCY
+		     , AH.AWD_DATE
+		     , AH.AWD_CONTENT
+		     , EH.EDU_NAME
+		     , EH.EDU_AGENCY
+		     , EH.EDU_START_DATE
+		     , EH.EDU_END_DATE
+		     , EH.EDU_CONTENT
+		     , LH.LICENSE_NAME
+		     , LH.LICENSE_AGENCY
+		     , LH.LICENSE_DATE
+		     , SC.CATEGORY_NAME
+		     , SC.CATEGORY_UPPER_NO
+		     , S.SKILLS_NAME
+		     , CH.CAR_COM_NAME
+		     , CH.CAR_HIRE_DATE
+		     , CH.CAR_ENT_DATE
+		     , CH.CAR_STATUS
+		     , CH.CAR_DEPT_NAME
+		     , CH.CAR_JOB_NAME
+		     , CH.PROJECT_NAME
+		     , CH.PROJECT_START_DATE
+		     , CH.PROJECT_END_DATE
+		     , CH.PROJECT_CONTENT
+		     , CH.CAR_WORK_FIELD
+		     , JF.JOB_NAME
+		  FROM TBL_RESUME R
+		  LEFT JOIN TBL_PORTFOLIO P ON (R.RESUME_NO = P.RESUME_NO)
+		  LEFT JOIN TBL_SELF_INTRODUCTION_CONTENT SIC ON (R.RESUME_NO = SIC.RESUME_NO)
+		  LEFT JOIN TBL_SELF_INTRODUCTION_ITEM SII ON (SII.SELF_INTRO_ITEM_NO = SIC.SELF_INTRO_ITEM_NO)
+		  LEFT JOIN TBL_AWARD_HISTORY AH ON (R.RESUME_NO = AH.RESUME_NO)
+		  LEFT JOIN TBL_EDUCATION_HISTORY EH ON (R.RESUME_NO = EH.RESUME_NO)
+		  LEFT JOIN TBL_LICENSE_HISTORY LH ON (R.RESUME_NO = LH.RESUME_NO)
+		  LEFT JOIN TBL_RESUME_HOLDING_SKILLS RH ON (R.RESUME_NO = RH.RESUME_NO)
+		  LEFT JOIN TBL_SKILLS S ON (S.SKILLS_NO = RH.SKILLS_NO)
+		  LEFT JOIN TBL_SKILLS_CATEGORY SC ON (SC.CATEGORY_NO = S.CATEGORY_NO)
+		  LEFT JOIN TBL_CAREER_HISTORY CH ON (R.RESUME_NO = CH.RESUME_NO)
+		  LEFT JOIN TBL_JOB_FIELD JF ON (R.JOB_NO = JF.JOB_NO)
+		 WHERE R.RESUME_NO = 1
 	</select>
 </mapper>

@@ -2,13 +2,15 @@ package com.itsme.letitgo.personal.resume.model.dto;
 
 import java.sql.Date;
 
-public class ResumeDTO {
+public class ResumeDTO implements java.io.Serializable {
 	
 	private int resumeNo;
 	private int inMemNo;
 	private java.sql.Date resumeWriteDate;
 	private String resumeScoutStatus;
 	private int jobNo;
+	
+	public ResumeDTO() {}
 	
 	public ResumeDTO(int resumeNo, int inMemNo, Date resumeWriteDate, String resumeScoutStatus, int jobNo) {
 		super();

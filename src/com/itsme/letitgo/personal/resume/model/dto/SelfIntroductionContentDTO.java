@@ -1,10 +1,12 @@
 package com.itsme.letitgo.personal.resume.model.dto;
 
-public class SelfIntroductionContentDTO {
+public class SelfIntroductionContentDTO implements java.io.Serializable {
 	
 	private int selfIntroItemNo;
 	private String selfIntroItemContent;
 	private int resumeNo;
+	
+	public SelfIntroductionContentDTO() {}
 	
 	public SelfIntroductionContentDTO(int selfIntroItemNo, String selfIntroItemContent, int resumeNo) {
 		super();
