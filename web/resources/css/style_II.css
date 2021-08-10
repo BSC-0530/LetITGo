@@ -8489,3 +8489,7 @@ background:#fff;
     box-shadow: 0 0 0 30px rgba(35, 192, 233, 0.08);
   }
 }
+.jp_cl_right_bar1{
+	position: absolute;
+	margin-top:30px;
+}

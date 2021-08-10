@@ -5,6 +5,7 @@ import java.sql.Date;
 public class ResumeDTO implements java.io.Serializable {
 	
 	private int resumeNo;
+	private String resumeTitle;
 	private int inMemNo;
 	private java.sql.Date resumeWriteDate;
 	private String resumeScoutStatus;
@@ -13,10 +14,13 @@ public class ResumeDTO implements java.io.Serializable {
 	
 	public ResumeDTO() {}
 
+
 	public ResumeDTO(int resumeNo, int inMemNo, Date resumeWriteDate, String resumeScoutStatus, int jobNo,
 			String resumeTitle) {
+
 		super();
 		this.resumeNo = resumeNo;
+		this.resumeTitle = resumeTitle;
 		this.inMemNo = inMemNo;
 		this.resumeWriteDate = resumeWriteDate;
 		this.resumeScoutStatus = resumeScoutStatus;
@@ -30,6 +34,14 @@ public class ResumeDTO implements java.io.Serializable {
 
 	public void setResumeNo(int resumeNo) {
 		this.resumeNo = resumeNo;
+	}
+
+	public String getResumeTitle() {
+		return resumeTitle;
+	}
+
+	public void setResumeTitle(String resumeTitle) {
+		this.resumeTitle = resumeTitle;
 	}
 
 	public int getInMemNo() {
@@ -74,9 +86,12 @@ public class ResumeDTO implements java.io.Serializable {
 
 	@Override
 	public String toString() {
+
 		return "ResumeDTO [resumeNo=" + resumeNo + ", inMemNo=" + inMemNo + ", resumeWriteDate=" + resumeWriteDate
 				+ ", resumeScoutStatus=" + resumeScoutStatus + ", jobNo=" + jobNo + ", resumeTitle=" + resumeTitle
 				+ "]";
 	}
+
+
 
 }

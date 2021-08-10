@@ -212,64 +212,55 @@
                                 <div class="tab-content">
                                     <div id="grid" class="tab-pane fade in active">
                                         <div class="row">
-                                        
-<%--                                         	<c:forEach  var="jobPosting" items="${ requestScope.jobPostingList }"> --%>
-                                        	<c:if test="${ jobPosting.jobPostingKinds }"></c:if>
+                                        <!--  jobPostKinds가 승인된 공고일때 forEach를 통해서 모두 출력 -->
+                                        	<c:forEach  var="jobPosting" items="${ requestScope.jobPostingList }">
+                                        	<c:if test="${ jobPosting.jobPostKinds eq '승인된공고'}">
 	                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 	                                                <div class="jp_job_post_main_wrapper_cont jp_job_post_grid_main_wrapper_cont">
 	                                                    <div class="jp_job_post_main_wrapper jp_job_post_grid_main_wrapper">
 	                                                        <div class="row">
 	                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	                                                                <div class="jp_job_post_side_img">
-	                                                                    <img src="${ pageContext.servletContext.contextPath }/resources/image/bmw.png" style="width: 100px; height: 100px;"alt="post_img" />
+	                                                                    <img src="${ pageContext.servletContext.contextPath }/resources/image/bmw.png" style="width: 120px; height: 120px;"alt="post_img" />
 	                                                                </div>
 	                                                                <div class="jp_job_post_right_cont jp_job_post_grid_right_cont">
-																		<h3 style="font-weight: bold"><c:out value="${ jobPosting.jobPostTitle }"/></h3><br>
-																		<h4>기업이름</h4>
-																		<h4>지역</h4>
-																		<h4>경력</h4>
-																		<h4>직무</h4>
-																		<h4>기간</h4>
+																		<a href= "" style="font-weight:bold; font-size: 25px; color: black; "><c:out value="${ jobPosting.jobPostTitle }"/></a><br>																
+																		<a href="">사명 : <c:out value="${ jobPosting.companyAddInfoDTO.coComName }"/></a><br>
+																		<a>서울</a><br>
+																		<a>
+																		<c:if test="${ jobPosting.jobPostMinExperience != jobPosting.jobPostMaxExperience }">
+																			<c:out value="${ jobPosting.jobPostMinExperience }"/> ~ <c:out value="${ jobPosting.jobPostMaxExperience }"/> 년
+																		</c:if>
+																		</a><br>
+																		<a>직무</a><br>
+																		<a><c:out value="${ jobPosting.jobPostDeadline }"/></a><br>
 																		
 	                                                                </div>
 	                                                            </div>
-	                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-	                                                                <div class="jp_job_post_right_btn_wrapper jp_job_post_grid_right_btn_wrapper">
-	                                                                    <ul>
-	                                                                        <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
-	                                                                        <li><a href="#">Part Time</a></li>
-	                                                                        <li><a href="#">Apply</a></li>
-	                                                                    </ul>
-	                                                                </div>
-	                                                            </div>
+<!-- 	                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> -->
+<!-- 	                                                                <div class="jp_job_post_right_btn_wrapper jp_job_post_grid_right_btn_wrapper"> -->
+<!-- 	                                                                    <ul> -->
+<!-- 	                                                                        <li><a href="#"><i class="fa fa-heart-o"></i></a></li> -->
+<!-- 	                                                                        <li><a href="#">Part Time</a></li> -->
+<!-- 	                                                                        <li><a href="#">Apply</a></li> -->
+<!-- 	                                                                    </ul> -->
+<!-- 	                                                                </div> -->
+<!-- 	                                                            </div> -->
 	                                                        </div>
 	                                                    </div>
 	                                                    <div class="jp_job_post_keyword_wrapper">
 	                                                        <ul>
-	                                                            <li><i class="fa fa-tags"></i>Keywords :</li>
+	                                                            <li> 요구 기술 :</li>
 	                                                            <li><a href="#">ui designer,</a></li>
 	                                                            <li><a href="#">developer,</a></li>
 	                                                        </ul>
 	                                                    </div>
 	                                                </div>
 	                                            </div>
-<%--                                             </c:forEach> --%>
-    <!-- 페이징 -->
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-sm hidden-xs">
-                                                <div class="pager_wrapper gc_blog_pagination">
-                                                    <ul class="pagination">
-                                                        <li><a href="#">Priv.</a></li>
-                                                        <li><a href="#">1</a></li>
-                                                        <li><a href="#">2</a></li>
-                                                        <li><a href="#">3</a></li>
-                                                        <li class="hidden-xs"><a href="#">4</a></li>
-                                                        <li><a href="#">Next</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
+	                                            </c:if>
+                                            </c:forEach>
                                         </div>
                                     </div>
-                                    
                                 </div>
                             </div>
                         </div>

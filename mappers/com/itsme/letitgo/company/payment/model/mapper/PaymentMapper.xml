@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itsme.letitgo.company.payment.model.mapper.PaymentMapper">
+
+	<resultMap type="com.itsme.letitgo.company.payment.model.dto.ProductDTO" id="productResulMap">
+		<id property="productNo" column="PRODUCT_NO"/>
+		<result property="productPrice" column="PRODUCT_PRICE"/>
+		<result property="readingNum" column="READING_NUM"/>
+		<result property="upperExposureHour" column="UPPER_EXPOSURE_HOUR"/>
+		<result property="productKinds" column="PRODUCT_KINDS"/>
+		<result property="productExposureStatus" column="PRODUCT_EXPOSURE_STATUS"/>	
+		<result property="productName" column="PRODUCT_NAME"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.company.payment.model.dto.PaymentHistoryDTO" id="PaymentHistoryReusltMap">
+		<id property="payNo" column="PAY_NO"/>
+		<result property="payDate" column="PAY_DATE"/>
+		<result property="productNo" column="PRODUCT_NO"/>
+		<result property="payPrice" column="PAY_PRICE"/>
+		<result property="coMemNo" column="CO_MEM_NO"/>
+		<result property="payKinds" column="PAY_KINDS"/>
+		<result property="payChangeNo" column="PAY_CHANGE_NO"/>
+		<result property="payChangeStatus" column="PAY_CHANGE_STATUS"/>
+		<result property="payReqDate" column="PAY_REQ_DATE"/>
+		<result property="payChangeReason" column="PAY_CHANGE_REASON"/>
+		<result property="payAnsDate" column="PAY_ANS_DATE"/>
+	</resultMap>
+
+	
+	<select id="selectProductList" resultMap="productResulMap">
+	   SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectProductList() */
+	          PRODUCT_NO
+	        , PRODUCT_PRICE
+	        , READING_NUM
+	        , UPPER_EXPOSURE_HOUR
+	        , PRODUCT_KINDS
+	        , PRODUCT_EXPOSURE_STATUS
+	        , PRODUCT_NAME
+	     FROM TBL_PRODUCT_LIST
+	    ORDER BY PRODUCT_NO
+	</select>
+	
+	<select id="selectPaymentHistory" resultMap="PaymentHistoryReusltMap">
+		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectProductList() */
+               A.PAY_NO
+             , A.PAY_DATE
+		     , A.PRODUCT_NO
+		     , A.PAY_PRICE
+		     , A.CO_MEM_NO
+             , A.PAY_KINDS
+             , B.PAY_CHANGE_NO
+             , B.PAY_CHANGE_STATUS
+             , B.PAY_REQ_DATE
+             , B.PAY_CHANGE_REASON
+             , B.PAY_ANS_DATE
+          FROM TBL_PAYMENT_HISTORY A
+          LEFT JOIN TBL_PAYMENT_CHANGE_HISTORY B ON (A.PAY_NO = B.PAY_NO)
+         WHERE A.CO_MEM_NO = '2'
+	</select>
+
+	<select id="SelectResumeBrowsingNum" resultType="_int">
+	   SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#SelectResumeBrowsingNum() */
+              A.READING_LEFT_NUM
+         FROM TBL_MEMBER_HOLDING_PRODUCT A
+         JOIN TBL_PRODUCT_LIST B ON (A.PRODUCT_NO = B.PRODUCT_NO)
+        WHERE PRODUCT_STATUS = '사용가능'
+          AND PRODUCT_KINDS = '열람권'
+          AND A.CO_MEM_NO = '2'
+	</select>
+
+</mapper>

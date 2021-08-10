@@ -14,13 +14,13 @@ public class MemberDTO implements Serializable{
 	private String phone;
 	private String kinds;
 	private Date enrollDate;
-	private String entYn;
+	private Integer entYn;
 	private Date entDate;	
 	
 	public MemberDTO() {}
 
 	public MemberDTO(int no, String id, String email, String pwd, String name, String phone, String kinds,
-			Date enrollDate, String entYn, Date entDate) {
+			Date enrollDate, Integer entYn, Date entDate) {
 		super();
 		this.no = no;
 		this.id = id;
@@ -66,7 +66,7 @@ public class MemberDTO implements Serializable{
 		return enrollDate;
 	}
 
-	public String getEntYn() {
+	public Integer getEntYn() {
 		return entYn;
 	}
 
@@ -106,7 +106,7 @@ public class MemberDTO implements Serializable{
 		this.enrollDate = enrollDate;
 	}
 
-	public void setEntYn(String entYn) {
+	public void setEntYn(Integer entYn) {
 		this.entYn = entYn;
 	}
 

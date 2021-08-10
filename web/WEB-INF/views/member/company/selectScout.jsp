@@ -52,8 +52,10 @@
 								<div class="jp_rightside_job_categories_content">
 									<div class="handyman_sec1_wrapper">
 										<div class="content">
-											<div  class="box">
-												<p>
+
+											<div class="box">
+												<p align="center">
+                          
 													<a href="#">회원정보</a>
 												</p>
 												<br>
@@ -76,12 +78,10 @@
 												<br>
 												<p>
 													<a href="#">찜한 후보자</a>
-												</p>
-												<br>
-												<br>
-												<p>
-													<a href="#">결제 내역</a>
-												</p>
+
+
+												</p>											
+
 												<br>
 												<br>
 												<p>

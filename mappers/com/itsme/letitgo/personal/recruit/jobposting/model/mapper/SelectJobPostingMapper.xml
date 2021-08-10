@@ -2,8 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper">
 	
-	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JobPostingAndAddInfoDTO" id="resultJobPosting">
-	
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectAllJobPostingDTO" id="resultJobPosting">	
 		<id property="jobPostNo" column="JOB_POST_NO"/>
 		<result property="coMemNo" column="CO_MEM_NO"/>
 		<result property="jobPostTitle" column="JOB_POST_TITLE"/>
@@ -15,12 +14,39 @@
 		<result property="jobNo" column="JOB_NO"/>
 		<result property="skillsNo" column="SKILLS_NO"/>
 		<result property="jobPostApplying_kinds" column="JOB_POST_APPLYING_KINDS"/>
+		
 		<association property="companyAddInfoDTO" resultMap="resultCompanyNameAndAddress"/>
+		<association property="jobFieldDTO" resultMap="resultJobField"/>
+		<association property="attachmentDTO" resultMap="resultAttachment"/>
+		<association property="jobPostingAppHistoryDTO" resultMap="resultAppHistoty"/>
+<!-- 		<association property="ownFormResumeAttachmentDTO" resultMap="resultAttachment"/> -->
 	</resultMap>
 	<resultMap type="com.itsme.letitgo.company.info.model.dto.CompanyAddInfoDTO" id="resultCompanyNameAndAddress">
 		<id property="coMemNo" column="CO_MEM_NO"/>
 		<result property="coComName" column="CO_COM_NAME"/>
 		<result property="coAddress" column="CO_ADDRESS"/>
+	</resultMap>
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JobFieldDTO" id="resultJobField">
+		<id property="jobNo" column="JOB_NO"/>
+		<result property="jobName" column="JOB_NAME"/>
+	</resultMap>
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.AttachmentDTO" id="resultAttachment">
+		<id property="memFileNo" column="MEM_FILE_NO"/>
+		<result property="memFileName" column="MEM_FILE_NAME"/>
+		<result property="memFileOriginalName" column="MEM_FILE_ORIGINAL_NAME"/>
+		<result property="memFilePath" column="MEM_FILE_PATH"/>
+		<result property="memFileKinds" column="MEM_FILE_KINDS"/>
+		<result property="memNo" column="MEM_NO"/>
+	</resultMap>
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JobPostingAppHistoryDTO" id="resultAppHistoty">
+		<id property="jobPostReqNo" column="JOB_POST_REQ_NO"/>
+		<result property="jobPostAnsKinds" column="JOB_POST_ANS_KINDS"/>
+		<result property="jobPostReqDate" column="JOB_POST_REQ_DATE"/>
+		<result property="jobPostAnsDate" column="JOB_POST_ANS_DATE"/>
+		<result property="jobPostReqKinds" column="JOB_POST_REQ_KINDS"/>
+		<result property="jobPostNo" column="JOB_POST_NO"/>
+		<result property="jobPostRejectReason" column="JOB_POST_REJECT_REASON"/>
+		
 	</resultMap>
 	<resultMap type="com.itsme.letitgo.company.info.model.dto.CompanyAddInfoDTO" id="resultCompanyAddInfo">
 		<id property="coMemNo" column="CO_MEM_NO"/>
@@ -34,6 +60,11 @@
 		<result property="coSectors" column="CO_SECTORS"/>
 		<result property="coStatus" column="CO_STATUS"/>
 	</resultMap>
+
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.OwnFormResumeAttachmentDTO" id="자사이력서">
+	
+	</resultMap>
+	
 	
 	<select id="selectAllJobPosting" resultMap="resultJobPosting">
 		SELECT	
@@ -51,6 +82,13 @@
 			 , AI.CO_ADDRESS
 		  FROM TBL_JOB_POSTING JP
 		     , TBL_CO_MEMBER_ADD_INFO AI
+		     , TBL_ATTACHMENT A
+		     , TBL_JOB_FIELD JF
+		     , TBL_JOB_POSTING_APP_HISTORY AH
 		 WHERE JP.CO_MEM_NO = AI.CO_MEM_NO
+		   AND A.MEM_NO = JP.CO_MEM_NO
+		   AND JF.JOB_NO = JP.JOB_NO
+		   AND AH.JOB_POST_NO = JP.JOB_POST_NO
+		   AND AH.JOB_POST_ANS_KINDS = '승인'
 	</select>
 </mapper>
