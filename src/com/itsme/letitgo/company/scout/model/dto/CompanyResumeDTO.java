@@ -3,7 +3,7 @@ package com.itsme.letitgo.company.scout.model.dto;
 import java.sql.Date;
 
 
-public class companyResumeDTO implements java.io.Serializable {
+public class CompanyResumeDTO implements java.io.Serializable {
 
 	private int resumeNo;
 	private int inMemNo;
@@ -11,9 +11,9 @@ public class companyResumeDTO implements java.io.Serializable {
 	private String resumeScoutStatus;
 	private int jobNo;
 	
-	public companyResumeDTO() {}
+	public CompanyResumeDTO() {}
 	
-	public companyResumeDTO(int resumeNo, int inMemNo, Date resumeWriteDate, String resumeScoutStatus, int jobNo) {
+	public CompanyResumeDTO(int resumeNo, int inMemNo, Date resumeWriteDate, String resumeScoutStatus, int jobNo) {
 		super();
 		this.resumeNo = resumeNo;
 		this.inMemNo = inMemNo;

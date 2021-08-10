@@ -2,7 +2,7 @@ package com.itsme.letitgo.company.scout.model.dto;
 
 import java.sql.Date;
 
-public class companyCareerHistoryDTO {
+public class CompanyCareerHistoryDTO {
 	private String carComName;
 	private java.sql.Date carHireDate;
 	private java.sql.Date carEntDate;
@@ -18,9 +18,9 @@ public class companyCareerHistoryDTO {
 	private int resumeNo;
 	private int carNo;
 	
-	public companyCareerHistoryDTO() {}
+	public CompanyCareerHistoryDTO() {}
 
-	public companyCareerHistoryDTO(String carComName, Date carHireDate, Date carEntDate, String carStatus, String carDeptName,
+	public CompanyCareerHistoryDTO(String carComName, Date carHireDate, Date carEntDate, String carStatus, String carDeptName,
 			String carJobName, String projectName, Date projectStartDate, Date projectEndDate, String projectContent,
 			String carWorkField, int jobNo, int resumeNo, int carNo) {
 		super();

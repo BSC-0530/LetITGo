@@ -82,11 +82,13 @@
 													<a href="${ pageContext.servletContext.contextPath }/companyTestServlet">기업정보</a>
 												</p>
 												<br><br>
+
 												<p>
 													<a href="${ pageContext.servletContext.contextPath }/company/paymentHistory/select">결제내역</a>
 												</p>
 												<br><br>
 												<p>
+
 													<a href="#">공고관리</a>
 												</p>
 												<br><br>

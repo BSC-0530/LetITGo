@@ -1,13 +1,13 @@
 package com.itsme.letitgo.company.scout.model.dto;
 
-public class companyJobFieldDTO implements java.io.Serializable{
+public class CompanyJobFieldDTO implements java.io.Serializable{
 
 	private int jobNo;
 	private String jobName;
 	
-	public companyJobFieldDTO() {}
+	public CompanyJobFieldDTO() {}
 	
-	public companyJobFieldDTO(int jobNo, String jobName) {
+	public CompanyJobFieldDTO(int jobNo, String jobName) {
 		super();
 		this.jobNo = jobNo;
 		this.jobName = jobName;
