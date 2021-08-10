@@ -38,13 +38,15 @@ public class Template {
 			
 			configuration.addMapper(CompanyTestMapper.class);
 
-			configuration.addMapper(PersonalMemberMapper.class);
+			//configuration.addMapper(PersonalMemberMapper.class);
 			
+
 
 			configuration.addMapper(ResumeMapper.class);
 			configuration.addMapper(ProductMapper.class);
 			
 			
+
 
 			
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
