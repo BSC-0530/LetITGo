@@ -1,6 +1,6 @@
 package com.itsme.letitgo.admin.resume.model.dto;
 
-public class SkillsCategoryDTO {
+public class SkillsCategoryDTO implements java.io.Serializable{
 
 	private int no; 		//카테고리 번호
 	private String name;	//카테고리명
