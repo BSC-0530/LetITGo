@@ -9,16 +9,19 @@ public class ResumeDTO implements java.io.Serializable {
 	private java.sql.Date resumeWriteDate;
 	private String resumeScoutStatus;
 	private int jobNo;
+	private String resumeTitle;
 	
 	public ResumeDTO() {}
-	
-	public ResumeDTO(int resumeNo, int inMemNo, Date resumeWriteDate, String resumeScoutStatus, int jobNo) {
+
+	public ResumeDTO(int resumeNo, int inMemNo, Date resumeWriteDate, String resumeScoutStatus, int jobNo,
+			String resumeTitle) {
 		super();
 		this.resumeNo = resumeNo;
 		this.inMemNo = inMemNo;
 		this.resumeWriteDate = resumeWriteDate;
 		this.resumeScoutStatus = resumeScoutStatus;
 		this.jobNo = jobNo;
+		this.resumeTitle = resumeTitle;
 	}
 
 	public int getResumeNo() {
@@ -61,12 +64,19 @@ public class ResumeDTO implements java.io.Serializable {
 		this.jobNo = jobNo;
 	}
 
+	public String getResumeTitle() {
+		return resumeTitle;
+	}
+
+	public void setResumeTitle(String resumeTitle) {
+		this.resumeTitle = resumeTitle;
+	}
+
 	@Override
 	public String toString() {
 		return "ResumeDTO [resumeNo=" + resumeNo + ", inMemNo=" + inMemNo + ", resumeWriteDate=" + resumeWriteDate
-				+ ", resumeScoutStatus=" + resumeScoutStatus + ", jobNo=" + jobNo + "]";
+				+ ", resumeScoutStatus=" + resumeScoutStatus + ", jobNo=" + jobNo + ", resumeTitle=" + resumeTitle
+				+ "]";
 	}
-	
-	
 
 }

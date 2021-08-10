@@ -83,10 +83,6 @@
 												</p>
 												<br><br>
 												<p align="center">
-													<a href="#">결제내역</a>
-												</p>
-												<br><br>
-												<p align="center">
 													<a href="#">공고관리</a>
 												</p>
 												<br><br>

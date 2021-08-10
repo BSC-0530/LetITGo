@@ -50,7 +50,7 @@
 									class="jp_form_location_wrapper">
 									<select style="border: 1px solid;">
 										<option value="" disabled selected>경력을 선택해주세요</option>
-										<option value=""></option>
+										<option value="">신입</option>
 									</select>
 								</div>
 							</div>
@@ -71,7 +71,7 @@
 						</div>
 					</div>
 				</div>
-<%-- 				<c:forEach items="${scoutList }" var="scoutList">   --%>
+				<c:forEach items="${scoutList }" var="mainScout">  
 				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 jp_cl_right_bar">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -80,13 +80,13 @@
 									<img src="images/content/resume_img1.jpg" alt="resume_img" />
 								</div>
 								<div class="jp_recent_resume_cont_wrapper">
-									<h3>정현수 </h3>
-									<p><i class="fa fa-folder-open-o"></i> <a href="#"><c:out value="${ skill.name }"></c:out></a></p><pre>신입</pre>
-									
+									<h3><c:out value="${ mainScout.memName }"></c:out>  </h3>
+									<p><i class="fa fa-folder-open-o"></i> <a href="#"><c:out value="${ mainScout.skillsName }"></c:out></a></p>
+									<i>신입</i>
 								</div>
 								<div class="jp_recent_resume_btn_wrapper">
 									<ul>
-										<li><a href="#">깊은 열람</a></li>
+										<li><a href="#">간단 조회</a></li>
 									</ul>
 								</div>
 							</div>
@@ -94,7 +94,7 @@
 
 					</div>
 				</div>
-<%-- 				</c:forEach> --%>
+				</c:forEach>
 			</div>
 		</div>
 		<!-- jp listing sidebar Wrapper End -->
