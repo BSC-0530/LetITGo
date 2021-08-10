@@ -4,17 +4,16 @@ import static com.itsme.letitgo.common.mybatis.Template.getSqlSession;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.itsme.letitgo.personal.info.model.dto.MemberDTO;
+import com.itsme.letitgo.personal.info.model.dto.InfoMemberDTO;
 import com.itsme.letitgo.personal.info.model.mapper.PersonalMemberMapper;
-import com.itsme.letitgo.personal.info.model.mapper.personalMemberMapper;
 
 public class PersonalMemberService {
 
-	public MemberDTO selectMemberInfo() {
+	public InfoMemberDTO selectMemberInfo() {
 		
 		SqlSession session = getSqlSession();
 		
-		MemberDTO memberInfo = new MemberDTO();
+		InfoMemberDTO memberInfo = new InfoMemberDTO();
 		
 		PersonalMemberMapper memberMapper = session.getMapper(PersonalMemberMapper.class);
 		
