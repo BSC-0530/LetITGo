@@ -28,19 +28,22 @@
                             <div class="mainmenu">
                                  <ul class="float_left">
                                  	<li class="has-mega gc_main_navigation">
-                                    	<a href="${ pageContext.servletContext.contextPath }/testServlet" class="gc_main_navigation" class="gc_main_navigation">마이페이지</a>
+                                    	<a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation" class="gc_main_navigation">봉석</a>
                                     </li>
                                  	<li class="has-mega gc_main_navigation">
-                                    	<a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation" class="gc_main_navigation">채용공고</a>
+                                    	<a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation" class="gc_main_navigation">승수</a>
                                     </li>
                                  	<li class="has-mega gc_main_navigation">
-                                    	<a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation" class="gc_main_navigation">스카우트</a>
+                                    	<a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation" class="gc_main_navigation">현수</a>
                                     </li>
                                  	<li class="has-mega gc_main_navigation">
-                                    	<a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation" class="gc_main_navigation">이력서</a>
+                                    	<a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation" class="gc_main_navigation">본근</a>
                                     </li>
                                  	<li class="has-mega gc_main_navigation">
-                                    	<a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation" class="gc_main_navigation">1:1문의</a>
+                                    	<a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation" class="gc_main_navigation">태훈</a>
+                                    </li>
+                                    <li class="has-mega gc_main_navigation">
+                                    	<a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation" class="gc_main_navigation">동기</a>
                                     </li>
                                 </ul>
                             </div>

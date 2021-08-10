@@ -44,16 +44,15 @@
 							</div>
 						</div>
 					</div>
-					<div
-						class="col-lg-7 col-md-8 col-sm-12 col-xs-12 center_responsive">
+					<div class="col-lg-7 col-md-8 col-sm-12 col-xs-12 center_responsive">
 						<div class="header-area hidden-menu-bar stick" id="sticker">
 							<!-- mainmenu start -->
 							<div class="mainmenu">
 
 								<ul class="float_left">
-									<li class="parent gc_main_navigation"><a href="" class="gc_main_navigation">마이페이지 </a></li>
-									<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation">채용공고</a></li>
-									<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation">스카우트</a> </li>
+									<li class="parent gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation">마이페이지 </a></li>
+									<li class="has-mega gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation">채용공고</a></li>
+									<li class="has-mega gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation">스카우트</a> </li>
 									<li class="has-mega gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }/resume/list" class="gc_main_navigation" >이력서</a></li>
 									<li class="gc_main_navigation parent"><a href="${ pageContext.servletContext.contextPath }/companyTestServlet" class="gc_main_navigation">1:1문의</a></li>
 								</ul>
@@ -63,8 +62,7 @@
 					<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 hidden-sm hidden-xs">
 						<div class="jp_navi_right_btn_wrapper">
 							<ul>
-								<li><a href="register.html">회원가입</a></li>
-								<li><a href="login.html">로그인</a></li>
+								<li><a href="#">로그아웃</a></li>
 							</ul>
 						</div>
 					</div>
