@@ -1,6 +1,6 @@
 package com.itsme.letitgo.personal.resume.model.dto;
 
-public class PortfolioDTO {
+public class PortfolioDTO implements java.io.Serializable {
 	
 	private int potNo;
 	private int resumeNo;
@@ -9,6 +9,8 @@ public class PortfolioDTO {
 	private String potFilePath;
 	private String potFileOriginalName;
 	private String potFileName;
+	
+	public PortfolioDTO() {}
 	
 	public PortfolioDTO(int potNo, int resumeNo, String potKinds, String potLinkAddress, String potFilePath,
 			String potFileOriginalName, String potFileName) {
