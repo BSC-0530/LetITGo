@@ -2,9 +2,9 @@ package com.itsme.letitgo.admin.resume.model.dto;
 
 public class SkillsCategoryDTO {
 
-	private int no;
-	private String name;
-	private int upperNo;
+	private int no; 		//카테고리 번호
+	private String name;	//카테고리명
+	private int upperNo;	//상위카테고리
 	
 	public SkillsCategoryDTO() {}
 
