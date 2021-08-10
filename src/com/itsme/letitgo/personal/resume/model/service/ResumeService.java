@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.itsme.letitgo.personal.resume.model.dto.DetailResumeDTO;
 import com.itsme.letitgo.personal.resume.model.dto.ResumeDTO;
 import com.itsme.letitgo.personal.resume.model.mapper.ResumeMapper;
 
@@ -23,12 +24,12 @@ public class ResumeService {
 		return resumeList;
 	}
 
-	public ResumeDTO selectDetailResumeList() {
+	public List<DetailResumeDTO> selectDetailResumeList() {
 		
 		SqlSession session = getSqlSession();
 		ResumeMapper mapper = session.getMapper(ResumeMapper.class);
 		
-		ResumeDTO detailList = mapper.selectDetailResumeList();
+		List<DetailResumeDTO> detailList = mapper.selectDetailResumeList();
 		
 		session.close();
 		
