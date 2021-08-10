@@ -24,28 +24,7 @@ public class CoMemberRegistServlet extends HttpServlet {
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 
-//	private int no;
-//	private String id;
-//	private String email;
-//	private String pwd;
-//	private String name;
-//	private String phone;
-//	private String kinds;
-//	private Date enrollDate;
-//	private String entYn;
-//	private Date entDate;
-//	
-//	//이따 변수명 coMem으로 시작하게 만들기
-//	private int memNo;			//기업회원번호
-//	private String intro;		//회사 소개글
-//	private String coNo;		//사업자 등록 번호
-//	private String comName;		//기업 이름
-//	private String ceoName;     //대표자 이름
-//	private String address; 	//주소
-//	private String coPhone; 	//사업장 전화번호
-//	private String fax;			//사업장 팩스번호
-//	private String sectors;		//업종
-//	private String status;		//업태
+
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -57,7 +36,7 @@ public class CoMemberRegistServlet extends HttpServlet {
 		String phone = request.getParameter("phone");
 		String kinds = request.getParameter("kinds");
 		java.sql.Date enrollDate = java.sql.Date.valueOf(request.getParameter("enrollDate"));
-		String entYn = request.getParameter("entYn");
+		int entYn = Integer.parseInt(request.getParameter("entYn"));
 		java.sql.Date entDate = java.sql.Date.valueOf(request.getParameter("entDate"));
 		/*기업 상세사항*/
 		String intro = request.getParameter("intre");
@@ -65,27 +44,27 @@ public class CoMemberRegistServlet extends HttpServlet {
 		String comName = request.getParameter("comName");
 		String ceoName = request.getParameter("ceoName");
 		String coAddress = request.getParameter("coAddress");
-		String coPhone = request.getParameter("coPhone");
+		String comPhone = request.getParameter("comPhone");
 		String fax = request.getParameter("pax");
 		String sectors = request.getParameter("sectors");
 		String status = request.getParameter("status");
 		
 		CoMemberDTO coMemberDTO = new CoMemberDTO();
-		coMemberDTO.setId(memberId);
-		coMemberDTO.setPwd(pwd);
-		coMemberDTO.setEmail(email);
-		coMemberDTO.setName(name);
-		coMemberDTO.setKinds(kinds);
-		coMemberDTO.setPhone(phone);
-		coMemberDTO.setEnrollDate(enrollDate);
-		coMemberDTO.setEntYn(entYn);
-		coMemberDTO.setEntDate(entDate);
+		coMemberDTO.setCoid(memberId);
+		coMemberDTO.setCoemail(email);
+		coMemberDTO.setCopwd(pwd);
+		coMemberDTO.setCoName(name);
+		coMemberDTO.setCoPhone(phone);
+		coMemberDTO.setCoKinds(kinds);
+		coMemberDTO.setCoEnrollDate(enrollDate);
+		coMemberDTO.setCoEntYn(entYn);
+		coMemberDTO.setCoEntDate(entDate);
 		coMemberDTO.setIntro(intro);
 		coMemberDTO.setCoNo(coNo);
 		coMemberDTO.setComName(comName);
 		coMemberDTO.setCeoName(ceoName);
+		coMemberDTO.setComPhone(comPhone);
 		coMemberDTO.setAddress(coAddress);
-		coMemberDTO.setPhone(coPhone);
 		coMemberDTO.setFax(fax);
 		coMemberDTO.setSectors(sectors);
 		coMemberDTO.setStatus(status);
