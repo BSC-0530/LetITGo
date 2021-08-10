@@ -52,28 +52,43 @@
 								<div class="jp_rightside_job_categories_content">
 									<div class="handyman_sec1_wrapper">
 										<div class="content">
-											<div class="box">
+											<div align="center" class="box">
 												<p align="center">
 													<a href="#">회원정보</a>
 												</p>
+												<br>
+												<br>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/companyTestServlet">기업정보</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/companyTestServlet">기업정보</a>
 												</p>
+												<br>
+												<br>
 												<p align="center">
 													<a href="#">결제내역</a>
 												</p>
+												<br>
+												<br>
 												<p align="center">
 													<a href="#">공고관리</a>
 												</p>
+												<br>
+												<br>
 												<p align="center">
 													<a href="#">스카우트 현황</a>
 												</p>
+												<br>
+												<br>
 												<p align="center">
 													<a href="#">찜한 후보자</a>
 												</p>
+												<br>
+												<br>
 												<p align="center">
 													<a href="#">결제 내역</a>
 												</p>
+												<br>
+												<br>
 												<p align="center">
 													<a href="#">회원 탈퇴</a>
 												</p>
@@ -90,105 +105,70 @@
 				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-								<div class="jp_counter_main_wrapper">
+							<div class="jp_counter_main_wrapper">
 								<h1 align="left">지원현황</h1>
-									<div class="container">
-										<div class="gc_counter_cont_wrapper">
-											<div class="count-description">
-												<span class="timer">2540</span><i class="fa fa-plus"></i>
-												<h5 class="con1">전체 지원</h5>
-											</div>
+								<div class="container">
+									<div class="gc_counter_cont_wrapper">
+										<div class="count-description">
+											<span class="timer">2540</span><i class="fa fa-plus"></i>
+											<h5 class="con1">전체 지원</h5>
 										</div>
-										<div class="gc_counter_cont_wrapper2">
-											<div class="count-description">
-												<span class="timer">7325</span><i class="fa fa-plus"></i>
-												<h5 class="con2">지원 완료</h5>
-											</div>
+									</div>
+									<div class="gc_counter_cont_wrapper2">
+										<div class="count-description">
+											<span class="timer">7325</span><i class="fa fa-plus"></i>
+											<h5 class="con2">지원 완료</h5>
 										</div>
-										<div class="gc_counter_cont_wrapper3">
-											<div class="count-description">
-												<span class="timer">1924</span><i class="fa fa-plus"></i>
-												<h5 class="con3">지원 취소</h5>
-											</div>
+									</div>
+									<div class="gc_counter_cont_wrapper3">
+										<div class="count-description">
+											<span class="timer">1924</span><i class="fa fa-plus"></i>
+											<h5 class="con3">지원 취소</h5>
 										</div>
+									</div>
 								</div>
-								<br><br>
-								</div>
-								<!-- 데이터 테이들 -->
-								
-								<h1>전체 지원</h1>
-									<table id="table_id" class="display">
-										<thead>
-											<tr>
-												<th>제목</th>
-												<th>기업명</th>
-												<th>경력</th>
-												<th>등록일자</th>
-												<th>마감일자</th>
-												<th>요구기술</th>
-												<th>지원상태</th>
-												<th>열람상태</th>
-												<th>지원취소</th>
-												<th>이력서 확인</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>1 Data 1</td>
-												<td>Row 1 Data 2</td>
-											</tr>
-											<tr>
-												<td>2 Data 1</td>
-												<td>Row 2 Data 2</td>
-											</tr>
-											<tr>
-												<td>3 Data 1</td>
-												<td><label class="switch"><input
-														type="checkbox"><span class="slider round"></span></label>
-													<p>OFF</p>
-													<p style="display: none;">ON</p></td>
-											</tr>
-											<tr>
-												<td>4 Data 1</td>
-												<td>Row 2 Data 2</td>
-											</tr>
-											<tr>
-												<td>5 Data 1</td>
-												<td>Row 1 Data 2</td>
-											</tr>
-											<tr>
-												<td>6 Data 1</td>
-												<td>Row 2 Data 2</td>
-											</tr>
-											<tr>
-												<td>7 Data 1</td>
-												<td>Row 1 Data 2</td>
-											</tr>
-											<tr>
-												<td>8 Data 1</td>
-												<td>Row 2 Data 2</td>
-											</tr>
-											<tr>
-												<td>9 Data 1</td>
-												<td>Row 1 Data 2</td>
-											</tr>
-											<tr>
-												<td>10 Data 1</td>
-												<td>Row 2 Data 2</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
+								<br>
+								<br>
 							</div>
+							<!-- 데이터 테이들 -->
+
+							<h1>전체 지원</h1>
+							
+
+						</div>
+						<table id="table_scout" class="hover cell-border stripe">
+								<thead>
+									<tr>
+										<td>이력서 제목</td>
+										<td>이름</td>
+										<td>경력</td>
+										<td>직무</td>
+										<td>구분</td>
+										<td>상세보기</td>
+									</tr>
+								</thead>
+								<tbody align="center">
+									<tr>
+										<td></td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td><button type="button">asd</button></td>
+									</tr>
+								</tbody>
+							</table>
+					</div>
 				</div>
+				
 			</div>
 		</div>
 	</div>
-<script>
+	<script>
 
-	$(document).ready( function () {
-	    $('#table_id').DataTable();
-	} );
+$(document).ready(function() {
+	$('#table_scout').DataTable();
+});
 	
 	
 </script>

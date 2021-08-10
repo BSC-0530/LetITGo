@@ -4,6 +4,7 @@ public class ProductDTO implements java.io.Serializable {
 	
 	private int productNo ;
 	private int productPrice;
+	private String productName;
 	private Integer readingNum;
 	private String upperExposureHour;
 	private String productKinds;
@@ -11,11 +12,12 @@ public class ProductDTO implements java.io.Serializable {
 	
 	public ProductDTO() {}
 
-	public ProductDTO(int productNo, int productPrice, Integer readingNum, String upperExposureHour,
+	public ProductDTO(int productNo, int productPrice, String productName, Integer readingNum, String upperExposureHour,
 			String productKinds, String productExposureStatus) {
 		super();
 		this.productNo = productNo;
 		this.productPrice = productPrice;
+		this.productName = productName;
 		this.readingNum = readingNum;
 		this.upperExposureHour = upperExposureHour;
 		this.productKinds = productKinds;
@@ -36,6 +38,14 @@ public class ProductDTO implements java.io.Serializable {
 
 	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public Integer getReadingNum() {
@@ -72,11 +82,12 @@ public class ProductDTO implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "ProductDTO [productNo=" + productNo + ", productPrice=" + productPrice + ", readingNum=" + readingNum
-				+ ", upperExposureHour=" + upperExposureHour + ", productKinds=" + productKinds
-				+ ", productExposureStatus=" + productExposureStatus + "]";
+		return "ProductDTO [productNo=" + productNo + ", productPrice=" + productPrice + ", productName=" + productName
+				+ ", readingNum=" + readingNum + ", upperExposureHour=" + upperExposureHour + ", productKinds="
+				+ productKinds + ", productExposureStatus=" + productExposureStatus + "]";
 	}
 
+	
 	
 
 	

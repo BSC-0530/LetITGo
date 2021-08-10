@@ -1,18 +1,19 @@
-package com.itsme.letitgo.personal.resume.model.dto;
+package com.itsme.letitgo.company.scout.model.dto;
 
 import java.sql.Date;
 
-public class ResumeDTO implements java.io.Serializable {
-	
+
+public class companyResumeDTO implements java.io.Serializable {
+
 	private int resumeNo;
 	private int inMemNo;
 	private java.sql.Date resumeWriteDate;
 	private String resumeScoutStatus;
 	private int jobNo;
 	
-	public ResumeDTO() {}
+	public companyResumeDTO() {}
 	
-	public ResumeDTO(int resumeNo, int inMemNo, Date resumeWriteDate, String resumeScoutStatus, int jobNo) {
+	public companyResumeDTO(int resumeNo, int inMemNo, Date resumeWriteDate, String resumeScoutStatus, int jobNo) {
 		super();
 		this.resumeNo = resumeNo;
 		this.inMemNo = inMemNo;
@@ -67,6 +68,4 @@ public class ResumeDTO implements java.io.Serializable {
 				+ ", resumeScoutStatus=" + resumeScoutStatus + ", jobNo=" + jobNo + "]";
 	}
 	
-	
-
 }

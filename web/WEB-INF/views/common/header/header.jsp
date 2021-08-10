@@ -28,16 +28,16 @@
                             <div class="mainmenu">
                                  <ul class="float_left">
                                  	<li class="has-mega gc_main_navigation">
-                                    	<a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation" class="gc_main_navigation">봉석</a>
+                                    	<a href="${ pageContext.servletContext.contextPath }/resume/detail" class="gc_main_navigation" class="gc_main_navigation">봉석</a>
                                     </li>
                                  	<li class="has-mega gc_main_navigation">
                                     	<a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation" class="gc_main_navigation">승수</a>
                                     </li>
                                  	<li class="has-mega gc_main_navigation">
-                                    	<a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation" class="gc_main_navigation">현수</a>
+                                    	<a href="${ pageContext.servletContext.contextPath }/productList/select" id="paymentMainPage" class="gc_main_navigation" class="gc_main_navigation">현수</a>
                                     </li>
                                  	<li class="has-mega gc_main_navigation">
-                                    	<a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation" class="gc_main_navigation">본근</a>
+                                    	<a href="${ pageContext.servletContext.contextPath }/companyTestServlet" class="gc_main_navigation" class="gc_main_navigation">본근</a>
                                     </li>
                                  	<li class="has-mega gc_main_navigation">
                                     	<a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation" class="gc_main_navigation">태훈</a>

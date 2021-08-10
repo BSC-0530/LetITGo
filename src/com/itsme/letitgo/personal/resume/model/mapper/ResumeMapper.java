@@ -8,4 +8,6 @@ public interface ResumeMapper {
 
 	List<ResumeDTO> selectAllResumeList();
 
+	ResumeDTO selectDetailResumeList();
+
 }

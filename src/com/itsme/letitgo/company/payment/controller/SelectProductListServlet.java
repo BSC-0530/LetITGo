@@ -21,6 +21,20 @@ public class SelectProductListServlet extends HttpServlet {
 		
 		List<ProductDTO> productList = selectProductListService.SelectProductList();
 		
+		
+		
+//		for(int i = 0; i < productList.size(); i++) {
+//			product = new ProductDTO();
+//			
+//			product.setProductNo(productList.get(i).getProductNo());
+//			product.setProductName(productList.get(i).getProductName());
+//			product.setProductPrice(productList.get(i).getProductPrice());
+//			product.setProductExposureStatus(productList.get(i).getProductExposureStatus());
+//			product.setProductKinds(productList.get(i).getProductKinds());
+//			product.setReadingNum(productList.get(i).getReadingNum());
+//			Integer.parseInt(product.setUpperExposureHour(productList.get(i).getUpperExposureHour()));
+//		}
+//		
 		for(ProductDTO product : productList) {
 			System.out.println(product);
 		}
