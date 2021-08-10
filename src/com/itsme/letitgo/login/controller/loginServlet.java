@@ -11,9 +11,6 @@ import javax.servlet.http.HttpSession;
 import com.itsme.letitgo.login.model.dto.MemberDTO;
 import com.itsme.letitgo.login.model.service.MemberService;
 
-/**
- * Servlet implementation class loginServlet
- */
 @WebServlet("/member/login")
 public class loginServlet extends HttpServlet {
 

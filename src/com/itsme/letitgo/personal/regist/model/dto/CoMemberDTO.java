@@ -5,227 +5,216 @@ import java.sql.Date;
 
 public class CoMemberDTO implements Serializable{
 
-	private int no;
-	private String id;
-	private String email;
-	private String pwd;
-	private String name;
-	private String phone;
-	private String kinds;
-	private Date enrollDate;
-	private String entYn;
-	private Date entDate;
 	
-	//이따 변수명 coMem으로 시작하게 만들기
-	private int memNo;			//기업회원번호
-	private String intro;		//회사 소개글
-	private String coNo;		//사업자 등록 번호
-	private String comName;		//기업 이름
-	private String ceoName;     //대표자 이름
-	private String address; 	//주소
-	private String coPhone; 	//사업장 전화번호
-	private String fax;			//사업장 팩스번호
-	private String sectors;		//업종
-	private String status;		//업태
-	
-	public CoMemberDTO() {}
 
-	public CoMemberDTO(int no, String id, String email, String pwd, String name, String phone, String kinds,
-			Date enrollDate, String entYn, Date entDate, int memNo, String intro, String coNo, String comName,
-			String ceoName, String address, String coPhone, String fax, String sectors, String status) {
-		super();
-		this.no = no;
-		this.id = id;
-		this.email = email;
-		this.pwd = pwd;
-		this.name = name;
-		this.phone = phone;
-		this.kinds = kinds;
-		this.enrollDate = enrollDate;
-		this.entYn = entYn;
-		this.entDate = entDate;
-		this.memNo = memNo;
-		this.intro = intro;
-		this.coNo = coNo;
-		this.comName = comName;
-		this.ceoName = ceoName;
-		this.address = address;
-		this.coPhone = coPhone;
-		this.fax = fax;
-		this.sectors = sectors;
-		this.status = status;
-	}
+		private String Coid;
+		private String Coemail;
+		private String Copwd;
+		private String CoName;
+		private String CoPhone;
+		private String CoKinds;
+		private Date CoEnrollDate;
+		private Integer CoEntYn;
+		private Date CoEntDate;
+		
+		//이따 변수명 coMem으로 시작하게 만들기
+		private int memNo;			//기업회원번호
+		private String intro;		//회사 소개글
+		private String coNo;		//사업자 등록 번호
+		private String comName;		//기업 이름
+		private String ceoName;     //대표자 이름
+		private String address; 	//주소
+		private String ComPhone; 	//사업장 전화번호
+		private String fax;			//사업장 팩스번호
+		private String sectors;		//업종
+		private String status;		//업태
+		
+		public CoMemberDTO() {}
 
-	public int getNo() {
-		return no;
-	}
+		public CoMemberDTO(String coid, String coemail, String copwd, String coName, String coPhone, String coKinds,
+				Date coEnrollDate, Integer coEntYn, Date coEntDate, int memNo, String intro, String coNo, String comName,
+				String ceoName, String address, String comPhone, String fax, String sectors, String status) {
+			super();
+			Coid = coid;
+			Coemail = coemail;
+			Copwd = copwd;
+			CoName = coName;
+			CoPhone = coPhone;
+			CoKinds = coKinds;
+			CoEnrollDate = coEnrollDate;
+			CoEntYn = coEntYn;
+			CoEntDate = coEntDate;
+			this.memNo = memNo;
+			this.intro = intro;
+			this.coNo = coNo;
+			this.comName = comName;
+			this.ceoName = ceoName;
+			this.address = address;
+			ComPhone = comPhone;
+			this.fax = fax;
+			this.sectors = sectors;
+			this.status = status;
+		}
 
-	public String getId() {
-		return id;
-	}
+		public String getCoid() {
+			return Coid;
+		}
 
-	public String getEmail() {
-		return email;
-	}
+		public void setCoid(String coid) {
+			Coid = coid;
+		}
 
-	public String getPwd() {
-		return pwd;
-	}
+		public String getCoemail() {
+			return Coemail;
+		}
 
-	public String getName() {
-		return name;
-	}
+		public void setCoemail(String coemail) {
+			Coemail = coemail;
+		}
 
-	public String getPhone() {
-		return phone;
-	}
+		public String getCopwd() {
+			return Copwd;
+		}
 
-	public String getKinds() {
-		return kinds;
-	}
+		public void setCopwd(String copwd) {
+			Copwd = copwd;
+		}
 
-	public Date getEnrollDate() {
-		return enrollDate;
-	}
+		public String getCoName() {
+			return CoName;
+		}
 
-	public String getEntYn() {
-		return entYn;
-	}
+		public void setCoName(String coName) {
+			CoName = coName;
+		}
 
-	public Date getEntDate() {
-		return entDate;
-	}
+		public String getCoPhone() {
+			return CoPhone;
+		}
 
-	public int getMemNo() {
-		return memNo;
-	}
+		public void setCoPhone(String coPhone) {
+			CoPhone = coPhone;
+		}
 
-	public String getIntro() {
-		return intro;
-	}
+		public String getCoKinds() {
+			return CoKinds;
+		}
 
-	public String getCoNo() {
-		return coNo;
-	}
+		public void setCoKinds(String coKinds) {
+			CoKinds = coKinds;
+		}
 
-	public String getComName() {
-		return comName;
-	}
+		public Date getCoEnrollDate() {
+			return CoEnrollDate;
+		}
 
-	public String getCeoName() {
-		return ceoName;
-	}
+		public void setCoEnrollDate(Date coEnrollDate) {
+			CoEnrollDate = coEnrollDate;
+		}
 
-	public String getAddress() {
-		return address;
-	}
+		public Integer getCoEntYn() {
+			return CoEntYn;
+		}
 
-	public String getCoPhone() {
-		return coPhone;
-	}
+		public void setCoEntYn(Integer coEntYn) {
+			CoEntYn = coEntYn;
+		}
 
-	public String getFax() {
-		return fax;
-	}
+		public Date getCoEntDate() {
+			return CoEntDate;
+		}
 
-	public String getSectors() {
-		return sectors;
-	}
+		public void setCoEntDate(Date coEntDate) {
+			CoEntDate = coEntDate;
+		}
 
-	public String getStatus() {
-		return status;
-	}
+		public int getMemNo() {
+			return memNo;
+		}
 
-	public void setNo(int no) {
-		this.no = no;
-	}
+		public void setMemNo(int memNo) {
+			this.memNo = memNo;
+		}
 
-	public void setId(String id) {
-		this.id = id;
-	}
+		public String getIntro() {
+			return intro;
+		}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+		public void setIntro(String intro) {
+			this.intro = intro;
+		}
 
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
-	}
+		public String getCoNo() {
+			return coNo;
+		}
 
-	public void setName(String name) {
-		this.name = name;
-	}
+		public void setCoNo(String coNo) {
+			this.coNo = coNo;
+		}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+		public String getComName() {
+			return comName;
+		}
 
-	public void setKinds(String kinds) {
-		this.kinds = kinds;
-	}
+		public void setComName(String comName) {
+			this.comName = comName;
+		}
 
-	public void setEnrollDate(Date enrollDate) {
-		this.enrollDate = enrollDate;
-	}
+		public String getCeoName() {
+			return ceoName;
+		}
 
-	public void setEntYn(String entYn) {
-		this.entYn = entYn;
-	}
+		public void setCeoName(String ceoName) {
+			this.ceoName = ceoName;
+		}
 
-	public void setEntDate(Date entDate) {
-		this.entDate = entDate;
-	}
+		public String getAddress() {
+			return address;
+		}
 
-	public void setMemNo(int memNo) {
-		this.memNo = memNo;
-	}
+		public void setAddress(String address) {
+			this.address = address;
+		}
 
-	public void setIntro(String intro) {
-		this.intro = intro;
-	}
+		public String getComPhone() {
+			return ComPhone;
+		}
 
-	public void setCoNo(String coNo) {
-		this.coNo = coNo;
-	}
+		public void setComPhone(String comPhone) {
+			ComPhone = comPhone;
+		}
 
-	public void setComName(String comName) {
-		this.comName = comName;
-	}
+		public String getFax() {
+			return fax;
+		}
 
-	public void setCeoName(String ceoName) {
-		this.ceoName = ceoName;
-	}
+		public void setFax(String fax) {
+			this.fax = fax;
+		}
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+		public String getSectors() {
+			return sectors;
+		}
 
-	public void setCoPhone(String coPhone) {
-		this.coPhone = coPhone;
-	}
+		public void setSectors(String sectors) {
+			this.sectors = sectors;
+		}
 
-	public void setFax(String fax) {
-		this.fax = fax;
-	}
+		public String getStatus() {
+			return status;
+		}
 
-	public void setSectors(String sectors) {
-		this.sectors = sectors;
-	}
+		public void setStatus(String status) {
+			this.status = status;
+		}
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+		@Override
+		public String toString() {
+			return "CoMemberDTO [Coid=" + Coid + ", Coemail=" + Coemail + ", Copwd=" + Copwd + ", CoName=" + CoName
+					+ ", CoPhone=" + CoPhone + ", CoKinds=" + CoKinds + ", CoEnrollDate=" + CoEnrollDate + ", CoEntYn="
+					+ CoEntYn + ", CoEntDate=" + CoEntDate + ", memNo=" + memNo + ", intro=" + intro + ", coNo=" + coNo
+					+ ", comName=" + comName + ", ceoName=" + ceoName + ", address=" + address + ", ComPhone=" + ComPhone
+					+ ", fax=" + fax + ", sectors=" + sectors + ", status=" + status + "]";
+		}
 
-	@Override
-	public String toString() {
-		return "CoMemberDTO [no=" + no + ", id=" + id + ", email=" + email + ", pwd=" + pwd + ", name=" + name
-				+ ", phone=" + phone + ", kinds=" + kinds + ", enrollDate=" + enrollDate + ", entYn=" + entYn
-				+ ", entDate=" + entDate + ", memNo=" + memNo + ", intro=" + intro + ", coNo=" + coNo + ", comName="
-				+ comName + ", ceoName=" + ceoName + ", address=" + address + ", coPhone=" + coPhone + ", fax=" + fax
-				+ ", sectors=" + sectors + ", status=" + status + "]";
 	}
-	
-	
-	
-	
-}
