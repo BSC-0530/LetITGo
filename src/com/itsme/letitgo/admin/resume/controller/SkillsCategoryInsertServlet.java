@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.itsme.letitgo.admin.resume.model.dto.SkillsCategoryDTO;
 import com.itsme.letitgo.admin.resume.service.SkillsCategoryService;
 
-/**
- * Servlet implementation class SkillsCategoryInsertServlet
- */
 @WebServlet("/skillscategory/insert")
 public class SkillsCategoryInsertServlet extends HttpServlet {
 
@@ -43,15 +40,16 @@ public class SkillsCategoryInsertServlet extends HttpServlet {
 		
 		int result = new SkillsCategoryService().skillsCategoryInsert(requestSkillsCategory);
 		
+		//result값 확인
 		System.out.println("skillsCategoryController result : " + result);
 		
-		String path = "";
+		String path = "경로 지정해주기";
 		
 		if(result > 0) {
-			path = "성공했을때 경로";
+			path = "성공 경로 지정해주기";
 			request.setAttribute("성공코드", "skillsCategoryInsert"); //<- skillsCategoryInsert는 DAO쪽, 그럼 mapper쪽으로
 		} else {
-			path = "실패했을때 경로";
+			path = "실패 경로 지정해주기";
 			request.setAttribute("실패코드", "기술 카테고리 등록에 실패하셨습니다.");
 		}
 		

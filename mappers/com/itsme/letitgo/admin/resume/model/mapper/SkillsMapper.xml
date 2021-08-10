@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.itsme.letitgo.admin.resume.model.mapper.SkillsMapper">
+	<resultMap type="com.itsme.letitgo.admin.resume.model.dto.SkillsDTO" id="skillsInsertResultMap">
+		<id property="skillsNo" column="SKILLS_NO"/>
+		<result property="name" column="SKILLS_NAME"/>
+		<result property="no" column="CATEGORY_NO"/>
+	</resultMap>
+	
+	<insert id="skillsInsert" parameterType="com.itsme.letitgo.admin.resume.model.dto.SkillsDTO">
+		INSERT
+		  INTO TBL_SKILLS A
+		(
+		  A.SKILLS_NO
+		, A.SKILLS_NAME
+		, A.CATEGORY_NO  
+		)  
+		VALUES
+		(
+		   SEQ_SKILLS_NO.NEXTVAL
+		 , # { name }  
+		 , # { no }  
+		)
+	</insert>
+	
+	
+</mapper>
