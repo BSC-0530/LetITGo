@@ -1,8 +1,9 @@
 package com.itsme.letitgo.login.model.dto;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class CoMemberDTO {
+public class CoMemberDTO implements Serializable{
 
 	private int no;
 	private String id;
