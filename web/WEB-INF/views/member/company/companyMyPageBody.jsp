@@ -68,7 +68,7 @@
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_rightside_job_categories_wrapper">
 								<div class="jp_rightside_job_categories_heading">
-									<h4 align="center" style="font-weight : bold">My Page</h4>
+									<h4 style="font-weight : bold">My Page</h4>
 								</div>
 								<div class="jp_rightside_job_categories_content">
 									<div class="handyman_sec1_wrapper">
@@ -78,31 +78,27 @@
 													<a href="#">회원정보</a>
 												</p>
 												<br><br>
-												<p align="center">
+												<p>
 													<a href="${ pageContext.servletContext.contextPath }/companyTestServlet">기업정보</a>
 												</p>
 												<br><br>
-												<p align="center">
-													<a href="#">결제내역</a>
+												<p>
+													<a href="${ pageContext.servletContext.contextPath }/company/paymentHistory/select">결제내역</a>
 												</p>
 												<br><br>
-												<p align="center">
+												<p>
 													<a href="#">공고관리</a>
 												</p>
 												<br><br>
-												<p align="center">
+												<p>
 													<a href="${ pageContext.servletContext.contextPath }/Company/Scout/List/Select">스카우트 현황</a>
 												</p>
 												<br><br>
-												<p align="center">
+												<p>
 													<a href="#">찜한 후보자</a>
 												</p>
 												<br><br>
-												<p align="center">
-													<a href="#">결제 내역</a>
-												</p>
-												<br><br>
-												<p align="center">
+												<p>
 													<a href="#">회원 탈퇴</a>
 												</p>
 												<br><br>
