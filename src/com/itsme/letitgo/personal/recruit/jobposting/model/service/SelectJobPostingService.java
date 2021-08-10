@@ -6,12 +6,12 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.itsme.letitgo.personal.recruit.jobposting.model.dto.JobPostingAndAddInfoDTO;
+import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectAllJobPostingDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper;
 
 public class SelectJobPostingService {
 
-	public List<JobPostingAndAddInfoDTO> selectAllJobPosting() {
+	public List<SelectAllJobPostingDTO> selectAllJobPosting() {
 
 		SqlSession session = getSqlSession();
 		
@@ -19,7 +19,7 @@ public class SelectJobPostingService {
 		
 		SelectJobPostingMapper mapper = session.getMapper(SelectJobPostingMapper.class);
 		
-		List<JobPostingAndAddInfoDTO> jpAndInfo = mapper.selectAllJobPosting();
+		List<SelectAllJobPostingDTO> jpAndInfo = mapper.selectAllJobPosting();
 		
 		System.out.println("service jpAndInfo : " + jpAndInfo);
 		session.close();

@@ -14,11 +14,11 @@ public class InfoMemberDTO implements java.io.Serializable {
 	private Date memEnrollDate;
 	private String memEntYn;
 	private Date memEntDate;
-	private int memEntNo;
+	private Integer memEntNo;
 	public InfoMemberDTO() {}
 	
 	public InfoMemberDTO(int memNo, String memId, String memEmail, String memPwd, String memName, String memPhone,
-			String memKinds, Date memEnrollDate, String memEntYn, Date memEntDate, int memEntNo) {
+			String memKinds, Date memEnrollDate, String memEntYn, Date memEntDate, Integer memEntNo) {
 		super();
 		this.memNo = memNo;
 		this.memId = memId;
@@ -92,7 +92,7 @@ public class InfoMemberDTO implements java.io.Serializable {
 	public void setMemEntDate(Date memEntDate) {
 		this.memEntDate = memEntDate;
 	}
-	public int getMemEntNo() {
+	public Integer getMemEntNo() {
 		return memEntNo;
 	}
 	public void setMemEntNo(int memEntNo) {

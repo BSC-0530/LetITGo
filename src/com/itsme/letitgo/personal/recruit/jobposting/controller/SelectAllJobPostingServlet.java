@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itsme.letitgo.personal.recruit.jobposting.model.dto.JobPostingAndAddInfoDTO;
+import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectAllJobPostingDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.service.SelectJobPostingService;
 
 
@@ -22,7 +22,7 @@ public class SelectAllJobPostingServlet extends HttpServlet {
 		
 		SelectJobPostingService selectJobPostingService = new SelectJobPostingService();
 		
-		List<JobPostingAndAddInfoDTO> jpAndInfo = selectJobPostingService.selectAllJobPosting();
+		List<SelectAllJobPostingDTO> jpAndInfo = selectJobPostingService.selectAllJobPosting();
 		
 		System.out.println("Servlet jpAndInfo : " + jpAndInfo);
 		
