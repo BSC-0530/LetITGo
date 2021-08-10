@@ -8,8 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:forEach items="detailList" var="detail">
-		<c:out value="${ detail.resumeNo }"></c:out>
+	<c:forEach items="${ detailList }" var="detail">
+		<c:out value="${ detail.careerHistoryList }"></c:out><br>
+		<c:out value="${ detail.inMemNo }"/><br>
+		<c:out value="${ detail.portFolioList }"></c:out><br>
+		<c:out value="${ detail.itemAndContentList }"></c:out><br>
+		<c:out value="${ detail.awardHistoryList }"></c:out><br>
+		<c:out value="${ detail.educationHistoryList }"></c:out>
 	</c:forEach>
 </body>
 </html>

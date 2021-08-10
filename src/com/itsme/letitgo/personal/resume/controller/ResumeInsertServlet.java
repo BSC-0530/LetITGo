@@ -9,10 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/resume/insert")
 public class ResumeInsertServlet extends HttpServlet {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.getRequestDispatcher("/WEB-INF/views/resume/insertList.jsp").forward(request, response);
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
+		
+		System.out.println("11");
 	}
 
 }
