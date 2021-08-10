@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.itsme.letitgo.company.payment.model.dto.ProductDTO;
-import com.itsme.letitgo.company.payment.model.mapper.ProductMapper;
+import com.itsme.letitgo.company.payment.model.mapper.PaymentMapper;
 
 import static com.itsme.letitgo.common.mybatis.Template.getSqlSession;
 
@@ -15,7 +15,7 @@ public class SelectProductListService {
 		
 		SqlSession session = getSqlSession();
 		
-		ProductMapper productMapper = session.getMapper(ProductMapper.class);
+		PaymentMapper productMapper = session.getMapper(PaymentMapper.class);
 		
 		List<ProductDTO> productList = productMapper.selectProductList();
 		

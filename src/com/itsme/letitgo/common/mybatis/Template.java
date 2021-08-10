@@ -12,7 +12,7 @@ import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 
 import com.itsme.letitgo.company.info.model.mapper.CompanyTestMapper;
 
-import com.itsme.letitgo.company.payment.model.mapper.ProductMapper;
+import com.itsme.letitgo.company.payment.model.mapper.PaymentMapper;
 import com.itsme.letitgo.personal.info.model.mapper.PersonalMemberMapper;
 import com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper;
 import com.itsme.letitgo.personal.resume.model.mapper.ResumeMapper;
@@ -44,7 +44,7 @@ public class Template {
 
 
 			configuration.addMapper(ResumeMapper.class);
-			configuration.addMapper(ProductMapper.class);
+			configuration.addMapper(PaymentMapper.class);
 			
 
 			configuration.addMapper(SelectJobPostingMapper.class);
