@@ -11,7 +11,7 @@
 		<result property="jobNo" column="JOB_NO"/>	
 	</resultMap>
 
-	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.ResumeDTO" id="resumeResultMap">
+	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.ResumeDTO" id="resumeResultMap1">
 		<id property="resumeNo" column="RESUME_NO"/>
 		<result property="inMemNo" column="IN_MEM_NO"/>
 		<result property="resumeWriteDate" column="RESUME_WRITE_DATE"/>
