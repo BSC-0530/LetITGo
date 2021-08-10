@@ -18,7 +18,21 @@ public class ResumeService {
 		
 		List<ResumeDTO> resumeList = mapper.selectAllResumeList();
 		
+		session.close();
+		
 		return resumeList;
+	}
+
+	public ResumeDTO selectDetailResumeList() {
+		
+		SqlSession session = getSqlSession();
+		ResumeMapper mapper = session.getMapper(ResumeMapper.class);
+		
+		ResumeDTO detailList = mapper.selectDetailResumeList();
+		
+		session.close();
+		
+		return detailList;
 	}
 
 }

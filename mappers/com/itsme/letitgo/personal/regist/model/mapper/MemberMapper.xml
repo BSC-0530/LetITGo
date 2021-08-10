@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.itsme.letitgo.personal.regist.model.mapper.MemberMapper">
+	<resultMap type="com.itsme.letitgo.personal.regist.model.dto.MemberDTO" id="MemberRegist">
+		<id property="no" column="MEM_NO"/>
+		<result property="id" column="MEM_ID"/>
+		<result property="pwd" column="MEM_PWD"/>
+		<result property="name" column="MEM_NAME"/>
+		<result property="email" column="MEM_EMAIL"/>
+		<result property="phone" column="MEN_PHONE"/>
+		<result property="kinds" column="MEM_KINDS"/>
+		<result property="enrollDate" column="MEM_ENROLL_DATE"/>
+		<result property="entYn" column="MEM_ENT_YN"/>
+		<result property="entDate" column="MEM_ENT_DATE"/>
+		
+		
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.personal.regist.controller.CoMemberRegistServlet" id="coMemberRegist">
+	
+		
+
+	</resultMap>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<select id="MemberReigst" resultMap="MemberRegist">
+		
+	
+	</select>
+	
+	
+	
+	
+	
+</mapper>
