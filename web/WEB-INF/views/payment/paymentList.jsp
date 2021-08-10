@@ -22,7 +22,7 @@
 </style>
 </head>
 <body>
-	<jsp:include page="../common/companyHeader.jsp"/>
+	<jsp:include page="../common/header/companyHeader.jsp"/>
 	
 	<div class="jp_tittle_main_wrapper">
         <div class="jp_tittle_img_overlay"></div>

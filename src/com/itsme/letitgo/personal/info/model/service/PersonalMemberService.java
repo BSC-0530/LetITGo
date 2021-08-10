@@ -6,7 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.itsme.letitgo.personal.info.model.dto.MemberDTO;
 import com.itsme.letitgo.personal.info.model.mapper.PersonalMemberMapper;
-import com.itsme.letitgo.personal.info.model.mapper.personalMemberMapper;
 
 public class PersonalMemberService {
 
