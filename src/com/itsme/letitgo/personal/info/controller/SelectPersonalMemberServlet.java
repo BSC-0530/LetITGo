@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itsme.letitgo.personal.info.model.dto.MemberDTO;
+import com.itsme.letitgo.personal.info.model.dto.InfoMemberDTO;
 import com.itsme.letitgo.personal.info.model.service.PersonalMemberService;
 
 
@@ -17,7 +17,7 @@ public class SelectPersonalMemberServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		MemberDTO memberInfo = new MemberDTO();
+		InfoMemberDTO memberInfo = new InfoMemberDTO();
 		
 		PersonalMemberService memberService = new PersonalMemberService();
 		

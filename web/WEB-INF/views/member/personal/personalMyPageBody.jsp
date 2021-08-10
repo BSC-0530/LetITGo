@@ -75,25 +75,12 @@
 								<div class="jp_rightside_job_categories_content">
 									<div class="handyman_sec1_wrapper">
 										<div class="content">
-											<div class="box">
-												<p align="center">
-													<a href="#">회원정보</a>
-												</p>
-												<p align="center">
-													<a href="#">회원정보</a>
-												</p>
-												<p align="center">
-													<a href="#">회원정보</a>
-												</p>
-												<p align="center">
-													<a href="#">회원정보</a>
-												</p>
-												<p align="center">
-													<a href="#">회원정보</a>
-												</p>
-												<p align="center">
-													<a href="#">회원정보</a>
-												</p>
+											<div align="center" class="box" >
+												<p><a href="#">회원정보</a></p><br><br>
+												<p><a href="#">회원정보</a></p><br><br>
+												<p><a href="#">회원정보</a></p><br><br>
+												<p><a href="#">회원정보</a></p>
+												
 											</div>
 										</div>
 									</div>
