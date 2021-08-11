@@ -41,14 +41,14 @@ public class JobFieldInsertServlet extends HttpServlet {
 		//result값 확인
 		System.out.println("jobFieldController result : " + result);
 		
-		String path = "경로 지정해주기";
+		String path = ""; //빈 문자열을 선언 후, 밑의 if문을 돌려서 성공과 실패의 주소로 간다.
 		
 		if(result > 0) {
-			path = "성공 경로 지정해주기";
-			request.setAttribute("성공코드", "jobFieldInsert");
+			path = "/WEB-INF/views/admin/adminSuccess.jsp";
+			request.setAttribute("successCode", "jobFieldInsert");
 		} else {
-			path = "실패 경로 지정해주기";
-			request.setAttribute("실패코드", "직무 분야 등록에 실패하셨습니다.");
+			path = "/WEB-INF/views/admin/adminFailed.jsp";
+			request.setAttribute("message", "직무 분야 등록에 실패하셨습니다.");
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);		

@@ -23,6 +23,8 @@ public class SkillsService {
 			session.rollback();
 		}
 		
+		session.close();
+		
 		return result;
 	}
 
