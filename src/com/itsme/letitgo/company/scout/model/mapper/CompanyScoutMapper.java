@@ -1,11 +1,19 @@
 package com.itsme.letitgo.company.scout.model.mapper;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import com.itsme.letitgo.company.scout.model.dto.MainScoutListingDTO;
 
 public interface CompanyScoutMapper {
 
-	List<MainScoutListingDTO> companySelectAllScout();
+	List<Object> companySelectAllScout();
+
+	List<Object> companyScoutSkills();
+
+	HashMap<String, Object> companyScoutCareea();
+
+
+
 
 }

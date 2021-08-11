@@ -73,7 +73,7 @@
 				</div>
 				  
 				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 jp_cl_right_bar">
-					<c:forEach items="${ mainScoutList }" var="mainScout">
+					<c:forEach items="${ requestScope.mainScoutList }" var="mainScout">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_recent_resume_box_wrapper">
@@ -84,12 +84,15 @@
 									<h3><c:out value="${ mainScout.memberDTO.memName }"></c:out>  </h3>
 									<p><i class="fa fa-folder-open-o"></i>
 									
-									<c:forEach items="${ mainScout.holdingSkillDTO }" var="holdingSkill">
+									<c:forEach items="${ requestScope.scoutListSkills }" var="holdingSkill">
+									<c:if test="${  holdingSkill.resumeNo eq mainScout.resumeNo }">
 										<c:out value="${ holdingSkill.skillsAndCategory.skillsName }"/>
+									</c:if>
 									 </c:forEach>
 									</p>
-									<i>신입</i>
-									
+									<c:forEach items="${requestScope.scoutCareea }" var="scoutCareea" varStatus="status">
+									<i><c:out value="${scoutCareea }"/> </i>
+									</c:forEach>
 								</div>
 								
 								<div class="jp_recent_resume_btn_wrapper">
