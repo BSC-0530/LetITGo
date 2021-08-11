@@ -2,23 +2,20 @@ package com.itsme.letitgo.company.payment.model.dto;
 
 import java.sql.Date;
 
-public class BrowseUsingHistroyDTO {
+public class BrowseUsingHistoryDTO implements java.io.Serializable {
 	
 	private String resumeTitle;
 	private String memName;
 	private String jobName;
-	private String skillsName;
 	private java.sql.Date productUseDate;
 	
-	public BrowseUsingHistroyDTO() {}
+	public BrowseUsingHistoryDTO() {}
 
-	public BrowseUsingHistroyDTO(String resumeTitle, String memName, String jobName, String skillsName,
-			Date productUseDate) {
+	public BrowseUsingHistoryDTO(String resumeTitle, String memName, String jobName, Date productUseDate) {
 		super();
 		this.resumeTitle = resumeTitle;
 		this.memName = memName;
 		this.jobName = jobName;
-		this.skillsName = skillsName;
 		this.productUseDate = productUseDate;
 	}
 
@@ -46,14 +43,6 @@ public class BrowseUsingHistroyDTO {
 		this.jobName = jobName;
 	}
 
-	public String getSkillsName() {
-		return skillsName;
-	}
-
-	public void setSkillsName(String skillsName) {
-		this.skillsName = skillsName;
-	}
-
 	public java.sql.Date getProductUseDate() {
 		return productUseDate;
 	}
@@ -65,7 +54,7 @@ public class BrowseUsingHistroyDTO {
 	@Override
 	public String toString() {
 		return "BrowseUsingHistroyDTO [resumeTitle=" + resumeTitle + ", memName=" + memName + ", jobName=" + jobName
-				+ ", skillsName=" + skillsName + ", productUseDate=" + productUseDate + "]";
+				+ ", productUseDate=" + productUseDate + "]";
 	}
 
 	

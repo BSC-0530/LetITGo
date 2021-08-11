@@ -6,7 +6,9 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.itsme.letitgo.company.payment.model.dto.BrowseUsingHistroyDTO;
+import com.itsme.letitgo.company.payment.model.dto.BrowseUsingHistoryDTO;
+import com.itsme.letitgo.company.payment.model.dto.ExposureUsingHistoryDTO;
+import com.itsme.letitgo.company.payment.model.dto.HoldingRequestingSkillsDTO;
 import com.itsme.letitgo.company.payment.model.dto.PaymentHistoryDTO;
 import com.itsme.letitgo.company.payment.model.mapper.PaymentMapper;
 
@@ -32,7 +34,7 @@ public class SelectPaymentHistoryService {
 		
 		PaymentMapper paymentResumeBrowsingNum = session.getMapper(PaymentMapper.class);
 		
-		int resumeBrowsingNum = paymentResumeBrowsingNum.SelectResumeBrowsingNum();
+		int resumeBrowsingNum = paymentResumeBrowsingNum.selectResumeBrowsingNum();
 		
 		session.close();
 		
@@ -46,7 +48,7 @@ public class SelectPaymentHistoryService {
 		
 		PaymentMapper paymentExposureUsingPostNum = session.getMapper(PaymentMapper.class);
 		
-		int exposureUsingPostNum = paymentExposureUsingPostNum.SelectExposureUsingPostNum();
+		int exposureUsingPostNum = paymentExposureUsingPostNum.selectExposureUsingPostNum();
 		
 		session.close();
 		
@@ -59,7 +61,7 @@ public class SelectPaymentHistoryService {
 		
 		PaymentMapper paymentExposureRestTime = session.getMapper(PaymentMapper.class);
 		
-		long exposureUsingPostNum = paymentExposureRestTime.SelectExposureRestTime();
+		long exposureUsingPostNum = paymentExposureRestTime.selectExposureRestTime();
 		
 		session.close();
 		
@@ -67,17 +69,60 @@ public class SelectPaymentHistoryService {
 	
 	}
 
-	public List<BrowseUsingHistroyDTO> SelectBrowseUsingHistroy() {
+	public List<BrowseUsingHistoryDTO> SelectBrowseUsingHistroy() {
 		
 		SqlSession session = getSqlSession();
 		
 		PaymentMapper paymentBrowseUsingHistroy = session.getMapper(PaymentMapper.class);
 		
-		List<BrowseUsingHistroyDTO> paymentBrowseUsingHistroyList = paymentBrowseUsingHistroy.BrowseUsingHistroyList();
+		List<BrowseUsingHistoryDTO> paymentBrowseUsingHistroyList = paymentBrowseUsingHistroy.selectBrowseUsingHistroyList();
 		
 		session.close();
 		
 		return paymentBrowseUsingHistroyList;
+	}
+
+	public List<HoldingRequestingSkillsDTO> SelectHoldingSkills() {
+		
+		SqlSession session = getSqlSession();
+		
+		PaymentMapper paymentHoldingRequestingSkills = session.getMapper(PaymentMapper.class);
+		
+		List<HoldingRequestingSkillsDTO> paymentHoldingRequestingSkillsList = paymentHoldingRequestingSkills.selectHoldingSkillsList();
+		
+		session.close();
+		
+		return paymentHoldingRequestingSkillsList;
+		
+	}
+
+	public List<ExposureUsingHistoryDTO> SelectExposureUsingHistory() {
+		
+		SqlSession session = getSqlSession();
+		
+		PaymentMapper paymentExposureUsingHistory = session.getMapper(PaymentMapper.class);
+		
+		List<ExposureUsingHistoryDTO> paymentExposureUsingHistoryList = paymentExposureUsingHistory.selectExposureUsingHistoryList();
+		
+		session.close();
+		
+		return paymentExposureUsingHistoryList;
+
+	}
+
+	public List<HoldingRequestingSkillsDTO> SelectRequestingSkills() {
+	
+		SqlSession session = getSqlSession();
+		
+		PaymentMapper paymentRequestingSkills = session.getMapper(PaymentMapper.class);
+		
+		List<HoldingRequestingSkillsDTO> paymentRequestingSkillsList = paymentRequestingSkills.selectRequestingSkillsList();
+		
+		session.close();
+		
+		return paymentRequestingSkillsList;
+		
+	
 	}
 
 }
