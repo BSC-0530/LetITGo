@@ -1,37 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="com.itsme.letitgo.company.scout.model.mapper.CompanyScoutMapper">
+<mapper namespace="com.itsme.letitgo.company.scout.model.mapper.CompanyScoutMapper">
 	<resultMap type="com.itsme.letitgo.company.scout.model.dto.MainScoutListingDTO" id="mainScoutResultMap">
 		<id property="resumeNo" column="RESUME_NO"/>
 		<result property="memNo" column="MEM_NO"/>
 		<result property="carNo" column="CAR_NO"/>
 		<result property="skillNo" column="SKILLS_NO"/>
 		
-		<association property="memberDTO" javaType="com.itsme.letitgo.company.info.model.dto.CompanyTestDTO">
+		<association property="memberDTO" resultMap="mainScoutMemberDTO"/>
+		<association property="resumeDTO" resultMap="mainScoutResumeDTO"/>
+<!-- 		<collection property="carHistoryDTO" resultMap="mainScoutCarHistoryDTO"/> -->
+			
+	</resultMap>
+	
+		<resultMap type="com.itsme.letitgo.company.info.model.dto.CompanyTestDTO" id="mainScoutMemberDTO">
 			<id property="memNO" column="MEM_NO"/>
-		<result property="memId" column="MEM_ID"/>
-		<result property="memPwd" column="MEM_PWD"/>
-		<result property="memName" column="MEM_NAME"/>
-		<result property="memEmail" column="MEM_EMAIL"/>
-		<result property="memPhone" column="MEM_PHONE"/>
-		<result property="memKinds" column="MEM_KINDS"/>
-		<result property="enrollDate" column="MEM_ENROLL_DATE"/>
-		<result property="entYn" column="MEM_ENT_YN"/>
-		<result property="entDate" column="MEM_ENT_DATE"/>
-		<result property="memEntNo" column="MEM_ENT_NO"/>
-		</association>
+			<result property="memId" column="MEM_ID"/>
+			<result property="memPwd" column="MEM_PWD"/>
+			<result property="memName" column="MEM_NAME"/>
+			<result property="memEmail" column="MEM_EMAIL"/>
+			<result property="memPhone" column="MEM_PHONE"/>
+			<result property="memKinds" column="MEM_KINDS"/>
+			<result property="enrollDate" column="MEM_ENROLL_DATE"/>
+			<result property="entYn" column="MEM_ENT_YN"/>
+			<result property="entDate" column="MEM_ENT_DATE"/>
+			<result property="memEntNo" column="MEM_ENT_NO"/>
+		</resultMap>
 		
-		<association property="resumeDTO" javaType="com.itsme.letitgo.personal.resume.model.dto.ResumeDTO">
+		<resultMap type="com.itsme.letitgo.personal.resume.model.dto.ResumeDTO" id="mainScoutResumeDTO">
 			<id property="resumeNo" column="RESUME_NO"/>
 			<result property="inMemNo" column="IN_MEM_NO"/>
 			<result property="resumeWriteDate" column="RESUME_WRITE_DATE"/>
 			<result property="resumeScoutStatus" column="RESUME_SCOUT_STATUS"/>
 			<result property="jobNo" column="JOB_NO"/>
 			<result property="resumeTitle" column="RESUME_TITLE"/>
-		</association>
+		</resultMap>	
 		
-		<collection property="carHistoryDTO" ofType="com.itsme.letitgo.company.scout.model.dto.CompanyCareerHistoryDTO">
+		<resultMap type="com.itsme.letitgo.company.scout.model.dto.CompanyCareerHistoryDTO" id="mainScoutCarHistoryDTO">
 			<id property="carNo" column="CAR_NO"/>
 			<result property="carComName" column="CAR_COM_NAME"/>
 			<result property="carHireDate" column="CAR_HIRE_DATE"/>
@@ -46,39 +51,54 @@
 			<result property="carWorkField" column="CAR_WORK_FIELD"/>
 			<result property="jobNo" column="JOB_NO"/>
 			<result property="resumeNo" column="RESUME_NO"/>
-		</collection>
+		</resultMap>
 		
-		<collection property="holdingSkillDTO" ofType="com.itsme.letitgo.personal.resume.model.dto.HoldingAndSkillsDTO">
+		<resultMap type="com.itsme.letitgo.personal.resume.model.dto.HoldingAndSkillsDTO" id="mainScoutHoldingSkillsDTO">
 			<id property="resumeNo" column="RESUME_NO"/>
 			<result property="skillsNo" column="SKILLS_NO"/>
 			
-			<association property="skillsAndCategory" javaType="com.itsme.letitgo.personal.resume.model.dto.SkillsAndCategoryDTO">
+			<association property="skillsAndCategory" resultMap="mainScoutSkillsAndCategotyDTO"/>
+			
+		</resultMap>	
+		
+			<resultMap type="com.itsme.letitgo.personal.resume.model.dto.SkillsAndCategoryDTO" id="mainScoutSkillsAndCategotyDTO">	
 				<id property="skillsNo" column="SKILLS_NO"/>
 				<result property="skillsName" column="SKILLS_NAME"/>
 				<result property="categoryNo" column="CATEGORY_NO"/>
 				
-				<association property="skillsCategory" javaType="com.itsme.letitgo.personal.resume.model.dto.SkillsCategoryDTO">
-					<id property="categoryNo" column="CATEGORY_NO"/>
-					<result property="categoryName" column="CATEGORY_NAME"/>
-					<result property="categoryUpperNo" column="CATEGORY_UPPER_NO"/>
-				</association>
-			</association>
-		</collection>
-	</resultMap>
+<!-- 				<association property="skillsCategory" resultMap="mainScoutSkillsCategoryDTO"/> -->
+			</resultMap>		
+			
+<!-- 			<resultMap type="com.itsme.letitgo.personal.resume.model.dto.SkillsCategoryDTO" id="mainScoutSkillsCategoryDTO"> -->
+<!-- 					<id property="categoryNo" column="CATEGORY_NO"/> -->
+<!-- 					<result property="categoryName" column="CATEGORY_NAME"/> -->
+<!-- 					<result property="categoryUpperNo" column="CATEGORY_UPPER_NO"/> -->
+<!-- 			</resultMap> -->
 		
 		<select id="companySelectAllScout" resultMap="mainScoutResultMap">
 		SELECT
-				  M.MEM_NAME
-				, B.CAR_HIRE_DATE
-				, B.CAR_ENT_DATE
-				, S.SKILLS_NAME
-			
-			FROM TBL_RESUME R
-			JOIN TBL_MEMBER M ON (R.IN_MEM_NO = M.MEM_NO)
-			JOIN TBL_CAREER_HISTORY B ON (R.RESUME_NO = B.RESUME_NO)
-			JOIN TBL_RESUME_HOLDING_SKILLS SS ON (R.RESUME_NO = SS.RESUME_NO)
-			JOIN TBL_SKILLS S ON (S.SKILLS_NO = SS.SKILLS_NO)
-            WHERE RESUME_SCOUT_STATUS = 'Y'
+			   M.MEM_NAME
+		     , R.RESUME_NO
+		FROM TBL_MEMBER M
+		JOIN TBL_RESUME R ON (R.IN_MEM_NO = M.MEM_NO )
+        WHERE RESUME_SCOUT_STATUS = 'Y'
+        
 		</select>
+		<select id="companyScoutSkills" resultMap="mainScoutHoldingSkillsDTO">
+		SELECT
+		 		S.SKILLS_NAME
+		 	  , RS.RESUME_NO
+		  FROM TBL_RESUME_HOLDING_SKILLS RS
+          JOIN TBL_SKILLS S ON (S.SKILLS_NO = RS.SKILLS_NO)
+		</select>
+		<select id="companyScoutCareea" resultType="hashmap">
+			
+			 SELECT
+		 		CAR_HIRE_DATE
+			   ,CAR_ENT_DATE
+		  FROM TBL_CAREER_HISTORY
+		</select>
+		
+		
 		
 </mapper>
