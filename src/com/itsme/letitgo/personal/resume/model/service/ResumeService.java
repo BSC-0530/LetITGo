@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.itsme.letitgo.personal.resume.model.dto.CareerHistoryDTO;
 import com.itsme.letitgo.personal.resume.model.dto.DetailResumeDTO;
 import com.itsme.letitgo.personal.resume.model.dto.ResumeDTO;
 import com.itsme.letitgo.personal.resume.model.mapper.ResumeMapper;
@@ -34,6 +35,18 @@ public class ResumeService {
 		session.close();
 		
 		return detailList;
+	}
+
+	public int insertResume(CareerHistoryDTO car) {
+		
+		SqlSession session = getSqlSession();
+		ResumeMapper mapper = session.getMapper(ResumeMapper.class);
+		
+		System.out.println(car);
+		
+		int result = mapper.insertResume(car);
+		
+		return result;
 	}
 
 }
