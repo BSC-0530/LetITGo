@@ -1,6 +1,6 @@
 package com.itsme.letitgo.personal.recruit.jobposting.model.dto;
 
-public class AttachmentDTO implements java.io.Serializable {
+public class JpAttachmentDTO implements java.io.Serializable {
 
 	private int memFileNo;
 	private String memFileName;
@@ -9,9 +9,9 @@ public class AttachmentDTO implements java.io.Serializable {
 	private String memFileKinds;
 	private int memNo;
 	
-	public AttachmentDTO() {}
+	public JpAttachmentDTO() {}
 
-	public AttachmentDTO(int memFileNo, String memFileName, String memFileOriginalName, String memFilePath,
+	public JpAttachmentDTO(int memFileNo, String memFileName, String memFileOriginalName, String memFilePath,
 			String memFileKinds, int memNo) {
 		super();
 		this.memFileNo = memFileNo;

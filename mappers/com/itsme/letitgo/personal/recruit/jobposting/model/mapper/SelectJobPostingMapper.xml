@@ -5,50 +5,22 @@
 	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectAllJobPostingDTO" id="resultJobPosting">	
 		<id property="jobPostNo" column="JOB_POST_NO"/>
 		<result property="coMemNo" column="CO_MEM_NO"/>
-		<result property="jobPostTitle" column="JOB_POST_TITLE"/>
+		<result property="jobPostTitle" column="JOB_POST_TITLE" javaType="string"/>
 		<result property="jobPostMinExperience" column="JOB_POST_MIN_EXPERIENCE"/>
 		<result property="jobPostMaxExperience" column="JOB_POST_MAX_EXPERIENCE"/>
 		<result property="jobPostDeadline" column="JOB_POST_DEADLINE"/>
 		<result property="jobPostContents" column="JOB_POST_CONTENTS"/>
 		<result property="jobPostKinds" column="JOB_POST_KINDS"/>
 		<result property="jobNo" column="JOB_NO"/>
-		<result property="skillsNo" column="SKILLS_NO"/>
 		<result property="jobPostApplying_kinds" column="JOB_POST_APPLYING_KINDS"/>
 		
-		<association property="companyAddInfoDTO" resultMap="resultCompanyNameAndAddress"/>
+		<association property="coMemberAddInfoDTO" resultMap="resultCoMemberAddInfo"/>
 		<association property="jobFieldDTO" resultMap="resultJobField"/>
 		<association property="attachmentDTO" resultMap="resultAttachment"/>
 		<association property="jobPostingAppHistoryDTO" resultMap="resultAppHistoty"/>
 <!-- 		<association property="ownFormResumeAttachmentDTO" resultMap="resultAttachment"/> -->
 	</resultMap>
-	<resultMap type="com.itsme.letitgo.company.info.model.dto.CompanyAddInfoDTO" id="resultCompanyNameAndAddress">
-		<id property="coMemNo" column="CO_MEM_NO"/>
-		<result property="coComName" column="CO_COM_NAME"/>
-		<result property="coAddress" column="CO_ADDRESS"/>
-	</resultMap>
-	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JobFieldDTO" id="resultJobField">
-		<id property="jobNo" column="JOB_NO"/>
-		<result property="jobName" column="JOB_NAME"/>
-	</resultMap>
-	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.AttachmentDTO" id="resultAttachment">
-		<id property="memFileNo" column="MEM_FILE_NO"/>
-		<result property="memFileName" column="MEM_FILE_NAME"/>
-		<result property="memFileOriginalName" column="MEM_FILE_ORIGINAL_NAME"/>
-		<result property="memFilePath" column="MEM_FILE_PATH"/>
-		<result property="memFileKinds" column="MEM_FILE_KINDS"/>
-		<result property="memNo" column="MEM_NO"/>
-	</resultMap>
-	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JobPostingAppHistoryDTO" id="resultAppHistoty">
-		<id property="jobPostReqNo" column="JOB_POST_REQ_NO"/>
-		<result property="jobPostAnsKinds" column="JOB_POST_ANS_KINDS"/>
-		<result property="jobPostReqDate" column="JOB_POST_REQ_DATE"/>
-		<result property="jobPostAnsDate" column="JOB_POST_ANS_DATE"/>
-		<result property="jobPostReqKinds" column="JOB_POST_REQ_KINDS"/>
-		<result property="jobPostNo" column="JOB_POST_NO"/>
-		<result property="jobPostRejectReason" column="JOB_POST_REJECT_REASON"/>
-		
-	</resultMap>
-	<resultMap type="com.itsme.letitgo.company.info.model.dto.CompanyAddInfoDTO" id="resultCompanyAddInfo">
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpCoMemberAddInfo" id="resultCoMemberAddInfo">
 		<id property="coMemNo" column="CO_MEM_NO"/>
 		<result property="coIntro" column="CO_INTRO"/>
 		<result property="coNo" column="CO_NO"/>
@@ -60,35 +32,82 @@
 		<result property="coSectors" column="CO_SECTORS"/>
 		<result property="coStatus" column="CO_STATUS"/>
 	</resultMap>
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpJobFieldDTO" id="resultJobField">
+		<id property="jobNo" column="JOB_NO"/>
+		<result property="jobName" column="JOB_NAME"/>
+	</resultMap>
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpAttachmentDTO" id="resultAttachment">
+		<id property="memFileNo" column="MEM_FILE_NO"/>
+		<result property="memFileName" column="MEM_FILE_NAME"/>
+		<result property="memFileOriginalName" column="MEM_FILE_ORIGINAL_NAME"/>
+		<result property="memFilePath" column="MEM_FILE_PATH"/>
+		<result property="memFileKinds" column="MEM_FILE_KINDS"/>
+		<result property="memNo" column="MEM_NO"/>
+	</resultMap>
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpJobPostingAppHistoryDTO" id="resultAppHistoty">
+		<id property="jobPostReqNo" column="JOB_POST_REQ_NO"/>
+		<result property="jobPostAnsKinds" column="JOB_POST_ANS_KINDS"/>
+		<result property="jobPostReqDate" column="JOB_POST_REQ_DATE"/>
+		<result property="jobPostAnsDate" column="JOB_POST_ANS_DATE"/>
+		<result property="jobPostReqKinds" column="JOB_POST_REQ_KINDS"/>
+		<result property="jobPostNo" column="JOB_POST_NO"/>
+		<result property="jobPostRejectReason" column="JOB_POST_REJECT_REASON"/>
+		
+	</resultMap>
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpCoMemberAddInfo" id="resultCompanyAddInfo">
+		<id property="coMemNo" column="CO_MEM_NO"/>
+		<result property="coIntro" column="CO_INTRO"/>
+		<result property="coNo" column="CO_NO"/>
+		<result property="coComName" column="CO_COM_NAME"/>
+		<result property="coCeoName" column="CO_CEO_NAME"/>
+		<result property="coAddress" column="CO_ADDRESS"/>
+		<result property="coPhone" column="CO_PHONE"/>
+		<result property="coPax" column="CO_PAX"/>
+		<result property="coSectors" column="CO_SECTORS"/>
+		<result property="coStatus" column="CO_STATUS"/>
+	</resultMap>
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpSkillsDTO" id="resultJpSkills" >
+		<result property="skillsNo" column="SKILLS_NO"/>
+		<result property="jobPostNo" column="JOB_POST_NO"/>
+		<result property="skillsName" column="SKILLS_NAME"/>
+	</resultMap>
 
-	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.OwnFormResumeAttachmentDTO" id="자사이력서">
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpOwnFormResumeAttachmentDTO" id="자사이력서">
 	
 	</resultMap>
 	
 	
 	<select id="selectAllJobPosting" resultMap="resultJobPosting">
-		SELECT	
-			   JP.CO_MEM_NO
-			 , JP.JOB_POST_TITLE
-			 , JP.JOB_POST_MIN_EXPERIENCE
-			 , JP.JOB_POST_MAX_EXPERIENCE
-			 , JP.JOB_POST_DEADLINE
-			 , JP.JOB_POST_CONTENTS
-			 , JP.JOB_POST_KINDS
-			 , JP.JOB_NO
-			 , JP.SKILLS_NO
-			 , JP.JOB_POST_APPLYING_KINDS
-			 , AI.CO_COM_NAME
-			 , AI.CO_ADDRESS
+		SELECT
+			   JP.JOB_POST_NO
+		     , JP.JOB_POST_TITLE
+		     , AI.CO_COM_NAME
+		     , JP.JOB_POST_MIN_EXPERIENCE
+		     , JP.JOB_POST_MAX_EXPERIENCE
+		     , JF.JOB_NAME
+		     , JP.JOB_POST_ENROLL_DATE
+		     , JP.JOB_POST_DEADLINE
+		     , JP.JOB_POST_APPLYING_KINDS
+		     , AI.CO_ADDRESS
+		     , JP.JOB_POST_CONTENTS
+		     , JP.JOB_POST_KINDS
+<!-- 		     , A.MEM_FILE_PATH -->
+<!-- 		     , MEM_FILE_KINDS -->
 		  FROM TBL_JOB_POSTING JP
-		     , TBL_CO_MEMBER_ADD_INFO AI
 		     , TBL_ATTACHMENT A
+		     , TBL_CO_MEMBER_ADD_INFO AI
 		     , TBL_JOB_FIELD JF
-		     , TBL_JOB_POSTING_APP_HISTORY AH
 		 WHERE JP.CO_MEM_NO = AI.CO_MEM_NO
 		   AND A.MEM_NO = JP.CO_MEM_NO
 		   AND JF.JOB_NO = JP.JOB_NO
-		   AND AH.JOB_POST_NO = JP.JOB_POST_NO
-		   AND AH.JOB_POST_ANS_KINDS = '승인'
+		   AND JP.JOB_POST_KINDS = '승인된공고'
+	</select>
+	
+	<select id="selectJpSkills" resultMap="resultJpSkills">
+		SELECT
+			   RS.JOB_POST_NO
+			 , S.SKILLS_NAME
+		  FROM TBL_JOB_POSTING_REQ_SKILLS RS
+		  JOIN TBL_SKILLS S ON(RS.SKILLS_NO = S.SKILLS_NO)
 	</select>
 </mapper>

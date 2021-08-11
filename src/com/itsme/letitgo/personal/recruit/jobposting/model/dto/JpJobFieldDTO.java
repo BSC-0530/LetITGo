@@ -1,10 +1,10 @@
 package com.itsme.letitgo.personal.recruit.jobposting.model.dto;
 
-public class JobFieldDTO {
+public class JpJobFieldDTO {
 
 	private int jobNo;
 	private String jobName;
-	public JobFieldDTO(int jobNo, String jobName) {
+	public JpJobFieldDTO(int jobNo, String jobName) {
 		super();
 		this.jobNo = jobNo;
 		this.jobName = jobName;

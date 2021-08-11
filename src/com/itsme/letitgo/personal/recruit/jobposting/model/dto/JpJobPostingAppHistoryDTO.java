@@ -2,7 +2,7 @@ package com.itsme.letitgo.personal.recruit.jobposting.model.dto;
 
 import java.sql.Date;
 
-public class JobPostingAppHistoryDTO implements java.io.Serializable {
+public class JpJobPostingAppHistoryDTO implements java.io.Serializable {
 
 	private int jobPostReqNo;
 	private String jobPostAnsKinds;
@@ -12,9 +12,9 @@ public class JobPostingAppHistoryDTO implements java.io.Serializable {
 	private int jobPostNo;
 	private String jobPostRejectReason;
 	
-	public JobPostingAppHistoryDTO() {}
+	public JpJobPostingAppHistoryDTO() {}
 
-	public JobPostingAppHistoryDTO(int jobPostReqNo, String jobPostAnsKinds, Date jobPostReqDate, Date jobPostAnsDate,
+	public JpJobPostingAppHistoryDTO(int jobPostReqNo, String jobPostAnsKinds, Date jobPostReqDate, Date jobPostAnsDate,
 			String jobPostReqKinds, int jobPostNo, String jobPostRejectReason) {
 		super();
 		this.jobPostReqNo = jobPostReqNo;
