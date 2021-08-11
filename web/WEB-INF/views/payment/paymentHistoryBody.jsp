@@ -39,6 +39,7 @@
 	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 </head>
 <body>
+	<!-- 상단 검은색바탕 -->
 	<div class="jp_tittle_main_wrapper">
 		<div class="jp_tittle_img_overlay"></div>
 		<div class="container">
@@ -65,9 +66,11 @@
 		</div>
 	</div>
 	
+	<!-- 전체 묶음 -->
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
+				<!-- 사이드바 -->
 				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -89,6 +92,10 @@
 												<br> <br>
 												<p align="center">
 													<a href="#">결제내역</a>
+												</p>
+												<br> <br>
+												<p align="center">
+													<a href="#">환불내역</a>
 												</p>
 												<br> <br>
 												<p align="center">
@@ -114,13 +121,14 @@
 						</div>
 					</div>
 				</div>
-				<!-- 옆에 넣으려면 여기에 넣어야함 -->
-				<!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
+				
+				<!-- 파란색 박스 -->
+				
 				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_counter_main_wrapper">
-								<h1 align="left">잔여 유료서비스</h1>
+								<h1 align="left">잔여 유료서비스</h1><br>
 								<div class="container">
 									<div class="gc_counter_cont_wrapper">
 										<div class="count-description">
@@ -148,9 +156,11 @@
 								</div>
 								<br> <br>
 							</div>
-							<!-- 데이터 테이들 -->
-						</div>
+						</div><br>
+						
+						<!-- 데이터 테이블 내역모음 -->
 						<h1>결제 내역</h1>
+						<br>
 						<table id="table_payment" class="hover cell-border stripe">
 							<thead>
 								<tr>
@@ -163,50 +173,84 @@
 								</tr>
 							</thead>
 							<c:forEach var="payment" items="${ requestScope.paymentHistoryList }">
+							
 							<tbody align="center">
 								<tr>
-									<td><c:out value="${ payment.payNo }"/></td>
-									<td><c:out value="${ payment.productName }"/></td>
-									<td><fmt:formatNumber value="${ payment.payPrice }" pattern="###,###" type="currency"/></td>								
-									<td><c:out value="${ payment.payDate }"/></td>
-									<td><c:out value="${ payment.payKinds }"/></td>
+									<td id="payNo"><c:out value="${ payment.payNo }"/></td>
+									<td id="productName"><c:out value="${ payment.productName }"/></td>
+									<td id="payPrice"><fmt:formatNumber value="${ payment.payPrice }" pattern="###,###" type="currency"/></td>								
+									<td id="payDate"><c:out value="${ payment.payDate }"/></td>
+									<td id="payKinds"><c:out value="${ payment.payKinds }"/></td>
 									
 									<c:if test="${ payment.payKinds eq '결제완료' }">
-									<td><button type="button">환불요청</button></td>
+									<td><button type="submit" onclick="req(this);">환불요청</button></td>
 									</c:if>
+									
 									
 									<c:if test="${ payment.payKinds eq '환불완료' }">
 									<td><button type="button" disabled>환불처리완료</button></td>
-									</c:if>
-									
+									</c:if>								
 								</tr>
 							</tbody>
+							
 							</c:forEach>
 						</table>
 						<br><br>
 						<h1>열람권 사용내역</h1>
-						<table id="table_exposure" class="hover cell-border stripe">
+						<br>
+						<table id="table_Browsing" class="hover cell-border stripe">
 							<thead>
 								<tr>
 									<td>이력서 제목</td>
 									<td>이름</td>
 									<td>희망 직무</td>
 									<td>보유 기술</td>
-									<td>열람 일시</td>
-									
+									<td>열람 일시</td>								
 								</tr>
 							</thead>
-							<c:forEach var="payment" items="${ requestScope.paymentHistoryList }">
+							<c:forEach var="browseUsingHistroy" items="${ requestScope.paymentBrowseUsingHistroyList }">
 							<tbody align="center">
 								<tr>
-									<td><c:out value="${ payment.payNo }"/></td>
-									<td><c:out value="${ payment.productName }"/></td>
-									<td><fmt:formatNumber value="${ payment.payPrice }" pattern="###,###" type="currency"/></td>								
-									<td><c:out value="${ payment.payDate }"/></td>
-									<td><c:out value="${ payment.payKinds }"/></td>
-									
-									
-									
+									<td><c:out value="${ browseUsingHistroy.resumeTitle }"/></td>
+									<td><c:out value="${ browseUsingHistroy.memName }"/></td>
+									<td><c:out value="${ browseUsingHistroy.jobName }"/></td>
+									<td>
+									<c:forEach var="holdingSkillsList" items="${requestScope.paymentHoldingSkillsList }">
+									<c:out value="${ holdingSkillsList.skillsName }"/><span>  </span>
+									</c:forEach>
+									</td>																
+									<td><c:out value="${ browseUsingHistroy.productUseDate }"/></td>						
+								</tr>
+							</tbody>
+							</c:forEach>
+						</table>
+						<br><br>
+						<h1>노출권 사용내역</h1>
+						<br>
+						<table id="table_exposure" class="hover cell-border stripe">
+							<thead>
+								<tr>
+									<td>공고 제목</td>
+									<td>희망 직무</td>
+									<td>요구 기술</td>
+									<td>마감일</td>
+									<td>사용일시</td>
+									<td>종료일시</td>								
+								</tr>
+							</thead>
+							<c:forEach var="exposureUsingPostHistroy" items="${ requestScope.paymentExposureUsingHistoryList }">
+							<tbody align="center">
+								<tr>
+									<td><c:out value="${ exposureUsingPostHistroy.jobPostTitle }"/></td>
+									<td><c:out value="${ exposureUsingPostHistroy.jobName }"/></td>
+									<td>
+									<c:forEach var="requestingSkillsList" items="${ requestScope.paymentrequestingSkillsList }">
+									<c:out value="${ requestingSkillsList.skillsName }"/><span>  </span>
+									</c:forEach>
+									</td>
+									<td><c:out value="${ exposureUsingPostHistroy.jobPostDeadline }"/></td>															
+									<td><c:out value="${ exposureUsingPostHistroy.exposureUseDate }"/></td>		
+									<td><c:out value="${ exposureUsingPostHistroy.exposureEndDate }"/></td>					
 								</tr>
 							</tbody>
 							</c:forEach>
@@ -225,8 +269,27 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+	$('#table_Browsing').DataTable();
+});
+$(document).ready(function() {
 	$('#table_exposure').DataTable();
 });
+function req(button) {
+	
+	var payNo = button.parentNode.parentNode.children[0].innerText;
+	var productName = button.parentNode.parentNode.children[1].innerText;
+	
+	var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/refund/request/insert").attr("method", "post");
+	
+	$form.append($("<input>").attr("name", "payNo").attr("type", "hidden").val(payNo));
+	$form.append($("<input>").attr("name", "productName").attr("type", "hidden").val(productName));
+	
+	console.log($form.children().val());
+	console.log(productName);
+	$("body").append($form);
+	
+	$form.submit();
+}
 </script>
 </body>
 </html>

@@ -27,13 +27,14 @@ public class SkillsInsertServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		int skillsNo = Integer.parseInt(request.getParameter("skillsNo"));
+		
+		//입력한 값을 직접 DB에 저장되게끔??? 어케????
 		String name = request.getParameter("name");
 		int no = Integer.parseInt(request.getParameter("no"));
 		
 		SkillsDTO requestSkills = new SkillsDTO();
-		requestSkills.setSkillsNo(skillsNo);
-		requestSkills.setName(name);
-		requestSkills.setNo(no);
+		requestSkills.setSkillsNo(3);
+		requestSkills.setName("GitLab");
 		
 		//requestSkills 확인
 		System.out.println("skillsController requestSkills : " + requestSkills);

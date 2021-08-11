@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itsme.letitgo.company.payment.model.dto.BrowseUsingHistroyDTO;
+import com.itsme.letitgo.company.payment.model.dto.BrowseUsingHistoryDTO;
+import com.itsme.letitgo.company.payment.model.dto.ExposureUsingHistoryDTO;
+import com.itsme.letitgo.company.payment.model.dto.HoldingRequestingSkillsDTO;
 import com.itsme.letitgo.company.payment.model.dto.PaymentHistoryDTO;
 import com.itsme.letitgo.company.payment.model.service.SelectPaymentHistoryService;
 
@@ -36,8 +38,17 @@ public class SelectPaymentHistoryServlet extends HttpServlet {
 		long exposureRestMinute = exposureRestHour % 60;
 		
 		/* 열람권 사용이력 */
-		List<BrowseUsingHistroyDTO> paymentBrowseUsingHistroy = selectPaymentHistoryService.SelectBrowseUsingHistroy();
-			
+		List<BrowseUsingHistoryDTO> paymentBrowseUsingHistroyList = selectPaymentHistoryService.SelectBrowseUsingHistroy();
+		
+		/* 이력서 내 보유기술*/
+		List<HoldingRequestingSkillsDTO> paymentHoldingSkillsList = selectPaymentHistoryService.SelectHoldingSkills();
+		
+		/* 노출권 사용이력 */
+		List<ExposureUsingHistoryDTO> paymentExposureUsingHistoryList = selectPaymentHistoryService.SelectExposureUsingHistory();
+		
+		/* 노촐권 사용중인 공고의 요구기술 */
+		List<HoldingRequestingSkillsDTO> paymentrequestingSkillsList = selectPaymentHistoryService.SelectRequestingSkills();
+		
 		for(PaymentHistoryDTO paymentHistory : paymentHistoryList) {
 			System.out.println(paymentHistory);
 		}
@@ -47,8 +58,20 @@ public class SelectPaymentHistoryServlet extends HttpServlet {
 		System.out.println(exposureRestHour);
 		System.out.println(exposureRestMinute);
 		
-		for(BrowseUsingHistroyDTO BrowseUsingHistroy : paymentBrowseUsingHistroy) {
+		for(BrowseUsingHistoryDTO BrowseUsingHistroy : paymentBrowseUsingHistroyList) {
 			System.out.println(BrowseUsingHistroy);
+		}
+		
+		for(HoldingRequestingSkillsDTO HoldingRequestingSkills : paymentHoldingSkillsList) {
+			System.out.println(HoldingRequestingSkills);
+		}
+		
+		for(ExposureUsingHistoryDTO paymentExposureUsingHistory : paymentExposureUsingHistoryList) {
+			System.out.println(paymentExposureUsingHistory);
+		}
+		
+		for(HoldingRequestingSkillsDTO paymentrequestingSkills : paymentrequestingSkillsList) {
+			System.out.println(paymentrequestingSkills);
 		}
 		
 		String path = "/WEB-INF/views/payment/paymentHistory.jsp";
@@ -58,6 +81,10 @@ public class SelectPaymentHistoryServlet extends HttpServlet {
 		request.setAttribute("exposureUsingPostNum", exposureUsingPostNum);
 		request.setAttribute("exposureRestHour", exposureRestMinute);
 		request.setAttribute("exposureRestMinute", exposureRestMinute);
+		request.setAttribute("paymentBrowseUsingHistroyList", paymentBrowseUsingHistroyList);
+		request.setAttribute("paymentHoldingSkillsList", paymentHoldingSkillsList);
+		request.setAttribute("paymentExposureUsingHistoryList", paymentExposureUsingHistoryList);
+		request.setAttribute("paymentrequestingSkillsList", paymentrequestingSkillsList);
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 

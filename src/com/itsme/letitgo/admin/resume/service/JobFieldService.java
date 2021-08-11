@@ -2,6 +2,8 @@ package com.itsme.letitgo.admin.resume.service;
 
 import static com.itsme.letitgo.common.mybatis.Template.getSqlSession;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.itsme.letitgo.admin.resume.model.dto.JobFieldDTO;
@@ -26,6 +28,19 @@ public class JobFieldService {
 		session.close();
 		
 		return result;
+	}
+
+	public List<JobFieldDTO> selectAllJobFieldList() {
+		
+		SqlSession session = getSqlSession();
+		
+		JobFieldMapper jobFieldMapper = session.getMapper(JobFieldMapper.class);
+		
+		List<JobFieldDTO> jobFieldList = jobFieldMapper.selectAllJobFieldList();
+		
+		session.close();
+		
+		return jobFieldList;
 	}
 
 }

@@ -2,7 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="com.itsme.letitgo.admin.resume.model.mapper.SelfIntroductionItemMapper">
+	<!-- insert resultMap -->
 	<resultMap type="com.itsme.letitgo.admin.resume.model.dto.SelfIntroductionItemDTO" id="selfIntroductionItemInsertResultMap">
+		<id property="selfIntroItemNo" column="SELF_INTRO_ITEM_NO"/>
+		<result property="selfIntroItemName" column="SELF_INTRO_ITEM_NAME"/>
+	</resultMap>
+	<!-- select resultMap -->
+	<resultMap type="com.itsme.letitgo.admin.resume.model.dto.SelfIntroductionItemDTO" id="selfIntroductionItemResultMap">
 		<id property="selfIntroItemNo" column="SELF_INTRO_ITEM_NO"/>
 		<result property="selfIntroItemName" column="SELF_INTRO_ITEM_NAME"/>
 	</resultMap>
@@ -20,4 +26,17 @@
 		, # { selfIntroItemName	}  
 		)
 	</insert>
+	
+	<select id="selectAllSelfIntroductionItemList" resultMap="selfIntroductionItemResultMap">
+		SELECT
+		       A.SELF_INTRO_ITEM_NO
+		     , A.SELF_INTRO_ITEM_NAME
+		  FROM TBL_SELF_INTRODUCTION_ITEM A     
+	</select>
+	
 </mapper>
+
+
+
+
+
