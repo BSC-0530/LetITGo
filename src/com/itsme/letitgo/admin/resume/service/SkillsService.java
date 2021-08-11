@@ -2,6 +2,8 @@ package com.itsme.letitgo.admin.resume.service;
 
 import static com.itsme.letitgo.common.mybatis.Template.getSqlSession;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.itsme.letitgo.admin.resume.model.dto.SkillsDTO;
@@ -26,6 +28,20 @@ public class SkillsService {
 		session.close();
 		
 		return result;
+	}
+
+	public List<SkillsDTO> selectAllSkillsList() {
+		
+		SqlSession session = getSqlSession();
+		
+		SkillsMapper skillsMapper = session.getMapper(SkillsMapper.class);
+		
+		List<SkillsDTO> skillsList = skillsMapper.selectAllSkillsList();
+		
+		session.close();
+		
+		return skillsList;
+		
 	}
 
 }

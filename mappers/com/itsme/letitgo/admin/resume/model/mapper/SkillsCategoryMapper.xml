@@ -2,7 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="com.itsme.letitgo.admin.resume.model.mapper.SkillsCategoryMapper">
+	<!-- insert resultMap -->
 	<resultMap type="com.itsme.letitgo.admin.resume.model.dto.SkillsCategoryDTO" id="skillsCategoryInsertResultMap">
+		<id property="no" column="CATEGORY_NO"/>
+		<result property="name" column="CATEGORY_NAME"/>
+		<result property="upperNo" column="CATEGORY_UPPER_NO"/>
+	</resultMap>
+	<!-- select resultMap -->
+	<resultMap type="com.itsme.letitgo.admin.resume.model.dto.SkillsCategoryDTO" id="skillsCategoryResultMap">
+		<id property="no" column="CATEGORY_NO"/>
+		<result property="name" column="CATEGORY_NAME"/>
+		<result property="upperNo" column="CATEGORY_UPPER_NO"/>
+	</resultMap>
+	<!-- delete resultMap -->
+	<resultMap type="com.itsme.letitgo.admin.resume.model.dto.SkillsCategoryDTO" id="skillsCategoryDeleteResultMap">
 		<id property="no" column="CATEGORY_NO"/>
 		<result property="name" column="CATEGORY_NAME"/>
 		<result property="upperNo" column="CATEGORY_UPPER_NO"/>
@@ -24,5 +37,18 @@
 		)
 	</insert>
 	
+	<select id="selectAllSkillsCategoryList" resultMap="skillsCategoryResultMap">
+		SELECT
+		       A.CATEGORY_NO
+		     , A.CATEGORY_NAME
+		     , A.CATEGORY_UPPER_NO
+		  FROM TBL_SKILLS_CATEGORY A     
+	</select>
+	
+<!-- 	<delete id="skillsCategoryDelete" parameterType="int" resultType="_int">
+		DELETE
+		  FROM TBL_SKILLS_CATEGORY A
+		 WHERE A.CATEGORY_NO =  #{ no }     
+	</delete> -->
 	
 </mapper>
