@@ -58,12 +58,7 @@
     <div class="register_section">
         <!-- register_form_wrapper -->
         <div class="register_tab_wrapper">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <div role="tabpanel">
-
-                            <!-- Nav tabs -->
+       <!-- Nav tabs -->
                             <ul id="tabOne" class="nav register-tabs">
                                 <li class="active"><a href="#contentOne-1" data-toggle="tab">개인회원 가입<br> <span>구직하고 싶어요</span></a>
                                 </li>
@@ -72,7 +67,7 @@
                             </ul>
 
                             <!-- Tab panes -->
-                            <div class="tab-content">
+                         
                                 <div class="tab-pane fade in active register_left_form" id="contentOne-1">
 									
                                     <div class="jp_regiter_top_heading">
@@ -81,7 +76,7 @@
                                     <div class="row clearfix">
                                         <!--Form Group-->
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="field-name" value="" placeholder="아이디">
+                                            <input type="text" name="memberId" value="" placeholder="아이디">
                                             <button type="button">중복 채크</button>
                                         </div>
                                         <!--Form Group-->
@@ -89,7 +84,7 @@
                                         <!--Form Group-->
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
-                                            <input type="text" name="field-name" value="" placeholder="이메일">
+                                            <input type="text" name="email" value="" placeholder="이메일">
                                             <button type="button">인증번호 보내기</button>
                                         </div>
                                     
@@ -100,26 +95,26 @@
                                         </div>
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
-                                            <input type="password" name="field-name" value="" placeholder="비밀번호">
+                                            <input type="password" name="memberPwd" value="" placeholder="비밀번호">
                                         </div>
 
                                         <!--Form Group-->
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
-                                            <input type="password" name="field-name" value="" placeholder="비밀번호 재입력">
+                                            <input type="password" name="rememberPwd" value="" placeholder="비밀번호 재입력">
 
                                         </div>
 
                                         <!--Form Group-->
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
-                                            <input type="text" name="field-name" value="" placeholder="이름">
+                                            <input type="text" name="memberName" value="" placeholder="이름">
 
                                         </div>
                                         <!--Form Group-->
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
-                                            <input type="text" name="field-name" value="" placeholder="핸드폰">
+                                            <input type="text" name="phone" value="" placeholder="핸드폰">
                                         </div>
 
                                         <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -131,106 +126,106 @@
                                     </div>
 
                                     <div class="login_btn_wrapper register_btn_wrapper login_wrapper ">
-                                        <a href="#" class="btn btn-primary login_btn"> 로그인 </a>
+                                        <a href="#" class="btn btn-primary login_btn"> 회원가입 </a>
                                     </div>
                                     <div class="login_message">
                                         <p>Already a member? <a href="#"> Login Here </a> </p>
                                     </div>
                                 </div>
 
-                                <div class="tab-pane fade register_left_form" id="contentOne-2">
+<!--                                 <div class="tab-pane fade register_left_form" id="contentOne-2"> -->
 
-                                    <div class="jp_regiter_top_heading">
-                                        <p>Fields with * are mandetory </p>
-                                    </div>
-                                    <div class="row clearfix">
-                                        <!--Form Group-->
-                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="field-name" value="" placeholder="아이디">
-                                        </div>
-                                        <!--Form Group-->
-                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="field-name" value="" placeholder="이메일">
-                                        </div>
-                                        <!--Form Group-->
-                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="field-name" value="" placeholder="인증번호 입력">
-                                        </div>
-                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+<!--                                     <div class="jp_regiter_top_heading"> -->
+<!--                                         <p>Fields with * are mandetory </p> -->
+<!--                                     </div> -->
+<!--                                     <div class="row clearfix"> -->
+<!--                                         Form Group -->
+<!--                                         <div class="form-group col-md-6 col-sm-6 col-xs-12"> -->
+<!--                                             <input type="text" name="field-name" value="" placeholder="아이디"> -->
+<!--                                         </div> -->
+<!--                                         Form Group -->
+<!--                                         <div class="form-group col-md-6 col-sm-6 col-xs-12"> -->
+<!--                                             <input type="text" name="field-name" value="" placeholder="이메일"> -->
+<!--                                         </div> -->
+<!--                                         Form Group -->
+<!--                                         <div class="form-group col-md-6 col-sm-6 col-xs-12"> -->
+<!--                                             <input type="text" name="field-name" value="" placeholder="인증번호 입력"> -->
+<!--                                         </div> -->
+<!--                                         <div class="form-group col-md-6 col-sm-6 col-xs-12"> -->
 
-                                            <input type="password" name="field-name" value="" placeholder="비밀번호">
-                                        </div>
-                                        <!--Form Group-->
-                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+<!--                                             <input type="password" name="field-name" value="" placeholder="비밀번호"> -->
+<!--                                         </div> -->
+<!--                                         Form Group -->
+<!--                                         <div class="form-group col-md-6 col-sm-6 col-xs-12"> -->
 
-                                            <input type="password" name="field-name" value="" placeholder="비밀번호재입력">
-                                        </div>
+<!--                                             <input type="password" name="field-name" value="" placeholder="비밀번호재입력"> -->
+<!--                                         </div> -->
                                         
-                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="field-name" value="" placeholder="담당자 이름">
-                                        </div>
-                                        <!--Form Group-->
-                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="field-name" value="" placeholder="담당자 전화번호">
-                                        </div>
+<!--                                          <div class="form-group col-md-6 col-sm-6 col-xs-12"> -->
+<!--                                             <input type="text" name="field-name" value="" placeholder="담당자 이름"> -->
+<!--                                         </div> -->
+<!--                                         Form Group -->
+<!--                                         <div class="form-group col-md-6 col-sm-6 col-xs-12"> -->
+<!--                                             <input type="text" name="field-name" value="" placeholder="담당자 전화번호"> -->
+<!--                                         </div> -->
                                         
-                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="field-name" value="" placeholder="사업자 등록번호">
-                                        </div>
-                                        <!--Form Group-->
-                                          <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="field-name" value="" placeholder="기업이름">
-                                        </div>
-                                        <!--Form Group-->
-                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="field-name" value="" placeholder="대표자이름">
-                                        </div>
+<!--                                          <div class="form-group col-md-6 col-sm-6 col-xs-12"> -->
+<!--                                             <input type="text" name="field-name" value="" placeholder="사업자 등록번호"> -->
+<!--                                         </div> -->
+<!--                                         Form Group -->
+<!--                                           <div class="form-group col-md-6 col-sm-6 col-xs-12"> -->
+<!--                                             <input type="text" name="field-name" value="" placeholder="기업이름"> -->
+<!--                                         </div> -->
+<!--                                         Form Group -->
+<!--                                         <div class="form-group col-md-6 col-sm-6 col-xs-12"> -->
+<!--                                             <input type="text" name="field-name" value="" placeholder="대표자이름"> -->
+<!--                                         </div> -->
                                       
-                                      	 <!--Form Group-->
-                                          <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="field-name" value="" placeholder="업종">
-                                        </div>
-                                        <!--Form Group-->
-                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="field-name" value="" placeholder="업태">
-                                        </div>
+<!--                                       	 Form Group -->
+<!--                                           <div class="form-group col-md-6 col-sm-6 col-xs-12"> -->
+<!--                                             <input type="text" name="field-name" value="" placeholder="업종"> -->
+<!--                                         </div> -->
+<!--                                         Form Group -->
+<!--                                         <div class="form-group col-md-6 col-sm-6 col-xs-12"> -->
+<!--                                             <input type="text" name="field-name" value="" placeholder="업태"> -->
+<!--                                         </div> -->
                                         
-                                         <!--Form Group-->
-                                          <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="field-name" value="" placeholder="주소">
-                                        </div>
-                                        <!--Form Group-->
-                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="field-name" value="" placeholder="상세 주소">
-                                        </div>
+<!--                                          Form Group -->
+<!--                                           <div class="form-group col-md-6 col-sm-6 col-xs-12"> -->
+<!--                                             <input type="text" name="field-name" value="" placeholder="주소"> -->
+<!--                                         </div> -->
+<!--                                         Form Group -->
+<!--                                         <div class="form-group col-md-6 col-sm-6 col-xs-12"> -->
+<!--                                             <input type="text" name="field-name" value="" placeholder="상세 주소"> -->
+<!--                                         </div> -->
                                         
-                                          <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="field-name" value="" placeholder="웹사이트 주소">
-                                        </div>
+<!--                                           <div class="form-group col-md-6 col-sm-6 col-xs-12"> -->
+<!--                                             <input type="text" name="field-name" value="" placeholder="웹사이트 주소"> -->
+<!--                                         </div> -->
 										
-										<div class="">
-											<textarea rows="35" cols="8"></textarea>
-										</div>
+<!-- 										<div class=""> -->
+<!-- 											<textarea rows="35" cols="8"></textarea> -->
+<!-- 										</div> -->
 										
-										<div></div>
-										<div></div>
-										<div></div>
+<!-- 										<div></div> -->
+<!-- 										<div></div> -->
+<!-- 										<div></div> -->
 										
-                                        <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <div class="check-box text-center">
-                                                <input type="checkbox" name="shipping-option" id="account-option_2"> &ensp;
-                                                <label for="account-option_2">회원가입을 <a href="#" class="check_box_anchr">규제하는 약관</a>에 동의합니다.</label>
-                                            </div>
-                                        </div>
-                                    </div>
+<!--                                         <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12"> -->
+<!--                                             <div class="check-box text-center"> -->
+<!--                                                 <input type="checkbox" name="shipping-option" id="account-option_2"> &ensp; -->
+<!--                                                 <label for="account-option_2">회원가입을 <a href="#" class="check_box_anchr">규제하는 약관</a>에 동의합니다.</label> -->
+<!--                                             </div> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
 
-                                    <div class="login_btn_wrapper register_btn_wrapper login_wrapper ">
-                                        <a href="#" class="btn btn-primary login_btn"> 로그인 </a>
-                                    </div>
-                                    <div class="login_message">
-                                        <p>이미 회원가입 되어 있나요? <a href="#"> 로그인 </a> </p>
-                                    </div>
+<!--                                     <div class="login_btn_wrapper register_btn_wrapper login_wrapper "> -->
+<!--                                         <a href="#" class="btn btn-primary login_btn"> 로그인 </a> -->
+<!--                                     </div> -->
+<!--                                     <div class="login_message"> -->
+<!--                                         <p>이미 회원가입 되어 있나요? <a href="#"> 로그인 </a> </p> -->
+<!--                                     </div> -->
 
                                 </div>
-</body>
+	</body>
 </html>

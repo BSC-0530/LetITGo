@@ -14,17 +14,21 @@ import com.itsme.letitgo.login.model.service.MemberService;
 @WebServlet("/member/login")
 public class loginServlet extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String memberId = request.getParameter("memberId");
-		String memberPwd = request.getParameter("memberPwd");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String memberId = request.getParameter("id");
+		String memberPwd = request.getParameter("password");
 		
 		MemberDTO requestMember = new MemberDTO();
-		requestMember.setId("memberId");
-		requestMember.setPwd("memberPwd");
+		requestMember.setId(memberId);
+		requestMember.setPwd(memberPwd);
 
+		System.out.println(requestMember);
+		
 		MemberService memberService = new MemberService();
 		
 		MemberDTO loginMember = memberService.loginCheck(requestMember);
+		
+		System.out.println("loginServlet : " + loginMember);
 		
 		if(loginMember != null) {
 			HttpSession session = request.getSession();

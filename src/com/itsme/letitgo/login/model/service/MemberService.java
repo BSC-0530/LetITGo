@@ -22,6 +22,8 @@ public class MemberService {
 		MemberMapper mapper = session.getMapper(MemberMapper.class);
 		
 		String encPwd = mapper.selectPwd(requestMember);
+		System.out.println("service getpwd : " + requestMember.getPwd());
+		System.out.println("service encPwd : " + encPwd);
 		
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
@@ -29,6 +31,7 @@ public class MemberService {
 			
 			loginMember = mapper.selectId(requestMember);
 		}
+		System.out.println("service loginMember : " + loginMember);
 		session.close();
 		
 		return loginMember;
