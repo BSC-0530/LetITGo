@@ -3,7 +3,7 @@ package com.itsme.letitgo.personal.recruit.jobposting.model.dto;
 import java.sql.Date;
 import java.util.List;
 
-public class SelectAllJobPostingDTO implements java.io.Serializable {
+public class SelectJobPostingDTO implements java.io.Serializable {
 
 	private int jobPostNo;
 	private int coMemNo;
@@ -22,9 +22,9 @@ public class SelectAllJobPostingDTO implements java.io.Serializable {
 	private List<JpSkillsDTO> reqSkillsList;
 	private JpOwnFormResumeAttachmentDTO ownFormResumeAttachmentDTO;
 	
-	public SelectAllJobPostingDTO() {}
+	public SelectJobPostingDTO() {}
 
-	public SelectAllJobPostingDTO(int jobPostNo, int coMemNo, String jobPostTitle, String jobPostMinExperience,
+	public SelectJobPostingDTO(int jobPostNo, int coMemNo, String jobPostTitle, String jobPostMinExperience,
 			String jobPostMaxExperience, Date jobPostDeadline, String jobPostContents, String jobPostKinds, int jobNo,
 			String jobPostApplying_kinds, JpCoMemberAddInfo coMemberAddInfoDTO, JpJobFieldDTO jobFieldDTO,
 			JpAttachmentDTO attachmentDTO, JpJobPostingAppHistoryDTO jobPostingAppHistoryDTO,

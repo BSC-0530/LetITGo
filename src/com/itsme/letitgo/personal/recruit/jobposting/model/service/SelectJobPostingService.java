@@ -8,8 +8,6 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpSkillsDTO;
-import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectAllJobPostingDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper;
 
 public class SelectJobPostingService {
@@ -25,9 +23,13 @@ public class SelectJobPostingService {
 		
 		List<Object> jpSkills = mapper.selectJpSkills();
 		
+		List<Object> jobNameList = mapper.selectJobNames();
+		System.out.println(jobNameList);
+		
 		Map<String, List<Object>> jp = new HashMap<>();
 		jp.put("jpAndInfo", jpAndInfo);
 		jp.put("jpSkills", jpSkills);
+		jp.put("jobNameList", jobNameList);
 		
 		
 		
