@@ -54,7 +54,7 @@
 			
 			<association property="skillsAndCategory" javaType="com.itsme.letitgo.personal.resume.model.dto.SkillsAndCategoryDTO">
 				<id property="skillsNo" column="SKILLS_NO"/>
-				<result property="skillsName" column="SKILLSNAME"/>
+				<result property="skillsName" column="SKILLS_NAME"/>
 				<result property="categoryNo" column="CATEGORY_NO"/>
 				
 				<association property="skillsCategory" javaType="com.itsme.letitgo.personal.resume.model.dto.SkillsCategoryDTO">
@@ -67,8 +67,18 @@
 	</resultMap>
 		
 		<select id="companySelectAllScout" resultMap="mainScoutResultMap">
+		SELECT
+				  M.MEM_NAME
+				, B.CAR_HIRE_DATE
+				, B.CAR_ENT_DATE
+				, S.SKILLS_NAME
+			
+			FROM TBL_RESUME R
+			JOIN TBL_MEMBER M ON (R.IN_MEM_NO = M.MEM_NO)
+			JOIN TBL_CAREER_HISTORY B ON (R.RESUME_NO = B.RESUME_NO)
+			JOIN TBL_RESUME_HOLDING_SKILLS SS ON (R.RESUME_NO = SS.RESUME_NO)
+			JOIN TBL_SKILLS S ON (S.SKILLS_NO = SS.SKILLS_NO)
+            WHERE RESUME_SCOUT_STATUS = 'Y'
 		</select>
-	
-	
-	
+		
 </mapper>

@@ -19,6 +19,8 @@ public class MainScoutListService {
 		
 		List<MainScoutListingDTO> scoutList = mapper.companySelectAllScout();
 		
+		session.close();
+		
 		return scoutList;
 	}
 

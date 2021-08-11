@@ -10,7 +10,7 @@ public class ResumeDTO implements java.io.Serializable {
 	private java.sql.Date resumeWriteDate;
 	private String resumeScoutStatus;
 	private int jobNo;
-	private String resumeTitle;
+
 	
 	public ResumeDTO() {}
 
@@ -36,13 +36,6 @@ public class ResumeDTO implements java.io.Serializable {
 		this.resumeNo = resumeNo;
 	}
 
-	public String getResumeTitle() {
-		return resumeTitle;
-	}
-
-	public void setResumeTitle(String resumeTitle) {
-		this.resumeTitle = resumeTitle;
-	}
 
 	public int getInMemNo() {
 		return inMemNo;

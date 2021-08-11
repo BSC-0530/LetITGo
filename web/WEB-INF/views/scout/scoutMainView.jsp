@@ -71,8 +71,9 @@
 						</div>
 					</div>
 				</div>
-				<c:forEach items="${scoutList }" var="mainScout">  
+				  
 				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 jp_cl_right_bar">
+					<c:forEach items="${ mainScoutList }" var="mainScout">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_recent_resume_box_wrapper">
@@ -80,10 +81,17 @@
 									<img src="images/content/resume_img1.jpg" alt="resume_img" />
 								</div>
 								<div class="jp_recent_resume_cont_wrapper">
-									<h3><c:out value="${ mainScout.memName }"></c:out>  </h3>
-									<p><i class="fa fa-folder-open-o"></i> <a href="#"><c:out value="${ mainScout.skillsName }"></c:out></a></p>
+									<h3><c:out value="${ mainScout.memberDTO.memName }"></c:out>  </h3>
+									<p><i class="fa fa-folder-open-o"></i>
+									
+									<c:forEach items="${ mainScout.holdingSkillDTO }" var="holdingSkill">
+										<c:out value="${ holdingSkill.skillsAndCategory.skillsName }"/>
+									 </c:forEach>
+									</p>
 									<i>신입</i>
+									
 								</div>
+								
 								<div class="jp_recent_resume_btn_wrapper">
 									<ul>
 										<li><a href="#">간단 조회</a></li>
@@ -91,12 +99,13 @@
 								</div>
 							</div>
 						</div>
-
 					</div>
+					</c:forEach>
 				</div>
-				</c:forEach>
 			</div>
+			
 		</div>
+		
 		<!-- jp listing sidebar Wrapper End -->
 		</div><!-- -----------------------풋터------------------------------------- -->	
 	<jsp:include page="../common/footer.jsp"/>
