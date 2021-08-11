@@ -20,13 +20,12 @@
 		<result property="payKinds" column="PAY_KINDS"/>
 	</resultMap>
 	
-	<resultMap type="com.itsme.letitgo.company.payment.model.dto.BrowseUsingHistroyDTO">
+	<resultMap type="com.itsme.letitgo.company.payment.model.dto.BrowseUsingHistroyDTO" id="rowseUsingHistroyResultMap">
 		<result property="resumeTitle" column="RESUME_TITLE"/>
 		<result property="memName" column="MEM_NAME"/>
 		<result property="jobName" column="JOB_NAME"/>
 		<result property="skillsName" column="SKILLS_NAME"/>
-		<result property="productUseDate" column="PRODUCT_USE_DATE"/>
-		
+		<result property="productUseDate" column="PRODUCT_USE_DATE"/>		
 	</resultMap>
 
 	<select id="selectProductList" resultMap="productResulMap">
@@ -82,8 +81,8 @@
            AND A.CO_MEM_NO = '2'
 	</select>
 	
-	<select>
+	<!-- <select id="BrowseUsingHistroyList">
 	
-	</select>
+	</select> -->
 
 </mapper>
