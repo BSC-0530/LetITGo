@@ -9,7 +9,7 @@
 		<result property="resumeTitle" column="RESUME_TITLE"/>
 		<result property="resumeWriteDate" column="RESUME_WRITE_DATE"/>
 		<result property="resumeScoutStatus" column="RESUME_SCOUT_STATUS"/>
-		<result property="jobNo" column="JOB_NO"/>	
+		<result property="jobNo" column="JOB_NO"/>
 	</resultMap>
 
 	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.DetailResumeDTO" id="detailResumeResultMap">
