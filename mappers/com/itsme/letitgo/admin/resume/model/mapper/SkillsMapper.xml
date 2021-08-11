@@ -2,12 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="com.itsme.letitgo.admin.resume.model.mapper.SkillsMapper">
+	<!-- insert resultMap -->
 	<resultMap type="com.itsme.letitgo.admin.resume.model.dto.SkillsDTO" id="skillsInsertResultMap">
 		<id property="skillsNo" column="SKILLS_NO"/>
 		<result property="name" column="SKILLS_NAME"/>
 		<result property="no" column="CATEGORY_NO"/>
 	</resultMap>
-	
+	<!-- select resultMap -->
+	<resultMap type="com.itsme.letitgo.admin.resume.model.dto.SkillsDTO" id="skillsResultMap">
+		<id property="skillsNo" column="SKILLS_NO"/>
+		<result property="name" column="SKILLS_NAME"/>
+		<result property="no" column="CATEGORY_NO"/>
+	</resultMap>
+		
 	<insert id="skillsInsert" parameterType="com.itsme.letitgo.admin.resume.model.dto.SkillsDTO">
 		INSERT
 		  INTO TBL_SKILLS A
@@ -23,6 +30,12 @@
 		 , # { no }  
 		)
 	</insert>
-	
+	<select id="selectAllSkillsList" resultMap="skillsResultMap">
+		SELECT
+		       A.SKILLS_NO
+		     , A.SKILLS_NAME
+		     , A.CATEGORY_NO
+		  FROM TBL_SKILLS A     
+	</select>
 	
 </mapper>

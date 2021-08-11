@@ -2,7 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="com.itsme.letitgo.admin.resume.model.mapper.JobFieldMapper">
+	<!-- insert resultMap -->
 	<resultMap type="com.itsme.letitgo.admin.resume.model.dto.JobFieldDTO" id="jobFieldInsertResultMap">
+		<id property="no" column="JOB_NO"/>
+		<result property="name" column="JOB_NAME"/>
+	</resultMap>
+	<!-- select resultMap -->
+	<resultMap type="com.itsme.letitgo.admin.resume.model.dto.JobFieldDTO" id="jobFieldResultMap">
 		<id property="no" column="JOB_NO"/>
 		<result property="name" column="JOB_NAME"/>
 	</resultMap>
@@ -21,4 +27,16 @@
 		)
 	</insert>
 	
+	<select id="selectAllJobFieldList" resultMap="jobFieldResultMap">
+	 	SELECT
+	 		   A.JOB_NO
+	 		 , A.JOB_NAME
+	 	  FROM TBL_JOB_FIELD A   
+	</select>
+	
 </mapper>
+
+
+
+
+
