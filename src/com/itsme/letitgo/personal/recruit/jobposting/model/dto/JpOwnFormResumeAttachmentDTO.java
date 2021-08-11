@@ -1,6 +1,6 @@
 package com.itsme.letitgo.personal.recruit.jobposting.model.dto;
 
-public class OwnFormResumeAttachmentDTO implements java.io.Serializable {
+public class JpOwnFormResumeAttachmentDTO implements java.io.Serializable {
 	
 	private int resumeFileNo;
 	private String resumeFileName;
@@ -9,10 +9,10 @@ public class OwnFormResumeAttachmentDTO implements java.io.Serializable {
 	private int jobPostNo;
 	
 	
-	public OwnFormResumeAttachmentDTO() {}
+	public JpOwnFormResumeAttachmentDTO() {}
 
 
-	public OwnFormResumeAttachmentDTO(int resumeFileNo, String resumeFileName, String resumeFileOriginalName,
+	public JpOwnFormResumeAttachmentDTO(int resumeFileNo, String resumeFileName, String resumeFileOriginalName,
 			String resumeFilePath, int jobPostNo) {
 		super();
 		this.resumeFileNo = resumeFileNo;

@@ -2,6 +2,7 @@ package com.itsme.letitgo.personal.recruit.jobposting.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectAllJobPostingDTO;
+import com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpSkillsDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.service.SelectJobPostingService;
 
 
@@ -22,11 +23,18 @@ public class SelectAllJobPostingServlet extends HttpServlet {
 		
 		SelectJobPostingService selectJobPostingService = new SelectJobPostingService();
 		
-		List<SelectAllJobPostingDTO> jpAndInfo = selectJobPostingService.selectAllJobPosting();
+		Map<String, List<Object>> jp = selectJobPostingService.selectAllJobPosting();
 		
-		System.out.println("Servlet jpAndInfo : " + jpAndInfo);
 		
-		request.setAttribute("jobPostingList", jpAndInfo);
+		System.out.println("jpAndInfo : " + jp.get("jpAndInfo"));
+		System.out.println("jpSkills : " + jp.get("jpSkills"));
+		
+		Object jpSkills = jp.get("jpSkills");
+		
+		
+		request.setAttribute("jobPostingList", jp.get("jpAndInfo"));
+		request.setAttribute("jpSkills", jp.get("jpSkills"));
+		
 		
 
 		String path = "/WEB-INF/views/recruit/jobPosting.jsp";
@@ -34,7 +42,6 @@ public class SelectAllJobPostingServlet extends HttpServlet {
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

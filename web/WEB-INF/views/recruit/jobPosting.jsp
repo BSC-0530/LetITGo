@@ -214,9 +214,8 @@
                                         <div class="row">
                                         <!--  jobPostKinds가 승인된 공고일때 forEach를 통해서 모두 출력 -->
                                         	<c:forEach  var="jobPosting" items="${ requestScope.jobPostingList }">
-                                        	<c:if test="${ jobPosting.jobPostKinds eq '승인된공고'}">
 	                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-	                                                <div class="jp_job_post_main_wrapper_cont jp_job_post_grid_main_wrapper_cont">
+	                                                <div class="jp_job_post_main_wra[]pper_cont jp_job_post_grid_main_wrapper_cont">
 	                                                    <div class="jp_job_post_main_wrapper jp_job_post_grid_main_wrapper">
 	                                                        <div class="row">
 	                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -224,15 +223,15 @@
 	                                                                    <img src="${ pageContext.servletContext.contextPath }/resources/image/bmw.png" style="width: 120px; height: 120px;"alt="post_img" />
 	                                                                </div>
 	                                                                <div class="jp_job_post_right_cont jp_job_post_grid_right_cont">
-																		<a href= "" style="font-weight:bold; font-size: 25px; color: black; "><c:out value="${ jobPosting.jobPostTitle }"/></a><br>																
-																		<a href="">사명 : <c:out value="${ jobPosting.companyAddInfoDTO.coComName }"/></a><br>
+																		<a href="" style="font-weight:bold; font-size: 25px; color: black; "><c:out value="${ jobPosting.jobPostTitle }"/></a><br>																
+																		<a href=""><c:out value="${ jobPosting.coMemberAddInfoDTO.coComName }"/></a><br>
 																		<a>서울</a><br>
 																		<a>
 																		<c:if test="${ jobPosting.jobPostMinExperience != jobPosting.jobPostMaxExperience }">
 																			<c:out value="${ jobPosting.jobPostMinExperience }"/> ~ <c:out value="${ jobPosting.jobPostMaxExperience }"/> 년
 																		</c:if>
 																		</a><br>
-																		<a>직무</a><br>
+																		<a><c:out value="${ jobPosting.jobFieldDTO.jobName }"></c:out></a><br>
 																		<a><c:out value="${ jobPosting.jobPostDeadline }"/></a><br>
 																		
 	                                                                </div>
@@ -251,13 +250,15 @@
 	                                                    <div class="jp_job_post_keyword_wrapper">
 	                                                        <ul>
 	                                                            <li> 요구 기술 :</li>
-	                                                            <li><a href="#">ui designer,</a></li>
-	                                                            <li><a href="#">developer,</a></li>
+	                                                            <c:forEach  var="jpSkills" items="${ requestScope.jpSkills }">
+	                                                            <c:if test="${ jpSkills.jobPostNo eq jobPosting.jobPostNo}">
+	                                                            <li><a href="#"><c:out value="${ jpSkills.skillsName }"></c:out></a></li>
+	                                                            </c:if>
+	                                                            </c:forEach>
 	                                                        </ul>
 	                                                    </div>
 	                                                </div>
 	                                            </div>
-	                                            </c:if>
                                             </c:forEach>
                                         </div>
                                     </div>

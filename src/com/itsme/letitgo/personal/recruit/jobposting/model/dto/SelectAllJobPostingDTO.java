@@ -1,8 +1,7 @@
 package com.itsme.letitgo.personal.recruit.jobposting.model.dto;
 
 import java.sql.Date;
-
-import com.itsme.letitgo.company.info.model.dto.CompanyAddInfoDTO;
+import java.util.List;
 
 public class SelectAllJobPostingDTO implements java.io.Serializable {
 
@@ -15,21 +14,21 @@ public class SelectAllJobPostingDTO implements java.io.Serializable {
 	private String jobPostContents;
 	private String jobPostKinds;
 	private int jobNo;
-	private int skillsNo;
 	private String jobPostApplying_kinds;
-	private CompanyAddInfoDTO companyAddInfoDTO;
-	private JobFieldDTO jobFieldDTO;
-	private AttachmentDTO attachmentDTO;
-	private JobPostingAppHistoryDTO jobPostingAppHistoryDTO;
-	private OwnFormResumeAttachmentDTO ownFormResumeAttachmentDTO;
+	private JpCoMemberAddInfo coMemberAddInfoDTO;
+	private JpJobFieldDTO jobFieldDTO;
+	private JpAttachmentDTO attachmentDTO;
+	private JpJobPostingAppHistoryDTO jobPostingAppHistoryDTO;
+	private List<JpSkillsDTO> reqSkillsList;
+	private JpOwnFormResumeAttachmentDTO ownFormResumeAttachmentDTO;
 	
 	public SelectAllJobPostingDTO() {}
 
 	public SelectAllJobPostingDTO(int jobPostNo, int coMemNo, String jobPostTitle, String jobPostMinExperience,
 			String jobPostMaxExperience, Date jobPostDeadline, String jobPostContents, String jobPostKinds, int jobNo,
-			int skillsNo, String jobPostApplying_kinds, CompanyAddInfoDTO companyAddInfoDTO, JobFieldDTO jobFieldDTO,
-			AttachmentDTO attachmentDTO, JobPostingAppHistoryDTO jobPostingAppHistoryDTO,
-			OwnFormResumeAttachmentDTO ownFormResumeAttachmentDTO) {
+			String jobPostApplying_kinds, JpCoMemberAddInfo coMemberAddInfoDTO, JpJobFieldDTO jobFieldDTO,
+			JpAttachmentDTO attachmentDTO, JpJobPostingAppHistoryDTO jobPostingAppHistoryDTO,
+			List<JpSkillsDTO> reqSkillsList, JpOwnFormResumeAttachmentDTO ownFormResumeAttachmentDTO) {
 		super();
 		this.jobPostNo = jobPostNo;
 		this.coMemNo = coMemNo;
@@ -40,12 +39,12 @@ public class SelectAllJobPostingDTO implements java.io.Serializable {
 		this.jobPostContents = jobPostContents;
 		this.jobPostKinds = jobPostKinds;
 		this.jobNo = jobNo;
-		this.skillsNo = skillsNo;
 		this.jobPostApplying_kinds = jobPostApplying_kinds;
-		this.companyAddInfoDTO = companyAddInfoDTO;
+		this.coMemberAddInfoDTO = coMemberAddInfoDTO;
 		this.jobFieldDTO = jobFieldDTO;
 		this.attachmentDTO = attachmentDTO;
 		this.jobPostingAppHistoryDTO = jobPostingAppHistoryDTO;
+		this.reqSkillsList = reqSkillsList;
 		this.ownFormResumeAttachmentDTO = ownFormResumeAttachmentDTO;
 	}
 
@@ -121,14 +120,6 @@ public class SelectAllJobPostingDTO implements java.io.Serializable {
 		this.jobNo = jobNo;
 	}
 
-	public int getSkillsNo() {
-		return skillsNo;
-	}
-
-	public void setSkillsNo(int skillsNo) {
-		this.skillsNo = skillsNo;
-	}
-
 	public String getJobPostApplying_kinds() {
 		return jobPostApplying_kinds;
 	}
@@ -137,46 +128,72 @@ public class SelectAllJobPostingDTO implements java.io.Serializable {
 		this.jobPostApplying_kinds = jobPostApplying_kinds;
 	}
 
-	public CompanyAddInfoDTO getCompanyAddInfoDTO() {
-		return companyAddInfoDTO;
+	public JpCoMemberAddInfo getCoMemberAddInfoDTO() {
+		return coMemberAddInfoDTO;
 	}
 
-	public void setCompanyAddInfoDTO(CompanyAddInfoDTO companyAddInfoDTO) {
-		this.companyAddInfoDTO = companyAddInfoDTO;
+	public void setCoMemberAddInfoDTO(JpCoMemberAddInfo coMemberAddInfoDTO) {
+		this.coMemberAddInfoDTO = coMemberAddInfoDTO;
 	}
 
-	public JobFieldDTO getJobFieldDTO() {
+	public JpJobFieldDTO getJobFieldDTO() {
 		return jobFieldDTO;
 	}
 
-	public void setJobFieldDTO(JobFieldDTO jobFieldDTO) {
+	public void setJobFieldDTO(JpJobFieldDTO jobFieldDTO) {
 		this.jobFieldDTO = jobFieldDTO;
 	}
 
-	public AttachmentDTO getAttachmentDTO() {
+	public JpAttachmentDTO getAttachmentDTO() {
 		return attachmentDTO;
 	}
 
-	public void setAttachmentDTO(AttachmentDTO attachmentDTO) {
+	public void setAttachmentDTO(JpAttachmentDTO attachmentDTO) {
 		this.attachmentDTO = attachmentDTO;
 	}
 
-	public JobPostingAppHistoryDTO getJobPostingAppHistoryDTO() {
+	public JpJobPostingAppHistoryDTO getJobPostingAppHistoryDTO() {
 		return jobPostingAppHistoryDTO;
 	}
 
-	public void setJobPostingAppHistoryDTO(JobPostingAppHistoryDTO jobPostingAppHistoryDTO) {
+	public void setJobPostingAppHistoryDTO(JpJobPostingAppHistoryDTO jobPostingAppHistoryDTO) {
 		this.jobPostingAppHistoryDTO = jobPostingAppHistoryDTO;
 	}
 
-	public OwnFormResumeAttachmentDTO getOwnFormResumeAttachmentDTO() {
+	public List<JpSkillsDTO> getReqSkillsList() {
+		return reqSkillsList;
+	}
+
+	public void setReqSkillsList(List<JpSkillsDTO> reqSkillsList) {
+		this.reqSkillsList = reqSkillsList;
+	}
+
+	public JpOwnFormResumeAttachmentDTO getOwnFormResumeAttachmentDTO() {
 		return ownFormResumeAttachmentDTO;
 	}
 
-	public void setOwnFormResumeAttachmentDTO(OwnFormResumeAttachmentDTO ownFormResumeAttachmentDTO) {
+	public void setOwnFormResumeAttachmentDTO(JpOwnFormResumeAttachmentDTO ownFormResumeAttachmentDTO) {
 		this.ownFormResumeAttachmentDTO = ownFormResumeAttachmentDTO;
-	};
+	}
+
+	@Override
+	public String toString() {
+		return "SelectAllJobPostingDTO [jobPostNo=" + jobPostNo + ", coMemNo=" + coMemNo + ", jobPostTitle="
+				+ jobPostTitle + ", jobPostMinExperience=" + jobPostMinExperience + ", jobPostMaxExperience="
+				+ jobPostMaxExperience + ", jobPostDeadline=" + jobPostDeadline + ", jobPostContents=" + jobPostContents
+				+ ", jobPostKinds=" + jobPostKinds + ", jobNo=" + jobNo + ", jobPostApplying_kinds="
+				+ jobPostApplying_kinds + ", coMemberAddInfoDTO=" + coMemberAddInfoDTO + ", jobFieldDTO=" + jobFieldDTO
+				+ ", attachmentDTO=" + attachmentDTO + ", jobPostingAppHistoryDTO=" + jobPostingAppHistoryDTO
+				+ ", reqSkillsList=" + reqSkillsList + ", ownFormResumeAttachmentDTO=" + ownFormResumeAttachmentDTO
+				+ "]";
+	}
+
 	
+
+	
+	
+
+
 	
 	
 }
