@@ -176,11 +176,11 @@
 							
 							<tbody align="center">
 								<tr>
-									<td id="payNo"><c:out value="${ payment.payNo }"/></td>
-									<td id="productName"><c:out value="${ payment.productName }"/></td>
-									<td id="payPrice"><fmt:formatNumber value="${ payment.payPrice }" pattern="###,###" type="currency"/></td>								
-									<td id="payDate"><c:out value="${ payment.payDate }"/></td>
-									<td id="payKinds"><c:out value="${ payment.payKinds }"/></td>
+									<td><c:out value="${ payment.payNo }"/></td>
+									<td><c:out value="${ payment.productName }"/></td>
+									<td><fmt:formatNumber value="${ payment.payPrice }" pattern="###,###"/></td>								
+									<td><c:out value="${ payment.payDate }"/></td>
+									<td><c:out value="${ payment.payKinds }"/></td>
 									
 									<c:if test="${ payment.payKinds eq '결제완료' }">
 									<td><button type="submit" onclick="req(this);">환불요청</button></td>
@@ -278,11 +278,13 @@ function req(button) {
 	
 	var payNo = button.parentNode.parentNode.children[0].innerText;
 	var productName = button.parentNode.parentNode.children[1].innerText;
+	var payPrice = button.parentNode.parentNode.children[2].innerText;
 	
 	var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/refund/request/insert").attr("method", "post");
 	
 	$form.append($("<input>").attr("name", "payNo").attr("type", "hidden").val(payNo));
 	$form.append($("<input>").attr("name", "productName").attr("type", "hidden").val(productName));
+	$form.append($("<input>").attr("name", "payPrice").attr("type", "hidden").val(payPrice));
 	
 	console.log($form.children().val());
 	console.log(productName);
