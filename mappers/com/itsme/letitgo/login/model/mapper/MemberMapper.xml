@@ -13,13 +13,26 @@
 		<result property="entYn" column="MEM_ENT_YN"/>
 		<result property="entDate" column="MEM_ENT_DATE"/>
 	</resultMap>
-	<select id="selectPwd" resultMap="loginMap">
-		SELECT	/*com.itsme.letitgo.login.model.mapper.MemberMapper*/
+	<select id="selectPwd" resultType="java.lang.String">
+		SELECT	
 				A.MEM_PWD
 			FROM TBL_MEMBER A
-		   WHERE A.MEM_ENT_YN = 'Y'
-		   	 AND A.MEM_ID = #{ id }
-		   	 
+		   WHERE A.MEM_ID = #{ id } 
+	</select>
+	<select id="selectId" resultMap="loginMap">
+		SELECT
+			A.MEM_NO
+		   ,A.MEM_ID
+		   ,A.MEM_PWD
+		   ,A.MEM_NAME
+		   ,A.MEM_EMAIL
+		   ,A.MEM_PHONE    	
+		   ,A.MEM_KINDS
+		   ,A.MEM_ENROLL_DATE
+		   ,A.MEM_ENT_YN
+		   ,A.MEM_ENT_DATE
+		 FROM TBL_MEMBER A
+		 WHERE A.MEM_ID = #{ id }
 	</select>
 
 </mapper>
