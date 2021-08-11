@@ -19,11 +19,15 @@ public class InsertRefundReqServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8");
+		
 		int payNo = Integer.parseInt(request.getParameter("payNo"));
 		String productName = request.getParameter("productName");
+		String payPrice = request.getParameter("payPrice");
 		
 		System.out.println(payNo);
 		System.out.println(productName);
+		System.out.println(payPrice);
 		
 		String path = "/WEB-INF/views/payment/refundRequest.jsp";
 		
