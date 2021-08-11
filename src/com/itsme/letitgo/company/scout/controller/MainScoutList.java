@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.itsme.letitgo.company.payment.model.dto.ProductDTO;
 import com.itsme.letitgo.company.scout.model.dto.MainScoutListingDTO;
 import com.itsme.letitgo.company.scout.model.service.MainScoutListService;
 
@@ -23,13 +24,17 @@ public class MainScoutList extends HttpServlet {
 		
 		List<MainScoutListingDTO> mainScoutList = new MainScoutListService().selectAllScoutList();
 		
-		System.out.println(mainScoutList);
+//		System.out.println(mainScoutList);
 		
-//		String path="/WEB-INF/views/scout/scoutMainView.jsp";
-//		
-//		
-//		request.getRequestDispatcher(path).forward(request, response);
-//		
+		for(MainScoutListingDTO list : mainScoutList) {
+			System.out.println(list);
+		}
+		
+		String path="/WEB-INF/views/scout/scoutMainView.jsp";
+		request.setAttribute("mainScoutList", mainScoutList );
+		
+		request.getRequestDispatcher(path).forward(request, response);
+		
 	}
 
 

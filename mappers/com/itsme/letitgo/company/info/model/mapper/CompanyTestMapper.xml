@@ -35,7 +35,7 @@
 		SELECT
 			*
 		FROM TBL_MEMBER
-		WHERE MEM_NO=2
+		
 	
 	</select>
 </mapper>
