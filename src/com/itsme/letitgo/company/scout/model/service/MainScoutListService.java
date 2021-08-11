@@ -47,12 +47,38 @@ public class MainScoutListService {
 		 System.out.println("Tlqkfskdhkfk : " + hireDate);
 		 System.out.println("Tlqkfskdhkfk : " + entDate);
 		
-		 java.sql.Date date1 = java.sql.Date.valueOf(hireDate);
-		 java.sql.Date date2 = java.sql.Date.valueOf(entDate);
 		 
+		 try {
+			 
+			 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS"); //같은 형식으로 맞춰줌
+
+			 java.util.Date date1 = sdf.parse(hireDate);
+			 java.util.Date date2 = sdf.parse(entDate);
+
+			System.out.println(date1);
+			System.out.println(date2);
+		
+			long result = date1.getTime() - date2.getTime();
+			//일수로 뽑기
+			long resultDate = result / ( 24*60*60*1000); 
+			//개월수로 변환
+			
+			double absDate = resultDate;
+			absDate = Math.abs(resultDate /  30.417);
+			
+			long careeaDate = Math.round(absDate);
+
+			System.out.println("경력 몇 개월 ? : "+careeaDate);
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
 		 
+//		 java.sql.Date date1 = java.sql.Date.valueOf(hireDate);
+//		 java.sql.Date date2 = java.sql.Date.valueOf(entDate);
 		 
-		System.out.println("aASD!@#!@#!@#!@#!# : " + date1);
+//		System.out.println("aASD!@#!@#!@#!@#!# : " + date1);
 		
 		
 		
