@@ -136,53 +136,107 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="jp_listing_heading_wrapper">
-                        <h2>We found <span>357</span> Matches for you.</h2>
+                        <h2>We found <span><c:out value="${ requestScope.jobPostingSize }"></c:out></span> Matches for you.</h2>
                     </div>
                 </div>
-                <form>
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
-                                <div class="jp_rightside_job_categories_wrapper">
-                                    <div class="jp_rightside_job_categories_heading">
-                                        <h4>직무</h4>
-                                    </div>
-                                    <div style="height: 200px; background: white;"class="jp_form_location_wrapper">
-                                        <select style="border: 1px solid;">
-                                            <option value="" disabled selected>직무를 선택해주세요</option>
-                                            <option value=""></option>
-                                        </select>
-                                    </div>
+               	<form id="selectJobPostingForm" action="${ pageContext.servletContext.contextPath }/member/allJobPosting/select" method="post">
+                	<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
+                   		<div class="row">
+                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                               <div class="jp_rightside_job_categories_wrapper">
+                                   <div class="jp_rightside_job_categories_heading">
+                                       <h4>직무</h4>
+                                   </div>
+                                   <div style="height: 200px; background: white;"class="jp_form_location_wrapper">
+                                       <select id="jobNo" style="border: 1px solid;">
+                                           <option selected>모든 직무</option>
+                                       <c:forEach var = "jobNameList" items="${ requestScope.jobNameList }">
+                                           <option id="jobNo" value="${ jobNameList.jobNo }"><c:out value="${ jobNameList.jobName }"/></option>
+                                       </c:forEach>
+                                       		<option id="jobNo" value="3">이건 넘어가나</option>
+                                       </select>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                           <div class="jp_rightside_job_categories_wrapper">
+                                <div class="jp_rightside_job_categories_heading">
+                                    <h4>Search</h4>
+                                </div>
+                                <div class="jp_blog_right_search_wrapper">
+                                    <input type="text" placeholder="Search">
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        </div>
+                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                               <div class="jp_rightside_job_categories_wrapper">
+                                   <div class="jp_rightside_job_categories_heading">
+                                       <h4>경력</h4>
+                                   </div>
+                                   <div style="height: 200px; background: white;" class="jp_form_location_wrapper">
+                                       <select style="border: 1px solid;">
+                                           <option disabled selected>경력을 선택해주세요</option>
+                                           <option id="experience" value="1">신입</option>
+                                           <option id="experience" value="2">2년</option>
+                                           <option id="experience" value="3">3년</option>
+                                           <option id="experience" value="4">4년</option>
+                                           <option id="experience" value="5">5년</option>
+                                           <option id="experience" value="6">6년</option>
+                                           <option id="experience" value="7">7년</option>
+                                           <option id="experience" value="8">8년</option>
+                                           <option id="experience" value="9">9년</option>
+                                           <option id="experience" value="10">10년이상</option>
+                                       </select>
+                                   </div>
+                               </div>
+                           </div>
+                           	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="jp_rightside_job_categories_wrapper">
                                     <div class="jp_rightside_job_categories_heading">
                                         <h4>지역</h4>
                                     </div>
-                                    <div style="height: 200px; background: white;" class="jp_form_location_wrapper">
-                                        <select style="border: 1px solid;">
-                                            <option value="" disabled selected>지역을 선택해주세요</option>
-                                            <option value=""></option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="jp_rightside_job_categories_wrapper">
-                                    <div class="jp_rightside_job_categories_heading">
-                                        <h4>경력</h4>
-                                    </div>
-                                    <div style="height: 200px; background: white;" class="jp_form_location_wrapper">
-                                        <select style="border: 1px solid;">
-                                            <option value="" disabled selected>경력을 선택해주세요</option>
-                                            <option value=""></option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+									<div class="jp_rightside_job_categories_content">
+	                                    <div class="handyman_sec1_wrapper">
+	                                        <div class="content">
+	                                            <div class="box">
+													<p>
+														<input type="checkbox" id="seoul" value="서울">
+														<label for="seoul">서울</label>
+													</p>
+													<p>
+														<input type="checkbox" id="kyungki" value="경기/인천">
+														<label for="kyungki">경기/인천</label>
+													</p>
+													<p>
+														<input type="checkbox" id="kangwond" value="강원">
+														<label for="kangwond">강원</label>
+													</p>
+													<p>
+														<input type="checkbox" id="chungchung" value="충청/대전">
+														<label for="chungchung">충청/대전</label>
+													</p>
+													<p>
+														<input type="checkbox" id="junrado" value="전라/광주">
+														<label for="junrado">전라/광주</label>
+													</p>
+													<p>
+														<input type="checkbox" id="kyungsang" value="경상/울산/부산/대구">
+														<label for="kyungsang">경상/울산/부산/대구</label>
+													</p>	
+													<p>										
+														<input type="checkbox" id="jeju" value="제주">
+														<label for="jeju">제주</label>
+													</p>								
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   
+				</form>
                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -199,15 +253,15 @@
                                         </div>
                                     </div>
                                     <div style="width:150px; float: left;" class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-                                            <div class="jp_form_btn_wrapper">
-                                                <ul>
-                                                    <li><a href="#"><i class="fa fa-search"></i> Search</a></li>
-                                                </ul>
-                                            </div>
-                                        
+	                                    <div class="jp_form_btn_wrapper">
+	                                        <ul>
+	                                            <li><a href="#"><i class="fa fa-search"></i> Search</a></li>
+	                                        </ul>
+	                                    </div>
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="tab-content">
                                     <div id="grid" class="tab-pane fade in active">
@@ -222,6 +276,7 @@
 	                                                                <div class="jp_job_post_side_img">
 	                                                                    <img src="${ pageContext.servletContext.contextPath }/resources/image/bmw.png" style="width: 120px; height: 120px;"alt="post_img" />
 	                                                                </div>
+	                                                                <div></div>
 	                                                                <div class="jp_job_post_right_cont jp_job_post_grid_right_cont">
 																		<a href="" style="font-weight:bold; font-size: 25px; color: black; "><c:out value="${ jobPosting.jobPostTitle }"/></a><br>																
 																		<a href=""><c:out value="${ jobPosting.coMemberAddInfoDTO.coComName }"/></a><br>
@@ -229,6 +284,11 @@
 																		<a>
 																		<c:if test="${ jobPosting.jobPostMinExperience != jobPosting.jobPostMaxExperience }">
 																			<c:out value="${ jobPosting.jobPostMinExperience }"/> ~ <c:out value="${ jobPosting.jobPostMaxExperience }"/> 년
+																		</c:if>
+																		<c:if test="${ jobPosting.jobPostMinExperience eq jobPosting.jobPostMaxExperience }">
+																			<c:if test="${ jobPosting.jobPostMinExperience eq 0 }">
+																				<c:out value="신입개발자"></c:out>
+																			</c:if>
 																		</c:if>
 																		</a><br>
 																		<a><c:out value="${ jobPosting.jobFieldDTO.jobName }"></c:out></a><br>
@@ -266,10 +326,12 @@
                             </div>
                         </div>
                     </div>
-                </form>
             </div>
         </div>
     </div>
+
+    
+    
     
 	<jsp:include page="../common/footer.jsp"/>
 

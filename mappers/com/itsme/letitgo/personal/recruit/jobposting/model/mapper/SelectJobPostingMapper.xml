@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper">
 	
-	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectAllJobPostingDTO" id="resultJobPosting">	
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectJobPostingDTO" id="resultJobPosting">	
 		<id property="jobPostNo" column="JOB_POST_NO"/>
 		<result property="coMemNo" column="CO_MEM_NO"/>
 		<result property="jobPostTitle" column="JOB_POST_TITLE" javaType="string"/>
@@ -109,5 +109,14 @@
 			 , S.SKILLS_NAME
 		  FROM TBL_JOB_POSTING_REQ_SKILLS RS
 		  JOIN TBL_SKILLS S ON(RS.SKILLS_NO = S.SKILLS_NO)
+	</select>
+	<select id="selectJobNames" resultMap="resultJobField">
+		SELECT
+			   JF.JOB_NO
+			 , JF.JOB_NAME
+		  FROM TBL_JOB_FIELD JF
+	</select>
+	<select id="">
+	
 	</select>
 </mapper>
