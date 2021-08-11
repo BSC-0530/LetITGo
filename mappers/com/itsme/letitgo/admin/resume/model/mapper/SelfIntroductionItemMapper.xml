@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.itsme.letitgo.admin.resume.model.mapper.SelfIntroductionItemMapper">
+	<resultMap type="com.itsme.letitgo.admin.resume.model.dto.SelfIntroductionItemDTO" id="selfIntroductionItemInsertResultMap">
+		<id property="selfIntroItemNo" column="SELF_INTRO_ITEM_NO"/>
+		<result property="selfIntroItemName" column="SELF_INTRO_ITEM_NAME"/>
+	</resultMap>
+	
+	<insert id="selfIntroductionItemInsert" parameterType="com.itsme.letitgo.admin.resume.model.dto.SelfIntroductionItemDTO">
+		INSERT
+		  INTO TBL_SELF_INTRODUCTION_ITEM A
+		(
+		  A.SELF_INTRO_ITEM_NO
+		, A.SELF_INTRO_ITEM_NAME  
+		)  
+		VALUES
+		(
+		  SEQ_SELF_INTRO_ITEM_NO.NEXTVAL
+		, # { selfIntroItemName	}  
+		)
+	</insert>
+</mapper>
