@@ -107,6 +107,23 @@
 		</collection>
 	</resultMap>
 	
+	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.CareerHistoryDTO" id="careerResultMap">
+		<id property="carNo" column="CAR_NO"/>
+			<result property="carComName" column="CAR_COM_NAME"/>
+			<result property="carHireDate" column="CAR_HIRE_DATE"/>
+			<result property="carEntDate" column="CAR_ENT_DATE"/>
+			<result property="carStatus" column="CAR_STATUS"/>
+			<result property="carDeptName" column="CAR_DEPT_NAME"/>
+			<result property="carJobName" column="CAR_JOB_NAME"/>
+			<result property="projectName" column="PROJECT_NAME"/>
+			<result property="projectStartDate" column="PROJECT_START_DATE"/>
+			<result property="projectEndDate" column="PROJECT_END_DATE"/>
+			<result property="projectContent" column="PROJECT_CONTENT"/>
+			<result property="carWorkField" column="CAR_WORK_FIELD"/>
+			<result property="jobNo" column="JOB_NO"/>
+			<result property="resumeNo" column="RESUME_NO"/>
+	</resultMap>
+	
 	
 	
 	<select id="selectAllResumeList" resultMap="resumeResultMap">
@@ -123,7 +140,8 @@
 	
 	<select id="selectDetailResumeList" resultMap="detailResumeResultMap">
 		SELECT /* com.itsme.letitgo.personal.resume.model.mapper.ResumeMapper#selectDetailResumeList() */
-		       R.RESUME_WRITE_DATE
+		       *
+		       <!-- R.RESUME_WRITE_DATE
 		     , R.RESUME_TITLE
 		     , P.POT_KINDS
 		     , SII.SELF_INTRO_ITEM_NAME
@@ -154,7 +172,7 @@
 		     , CH.PROJECT_END_DATE
 		     , CH.PROJECT_CONTENT
 		     , CH.CAR_WORK_FIELD
-		     , JF.JOB_NAME
+		     , JF.JOB_NAME -->
 		  FROM TBL_RESUME R
 		  JOIN TBL_PORTFOLIO P ON (R.RESUME_NO = P.RESUME_NO)
 		  JOIN TBL_SELF_INTRODUCTION_CONTENT SIC ON (R.RESUME_NO = SIC.RESUME_NO)
@@ -167,6 +185,22 @@
 		  JOIN TBL_SKILLS_CATEGORY SC ON (SC.CATEGORY_NO = S.CATEGORY_NO)
 		  JOIN TBL_CAREER_HISTORY CH ON (R.RESUME_NO = CH.RESUME_NO)
 		  JOIN TBL_JOB_FIELD JF ON (R.JOB_NO = JF.JOB_NO)
-		 WHERE R.IN_MEM_NO = 3
+		 WHERE R.RESUME_NO = 1
 	</select>
+	
+	<insert id="insertResume" >
+		INSERT
+		  INTO TBL_CAREER_HISTORY A
+		(
+		  A.CAR_NO, A.CAR_COM_NAME, A.CAR_HIRE_DATE, A.CAR_ENT_DATE, A.CAR_STATUS
+		, A.CAR_DEPT_NAME, A.CAR_JOB_NAME, A.PROJECT_NAME, A.PROJECT_START_DATE, A.PROJECT_END_DATE
+		, A.PROJECT_CONTENT, A.CAR_WORK_FIELD, A.JOB_NO, A.RESUME_NO
+		)
+		VALUES
+		(
+		  SEQ_CAR_NO.NEXTVAL, #{ carComName }, #{ carHireDate }, #{ carEntDate }, DEFAULT
+		, #{ carDeptName }, #{ carJobName }, #{ projectName }, #{ projectStartDate }, #{ projectEndDate }
+		, #{ projectContent }, #{ carWorkField }, 1, 1
+		)
+	</insert>
 </mapper>
