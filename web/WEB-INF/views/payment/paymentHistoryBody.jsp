@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -122,19 +124,24 @@
 								<div class="container">
 									<div class="gc_counter_cont_wrapper">
 										<div class="count-description">
-											<span class="timer">2540</span><i class="fa fa-plus"></i>
+											<span class="timer"><c:out value="${ requestScope.resumeBrowsingNum }" /></span>
+											<i class="fa"></i>
 											<h5 class="con1">이력서 열람권</h5>
 										</div>
 									</div>
 									<div class="gc_counter_cont_wrapper2">
 										<div class="count-description">
-											<span class="timer">7325</span><i class="fa fa-plus"></i>
+											<span class="timer"><c:out value="${ requestScope.exposureUsingPostNum }" /></span>
+											<i class="fa"></i>
 											<h5 class="con2">노출권 사용중인 공고</h5>
 										</div>
 									</div>
 									<div class="gc_counter_cont_wrapper3">
 										<div class="count-description">
-											<span class="timer">1924</span><i class="fa fa-plus"></i>
+											<span class="timer"><c:out value="${ requestScope.exposureRestHour }" /></span>
+											<span>:</span>
+											<span class="timer"><c:out value="${ requestScope.exposureRestMinute }" /></span>
+											<i class="fa"></i>
 											<h5 class="con3">노출권 잔여 시간</h5>
 										</div>
 									</div>
@@ -142,42 +149,84 @@
 								<br> <br>
 							</div>
 							<!-- 데이터 테이들 -->
-							<h1>전체 지원</h1>
 						</div>
-						<table id="table_scout" class="hover cell-border stripe">
+						<h1>결제 내역</h1>
+						<table id="table_payment" class="hover cell-border stripe">
+							<thead>
+								<tr>
+									<td>결제번호</td>
+									<td>상품명</td>
+									<td>결제금액</td>
+									<td>결제일자</td>
+									<td>결제상태</td>
+									<td>환불신청</td>
+								</tr>
+							</thead>
+							<c:forEach var="payment" items="${ requestScope.paymentHistoryList }">
+							<tbody align="center">
+								<tr>
+									<td><c:out value="${ payment.payNo }"/></td>
+									<td><c:out value="${ payment.productName }"/></td>
+									<td><fmt:formatNumber value="${ payment.payPrice }" pattern="###,###" type="currency"/></td>								
+									<td><c:out value="${ payment.payDate }"/></td>
+									<td><c:out value="${ payment.payKinds }"/></td>
+									
+									<c:if test="${ payment.payKinds eq '결제완료' }">
+									<td><button type="button">환불요청</button></td>
+									</c:if>
+									
+									<c:if test="${ payment.payKinds eq '환불완료' }">
+									<td><button type="button" disabled>환불처리완료</button></td>
+									</c:if>
+									
+								</tr>
+							</tbody>
+							</c:forEach>
+						</table>
+						<br><br>
+						<h1>열람권 사용내역</h1>
+						<table id="table_exposure" class="hover cell-border stripe">
 							<thead>
 								<tr>
 									<td>이력서 제목</td>
 									<td>이름</td>
-									<td>경력</td>
-									<td>직무</td>
-									<td>구분</td>
-									<td>상세보기</td>
+									<td>희망 직무</td>
+									<td>보유 기술</td>
+									<td>열람 일시</td>
+									
 								</tr>
 							</thead>
+							<c:forEach var="payment" items="${ requestScope.paymentHistoryList }">
 							<tbody align="center">
 								<tr>
-									<td></td>
-									<td>1</td>
-									<td>1</td>
-									<td>1</td>
-									<td>1</td>
-									<td><button type="button">asd</button></td>
+									<td><c:out value="${ payment.payNo }"/></td>
+									<td><c:out value="${ payment.productName }"/></td>
+									<td><fmt:formatNumber value="${ payment.payPrice }" pattern="###,###" type="currency"/></td>								
+									<td><c:out value="${ payment.payDate }"/></td>
+									<td><c:out value="${ payment.payKinds }"/></td>
+									
+									
+									
 								</tr>
 							</tbody>
+							</c:forEach>
 						</table>
 					</div>
 				</div>
 			</div>
+			<br>
+			<br>
 		</div>
 	</div>
-	<script>
+	
+<script>
+$(document).ready(function() {
+	$('#table_payment').DataTable();
+});
 
 $(document).ready(function() {
-	$('#table_scout').DataTable();
+	$('#table_exposure').DataTable();
 });
-	
-	
 </script>
 </body>
 </html>

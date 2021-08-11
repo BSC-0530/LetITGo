@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.itsme.letitgo.company.payment.model.dto.BrowseUsingHistroyDTO;
 import com.itsme.letitgo.company.payment.model.dto.PaymentHistoryDTO;
 import com.itsme.letitgo.company.payment.model.service.SelectPaymentHistoryService;
 
@@ -20,20 +21,43 @@ public class SelectPaymentHistoryServlet extends HttpServlet {
 		
 		SelectPaymentHistoryService selectPaymentHistoryService = new SelectPaymentHistoryService();
 		
+		/* 결제내역 */
 		List<PaymentHistoryDTO> paymentHistoryList = selectPaymentHistoryService.SelectPaymentHistory();		
 		
-		int resumeBrowsingNume = selectPaymentHistoryService.SelectResumeBrowsingNum();
+		/* 열람권 남은 갯수 */
+		int resumeBrowsingNum = selectPaymentHistoryService.SelectResumeBrowsingNum();		
 		
+		/* 노출중인 공고갯수 */
+		int exposureUsingPostNum = selectPaymentHistoryService.SelectExposureUsingPostNum();	
 		
+		/* 노출권 남은 시간 */
+		long exposureRestTime = selectPaymentHistoryService.SelectExposureRestTime();	
+		long exposureRestHour = exposureRestTime / 1000 / 60 / 60;
+		long exposureRestMinute = exposureRestHour % 60;
 		
+		/* 열람권 사용이력 */
+		List<BrowseUsingHistroyDTO> paymentBrowseUsingHistroy = selectPaymentHistoryService.SelectBrowseUsingHistroy();
+			
 		for(PaymentHistoryDTO paymentHistory : paymentHistoryList) {
 			System.out.println(paymentHistory);
 		}
-		System.out.println(resumeBrowsingNume);
+		System.out.println(resumeBrowsingNum);
+		System.out.println(exposureUsingPostNum);
+		System.out.println(exposureRestTime);
+		System.out.println(exposureRestHour);
+		System.out.println(exposureRestMinute);
+		
+		for(BrowseUsingHistroyDTO BrowseUsingHistroy : paymentBrowseUsingHistroy) {
+			System.out.println(BrowseUsingHistroy);
+		}
 		
 		String path = "/WEB-INF/views/payment/paymentHistory.jsp";
 		
 		request.setAttribute("paymentHistoryList", paymentHistoryList);
+		request.setAttribute("resumeBrowsingNum", resumeBrowsingNum);
+		request.setAttribute("exposureUsingPostNum", exposureUsingPostNum);
+		request.setAttribute("exposureRestHour", exposureRestMinute);
+		request.setAttribute("exposureRestMinute", exposureRestMinute);
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 
