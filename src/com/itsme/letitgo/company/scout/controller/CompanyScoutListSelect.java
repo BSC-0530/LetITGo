@@ -16,6 +16,11 @@ public class CompanyScoutListSelect extends HttpServlet {
 //@#$@#$@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//마이페이지 스카우트 임@@@@@@@@@@@ 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		
+		
+		
+		
 		String path = "/WEB-INF/views/member/company/scoutMyPage.jsp";
 		
 		request.getRequestDispatcher(path).forward(request, response);
