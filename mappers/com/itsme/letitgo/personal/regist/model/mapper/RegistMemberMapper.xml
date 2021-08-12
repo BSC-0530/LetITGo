@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
-	namespace="com.itsme.letitgo.personal.regist.model.mapper.MemberMapper">
+	namespace="com.itsme.letitgo.personal.regist.model.mapper.RegistMemberMapper">
 	<resultMap type="com.itsme.letitgo.personal.regist.model.dto.MemberDTO" id="insertMember">
 		<id property="no" column="MEM_NO"/>
 		<result property="id" column="MEM_ID"/>
@@ -15,27 +15,21 @@
 		<result property="entDate" column="MEM_ENT_DATE"/>
 	</resultMap>
 	
-	<resultMap type="com.itsme.letitgo.personal.regist.controller.CoMemberRegistServlet" id="coMemberRegist">
-		
-		
-
-	</resultMap>
-	
 	<insert id="MemberReigst" parameterType="com.itsme.letitgo.personal.regist.model.dto.MemberDTO">
 		INSERT
 		  INTO TBL_MEMBER A
 		  (
 		  	A.MEM_NO
-		   ,A.MEM_ID
-		   ,A.MEM_PWD
-		   ,A.MEM_NAME
-		   ,A.MEM_EMAIL
-		   ,A.MEM_PHONE
-		   ,A.MEM_KINDS
-		   ,A.MEM_ENROLL_DATE
-		   ,A.MEM_ENT_YN
-		   ,A.MEM_ENT_DATE
-		   ,A.MEM_ENT_NO
+		      , A.MEM_ID
+		      , A.MEM_PWD
+		      , A.MEM_NAME
+		      , A.MEM_EMAIL
+		      , A.MEM_PHONE
+		      , A.MEM_KINDS
+		      , A.MEM_ENROLL_DATE
+		      , A.MEM_ENT_YN
+		      , A.MEM_ENT_DATE
+		      , A.MEM_ENT_NO
 		  )
 		  VALUES
 		  (
@@ -52,27 +46,7 @@
 		  )
 	</insert>
 	
-	<select id="idCheck"  parameterType="com.itsme.letitgo.personal.regist.model.dto.MemberDTO">
-		SELECT COUNT(*)
-		FROM TBL_MEMBER
-		WHERE MEM_ID = ?
-	
-	
-	
-	</select>
-	<insert id="coMemberReigst" parameterType="com.itsme.letitgo.personal.regist.model.dto.CoMemberDTO">
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	</insert>
+
 	
 	
 	
