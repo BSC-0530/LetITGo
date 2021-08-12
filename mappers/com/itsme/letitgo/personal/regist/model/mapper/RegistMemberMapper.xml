@@ -52,7 +52,7 @@
 		  )
 	</insert>
 	
-	<select id="idCheck" resultType="int">
+	<select id="idCheck"  parameterType="com.itsme.letitgo.personal.regist.model.dto.MemberDTO">
 		SELECT COUNT(*)
 		FROM TBL_MEMBER
 		WHERE MEM_ID = ?

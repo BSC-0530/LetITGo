@@ -33,146 +33,119 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/style_II.css" />
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
-<!-- favicon links -->
 <link rel="shortcut icon" type="image/png"
 	href="${ pageContext.servletContext.contextPath }/resources/image/header/favicon.ico" />
 <script>
-
-	function goMain() {
-		location.href = ' /let/index.jsp';
-	};
-	$('#idCheck').click(function() {
-		$.ajax({
-			url : "/member/check",
-			type : "post",
-			data : {
-				id : $('#memberId').val()
-			},
-			success : function(data) {
-				console.log(data);
-
-				if (data == 'ok') {
-					alert("사용 가능한 아이디 입니다.");
-				} else {
-					alert("이미 사용 중인 아이디입니다.");
-					$("#memberId").select();
-					
-				}
-			},
-			error : function() {
-				console.log("---ERROR");
-			}
-		});
-	});
+	
 
 	function sendIt() {
-		
-		var id = document.getElementById(id);
-		var pwd = document.getElementById(pwd);
-		var mail = document.getElementById();
-		var id = document.getElementById();
-		var id = document.getElementById();
-		var id = document.getElementById();
-		var id = document.getElementById();
+
+		var idJ = /^[a-z0-9]{4,12}$/;
 		
 		
-		//아이디 입력여부 검사
-		if (f.id.value == "") {
-			alert("아이디를 입력하지 않았습니다.")
-			f.id.focus();
-			return false;
-		}
-		//아이디 유효성 검사 (영문소문자, 숫자만 허용)
-		for (var i = 0; i < document.f.id.value.length; i++) {
-			ch = document.f.id.value.charAt(i)
-			if (!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z')
-					&& !(ch >= 'A' && ch <= 'Z')) {
-				alert("아이디는 영문 대소문자, 숫자만 입력가능합니다.")
-				document.f.id.focus();
-				document.f.id.select();
-				return false;
-			}
-		}
-		//아이디에 공백 사용하지 않기
-		if (document.f.id.value.indexOf(" ") >= 0) {
-			alert("아이디에 공백을 사용할 수 없습니다.")
-			document.f.id.focus();
-			document.f.id.select()
-			return false;
-		}
-		//아이디 길이 체크 (4~12자)
-		if (document.f.id.value.length<4 || document.f.id.value.length>12) {
-			alert("아이디를 4~12자까지 입력해주세요.")
-			document.f.id.focus();
-			document.f.id.select();
-			return false;
-		}
-		//비밀번호 입력여부 체크
-		if (document.f.password.value == "") {
-			alert("비밀번호를 입력하지 않았습니다.")
-			document.f.password.focus();
-			return false;
-		}
-		if (f.password.value == f.id.value) {
-			alert("아이디와 비밀번호가 같습니다.")
-			document.f.password.focus();
-			return false;
-		}
-		//비밀번호 길이 체크(4~8자 까지 허용)
-		if (document.f.password.value.length<4 || document.f.password.value.length>12) {
-			alert("비밀번호를 4~12자까지 입력해주세요.")
-			document.f.password.focus();
-			document.f.password.select();
-			return false;
-		}
-		//비밀번호와 비밀번호 확인 일치여부 체크
-		if (document.f.password.value != document.f.password1.value) {
-			alert("비밀번호가 일치하지 않습니다")
-			document.f.password1.value = ""
-			document.f.password1.focus();
-			return false;
-		}
+		$("#id").blur(function () {
+			
+			var id = $('#id').val();
+			$.ajax({
+				url : '${pageContext.request.contextPath}/user/idCheck?userId='+ user_id,
+				
+				type : 'get',
+				success : function(data) {
+					
+					console.log("1 = 중복O / 0 = 중복X : " + data);
+					
+					if(date == 1){
+						
+					alert("사용중인 아이디입니다.");
+					$("#id_check").css("color", "red");
+					$("#reg_submit").attr("disabled", true);
+					}else{
+						
+						if(idJ.test(id)){
+							// 0 : 아이디 길이 / 문자열 검사
+							$("#id_check").text("");
+							$("#reg_submit").attr("disabled", false);
+				
+						} else if(id == ""){
+							
+							alert('아이디를 입력해주세요');
+							$('#id_check').css('color', 'red');
+							$("#reg_submit").attr("disabled", true);				
+							
+						} else {
+							
+							alert("아이디는 소문자와 숫자 4~12자리만 가능합니다.");
+							$('#id_check').css('color', 'red');
+							$("#reg_submit").attr("disabled", true);
+						}
+						
+					}
+				}, error : function() {
+						console.log("실패");
+				}
+			});
+		});
+		
+		var id = document.getElementById("id");
+		var pwd = document.getElementById("pw1");
+		var repwd = document.getElementById("pw2");
+		var email = document.getElementById("email");
+		var comfirm = document.getElementById("comfirm");
+		var name = document.getElementById("name");
+		var phone = document.getElementById("phone");
+		var agree = document.getElementById("agree");
 
-		if (document.f.mail.value == "") {
-			alert("이메일을 입력하지 않았습니다.")
-			document.mail.focus();
-			return false;
-		}
-		if (regex.test(mail) === false) {
-			alert("잘못된 이메일 형식입니다.");
-			document.f.mail.value = ""
-			document.f.mail.focus();
-			return false;
-		}
 
-		for (var i = 0; i < document.f.mail.value.length; i++) {
-			chm = document.f.mail.value.charAt(i)
-			if (!(chm >= '0' && chm <= '9') && !(chm >= 'a' && chm <= 'z')
-					&& !(chm >= 'A' && chm <= 'Z')) {
-				alert("이메일은 영문 대소문자, 숫자만 입력가능합니다.")
-				document.f.mail.focus();
-				document.f.mail.select();
-				return false;
-			}
-		}
 
-		if (document.f.name.value == "") {
-			alert("이름을 입력하지 않았습니다.")
-			document.f.name.focus();
+		if (pwd.value == "") {
+			alert("비밀번호를 입력하세요.");
+			pwd.focus();
 			return false;
-		}
+		};
 
-		if (document.f.name.value.length < 2) {
-			alert("이름을 2자 이상 입력해주십시오.")
-			document.f.name.focus();
+		//비밀번호 영문자 + 숫자 + 특수조합(8~25자리 입력) 정규식
+		var pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*++-])(?=.*[0-9]).{8,18}$/;
+
+		if (!pwdCheck.test(pwd.value)) {
+			alert("비밀번호는 영문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.");
+			pwd.focus();
 			return false;
-		}
+		};
+
+		if (repwd.value !== pwd.value) {
+			alert("비밀번호가 일치하지 않습니다..");
+			repwd.focus();
+			return false;
+		};
+
+		if (email.value == "") {
+			alert("이메일 주소를 입력하세요.");
+			email.focus();
+			return false;
+		};
+
+		var reg = /^[0-9]+/g;
+
+		if (!reg.test(phone.value)) {
+			alert("전화번호는 숫자만 입력할 수 있습니다.")
+			phone.focus();
+			return false;
+		};
+
+		if (!agree.checked) {
+			alert("약관 동의를 체크하세요.!!!");
+			agree.focus();
+			return false;
+		};
+
+		document.join_form.submit();
 
 	}
 </script>
 </head>
 <body>
 	   <!-- 여기부터 시작-->
+	<form action="/regist/member" name="join_form" method="post">
     <div class="register_section">
         
         <div class="register_tab_wrapper">
@@ -196,16 +169,19 @@
                                     <div class="jp_regiter_top_heading">
                                         <p>회원가입란 </p>
                                     </div>
+                                 
                                     <div class="row">
-                                       
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="id"  onchange="sendIt()" style="text-transform: lowercase" placeholder="아이디">
-                                            <input type="button" value="중복채크" onclick="idCheck">
+                                        
+                                            <input type="text" name="id" class="form-control"  style="text-transform: lowercase" placeholder="아이디">
+                                            <div class="check_font" id="id_check"></div>
                                         </div>
+                                        
 
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="email" name="mail"  onchange="sendIt()" style="text-transform: lowercase" placeholder="이메일">
-                                            <input type="button" value="이메일 보내기" onclick="">
+                                            <input type="email" name="email"  onchange="sendIt()" style="text-transform: lowercase" placeholder="이메일">
+                                            <input type="button" value="이메일 보내기" class="id_overlap_button" onclick="id_overlap_check()">
+                                            <img id="id_check_sucess" style="display: none;">
                                         </div>
 
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
@@ -237,14 +213,14 @@
 
                                         <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="check-box text-center">
-                                                <input type="checkbox" name="shipping-option" id="account-option_1"> &ensp;
+                                                <input type="checkbox" value="Y" name="agree" id="agree"> &ensp;
                                                 <label for="account-option_1">회원가입을 <a href="#" class="check_box_anchr">규제하는 약관</a>에 동의합니다</label>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="login_btn_wrapper register_btn_wrapper login_wrapper ">
-                                        <a href="#" class="btn btn-primary login_btn"> 회원가입 </a>
+                                        <a href="#" class="btn btn-primary login_btn" id="reg_submit"> 회원가입 </a>
                                     </div>
                                     <div class="login_message">
                                         <p>회원인가요? <a href="#"> Login Here </a> </p>
@@ -326,5 +302,6 @@
             </div>
         </div>
     </div>
+    </form>
 </body>
 </html>
