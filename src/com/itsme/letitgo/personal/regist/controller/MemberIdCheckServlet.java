@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.itsme.letitgo.personal.regist.model.service.MemberService;
 
-@WebServlet("/member/check")
+@WebServlet("/user/idCheck")
 public class MemberIdCheckServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String id = request.getParameter("memberId");
+		String id = request.getParameter("id");
 		
 		MemberService ms = new MemberService();
 		
