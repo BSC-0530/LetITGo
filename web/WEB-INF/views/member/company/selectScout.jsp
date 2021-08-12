@@ -38,6 +38,30 @@
 
 </head>
 <body>
+<div class="jp_tittle_main_wrapper">
+        <div class="jp_tittle_img_overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="jp_tittle_heading_wrapper">
+                        <div class="jp_tittle_heading">
+                            <h2>기업 마이페이지</h2>
+                        </div>
+                        <div class="jp_tittle_breadcrumb_main_wrapper">
+                            <div class="jp_tittle_breadcrumb_wrapper">
+                                <ul>
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#">기업 마이페이지</a></li>
+                                    <li>기업 마이페이지</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">

@@ -98,9 +98,8 @@
 								</div>
 								
 								<div class="jp_recent_resume_btn_wrapper">
-									<ul>
-										<li><a href="#">간단 조회</a></li>
-									</ul>
+										<button style="margin-left:150px; margin-top:20px;" type="submit" class="btn btn-info" onclick="browse(this);">간단 조회</button>
+										<p>${ careaa.ResumeNo }</p>
 								</div>
 							</div>
 						</div>
@@ -115,5 +114,13 @@
 		</div><!-- -----------------------풋터------------------------------------- -->	
 	<jsp:include page="../common/footer.jsp"/>
 	<!-- -----------------------풋터끝------------------------------------- -->
+	
+<script>
+	function browse(button){
+		
+	}	
+
+</script>
+	
 </body>
 </html>

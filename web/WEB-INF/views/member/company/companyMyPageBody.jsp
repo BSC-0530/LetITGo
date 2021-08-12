@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -129,31 +130,31 @@
 									<div class="row">
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="field-name" value=""placeholder="사업자등록증번호" readonly>
+											<input type="text" name="field-name" value=""placeholder="${ coNo }" readonly>
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
 
-											<input type="text" name="field-name" value=""placeholder="주소" readonly>
+											<input type="text" name="field-name" value=""placeholder=${ address } readonly>
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
 
-											<input type="password" name="field-name" value=""placeholder="기업이름" readonly>
+											<input type="password" name="field-name" value=""placeholder="${coName }" readonly>
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="password" name="field-name" value=""placeholder="대표자이름" readonly>
+											<input type="password" name="field-name" value=""placeholder="${ceoName }" readonly>
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="field-name" value=""placeholder="업종" readonly>
+											<input type="text" name="field-name" value=""placeholder="${secTors }" readonly>
 										</div>
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="field-name" value=""placeholder="업태" readonly>
+											<input type="text" name="field-name" value=""placeholder="${coStatus }" readonly>
 										</div>
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="field-name" value=""placeholder="웹사이트 주소" readonly>
+											<input type="text" name="field-name" value=""placeholder="${site } 주소" readonly>
 										</div>
 									</div>
 								</div>
@@ -162,10 +163,11 @@
 					</div>
 					<br>
 								<div class="companyText">	
-                                	<label>회사소개</label><input id="textArea" type="text"  placeholder="회사소개" >
+                                	<label>회사소개</label><input id="textArea" type="text"  placeholder="${ intro  }" >
                             	</div>
 					
             	<!-- end --> 
+						 <button type="submit" class="btn btn-info" id="coInfoChange" style=" float: right;" >기업 정보 변경</button>
             	</div>
 			</div>
 		</div>
