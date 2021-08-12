@@ -71,7 +71,7 @@
 <!-- 				<association property="skillsCategory" resultMap="mainScoutSkillsCategoryDTO"/> -->
 			</resultMap>		
 			
-			<resultMap type="re" id=""></resultMap>
+
 			
 <!-- 			<resultMap type="com.itsme.letitgo.personal.resume.model.dto.SkillsCategoryDTO" id="mainScoutSkillsCategoryDTO"> -->
 <!-- 					<id property="categoryNo" column="CATEGORY_NO"/> -->
