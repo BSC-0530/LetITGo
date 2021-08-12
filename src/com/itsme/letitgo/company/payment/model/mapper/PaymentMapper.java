@@ -10,6 +10,7 @@ import com.itsme.letitgo.company.payment.model.dto.PaymentHistoryDTO;
 import com.itsme.letitgo.company.payment.model.dto.ProductDTO;
 import com.itsme.letitgo.company.payment.model.dto.RefundChangeStatusDTO;
 import com.itsme.letitgo.company.payment.model.dto.RefundHistoryDTO;
+import com.itsme.letitgo.company.payment.model.dto.RefundRequestProductDTO;
 
 public interface PaymentMapper {
 
@@ -31,7 +32,7 @@ public interface PaymentMapper {
 
 	List<HoldingRequestingSkillsDTO> selectRequestingSkillsList(/* 기업회원번호 */);
 
-	PaymentHistoryDTO selectRefundRequestProduct(int payNo /* 기업회원번호 */);
+	RefundRequestProductDTO selectRefundRequestProduct(int payNo /* 기업회원번호 */);
 
 	int insertRefundMessage(Map<String, Object> map /* 기업회원번호 */);
 
@@ -39,7 +40,15 @@ public interface PaymentMapper {
 
 	int updateRefundRequest(int payChangeNo /* 기업회원번호 */);
 
+	int selectPayNo(int payChangeNo);
+	
+	int updateRefundRequest2(int payNo  /* 기업회원번호 */);
+	
 	List<RefundChangeStatusDTO> selectRefundChangeStatus(/* 기업회원번호 */);
+
+	int updatePaymentStatus(Map<String, Object> map);
+
+
 
 	
 

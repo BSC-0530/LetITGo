@@ -42,12 +42,14 @@ public class SelectRefundHistoryServlet extends HttpServlet {
 		RefundHistoryService refundHistoryService = new RefundHistoryService();
 		
 		int result = refundHistoryService.updateRefundRequest(payChangeNo);
+		
+		int result2 = refundHistoryService.updateRefundRequest2(payChangeNo);
 				
 		System.out.println(result);
 		
 		StringBuilder redirectText = new StringBuilder();
 		
-		if(result > 0) {
+		if(result > 0 && result2 > 0) {
 			redirectText.append("<script>alert('환불요청이 정상적으로 취소되었습니다.'); location.href='../../company/refundHistory/select';</script>");
 		} else {
 			redirectText.append("<script>alert('환불요청취소가 실패하였습니다.'); location.href='../../company/refundHistory/select';</script>");
@@ -60,8 +62,10 @@ public class SelectRefundHistoryServlet extends HttpServlet {
 		out.print(redirectText.toString());
 		out.flush();
 		out.close();
-		
-		response.sendRedirect("/let/company/refundHistory/select");
-		
+		/*
+		 * String path = "/WEB-INF/views/payment/paymentHistory.jsp";
+		 * response.sendRedirect("/let/company/refundHistory/select");
+		 * request.getRequestDispatcher(path).forward(request, response);
+		 */
 	}
 }
