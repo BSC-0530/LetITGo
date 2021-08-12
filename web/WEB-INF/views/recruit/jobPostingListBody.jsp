@@ -7,28 +7,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/animate.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/font-awesome.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/fonts.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/reset.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/owl.carousel.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/owl.theme.default.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/flaticon.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/style.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/style_II.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
+<%-- <link rel="stylesheet" type="text/css" href="${ pageContext.servletContext.contextPath }/resources/css/animate.css" /> --%>
+<!-- <link rel="stylesheet" type="text/css" -->
+<%-- 	href="${ pageContext.servletContext.contextPath }/resources/css/bootstrap.css" /> --%>
+<!-- <link rel="stylesheet" type="text/css" -->
+<%-- 	href="${ pageContext.servletContext.contextPath }/resources/css/font-awesome.css" /> --%>
+<!-- <link rel="stylesheet" type="text/css" -->
+<%-- 	href="${ pageContext.servletContext.contextPath }/resources/css/fonts.css" /> --%>
+<!-- <link rel="stylesheet" type="text/css" -->
+<%-- 	href="${ pageContext.servletContext.contextPath }/resources/css/reset.css" /> --%>
+<!-- <link rel="stylesheet" type="text/css" -->
+<%-- 	href="${ pageContext.servletContext.contextPath }/resources/css/owl.carousel.css" /> --%>
+<!-- <link rel="stylesheet" type="text/css" -->
+<%-- 	href="${ pageContext.servletContext.contextPath }/resources/css/owl.theme.default.css" /> --%>
+<!-- <link rel="stylesheet" type="text/css" -->
+<%-- 	href="${ pageContext.servletContext.contextPath }/resources/css/flaticon.css" /> --%>
+<!-- <link rel="stylesheet" type="text/css" -->
+<%-- 	href="${ pageContext.servletContext.contextPath }/resources/css/style.css" /> --%>
+<!-- <link rel="stylesheet" type="text/css" -->
+<%-- 	href="${ pageContext.servletContext.contextPath }/resources/css/style_II.css" /> --%>
+<!-- <link rel="stylesheet" type="text/css" -->
+<%-- 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" /> --%>
 
 </head>
 <body>
@@ -270,7 +269,10 @@
 	                                                <div class="jp_job_post_main_wra[]pper_cont jp_job_post_grid_main_wrapper_cont">
 	                                                	
 	                                                    <div class="jp_job_post_main_wrapper jp_job_post_grid_main_wrapper" style="cursor:pointer; height: 250px" onclick="post(this);" >
+	                                                    
+	                                                    
 	                                                    	<input type="text" id="postNo" value="${ jobPosting.jobPostNo }" style="visibility: hidden;">
+	                                                    	
 	                                                        <div class="row">
 	                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	                                                            
@@ -352,28 +354,13 @@
     			}
     		});
     	});
-    	
-// //     	$("#detailedJobPost").onclick(function() {
-    		
-//     		const selectPostNo = document.getElementById("postNo").innerText;
-    		
-// 			var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath}/detail/jobPosting/select").attr("method", "get");
-    		
-//     		$form.append($("<input>").attr("name", "selectPostNo").attr("type", "hidden").val(selectPostNo));
-    		
-//     		console.log($form.children().val());
-    		
-//     		$("body").append($form);
-    		
-//     		$form.submit();
-//     	});
-    
+
     	function post(div) { 
     		
-			const num = div.children[0].value
+			const selectJobPostNo = div.children[0].value;
 			
-			location.href = "?num=" +numl
-    		
+			location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?selectJobPostNo=" +selectJobPostNo
+					
     	}
     </script>
 
