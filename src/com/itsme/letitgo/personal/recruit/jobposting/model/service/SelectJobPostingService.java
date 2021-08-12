@@ -38,19 +38,27 @@ public class SelectJobPostingService {
 		return jp;
 	}
 
-	public Map<String, List<Object>> selectDetailedJobPosting(int selectJobPostNo) {
+	public Map<String, Object> selectDetailedJobPosting(int selectJobPostNo) {
 		
 		SqlSession session = getSqlSession();
 		
 		SelectJobPostingMapper mapper = session.getMapper(SelectJobPostingMapper.class);
 		
-		Map<String, List<Object>> jp = new HashMap<>();
+		// 선택한 공고 정보와 공고의 요구 스킬을 담아줄 Map 인스턴스 생성
+		Map<String, Object> jp = new HashMap<>();
 		
-		List<Object> detailedJobPosting = mapper.selectDetailedJobPosting(selectJobPostNo);
+		// 조회 후 값을 변수에 담음
+		SelectJobPostingDTO detailedJobPosting = mapper.selectDetailedJobPosting(selectJobPostNo);
+		List<Object> deteildeJpSkills = mapper.selectDeteildeJpSkills(selectJobPostNo);
 		
 		System.out.println("selectDetailedJobPosting : " + detailedJobPosting);
-//		
-//		LIST<OBJECT> JPSKILLS = MAPPER.SELECTJPSKILLS();
+		System.out.println("deteildeJpSkills : " + deteildeJpSkills);
+		
+		// return값으로 넘겨주기 위해 map에 담기 
+		jp.put("detailedJobPosting", detailedJobPosting);
+		jp.put("deteildeJpSkills", deteildeJpSkills);
+		
+	
 		
 		return jp;
 	}

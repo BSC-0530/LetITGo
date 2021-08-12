@@ -7,28 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%-- <link rel="stylesheet" type="text/css" href="${ pageContext.servletContext.contextPath }/resources/css/animate.css" /> --%>
-<!-- <link rel="stylesheet" type="text/css" -->
-<%-- 	href="${ pageContext.servletContext.contextPath }/resources/css/bootstrap.css" /> --%>
-<!-- <link rel="stylesheet" type="text/css" -->
-<%-- 	href="${ pageContext.servletContext.contextPath }/resources/css/font-awesome.css" /> --%>
-<!-- <link rel="stylesheet" type="text/css" -->
-<%-- 	href="${ pageContext.servletContext.contextPath }/resources/css/fonts.css" /> --%>
-<!-- <link rel="stylesheet" type="text/css" -->
-<%-- 	href="${ pageContext.servletContext.contextPath }/resources/css/reset.css" /> --%>
-<!-- <link rel="stylesheet" type="text/css" -->
-<%-- 	href="${ pageContext.servletContext.contextPath }/resources/css/owl.carousel.css" /> --%>
-<!-- <link rel="stylesheet" type="text/css" -->
-<%-- 	href="${ pageContext.servletContext.contextPath }/resources/css/owl.theme.default.css" /> --%>
-<!-- <link rel="stylesheet" type="text/css" -->
-<%-- 	href="${ pageContext.servletContext.contextPath }/resources/css/flaticon.css" /> --%>
-<!-- <link rel="stylesheet" type="text/css" -->
-<%-- 	href="${ pageContext.servletContext.contextPath }/resources/css/style.css" /> --%>
-<!-- <link rel="stylesheet" type="text/css" -->
-<%-- 	href="${ pageContext.servletContext.contextPath }/resources/css/style_II.css" /> --%>
-<!-- <link rel="stylesheet" type="text/css" -->
-<%-- 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" /> --%>
-
 </head>
 <body>
 
@@ -134,7 +112,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="jp_listing_heading_wrapper">
-                        <h2>We found <span><c:out value="${ requestScope.jobPostingSize }"></c:out></span> Matches for you.</h2>
+                        <h2>We found <span><c:out value="${ requestScope.jobPostingList.size() }"></c:out></span> Matches for you.</h2>
                     </div>
                 </div>
                 <button id="search-job-posting">search</button>

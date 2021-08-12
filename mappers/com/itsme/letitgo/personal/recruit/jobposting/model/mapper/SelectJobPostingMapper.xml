@@ -33,6 +33,7 @@
 		<result property="coPax" column="CO_PAX"/>
 		<result property="coSectors" column="CO_SECTORS"/>
 		<result property="coStatus" column="CO_STATUS"/>
+		<result property="coWebsite" column="CO_WEBSITE"/>
 	</resultMap>
 	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpJobFieldDTO" id="resultJobField">
 		<id property="jobNo" column="JOB_NO"/>
@@ -136,5 +137,13 @@
 		  JOIN TBL_CO_MEMBER_ADD_INFO AI ON (JP.CO_MEM_NO = AI.CO_MEM_NO)
 		  JOIN TBL_JOB_FIELD JF ON(JF.JOB_NO = JP.JOB_NO)
 		 WHERE JP.JOB_POST_NO = #{ selectJobPostNo }
+	</select>
+	<select id="selectDeteildeJpSkills" parameterType="_int" resultMap="resultJpSkills">
+		SELECT
+			   RS.JOB_POST_NO
+			 , S.SKILLS_NAME
+		  FROM TBL_JOB_POSTING_REQ_SKILLS RS
+		  JOIN TBL_SKILLS S ON(RS.SKILLS_NO = S.SKILLS_NO)
+		 WHERE RS.JOB_POST_NO = #{ selectJobPostNo }
 	</select>
 </mapper>
