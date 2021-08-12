@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itsme.letitgo.company.payment.model.mapper.PaymentMapper">
 
-	<resultMap type="com.itsme.letitgo.company.payment.model.dto.ProductDTO" id="productResulMap">
+	<resultMap type="com.itsme.letitgo.company.payment.model.dto.ProductDTO" id="productResultMap">
 		<id property="productNo" column="PRODUCT_NO"/>
 		<result property="productPrice" column="PRODUCT_PRICE"/>
 		<result property="readingNum" column="READING_NUM"/>
@@ -12,12 +12,13 @@
 		<result property="productName" column="PRODUCT_NAME"/>
 	</resultMap>
 	
-	<resultMap type="com.itsme.letitgo.company.payment.model.dto.PaymentHistoryDTO" id="PaymentHistoryReusltMap">
+	<resultMap type="com.itsme.letitgo.company.payment.model.dto.PaymentHistoryDTO" id="PaymentHistoryResultMap">
 		<id property="payNo" column="PAY_NO"/>
 		<result property="productName" column="PRODUCT_NAME"/>
 		<result property="payPrice" column="PAY_PRICE"/>
 		<result property="payDate" column="PAY_DATE"/>
 		<result property="payKinds" column="PAY_KINDS"/>
+		<result property="payChangeStatus" column="PAY_CHANGE_STATUS"/>
 	</resultMap>
 	
 	<resultMap type="com.itsme.letitgo.company.payment.model.dto.BrowseUsingHistoryDTO" id="BrowseUsingHistroyResultMap">
@@ -31,15 +32,26 @@
 		<result property="skillsName" column="SKILLS_NAME"/>
 	</resultMap>
 	
-	<resultMap type="com.itsme.letitgo.company.payment.model.dto.ExposureUsingHistoryDTO" id="ExposureUsingHistoryResultMapy">
+	<resultMap type="com.itsme.letitgo.company.payment.model.dto.ExposureUsingHistoryDTO" id="ExposureUsingHistoryResultMap">
 		<result property="jobPostTitle" column="JOB_POST_TITLE"/>
 		<result property="jobName" column="JOB_NAME"/>
 		<result property="jobPostDeadline" column="JOB_POST_DEADLINE"/>
 		<result property="exposureUseDate" column="EXPOSURE_USE_DATE"/>
 		<result property="exposureEndDate" column="EXPOSURE_END_DATE"/>		
 	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.company.payment.model.dto.RefundHistoryDTO" id="RefundHistoryResultMap">
+		<id property="payNo" column="PAY_NO"/>
+		<result property="payChangeNo" column="PAY_CHANGE_NO"/>
+		<result property="productName" column="PRODUCT_NAME"/>
+		<result property="payPrice" column="PAY_PRICE"/>
+		<result property="payChangeReason" column="PAY_CHANGE_REASON"/>
+		<result property="payChangeStatus" column="PAY_CHANGE_STATUS"/>
+		<result property="payReqDate" column="PAY_REQ_DATE"/>
+		<result property="payAnsDate" column="PAY_ANS_DATE"/>
+	</resultMap>
 
-	<select id="selectProductList" resultMap="productResulMap">
+	<select id="selectProductList" resultMap="productResultMap">
 	   SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectProductList() */
 	          PRODUCT_NO
 	        , PRODUCT_PRICE
@@ -52,16 +64,19 @@
 	    ORDER BY PRODUCT_NO
 	</select>
 	
-	<select id="selectPaymentHistory" resultMap="PaymentHistoryReusltMap">
-		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectProductList() */
+	<select id="selectPaymentHistory" resultMap="PaymentHistoryResultMap">
+		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectPaymentHistory() */
                A.PAY_NO
      		 , B.PRODUCT_NAME
              , A.PAY_PRICE
              , A.PAY_DATE
              , A.PAY_KINDS
+             , C.PAY_CHANGE_STATUS
           FROM TBL_PAYMENT_HISTORY A
           LEFT JOIN TBL_PRODUCT_LIST B ON (A.PRODUCT_NO = B.PRODUCT_NO)
+          LEFT JOIN TBL_PAYMENT_CHANGE_HISTORY C ON (A.PAY_NO = C.PAY_NO)
          WHERE A.CO_MEM_NO = '2'
+         ORDER BY A.PAY_NO
 	</select>
 
 	<select id="selectResumeBrowsingNum" resultType="_int">
@@ -113,7 +128,7 @@
          WHERE A.RESUME_NO = '1'
 	</select>
 	
-	<select id="selectExposureUsingHistoryList" resultMap="ExposureUsingHistoryResultMapy">
+	<select id="selectExposureUsingHistoryList" resultMap="ExposureUsingHistoryResultMap">
 		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectExposureUsingHistoryList() */
                B.JOB_POST_TITLE
              , C.JOB_NAME
@@ -134,21 +149,23 @@
           JOIN TBL_SKILLS C ON (B.SKILLS_NO = C.SKILLS_NO)
 	</select>
 	
-	<select id="selectRefundRequestProduct" resultMap="PaymentHistoryReusltMap">
+	<select id="selectRefundRequestProduct" resultMap="PaymentHistoryResultMap">
 		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectRefundRequestProduct() */
                A.PAY_NO
      		 , B.PRODUCT_NAME
              , A.PAY_PRICE
              , A.PAY_DATE
              , A.PAY_KINDS
+             , C.PAY_CHANGE_STATUS
           FROM TBL_PAYMENT_HISTORY A
           LEFT JOIN TBL_PRODUCT_LIST B ON (A.PRODUCT_NO = B.PRODUCT_NO)
+          LEFT JOIN TBL_PAYMENT_CHANGE_HISTORY C ON (A.PAY_NO = C.PAY_NO)
          WHERE A.CO_MEM_NO = '2'
            AND A.PAY_NO = #{ payNo }
 	</select>
 	
 	<insert id="insertRefundMessage">
-	    INSERT
+	    INSERT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#insertRefundMessage() */
           INTO TBL_PAYMENT_CHANGE_HISTORY
         (
           PAY_CHANGE_NO
@@ -168,5 +185,22 @@
         , null
         )
 	</insert>
+	
+	<select id="selectRefundHistory" resultMap="RefundHistoryResultMap">
+	   SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectRefundHistory() */
+              A.PAY_NO
+            , B.PAY_CHANGE_NO
+            , C.PRODUCT_NAME
+            , A.PAY_PRICE
+            , B.PAY_CHANGE_REASON
+            , B.PAY_CHANGE_STATUS
+            , B.PAY_REQ_DATE
+            , B.PAY_ANS_DATE
+         FROM TBL_PAYMENT_HISTORY A
+         JOIN TBL_PAYMENT_CHANGE_HISTORY B ON (A.PAY_NO = B. PAY_NO)
+         JOIN TBL_PRODUCT_LIST C ON (A.PRODUCT_NO = C.PRODUCT_NO)
+         JOIN TBL_MEMBER D ON (A.CO_MEM_NO = D.MEM_NO)
+        WHERE A.CO_MEM_NO = '2'
+	</select>
 	
 </mapper>
