@@ -11,7 +11,7 @@ import com.itsme.letitgo.company.payment.model.mapper.PaymentMapper;
 
 public class RefundHistoryService {
 
-	public List<RefundHistoryDTO> SelectRefundHistoryList() {
+	public List<RefundHistoryDTO> selectRefundHistoryList() {
 		
 		SqlSession session = getSqlSession();
 		
@@ -23,5 +23,27 @@ public class RefundHistoryService {
 				
 		return refundHistoryList;
 	}
+
+	public int updateRefundRequest(int payChangeNo) {
+		
+		SqlSession session = getSqlSession();
+		
+		PaymentMapper refundRequestMapper = session.getMapper(PaymentMapper.class);
+		
+		int result = refundRequestMapper.updateRefundRequest(payChangeNo);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+		
+
+	}
+
 
 }

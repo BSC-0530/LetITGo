@@ -76,7 +76,7 @@
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_rightside_job_categories_wrapper">
 								<div class="jp_rightside_job_categories_heading">
-									<h4 style="font-weight: bold">환북내역</h4>
+									<h4 style="font-weight: bold">환불내역</h4>
 								</div>
 								<div class="jp_rightside_job_categories_content">
 									<div class="handyman_sec1_wrapper">
@@ -126,20 +126,20 @@
 				
 				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 					<div class="row">		
-						<!-- 데이터 테이블 내역모음 -->
-						<h1>결제 내역</h1>
+						<!-- 데이터 테이블 내역모음 --><br><br><br>
+						<h1>환불 내역</h1>
 						<br>
 						<table id="table_refund" class="hover cell-border stripe">
 							<thead>
 								<tr>
-									<td style="width=80px;">환불요청번호</td>
-									<td>결제번호</td>
-									<td>상품명</td>
-									<td>환불금액</td>
-									<td>변경사유</td>
-									<td>변경상태</td>
-									<td>환불요청일자</td>
-									<td>환불승인일자</td>
+									<td align="center">환불요청번호</td>
+									<td align="center">결제번호</td>
+									<td align="center">상품명</td>
+									<td align="center">환불금액</td>
+									<td align="center">환불사유</td>
+									<td align="center">변경상태</td>
+									<td align="center">요청일자</td>
+									<td align="center">요청응답일자</td>
 								</tr>
 							</thead>
 							<c:forEach var="refund" items="${ requestScope.refundHistoryList }">						
@@ -152,12 +152,15 @@
 									<td><c:out value="${ refund.payChangeReason }"/></td>
 									<td><c:out value="${ refund.payChangeStatus }"/></td>
 									<td><c:out value="${ refund.payReqDate }"/></td>
-									<c:if test="${refund.payAnsDate eq null }">
+									
+									<c:if test="${refund.payAnsDate eq null && refund.payChangeStatus != '환불요청취소' }">
 									<td><c:out value="요청진행중"/></td>
 									</c:if>
 									
-									
-						
+									<c:if test="${ refund.payChangeStatus eq '환불요청취소'  }">
+									<td>-</td>
+									</c:if>
+														
 									<c:if test="${ refund.payChangeStatus eq '환불요청' }">
 									<td><button type="submit" onclick="req(this);">환불취소</button></td>
 									</c:if>				
@@ -168,6 +171,10 @@
 									
 									<c:if test="${ refund.payChangeStatus eq '환불완료'  }">
 									<td><button type="submit" disabled>환불완료</button></td>
+									</c:if>
+									
+									<c:if test="${ refund.payChangeStatus eq '환불요청취소'  }">
+									<td><button type="submit" disabled>환불요청취소완료</button></td>
 									</c:if>			
 								</tr>
 							</tbody>

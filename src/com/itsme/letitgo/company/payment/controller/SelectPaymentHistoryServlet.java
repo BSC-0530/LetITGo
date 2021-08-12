@@ -13,6 +13,7 @@ import com.itsme.letitgo.company.payment.model.dto.BrowseUsingHistoryDTO;
 import com.itsme.letitgo.company.payment.model.dto.ExposureUsingHistoryDTO;
 import com.itsme.letitgo.company.payment.model.dto.HoldingRequestingSkillsDTO;
 import com.itsme.letitgo.company.payment.model.dto.PaymentHistoryDTO;
+import com.itsme.letitgo.company.payment.model.dto.RefundChangeStatusDTO;
 import com.itsme.letitgo.company.payment.model.service.SelectPaymentHistoryService;
 
 
@@ -24,30 +25,33 @@ public class SelectPaymentHistoryServlet extends HttpServlet {
 		SelectPaymentHistoryService selectPaymentHistoryService = new SelectPaymentHistoryService();
 		
 		/* 결제내역 */
-		List<PaymentHistoryDTO> paymentHistoryList = selectPaymentHistoryService.SelectPaymentHistory();		
+		List<PaymentHistoryDTO> paymentHistoryList = selectPaymentHistoryService.selectPaymentHistory();		
+		
+		/* 환불상태 */
+		List<RefundChangeStatusDTO> refundChangeStatus = selectPaymentHistoryService.selectRefundChangeStatus();
 		
 		/* 열람권 남은 갯수 */
-		int resumeBrowsingNum = selectPaymentHistoryService.SelectResumeBrowsingNum();		
+		int resumeBrowsingNum = selectPaymentHistoryService.selectResumeBrowsingNum();		
 		
 		/* 노출중인 공고갯수 */
-		int exposureUsingPostNum = selectPaymentHistoryService.SelectExposureUsingPostNum();	
+		int exposureUsingPostNum = selectPaymentHistoryService.selectExposureUsingPostNum();	
 		
 		/* 노출권 남은 시간 */
-		long exposureRestTime = selectPaymentHistoryService.SelectExposureRestTime();	
+		long exposureRestTime = selectPaymentHistoryService.selectExposureRestTime();	
 		long exposureRestHour = exposureRestTime / 1000 / 60 / 60;
 		long exposureRestMinute = exposureRestHour % 60;
 		
 		/* 열람권 사용이력 */
-		List<BrowseUsingHistoryDTO> paymentBrowseUsingHistroyList = selectPaymentHistoryService.SelectBrowseUsingHistroy();
+		List<BrowseUsingHistoryDTO> paymentBrowseUsingHistroyList = selectPaymentHistoryService.selectBrowseUsingHistroy();
 		
 		/* 이력서 내 보유기술*/
-		List<HoldingRequestingSkillsDTO> paymentHoldingSkillsList = selectPaymentHistoryService.SelectHoldingSkills();
+		List<HoldingRequestingSkillsDTO> paymentHoldingSkillsList = selectPaymentHistoryService.selectHoldingSkills();
 		
 		/* 노출권 사용이력 */
-		List<ExposureUsingHistoryDTO> paymentExposureUsingHistoryList = selectPaymentHistoryService.SelectExposureUsingHistory();
+		List<ExposureUsingHistoryDTO> paymentExposureUsingHistoryList = selectPaymentHistoryService.selectExposureUsingHistory();
 		
 		/* 노촐권 사용중인 공고의 요구기술 */
-		List<HoldingRequestingSkillsDTO> paymentrequestingSkillsList = selectPaymentHistoryService.SelectRequestingSkills();
+		List<HoldingRequestingSkillsDTO> paymentrequestingSkillsList = selectPaymentHistoryService.selectRequestingSkills();
 		
 		for(PaymentHistoryDTO paymentHistory : paymentHistoryList) {
 			System.out.println(paymentHistory);
@@ -60,6 +64,10 @@ public class SelectPaymentHistoryServlet extends HttpServlet {
 		
 		for(BrowseUsingHistoryDTO BrowseUsingHistroy : paymentBrowseUsingHistroyList) {
 			System.out.println(BrowseUsingHistroy);
+		}
+		
+		for(RefundChangeStatusDTO rc : refundChangeStatus) {
+			System.out.println(rc);
 		}
 		
 		for(HoldingRequestingSkillsDTO HoldingRequestingSkills : paymentHoldingSkillsList) {
@@ -77,6 +85,7 @@ public class SelectPaymentHistoryServlet extends HttpServlet {
 		String path = "/WEB-INF/views/payment/paymentHistory.jsp";
 		
 		request.setAttribute("paymentHistoryList", paymentHistoryList);
+		request.setAttribute("refundChangeStatus", refundChangeStatus);
 		request.setAttribute("resumeBrowsingNum", resumeBrowsingNum);
 		request.setAttribute("exposureUsingPostNum", exposureUsingPostNum);
 		request.setAttribute("exposureRestHour", exposureRestMinute);

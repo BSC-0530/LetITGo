@@ -182,7 +182,9 @@
 									<td><c:out value="${ payment.payDate }"/></td>
 									<td><c:out value="${ payment.payKinds }"/></td>
 									
-									
+									<c:if test="${ payment.payChangeStatus eq '환불요청취소' }">
+									<td><button type="submit" onclick="req(this);">환불요청</button></td>
+									</c:if>
 																			
 									<c:if test="${ payment.payChangeStatus eq '환불완료' }">
 									<td><button type="button" disabled>환불완료</button></td>
