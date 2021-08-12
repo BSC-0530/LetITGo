@@ -6,28 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/animate.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/font-awesome.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/fonts.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/reset.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/owl.carousel.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/owl.theme.default.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/flaticon.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/style.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/style_II.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
 </head>
 <body>
 <jsp:include page="../common/header/companyHeader.jsp"/>
@@ -59,75 +37,45 @@
 				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 					<div class="jp_cp_left_side_wrapper">
 						<div class="jp_cp_left_pro_wallpaper">
-							<img src="images/content/cp1.png" alt="profile_img">
-							<h2>Farhan Shaikh</h2>
-							<p>UI/UX Designer in Dewas</p>
-							<ul>
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-							</ul>
+							<img src="${ pageContext.servletContext.contextPath }/resources/image/bmw.png" style="width: 205px; height: 205px;"alt="post_img" />
+							<h2>이름와야함</h2>
+							<p><br></p>
 						</div>
 						<div class="jp_cp_rd_wrapper">
+						<br><br><br><br><br><br>
 							<ul>
-								<li><a href="#"><i class="fa fa-download"></i> &nbsp;Download Resume</a></li>
-								<li><a href="#"><i class="fa fa-phone"></i> &nbsp;Contact candidate</a></li>
+								<li><a href="#"><i class="fa fa-download"></i> &nbsp;상세 이력서 보기</a></li>
+								<li><a href="#"><i class="fa fa-phone"></i> &nbsp;후보자 찜하기</a></li>
 							</ul>
 						</div>
 					</div>
-                    <div class="jp_add_resume_wrapper jp_job_location_wrapper jp_cp_left_ad_res">
-                        <div class="jp_add_resume_img_overlay"></div>
-                        <div class="jp_add_resume_cont">
-                            <img src="images/content/resume_logo.png" alt="logo" />
-                            <h4>Get Best Matched Jobs On your Email. Add Resume NOW!</h4>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-plus-circle"></i> &nbsp;ADD RESUME</a></li>
-                            </ul>
-                        </div>
-                    </div>
 				</div>
 				<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
 					<div class="jp_cp_right_side_wrapper">
 						<div class="jp_cp_right_side_inner_wrapper">
-							<h2>PERSONAL DETAILS</h2>
+							<h2>인재 소개란</h2>
 							<table>
                                 <tbody>
                                     <tr>
-                                        <td class="td-w25">Full Name</td>
+                                        <td class="td-w25">이름</td>
                                         <td class="td-w10">:</td>
-                                        <td class="td-w65">Farhan Shaikh</td>
+                                        <td class="td-w65">이름와야함</td>
                                     </tr>
                                     <tr>
-                                        <td class="td-w25">Father's Name</td>
+                                        <td class="td-w25">보유기술</td>
                                         <td class="td-w10">:</td>
-                                        <td class="td-w65">------</td>
+                                        <td class="td-w65">보유기술와야함</td>
                                     </tr>
                                     <tr>
-                                        <td class="td-w25">Address</td>
+                                        <td class="td-w25">직무</td>
                                         <td class="td-w10">:</td>
-                                        <td class="td-w65">Street 110-B Kalani Bag, Dewas, M.P. INDIA</td>
+                                        <td class="td-w65">직무밸류</td>
                                     </tr>
                                     <tr>
-                                        <td class="td-w25">Zip Code</td>
+                                        <td class="td-w25">경력</td>
                                         <td class="td-w10">:</td>
-                                        <td class="td-w65">12345</td>
+                                        <td class="td-w65">경력밸류</td>
                                     </tr>
-                                    <tr>
-                                        <td class="td-w25">Phone</td>
-                                        <td class="td-w10">:</td>
-                                        <td class="td-w65">+0 123456789 , +0 123456789</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="td-w25">Email</td>
-                                        <td class="td-w10">:</td>
-                                        <td class="td-w65">support@example.com</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="td-w25">Website</td>
-                                        <td class="td-w10">:</td>
-                                        <td class="td-w65">http://example.com</td>
-                                    </tr>
-
                                 </tbody>
                             </table>
 						</div>
@@ -135,8 +83,8 @@
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
 							<div class="jp_cp_accor_heading_wrapper">
-								<h2>Education</h2>
-								<p>Proin gravida nibh vel velit quet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulpuate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt.</p>
+								<h2>상세이력서</h2>
+								<p>아래의 메뉴에서 상세한 이력서를 조회하세요</p>
 							</div>
 						</div>
 						<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
@@ -198,7 +146,8 @@
 
 
 
-
 <jsp:include page="../common/footer.jsp"/>
+
+    <script src="/resource/js/jquery_min.js"></script>
 </body>
 </html>
