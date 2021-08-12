@@ -124,6 +124,50 @@
 		<result property="resumeNo" column="RESUME_NO"/>
 	</resultMap>
 	
+	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.InsertResumeDTO" id="insertResumeResultMap">
+		<id property="resumeNo" column="RESUME_NO"/>
+		<result property="inMemNo" column="IN_MEM_NO"/>
+		<result property="resumeWriteDate" column="RESUME_WRITE_DATE"/>
+		<result property="resumeScoutStatus" column="RESUME_SCOUT_STATUS"/>
+		<result property="jobNo" column="JOB_NO"/>
+		<result property="resumeTitle" column="RESUME_TITLE"/>
+		<result property="carNo" column="CAR_NO"/>
+		<result property="carComName" column="CAR_COM_NAME"/>
+		<result property="carHireDate" column="CAR_HIRE_DATE"/>
+		<result property="carEntDate" column="CAR_ENT_DATE"/>
+		<result property="carStatus" column="CAR_STATUS"/>
+		<result property="carDeptName" column="CAR_DEPT_NAME"/>
+		<result property="carJobName" column="CAR_JOB_NAME"/>
+		<result property="carWorkField" column="CAR_WORK_FIELD"/>
+		<result property="projectName" column="PROJECT_NAME"/>
+		<result property="projectStartDate" column="PROJECT_START_DATE"/>
+		<result property="projectEndDate" column="PROJECT_END_DATE"/>
+		<result property="projectContent" column="PROJECT_CONTENT"/>
+		<result property="potNo" column="POT_NO"/>
+		<result property="potKinds" column="POT_KINDS"/>
+		<result property="potLinkAddress" column="POT_LINK_ADDRESS"/>
+		<result property="potFilePath" column="POT_FILE_PATH"/>
+		<result property="potFileOriginalName" column="POT_FILE_ORIGINAL_NAME"/>
+		<result property="potFileName" column="POT_FILE_NAME"/>
+		<result property="selfIntroItemNo" column="SELF_INTRO_ITEM_NO"/>
+		<result property="selfIntroItemContent" column="SELF_INTRO_ITEM_CONTENT"/>
+		<result property="licenseNo" column="LICENSE_NO"/>
+		<result property="licenseName" column="LICENSE_NAME"/>
+		<result property="licenseAgency" column="LICENSE_AGENCY"/>
+		<result property="licenseDate" column="LICENSE_DATE"/>
+		<result property="eduNo" column="EDU_NO"/>
+		<result property="eduName" column="EDU_NAME"/>
+		<result property="eduAgency" column="EDU_AGENCY"/>
+		<result property="eduStartDate" column="EDU_START_DATE"/>
+		<result property="eduEndDate" column="EDU_END_DATE"/>
+		<result property="eduContent" column="EDU_CONTENT"/>
+		<result property="awdNo" column="AWD_NO"/>
+		<result property="awdName" column="AWD_NAME"/>
+		<result property="awdAgency" column="AWD_AGENCY"/>
+		<result property="awdDate" column="AWD_DATE"/>
+		<result property="awdContent" column="AWD_CONTENT"/>
+	</resultMap>
+	
 	
 	
 	<select id="selectAllResumeList" resultMap="resumeResultMap">
@@ -188,22 +232,6 @@
 		 WHERE R.RESUME_NO = 1
 	</select>
 	
-	<insert id="insertCareer">
-		INSERT
-		  INTO TBL_CAREER_HISTORY A
-		(
-		  A.CAR_NO, A.CAR_COM_NAME, A.CAR_HIRE_DATE, A.CAR_ENT_DATE, A.CAR_STATUS
-		, A.CAR_DEPT_NAME, A.CAR_JOB_NAME, A.PROJECT_NAME, A.PROJECT_START_DATE, A.PROJECT_END_DATE
-		, A.PROJECT_CONTENT, A.CAR_WORK_FIELD
-		)
-		VALUES
-		(
-		  SEQ_CAR_NO.NEXTVAL, #{ carComName }, #{ carHireDate }, #{ carEntDate }, 'N'
-		, #{ carDeptName }, #{ carJobName }, #{ projectName }, #{ projectStartDate }, #{ projectEndDate }
-		, #{ projectContent }, #{ carWorkField }
-		)
-	</insert>
-	
 	<insert id="insertResume">
 		INSERT
 		  INTO TBL_RESUME A
@@ -214,15 +242,66 @@
 		VALUES
 		(
 		  SEQ_RESUME_NO.NEXTVAL, 3, SYSDATE
-		, 'Y', SEQ_JOB_NO.NEXTVAL, #{ resumeTitle }
+		, 'Y', #{ jobNo }, #{ resumeTitle }
 		)
 	</insert>
 	
-	<insert id="insertPort">
+	<insert id="insertCareer">
+		INSERT
+		  INTO TBL_CAREER_HISTORY A
+		(
+		  A.CAR_NO, A.CAR_COM_NAME, A.CAR_HIRE_DATE, A.CAR_ENT_DATE
+		, A.CAR_STATUS, A.CAR_DEPT_NAME, A.CAR_JOB_NAME, A.CAR_WORK_FIELD
+		, A.PROJECT_NAME, A.PROJECT_START_DATE, A.PROJECT_END_DATE, A.PROJECT_CONTENT
+		, A.JOB_NO, A.RESUME_NO
+		)
+		VALUES
+		(
+		  SEQ_CAR_NO.NEXTVAL, #{ carComName }, #{ carHireDate }, #{ carEntDate }
+		, #{ carStatus }, #{ carDeptName }, #{ carJobName }, #{ carWorkField }
+		, #{ projectName }, #{ projectStartDate }, #{ projectEndDate }, #{ projectContent }
+		, #{ jobNo }, #{ resumeNo }
+		)
+		
+	</insert>
+	
+	<insert id="insertPot">
 		INSERT
 		  INTO TBL_PORTFOLIO A
 		(
-		  A.
+		  A.POT_NO, A.RESUME_NO, A.POT_KINDS, A.POT_LINK_ADDRESS
+		, A.POT_FILE_PATH, A.POT_FILE_ORIGINAL_NAME, A.POT_FILE_NAME
+		)
+		VALUES
+		(
+		  SEQ_POT_NO.NEXTVAL, #{ jobNo }, '링크', #{ potLinkAddress }
+		, NULL, NULL, NULL
+		)
+	</insert>
+	
+	<insert id="insertIntroContent">
+		INSERT
+		  INTO TBL_SELF_INTRODUCTION_CONTENT A
+		(
+		  A.SELF_INTRO_ITEM_NO, A.RESUME_NO, A.SELF_INTRO_ITEM_CONTENT
+		)
+		VALUES
+		(
+		  #{ selfIntroItemNo }, #{ resumeNo }, #{ selfIntroItemContent }
+		)
+	</insert>
+	
+	<insert id="insertLicense">
+		INSERT
+		  INTO TBL_LICENSE_HISTORY A
+		(
+		  A.LICENSE_NO, A.LICENSE_NAME
+		, A.LICENSE_AGENCY, A.LICENSE_DATE, A.RESUME_NO
+		)
+		VALUES
+		(
+		  SEQ_LICENSE_NO.NEXTVAL, #{ licenseName }
+		  , #{ licenseAgency }, #{ licenseDate }, #{ resumeNo }
 		)
 	</insert>
 </mapper>

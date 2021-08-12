@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.itsme.letitgo.personal.resume.model.dto.CareerHistoryDTO;
 import com.itsme.letitgo.personal.resume.model.dto.DetailResumeDTO;
+import com.itsme.letitgo.personal.resume.model.dto.InsertResumeDTO;
 import com.itsme.letitgo.personal.resume.model.dto.ResumeDTO;
 
 public interface ResumeMapper {
@@ -12,18 +13,21 @@ public interface ResumeMapper {
 
 	List<DetailResumeDTO> selectDetailResumeList();
 
-	int insertResume(DetailResumeDTO dr);
+	int insertResume(List<InsertResumeDTO> irList);
 
-	int insertCareer(DetailResumeDTO dr);
+	int insertCareer(List<InsertResumeDTO> irList);
 
-	int insertPort(DetailResumeDTO dr);
+	int insertPot(List<InsertResumeDTO> irList);
 
-	int insertIntro(DetailResumeDTO dr);
+	int insertLicense(List<InsertResumeDTO> irList);
 
-	int insertLicense(DetailResumeDTO dr);
+	int insertEdu(List<InsertResumeDTO> irList);
 
-	int insertEdu(DetailResumeDTO dr);
+	int insertAwd(List<InsertResumeDTO> irList);
 
-	int insertAwd(DetailResumeDTO dr);
+	int insertIntroNo(List<InsertResumeDTO> irList);
+
+	int insertIntroContent(List<InsertResumeDTO> irList);
+
 
 }
