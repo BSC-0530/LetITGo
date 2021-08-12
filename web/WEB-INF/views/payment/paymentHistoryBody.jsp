@@ -277,17 +277,13 @@ $(document).ready(function() {
 function req(button) {
 	
 	var payNo = button.parentNode.parentNode.children[0].innerText;
-	var productName = button.parentNode.parentNode.children[1].innerText;
-	var payPrice = button.parentNode.parentNode.children[2].innerText;
 	
-	var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/refund/request/insert").attr("method", "post");
+	var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/refund/request/insert").attr("method", "get");
 	
 	$form.append($("<input>").attr("name", "payNo").attr("type", "hidden").val(payNo));
-	$form.append($("<input>").attr("name", "productName").attr("type", "hidden").val(productName));
-	$form.append($("<input>").attr("name", "payPrice").attr("type", "hidden").val(payPrice));
 	
 	console.log($form.children().val());
-	console.log(productName);
+	
 	$("body").append($form);
 	
 	$form.submit();
