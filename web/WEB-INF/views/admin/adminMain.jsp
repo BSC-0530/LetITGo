@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,132 +62,166 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
 </head>
 <body>
-	<div class="jp_tittle_main_wrapper">
-		<div class="jp_tittle_img_overlay"></div>
+	<!-- 관리자 사이드 바 -->
+	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<div class="jp_tittle_heading_wrapper">
-						<div class="jp_tittle_heading">
-							<h2>관리자 페이지</h2>
-						</div>
-						<div class="jp_tittle_breadcrumb_main_wrapper">
-							<div class="jp_tittle_breadcrumb_wrapper"></div>
+				<div
+					class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="jp_rightside_job_categories_wrapper">
+								<div class="jp_rightside_job_categories_heading">
+									<h4 style="font-weight : bold">My Page</h4>
+								</div>
+								<div class="jp_rightside_job_categories_content">
+									<div class="handyman_sec1_wrapper">
+										<div class="content">
+											
+											<div class="box">
+												<h3 style="font-weight : bold">회원정보</h3>
+												<p>
+												<p align="center">
+													<a href="#" >자기소개서 항목 관리</a>
+												</p>
+												<p align="center">
+													<a href="#">직무분야 관리</a>
+												</p>
+												<p align="center">
+													<a href="#">기술 및 카테고리 관리</a>
+												</p>	
+												<br><br>
+												<h3 style="font-weight : bold">결제 관리</h3>
+												<p>
+												<p align="center">
+													<a href="#" >상품 관리</a>
+												</p>
+												<p align="center">
+													<a href="#">결제 내역 조회</a>
+												</p>
+												<p align="center">
+													<a href="#">환불 요청 관리</a>
+												</p>	
+												<br><br>
+												<h3 style="font-weight : bold">기업 요청 관리</h3>
+												<p>
+												<p align="center">
+													<a href="#" >공고 등록 요청</a>
+												</p>
+												<p align="center">
+													<a href="#">공고 수정 요청</a>
+												</p>
+												<p align="center">
+													<a href="#">기업 회원 가입 요청</a>
+												</p>	
+												<p align="center">
+													<a href="#">기업 정보 변경 요청</a>
+												</p>
+												<br><br>
+												<h3 style="font-weight : bold">회원 탈퇴</h3>
+												<p>
+												<p align="center">
+													<a href="#" >회원 탈퇴 사유 조회</a>
+												</p>
+												<br><br>
+												<h3 style="font-weight : bold">게시물 관리</h3>
+												<p>
+												<p align="center">
+													<a href="#" >공지사항 관리</a>
+												</p>
+												<p align="center">
+													<a href="#">개인정보 처리 방침, 이용약관 관리</a>
+												</p>
+												<br><br>
+												<h3 style="font-weight : bold">1:1 문의</h3>
+												<p>
+												<p align="center">
+													<a href="#" >1:1 문의 조회</a>
+												</p>
+												<p align="center">
+													<a href="#">1:1 문의 카테고리 관리</a>
+												</p>
+												<br><br>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-<div>
-	<div class="jp_listing_sidebar_main_wrapper">
-		<div class="container">
-			<div class="row">
-				<div class="v1686_231">
-					<div class="v1686_232"></div>
-					<div class="v1686_233">
-						<span class="v1686_234">게시물 관리</span>
-					</div>
-					<div class="v1686_235">
-						<span class="v1686_236">회원 탈퇴 사유</span> <span class="v1686_237">회원
-							탈퇴</span>
-					</div>
-					<div class="v1686_238">
-						<span class="v1686_239">공고 수정 요청</span> <span class="v1686_240">공고
-							등록 요청</span> <span class="v1686_241">공고 관리</span>
-					</div>
-					<div class="v1686_238">
-						<span class="v1686_239">공고 수정 요청</span> <span class="v1686_240">공고
-							등록 요청</span> <span class="v1686_241">공고 관리</span>
-					</div>
-					<div class="v1686_242">
-						<span class="v1686_243">결제 내역 관리</span> <span class="v1686_244">상품
-							관리</span> <span class="v1686_245">결제 관리</span>
-					</div>
-					<div class="v1686_246">
-						<span class="v1686_247">기업 정보 변경 요청</span> <span class="v1686_248">1:1
-							문의</span> <span class="v1686_249">회원 관리</span> <span class="v1686_250">기업
-							회원 가입 요청</span>
-					</div>
-					<div class="v1686_251"></div>
-
-				</div>
-				<!-- 옆에 넣으려면 여기에 넣어야함 -->
-				<!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
-				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+			
+				 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_counter_main_wrapper">
-								<h1 align="left">관리자 메인페이지</h1>
+								<h1 align="left">관리자 마이페이지</h1><br>
 								<div class="container">
 									<div class="gc_counter_cont_wrapper">
 										<div class="count-description">
-											<span class="timer">0</span><i class="fa fa-plus"></i>
-											<h5 class="con1">
-												<a href="">기업 회원 가입 요청</a>
-											</h5>
+											<span class="timer"><c:out value="" /></span>
+											<i class="fa"></i>
+											<h5 class="con1">기업 회원 가입 요청</h5>
 										</div>
 									</div>
 									<div class="gc_counter_cont_wrapper2">
 										<div class="count-description">
-											<span class="timer">0</span><i class="fa fa-plus"></i>
+											<span class="timer"><c:out value="" /></span>
+											<i class="fa"></i>
 											<h5 class="con2">공고 등록 요청</h5>
 										</div>
 									</div>
 									<div class="gc_counter_cont_wrapper3">
 										<div class="count-description">
-											<span class="timer">0</span><i class="fa fa-plus"></i>
+											<span class="timer"><c:out value="" /></span>
+											<span>:</span>
+											<span class="timer"><c:out value="" /></span>
+											<i class="fa"></i>
 											<h5 class="con3">공지사항</h5>
 										</div>
 									</div>
 								</div>
 								<br> <br>
-							</div>
-
-						</div>
-						<!-- 파란색 네모 박스 들어가야함 -->
-						<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-							<div class="row">
-								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-									<div class="jp_counter_main_wrapper">
-
-										<div class="container">
-											<div class="gc_counter_cont_wrapper">
-												<div class="count-description">
-													<span class="timer">0</span><i class="fa fa-plus"></i>
-													<h5 class="con1">기업 회원 변경 요청</h5>
-												</div>
-											</div>
-											<div class="gc_counter_cont_wrapper2">
-												<div class="count-description">
-													<span class="timer">0</span><i class="fa fa-plus"></i>
-													<h5 class="con2">공고 수정 요청</h5>
-												</div>
-											</div>
-											<div class="gc_counter_cont_wrapper3">
-												<div class="count-description">
-													<span class="timer">0</span><i class="fa fa-plus"></i>
-													<h5 class="con3">1:1 문의</h5>
-												</div>
-											</div>
+								
+								<div class="container">
+									<div class="gc_counter_cont_wrapper">
+										<div class="count-description">
+											<span class="timer"><c:out value="" /></span>
+											<i class="fa"></i>
+											<h5 class="con1">기업 회원 가입 요청</h5>
 										</div>
-										<br> <br>
 									</div>
-
+									<div class="gc_counter_cont_wrapper2">
+										<div class="count-description">
+											<span class="timer"><c:out value="" /></span>
+											<i class="fa"></i>
+											<h5 class="con2">공고 등록 요청</h5>
+										</div>
+									</div>
+									<div class="gc_counter_cont_wrapper3">
+										<div class="count-description">
+											<span class="timer"><c:out value="" /></span>
+											<span>:</span>
+											<span class="timer"><c:out value="" /></span>
+											<i class="fa"></i>
+											<h5 class="con3">공지사항</h5>
+										</div>
+									</div>
 								</div>
-
-
+								
 							</div>
-						</div>
+						</div><br>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-			<script>
-				$(document).ready(function() {
-					$('#table_scout').DataTable();
-				});
-			</script>
+				</div><br>	 
+	
+	
+<script>
+	$(document).ready(function() {
+		$('#table_scout').DataTable();
+	});
+</script>
 </body>
 </html>

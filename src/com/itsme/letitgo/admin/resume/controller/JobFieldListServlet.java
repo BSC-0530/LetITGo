@@ -24,7 +24,7 @@ public class JobFieldListServlet extends HttpServlet {
 		String path = ""; //빈 문자열을 선언 후, 밑의 if문 안의 주소값으로 가기
 		
 		if(jobFieldList != null) {
-			path = "/WEB-INF/views/admin/adminJobFieldTest.jsp";
+			path = "/WEB-INF/views/admin/adminJobField.jsp";
 			request.setAttribute("jobFieldList", jobFieldList);
 		}
 		
