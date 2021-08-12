@@ -24,7 +24,7 @@ public class SelfIntroductionItemListServlet extends HttpServlet {
 		String path = ""; //빈 문자열을 선언 후, 밑의 if문 안의 주소값으로 가기
 		
 		if(selfIntroductionItemList != null) {
-			path = "/WEB-INF/views/admim/????????.jsp"; //주소값 아직 지정 안함
+			path = "/WEB-INF/views/admin/adminSelfIntroductionItem.jsp"; //주소값 아직 지정 안함
 			request.setAttribute("selfIntroductionItemList", selfIntroductionItemList);
 		} 
 		
