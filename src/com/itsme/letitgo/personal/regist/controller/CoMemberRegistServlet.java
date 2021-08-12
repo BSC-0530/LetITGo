@@ -19,7 +19,7 @@ public class CoMemberRegistServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String path = "";
+		String path = "/WEB-INF/views/common/login/login.jsp";
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	}

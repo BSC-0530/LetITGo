@@ -4,7 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.itsme.letitgo.personal.regist.model.dto.CoMemberDTO;
 import com.itsme.letitgo.personal.regist.model.dto.MemberDTO;
-import com.itsme.letitgo.personal.regist.model.mapper.MemberMapper;
+import com.itsme.letitgo.personal.regist.model.mapper.RegistMemberMapper;
 
 import static com.itsme.letitgo.common.mybatis.Template.getSqlSession;
 
@@ -16,7 +16,7 @@ public class MemberService {
 		
 		SqlSession session = getSqlSession();
 		
-		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		RegistMemberMapper mapper = session.getMapper(RegistMemberMapper.class);
 		
 		int result = mapper.MemberReigst(memberDTO);
 				
@@ -35,7 +35,7 @@ public class MemberService {
 		
 		SqlSession session = getSqlSession();
 		
-MemberMapper mapper = session.getMapper(MemberMapper.class);
+		RegistMemberMapper mapper = session.getMapper(RegistMemberMapper.class);
 		
 		int result = mapper.coMemberReigst(coMemberDTO);
 				
@@ -45,6 +45,20 @@ MemberMapper mapper = session.getMapper(MemberMapper.class);
 			session.rollback();
 		}
 		session.close();
+		
+		return result;
+	}
+
+	public int idCheck(String id) {
+		
+		SqlSession session = getSqlSession();
+		
+		RegistMemberMapper mapper = session.getMapper(RegistMemberMapper.class);
+		
+		int result = mapper.idCheck(id);
+		
+		session.close();
+		
 		
 		return result;
 	}

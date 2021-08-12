@@ -18,7 +18,7 @@ public class MemberRegistServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String path = "/WEB-INF/views/common/register/regist.jsp";
+		String path = "";
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	}
@@ -55,6 +55,7 @@ public class MemberRegistServlet extends HttpServlet {
 		if(result > 0) {
 			
 			page = "";
+			
 			
 			request.setAttribute("successCode", "insertMember");
 		}else {
