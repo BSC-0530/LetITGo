@@ -60,14 +60,10 @@
 	</div>
 
 	
-		<div class="container">
-			<div class="row">
-				
-				
 		
 
 
-	<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 jp_cl_right_bar">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 jp_cl_right_bar">
 		<c:forEach items="${ resumeList }" var="resume">
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

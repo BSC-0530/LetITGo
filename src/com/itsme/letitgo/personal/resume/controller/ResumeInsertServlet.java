@@ -13,7 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.itsme.letitgo.personal.resume.model.dto.CareerHistoryDTO;
 import com.itsme.letitgo.personal.resume.model.dto.DetailResumeDTO;
+import com.itsme.letitgo.personal.resume.model.dto.EducationHistoryDTO;
+import com.itsme.letitgo.personal.resume.model.dto.LicenseHistoryDTO;
+import com.itsme.letitgo.personal.resume.model.dto.PortfolioDTO;
 import com.itsme.letitgo.personal.resume.model.dto.ResumeDTO;
+import com.itsme.letitgo.personal.resume.model.dto.SelfIntroductionContentDTO;
 import com.itsme.letitgo.personal.resume.model.service.ResumeService;
 
 @WebServlet("/resume/insert")
@@ -27,28 +31,50 @@ public class ResumeInsertServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
-//		String resumeTitle = request.getParameter("resumeTitle");
-//		String jobField = request.getParameter("jobField");
+
+//		---------- ResumeDTO -----------
+		String resumeTitle = request.getParameter("resumeTitle");
+		Integer jobNo = Integer.parseInt(request.getParameter("jobNo"));
+		
+//		---------- CareerHistoryDTO -------------
 		String carComName = request.getParameter("carComName");
 		String carDeptName = request.getParameter("carDeptName");
 		String carJobName = request.getParameter("carJobName");
 		String carWorkField = request.getParameter("carWorkField");
-		String reqCarHireDate = request.getParameter("carHireDate");
-		String reqCarEntDate = request.getParameter("carEntDate");
+		java.sql.Date carHireDate = java.sql.Date.valueOf(request.getParameter("carHireDate"));
+		java.sql.Date carEntDate = java.sql.Date.valueOf(request.getParameter("carEntDate"));
 		String projectName = request.getParameter("projectName");
 		String projectContent = request.getParameter("projectContent");
-		String reqProjectStartDate = request.getParameter("projectStartDate");
-		String reqProjectEndDate = request.getParameter("projectEndDate");
+		java.sql.Date projectStartDate = java.sql.Date.valueOf(request.getParameter("projectStartDate"));
+		java.sql.Date projectEndDate = java.sql.Date.valueOf(request.getParameter("projectEndDate"));
 		
-
-		java.sql.Date carHireDate = java.sql.Date.valueOf(reqCarHireDate);
-		java.sql.Date carEntDate = java.sql.Date.valueOf(reqCarEntDate);
-		java.sql.Date projectStartDate = java.sql.Date.valueOf(reqProjectStartDate);
-		java.sql.Date projectEndDate = java.sql.Date.valueOf(reqProjectEndDate);
+//		---------- PortFolioDTO
+		String potLinkAddress = request.getParameter("potLinkAddress");
+		String potFilePath = request.getParameter("potFilePath");
+		
+//		---------- SelfIntroDTO
+		Integer selfIntroItemNo = Integer.parseInt(request.getParameter("selfIntroItemNo"));
+		String selfIntroItemContent = request.getParameter("selfIntroItemContent");
+		
+//		---------- LicenseDTO
+		String licenseName = request.getParameter("licenseName");
+		String licenseAgency = request.getParameter("licenseAgency");
+		java.sql.Date licenseDate = java.sql.Date.valueOf(request.getParameter("licenseDate"));
+		
+//		---------- EducationDTO
+		String eduName = request.getParameter("eduName");
+		String eduAgency = request.getParameter("eduAgency");
+		java.sql.Date eduStartDate = java.sql.Date.valueOf(request.getParameter("eduStartDate"));
+		java.sql.Date eduEndDate = java.sql.Date.valueOf(request.getParameter("eduEndDate"));
+		String eduContent = request.getParameter("eduContent");
+		
+//		---------- AwardDTO 
+		String awdName = request.getParameter("awdName");
+		String awdAgency = request.getParameter("awdAgency");
+		java.sql.Date awdDate = java.sql.Date.valueOf(request.getParameter("awdDate"));
 		
 		
-		System.out.println(carHireDate);
-		System.out.println(carEntDate);
+//		---------- career set
 		CareerHistoryDTO car = new CareerHistoryDTO();
 		
 		car.setCarComName(carComName);
@@ -62,26 +88,52 @@ public class ResumeInsertServlet extends HttpServlet {
 		car.setProjectStartDate(projectStartDate);
 		car.setProjectName(projectName);
 		
+//		----------- resume set
+		ResumeDTO resume = new ResumeDTO();
+		resume.setJobNo(jobNo);
+		resume.setResumeTitle(resumeTitle);
+		
+//		----------- Portfolio set
+		PortfolioDTO pf = new PortfolioDTO();
+		pf.setPotLinkAddress(potLinkAddress);
+		pf.setPotFilePath(potFilePath);
+		
+//		----------- SelfIntroCon set
+		SelfIntroductionContentDTO sic = new SelfIntroductionContentDTO();
+		sic.setSelfIntroItemNo(selfIntroItemNo);
+		sic.setSelfIntroItemContent(selfIntroItemContent);
+		
+//		----------- Lisence set
+		LicenseHistoryDTO lh = new LicenseHistoryDTO();
+		lh.setLicenseName(licenseName);
+		lh.setLicenseAgency(licenseAgency);
+		lh.setLicenseDate(licenseDate);
+		
+//		----------- Education set
+		EducationHistoryDTO edu = new EducationHistoryDTO();
+		edu.setEduName(eduName);
+		edu.setEduAgency(eduAgency);
+		edu.setEduStartDate(eduStartDate);
+		edu.setEduEndDate(eduEndDate);
+		edu.setEduContent(eduContent);
+		
+//		----------- 
+		
+		
+		
 		int result = new ResumeService().insertResume(car);
 		
 		System.out.println(result);
 		
+		String path = "";
+		
 		if(result > 0) {
 			System.out.println("내가 이겼다");
-			
+			path = "/WEB-INF/views/resume/resumeList.jsp";
 		}
 		
+		response.sendRedirect("/let/resume/list");
 		
-		
-		
-		
-		
-//		long longHireDate = utilCarHireDate.getTime();
-//		java.sql.Date carHireDate = new Date(longHireDate);
-		
-		
-//		System.out.println(carHireDate);
-		System.out.println("11");
 	}
 
 }
