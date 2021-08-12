@@ -56,6 +56,7 @@ public class MemberRegistServlet extends HttpServlet {
 			
 			page = "";
 			
+			
 			request.setAttribute("successCode", "insertMember");
 		}else {
 			

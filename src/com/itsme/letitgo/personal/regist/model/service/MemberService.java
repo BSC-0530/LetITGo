@@ -59,6 +59,7 @@ public class MemberService {
 		
 		session.close();
 		
+		
 		return result;
 	}
 

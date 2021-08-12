@@ -11,4 +11,5 @@ public interface RegistMemberMapper {
 
 	int idCheck(String id);
 
+	
 }

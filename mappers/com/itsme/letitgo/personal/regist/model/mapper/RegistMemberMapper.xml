@@ -58,6 +58,7 @@
 		WHERE MEM_ID = ?
 	
 	
+	
 	</select>
 	<insert id="coMemberReigst" parameterType="com.itsme.letitgo.personal.regist.model.dto.CoMemberDTO">
 	
