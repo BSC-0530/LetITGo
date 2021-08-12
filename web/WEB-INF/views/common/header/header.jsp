@@ -41,7 +41,7 @@
                                     	<a href="${ pageContext.servletContext.contextPath }/companyTestServlet" class="gc_main_navigation" class="gc_main_navigation">본근</a>
                                     </li>
                                  	<li class="has-mega gc_main_navigation">
-                                    	<a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation" class="gc_main_navigation">태훈</a>
+                                    	<a href="${ pageContext.servletContext.contextPath }/admin/mainPage" class="gc_main_navigation" class="gc_main_navigation">태훈</a>
                                     </li>
                                     <li class="has-mega gc_main_navigation">
 										<%-- <a href="${ pageContext.servletContext.contextPath }/personal/memberInfo/select" class="gc_main_navigation" class="gc_main_navigation">동기</a> --%>
