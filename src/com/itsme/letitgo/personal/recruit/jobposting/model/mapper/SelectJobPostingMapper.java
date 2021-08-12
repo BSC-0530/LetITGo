@@ -10,4 +10,6 @@ public interface SelectJobPostingMapper {
 
 	List<Object> selectJobNames();
 
+	List<Object> selectDetailedJobPosting(int selectJobPostNo);
+
 }

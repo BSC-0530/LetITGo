@@ -32,9 +32,6 @@ public class SelectAllJobPostingServlet extends HttpServlet {
 		Map<String, List<Object>> jp = selectJobPostingService.selectAllJobPosting();
 
 
-		System.out.println("jpAndInfo : " + jp.get("jpAndInfo"));
-		System.out.println("jpSkills : " + jp.get("jpSkills"));
-		System.out.println("jobPostingSize : " + jp.get("jpAndInfo").size());
 
 
 		request.setAttribute("jobPostingList", jp.get("jpAndInfo"));
@@ -49,8 +46,6 @@ public class SelectAllJobPostingServlet extends HttpServlet {
 
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		System.out.println(request.getAttribute("selectJobNO"));
 
 	}
 }

@@ -37,6 +37,5 @@
 	<jsp:include page="jobPostingListBody.jsp"/>
 
 	<jsp:include page="../common/footer.jsp"/>
-
 </body>
 </html>

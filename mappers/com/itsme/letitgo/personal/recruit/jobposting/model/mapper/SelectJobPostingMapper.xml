@@ -112,13 +112,29 @@
 		  FROM TBL_JOB_POSTING_REQ_SKILLS RS
 		  JOIN TBL_SKILLS S ON(RS.SKILLS_NO = S.SKILLS_NO)
 	</select>
+	<!-- 공고 조회시 직무 선택을 위해 조회 -->
 	<select id="selectJobNames" resultMap="resultJobField">
 		SELECT
 			   JF.JOB_NO
 			 , JF.JOB_NAME
 		  FROM TBL_JOB_FIELD JF
 	</select>
-	<select id="">
-	
+	<select id="selectDetailedJobPosting" parameterType="_int" resultMap="resultJobPosting">
+		SELECT
+		       JP.JOB_POST_NO
+		     , JP.JOB_POST_TITLE
+		     , JP.JOB_POST_MIN_EXPERIENCE
+			 , JP.JOB_POST_MAX_EXPERIENCE
+		     , JP.JOB_POST_CONTENTS
+		     , JP.JOB_POST_ENROLL_DATE
+		     , JP.JOB_POST_DEADLINE
+		     , AI.CO_ADDRESS
+		     , AI.CO_COM_NAME
+		     , AI.CO_WEBSITE
+		     , JF.JOB_NAME
+		  FROM TBL_JOB_POSTING JP
+		  JOIN TBL_CO_MEMBER_ADD_INFO AI ON (JP.CO_MEM_NO = AI.CO_MEM_NO)
+		  JOIN TBL_JOB_FIELD JF ON(JF.JOB_NO = JP.JOB_NO)
+		 WHERE JP.JOB_POST_NO = #{ selectJobPostNo }
 	</select>
 </mapper>
