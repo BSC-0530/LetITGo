@@ -157,9 +157,11 @@
 						</div><br>
 						
 						<!-- 데이터 테이블 내역모음 -->
-						<h1>전체 공고</h1>
+						<div>
+						<h1>전체 공고</h1><button style="margin-left: 100%">dd</button>
+						</div>
 						<br>
-						<table id="table_payment" class="hover cell-border stripe">
+						<table id="table_myPosting" class="hover cell-border stripe">
 							<thead>
 								<tr align="center">
 									<td>공고 제목</td>
@@ -215,15 +217,9 @@
 	
 <script>
 $(document).ready(function() {
-	$('#table_payment').DataTable();
+	$('#table_myPosting').DataTable();
 });
 
-$(document).ready(function() {
-	$('#table_Browsing').DataTable();
-});
-$(document).ready(function() {
-	$('#table_exposure').DataTable();
-});
 function req(button) {
 	
 	var payNo = button.parentNode.parentNode.children[0].innerText;
