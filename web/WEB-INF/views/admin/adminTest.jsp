@@ -177,6 +177,21 @@ $(document).ready(function() {
 	$('#table_scout').DataTable();
 });
 	
+	/* 
+	<form id="joinForm" action="${ pageContext.servletContext.contextPath }/jobfield/insert" method="post">
+		<table align="center">
+			<tr>
+				<td></td>
+				<td><input type="text" maxlength="13" name="memberId" id="memberId" required></td>
+				<td width="100px"><input type="button" value="중복확인" class="btn btn-or" id="duplicationCheck"></td>
+			</tr>
+		</table>
+		<div class="btns" align="center">
+			<input type="reset" value="메인으로"  class="btn btn-yg" id="goMain">
+			<input type="submit" value="가입하기" class="btn btn-or">
+		</div>
+	</form> 
+	*/
 	
 </script>
 </body>

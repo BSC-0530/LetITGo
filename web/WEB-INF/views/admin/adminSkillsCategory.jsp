@@ -155,32 +155,31 @@
 				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<h1>기술 관리</h1>
+						<h1>기술 카테고리 관리</h1>
 							<div class="jp_listing_tabs_wrapper">
 
 								<!-- 이거는 이제 정보뜨는 칸 -->
 								<!-- 데이터 테이블 내역모음 -->
-						<table id="skills" class="hover cell-border stripe">
+						<table id="skillsCategory" class="hover cell-border stripe">
 						<thead>
 								<tr>
-									<td align="center">기술 코드</td>
-									<td align="center">카테고리</td>
-									<td align="center">기술 이름</td>
+									<td align="center">카테고리 코드</td>
+									<td align="center">상위 카테고리</td> 
+									<td align="center">카테고리 이름</td>
 									<td align="center">삭제 여부</td>
 								</tr>
 							</thead>
-							<c:forEach var="controllSkills" items="${ requestScope.skillsList }">
+							<c:forEach var="controllSkillsCategory" items="${ requestScope.skillsCategoryList }">
 							
 							<tbody align="center">
 							
 								<tr>
-									<td id="skillsNo"><c:out value="${ controllSkills.skillsNo }"/></td>
-									<td id="no"><c:out value="${ controllSkills.no }"/></td>
-									<td id="name"><c:out value="${ controllSkills.name }"/></td>
+									<td id="no"><c:out value="${ controllSkillsCategory.no }"/></td>
+									<td id="upperNo"><c:out value="${ controllSkillsCategory.upperNo }"/></td>
+									<td id="name"><c:out value="${ controllSkillsCategory.name }"/></td>
 									
-									<%-- <c:if test="${ payment.payKinds eq '삭제' }"> --%>
 									<td><button type="button" disabled>삭제</button></td>
-									<%-- </c:if>	 --%>							
+															
 								</tr>
 							</tbody>
 							</c:forEach>
@@ -199,7 +198,7 @@
 	
 	<script>
 		$(document).ready(function() {
-			$('#skills').DataTable();
+			$('#skillsCategory').DataTable();
 		});
 	</script>
 

@@ -24,7 +24,7 @@ public class SkillsCategoryListServlet extends HttpServlet {
 		String path = ""; //빈 문자열을 선언 후, 밑의 if문 안의 주소값으로 가기
 		
 		if(skillsCategoryList != null) {
-			path = "/WEB-INF/views/admin/???????.jsp"; //주소값 아직 지정안함
+			path = "/WEB-INF/views/admin/adminSkillsCategory.jsp"; //주소값 아직 지정안함
 			request.setAttribute("skillsCategoryList", skillsCategoryList);
 		}
 		

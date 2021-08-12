@@ -85,7 +85,7 @@
 												<br>	
 												<p align="center">
 													<a href="${ pageContext.servletContext.contextPath }/skillscategory/list">기술 카테고리 관리</a>
-												</p>	
+												</p>
 												<br><br>
 												<h3 style="font-weight : bold">결제 관리</h3>
 												<p>
@@ -155,32 +155,29 @@
 				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<h1>기술 관리</h1>
+						<h1>자기소개서 항목 관리</h1>
 							<div class="jp_listing_tabs_wrapper">
 
 								<!-- 이거는 이제 정보뜨는 칸 -->
 								<!-- 데이터 테이블 내역모음 -->
-						<table id="skills" class="hover cell-border stripe">
+						<table id="selfIntroductionItem" class="hover cell-border stripe">
 						<thead>
 								<tr>
-									<td align="center">기술 코드</td>
-									<td align="center">카테고리</td>
-									<td align="center">기술 이름</td>
+									<td align="center">자기소개서 항목 번호</td>
+									<td align="center">자기소개서 항목 명</td> 
 									<td align="center">삭제 여부</td>
 								</tr>
 							</thead>
-							<c:forEach var="controllSkills" items="${ requestScope.skillsList }">
+							<c:forEach var="controllSelfIntroductionItem" items="${ requestScope.selfIntroductionItemList }">
 							
 							<tbody align="center">
 							
 								<tr>
-									<td id="skillsNo"><c:out value="${ controllSkills.skillsNo }"/></td>
-									<td id="no"><c:out value="${ controllSkills.no }"/></td>
-									<td id="name"><c:out value="${ controllSkills.name }"/></td>
+									<td id="selfIntroItemNo"><c:out value="${ controllSelfIntroductionItem.selfIntroItemNo }"/></td>
+									<td id="selfIntroItemName"><c:out value="${ controllSelfIntroductionItem.selfIntroItemName }"/></td>
 									
-									<%-- <c:if test="${ payment.payKinds eq '삭제' }"> --%>
 									<td><button type="button" disabled>삭제</button></td>
-									<%-- </c:if>	 --%>							
+															
 								</tr>
 							</tbody>
 							</c:forEach>
@@ -199,7 +196,7 @@
 	
 	<script>
 		$(document).ready(function() {
-			$('#skills').DataTable();
+			$('#selfIntroductionItem').DataTable();
 		});
 	</script>
 

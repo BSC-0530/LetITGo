@@ -11,6 +11,9 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 
 import com.itsme.letitgo.admin.resume.model.mapper.JobFieldMapper;
+import com.itsme.letitgo.admin.resume.model.mapper.SelfIntroductionItemMapper;
+import com.itsme.letitgo.admin.resume.model.mapper.SkillsCategoryMapper;
+import com.itsme.letitgo.admin.resume.model.mapper.SkillsMapper;
 import com.itsme.letitgo.company.info.model.mapper.CompanyTestMapper;
 import com.itsme.letitgo.company.payment.model.mapper.PaymentMapper;
 import com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper;
@@ -58,11 +61,10 @@ public class Template {
 			
 			//태훈 시험용 넣었음 (콘솔에 출력됨, view만들고 보여지는지 확인해야함)
 			configuration.addMapper(JobFieldMapper.class);
-			/*
-			 * configuration.addMapper(SelfIntroductionItemMapper.class);
-			 * configuration.addMapper(SkillsCategoryMapper.class);
-			 * configuration.addMapper(SkillsMapper.class);
-			 */
+			configuration.addMapper(SkillsMapper.class);
+			configuration.addMapper(SkillsCategoryMapper.class);
+			configuration.addMapper(SelfIntroductionItemMapper.class);
+			 
 
 
 
