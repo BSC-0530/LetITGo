@@ -56,7 +56,7 @@
 									<li>></li>
 									<li><a href="#">기업 마이페이지</a></li>
 									<li>></li>
-									<li>결제내역</li>
+									<li>환불내역</li>
 								</ul>
 							</div>
 						</div>
@@ -76,7 +76,7 @@
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_rightside_job_categories_wrapper">
 								<div class="jp_rightside_job_categories_heading">
-									<h4 style="font-weight: bold">결제내역</h4>
+									<h4 style="font-weight: bold">환북내역</h4>
 								</div>
 								<div class="jp_rightside_job_categories_content">
 									<div class="handyman_sec1_wrapper">
@@ -125,143 +125,53 @@
 				<!-- 파란색 박스 -->
 				
 				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-					<div class="row">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<div class="jp_counter_main_wrapper">
-								<h1 align="left">잔여 유료서비스</h1><br>
-								<div class="container">
-									<div class="gc_counter_cont_wrapper">
-										<div class="count-description">
-											<span class="timer"><c:out value="${ requestScope.resumeBrowsingNum }" /></span>
-											<i class="fa"></i>
-											<h5 class="con1">이력서 열람권</h5>
-										</div>
-									</div>
-									<div class="gc_counter_cont_wrapper2">
-										<div class="count-description">
-											<span class="timer"><c:out value="${ requestScope.exposureUsingPostNum }" /></span>
-											<i class="fa"></i>
-											<h5 class="con2">노출권 사용중인 공고</h5>
-										</div>
-									</div>
-									<div class="gc_counter_cont_wrapper3">
-										<div class="count-description">
-											<span class="timer"><c:out value="${ requestScope.exposureRestHour }" /></span>
-											<span>:</span>
-											<span class="timer"><c:out value="${ requestScope.exposureRestMinute }" /></span>
-											<i class="fa"></i>
-											<h5 class="con3">노출권 잔여 시간</h5>
-										</div>
-									</div>
-								</div>
-								<br> <br>
-							</div>
-						</div><br>
-						
+					<div class="row">		
 						<!-- 데이터 테이블 내역모음 -->
 						<h1>결제 내역</h1>
 						<br>
-						<table id="table_payment" class="hover cell-border stripe">
+						<table id="table_refund" class="hover cell-border stripe">
 							<thead>
 								<tr>
+									<td style="width=80px;">환불요청번호</td>
 									<td>결제번호</td>
 									<td>상품명</td>
-									<td>결제금액</td>
-									<td>결제일자</td>
-									<td>결제상태</td>
-									<td>환불신청</td>
+									<td>환불금액</td>
+									<td>변경사유</td>
+									<td>변경상태</td>
+									<td>환불요청일자</td>
+									<td>환불승인일자</td>
 								</tr>
 							</thead>
-							<c:forEach var="payment" items="${ requestScope.paymentHistoryList }">
-							
+							<c:forEach var="refund" items="${ requestScope.refundHistoryList }">						
 							<tbody align="center">
 								<tr>
-									<td><c:out value="${ payment.payNo }"/></td>
-									<td><c:out value="${ payment.productName }"/></td>
-									<td><fmt:formatNumber value="${ payment.payPrice }" pattern="###,###"/></td>								
-									<td><c:out value="${ payment.payDate }"/></td>
-									<td><c:out value="${ payment.payKinds }"/></td>
+									<td><c:out value="${ refund.payChangeNo }"/></td>
+									<td><c:out value="${ refund.payNo }"/></td>
+									<td><c:out value="${ refund.productName }"/></td>
+									<td><fmt:formatNumber value="${ refund.payPrice }" pattern="###,###"/></td>								
+									<td><c:out value="${ refund.payChangeReason }"/></td>
+									<td><c:out value="${ refund.payChangeStatus }"/></td>
+									<td><c:out value="${ refund.payReqDate }"/></td>
+									<c:if test="${refund.payAnsDate eq null }">
+									<td><c:out value="요청진행중"/></td>
+									</c:if>
 									
 									
-																			
-									<c:if test="${ payment.payChangeStatus eq '환불완료' }">
-									<td><button type="button" disabled>환불완료</button></td>
-									</c:if>	
-									
-									<c:if test="${ payment.payChangeStatus eq '환불거절' }">
-									<td><button type="button" disabled>환불불가능</button></td>
-									</c:if>			
-									
-									<c:if test="${ payment.payChangeStatus eq '환불요청' }">
-									<td><button type="button" disabled>환불요청중</button></td>
+						
+									<c:if test="${ refund.payChangeStatus eq '환불요청' }">
+									<td><button type="submit" onclick="req(this);">환불취소</button></td>
 									</c:if>				
 									
-									<c:if test="${ payment.payChangeStatus != ('환불완료' or '환불거절' or '환불요청')  }">
-									<td><button type="submit" onclick="req(this);">환불요청</button></td>
-									</c:if>		
+									<c:if test="${ refund.payChangeStatus eq '환불거절'  }">
+									<td><button type="submit" disabled>환불불가</button></td>
+									</c:if>
+									
+									<c:if test="${ refund.payChangeStatus eq '환불완료'  }">
+									<td><button type="submit" disabled>환불완료</button></td>
+									</c:if>			
 								</tr>
 							</tbody>
 							
-							</c:forEach>
-						</table>
-						<br><br>
-						<h1>열람권 사용내역</h1>
-						<br>
-						<table id="table_Browsing" class="hover cell-border stripe">
-							<thead>
-								<tr>
-									<td>이력서 제목</td>
-									<td>이름</td>
-									<td>희망 직무</td>
-									<td>보유 기술</td>
-									<td>열람 일시</td>								
-								</tr>
-							</thead>
-							<c:forEach var="browseUsingHistroy" items="${ requestScope.paymentBrowseUsingHistroyList }">
-							<tbody align="center">
-								<tr>
-									<td><c:out value="${ browseUsingHistroy.resumeTitle }"/></td>
-									<td><c:out value="${ browseUsingHistroy.memName }"/></td>
-									<td><c:out value="${ browseUsingHistroy.jobName }"/></td>
-									<td>
-									<c:forEach var="holdingSkillsList" items="${requestScope.paymentHoldingSkillsList }">
-									<c:out value="${ holdingSkillsList.skillsName }"/><span>  </span>
-									</c:forEach>
-									</td>																
-									<td><c:out value="${ browseUsingHistroy.productUseDate }"/></td>						
-								</tr>
-							</tbody>
-							</c:forEach>
-						</table>
-						<br><br>
-						<h1>노출권 사용내역</h1>
-						<br>
-						<table id="table_exposure" class="hover cell-border stripe">
-							<thead>
-								<tr>
-									<td>공고 제목</td>
-									<td>희망 직무</td>
-									<td>요구 기술</td>
-									<td>마감일</td>
-									<td>사용일시</td>
-									<td>종료일시</td>								
-								</tr>
-							</thead>
-							<c:forEach var="exposureUsingPostHistroy" items="${ requestScope.paymentExposureUsingHistoryList }">
-							<tbody align="center">
-								<tr>
-									<td><c:out value="${ exposureUsingPostHistroy.jobPostTitle }"/></td>
-									<td><c:out value="${ exposureUsingPostHistroy.jobName }"/></td>
-									<td>
-									<c:forEach var="requestingSkillsList" items="${ requestScope.paymentrequestingSkillsList }">
-									<c:out value="${ requestingSkillsList.skillsName }"/><span>  </span>
-									</c:forEach>
-									</td>
-									<td><c:out value="${ exposureUsingPostHistroy.jobPostDeadline }"/></td>															
-									<td><c:out value="${ exposureUsingPostHistroy.exposureUseDate }"/></td>		
-									<td><c:out value="${ exposureUsingPostHistroy.exposureEndDate }"/></td>					
-								</tr>
-							</tbody>
 							</c:forEach>
 						</table>
 					</div>
@@ -272,24 +182,19 @@
 		</div>
 	</div>
 	
+
 <script>
 $(document).ready(function() {
-	$('#table_payment').DataTable();
+	$('#table_refund').DataTable();
 });
 
-$(document).ready(function() {
-	$('#table_Browsing').DataTable();
-});
-$(document).ready(function() {
-	$('#table_exposure').DataTable();
-});
 function req(button) {
 	
-	var payNo = button.parentNode.parentNode.children[0].innerText;
+	var refundNo = button.parentNode.parentNode.children[0].innerText;
 	
-	var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/refund/request/insert").attr("method", "get");
+	var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/company/refundHistory/select").attr("method", "post");
 	
-	$form.append($("<input>").attr("name", "payNo").attr("type", "hidden").val(payNo));
+	$form.append($("<input>").attr("name", "refundNo").attr("type", "hidden").val(refundNo));
 	
 	console.log($form.children().val());
 	

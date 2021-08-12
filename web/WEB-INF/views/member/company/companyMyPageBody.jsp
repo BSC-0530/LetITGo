@@ -88,6 +88,10 @@
 												</p>
 												<br><br>
 												<p>
+													<a href="${ pageContext.servletContext.contextPath }/company/refundHistory/select">환불내역</a>
+												</p>
+												<br><br>
+												<p>
 
 													<a href="${ pageContext.servletContext.contextPath }/company/jobPostingHistory/select">공고관리</a>
 												</p>

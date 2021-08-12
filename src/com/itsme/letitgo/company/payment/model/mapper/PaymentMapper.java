@@ -8,30 +8,33 @@ import com.itsme.letitgo.company.payment.model.dto.ExposureUsingHistoryDTO;
 import com.itsme.letitgo.company.payment.model.dto.HoldingRequestingSkillsDTO;
 import com.itsme.letitgo.company.payment.model.dto.PaymentHistoryDTO;
 import com.itsme.letitgo.company.payment.model.dto.ProductDTO;
+import com.itsme.letitgo.company.payment.model.dto.RefundHistoryDTO;
 
 public interface PaymentMapper {
 
-	List<ProductDTO> selectProductList();
+	List<ProductDTO> selectProductList(/* 기업회원번호 */);
 
-	List<PaymentHistoryDTO> selectPaymentHistory();
+	List<PaymentHistoryDTO> selectPaymentHistory(/* 기업회원번호 */);
 
-	int selectResumeBrowsingNum();
+	int selectResumeBrowsingNum(/* 기업회원번호 */);
 
-	int selectExposureUsingPostNum();
+	int selectExposureUsingPostNum(/* 기업회원번호 */);
 
-	long selectExposureRestTime();
+	long selectExposureRestTime(/* 기업회원번호 */);
 
-	List<BrowseUsingHistoryDTO> selectBrowseUsingHistroyList();
+	List<BrowseUsingHistoryDTO> selectBrowseUsingHistroyList(/* 기업회원번호 */);
 
-	List<HoldingRequestingSkillsDTO> selectHoldingSkillsList();
+	List<HoldingRequestingSkillsDTO> selectHoldingSkillsList(/* 기업회원번호 */);
 
-	List<ExposureUsingHistoryDTO> selectExposureUsingHistoryList();
+	List<ExposureUsingHistoryDTO> selectExposureUsingHistoryList(/* 기업회원번호 */);
 
-	List<HoldingRequestingSkillsDTO> selectRequestingSkillsList();
+	List<HoldingRequestingSkillsDTO> selectRequestingSkillsList(/* 기업회원번호 */);
 
-	PaymentHistoryDTO selectRefundRequestProduct(int payNo);
+	PaymentHistoryDTO selectRefundRequestProduct(int payNo /* 기업회원번호 */);
 
-	int insertRefundMessage(Map<String, Object> map);
+	int insertRefundMessage(Map<String, Object> map /* 기업회원번호 */);
+
+	List<RefundHistoryDTO> selectRefundHistory(/* 기업회원번호 */);
 
 
 
