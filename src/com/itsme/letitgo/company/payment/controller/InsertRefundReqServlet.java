@@ -57,13 +57,14 @@ public class InsertRefundReqServlet extends HttpServlet {
 		
 		int result = insertRefundRequestMessageService.insertRefundMessage(map);
 		
+		StringBuilder redirectText = new StringBuilder();
 		
 		if(result > 0) {
-			
+			redirectText.append("<script>alert('환불요청이 정상적으로 처리되었습니다.'); location.href='../../company/paymentHistory/select';</script>");
+		} else {
+			redirectText.append("<script>alert('환불요청에 실패하였습니다.'); location.href='../../company/paymentHistory/select';</script>");
 		}
-		
-		StringBuilder redirectText = new StringBuilder();
-		redirectText.append("<script>alert(''); location.href='../../company/paymentHistory/select';</script>");
+		 
 									
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();

@@ -10,11 +10,12 @@ import com.itsme.letitgo.company.payment.model.dto.BrowseUsingHistoryDTO;
 import com.itsme.letitgo.company.payment.model.dto.ExposureUsingHistoryDTO;
 import com.itsme.letitgo.company.payment.model.dto.HoldingRequestingSkillsDTO;
 import com.itsme.letitgo.company.payment.model.dto.PaymentHistoryDTO;
+import com.itsme.letitgo.company.payment.model.dto.RefundChangeStatusDTO;
 import com.itsme.letitgo.company.payment.model.mapper.PaymentMapper;
 
 public class SelectPaymentHistoryService {
 
-	public List<PaymentHistoryDTO> SelectPaymentHistory() {
+	public List<PaymentHistoryDTO> selectPaymentHistory() {
 		
 		SqlSession session = getSqlSession();
 		
@@ -28,7 +29,7 @@ public class SelectPaymentHistoryService {
 		return paymentHistoryList;
 	}
 
-	public int SelectResumeBrowsingNum() {
+	public int selectResumeBrowsingNum() {
 		
 		SqlSession session = getSqlSession();
 		
@@ -42,7 +43,7 @@ public class SelectPaymentHistoryService {
 		
 	}
 
-	public int SelectExposureUsingPostNum() {
+	public int selectExposureUsingPostNum() {
 		
 		SqlSession session = getSqlSession();
 		
@@ -55,7 +56,7 @@ public class SelectPaymentHistoryService {
 		return exposureUsingPostNum;
 	}
 
-	public long SelectExposureRestTime() {
+	public long selectExposureRestTime() {
 		
 		SqlSession session = getSqlSession();
 		
@@ -69,7 +70,7 @@ public class SelectPaymentHistoryService {
 	
 	}
 
-	public List<BrowseUsingHistoryDTO> SelectBrowseUsingHistroy() {
+	public List<BrowseUsingHistoryDTO> selectBrowseUsingHistroy() {
 		
 		SqlSession session = getSqlSession();
 		
@@ -82,7 +83,7 @@ public class SelectPaymentHistoryService {
 		return paymentBrowseUsingHistroyList;
 	}
 
-	public List<HoldingRequestingSkillsDTO> SelectHoldingSkills() {
+	public List<HoldingRequestingSkillsDTO> selectHoldingSkills() {
 		
 		SqlSession session = getSqlSession();
 		
@@ -96,7 +97,7 @@ public class SelectPaymentHistoryService {
 		
 	}
 
-	public List<ExposureUsingHistoryDTO> SelectExposureUsingHistory() {
+	public List<ExposureUsingHistoryDTO> selectExposureUsingHistory() {
 		
 		SqlSession session = getSqlSession();
 		
@@ -110,7 +111,7 @@ public class SelectPaymentHistoryService {
 
 	}
 
-	public List<HoldingRequestingSkillsDTO> SelectRequestingSkills() {
+	public List<HoldingRequestingSkillsDTO> selectRequestingSkills() {
 	
 		SqlSession session = getSqlSession();
 		
@@ -123,6 +124,20 @@ public class SelectPaymentHistoryService {
 		return paymentRequestingSkillsList;
 		
 	
+	}
+	
+	public List<RefundChangeStatusDTO> selectRefundChangeStatus() {
+		
+		SqlSession session = getSqlSession();
+		
+		PaymentMapper refundChangeStatusMapper = session.getMapper(PaymentMapper.class);
+		
+		List<RefundChangeStatusDTO> RefundChangeStatus = refundChangeStatusMapper.selectRefundChangeStatus();
+		
+		session.close();
+			
+		return RefundChangeStatus;
+		
 	}
 
 }
