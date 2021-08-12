@@ -3,7 +3,7 @@ window.onload = function() {
 		
 		const $regist = document.getElementById("personalMyPage");
 		$regist.onclick = function() {
-			location.href = "/let/select/memberInfo";
+			location.href = "/let/ /select";
 		
 		}
 	}

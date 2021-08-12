@@ -88,10 +88,11 @@
 		</select>
 		<select id="companyScoutSkills" resultMap="mainScoutHoldingSkillsDTO">
 		SELECT
-		 		S.SKILLS_NAME
-		 	  , RS.RESUME_NO
+                RS.RESUME_NO
+		 	  , LISTAGG(S.SKILLS_NAME,',') WITHIN GROUP(ORDER BY S.SKILLS_NAME) as SKILLS_NAME
 		  FROM TBL_RESUME_HOLDING_SKILLS RS
           JOIN TBL_SKILLS S ON (S.SKILLS_NO = RS.SKILLS_NO)
+          GROUP BY RS.RESUME_NO
 		</select>
 <!-- 		<select id="companyScoutCareea" resultType="hashMap" > -->
 			
@@ -105,8 +106,8 @@
 		<select id="companyScoutCareea" resultType="HashMap">
 			
 		 SELECT
-			    R.RESUME_NO,
-                SUM( ROUND(ABS(MONTHS_BETWEEN(CR.CAR_HIRE_DATE,CR.CAR_ENT_DATE)),0))
+			     R.RESUME_NO
+               , SUM( ROUND(ABS(MONTHS_BETWEEN(CR.CAR_HIRE_DATE,CR.CAR_ENT_DATE)),0)) as 경력
 		    FROM TBL_CAREER_HISTORY CR
 		    JOIN TBL_RESUME R ON (R.RESUME_NO = CR.RESUME_NO)
         GROUP BY CR.RESUME_NO

@@ -1,5 +1,7 @@
 package com.itsme.letitgo.company.info.model.dto;
 
+import com.itsme.letitgo.login.model.dto.MemberDTO;
+
 public class CompanyAddInfoDTO implements java.io.Serializable {
 
 	private int coMemNo;
@@ -12,10 +14,12 @@ public class CompanyAddInfoDTO implements java.io.Serializable {
 	private String coPax;
 	private String coSectors;
 	private String coStatus;
-	public CompanyAddInfoDTO() {}
+	private String webSite;
 	
+	public CompanyAddInfoDTO() {}
+
 	public CompanyAddInfoDTO(int coMemNo, String coIntro, String coNo, String coComName, String coCeoName,
-			String coAddress, String coPhone, String coPax, String coSectors, String coStatus) {
+			String coAddress, String coPhone, String coPax, String coSectors, String coStatus, String webSite) {
 		super();
 		this.coMemNo = coMemNo;
 		this.coIntro = coIntro;
@@ -27,6 +31,7 @@ public class CompanyAddInfoDTO implements java.io.Serializable {
 		this.coPax = coPax;
 		this.coSectors = coSectors;
 		this.coStatus = coStatus;
+		this.webSite = webSite;
 	}
 
 	public int getCoMemNo() {
@@ -109,14 +114,22 @@ public class CompanyAddInfoDTO implements java.io.Serializable {
 		this.coStatus = coStatus;
 	}
 
+	public String getWebSite() {
+		return webSite;
+	}
+
+	public void setWebSite(String webSite) {
+		this.webSite = webSite;
+	}
+
 	@Override
 	public String toString() {
 		return "CompanyAddInfoDTO [coMemNo=" + coMemNo + ", coIntro=" + coIntro + ", coNo=" + coNo + ", coComName="
 				+ coComName + ", coCeoName=" + coCeoName + ", coAddress=" + coAddress + ", coPhone=" + coPhone
-				+ ", coPax=" + coPax + ", coSectors=" + coSectors + ", coStatus=" + coStatus + "]";
+				+ ", coPax=" + coPax + ", coSectors=" + coSectors + ", coStatus=" + coStatus + ", webSite=" + webSite
+				+ "]";
 	}
-	
-	
+
 
 	
 }
