@@ -1,6 +1,7 @@
 package com.itsme.letitgo.company.payment.model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.itsme.letitgo.company.payment.model.dto.BrowseUsingHistoryDTO;
 import com.itsme.letitgo.company.payment.model.dto.ExposureUsingHistoryDTO;
@@ -27,5 +28,11 @@ public interface PaymentMapper {
 	List<ExposureUsingHistoryDTO> selectExposureUsingHistoryList();
 
 	List<HoldingRequestingSkillsDTO> selectRequestingSkillsList();
+
+	PaymentHistoryDTO selectRefundRequestProduct(int payNo);
+
+	int insertRefundMessage(Map<String, Object> map);
+
+
 
 }

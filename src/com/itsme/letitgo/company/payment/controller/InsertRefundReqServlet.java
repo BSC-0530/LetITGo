@@ -1,37 +1,78 @@
 package com.itsme.letitgo.company.payment.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.itsme.letitgo.company.payment.model.dto.PaymentHistoryDTO;
+import com.itsme.letitgo.company.payment.model.service.InsertRefundRequestProductService;
+
 @WebServlet("/refund/request/insert")
 public class InsertRefundReqServlet extends HttpServlet {
+
+	private int payNo;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8");
 		
-		
-	}
+		/* 환불요청 클릭 후 결제번호 받아옴 */
+		payNo = Integer.parseInt(request.getParameter("payNo"));
 
+		InsertRefundRequestProductService product = new InsertRefundRequestProductService();
+		
+		/* 결제번호를 통해서 환불할 상품정보를 받아옴 */
+		PaymentHistoryDTO refundRequestProduct = product.selectRefundRequestProduct(payNo);
+		
+		System.out.println(payNo);
+		System.out.println(refundRequestProduct);
+	
+		String path = "/WEB-INF/views/payment/refundRequest.jsp";
+		
+		request.setAttribute("refundRequestProduct", refundRequestProduct);
+		request.getRequestDispatcher(path).forward(request, response);
+	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		int payNo = Integer.parseInt(request.getParameter("payNo"));
-		String productName = request.getParameter("productName");
-		String payPrice = request.getParameter("payPrice");
+		/* 환불사유 받아옴 */
+		String payChangeReason = request.getParameter("refundMessage");		
+		System.out.println(payChangeReason);
 		
-		System.out.println(payNo);
-		System.out.println(productName);
-		System.out.println(payPrice);
+		InsertRefundRequestProductService insertRefundRequestMessageService = new InsertRefundRequestProductService();	
 		
-		String path = "/WEB-INF/views/payment/refundRequest.jsp";
+		/* 결제번호와 환불사유를 맵으로 묶어서 넘긴다 */
+		Map<String, Object> map = new HashMap<>();
+		map.put("payChangeReason", payChangeReason);
+		map.put("payNo", payNo);
 		
-		request.getRequestDispatcher(path).forward(request, response);
+		int result = insertRefundRequestMessageService.insertRefundMessage(map);
+		
+		
+		if(result > 0) {
+			
+		}
+		
+		StringBuilder redirectText = new StringBuilder();
+		redirectText.append("<script>alert(''); location.href='../../company/paymentHistory/select';</script>");
+									
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		out.print(redirectText.toString());
+		out.flush();
+		out.close();
+		
+		response.sendRedirect("/let/company/paymentHistory/select");
 	}
 
 }

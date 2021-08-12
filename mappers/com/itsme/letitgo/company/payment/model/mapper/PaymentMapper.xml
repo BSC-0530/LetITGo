@@ -134,4 +134,39 @@
           JOIN TBL_SKILLS C ON (B.SKILLS_NO = C.SKILLS_NO)
 	</select>
 	
+	<select id="selectRefundRequestProduct" resultMap="PaymentHistoryReusltMap">
+		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectRefundRequestProduct() */
+               A.PAY_NO
+     		 , B.PRODUCT_NAME
+             , A.PAY_PRICE
+             , A.PAY_DATE
+             , A.PAY_KINDS
+          FROM TBL_PAYMENT_HISTORY A
+          LEFT JOIN TBL_PRODUCT_LIST B ON (A.PRODUCT_NO = B.PRODUCT_NO)
+         WHERE A.CO_MEM_NO = '2'
+           AND A.PAY_NO = #{ payNo }
+	</select>
+	
+	<insert id="insertRefundMessage">
+	    INSERT
+          INTO TBL_PAYMENT_CHANGE_HISTORY
+        (
+          PAY_CHANGE_NO
+        , PAY_CHANGE_STATUS
+        , PAY_REQ_DATE
+        , PAY_CHANGE_REASON
+        , PAY_NO
+        , PAY_ANS_DATE
+        )
+        VALUES
+        (
+          SEQ_PAY_CHANGE_NO.NEXTVAL
+        , '환불요청'
+        , SYSDATE
+        , #{ payChangeReason }
+        , #{ payNo }
+        , null
+        )
+	</insert>
+	
 </mapper>
