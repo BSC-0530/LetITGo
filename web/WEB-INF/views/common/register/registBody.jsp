@@ -43,7 +43,7 @@
 		var idJ = /^[a-z0-9]{4,12}$/;
 		
 		
-		$("#id").blur(function () {
+		$("#id").click(function () {
 			
 			var id = $('#id').val();
 			$.ajax({
@@ -75,7 +75,6 @@
 						} else {
 							
 							alert("아이디는 소문자와 숫자 4~12자리만 가능합니다.");
-							$('#id_check').css('color', 'red');
 							$("#reg_submit").attr("disabled", true);
 						}
 						
@@ -86,7 +85,7 @@
 			});
 		});
 		
-		var id = document.getElementById("id");
+		
 		var pwd = document.getElementById("pw1");
 		var repwd = document.getElementById("pw2");
 		var email = document.getElementById("email");
@@ -141,6 +140,24 @@
 		document.join_form.submit();
 
 	}
+	function emailCheck() {
+		var form = document.authenform;
+		var comfirm = ${ comfirm };
+		
+		if(!form.comfirm.value){
+			alert("인증번호를 입력하세요!!");
+			return false;
+		}
+		if(form.comfirm.value != comfirm){
+			alert("틀린 인증번호입니다. 인증번호를 다시 입력해주세요");
+			return false;
+		}
+		if(form.comfirm.value==comfirm){
+			alert("인증완료");
+			opener.document.userinput.mailCheck.value ="인증완료";
+			self.close();
+		}
+	}
 </script>
 </head>
 <body>
@@ -174,7 +191,7 @@
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                         
                                             <input type="text" name="id" class="form-control"  style="text-transform: lowercase" placeholder="아이디">
-                                            <div class="check_font" id="id_check"></div>
+											<input type="button" name="id" value="중복체크">
                                         </div>
                                         
 
@@ -186,7 +203,7 @@
 
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                             <input type="text" name="comfirm" value="인증번호 확인"  style="text-transform: lowercase" placeholder="인증번호">
-                                            <input type="button" value="인증번호 확인" onclick="">
+                                            <input type="button" value="인증번호 확인" onclick="emailCheck()">
                                         </div>
 
                                        
