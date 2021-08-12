@@ -75,6 +75,7 @@
 												<p align="center">
 													<a href="${ pageContext.servletContext.contextPath }/selfintroductionitem/list">자기소개서 항목 관리</a>
 												</p>
+												<br>
 												<p align="center">
 													<a href="${ pageContext.servletContext.contextPath }/jobfield/list">직무분야 관리</a>
 												</p>
@@ -110,6 +111,7 @@
 												<p align="center">
 													<a href="#">공고 수정 요청</a>
 												</p>
+												<br>
 												<p align="center">
 													<a href="#">기업 회원 가입 요청</a>
 												</p>	
@@ -182,9 +184,17 @@
 								</tr>
 							</tbody>
 							</c:forEach>
+							
 						</table>
 						<br><br>
-								
+								<!-- <div align="right">
+									<table>
+										<tr>
+											<td><button type="button"
+													onclick="location='adminJobFieldInsertForm.jsp'">등록하기</button></td>
+										</tr>
+									</table>
+								</div> -->
 							</div>
 						</div>
 					</div>
@@ -200,5 +210,15 @@
 			$('#job_field').DataTable();
 		});
 	</script>
+
+	<!-- <div align="center">
+	<table>
+		<tr>
+			<td><button type="button" onclick="location='adminJobFieldInsertForm.jsp'">등록하기</button></td>
+		</tr>
+	</table>
+	</div> -->
+	<!-- <input type="button" value="확인" onclick="location.href='/adminJobFieldInsertForm.jsp'"><button>등록하기</button> -->
+	
 </body>
 </html>

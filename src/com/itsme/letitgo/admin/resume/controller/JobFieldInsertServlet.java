@@ -16,7 +16,7 @@ public class JobFieldInsertServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String path = "경로 지정해주기";
+		String path = "";
 		
 		request.getRequestDispatcher(path).forward(request, response);
 		
