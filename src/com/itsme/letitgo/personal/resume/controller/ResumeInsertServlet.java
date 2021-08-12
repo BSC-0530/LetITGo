@@ -14,6 +14,7 @@ import com.itsme.letitgo.personal.resume.model.dto.AwardHistoryDTO;
 import com.itsme.letitgo.personal.resume.model.dto.CareerHistoryDTO;
 import com.itsme.letitgo.personal.resume.model.dto.DetailResumeDTO;
 import com.itsme.letitgo.personal.resume.model.dto.EducationHistoryDTO;
+import com.itsme.letitgo.personal.resume.model.dto.InsertResumeDTO;
 import com.itsme.letitgo.personal.resume.model.dto.LicenseHistoryDTO;
 import com.itsme.letitgo.personal.resume.model.dto.PortfolioDTO;
 import com.itsme.letitgo.personal.resume.model.dto.ResumeDTO;
@@ -32,135 +33,103 @@ public class ResumeInsertServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 
-//		---------- ResumeDTO -----------
-		String resumeTitle = request.getParameter("resumeTitle");
+//		-- value 꺼내기
+//		---- resume
+		int resumeNo = Integer.parseInt(request.getParameter("resumeNo"));
+		int inMemNo = Integer.parseInt(request.getParameter("inMemNo"));
+		java.sql.Date resumeWriteDate = java.sql.Date.valueOf(request.getParameter("resumeWriteDate"));
+		String resumeScoutStatus = request.getParameter("resumeScoutStatus");
 		Integer jobNo = Integer.parseInt(request.getParameter("jobNo"));
-		
-//		---------- CareerHistoryDTO -------------
+		String resumeTitle = request.getParameter("resumeTitle");
+//		---- career
+		Integer carNo = Integer.parseInt(request.getParameter("carNo"));
 		String carComName = request.getParameter("carComName");
+		java.sql.Date carHireDate = java.sql.Date.valueOf(request.getParameter("carHireDate"));
+		java.sql.Date carEntDate = java.sql.Date.valueOf(request.getParameter("carEntDate"));
+		String carStatus = request.getParameter("carStatus");
 		String carDeptName = request.getParameter("carDeptName");
 		String carJobName = request.getParameter("carJobName");
 		String carWorkField = request.getParameter("carWorkField");
-		java.sql.Date carHireDate = java.sql.Date.valueOf(request.getParameter("carHireDate"));
-		java.sql.Date carEntDate = java.sql.Date.valueOf(request.getParameter("carEntDate"));
 		String projectName = request.getParameter("projectName");
+		java.sql.Date projectStartDate = java.sql.Date.valueOf("projectStartDate");
+		java.sql.Date projectEndDate = java.sql.Date.valueOf("projectEndDate");
 		String projectContent = request.getParameter("projectContent");
-		java.sql.Date projectStartDate = java.sql.Date.valueOf(request.getParameter("projectStartDate"));
-		java.sql.Date projectEndDate = java.sql.Date.valueOf(request.getParameter("projectEndDate"));
-		
-//		---------- PortFolioDTO
+//		---- portfolio
+		Integer potNo = Integer.parseInt(request.getParameter("potNo"));
+		String potKinds = request.getParameter("potKinds");
 		String potLinkAddress = request.getParameter("potLinkAddress");
 		String potFilePath = request.getParameter("potFilePath");
-		
-//		---------- SelfIntroDTO
+		String potFileOriginalName = request.getParameter("potFileOriginalName");
+		String potFileName = request.getParameter("potFileName");
+//		---- introduction
 		Integer selfIntroItemNo = Integer.parseInt(request.getParameter("selfIntroItemNo"));
 		String selfIntroItemContent = request.getParameter("selfIntroItemContent");
-		
-//		---------- LicenseDTO
+//		---- license
+		Integer licenseNo = Integer.parseInt(request.getParameter("licenseNo"));
 		String licenseName = request.getParameter("licenseName");
 		String licenseAgency = request.getParameter("licenseAgency");
 		java.sql.Date licenseDate = java.sql.Date.valueOf(request.getParameter("licenseDate"));
-		
-//		---------- EducationDTO
+//		---- education
+		Integer eduNo = Integer.parseInt(request.getParameter("eduNo"));
 		String eduName = request.getParameter("eduName");
 		String eduAgency = request.getParameter("eduAgency");
-		java.sql.Date eduStartDate = java.sql.Date.valueOf(request.getParameter("eduStartDate"));
-		java.sql.Date eduEndDate = java.sql.Date.valueOf(request.getParameter("eduEndDate"));
+		java.sql.Date eduStartDate = java.sql.Date.valueOf("eduStartDate");
+		java.sql.Date eduEndDate = java.sql.Date.valueOf("eduEndDate");
 		String eduContent = request.getParameter("eduContent");
-		
-//		---------- AwardDTO 
+//		---- award
+		Integer awdNo = Integer.parseInt(request.getParameter("awdNo"));
 		String awdName = request.getParameter("awdName");
 		String awdAgency = request.getParameter("awdAgency");
-		java.sql.Date awdDate = java.sql.Date.valueOf(request.getParameter("awdDate"));
+		java.sql.Date awdDate = java.sql.Date.valueOf("awdDate");
 		String awdContent = request.getParameter("awdContent");
 		
+		InsertResumeDTO ir = new InsertResumeDTO();
+//		ir.setResumeNo(resumeNo);
+//		ir.setInMemNo(inMemNo);
+//		ir.setResumeWriteDate(resumeWriteDate);
+//		ir.setResumeScoutStatus(resumeScoutStatus);
+		ir.setJobNo(jobNo);
+		ir.setResumeTitle(resumeTitle);
+//		ir.setCarNo(carNo);
+		ir.setCarComName(carComName);
+		ir.setCarHireDate(carHireDate);
+		ir.setCarEntDate(carEntDate);
+		ir.setCarStatus(carStatus);
+		ir.setCarDeptName(carDeptName);
+		ir.setCarJobName(carJobName);
+		ir.setCarWorkField(carWorkField);
+		ir.setProjectName(projectName);
+		ir.setProjectStartDate(projectStartDate);
+		ir.setProjectEndDate(projectEndDate);
+		ir.setProjectContent(projectContent);
+//		ir.setPotNo(potNo);
+		ir.setPotKinds(potKinds);
+		ir.setPotLinkAddress(potLinkAddress);
+		ir.setPotFilePath(potFilePath);
+		ir.setPotFileOriginalName(potFileOriginalName);
+		ir.setPotFileName(potFileName);
+		ir.setSelfIntroItemNo(selfIntroItemNo);
+		ir.setSelfIntroItemContent(selfIntroItemContent);
+//		ir.setLicenseNo(licenseNo);
+		ir.setLicenseName(licenseName);
+		ir.setLicenseAgency(licenseAgency);
+		ir.setLicenseDate(licenseDate);
+//		ir.setEduNo(eduNo);
+		ir.setEduName(eduName);
+		ir.setEduAgency(eduAgency);
+		ir.setEduStartDate(eduStartDate);
+		ir.setEduEndDate(eduEndDate);
+		ir.setEduContent(eduContent);
+//		ir.setAwdNo(awdNo);
+		ir.setAwdName(awdName);
+		ir.setAwdAgency(awdAgency);
+		ir.setAwdDate(awdDate);
+		ir.setAwdContent(awdContent);
 		
-//		---------- career set
-		List<CareerHistoryDTO> carList = new ArrayList<>();
-		CareerHistoryDTO car = new CareerHistoryDTO();
+		List<InsertResumeDTO> irList = new ArrayList<>();
+		irList.add(ir);
 		
-		car.setCarComName(carComName);
-		car.setCarDeptName(carDeptName);
-		car.setCarEntDate(carEntDate);
-		car.setCarHireDate(carHireDate);
-		car.setCarJobName(carJobName);
-		car.setCarWorkField(carWorkField);
-		car.setProjectContent(projectContent);
-		car.setProjectEndDate(projectEndDate);
-		car.setProjectStartDate(projectStartDate);
-		car.setProjectName(projectName);
-		
-		carList.add(car);
-		
-//		----------- resume set
-		ResumeDTO resume = new ResumeDTO();
-		resume.setJobNo(jobNo);
-		resume.setResumeTitle(resumeTitle);
-		
-//		----------- Portfolio set
-		List<PortfolioDTO> potList = new ArrayList<>();
-		PortfolioDTO pf = new PortfolioDTO();
-		
-		pf.setPotLinkAddress(potLinkAddress);
-		pf.setPotFilePath(potFilePath);
-		
-		potList.add(pf);
-		
-//		----------- SelfIntroCon set
-		List<SelfIntroductionContentDTO> sicList = new ArrayList<>();
-		SelfIntroductionContentDTO sic = new SelfIntroductionContentDTO();
-		
-		sic.setSelfIntroItemNo(selfIntroItemNo);
-		sic.setSelfIntroItemContent(selfIntroItemContent);
-		
-		sicList.add(sic);
-		
-//		----------- Lisence set
-		List<LicenseHistoryDTO> lhList = new ArrayList<>();
-		LicenseHistoryDTO lh = new LicenseHistoryDTO();
-		
-		lh.setLicenseName(licenseName);
-		lh.setLicenseAgency(licenseAgency);
-		lh.setLicenseDate(licenseDate);
-		
-		lhList.add(lh);
-		
-//		----------- Education set
-		List<EducationHistoryDTO> eduList = new ArrayList<>();
-		EducationHistoryDTO edu = new EducationHistoryDTO();
-		
-		edu.setEduName(eduName);
-		edu.setEduAgency(eduAgency);
-		edu.setEduStartDate(eduStartDate);
-		edu.setEduEndDate(eduEndDate);
-		edu.setEduContent(eduContent);
-		
-		eduList.add(edu);
-		
-//		----------- Awd set
-		List<AwardHistoryDTO> awdList = new ArrayList<>();
-		AwardHistoryDTO awd = new AwardHistoryDTO();
-		
-		awd.setAwdName(awdName);
-		awd.setAwdAgency(awdAgency);
-		awd.setAwdDate(awdDate);
-		awd.setAwdContent(awdContent);
-		
-		awdList.add(awd);
-		
-		
-//		----------- DetailResume set
-		DetailResumeDTO dr = new DetailResumeDTO();
-		dr.setResumeTitle(resumeTitle);
-		dr.setJobNo(jobNo);
-		dr.setCareerHistoryList(carList);
-		dr.setAwardHistoryList(awdList);
-		dr.setEducationHistoryList(eduList);
-		dr.setLicenseHistoryList(lhList);
-		dr.setPortFolioList(potList);
-		
-		
-		int result = new ResumeService().insertResume(dr);
+		int result = new ResumeService().insertResume(irList);
 		
 		System.out.println(result);
 		
