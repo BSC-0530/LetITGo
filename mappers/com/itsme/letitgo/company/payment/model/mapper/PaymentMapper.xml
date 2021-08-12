@@ -12,13 +12,21 @@
 		<result property="productName" column="PRODUCT_NAME"/>
 	</resultMap>
 	
-	<resultMap type="com.itsme.letitgo.company.payment.model.dto.PaymentHistoryDTO" id="paymentHistoryResultMap">
+	<resultMap type="com.itsme.letitgo.company.payment.model.dto.RefundRequestProductDTO" id="refundRequestProductResultMap">
 		<id property="payNo" column="PAY_NO"/>
 		<result property="productName" column="PRODUCT_NAME"/>
 		<result property="payPrice" column="PAY_PRICE"/>
 		<result property="payDate" column="PAY_DATE"/>
 		<result property="payKinds" column="PAY_KINDS"/>
 		<result property="payChangeStatus" column="PAY_CHANGE_STATUS"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.company.payment.model.dto.PaymentHistoryDTO" id="paymentHistoryResultMap">
+		<id property="payNo" column="PAY_NO"/>
+		<result property="productName" column="PRODUCT_NAME"/>
+		<result property="payPrice" column="PAY_PRICE"/>
+		<result property="payDate" column="PAY_DATE"/>
+		<result property="payKinds" column="PAY_KINDS"/>
 	</resultMap>
 	
 	<resultMap type="com.itsme.letitgo.company.payment.model.dto.BrowseUsingHistoryDTO" id="browseUsingHistroyResultMap">
@@ -75,10 +83,8 @@
              , A.PAY_PRICE
              , A.PAY_DATE
              , A.PAY_KINDS
-             , C.PAY_CHANGE_STATUS
           FROM TBL_PAYMENT_HISTORY A
           LEFT JOIN TBL_PRODUCT_LIST B ON (A.PRODUCT_NO = B.PRODUCT_NO)
-          LEFT JOIN TBL_PAYMENT_CHANGE_HISTORY C ON (A.PAY_NO = C.PAY_NO)
          WHERE A.CO_MEM_NO = '2'
          ORDER BY A.PAY_NO
 	</select>
@@ -153,7 +159,7 @@
           JOIN TBL_SKILLS C ON (B.SKILLS_NO = C.SKILLS_NO)
 	</select>
 	
-	<select id="selectRefundRequestProduct" resultMap="paymentHistoryResultMap">
+	<select id="selectRefundRequestProduct" resultMap="refundRequestProductResultMap">
 		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectRefundRequestProduct() */
                A.PAY_NO
      		 , B.PRODUCT_NAME
@@ -205,6 +211,7 @@
          JOIN TBL_PRODUCT_LIST C ON (A.PRODUCT_NO = C.PRODUCT_NO)
          JOIN TBL_MEMBER D ON (A.CO_MEM_NO = D.MEM_NO)
         WHERE A.CO_MEM_NO = '2'
+        ORDER BY B.PAY_CHANGE_NO
 	</select>
 	
 	<update id="updateRefundRequest" parameterType="_int">
@@ -214,6 +221,13 @@
           WHERE PAY_CHANGE_NO = #{ payChangeNo }
 	</update>
 	
+	<update id="updateRefundRequest2" parameterType="_int">
+		 UPDATE /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#updateRefundRequest2() */
+                TBL_PAYMENT_HISTORY
+            SET PAY_KINDS = '결제완료'
+          WHERE PAY_NO = #{ payNo }
+	</update>
+	
 	<select id="selectRefundChangeStatus" resultMap="refundChangeStatus">
 		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectRefundChangeStatus() */
 		       A.PAY_CHANGE_STATUS
@@ -221,5 +235,19 @@
 		  JOIN TBL_PAYMENT_HISTORY B ON (A.PAY_NO = B.PAY_NO)
 		 WHERE CO_MEM_NO = '2'	
 	</select>
+	
+	<select id="selectPayNo" resultType="_int">
+		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectPayNo() */
+		       A.PAY_NO
+		  FROM TBL_PAYMENT_CHANGE_HISTORY A
+		 WHERE A.PAY_CHANGE_NO = #{ payChangeNo }
+	</select>
+	
+	<update id="updatePaymentStatus">
+		UPDATE
+		       TBL_PAYMENT_HISTORY
+		   SET PAY_KINDS = '환불요청'
+		 WHERE PAY_NO = #{ payNo }
+	</update>
 	
 </mapper>

@@ -97,7 +97,7 @@
 													<a href="#" >상품 관리</a>
 												</p>
 												<p align="center">
-													<a href="#">결제 내역 조회</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/refund/select">결제 내역 조회</a>
 												</p>
 												<p align="center">
 													<a href="#">환불 요청 관리</a>

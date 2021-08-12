@@ -45,5 +45,26 @@ public class RefundHistoryService {
 
 	}
 
+	public int updateRefundRequest2(int payChangeNo) {
+		
+		SqlSession session = getSqlSession();
+		
+		PaymentMapper refundRequestMapper2 = session.getMapper(PaymentMapper.class);
+		
+		int payNo = refundRequestMapper2.selectPayNo(payChangeNo);
+		
+		int result2 = refundRequestMapper2.updateRefundRequest2(payNo);
+		
+		if(result2 > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result2;
+	}
+
 
 }

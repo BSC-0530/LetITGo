@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itsme.letitgo.company.payment.model.dto.PaymentHistoryDTO;
+import com.itsme.letitgo.company.payment.model.dto.RefundRequestProductDTO;
 import com.itsme.letitgo.company.payment.model.service.InsertRefundRequestProductService;
 
 @WebServlet("/refund/request/insert")
@@ -29,7 +29,7 @@ public class InsertRefundReqServlet extends HttpServlet {
 		InsertRefundRequestProductService product = new InsertRefundRequestProductService();
 		
 		/* 결제번호를 통해서 환불할 상품정보를 받아옴 */
-		PaymentHistoryDTO refundRequestProduct = product.selectRefundRequestProduct(payNo);
+		RefundRequestProductDTO refundRequestProduct = product.selectRefundRequestProduct(payNo);
 		
 		System.out.println(payNo);
 		System.out.println(refundRequestProduct);
@@ -57,9 +57,12 @@ public class InsertRefundReqServlet extends HttpServlet {
 		
 		int result = insertRefundRequestMessageService.insertRefundMessage(map);
 		
+		int result2 = insertRefundRequestMessageService.updatePaymentStatus(map);
+		
+		
 		StringBuilder redirectText = new StringBuilder();
 		
-		if(result > 0) {
+		if(result > 0 && result2 > 0) {
 			redirectText.append("<script>alert('환불요청이 정상적으로 처리되었습니다.'); location.href='../../company/paymentHistory/select';</script>");
 		} else {
 			redirectText.append("<script>alert('환불요청에 실패하였습니다.'); location.href='../../company/paymentHistory/select';</script>");
