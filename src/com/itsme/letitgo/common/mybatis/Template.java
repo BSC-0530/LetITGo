@@ -12,8 +12,8 @@ import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 
 import com.itsme.letitgo.admin.resume.model.mapper.JobFieldMapper;
 import com.itsme.letitgo.company.info.model.mapper.CompanyTestMapper;
-
 import com.itsme.letitgo.company.payment.model.mapper.PaymentMapper;
+import com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper;
 import com.itsme.letitgo.company.scout.model.mapper.CompanyScoutMapper;
 import com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper;
 import com.itsme.letitgo.personal.resume.model.mapper.ResumeMapper;
@@ -48,8 +48,10 @@ public class Template {
 			configuration.addMapper(ResumeMapper.class);
 			configuration.addMapper(PaymentMapper.class);
 			
-
+			
+			// 동기
 			configuration.addMapper(SelectJobPostingMapper.class);
+			configuration.addMapper(SelectCoMyJobPostingMapper.class);
 
 			
 

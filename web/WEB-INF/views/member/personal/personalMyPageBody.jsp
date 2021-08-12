@@ -64,8 +64,8 @@
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
-				<div
-					class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
+			
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_rightside_job_categories_wrapper">
@@ -75,8 +75,8 @@
 								<div class="jp_rightside_job_categories_content">
 									<div class="handyman_sec1_wrapper">
 										<div class="content">
-											<div align="center" class="box" >
-												<p><a href="#">회원정보</a></p><br><br>
+											<div class="box" >
+												<p align="center"><a href="#">회원정보</a></p><br><br>
 												<p><a href="#">회원정보</a></p><br><br>
 												<p><a href="#">회원정보</a></p><br><br>
 												<p><a href="#">회원정보</a></p>

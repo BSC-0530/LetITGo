@@ -20,9 +20,11 @@ public class SelectAllJobPostingServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
+		
+		
 		SelectRequestJobPostingDTO requestJobPostingDTO = new SelectRequestJobPostingDTO();
 
+	
 
 
 		SelectJobPostingService selectJobPostingService = new SelectJobPostingService();
@@ -42,18 +44,11 @@ public class SelectAllJobPostingServlet extends HttpServlet {
 
 
 
-		String path = "/WEB-INF/views/recruit/jobPosting.jsp";
+		String path = "/WEB-INF/views/recruit/jobPostingList.jsp";
 		request.getRequestDispatcher(path).forward(request, response);
 
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		if(request.getAttribute("jobName") != null) {
-			int jobNo = (int) request.getAttribute("jobNo");
-			System.out.println("======================servlet jobName : " + jobNo);
-		}
-		
-		System.out.println(request.getAttribute("seoul"));
 	}
-
 }
