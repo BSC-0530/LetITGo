@@ -33,10 +33,6 @@
   
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
-
 <!-- letitgo 제작 css -->
 <link rel="stylesheet" type="text/css" href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css"/>
 
@@ -147,26 +143,28 @@
 				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<h1>직무 분야 관리</h1>
+						<h1>기술 관리</h1>
 							<div class="jp_listing_tabs_wrapper">
 
 								<!-- 이거는 이제 정보뜨는 칸 -->
 								<!-- 데이터 테이블 내역모음 -->
-						<table id="job_field" class="hover cell-border stripe">
+						<table id="skills" class="hover cell-border stripe">
 							<thead>
 								<tr>
-									<td align="center">직무코드</td>
-									<td align="center">직무이름</td>
-									<td align="center">삭제여부</td>
+									<td align="center">기술 코드</td>
+									<td align="center">카테고리</td>
+									<td align="center">기술 이름</td>
+									<td align="center">삭제 여부</td>
 								</tr>
 							</thead>
-							<c:forEach var="controllJobField" items="${ requestScope.jobFieldList }">
+							<c:forEach var="controllSkills" items="${ requestScope.skillsList }">
 							
 							<tbody align="center">
 							
 								<tr>
-									<td id="no"><c:out value="${ controllJobField.no }"/></td>
-									<td id="name"><c:out value="${ controllJobField.name }"/></td>
+									<td id="skillsNo"><c:out value="${ controllSkills.skillsNo }"/></td>
+									<td id="no"><c:out value="${ controllSkills.no }"/></td>
+									<td id="name"><c:out value="${ controllSkills.name }"/></td>
 									
 									<%-- <c:if test="${ payment.payKinds eq '삭제' }"> --%>
 									<td><button type="button" disabled>삭제</button></td>
@@ -189,7 +187,7 @@
 	
 	<script>
 		$(document).ready(function() {
-			$('#job_field').DataTable();
+			$('#skills').DataTable();
 		});
 	</script>
 </body>

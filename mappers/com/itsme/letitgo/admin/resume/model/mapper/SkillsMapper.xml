@@ -11,8 +11,8 @@
 	<!-- select resultMap -->
 	<resultMap type="com.itsme.letitgo.admin.resume.model.dto.SkillsDTO" id="skillsResultMap">
 		<id property="skillsNo" column="SKILLS_NO"/>
-		<result property="name" column="SKILLS_NAME"/>
 		<result property="no" column="CATEGORY_NO"/>
+		<result property="name" column="SKILLS_NAME"/>
 	</resultMap>
 		
 	<insert id="skillsInsert" parameterType="com.itsme.letitgo.admin.resume.model.dto.SkillsDTO">
@@ -20,21 +20,21 @@
 		  INTO TBL_SKILLS A
 		(
 		  A.SKILLS_NO
-		, A.SKILLS_NAME
 		, A.CATEGORY_NO  
+		, A.SKILLS_NAME
 		)  
 		VALUES
 		(
 		   SEQ_SKILLS_NO.NEXTVAL
-		 , # { name }  
 		 , # { no }  
+		 , # { name }  
 		)
 	</insert>
 	<select id="selectAllSkillsList" resultMap="skillsResultMap">
 		SELECT
 		       A.SKILLS_NO
-		     , A.SKILLS_NAME
 		     , A.CATEGORY_NO
+		     , A.SKILLS_NAME
 		  FROM TBL_SKILLS A     
 	</select>
 	
