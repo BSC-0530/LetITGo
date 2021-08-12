@@ -15,7 +15,9 @@ import com.itsme.letitgo.company.info.model.mapper.CompanyTestMapper;
 import com.itsme.letitgo.company.payment.model.mapper.PaymentMapper;
 import com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper;
 import com.itsme.letitgo.company.scout.model.mapper.CompanyScoutMapper;
+import com.itsme.letitgo.login.model.mapper.MemberMapper;
 import com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper;
+import com.itsme.letitgo.personal.regist.model.mapper.RegistMemberMapper;
 import com.itsme.letitgo.personal.resume.model.mapper.ResumeMapper;
 
 
@@ -53,8 +55,9 @@ public class Template {
 			configuration.addMapper(SelectJobPostingMapper.class);
 			configuration.addMapper(SelectCoMyJobPostingMapper.class);
 
-			
-
+			//승수
+			configuration.addMapper(MemberMapper.class);
+			configuration.addMapper(RegistMemberMapper.class);
 			
 			//태훈 시험용 넣었음 (콘솔에 출력됨, view만들고 보여지는지 확인해야함)
 			configuration.addMapper(JobFieldMapper.class);
