@@ -154,6 +154,7 @@
                 </div>
             </div>
         </div>
+        
     </div>
    
 <!--     main js file start -->
@@ -167,6 +168,8 @@
 <!--     <script src="js/jquery.magnific-popup.js"></script> -->
 <!--     <script src="js/custom_II.js"></script> -->
 <!--     main js file end -->
+    
+
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=97941150b25f0a25943e14669f10478b"></script>
 	<script>
 		var container = document.getElementById('map');

@@ -16,16 +16,14 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="jp_tittle_heading_wrapper">
 						<div class="jp_tittle_heading">
-							<h2>기업 마이페이지</h2>
+							<h2>상세 공고</h2>
 						</div>
 						<div class="jp_tittle_breadcrumb_main_wrapper">
 							<div class="jp_tittle_breadcrumb_wrapper">
 								<ul>
-									<li><a href="#">Home</a></li>
-									<li>></li>
-									<li><a href="#">기업 마이페이지</a></li>
-									<li>></li>
-									<li>공고관리</li>
+									<li><a href="#">Home</a> <i class="fa fa-angle-right"></i></li>
+									<li><a href="#">기업 마이페이지</a> <i class="fa fa-angle-right"></i></li>
+									<li>채용공고</li>
 								</ul>
 							</div>
 						</div>
@@ -99,25 +97,25 @@
 							<div class="jp_counter_main_wrapper">
 								<h1 align="left">채용공고 현황</h1><br>
 								<div class="container">
-									<div class="gc_counter_cont_wrapper">
+									<div class="gc_counter_cont_wrapper" style="cursor:pointer;" onclick="location.href= '${ pageContext.servletContext.contextPath }/company/jobPostingHistory/select'">
 										<div class="count-description">
 											<span class="timer"><c:out value="${ requestScope.allJobPosting.size() }" /></span>
 											<i class="fa"></i>
 											<h5 class="con1">전체 공고</h5>
 										</div>
 									</div>
-									<div class="gc_counter_cont_wrapper2">
+									<div class="gc_counter_cont_wrapper2" style="cursor:pointer;" onclick="select('승인된공고')">
 										<div class="count-description">
 											<span class="timer"><c:out value="${ requestScope.recruitingJopPosting.size() }" /></span>
 											<i class="fa"></i>
-											<h5 class="con2">채용중인 공고</h5>
+											<h5 class="con2">진행중 공고</h5>
 										</div>
 									</div>
-									<div class="gc_counter_cont_wrapper3">
+									<div class="gc_counter_cont_wrapper3" style="cursor:pointer;" onclick="select()">
 										<div class="count-description">
 											<span class="timer"><c:out value="${ requestScope.requestJobPosting.size() }" /></span>
 											<i class="fa"></i>
-											<h5 class="con3">승인 요청중 공고</h5>
+											<h5 class="con3">요청중 공고</h5>
 										</div>
 									</div>
 								</div>
@@ -127,7 +125,15 @@
 						
 						<!-- 데이터 테이블 내역모음 -->
 						<div>
+						<c:if test="${ requestScope.kinds eq null }" >
 						<h1>전체 공고</h1><button style="margin-left: 100%">dd</button>
+						</c:if>
+						<c:if test="${ requestScope.kinds eq '승인된공고' }" >
+						<h1>진행중 공고</h1><button style="margin-left: 100%">dd</button>
+						</c:if>
+						<c:if test="${ requestScope.kinds eq '승인대기중인공고' }" >
+						<h1>요청중 공고</h1><button style="margin-left: 100%">dd</button>
+						</c:if>
 						</div>
 						<br>
 						<table id="table_myPosting" class="hover cell-border stripe">
@@ -143,34 +149,94 @@
 									<td style="width:90px;">공고 노출권</td>
 								</tr>
 							</thead>
-							<c:forEach var="jobPosting" items="${ requestScope.allJobPosting }">
 							
-							<tbody align="center">
-								<tr>
-									<td><c:out value="${ jobPosting.jobPostTitle }"/></td>
-									
-									<!-- 공고 상태에 따라 view에 다르게 표기 -->
-									<td>
-									<c:if test="${jobPosting.jobPostKinds eq '승인된공고' }">
-									<c:out value="채용중"/>
-									</c:if>
-									</td>
-									<td><c:out value="${ jobPosting.jobPostMinExperience }" />년 ~ <c:out value="${ jobPosting.jobPostMaxExperience }" />년</td>								
-									<td><c:out value="${ jobPosting.jobPostEnrollDate }" /></td>								
-									<td><c:out value="${ jobPosting.jobPostDeadline }" /></td>			
-									<td><button>수정</button></td>			
-									<td><button>지원자 확인</button></td>
-									<c:if test="${ jobPosting.exposureUseCheck eq 'N' }">
-									<td><button type="submit" onclick="req(this);">사용하기</button></td>
-									</c:if>
-									<c:if test="${ jobPosting.exposureUseCheck eq 'Y' }">
-									<td>사용중</td>
-									</c:if>								
+							<!-- requestScope에 담긴 kinds가 null일때 전체 조회된 공고를 보여줌 -->
+							<c:if test="${ requestScope.kinds eq '승인된공고' }" >
+								<c:forEach var="jobPosting"  items="${ requestScope.recruitingJopPosting }">
 								
-								</tr>
-							</tbody>
+								<tbody align="center">
+									<tr>
+										<td><c:out value="${ jobPosting.jobPostTitle }"/></td>
+										
+										<!-- 공고 상태에 따라 view에 다르게 표기 -->
+										<td>
+										<c:if test="${jobPosting.jobPostKinds eq '승인된공고' }">
+										<c:out value="채용중"/>
+										</c:if>
+										</td>
+										<td><c:out value="${ jobPosting.jobPostMinExperience }" />년 ~ <c:out value="${ jobPosting.jobPostMaxExperience }" />년</td>								
+										<td><c:out value="${ jobPosting.jobPostEnrollDate }" /></td>								
+										<td><c:out value="${ jobPosting.jobPostDeadline }" /></td>			
+										<td><button>수정</button></td>			
+										<td><button>지원자 확인</button></td>
+										<c:if test="${ jobPosting.exposureUseCheck eq 'N' }">
+										<td><button type="submit" onclick="req(this);">사용하기</button></td>
+										</c:if>
+										<c:if test="${ jobPosting.exposureUseCheck eq 'Y' }">
+										<td>사용중</td>
+										</c:if>
+									</tr>
+								</tbody>
+								</c:forEach>
+							</c:if>
+							<c:if test="${ requestScope.kinds eq '승인대기중인공고' }" >
+								<c:forEach var="jobPosting"  items="${ requestScope.requestJobPosting }">
+								
+								<tbody align="center">
+									<tr>
+										<td><c:out value="${ jobPosting.jobPostTitle }"/></td>
+										
+										<!-- 공고 상태에 따라 view에 다르게 표기 -->
+										<td>
+										<c:if test="${jobPosting.jobPostKinds eq '승인된공고' }">
+										<c:out value="채용중"/>
+										</c:if>
+										</td>
+										<td><c:out value="${ jobPosting.jobPostMinExperience }" />년 ~ <c:out value="${ jobPosting.jobPostMaxExperience }" />년</td>								
+										<td><c:out value="${ jobPosting.jobPostEnrollDate }" /></td>								
+										<td><c:out value="${ jobPosting.jobPostDeadline }" /></td>			
+										<td><button>수정</button></td>			
+										<td><button>지원자 확인</button></td>
+										<c:if test="${ jobPosting.exposureUseCheck eq 'N' }">
+										<td><button type="submit" onclick="req(this);">사용하기</button></td>
+										</c:if>
+										<c:if test="${ jobPosting.exposureUseCheck eq 'Y' }">
+										<td>사용중</td>
+										</c:if>
+									</tr>
+								</tbody>
+								</c:forEach>
+							</c:if>
 							
-							</c:forEach>
+							<c:if test="${ requestScope.kinds eq null }" >
+								<c:forEach var="jobPosting"  items="${ requestScope.allJobPosting }">
+								
+								<tbody align="center">
+									<tr>
+										<td><c:out value="${ jobPosting.jobPostTitle }"/></td>
+										
+										<!-- 공고 상태에 따라 view에 다르게 표기 -->
+										<td>
+										<c:if test="${jobPosting.jobPostKinds eq '승인된공고' }">
+										<c:out value="채용중"/>
+										</c:if>
+										</td>
+										<td><c:out value="${ jobPosting.jobPostMinExperience }" />년 ~ <c:out value="${ jobPosting.jobPostMaxExperience }" />년</td>								
+										<td><c:out value="${ jobPosting.jobPostEnrollDate }" /></td>								
+										<td><c:out value="${ jobPosting.jobPostDeadline }" /></td>			
+										<td><button>수정</button></td>			
+										<td><button>지원자 확인</button></td>
+										<c:if test="${ jobPosting.exposureUseCheck eq 'N' }">
+										<td><button type="submit" onclick="req(this);">사용하기</button></td>
+										</c:if>
+										<c:if test="${ jobPosting.exposureUseCheck eq 'Y' }">
+										<td>사용중</td>
+										</c:if>
+									</tr>
+								</tbody>
+								</c:forEach>
+							</c:if>
+							
 						</table>
 						
 						
@@ -184,29 +250,17 @@
 		</div>
 	</div>
 	
-<script>
-$(document).ready(function() {
-	$('#table_myPosting').DataTable();
-});
-
-function req(button) {
+	<script>
+	$(document).ready(function() {
+		$('#table_myPosting').DataTable();
+	});
 	
-	var payNo = button.parentNode.parentNode.children[0].innerText;
-	var productName = button.parentNode.parentNode.children[1].innerText;
-	var payPrice = button.parentNode.parentNode.children[2].innerText;
+	function select(kinds) {
+		
+		location.href = "${ pageContext.servletContext.contextPath }/company/jobPostingHistory/select?kinds=" + kinds
+	}
 	
-	var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/refund/request/insert").attr("method", "post");
 	
-	$form.append($("<input>").attr("name", "payNo").attr("type", "hidden").val(payNo));
-	$form.append($("<input>").attr("name", "productName").attr("type", "hidden").val(productName));
-	$form.append($("<input>").attr("name", "payPrice").attr("type", "hidden").val(payPrice));
-	
-	console.log($form.children().val());
-	console.log(productName);
-	$("body").append($form);
-	
-	$form.submit();
-}
-</script>
+	</script>
 </body>
 </html>
