@@ -188,19 +188,41 @@
 		 WHERE R.RESUME_NO = 1
 	</select>
 	
-	<insert id="insertResume">
+	<insert id="insertCareer">
 		INSERT
 		  INTO TBL_CAREER_HISTORY A
 		(
 		  A.CAR_NO, A.CAR_COM_NAME, A.CAR_HIRE_DATE, A.CAR_ENT_DATE, A.CAR_STATUS
 		, A.CAR_DEPT_NAME, A.CAR_JOB_NAME, A.PROJECT_NAME, A.PROJECT_START_DATE, A.PROJECT_END_DATE
-		, A.PROJECT_CONTENT, A.CAR_WORK_FIELD, A.JOB_NO, A.RESUME_NO
+		, A.PROJECT_CONTENT, A.CAR_WORK_FIELD
 		)
 		VALUES
 		(
 		  SEQ_CAR_NO.NEXTVAL, #{ carComName }, #{ carHireDate }, #{ carEntDate }, 'N'
 		, #{ carDeptName }, #{ carJobName }, #{ projectName }, #{ projectStartDate }, #{ projectEndDate }
-		, #{ projectContent }, #{ carWorkField }, 1, 1
+		, #{ projectContent }, #{ carWorkField }
+		)
+	</insert>
+	
+	<insert id="insertResume">
+		INSERT
+		  INTO TBL_RESUME A
+		(
+		  A.RESUME_NO, A.IN_MEM_NO, A.RESUME_WRITE_DATE
+		, A.RESUME_SCOUT_STATUS, A.JOB_NO, A.RESUME_TITLE
+		)
+		VALUES
+		(
+		  SEQ_RESUME_NO.NEXTVAL, 3, SYSDATE
+		, 'Y', SEQ_JOB_NO.NEXTVAL, #{ resumeTitle }
+		)
+	</insert>
+	
+	<insert id="insertPort">
+		INSERT
+		  INTO TBL_PORTFOLIO A
+		(
+		  A.
 		)
 	</insert>
 </mapper>

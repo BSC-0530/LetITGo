@@ -29,18 +29,18 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
+<!-- <script>
 	var count = 1;
 	var careerDiv =
 
 	$(document).ready(function() {
-		$('.addCareerBtn').click(function() {
+		$(".addCareerBtn").click(function() {
 			$('#inputCareer').append(count);
 
 			count += 1;
 		});
 	});
-</script>
+</script> -->
 </head>
 <body>
 	<jsp:include page="../common/header/personalHeader.jsp" />
@@ -155,7 +155,7 @@
 								<div class="jp_adp_form_wrapper">
 									<br> <br> <label><input
 										style="width: 17px; height: 17px; border: 1px;"
-										type="checkbox" name="hiringCheck"> 현재 재직 중</label>
+										type="checkbox" name="carStatus"> 현재 재직 중</label>
 								</div>
 							</div>
 
@@ -220,7 +220,7 @@
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="jp_adp_textarea_main_wrapper">
 							<h3>자기소개서</h3>
-							<select>
+							<select name="selfIntroItemNo">
 								<option value="" selected>-- 카테고리 선택 --</option>
 								<option value="1">성장과정</option>
 								<option value="2">지원동기</option>
@@ -314,7 +314,7 @@
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="jp_adp_choose_resume_bottom_btn_post">
 							<ul>
-								<li><button type="submit">이력서 등록</button></li>
+								<li><button id="sendResume">이력서 등록</button></li>
 							</ul>
 						</div>
 					</div>
@@ -325,6 +325,58 @@
 		<!-- jp ad post Wrapper End -->
 
 	</form>
+	<!-- <script>
+		$('#sendResume').click(function() {
+			
+			const inputResume = {
+					resumeTitle: resumeTitle,
+					jobNo: jobNo,
+					carComName: carComName,
+					carDeptName: carDeptName,
+					carJobName: carJobName,
+					carWorkField: carWorkField,
+					carHireDate: carHireDate,
+					carEntDate: carEntDate,
+					carStatus: carStatus,
+					projectName: projectName,
+					projectContent: projectContent,
+					projectStartDate: projectStartDate,
+					projectEndDate: projectEndDate,
+					potLinkAddress: potLinkAddress,
+					potFilePath: potFilePath,
+					selfIntroItemNo: selfIntroItemNo,
+					selfIntroItemContent: selfIntroItemContent,
+					licenseName: licenseName,
+					licenseAgency: licenseAgency,
+					licenseDate: licenseDate,
+					eduName: eduName,
+					eduAgency: eduAgency,
+					eduStartDate: eduStartDate,
+					eduEndDate: eduEndDate,
+					eduContent: eduContent,
+					awdName: awdName,
+					awdAgency: awdAgency,
+					awdDate: awdDate,
+					awdContent: awdContent
+			};
+			
+			const jsonString = JSON.stringify(inputResume);
+			
+			$.ajax({
+				url: "/let/resume/insert",
+				type: "post",
+				data: {jsonString: jsonString},
+				success: function(data, textStatus, xhr) {
+					alert('성공');
+					location.href = "../list";
+				},
+				failed: function(xhr, status, error) {
+					alert('실패');
+					location.href = "../list";
+				}
+			});
+		});
+	</script> -->
 	<jsp:include page="../common/footer.jsp" />
 </body>
 </html>

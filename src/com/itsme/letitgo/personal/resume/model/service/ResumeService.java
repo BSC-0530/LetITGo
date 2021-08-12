@@ -37,14 +37,23 @@ public class ResumeService {
 		return detailList;
 	}
 
-	public int insertResume(CareerHistoryDTO car) {
+	public int insertResume(DetailResumeDTO dr) {
 		
 		SqlSession session = getSqlSession();
 		ResumeMapper mapper = session.getMapper(ResumeMapper.class);
 		
-		System.out.println(car);
+		System.out.println(dr);
 		
-		int result = mapper.insertResume(car);
+		int result = 0;
+		
+		int resultResume = mapper.insertResume(dr);
+		int resultCareer = mapper.insertCareer(dr);
+		int resultPortfolio = mapper.insertPort(dr);
+		int resultIntro = mapper.insertIntro(dr);
+		int resultLicense = mapper.insertLicense(dr);
+		int resultEdu = mapper.insertEdu(dr);
+		int resultAwd = mapper.insertAwd(dr);
+		
 		
 		if(result > 0) {
 			session.commit();
