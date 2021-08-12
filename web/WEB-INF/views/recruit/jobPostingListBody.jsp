@@ -152,7 +152,6 @@
                                        <c:forEach var = "jobNameList" items="${ requestScope.jobNameList }">
                                            <option id="jobNo" value="${ jobNameList.jobNo }"><c:out value="${ jobNameList.jobName }"/></option>
                                        </c:forEach>
-                                       		<option id="jobNo" value="3">이건 넘어가나</option>
                                        </select>
                                    </div>
                                </div>
@@ -269,18 +268,23 @@
                                         	<c:forEach  var="jobPosting" items="${ requestScope.jobPostingList }">
 	                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 	                                                <div class="jp_job_post_main_wra[]pper_cont jp_job_post_grid_main_wrapper_cont">
-	                                                    <div class="jp_job_post_main_wrapper jp_job_post_grid_main_wrapper">
+	                                                	
+	                                                    <div class="jp_job_post_main_wrapper jp_job_post_grid_main_wrapper" style="cursor:pointer; height: 250px" onclick="post(this);" >
+	                                                    	<input type="text" id="postNo" value="${ jobPosting.jobPostNo }" style="visibility: hidden;">
 	                                                        <div class="row">
 	                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	                                                            
+	                                                            	<!-- 이미지 경로  -->
 	                                                                <div class="jp_job_post_side_img">
 	                                                                    <img src="${ pageContext.servletContext.contextPath }/resources/image/bmw.png" style="width: 120px; height: 120px;"alt="post_img" />
 	                                                                </div>
 	                                                                <div></div>
 	                                                                <div class="jp_job_post_right_cont jp_job_post_grid_right_cont">
-																		<a href="" style="font-weight:bold; font-size: 25px; color: black; "><c:out value="${ jobPosting.jobPostTitle }"/></a><br>																
-																		<a href=""><c:out value="${ jobPosting.coMemberAddInfoDTO.coComName }"/></a><br>
-																		<a>서울</a><br>
+	                                                                <!-- 제목 -->
+																		<a id="detailedJobPost" style="font-weight:bold; font-size: 20px; color: black; "><c:out value="${ jobPosting.jobPostTitle }"/></a><br><br>														
+																		<a><c:out value="${ jobPosting.coMemberAddInfoDTO.coComName }"/> </a><a>(서울)</a><br>
 																		<a>
+																	<!-- 경력 -->
 																		<c:if test="${ jobPosting.jobPostMinExperience != jobPosting.jobPostMaxExperience }">
 																			<c:out value="${ jobPosting.jobPostMinExperience }"/> ~ <c:out value="${ jobPosting.jobPostMaxExperience }"/> 년
 																		</c:if>
@@ -290,20 +294,13 @@
 																			</c:if>
 																		</c:if>
 																		</a><br>
+																	<!-- 직무 -->
 																		<a><c:out value="${ jobPosting.jobFieldDTO.jobName }"></c:out></a><br>
-																		<a><c:out value="${ jobPosting.jobPostDeadline }"/></a><br>
+																	<!-- 채용공고 마감일 -->
+																		<a><c:out value="${ jobPosting.jobPostEnrollDate }"/> ~ <c:out value="${ jobPosting.jobPostDeadline }"/></a>
 																		
 	                                                                </div>
 	                                                            </div>
-<!-- 	                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> -->
-<!-- 	                                                                <div class="jp_job_post_right_btn_wrapper jp_job_post_grid_right_btn_wrapper"> -->
-<!-- 	                                                                    <ul> -->
-<!-- 	                                                                        <li><a href="#"><i class="fa fa-heart-o"></i></a></li> -->
-<!-- 	                                                                        <li><a href="#">Part Time</a></li> -->
-<!-- 	                                                                        <li><a href="#">Apply</a></li> -->
-<!-- 	                                                                    </ul> -->
-<!-- 	                                                                </div> -->
-<!-- 	                                                            </div> -->
 	                                                        </div>
 	                                                    </div>
 	                                                    <div class="jp_job_post_keyword_wrapper">
@@ -316,9 +313,12 @@
 	                                                            </c:forEach>
 	                                                        </ul>
 	                                                    </div>
+	                                                    
 	                                                </div>
 	                                            </div>
                                             </c:forEach>
+                                            
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -329,7 +329,7 @@
         </div>
     </div>
     <script>
-    	$("#search-job-posting").click(function() {
+    	$("#search-job-posting").onclick(function() {
     		
     		const selectJobNo = document.getElementById("selectJobNo").value;
     		const selectExperience = document.getElementById("selectExperience").value;
@@ -342,7 +342,7 @@
     		
     		$.ajax({
     			url: "let/member/allJobPosting/select",
-    			type: "get",
+    			type: "post",
     			data: selectOption,
     			success: function(){
     				
@@ -352,6 +352,29 @@
     			}
     		});
     	});
+    	
+// //     	$("#detailedJobPost").onclick(function() {
+    		
+//     		const selectPostNo = document.getElementById("postNo").innerText;
+    		
+// 			var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath}/detail/jobPosting/select").attr("method", "get");
+    		
+//     		$form.append($("<input>").attr("name", "selectPostNo").attr("type", "hidden").val(selectPostNo));
+    		
+//     		console.log($form.children().val());
+    		
+//     		$("body").append($form);
+    		
+//     		$form.submit();
+//     	});
+    
+    	function post(div) { 
+    		
+			const num = div.children[0].value
+			
+			location.href = "?num=" +numl
+    		
+    	}
     </script>
 
 </body>
