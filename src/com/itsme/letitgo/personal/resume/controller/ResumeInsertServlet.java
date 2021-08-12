@@ -1,9 +1,8 @@
 package com.itsme.letitgo.personal.resume.controller;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.itsme.letitgo.personal.resume.model.dto.AwardHistoryDTO;
 import com.itsme.letitgo.personal.resume.model.dto.CareerHistoryDTO;
 import com.itsme.letitgo.personal.resume.model.dto.DetailResumeDTO;
 import com.itsme.letitgo.personal.resume.model.dto.EducationHistoryDTO;
@@ -72,9 +72,11 @@ public class ResumeInsertServlet extends HttpServlet {
 		String awdName = request.getParameter("awdName");
 		String awdAgency = request.getParameter("awdAgency");
 		java.sql.Date awdDate = java.sql.Date.valueOf(request.getParameter("awdDate"));
+		String awdContent = request.getParameter("awdContent");
 		
 		
 //		---------- career set
+		List<CareerHistoryDTO> carList = new ArrayList<>();
 		CareerHistoryDTO car = new CareerHistoryDTO();
 		
 		car.setCarComName(carComName);
@@ -88,40 +90,77 @@ public class ResumeInsertServlet extends HttpServlet {
 		car.setProjectStartDate(projectStartDate);
 		car.setProjectName(projectName);
 		
+		carList.add(car);
+		
 //		----------- resume set
 		ResumeDTO resume = new ResumeDTO();
 		resume.setJobNo(jobNo);
 		resume.setResumeTitle(resumeTitle);
 		
 //		----------- Portfolio set
+		List<PortfolioDTO> potList = new ArrayList<>();
 		PortfolioDTO pf = new PortfolioDTO();
+		
 		pf.setPotLinkAddress(potLinkAddress);
 		pf.setPotFilePath(potFilePath);
 		
+		potList.add(pf);
+		
 //		----------- SelfIntroCon set
+		List<SelfIntroductionContentDTO> sicList = new ArrayList<>();
 		SelfIntroductionContentDTO sic = new SelfIntroductionContentDTO();
+		
 		sic.setSelfIntroItemNo(selfIntroItemNo);
 		sic.setSelfIntroItemContent(selfIntroItemContent);
 		
+		sicList.add(sic);
+		
 //		----------- Lisence set
+		List<LicenseHistoryDTO> lhList = new ArrayList<>();
 		LicenseHistoryDTO lh = new LicenseHistoryDTO();
+		
 		lh.setLicenseName(licenseName);
 		lh.setLicenseAgency(licenseAgency);
 		lh.setLicenseDate(licenseDate);
 		
+		lhList.add(lh);
+		
 //		----------- Education set
+		List<EducationHistoryDTO> eduList = new ArrayList<>();
 		EducationHistoryDTO edu = new EducationHistoryDTO();
+		
 		edu.setEduName(eduName);
 		edu.setEduAgency(eduAgency);
 		edu.setEduStartDate(eduStartDate);
 		edu.setEduEndDate(eduEndDate);
 		edu.setEduContent(eduContent);
 		
-//		----------- 
+		eduList.add(edu);
+		
+//		----------- Awd set
+		List<AwardHistoryDTO> awdList = new ArrayList<>();
+		AwardHistoryDTO awd = new AwardHistoryDTO();
+		
+		awd.setAwdName(awdName);
+		awd.setAwdAgency(awdAgency);
+		awd.setAwdDate(awdDate);
+		awd.setAwdContent(awdContent);
+		
+		awdList.add(awd);
 		
 		
+//		----------- DetailResume set
+		DetailResumeDTO dr = new DetailResumeDTO();
+		dr.setResumeTitle(resumeTitle);
+		dr.setJobNo(jobNo);
+		dr.setCareerHistoryList(carList);
+		dr.setAwardHistoryList(awdList);
+		dr.setEducationHistoryList(eduList);
+		dr.setLicenseHistoryList(lhList);
+		dr.setPortFolioList(potList);
 		
-		int result = new ResumeService().insertResume(car);
+		
+		int result = new ResumeService().insertResume(dr);
 		
 		System.out.println(result);
 		

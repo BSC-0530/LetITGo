@@ -12,6 +12,18 @@ public interface ResumeMapper {
 
 	List<DetailResumeDTO> selectDetailResumeList();
 
-	int insertResume(CareerHistoryDTO car);
+	int insertResume(DetailResumeDTO dr);
+
+	int insertCareer(DetailResumeDTO dr);
+
+	int insertPort(DetailResumeDTO dr);
+
+	int insertIntro(DetailResumeDTO dr);
+
+	int insertLicense(DetailResumeDTO dr);
+
+	int insertEdu(DetailResumeDTO dr);
+
+	int insertAwd(DetailResumeDTO dr);
 
 }
