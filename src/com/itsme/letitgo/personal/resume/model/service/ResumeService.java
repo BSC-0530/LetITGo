@@ -46,6 +46,14 @@ public class ResumeService {
 		
 		int result = mapper.insertResume(car);
 		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
 		return result;
 	}
 
