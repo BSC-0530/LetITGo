@@ -13,21 +13,23 @@ public interface ResumeMapper {
 
 	List<DetailResumeDTO> selectDetailResumeList();
 
-	int insertResume(List<InsertResumeDTO> irList);
+	int insertResume(InsertResumeDTO ir);
 
-	int insertCareer(List<InsertResumeDTO> irList);
+	int insertCareer(InsertResumeDTO ir);
 
-	int insertPot(List<InsertResumeDTO> irList);
+	int insertPot(InsertResumeDTO ir);
 
-	int insertLicense(List<InsertResumeDTO> irList);
+	int insertLicense(InsertResumeDTO ir);
 
-	int insertEdu(List<InsertResumeDTO> irList);
+	int insertEdu(InsertResumeDTO ir);
 
-	int insertAwd(List<InsertResumeDTO> irList);
+	int insertAwd(InsertResumeDTO ir);
 
 	int insertIntroNo(List<InsertResumeDTO> irList);
 
-	int insertIntroContent(List<InsertResumeDTO> irList);
+	int insertIntroContent(InsertResumeDTO ir);
+
+	int selectResume(String resumeTitle);
 
 
 }

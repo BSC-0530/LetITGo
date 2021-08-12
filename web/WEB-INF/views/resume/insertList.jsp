@@ -46,30 +46,28 @@
 	<jsp:include page="../common/header/personalHeader.jsp" />
 
 	<div class="jp_tittle_main_wrapper">
-		<div class="jp_tittle_img_overlay"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<div class="jp_tittle_heading_wrapper">
-						<div class="jp_tittle_heading">
-							<h2>이력서 작성</h2>
-						</div>
-						<div class="jp_tittle_breadcrumb_main_wrapper">
-							<div class="jp_tittle_breadcrumb_wrapper">
-								<ul>
-									<li><a href="#">Home</a></li>
-
-									<li>> 이력서 ></li>
-
-									<li>이력서 작성</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+        <div class="jp_tittle_img_overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="jp_tittle_heading_wrapper">
+                        <div class="jp_tittle_heading">
+                            <h2>상세 공고</h2>
+                        </div>
+                        <div class="jp_tittle_breadcrumb_main_wrapper">
+                            <div class="jp_tittle_breadcrumb_wrapper">
+                                <ul>
+                                    <li><a href="#">Home</a> <i class="fa fa-angle-right"></i></li>
+                                    <li><a href="#">이력서</a> <i class="fa fa-angle-right"></i></li>
+                                    <li>이력서 작성</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 	<form
 		action="${ pageContext.servletContext.contextPath }/resume/insert"
@@ -83,41 +81,41 @@
 						<div class="jp_adp_form_wrapper">
 							<h3>
 								이력서 제목<input type="text" placeholder="이력서 제목을 입력해주세요."
-									name="title">
+									name="resumeTitle">
 							</h3>
 						</div>
 						<div class="jp_adp_form_wrapper">
 							<h3>직무 선택</h3>
 							<br> <label><input
 								style="width: 20px; height: 20px; border: 1px;" type="radio"
-								id="jobNo" value="1" name="jobGroup">서버/백엔드</label> <label><input
+								id="jobNo" value="1" name="jobNo">서버/백엔드</label> <label><input
 								style="width: 20px; height: 20px; border: 1px;" type="radio"
-								id="jobNo" value="2" name="jobGroup">프론트엔드</label> <label><input
+								id="jobNo" value="2" name="jobNo">프론트엔드</label> <label><input
 								style="width: 20px; height: 20px; border: 1px;" type="radio"
-								id="jobNo" value="3" name="jobGroup">웹 풀스택</label> <label><input
+								id="jobNo" value="3" name="jobNo">웹 풀스택</label> <label><input
 								style="width: 20px; height: 20px; border: 1px;" type="radio"
-								id="jobNo" value="4" name="jobGroup">모바일 웹</label> <label><input
+								id="jobNo" value="4" name="jobNo">모바일 웹</label> <label><input
 								style="width: 20px; height: 20px; border: 1px;" type="radio"
-								id="jobNo" value="5" name="jobGroup">게임 클라이언트</label> <label><input
+								id="jobNo" value="5" name="jobNo">게임 클라이언트</label> <label><input
 								style="width: 20px; height: 20px; border: 1px;" type="radio"
-								id="jobNo" value="6" name="jobGroup">게임 서버</label> <label><input
+								id="jobNo" value="6" name="jobNo">게임 서버</label> <label><input
 								style="width: 20px; height: 20px; border: 1px;" type="radio"
-								id="jobNo" value="7" name="jobGroup">데이터 엔지니어(DBA)</label><br>
+								id="jobNo" value="7" name="jobNo">데이터 엔지니어(DBA)</label><br>
 							<label><input
 								style="width: 20px; height: 20px; border: 1px;" type="radio"
-								id="jobNo" value="8" name="jobGroup">인공지능/머신러닝</label> <label><input
+								id="jobNo" value="8" name="jobNo">인공지능/머신러닝</label> <label><input
 								style="width: 20px; height: 20px; border: 1px;" type="radio"
-								id="jobNo" value="9" name="jobGroup">시스템 엔지니어</label> <label><input
+								id="jobNo" value="9" name="jobNo">시스템 엔지니어</label> <label><input
 								style="width: 20px; height: 20px; border: 1px;" type="radio"
-								id="jobNo" value="10" name="jobGroup">보안</label> <label><input
+								id="jobNo" value="10" name="jobNo">보안</label> <label><input
 								style="width: 20px; height: 20px; border: 1px;" type="radio"
-								id="jobNo" value="11" name="jobGroup">QA</label> <label><input
+								id="jobNo" value="11" name="jobNo">QA</label> <label><input
 								style="width: 20px; height: 20px; border: 1px;" type="radio"
-								id="jobNo" value="12" name="jobGroup">프로젝트 매니저</label> <label><input
+								id="jobNo" value="12" name="jobNo">프로젝트 매니저</label> <label><input
 								style="width: 20px; height: 20px; border: 1px;" type="radio"
-								id="jobNo" value="13" name="jobGroup">HW/임베디드</label> <label><input
+								id="jobNo" value="13" name="jobNo">HW/임베디드</label> <label><input
 								style="width: 20px; height: 20px; border: 1px;" type="radio"
-								id="jobNo" value="14" name="jobGroup">SW/솔루션</label>
+								id="jobNo" value="14" name="jobNo">SW/솔루션</label>
 						</div>
 						<button type="button" class="addCareerBtn">+</button>
 						<div class="row" id="inputCareer">

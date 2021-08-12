@@ -10,15 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itsme.letitgo.personal.resume.model.dto.AwardHistoryDTO;
-import com.itsme.letitgo.personal.resume.model.dto.CareerHistoryDTO;
-import com.itsme.letitgo.personal.resume.model.dto.DetailResumeDTO;
-import com.itsme.letitgo.personal.resume.model.dto.EducationHistoryDTO;
 import com.itsme.letitgo.personal.resume.model.dto.InsertResumeDTO;
-import com.itsme.letitgo.personal.resume.model.dto.LicenseHistoryDTO;
-import com.itsme.letitgo.personal.resume.model.dto.PortfolioDTO;
-import com.itsme.letitgo.personal.resume.model.dto.ResumeDTO;
-import com.itsme.letitgo.personal.resume.model.dto.SelfIntroductionContentDTO;
 import com.itsme.letitgo.personal.resume.model.service.ResumeService;
 
 @WebServlet("/resume/insert")
@@ -35,14 +27,14 @@ public class ResumeInsertServlet extends HttpServlet {
 
 //		-- value 꺼내기
 //		---- resume
-		int resumeNo = Integer.parseInt(request.getParameter("resumeNo"));
-		int inMemNo = Integer.parseInt(request.getParameter("inMemNo"));
-		java.sql.Date resumeWriteDate = java.sql.Date.valueOf(request.getParameter("resumeWriteDate"));
-		String resumeScoutStatus = request.getParameter("resumeScoutStatus");
+//		int resumeNo = Integer.parseInt(request.getParameter("resumeNo"));
+//		int inMemNo = Integer.parseInt(request.getParameter("inMemNo"));
+//		java.sql.Date resumeWriteDate = java.sql.Date.valueOf(request.getParameter("resumeWriteDate"));
+//		String resumeScoutStatus = request.getParameter("resumeScoutStatus");
 		Integer jobNo = Integer.parseInt(request.getParameter("jobNo"));
 		String resumeTitle = request.getParameter("resumeTitle");
 //		---- career
-		Integer carNo = Integer.parseInt(request.getParameter("carNo"));
+//		Integer carNo = Integer.parseInt(request.getParameter("carNo"));
 		String carComName = request.getParameter("carComName");
 		java.sql.Date carHireDate = java.sql.Date.valueOf(request.getParameter("carHireDate"));
 		java.sql.Date carEntDate = java.sql.Date.valueOf(request.getParameter("carEntDate"));
@@ -51,11 +43,11 @@ public class ResumeInsertServlet extends HttpServlet {
 		String carJobName = request.getParameter("carJobName");
 		String carWorkField = request.getParameter("carWorkField");
 		String projectName = request.getParameter("projectName");
-		java.sql.Date projectStartDate = java.sql.Date.valueOf("projectStartDate");
-		java.sql.Date projectEndDate = java.sql.Date.valueOf("projectEndDate");
+		java.sql.Date projectStartDate = java.sql.Date.valueOf(request.getParameter("projectStartDate"));
+		java.sql.Date projectEndDate = java.sql.Date.valueOf(request.getParameter("projectEndDate"));
 		String projectContent = request.getParameter("projectContent");
 //		---- portfolio
-		Integer potNo = Integer.parseInt(request.getParameter("potNo"));
+//		Integer potNo = Integer.parseInt(request.getParameter("potNo"));
 		String potKinds = request.getParameter("potKinds");
 		String potLinkAddress = request.getParameter("potLinkAddress");
 		String potFilePath = request.getParameter("potFilePath");
@@ -65,22 +57,22 @@ public class ResumeInsertServlet extends HttpServlet {
 		Integer selfIntroItemNo = Integer.parseInt(request.getParameter("selfIntroItemNo"));
 		String selfIntroItemContent = request.getParameter("selfIntroItemContent");
 //		---- license
-		Integer licenseNo = Integer.parseInt(request.getParameter("licenseNo"));
+//		Integer licenseNo = Integer.parseInt(request.getParameter("licenseNo"));
 		String licenseName = request.getParameter("licenseName");
 		String licenseAgency = request.getParameter("licenseAgency");
 		java.sql.Date licenseDate = java.sql.Date.valueOf(request.getParameter("licenseDate"));
 //		---- education
-		Integer eduNo = Integer.parseInt(request.getParameter("eduNo"));
+//		Integer eduNo = Integer.parseInt(request.getParameter("eduNo"));
 		String eduName = request.getParameter("eduName");
 		String eduAgency = request.getParameter("eduAgency");
-		java.sql.Date eduStartDate = java.sql.Date.valueOf("eduStartDate");
-		java.sql.Date eduEndDate = java.sql.Date.valueOf("eduEndDate");
+		java.sql.Date eduStartDate = java.sql.Date.valueOf(request.getParameter("eduStartDate"));
+		java.sql.Date eduEndDate = java.sql.Date.valueOf(request.getParameter("eduEndDate"));
 		String eduContent = request.getParameter("eduContent");
 //		---- award
-		Integer awdNo = Integer.parseInt(request.getParameter("awdNo"));
+//		Integer awdNo = Integer.parseInt(request.getParameter("awdNo"));
 		String awdName = request.getParameter("awdName");
 		String awdAgency = request.getParameter("awdAgency");
-		java.sql.Date awdDate = java.sql.Date.valueOf("awdDate");
+		java.sql.Date awdDate = java.sql.Date.valueOf(request.getParameter("awdDate"));
 		String awdContent = request.getParameter("awdContent");
 		
 		InsertResumeDTO ir = new InsertResumeDTO();
@@ -128,14 +120,23 @@ public class ResumeInsertServlet extends HttpServlet {
 		
 		List<InsertResumeDTO> irList = new ArrayList<>();
 		irList.add(ir);
+		System.out.println("req irList : " + irList);
 		
-		int result = new ResumeService().insertResume(irList);
+		int resultResume = new ResumeService().insertResume(ir);
+		int resumeNo = new ResumeService().selectResume(resumeTitle);
+		System.out.println("resumeNo : " + resumeNo);
 		
-		System.out.println(result);
+		ir.setResumeNo(resumeNo);
+		irList.add(ir);
+		System.out.println("selected irList : " + irList);
+		
+		int resultDetail = new ResumeService().insertDetailResume(ir);
+		
+		int result = resultDetail + resultResume;
 		
 		String path = "";
 		
-		if(result > 0) {
+		if(result > 1) {
 			System.out.println("내가 이겼다");
 			path = "/WEB-INF/views/resume/resumeList.jsp";
 		}
