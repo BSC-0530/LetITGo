@@ -38,24 +38,54 @@ public class ResumeService {
 		return detailList;
 	}
 
-	public int insertResume(List<InsertResumeDTO> irList) {
+	public int insertDetailResume(InsertResumeDTO ir) {
 		
 		SqlSession session = getSqlSession();
 		ResumeMapper mapper = session.getMapper(ResumeMapper.class);
 		
-		int resultResume = mapper.insertResume(irList);
-		int resultCareer = mapper.insertCareer(irList);
-		int resultPot = mapper.insertPot(irList);
+//		int resultResume = mapper.insertResume(irList);
+		int resultCareer = mapper.insertCareer(ir);
+		int resultPot = mapper.insertPot(ir);
 //		int resultIntroNo = mapper.insertIntroNo(irList);
-		int resultIntroContent = mapper.insertIntroContent(irList);
-		int resultLicense = mapper.insertLicense(irList);
-		int resultEdu = mapper.insertEdu(irList);
-		int resultAwd = mapper.insertAwd(irList);
+		int resultIntroContent = mapper.insertIntroContent(ir);
+		int resultLicense = mapper.insertLicense(ir);
+		int resultEdu = mapper.insertEdu(ir);
+		int resultAwd = mapper.insertAwd(ir);
 		
-		int result = resultResume + resultCareer + resultPot  
+		int result = resultCareer + resultPot  
 				+ resultIntroContent + resultLicense + resultEdu + resultAwd;
 		
-		if(result > 6) {
+		if(result > 5) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
+	public int selectResume(String resumeTitle) {
+		
+		SqlSession session = getSqlSession();
+		ResumeMapper mapper = session.getMapper(ResumeMapper.class);
+		
+		int resumeNo = mapper.selectResume(resumeTitle);
+		
+		session.close();
+		
+		return resumeNo;
+	}
+
+	public int insertResume(InsertResumeDTO ir) {
+		
+		SqlSession session = getSqlSession();
+		ResumeMapper mapper = session.getMapper(ResumeMapper.class);
+		
+		int result = mapper.insertResume(ir);
+		
+		if(result > 0) {
 			session.commit();
 		} else {
 			session.rollback();
