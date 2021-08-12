@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper">
+	<resultMap type="com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO" id="resultMyJobPosting">	
+		<id property="jobPostNo" column="JOB_POST_NO"/>
+		<result property="jobPostTitle" column="JOB_POST_TITLE" javaType="string"/>
+		<result property="jobPostMinExperience" column="JOB_POST_MIN_EXPERIENCE"/>
+		<result property="jobPostMaxExperience" column="JOB_POST_MAX_EXPERIENCE"/>
+		<result property="jobPostEnrollDate" column="JOB_POST_ENROLL_DATE"/>
+		<result property="jobPostDeadline" column="JOB_POST_DEADLINE"/>
+		<result property="jobPostKinds" column="JOB_POST_KINDS"/>
+		<result property="exposureUseCheck" column="EXPOSURE_USE_CHECK"/>
+	</resultMap>
+	<select id="selectCoMyJobPosting" parameterType="com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO" resultMap="resultMyJobPosting">
+		SELECT
+	    	   JP.JOB_POST_NO
+	    	 , JP.JOB_POST_TITLE
+	    	 , JP.JOB_POST_MIN_EXPERIENCE
+	    	 , JP.JOB_POST_MAX_EXPERIENCE
+	    	 , JP.JOB_POST_ENROLL_DATE
+	    	 , JP.JOB_POST_DEADLINE
+	    	 , JP.JOB_POST_KINDS
+	    	 , JP.EXPOSURE_USE_CHECK
+	      FROM TBL_JOB_POSTING JP
+	     WHERE JP.CO_MEM_NO = #{ coMemNo }
+	</select>
+	
+	<select id="selectRecruitingMyJobPosting" parameterType="com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO" resultMap="resultMyJobPosting">
+		SELECT
+	    	   JP.JOB_POST_NO
+	    	 , JP.JOB_POST_TITLE
+	    	 , JP.JOB_POST_MIN_EXPERIENCE
+	    	 , JP.JOB_POST_MAX_EXPERIENCE
+	    	 , JP.JOB_POST_ENROLL_DATE
+	    	 , JP.JOB_POST_DEADLINE
+	    	 , JP.JOB_POST_KINDS
+	    	 , JP.EXPOSURE_USE_CHECK
+	      FROM TBL_JOB_POSTING JP
+	     WHERE JP.CO_MEM_NO = #{ coMemNo }
+	       AND JP.JOB_POST_KINDS = '승인된공고'
+	</select>
+	
+	<select id="selectRequestMyJobPosting" parameterType="com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO" resultMap="resultMyJobPosting">
+		SELECT
+	    	   JP.JOB_POST_NO
+	    	 , JP.JOB_POST_TITLE
+	    	 , JP.JOB_POST_MIN_EXPERIENCE
+	    	 , JP.JOB_POST_MAX_EXPERIENCE
+	    	 , JP.JOB_POST_ENROLL_DATE
+	    	 , JP.JOB_POST_DEADLINE
+	    	 , JP.JOB_POST_KINDS
+	    	 , JP.EXPOSURE_USE_CHECK
+	      FROM TBL_JOB_POSTING JP
+	     WHERE JP.CO_MEM_NO = #{ coMemNo }
+	       AND JP.JOB_POST_KINDS = '승인대기중인공고'
+	</select>
+	
+	
+	
+</mapper>

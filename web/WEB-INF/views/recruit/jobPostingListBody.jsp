@@ -32,7 +32,6 @@
 
 </head>
 <body>
-	<jsp:include page="../common/header/personalHeader.jsp"/>
 
 <!--    <div class="jp_bottom_footer_Wrapper_header_img_wrapper">
         <div class="jp_slide_img_overlay"></div>
@@ -139,7 +138,7 @@
                         <h2>We found <span><c:out value="${ requestScope.jobPostingSize }"></c:out></span> Matches for you.</h2>
                     </div>
                 </div>
-               	<form id="selectJobPostingForm" action="${ pageContext.servletContext.contextPath }/member/allJobPosting/select" method="post">
+                <button id="search-job-posting">search</button>
                 	<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
                    		<div class="row">
                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
@@ -148,7 +147,7 @@
                                        <h4>직무</h4>
                                    </div>
                                    <div style="height: 200px; background: white;"class="jp_form_location_wrapper">
-                                       <select id="jobNo" style="border: 1px solid;">
+                                       <select id="selectJobNo" style="border: 1px solid;">
                                            <option selected>모든 직무</option>
                                        <c:forEach var = "jobNameList" items="${ requestScope.jobNameList }">
                                            <option id="jobNo" value="${ jobNameList.jobNo }"><c:out value="${ jobNameList.jobName }"/></option>
@@ -174,18 +173,19 @@
                                        <h4>경력</h4>
                                    </div>
                                    <div style="height: 200px; background: white;" class="jp_form_location_wrapper">
-                                       <select style="border: 1px solid;">
+                                       <select id="selectExperience" style="border: 1px solid;">
                                            <option disabled selected>경력을 선택해주세요</option>
-                                           <option id="experience" value="1">신입</option>
-                                           <option id="experience" value="2">2년</option>
-                                           <option id="experience" value="3">3년</option>
-                                           <option id="experience" value="4">4년</option>
-                                           <option id="experience" value="5">5년</option>
-                                           <option id="experience" value="6">6년</option>
-                                           <option id="experience" value="7">7년</option>
-                                           <option id="experience" value="8">8년</option>
-                                           <option id="experience" value="9">9년</option>
-                                           <option id="experience" value="10">10년이상</option>
+                                           <option value="0">신입</option>
+                                           <option value="1">1녀</option>
+                                           <option value="2">2년</option>
+                                           <option value="3">3년</option>
+                                           <option value="4">4년</option>
+                                           <option value="5">5년</option>
+                                           <option value="6">6년</option>
+                                           <option value="7">7년</option>
+                                           <option value="8">8년</option>
+                                           <option value="9">9년</option>
+                                           <option value="10">10년이상</option>
                                        </select>
                                    </div>
                                </div>
@@ -208,16 +208,16 @@
 														<label for="kyungki">경기/인천</label>
 													</p>
 													<p>
-														<input type="checkbox" id="kangwond" value="강원">
-														<label for="kangwond">강원</label>
+														<input type="checkbox" id="kangwon" value="강원">
+														<label for="kangwon">강원</label>
 													</p>
 													<p>
 														<input type="checkbox" id="chungchung" value="충청/대전">
 														<label for="chungchung">충청/대전</label>
 													</p>
 													<p>
-														<input type="checkbox" id="junrado" value="전라/광주">
-														<label for="junrado">전라/광주</label>
+														<input type="checkbox" id="junra" value="전라/광주">
+														<label for="junro">전라/광주</label>
 													</p>
 													<p>
 														<input type="checkbox" id="kyungsang" value="경상/울산/부산/대구">
@@ -235,8 +235,7 @@
                            </div>
                        </div>
                    </div>
-                   
-				</form>
+                
                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -329,11 +328,31 @@
             </div>
         </div>
     </div>
-
-    
-    
-    
-	<jsp:include page="../common/footer.jsp"/>
+    <script>
+    	$("#search-job-posting").click(function() {
+    		
+    		const selectJobNo = document.getElementById("selectJobNo").value;
+    		const selectExperience = document.getElementById("selectExperience").value;
+    		
+    		const selectOption = {
+    				
+    				selectJobNO : selectJobNO,
+    				selectExperience : selectExperience
+    		};
+    		
+    		$.ajax({
+    			url: "let/member/allJobPosting/select",
+    			type: "get",
+    			data: selectOption,
+    			success: function(){
+    				
+    			},
+    			error: function(xhr){
+    				console.log(xhr);
+    			}
+    		});
+    	});
+    </script>
 
 </body>
 </html>

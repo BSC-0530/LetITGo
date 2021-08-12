@@ -8,10 +8,12 @@
 		<result property="jobPostTitle" column="JOB_POST_TITLE" javaType="string"/>
 		<result property="jobPostMinExperience" column="JOB_POST_MIN_EXPERIENCE"/>
 		<result property="jobPostMaxExperience" column="JOB_POST_MAX_EXPERIENCE"/>
+		<result property="jobPostEnrollDate" column="JOB_POST_ENROLL_DATE"/>
 		<result property="jobPostDeadline" column="JOB_POST_DEADLINE"/>
 		<result property="jobPostContents" column="JOB_POST_CONTENTS"/>
 		<result property="jobPostKinds" column="JOB_POST_KINDS"/>
 		<result property="jobNo" column="JOB_NO"/>
+		<result property="exposureUseCheck" column="EXPOSURE_USE_CHECK"/>
 		<result property="jobPostApplying_kinds" column="JOB_POST_APPLYING_KINDS"/>
 		
 		<association property="coMemberAddInfoDTO" resultMap="resultCoMemberAddInfo"/>
