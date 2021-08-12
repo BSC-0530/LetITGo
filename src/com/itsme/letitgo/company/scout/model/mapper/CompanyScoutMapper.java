@@ -11,7 +11,8 @@ public interface CompanyScoutMapper {
 
 	List<Object> companyScoutSkills();
 
-	HashMap<String, Object> companyScoutCareea();
+	List<Object> companyScoutCareea();
+
 
 
 

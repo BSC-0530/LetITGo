@@ -2,7 +2,9 @@ package com.itsme.letitgo.company.scout.model.dto;
 
 import java.sql.Date;
 
-public class CompanyCareerHistoryDTO {
+import com.itsme.letitgo.personal.resume.model.dto.ResumeDTO;
+
+public class CompanyCareerHistoryDTO implements java.io.Serializable{
 	private String carComName;
 	private java.sql.Date carHireDate;
 	private java.sql.Date carEntDate;
@@ -17,12 +19,13 @@ public class CompanyCareerHistoryDTO {
 	private int jobNo;
 	private int resumeNo;
 	private int carNo;
+	private ResumeDTO resumeDTO;
 	
 	public CompanyCareerHistoryDTO() {}
 
-	public CompanyCareerHistoryDTO(String carComName, Date carHireDate, Date carEntDate, String carStatus, String carDeptName,
-			String carJobName, String projectName, Date projectStartDate, Date projectEndDate, String projectContent,
-			String carWorkField, int jobNo, int resumeNo, int carNo) {
+	public CompanyCareerHistoryDTO(String carComName, Date carHireDate, Date carEntDate, String carStatus,
+			String carDeptName, String carJobName, String projectName, Date projectStartDate, Date projectEndDate,
+			String projectContent, String carWorkField, int jobNo, int resumeNo, int carNo, ResumeDTO resumeDTO) {
 		super();
 		this.carComName = carComName;
 		this.carHireDate = carHireDate;
@@ -38,6 +41,7 @@ public class CompanyCareerHistoryDTO {
 		this.jobNo = jobNo;
 		this.resumeNo = resumeNo;
 		this.carNo = carNo;
+		this.resumeDTO = resumeDTO;
 	}
 
 	public String getCarComName() {
@@ -152,12 +156,25 @@ public class CompanyCareerHistoryDTO {
 		this.carNo = carNo;
 	}
 
+	public ResumeDTO getResumeDTO() {
+		return resumeDTO;
+	}
+
+	public void setResumeDTO(ResumeDTO resumeDTO) {
+		this.resumeDTO = resumeDTO;
+	}
+
 	@Override
 	public String toString() {
-		return "CareerHistoryDTO [carComName=" + carComName + ", carHireDate=" + carHireDate + ", carEntDate="
+		return "CompanyCareerHistoryDTO [carComName=" + carComName + ", carHireDate=" + carHireDate + ", carEntDate="
 				+ carEntDate + ", carStatus=" + carStatus + ", carDeptName=" + carDeptName + ", carJobName="
 				+ carJobName + ", projectName=" + projectName + ", projectStartDate=" + projectStartDate
 				+ ", projectEndDate=" + projectEndDate + ", projectContent=" + projectContent + ", carWorkField="
-				+ carWorkField + ", jobNo=" + jobNo + ", resumeNo=" + resumeNo + ", carNo=" + carNo + "]";
+				+ carWorkField + ", jobNo=" + jobNo + ", resumeNo=" + resumeNo + ", carNo=" + carNo + ", resumeDTO="
+				+ resumeDTO + "]";
 	}
+
+
+	
+	
 }

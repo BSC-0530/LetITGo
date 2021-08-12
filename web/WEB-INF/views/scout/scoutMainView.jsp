@@ -90,8 +90,10 @@
 									</c:if>
 									 </c:forEach>
 									</p>
-									<c:forEach items="${requestScope.scoutCareea }" var="scoutCareea" varStatus="status">
-									<i><c:out value="${scoutCareea }"/> </i>
+									<c:forEach items="${ requestScope.scoutCareea }" var="careea">
+									<c:out value ="${ careea.ResumeNoDTO.resumeNo }"/>
+<%-- 									<i><c:out value= " 경력  ${ scoutCareea } 개월"/> </i> --%>
+<%-- 									</c: if> --%>
 									</c:forEach>
 								</div>
 								
