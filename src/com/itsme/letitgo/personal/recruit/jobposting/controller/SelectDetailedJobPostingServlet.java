@@ -22,9 +22,17 @@ public class SelectDetailedJobPostingServlet extends HttpServlet {
 		
 		SelectJobPostingService selectJobPostingService = new SelectJobPostingService();
 		
-		Map<String, List<Object>> jp = selectJobPostingService.selectDetailedJobPosting(selectJobPostNo);
+		Map<String, Object> jp = selectJobPostingService.selectDetailedJobPosting(selectJobPostNo);
 		
 		
+		System.out.println(jp.get("detailedJobPosting"));
+		
+		request.setAttribute("detailedJobPosting", jp.get("detailedJobPosting"));
+		request.setAttribute("deteildeJpSkills", jp.get("deteildeJpSkills"));
+		
+		
+		String path = "/WEB-INF/views/recruit/detailedJobPosting.jsp";
+		request.getRequestDispatcher(path).forward(request, response);
 		
 		
 	}

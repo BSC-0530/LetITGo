@@ -37,7 +37,6 @@ public class SelectAllJobPostingServlet extends HttpServlet {
 		request.setAttribute("jobPostingList", jp.get("jpAndInfo"));
 		request.setAttribute("jpSkills", jp.get("jpSkills"));
 		request.setAttribute("jobNameList", jp.get("jobNameList"));
-		request.setAttribute("jobPostingSize", jp.get("jpAndInfo").size());
 
 
 
