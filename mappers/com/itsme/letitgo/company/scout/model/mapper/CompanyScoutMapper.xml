@@ -51,6 +51,8 @@
 			<result property="carWorkField" column="CAR_WORK_FIELD"/>
 			<result property="jobNo" column="JOB_NO"/>
 			<result property="resumeNo" column="RESUME_NO"/>
+			
+			<association property="resumeDTO" resultMap="mainScoutResumeDTO"/>
 		</resultMap>
 		
 		<resultMap type="com.itsme.letitgo.personal.resume.model.dto.HoldingAndSkillsDTO" id="mainScoutHoldingSkillsDTO">
@@ -91,12 +93,23 @@
 		  FROM TBL_RESUME_HOLDING_SKILLS RS
           JOIN TBL_SKILLS S ON (S.SKILLS_NO = RS.SKILLS_NO)
 		</select>
-		<select id="companyScoutCareea" resultType="hashmap">
+<!-- 		<select id="companyScoutCareea" resultType="hashMap" > -->
 			
-			 SELECT
-		 		CAR_HIRE_DATE
-			   ,CAR_ENT_DATE
-		  FROM TBL_CAREER_HISTORY
+<!-- 			SELECT -->
+<!-- 			       CR.RESUME_NO -->
+<!--                  , SUM(ROUND(ABS(MONTHS_BETWEEN(CR.CAR_HIRE_DATE,CR.CAR_ENT_DATE)),0)) as 경력 -->
+<!-- 		  FROM TBL_CAREER_HISTORY CR -->
+<!--           GROUP BY CR.RESUME_NO -->
+                                
+<!-- 		</select> -->
+		<select id="companyScoutCareea" resultType="HashMap">
+			
+		 SELECT
+			    R.RESUME_NO,
+                SUM( ROUND(ABS(MONTHS_BETWEEN(CR.CAR_HIRE_DATE,CR.CAR_ENT_DATE)),0))
+		    FROM TBL_CAREER_HISTORY CR
+		    JOIN TBL_RESUME R ON (R.RESUME_NO = CR.RESUME_NO)
+        GROUP BY CR.RESUME_NO
 		</select>
 		
 		
