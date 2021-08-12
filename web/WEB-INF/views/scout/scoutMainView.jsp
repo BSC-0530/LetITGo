@@ -77,7 +77,7 @@
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_recent_resume_box_wrapper">
-								<div class="jp_recent_resume_img_wrapper">
+								<div class="jp_recent_resume_img_wrapper" id="detailResume">
 									<img src="images/content/resume_img1.jpg" alt="resume_img" />
 								</div>
 								<div class="jp_recent_resume_cont_wrapper">
@@ -96,10 +96,9 @@
 <%-- 									</c: if> --%>
 									</c:forEach>
 								</div>
-								
 								<div class="jp_recent_resume_btn_wrapper">
-										<button style="margin-left:150px; margin-top:20px;" type="submit" class="btn btn-info" onclick="browse(this);">간단 조회</button>
-										<p>${ careaa.ResumeNo }</p>
+									<button style="margin-left:150px; margin-top:20px;" type="submit" class="btn btn-info" onclick="browse(this);">간단 조회</button>
+									<input type="text" id="hiddenResumeNo" value=" ${ mainScout.resumeNo }">
 								</div>
 							</div>
 						</div>
@@ -118,6 +117,11 @@
 <script>
 	function browse(button){
 		
+		const num = button.parentNode.children[1].value
+		
+		alert(num);
+		
+		location.href="${ pageContext.servletContext.contextPath }/simple/browse/select?num=" + num
 	}	
 
 </script>
