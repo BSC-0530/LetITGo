@@ -23,7 +23,7 @@
 		VALUES
 		(
 		  SEQ_JOB_NO.NEXTVAL
-		, # { name }  
+		, #{ name }  
 		)
 	</insert>
 	
