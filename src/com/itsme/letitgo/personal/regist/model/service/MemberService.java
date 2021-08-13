@@ -38,7 +38,10 @@ public class MemberService {
 		RegistMemberMapper mapper = session.getMapper(RegistMemberMapper.class);
 		
 		int result = mapper.coMemberReigst(coMemberDTO);
-				
+
+		
+		int result2 = mapper.coMemberReigstInfo(coMemberDTO);
+		
 		if(result > 0) {
 			session.commit();
 		}else {

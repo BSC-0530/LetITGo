@@ -7,125 +7,128 @@ public class CoMemberDTO implements Serializable{
 
 	
 
-		private String Coid;
-		private String Coemail;
-		private String Copwd;
-		private String CoName;
-		private String CoPhone;
-		private String CoKinds;
-		private Date CoEnrollDate;
-		private Integer CoEntYn;
-		private Date CoEntDate;
+		private String id;
+		private String email;
+		private String pwd;
+		private String name;
+		private String phone;
+		private String kinds;
+		private Date enrollDate;
+		private Integer entYn;
+		private Date entDate;
 		
-		//이따 변수명 coMem으로 시작하게 만들기
+		
 		private int memNo;			//기업회원번호
 		private String intro;		//회사 소개글
 		private String coNo;		//사업자 등록 번호
 		private String comName;		//기업 이름
 		private String ceoName;     //대표자 이름
 		private String address; 	//주소
-		private String ComPhone; 	//사업장 전화번호
+		private String comPhone; 	//사업장 전화번호
 		private String fax;			//사업장 팩스번호
 		private String sectors;		//업종
 		private String status;		//업태
+		private String website;
 		
 		public CoMemberDTO() {}
 
-		public CoMemberDTO(String coid, String coemail, String copwd, String coName, String coPhone, String coKinds,
-				Date coEnrollDate, Integer coEntYn, Date coEntDate, int memNo, String intro, String coNo, String comName,
-				String ceoName, String address, String comPhone, String fax, String sectors, String status) {
+		public CoMemberDTO(String id, String email, String pwd, String name, String phone, String kinds,
+				Date enrollDate, Integer entYn, Date entDate, int memNo, String intro, String coNo, String comName,
+				String ceoName, String address, String comPhone, String fax, String sectors, String status,
+				String website) {
 			super();
-			Coid = coid;
-			Coemail = coemail;
-			Copwd = copwd;
-			CoName = coName;
-			CoPhone = coPhone;
-			CoKinds = coKinds;
-			CoEnrollDate = coEnrollDate;
-			CoEntYn = coEntYn;
-			CoEntDate = coEntDate;
+			this.id = id;
+			this.email = email;
+			this.pwd = pwd;
+			this.name = name;
+			this.phone = phone;
+			this.kinds = kinds;
+			this.enrollDate = enrollDate;
+			this.entYn = entYn;
+			this.entDate = entDate;
 			this.memNo = memNo;
 			this.intro = intro;
 			this.coNo = coNo;
 			this.comName = comName;
 			this.ceoName = ceoName;
 			this.address = address;
-			ComPhone = comPhone;
+			this.comPhone = comPhone;
 			this.fax = fax;
 			this.sectors = sectors;
 			this.status = status;
+			this.website = website;
 		}
 
-		public String getCoid() {
-			return Coid;
+		public String getId() {
+			return id;
 		}
 
-		public void setCoid(String coid) {
-			Coid = coid;
+		public void setId(String id) {
+			this.id = id;
 		}
 
-		public String getCoemail() {
-			return Coemail;
+		public String getEmail() {
+			return email;
 		}
 
-		public void setCoemail(String coemail) {
-			Coemail = coemail;
+		public void setEmail(String email) {
+			this.email = email;
 		}
 
-		public String getCopwd() {
-			return Copwd;
+		public String getPwd() {
+			return pwd;
 		}
 
-		public void setCopwd(String copwd) {
-			Copwd = copwd;
+		public void setPwd(String pwd) {
+			this.pwd = pwd;
 		}
 
-		public String getCoName() {
-			return CoName;
+		public String getName() {
+			return name;
 		}
 
-		public void setCoName(String coName) {
-			CoName = coName;
+		public void setName(String name) {
+			this.name = name;
 		}
 
-		public String getCoPhone() {
-			return CoPhone;
+		public String getPhone() {
+			return phone;
 		}
 
-		public void setCoPhone(String coPhone) {
-			CoPhone = coPhone;
+		public void setPhone(String phone) {
+			this.phone = phone;
 		}
 
-		public String getCoKinds() {
-			return CoKinds;
+		public String getKinds() {
+			return kinds;
 		}
 
-		public void setCoKinds(String coKinds) {
-			CoKinds = coKinds;
+		public void setKinds(String kinds) {
+			this.kinds = kinds;
 		}
 
-		public Date getCoEnrollDate() {
-			return CoEnrollDate;
+		public Date getEnrollDate() {
+			return enrollDate;
 		}
 
-		public void setCoEnrollDate(Date coEnrollDate) {
-			CoEnrollDate = coEnrollDate;
+		public void setEnrollDate(Date enrollDate) {
+			this.enrollDate = enrollDate;
 		}
 
-		public Integer getCoEntYn() {
-			return CoEntYn;
+		public Integer getEntYn() {
+			return entYn;
 		}
 
-		public void setCoEntYn(Integer coEntYn) {
-			CoEntYn = coEntYn;
+		public void setEntYn(Integer entYn) {
+			this.entYn = entYn;
 		}
 
-		public Date getCoEntDate() {
-			return CoEntDate;
+		public Date getEntDate() {
+			return entDate;
 		}
 
-		public void setCoEntDate(Date coEntDate) {
-			CoEntDate = coEntDate;
+		public void setEntDate(Date entDate) {
+			this.entDate = entDate;
 		}
 
 		public int getMemNo() {
@@ -177,11 +180,11 @@ public class CoMemberDTO implements Serializable{
 		}
 
 		public String getComPhone() {
-			return ComPhone;
+			return comPhone;
 		}
 
 		public void setComPhone(String comPhone) {
-			ComPhone = comPhone;
+			this.comPhone = comPhone;
 		}
 
 		public String getFax() {
@@ -208,13 +211,25 @@ public class CoMemberDTO implements Serializable{
 			this.status = status;
 		}
 
+		public String getWebsite() {
+			return website;
+		}
+
+		public void setWebsite(String website) {
+			this.website = website;
+		}
+
 		@Override
 		public String toString() {
-			return "CoMemberDTO [Coid=" + Coid + ", Coemail=" + Coemail + ", Copwd=" + Copwd + ", CoName=" + CoName
-					+ ", CoPhone=" + CoPhone + ", CoKinds=" + CoKinds + ", CoEnrollDate=" + CoEnrollDate + ", CoEntYn="
-					+ CoEntYn + ", CoEntDate=" + CoEntDate + ", memNo=" + memNo + ", intro=" + intro + ", coNo=" + coNo
-					+ ", comName=" + comName + ", ceoName=" + ceoName + ", address=" + address + ", ComPhone=" + ComPhone
-					+ ", fax=" + fax + ", sectors=" + sectors + ", status=" + status + "]";
+			return "CoMemberDTO [id=" + id + ", email=" + email + ", pwd=" + pwd + ", name=" + name + ", phone=" + phone
+					+ ", kinds=" + kinds + ", enrollDate=" + enrollDate + ", entYn=" + entYn + ", entDate=" + entDate
+					+ ", memNo=" + memNo + ", intro=" + intro + ", coNo=" + coNo + ", comName=" + comName + ", ceoName="
+					+ ceoName + ", address=" + address + ", comPhone=" + comPhone + ", fax=" + fax + ", sectors="
+					+ sectors + ", status=" + status + ", website=" + website + "]";
 		}
+
+		
+
+		
 
 	}

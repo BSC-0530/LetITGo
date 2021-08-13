@@ -11,5 +11,8 @@ public interface RegistMemberMapper {
 
 	int idCheck(String id);
 
+	int coMemberReigstInfo(CoMemberDTO coMemberDTO);
+
+	
 	
 }
