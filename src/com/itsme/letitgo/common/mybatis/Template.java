@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 
+import com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper;
 import com.itsme.letitgo.admin.resume.model.mapper.JobFieldMapper;
 import com.itsme.letitgo.admin.resume.model.mapper.SelfIntroductionItemMapper;
 import com.itsme.letitgo.admin.resume.model.mapper.SkillsCategoryMapper;
@@ -51,9 +52,11 @@ public class Template {
 
 
 			configuration.addMapper(ResumeMapper.class);
+			
+			//현수
 			configuration.addMapper(PaymentMapper.class);
-			
-			
+			configuration.addMapper(AdminPaymentMapper.class);
+						
 			// 동기
 			configuration.addMapper(SelectJobPostingMapper.class);
 			configuration.addMapper(SelectCoMyJobPostingMapper.class);

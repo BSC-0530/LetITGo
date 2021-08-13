@@ -9,21 +9,16 @@ public class AdminPaymentHistoryDTO {
 	private java.util.Date payDate;
 	private String productName;
 	private int payPrice;
-	private java.util.Date payAnsDate;
-	private String payKinds;
-	
+
 	public AdminPaymentHistoryDTO() {}
 
-	public AdminPaymentHistoryDTO(int payNo, String coComName, Date payDate, String productName, int payPrice,
-			Date payAnsDate, String payKinds) {
+	public AdminPaymentHistoryDTO(int payNo, String coComName, Date payDate, String productName, int payPrice) {
 		super();
 		this.payNo = payNo;
 		this.coComName = coComName;
 		this.payDate = payDate;
 		this.productName = productName;
 		this.payPrice = payPrice;
-		this.payAnsDate = payAnsDate;
-		this.payKinds = payKinds;
 	}
 
 	public int getPayNo() {
@@ -66,27 +61,12 @@ public class AdminPaymentHistoryDTO {
 		this.payPrice = payPrice;
 	}
 
-	public java.util.Date getPayAnsDate() {
-		return payAnsDate;
-	}
-
-	public void setPayAnsDate(java.util.Date payAnsDate) {
-		this.payAnsDate = payAnsDate;
-	}
-
-	public String getPayKinds() {
-		return payKinds;
-	}
-
-	public void setPayKinds(String payKinds) {
-		this.payKinds = payKinds;
-	}
-
 	@Override
 	public String toString() {
 		return "AdminPaymentHistoryDTO [payNo=" + payNo + ", coComName=" + coComName + ", payDate=" + payDate
-				+ ", productName=" + productName + ", payPrice=" + payPrice + ", payAnsDate=" + payAnsDate
-				+ ", payKinds=" + payKinds + "]";
+				+ ", productName=" + productName + ", payPrice=" + payPrice + "]";
 	}
+
+	
 	
 }

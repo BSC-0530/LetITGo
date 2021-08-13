@@ -54,18 +54,12 @@ public class SelectRefundHistoryServlet extends HttpServlet {
 		} else {
 			redirectText.append("<script>alert('환불요청취소가 실패하였습니다.'); location.href='../../company/refundHistory/select';</script>");
 		}
-		 
-									
+		 								
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
 		out.print(redirectText.toString());
 		out.flush();
 		out.close();
-		/*
-		 * String path = "/WEB-INF/views/payment/paymentHistory.jsp";
-		 * response.sendRedirect("/let/company/refundHistory/select");
-		 * request.getRequestDispatcher(path).forward(request, response);
-		 */
 	}
 }

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper">
+
+	<resultMap type="com.itsme.letitgo.admin.payment.model.dto.AdminPaymentHistoryDTO" id="adminPaymentHistoryResultMap">
+		<id property="payNo" column="PAY_NO"/>
+		<result property="coComName" column="CO_COM_NAME"/>
+		<result property="payDate" column="PAY_DATE"/>
+		<result property="productName" column="PRODUCT_NAME"/>
+		<result property="payPrice" column="PAY_PRICE"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.admin.payment.model.dto.AdminRefundHistoryDTO" id="adminRefundHistoryResultMap">
+		<id property="payChangeNo" column="PAY_CHANGE_NO"/>
+		<result property="payNo" column="PAY_NO"/>
+		<result property="payDate" column="PAY_DATE"/>
+		<result property="payReqDate" column="PAY_REQ_DATE"/>
+		<result property="payAnsDate" column="PAY_ANS_DATE"/>
+		<result property="payPrice" column="PAY_PRICE"/>	
+		<result property="payChangeStatus" column="PAY_CHANGE_STATUS"/>
+		<result property="payChangeReason" column="PAY_CHANGE_REASON"/>
+	</resultMap>
+
+	<select id="selectAdminPaymentHistory" resultMap="adminPaymentHistoryResultMap">
+	   SELECT /* com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper#selectAdminPaymentHistory() */
+	          A.PAY_NO
+    	    , C.CO_COM_NAME
+    	    , A.PAY_DATE
+    	    , D.PRODUCT_NAME 
+     	    , A.PAY_PRICE
+  		 FROM TBL_PAYMENT_HISTORY A 
+ 		 JOIN TBL_MEMBER B ON (A.CO_MEM_NO = B.MEM_NO)
+  	 	 JOIN TBL_CO_MEMBER_ADD_INFO C ON (B.MEM_NO = C.CO_MEM_NO)
+  	 	 JOIN TBL_PRODUCT_LIST D ON (A.PRODUCT_NO = D.PRODUCT_NO)
+	</select>
+	
+	<select id="selectAdminRefundHistory" resultMap="adminRefundHistoryResultMap">
+		SELECT /* com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper#selectAdminRefundHistory() */
+		       A.PAY_CHANGE_NO
+		     , B.PAY_NO  
+		     , B.PAY_DATE
+		     , A.PAY_REQ_DATE
+		     , A.PAY_ANS_DATE
+		     , B.PAY_PRICE
+		     , A.PAY_CHANGE_STATUS
+		     , A.PAY_CHANGE_REASON
+		  FROM TBL_PAYMENT_CHANGE_HISTORY A
+		  JOIN TBL_PAYMENT_HISTORY B ON (A.PAY_NO = B.PAY_NO)
+		 ORDER BY A.PAY_CHANGE_NO 
+	</select>
+	
+	<update id="updateRefundAppStatus">
+		UPDATE /* com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper#updateRefundStatus() */
+		       TBL_PAYMENT_CHANGE_HISTORY
+		   SET PAY_ANS_DATE = SYSDATE
+		     , PAY_CHANGE_STATUS = '환불완료'
+		 WHERE PAY_CHANGE_NO = #{ payChangeNo }
+	</update>
+	
+	<update id="updateRefundAppStatus2">
+		UPDATE /* com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper#updateRefundStatus2() */
+		       TBL_PAYMENT_HISTORY
+		   SET PAY_KINDS = '환불완료'
+		 WHERE PAY_NO = #{ payNo }    
+	</update>
+	
+	<update id="updateRefundRejectStatus">
+		UPDATE /* com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper#updateRefundRejectStatus() */
+		       TBL_PAYMENT_CHANGE_HISTORY
+		   SET PAY_ANS_DATE = SYSDATE
+		     , PAY_CHANGE_STATUS = '환불거절'
+		 WHERE PAY_CHANGE_NO = #{ payChangeNo }
+	</update>
+	
+	<update id="updateRefundRejectStatus2">
+		UPDATE /* com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper#updateRefundRejectStatus2() */
+		       TBL_PAYMENT_HISTORY
+		   SET PAY_KINDS = '환불거절'
+		 WHERE PAY_NO = #{ payNo }    
+	</update>
+	
+</mapper>

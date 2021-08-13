@@ -103,11 +103,11 @@
 												</p>
 												<br>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/refund/select">결제 내역 조회</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/payment/select">결제 내역 조회</a>
 												</p>
 												<br>
 												<p align="center">
-													<a href="#">환불 요청 관리</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/refund/select">환불 요청 관리</a>
 												</p>
 												<br>
 												<br>

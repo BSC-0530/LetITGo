@@ -157,6 +157,10 @@
 									<td><c:out value="요청진행중"/></td>
 									</c:if>
 									
+									<c:if test="${refund.payAnsDate != null }">
+									<td><c:out value="${ refund.payAnsDate }"/></td>
+									</c:if>
+									
 									<c:if test="${ refund.payChangeStatus eq '환불요청취소'  }">
 									<td>-</td>
 									</c:if>

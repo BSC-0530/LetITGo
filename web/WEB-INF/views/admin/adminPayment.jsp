@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,13 +79,11 @@
 												</p>
 												<br>
 												<p align="center">
-													<a
-														href="${ pageContext.servletContext.contextPath }/admin/refund/select">결제
-														내역 조회</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/payment/select">결제 내역 조회</a>
 												</p>
 												<br>
 												<p align="center">
-													<a href="#">환불 요청 관리</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/refund/select">환불 요청 관리</a>
 												</p>
 												<br> <br>
 												<h3 style="font-weight: bold">기업 요청 관리</h3>
@@ -158,17 +158,19 @@
 											<td align="center">결제일자</td>
 											<td align="center">상품이름</td>
 											<td align="center">결제금액</td>
-											<td align="center">요청응답일자</td>
-											<td align="center">결제상태</td>
 										</tr>
 									</thead>
-										<tbody align="center">
+									<c:forEach var="adminPayment" items="${ requestScope.adminPaymentHistory }">
+									<tbody align="center">
 											<tr>
-												<td></td>
-												<td></td>									
-												<td></td>
+												<td><c:out value="${ adminPayment.payNo }"/></td>
+												<td><c:out value="${ adminPayment.coComName }"/></td>									
+												<td><c:out value="${ adminPayment.payDate }"/></td>
+												<td><c:out value="${ adminPayment.productName }"/></td>
+												<td><fmt:formatNumber value="${ adminPayment.payPrice }" pattern="###,###"/></td>
 											</tr>
-										</tbody>								
+									</tbody>				
+									</c:forEach>				
 								</table>
 								<br>
 								<br>
