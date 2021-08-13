@@ -83,17 +83,20 @@
 												<br>
 												<p>
 												<p align="center">
-													<a href="#">자기소개서 항목 관리</a>
+													<a href="${ pageContext.servletContext.contextPath }/selfintroductionitem/list">자기소개서 항목 관리</a>
 												</p>
 												<br>
 												<p align="center">
-													<a href="#">직무분야 관리</a>
+													<a href="${ pageContext.servletContext.contextPath }/jobfield/list">직무분야 관리</a>
 												</p>
 												<br>
 												<p align="center">
-													<a href="#">기술 및 카테고리 관리</a>
+													<a href="${ pageContext.servletContext.contextPath }/skills/list">기술 관리</a>
 												</p>
 												<br>
+												<p align="center">
+													<a href="${ pageContext.servletContext.contextPath }/skillscategory/list">기술 카테고리 관리</a>
+												</p>
 												<br>
 												<h3 style="font-weight: bold">결제 관리</h3>
 												<br>

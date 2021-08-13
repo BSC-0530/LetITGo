@@ -158,8 +158,41 @@
 <!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
 <br><br><br>
 				
-	
+	<div class="outer outer-job-field-insert">
+		<br>
+		<h2 align="center">직무 분야 등록</h2>
+		<div class="table-area">
+			<form action="${ pageContext.servletContext.contextPath }/jobfield/insert" method="post">
+				<table>
+					<tr>
+						<td>직무코드 </td>
+						<td>
+							<input type="number" size="20" name="jobNo">
+						</td>
+					</tr>
+					<tr>
+						<td>직무이름 </td>
+						<td>
+							<input type="text" size="50" name="jobName">
+						</td>
+					</tr>
+				</table>
+				<br>
+				<div align="center">
+					<button type="reset" id="cancleInsert" onclick="location='adminJobField.jsp'">취소하기</button>
+					<button type="submit">등록하기</button>
+				</div>
+			</form>
+		</div>
+	</div>
 	
 	
 </body>
 </html>
+
+
+
+
+
+
+
