@@ -139,28 +139,86 @@
 
 		document.join_form.submit();
 
-	}
-	function emailCheck() {
-		var form = document.authenform;
-		var comfirm = ${ comfirm };
+$("btemail").click(function() {
+	//alert("이메일 인증 시작");
+	var user_mail = $(".email").val();
+	
+	var key;
+	var bool = true;
+	
+	if(bool){
 		
-		if(!form.comfirm.value){
-			alert("인증번호를 입력하세요!!");
-			return false;
-		}
-		if(form.comfirm.value != comfirm){
-			alert("틀린 인증번호입니다. 인증번호를 다시 입력해주세요");
-			return false;
-		}
-		if(form.comfirm.value==comfirm){
-			alert("인증완료");
-			opener.document.userinput.mailCheck.value ="인증완료";
-			self.close();
-		}
+		$.ajax({
+			url:"",
+			type:"post",
+			dataType:"json"
+			data:{"user_mail":user_mail},
+			success: function(result){
+						alert("인증번호 발송!");
+						key=result;
+						bool=false;
+			},
+			
+			error:function(xhr, status, error){
+			alert("Error : " + status + " >>> " + error);
+			}
+			
+		});//ajax
+		
+		$(".mailcheck").show();	// 이메일 인증 입력란
+		$(".btemail").val("인증번호 확인!"); //이메일 인증 버튼 -> 내용변경
+		
+		$(".mailcheck").keyup(function () {
+			
+			if($(".mailcheck").val()>=6){
+				var userContent = $(".mailcheck").val();
+				
+				if(userContent == key){
+					alert("인증 성공!!!")
+					$("#btemail"),val("인증완료!");
+					$("#btemail").attr("disabled", true);
+					$(".mailcheck").attr("disabled", true);
+				}else{
+					$("#btemail").val("인증번호 재 발송!");
+					event.preventDefault();
+				}
+				
+			}
+		});
+	
+	}else{
+		alert("test1 >> false");
+		event.preventDefault();
 	}
+	
+
 </script>
 </head>
 <body>
+
+	<div class="jp_tittle_main_wrapper">
+        <div class="jp_tittle_img_overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="jp_tittle_heading_wrapper">
+                        <div class="jp_tittle_heading">
+                            <h2>상세 공고</h2>
+                        </div>
+                        <div class="jp_tittle_breadcrumb_main_wrapper">
+                            <div class="jp_tittle_breadcrumb_wrapper">
+                                <ul>
+                                    <li><a href="#">Home</a> <i class="fa fa-angle-right"></i></li>
+                                    <li><a href="#">채용공고</a> <i class="fa fa-angle-right"></i></li>
+                                    <li>상세공고</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 	   <!-- 여기부터 시작-->
 	<form action="/regist/member" name="join_form" method="post">
     <div class="register_section">
@@ -197,13 +255,13 @@
 
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                             <input type="email" name="email"  onchange="sendIt()" style="text-transform: lowercase" placeholder="이메일">
-                                            <input type="button" value="이메일 보내기" class="id_overlap_button" onclick="id_overlap_check()">
+                                            <input type="button" value="이메일 보내기" class="btemail" id="btemail" >
                                             <img id="id_check_sucess" style="display: none;">
                                         </div>
 
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="comfirm" value="인증번호 확인"  style="text-transform: lowercase" placeholder="인증번호">
-                                            <input type="button" value="인증번호 확인" onclick="emailCheck()">
+                                            <input type="text" name="comfirm" class="comfirm"value="인증번호 확인"  style="text-transform: lowercase" placeholder="인증번호">
+                                            <input type="button" value="인증번호 확인" id="mailcheck"  class="mailcheck" >
                                         </div>
 
                                        

@@ -19,7 +19,7 @@ public class CoMemberRegistServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String path = "/WEB-INF/views/common/login/login.jsp";
+		String path = "";
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	}
@@ -48,17 +48,18 @@ public class CoMemberRegistServlet extends HttpServlet {
 		String fax = request.getParameter("pax");
 		String sectors = request.getParameter("sectors");
 		String status = request.getParameter("status");
+		String website = request.getParameter("website");
 		
 		CoMemberDTO coMemberDTO = new CoMemberDTO();
-		coMemberDTO.setCoid(memberId);
-		coMemberDTO.setCoemail(email);
-		coMemberDTO.setCopwd(pwd);
-		coMemberDTO.setCoName(name);
-		coMemberDTO.setCoPhone(phone);
-		coMemberDTO.setCoKinds(kinds);
-		coMemberDTO.setCoEnrollDate(enrollDate);
-		coMemberDTO.setCoEntYn(entYn);
-		coMemberDTO.setCoEntDate(entDate);
+		coMemberDTO.setId(memberId);
+		coMemberDTO.setEmail(email);
+		coMemberDTO.setPwd(pwd);
+		coMemberDTO.setName(name);
+		coMemberDTO.setPhone(phone);
+		coMemberDTO.setKinds(kinds);
+		coMemberDTO.setEnrollDate(enrollDate);
+		coMemberDTO.setEntYn(entYn);
+		coMemberDTO.setEntDate(entDate);
 		coMemberDTO.setIntro(intro);
 		coMemberDTO.setCoNo(coNo);
 		coMemberDTO.setComName(comName);
@@ -68,6 +69,7 @@ public class CoMemberRegistServlet extends HttpServlet {
 		coMemberDTO.setFax(fax);
 		coMemberDTO.setSectors(sectors);
 		coMemberDTO.setStatus(status);
+		coMemberDTO.setWebsite(website);
 		
 		int result = new MemberService().registCoMember(coMemberDTO);
 		
