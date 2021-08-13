@@ -14,4 +14,5 @@ public interface RegistMemberMapper {
 	int coMemberReigstInfo(CoMemberDTO coMemberDTO);
 
 	
+	
 }

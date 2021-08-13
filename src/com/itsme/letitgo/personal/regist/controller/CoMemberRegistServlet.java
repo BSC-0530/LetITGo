@@ -22,6 +22,7 @@ public class CoMemberRegistServlet extends HttpServlet {
 		String path = "";
 		
 		request.getRequestDispatcher(path).forward(request, response);
+		
 	}
 
 

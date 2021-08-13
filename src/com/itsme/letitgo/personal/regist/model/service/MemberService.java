@@ -39,6 +39,7 @@ public class MemberService {
 		
 		int result = mapper.coMemberReigst(coMemberDTO);
 
+		
 		int result2 = mapper.coMemberReigstInfo(coMemberDTO);
 		
 		if(result > 0) {

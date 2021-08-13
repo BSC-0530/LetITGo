@@ -327,7 +327,6 @@ $("btemail").click(function() {
                                             <input type="password" name="field-name" value="" placeholder="re-enter password*">
                                         </div>
 
-                                        <!--Form Group-->
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
                                             <input type="text" name="field-name" value="" placeholder="phone">
