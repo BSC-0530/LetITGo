@@ -161,31 +161,46 @@
 	<div class="outer outer-job-field-insert">
 		<br>
 		<h2 align="center">직무 분야 등록</h2>
+		<br><br>
+		
 		<div class="table-area">
 			<form action="${ pageContext.servletContext.contextPath }/jobfield/insert" method="post">
-				<table>
-					<tr>
-						<td>직무코드 </td>
-						<td>
-							<input type="number" size="20" name="jobNo">
-						</td>
-					</tr>
-					<tr>
-						<td>직무이름 </td>
-						<td>
-							<input type="text" size="50" name="jobName">
-						</td>
-					</tr>
-				</table>
+				<!-- <div align="center">
+					<input type="text" placeholder="직무코드" name="no">
+				</div>
+					<hr> -->
+				<div align="center">
+					<input type="text" placeholder="직무이름" name="name">
+				</div>
 				<br>
 				<div align="center">
-					<button type="reset" id="cancleInsert" onclick="location='adminJobField.jsp'">취소하기</button>
+					<!-- <button type="reset" id="cancleInsert">취소하기</button> -->
+					<button type="button" onClick="history.go(-1)">취소하기</button>
 					<button type="submit">등록하기</button>
 				</div>
 			</form>
 		</div>
 	</div>
 	
+	<script>
+	
+	</script>
+	
+	<script>
+		function cancle() {
+			location.href = "${ pageContext.servletContext.contextPath }/jobfield/list"
+		}
+	</script>
+	
+	<!-- <script>
+		function /* post(div) */ {
+			
+			/* alert(); */
+			
+			 location.href = "${ pageContext.servletContext.contextPath }/jobfield/list" 
+			
+		}
+	</script> -->
 	
 </body>
 </html>

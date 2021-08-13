@@ -184,14 +184,19 @@
 							
 						</table>
 						<br><br>
-								 <div align="right">
+								 <!-- <div align="right">
 									<table>
 										<tr>
 											<td><button type="button"
 													onclick="location.href='adminJobFieldInsertForm.jsp'">등록하기</button></td>
 										</tr>
 									</table>
-								</div> 
+								</div>  -->
+								
+								<div class="job-field-insert-wrapper" onclick="post(this);">
+									<button type="submit">등록하기</button>
+								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -217,5 +222,26 @@
 	</div> -->
 	<!-- <input type="button" value="확인" onclick="location.href='/adminJobFieldInsertForm.jsp'"><button>등록하기</button> -->
 	
+	<script>
+		function post(div) {
+			
+			/* 
+			 == alert()로 이동되는지 확인 ==
+			 alert();  
+			*/
+			
+			 location.href = "${ pageContext.servletContext.contextPath }/jobfield/insert" 
+			
+		}
+	</script>
+	
 </body>
 </html>
+
+
+
+
+
+
+
+

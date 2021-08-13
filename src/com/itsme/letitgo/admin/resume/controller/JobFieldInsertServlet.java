@@ -16,7 +16,7 @@ public class JobFieldInsertServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String path = "";
+		String path = "/WEB-INF/views/admin/adminJobFieldInsertForm.jsp";
 		
 		request.getRequestDispatcher(path).forward(request, response);
 		
@@ -26,11 +26,11 @@ public class JobFieldInsertServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 
-		int no = Integer.parseInt(request.getParameter("no"));
+		/* int no = Integer.parseInt(request.getParameter("no")); */
 		String name = request.getParameter("name");
 		
 		JobFieldDTO requestJobField = new JobFieldDTO();
-		requestJobField.setNo(no);
+		/* requestJobField.setNo(no); */
 		requestJobField.setName(name);
 		
 		//requestJobField 확인
@@ -44,7 +44,7 @@ public class JobFieldInsertServlet extends HttpServlet {
 		String path = ""; //빈 문자열을 선언 후, 밑의 if문을 돌려서 성공과 실패의 주소로 간다.
 		
 		if(result > 0) {
-			path = "/WEB-INF/views/admin/adminSuccess.jsp";
+			path = "/WEB-INF/views/admin/adminSuccess.jsp"; 
 			request.setAttribute("successCode", "jobFieldInsert");
 		} else {
 			path = "/WEB-INF/views/admin/adminFailed.jsp";

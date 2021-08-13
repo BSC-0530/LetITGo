@@ -28,11 +28,11 @@
 				movePath = "${ pageContext.servletContext.contextPath }//* 경로 지정해주기 */";
 				
 			case "jobFieldInsert" :
-				successMessage = "기술 카테고리 등록에 성공하셨습니다.";
-				movePath = "${ pageContext.servletContext.contextPath }//* 경로 지정해주기 */";
+				successMessage = "직무분야 등록에 성공하셨습니다.";
+				movePath = "${ pageContext.servletContext.contextPath }/jobfield/list";
 				
 			case "selfIntroductionItemInsert" :
-				successMessage = "기술 카테고리 등록에 성공하셨습니다.";
+				successMessage = "자기소개서 항목 등록에 성공하셨습니다.";
 				movePath = "${ pageContext.servletContext.contextPath }//* 경로 지정해주기 */";
 			
 			}
