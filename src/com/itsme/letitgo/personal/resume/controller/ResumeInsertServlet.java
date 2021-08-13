@@ -24,7 +24,7 @@ public class ResumeInsertServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
-
+ 
 //		-- value 꺼내기
 //		---- resume
 		Integer jobNo = Integer.parseInt(request.getParameter("jobNo"));
