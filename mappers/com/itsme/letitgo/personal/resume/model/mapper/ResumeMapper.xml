@@ -281,7 +281,7 @@
 		)
 		VALUES
 		(
-		  SEQ_POT_NO.NEXTVAL, #{ jobNo }, '링크', #{ potLinkAddress }
+		  SEQ_POT_NO.NEXTVAL, #{ resumeNo }, '링크', #{ potLinkAddress }
 		, NULL, NULL, NULL
 		)
 	</insert>
@@ -330,7 +330,13 @@
 		INSERT
 		  INTO TBL_AWARD_HISTORY A
 		(
-		  A.
+		  A.AWD_NO, A.AWD_NAME, A.AWD_AGENCY
+		, A.AWD_DATE, A.AWD_CONTENT, A.RESUME_NO
+		)
+		VALUES
+		(
+		  SEQ_AWD_NO.NEXTVAL, #{ awdName }, #{ awdAgency }
+		, #{ awdDate }, #{ awdContent }, #{ resumeNo }
 		)
 	</insert>
 </mapper>
