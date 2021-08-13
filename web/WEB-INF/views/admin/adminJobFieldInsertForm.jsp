@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/admin.css" />
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/animate.css" />
 <link rel="stylesheet" type="text/css"
@@ -29,10 +28,32 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/style_II.css" />
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
+<!-- letitgo 제작 css -->
+<link rel="stylesheet" type="text/css" href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css"/>
+
+<style>
+	.h4 {
+		font-weight: bold;
+	}
+	td {
+		width: 400px;
+	}
+</style>
+
 </head>
+
 <body>
 
-	<!-- 관리자 사이드 바 -->
+<!-- 사이드바 -->
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
@@ -133,36 +154,12 @@
 			</div>
 		</div>
 	</div>
-	<!-- 관리자 초기 사이드바 -->
-	<!-- <div class="v1686_231">
-		<div class="v1686_232"></div>
-		<div class="v1686_233">
-			<span class="v1686_234">게시물 관리</span>
-		</div>
-		<div class="v1686_235">
-			<span class="v1686_236">회원 탈퇴 사유</span> 
-			<span class="v1686_237">회원 탈퇴</span>
-		</div>
-		<div class="v1686_238">
-			<span class="v1686_239">공고 수정 요청</span> 
-			<span class="v1686_240">공고 등록 요청</span> 
-			<span class="v1686_241">공고 관리</span>
-		</div>
-		<div class="v1686_242">
-			<span class="v1686_243">결제 내역 관리</span> 
-			<span class="v1686_244">상품 관리</span> 
-			<span class="v1686_245">결제 관리</span>
-		</div>
-		<div class="v1686_246">
-			<span class="v1686_247">기업 정보 변경 요청</span> 
-			<span class="v1686_248">1:1 문의</span> 
-			<span class="v1686_249">회원 관리</span> 
-			<span class="v1686_250">기업 회원 가입 요청</span>
-		</div>
-		<div class="v1686_251">
-			
-		</div>
-		
-	</div> -->
+<!-- 옆에 넣으려면 여기에 넣어야함 -->
+<!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
+<br><br><br>
+				
+	
+	
+	
 </body>
 </html>

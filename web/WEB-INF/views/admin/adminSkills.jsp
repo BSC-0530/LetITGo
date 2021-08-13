@@ -75,6 +75,7 @@
 												<p align="center">
 													<a href="${ pageContext.servletContext.contextPath }/selfintroductionitem/list">자기소개서 항목 관리</a>
 												</p>
+												<br>
 												<p align="center">
 													<a href="${ pageContext.servletContext.contextPath }/jobfield/list">직무분야 관리</a>
 												</p>
@@ -85,7 +86,7 @@
 												<br>	
 												<p align="center">
 													<a href="${ pageContext.servletContext.contextPath }/skillscategory/list">기술 카테고리 관리</a>
-												</p>	
+												</p>
 												<br><br>
 												<h3 style="font-weight : bold">결제 관리</h3>
 												<p>
@@ -110,6 +111,7 @@
 												<p align="center">
 													<a href="#">공고 수정 요청</a>
 												</p>
+												<br>
 												<p align="center">
 													<a href="#">기업 회원 가입 요청</a>
 												</p>	
@@ -149,6 +151,7 @@
 						</div>
 					</div>
 				</div>
+			
 <!-- 옆에 넣으려면 여기에 넣어야함 -->
 <!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
 <br><br><br>
