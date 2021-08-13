@@ -26,12 +26,13 @@ public class ResumeService {
 		return resumeList;
 	}
 
-	public List<DetailResumeDTO> selectDetailResumeList() {
+	public List<DetailResumeDTO> selectDetailResumeList(int resumeNo) {
 		
 		SqlSession session = getSqlSession();
 		ResumeMapper mapper = session.getMapper(ResumeMapper.class);
 		
-		List<DetailResumeDTO> detailList = mapper.selectDetailResumeList();
+		List<DetailResumeDTO> detailList = mapper.selectDetailResumeList(resumeNo);
+		System.out.println("serv detailList : " + detailList);
 		
 		session.close();
 		
@@ -43,10 +44,8 @@ public class ResumeService {
 		SqlSession session = getSqlSession();
 		ResumeMapper mapper = session.getMapper(ResumeMapper.class);
 		
-//		int resultResume = mapper.insertResume(irList);
 		int resultCareer = mapper.insertCareer(ir);
 		int resultPot = mapper.insertPot(ir);
-//		int resultIntroNo = mapper.insertIntroNo(irList);
 		int resultIntroContent = mapper.insertIntroContent(ir);
 		int resultLicense = mapper.insertLicense(ir);
 		int resultEdu = mapper.insertEdu(ir);
@@ -104,7 +103,6 @@ public class ResumeService {
 		int resultResume = mapper.updateResume(ir);
 		int resultCareer = mapper.updateCareer(ir);
 		int resultPot = mapper.updatePot(ir);
-//		int resultIntroNo = mapper.insertIntroNo(irList);
 		int resultIntroContent = mapper.updateIntroContent(ir);
 		int resultLicense = mapper.updateLicense(ir);
 		int resultEdu = mapper.updateEdu(ir);
@@ -118,6 +116,30 @@ public class ResumeService {
 		} else {
 			session.rollback();
 		}
+		
+		session.close();
+		
+		return result;
+	}
+
+	public int deleteResume(int resumeNo) {
+		
+		SqlSession session = getSqlSession();
+		ResumeMapper mapper = session.getMapper(ResumeMapper.class);
+		
+		int resultAwd = mapper.deleteAwd(resumeNo);
+		int resultLicense = mapper.deleteLicense(resumeNo);
+		int resultIntroContent = mapper.deleteIntroContent(resumeNo);
+		int resultPot = mapper.deletePot(resumeNo);
+		int resultEdu = mapper.deleteEdu(resumeNo);
+		int resultCareer = mapper.deleteCareer(resumeNo);
+		int resultSkills = mapper.deleteSkills(resumeNo);
+		int resultResume = mapper.deleteResume(resumeNo);
+		
+		int result = resultAwd + resultCareer + resultEdu
+				+ resultIntroContent + resultLicense + resultPot + resultResume;
+		
+		session.commit();
 		
 		session.close();
 		

@@ -41,14 +41,14 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="jp_tittle_heading_wrapper">
 						<div class="jp_tittle_heading">
-							<h2>상세 공고</h2>
+							<h2>이력서 수정</h2>
 						</div>
 						<div class="jp_tittle_breadcrumb_main_wrapper">
 							<div class="jp_tittle_breadcrumb_wrapper">
 								<ul>
 									<li><a href="#">Home</a> <i class="fa fa-angle-right"></i></li>
 									<li><a href="#">이력서</a> <i class="fa fa-angle-right"></i></li>
-									<li>상세 이력서</li>
+									<li>이력서 수정</li>
 								</ul>
 							</div>
 						</div>
@@ -64,7 +64,8 @@
 
 		<!-- jp ad post Wrapper Start -->
 		<c:forEach items="${ detailList }" var="detail" varStatus="status">
-
+		
+		<input type="hidden" value="${ detail.resumeNo }" name="resumeNo">
 
 			<div class="jp_adp_main_section_wrapper">
 				<div class="container">
@@ -1041,23 +1042,20 @@
 							</div>
 						</div>
 
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<div class="jp_adp_choose_resume_bottom_btn_post">
-
-								<button id="confirmUpdate" type="submit">수정 완료</button>
-								<button id="cancleUpdate" value="back" onClick="history.go(-1)">돌아가기</button>
-
-							</div>
-						</div>
-
 					</div>
 				</div>
+			</div>
+			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 jp_cl_right_bar"></div>
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 jp_cl_right_bar">
+					<button id="confirmUpdate" class="btn-info" type="submit">수정 완료</button>
+					<button id="cancleUpdate" class="btn-info" value="back" onClick="history.go(-1)">돌아가기</button>
 			</div>
 			<!-- jp ad post Wrapper End -->
 		</c:forEach>
 	</form>
 
-
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 jp_cl_right_bar"></div>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 jp_cl_right_bar"></div>
 	
 	<jsp:include page="../common/footer.jsp" />
 </body>

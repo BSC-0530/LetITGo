@@ -27,14 +27,9 @@ public class ResumeInsertServlet extends HttpServlet {
 
 //		-- value 꺼내기
 //		---- resume
-//		int resumeNo = Integer.parseInt(request.getParameter("resumeNo"));
-//		int inMemNo = Integer.parseInt(request.getParameter("inMemNo"));
-//		java.sql.Date resumeWriteDate = java.sql.Date.valueOf(request.getParameter("resumeWriteDate"));
-//		String resumeScoutStatus = request.getParameter("resumeScoutStatus");
 		Integer jobNo = Integer.parseInt(request.getParameter("jobNo"));
 		String resumeTitle = request.getParameter("resumeTitle");
 //		---- career
-//		Integer carNo = Integer.parseInt(request.getParameter("carNo"));
 		String carComName = request.getParameter("carComName");
 		java.sql.Date carHireDate = java.sql.Date.valueOf(request.getParameter("carHireDate"));
 		java.sql.Date carEntDate = java.sql.Date.valueOf(request.getParameter("carEntDate"));
@@ -46,8 +41,8 @@ public class ResumeInsertServlet extends HttpServlet {
 		java.sql.Date projectStartDate = java.sql.Date.valueOf(request.getParameter("projectStartDate"));
 		java.sql.Date projectEndDate = java.sql.Date.valueOf(request.getParameter("projectEndDate"));
 		String projectContent = request.getParameter("projectContent");
+		
 //		---- portfolio
-//		Integer potNo = Integer.parseInt(request.getParameter("potNo"));
 		String potKinds = request.getParameter("potKinds");
 		String potLinkAddress = request.getParameter("potLinkAddress");
 		String potFilePath = request.getParameter("potFilePath");
@@ -122,25 +117,25 @@ public class ResumeInsertServlet extends HttpServlet {
 		irList.add(ir);
 		System.out.println("req irList : " + irList);
 		
-		int resultResume = new ResumeService().insertResume(ir);
-		int resumeNo = new ResumeService().selectResume(resumeTitle);
+		int resumeNo = new ResumeService().insertResume(ir);
+		
 		System.out.println("resumeNo : " + resumeNo);
 		
 		ir.setResumeNo(resumeNo);
 		irList.add(ir);
 		System.out.println("selected irList : " + irList);
 		
-		int resultDetail = new ResumeService().insertDetailResume(ir);
+		int result = new ResumeService().insertDetailResume(ir);
 		
-		int result = resultDetail + resultResume;
+		
 		
 		String path = "";
 		
-		if(result > 1) {
+		if(result > 0) {
 			System.out.println("내가 이겼다");
 			path = "/WEB-INF/views/resume/resumeList.jsp";
 		}
-		
+		response.setCharacterEncoding("UTF-8");
 		response.sendRedirect("/let/resume/list");
 		
 	}

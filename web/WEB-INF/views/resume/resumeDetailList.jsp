@@ -56,7 +56,7 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="jp_tittle_heading_wrapper">
 						<div class="jp_tittle_heading">
-							<h2>상세 공고</h2>
+							<h2>상세 이력서</h2>
 						</div>
 						<div class="jp_tittle_breadcrumb_main_wrapper">
 							<div class="jp_tittle_breadcrumb_wrapper">
@@ -1060,26 +1060,40 @@
 							</div>
 						</div>
 
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<div class="jp_adp_choose_resume_bottom_btn_post">
-
-								<button id="updateResume" type="button">이력서 수정</button>
-								<button id="deleteResume" type="button">이력서 삭제</button>
-
-							</div>
-						</div>
 
 					</div>
 				</div>
 			</div>
+		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 jp_cl_right_bar"></div>
+		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 jp_cl_right_bar">
+			<button class="btn-info" onClick="updateResume(this);" value="${ detail.resumeNo }">수정하기</button>
+			<button class="btn-info" onClick="deleteResume(this);" value="${ detail.resumeNo }">삭제하기</button>
+		</div>
 			<!-- jp ad post Wrapper End -->
 		</c:forEach>
-	
+		
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 jp_cl_right_bar"></div>
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 jp_cl_right_bar"></div>
 	
 	<script type="text/javascript">
-		$('#updateResume').on('click', function() {
-			location.href = "/let/resume/update"
-		});
+
+		function updateResume(button) {
+			
+			const selectedUpdateResumeNo = button.value;
+			location.href = "${ pageContext.servletContext.contextPath }/resume/update?selectedUpdateResumeNo=" 
+					+ selectedUpdateResumeNo;
+			
+		}
+		
+		function deleteResume(button) {
+			
+			const selectedDeleteResumeNo = button.value;
+			location.href = "${ pageContext.servletContext.contextPath }/resume/delete?selectedDeleteResumeNo=" 
+				+ selectedDeleteResumeNo;
+		}
+		
+		$("input").filter("[value='null']").val("");
+		
 	</script>
 
 	<jsp:include page="../common/footer.jsp" />

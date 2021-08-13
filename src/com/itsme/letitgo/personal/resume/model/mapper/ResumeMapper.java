@@ -11,7 +11,7 @@ public interface ResumeMapper {
 
 	List<ResumeDTO> selectAllResumeList();
 
-	List<DetailResumeDTO> selectDetailResumeList();
+	List<DetailResumeDTO> selectDetailResumeList(int resumeNo);
 
 	int insertResume(InsertResumeDTO ir);
 
@@ -44,6 +44,22 @@ public interface ResumeMapper {
 	int updateEdu(InsertResumeDTO ir);
 
 	int updateAwd(InsertResumeDTO ir);
+
+	int deleteResume(int resumeNo);
+
+	int deleteAwd(int resumeNo);
+
+	int deleteLicense(int resumeNo);
+
+	int deleteIntroContent(int resumeNo);
+
+	int deletePot(int resumeNo);
+
+	int deleteEdu(int resumeNo);
+
+	int deleteCareer(int resumeNo);
+
+	int deleteSkills(int resumeNo);
 
 
 }

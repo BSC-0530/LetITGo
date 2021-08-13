@@ -34,40 +34,44 @@
 	<jsp:include page="../common/header/personalHeader.jsp" />
 
 	<div class="jp_tittle_main_wrapper">
-        <div class="jp_tittle_img_overlay"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="jp_tittle_heading_wrapper">
-                        <div class="jp_tittle_heading">
-                            <h2>상세 공고</h2>
-                        </div>
-                        <div class="jp_tittle_breadcrumb_main_wrapper">
-                            <div class="jp_tittle_breadcrumb_wrapper">
-                                <ul>
-                                    <li><a href="#">Home</a> <i class="fa fa-angle-right"></i></li>
-                                    <li><a href="#">이력서</a> <i class="fa fa-angle-right"></i></li>
-                                    <li>이력서 조회</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-	
-		
-
-
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 jp_cl_right_bar">
-		<c:forEach items="${ resumeList }" var="resume">
+		<div class="jp_tittle_img_overlay"></div>
+		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="jp_tittle_heading_wrapper">
+						<div class="jp_tittle_heading">
+							<h2>이력서 조회</h2>
+						</div>
+						<div class="jp_tittle_breadcrumb_main_wrapper">
+							<div class="jp_tittle_breadcrumb_wrapper">
+								<ul>
+									<li><a href="#">Home</a> <i class="fa fa-angle-right"></i></li>
+									<li><a href="#">이력서</a> <i class="fa fa-angle-right"></i></li>
+									<li>이력서 조회</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<c:forEach items="${ resumeList }" var="resume">
+
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 jp_cl_right_bar">
+			<div class="row">
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 					<div class="jp_recent_resume_box_wrapper">
 
-						<div class="jp_recent_resume_cont_wrapper">
+						<div class="jp_recent_resume_cont_wrapper"
+							style="cursor: pointer;" onClick="onDetail(this);">
+							<input type="hidden" value="${ resume.resumeNo }">
 							<h3>
 								<c:out value="${ resume.resumeTitle }"></c:out>
 							</h3>
@@ -76,35 +80,47 @@
 										value="${ resume.resumeWriteDate }"></c:out></a>
 							</p>
 						</div>
-						<div class="jp_recent_resume_btn_wrapper">
+						<div class="jp_recent_resume_btn_wrapper"
+							onClick="onUpdate(this);">
+							<input type="hidden" value="${ resume.resumeNo }">
 							<ul>
 								<li><a href="#">수정하기</a></li>
 							</ul>
 						</div>
-						<div class="jp_recent_resume_btn_wrapper">
-							<ul>
-								<li><a href="#">새 이력서 작성</a></li>
-							</ul>
-						</div>
+					
+
 					</div>
 				</div>
 			</div>
-		</c:forEach>
-	</div>
 
-
-	<div
-		class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-sm hidden-xs">
-		<div class="pager_wrapper gc_blog_pagination">
-			<ul class="pagination">
-				<li><a href="#">Priv.</a></li>
-				<c:forEach items="${ resumeList }" var="resume" varStatus="status">
-					<li><a href="#">${ status.count }</a></li>
-				</c:forEach>
-				<li><a href="#">Next</a></li>
-			</ul>
 		</div>
+
+	</c:forEach>
+	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 jp_cl_right_bar"></div>
+	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 jp_cl_right_bar" onClick="onInsert(this);">
+		<button class="btn-info">새 이력서 등록</button>
+	
 	</div>
+	
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 jp_cl_right_bar"></div>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 jp_cl_right_bar"></div>
+	<script>
+	
+		function onInsert(div) {
+			
+			location.href = "${ pageContext.servletContext.contextPath }/resume/insert"
+		}
+		
+		function onDetail(div) {
+			const selectedDetailResumeNo = div.children[0].value;
+			location.href = "${ pageContext.servletContext.contextPath }/resume/detail?selectedDetailResumeNo=" + selectedDetailResumeNo;
+		}
+		
+		function onUpdate(div) {
+			const selectedUpdateResumeNo = div.children[0].value;
+			location.href = "${ pageContext.servletContext.contextPath }/resume/update?selectedUpdateResumeNo=" + selectedUpdateResumeNo;
+		}
+	</script>
 
 	<jsp:include page="../common/footer.jsp" />
 </body>

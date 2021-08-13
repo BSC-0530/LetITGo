@@ -18,10 +18,11 @@ public class ResumeDetailListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		List<DetailResumeDTO> detailResume = new ResumeService().selectDetailResumeList();
+		int resumeNo = Integer.parseInt(request.getParameter("selectedDetailResumeNo"));
+		System.out.println("servlet req resumeno : " + resumeNo);
+		List<DetailResumeDTO> detailResume = new ResumeService().selectDetailResumeList(resumeNo);
 		
-		System.out.println(detailResume.toString());
-		
+		System.out.println(detailResume);
 		String path = "";
 		
 		if(detailResume != null) {
