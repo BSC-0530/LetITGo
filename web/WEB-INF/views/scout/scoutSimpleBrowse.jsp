@@ -64,7 +64,7 @@
 							<img
 								src="${ pageContext.servletContext.contextPath }/resources/image/bmw.png"
 								style="width: 300px; height: 300px;" alt="post_img" />
-							<h2>이름와야함</h2>
+							<h2><c:out value="${ requestScope.browseName }"></c:out> </h2>
 							<p>
 								<br>
 							</p>
@@ -87,28 +87,110 @@
 									<tr>
 										<td class="td-w25">이름</td>
 										<td class="td-w10">:</td>
-										<td class="td-w65">이름와야함</td>
+										<td class="td-w65"><c:out value="${ requestScope.browseName }"></c:out></td>
 									</tr>
 									<tr>
 										<td class="td-w25">보유기술</td>
 										<td class="td-w10">:</td>
-										<td class="td-w65">보유기술와야함</td>
+										<c:forEach items="${ requestScope.browseSkills }" var="holdingSkill">
+										<td class="td-w65"><c:out value="${ holdingSkill.skillsAndCategory.skillsName }"></c:out></td>
+										</c:forEach>
 									</tr>
 									<tr>
 										<td class="td-w25">직무</td>
 										<td class="td-w10">:</td>
-										<td class="td-w65">직무밸류</td>
+										<td class="td-w65"><c:out value="${ requestScope.jobName }"></c:out></td>
 									</tr>
 									<tr>
 										<td class="td-w25">경력</td>
 										<td class="td-w10">:</td>
-										<td class="td-w65">경력밸류</td>
+<%-- 									<c:forEach items="${ brosweSimplelDTO }" var="career" varStatus="status"> --%>
+									
+										<td class="td-w65"><c:out value="${requestScope.careeaNumber} 개월"/>
+<%-- 										<c:out value=" :  ${ requestScope.browseCareer.carHireDate } ~ "></c:out> --%>
+<%-- 										<c:out value="${  requestScope.browseCareer.carEntDate } "></c:out> --%>
+										</td>
+<%-- 									</c:forEach>	 --%>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 					</div>
 					<!-- 					이쪽에 상세이력서 폼 추가하기 -->
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+							<div class="jp_cp_accor_heading_wrapper">
+								<h2>상세이력서</h2>
+								<p>아래의 메뉴에서 상세한 이력서를 조회하세요</p>
+							</div>
+						</div>
+						<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+							<div class="accordion_wrapper abt_page_2_wrapper">
+								<div class="panel-group" id="accordion_threeLeft">
+									<!-- /.panel-default -->
+									<div class="panel panel-default">
+										<div class="panel-heading bell">
+											<h4 class="panel-title">
+												<a class="collapsed" data-toggle="collapse"
+													data-parent="#accordion_threeLeft"
+													href="#collapseTwentyLeftThree" aria-expanded="false">
+													포트폴리오 </a>
+											</h4>
+										</div>
+										<div id="collapseTwentyLeftThree"
+											class="panel-collapse collapse" aria-expanded="false"
+											role="tablist">
+											<div class="panel-body">Praesent in nisl egestas mauris
+												aliquam luctus. Ut auctor faucibus orci, nec semper purus
+												ultrices idorbi nec lorem risus orbi vitae felis gravida
+												Pellentesque id eros quis massa convallis feugiat eu quis
+												urna.</div>
+										</div>
+									</div>
+									<div class="panel panel-default">
+										<div class="panel-heading bell">
+											<h4 class="panel-title">
+												<a class="collapsed" data-toggle="collapse"
+													data-parent="#accordion_threeLeft"
+													href="#collapseTwentyLeftThree2" aria-expanded="false">
+													자기소개 </a>
+											</h4>
+										</div>
+										<div id="collapseTwentyLeftThree2"
+											class="panel-collapse collapse" aria-expanded="false"
+											role="tablist">
+											<div class="panel-body">Praesent in nisl egestas mauris
+												aliquam luctus. Ut auctor faucibus orci, nec semper purus
+												ultrices idorbi nec lorem risus orbi vitae felis gravida
+												Pellentesque id eros quis massa convallis feugiat eu quis
+												urna.</div>
+										</div>
+									</div>
+									<div class="panel panel-default">
+										<div class="panel-heading bell">
+											<h4 class="panel-title">
+												<a class="collapsed" data-toggle="collapse"
+													data-parent="#accordion_threeLeft"
+													href="#collapseTwentyLeftThree3" aria-expanded="false">
+													경력,프로젝트 이력,자기소개 </a>
+											</h4>
+										</div>
+										<div id="collapseTwentyLeftThree3"
+											class="panel-collapse collapse" aria-expanded="false"
+											role="tablist">
+											<div class="panel-body">Praesent in nisl egestas mauris
+												aliquam luctus. Ut auctor faucibus orci, nec semper purus
+												ultrices idorbi nec lorem risus orbi vitae felis gravida
+												Pellentesque id eros quis massa convallis feugiat eu quis
+												urna.</div>
+										</div>
+									</div>
+									<!-- /.panel-default -->
+								</div>
+								<!--end of /.panel-group-->
+							</div>
+						</div>
+					</div>
 				</div>
 
 			</div>

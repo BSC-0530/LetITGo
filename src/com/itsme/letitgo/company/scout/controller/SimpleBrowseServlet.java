@@ -26,9 +26,25 @@ public class SimpleBrowseServlet extends HttpServlet {
 		
 		MainScoutListService browseInfoService = new MainScoutListService();
 		
-		List<BrosweSimplelDTO> browseInfo = browseInfoService. browseSelectInfo(onClickResumeNo);
+//		Map<String, Object> browseInfo = browseInfoService. browseSelectInfo(onClickResumeNo);
+		Map<String, Object> browseInfo = browseInfoService. browseSelectInfo(onClickResumeNo);
 		
-		browseInfo.get(0).getMemDTO().get(0).getMemName();
+		
+		
+//		simpleInfo.put("browseName", browseName);
+//		simpleInfo.put("jobName", jobName);
+//		simpleInfo.put("browseSkills", browseSkills);
+//		simpleInfo.put("browseCareer", browseCareer);
+//		System.out.println(browseInfo.get("browseName"));
+//		System.out.println(browseInfo.get("jobName"));
+//		System.out.println(browseInfo.get("browseSkills"));
+//		System.out.println("아이유왜안나오냐고 " + browseInfo.get("browseCareer"));
+//		
+		request.setAttribute("browseName", browseInfo.get("browseName"));
+		request.setAttribute("jobName", browseInfo.get("jobName"));
+		request.setAttribute("browseSkills", browseInfo.get("browseSkills"));
+		request.setAttribute("careeaNumber", browseInfo.get("careeaNumber"));
+		
 		
 		
 		String path = "/WEB-INF/views/scout/scoutSimpleBrowse.jsp";
