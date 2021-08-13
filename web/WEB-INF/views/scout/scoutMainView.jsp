@@ -98,7 +98,7 @@
 								</div>
 								<div class="jp_recent_resume_btn_wrapper">
 									<button style="margin-left:150px; margin-top:20px;" type="submit" class="btn btn-info" onclick="browse(this);">간단 조회</button>
-									<input type="text" id="hiddenResumeNo" value=" ${ mainScout.resumeNo }">
+									<input type="text" id="hiddenResumeNo" value="${ mainScout.resumeNo }">
 								</div>
 							</div>
 						</div>
@@ -121,7 +121,7 @@
 		
 		alert(num);
 		
-		location.href="${ pageContext.servletContext.contextPath }/simple/browse/select?num=" + num
+		location.href="${ pageContext.servletContext.contextPath }/simple/browse/select?num="+num
 	}	
 
 </script>
