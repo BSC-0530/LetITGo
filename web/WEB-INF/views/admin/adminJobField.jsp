@@ -177,24 +177,21 @@
 								<tr>
 									<td id="no"><c:out value="${ controllJobField.no }"/></td>
 									<td id="name"><c:out value="${ controllJobField.name }"/></td>
-									
-									<%-- <c:if test="${ payment.payKinds eq '삭제' }"> --%>
 									<td><button type="button" disabled>삭제</button></td>
-									<%-- </c:if>	 --%>							
 								</tr>
 							</tbody>
 							</c:forEach>
 							
 						</table>
 						<br><br>
-								<!-- <div align="right">
+								 <div align="right">
 									<table>
 										<tr>
 											<td><button type="button"
-													onclick="location='adminJobFieldInsertForm.jsp'">등록하기</button></td>
+													onclick="location.href='adminJobFieldInsertForm.jsp'">등록하기</button></td>
 										</tr>
 									</table>
-								</div> -->
+								</div> 
 							</div>
 						</div>
 					</div>
@@ -216,7 +213,7 @@
 		<tr>
 			<td><button type="button" onclick="location='adminJobFieldInsertForm.jsp'">등록하기</button></td>
 		</tr>
-	</table>
+	</table> 
 	</div> -->
 	<!-- <input type="button" value="확인" onclick="location.href='/adminJobFieldInsertForm.jsp'"><button>등록하기</button> -->
 	
