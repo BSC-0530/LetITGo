@@ -10,9 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itsme.letitgo.company.scout.model.dto.BrosweSimplelDTO;
+import com.itsme.letitgo.company.scout.model.dto.CountReadingNumDTO;
 import com.itsme.letitgo.company.scout.model.service.MainScoutListService;
-import com.itsme.letitgo.personal.regist.model.dto.MemberDTO;
 
 @WebServlet("/simple/browse/select")
 public class SimpleBrowseServlet extends HttpServlet {
@@ -26,25 +25,17 @@ public class SimpleBrowseServlet extends HttpServlet {
 		
 		MainScoutListService browseInfoService = new MainScoutListService();
 		
-//		Map<String, Object> browseInfo = browseInfoService. browseSelectInfo(onClickResumeNo);
 		Map<String, Object> browseInfo = browseInfoService. browseSelectInfo(onClickResumeNo);
 		
+//		int cnt = browseInfoService.readingCnt();
 		
 		
-//		simpleInfo.put("browseName", browseName);
-//		simpleInfo.put("jobName", jobName);
-//		simpleInfo.put("browseSkills", browseSkills);
-//		simpleInfo.put("browseCareer", browseCareer);
-//		System.out.println(browseInfo.get("browseName"));
-//		System.out.println(browseInfo.get("jobName"));
-//		System.out.println(browseInfo.get("browseSkills"));
-//		System.out.println("아이유왜안나오냐고 " + browseInfo.get("browseCareer"));
-//		
+		
 		request.setAttribute("browseName", browseInfo.get("browseName"));
 		request.setAttribute("jobName", browseInfo.get("jobName"));
 		request.setAttribute("browseSkills", browseInfo.get("browseSkills"));
 		request.setAttribute("careeaNumber", browseInfo.get("careeaNumber"));
-		
+		request.setAttribute("number", browseInfo.get("number"));
 		
 		
 		String path = "/WEB-INF/views/scout/scoutSimpleBrowse.jsp";

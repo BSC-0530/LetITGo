@@ -2,29 +2,20 @@ package com.itsme.letitgo.company.scout.model.service;
 
 import static com.itsme.letitgo.common.mybatis.Template.getSqlSession;
 
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.StringTokenizer;
-import java.util.stream.Collectors;
 
-import org.apache.ibatis.javassist.bytecode.Descriptor.Iterator;
 import org.apache.ibatis.session.SqlSession;
 
+import com.itsme.letitgo.company.scout.model.dto.BrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.BrosweSimplelDTO;
-import com.itsme.letitgo.company.scout.model.dto.CompanyCareerHistoryDTO;
+import com.itsme.letitgo.company.scout.model.dto.CountReadingNumDTO;
 import com.itsme.letitgo.company.scout.model.mapper.CompanyScoutMapper;
-import com.itsme.letitgo.personal.resume.model.dto.SkillsAndCategoryDTO;
 
 public class MainScoutListService {
 
-	public Map<String, List<Object>> selectAllScoutList()  {
+	public Map<String, Object> selectAllScoutList()  {
 		
 		SqlSession session = getSqlSession();
 		
@@ -38,7 +29,7 @@ public class MainScoutListService {
 		
 		System.out.println("sadasdasdaskjdhasdka : " + scoutCareea);
 		
-			HashMap<String,List<Object>> scoutList = new HashMap<>();
+			Map<String, Object> scoutList = new HashMap<>();
 			
 			scoutList.put("scoutListName",scoutListName);
 			scoutList.put("scoutListSkills", scoutListSkills);
@@ -67,16 +58,8 @@ public class MainScoutListService {
 		
 		String browseName = (brosweSimplelDTO.get(0).getMemDTO().get(0).getMemName()).toString();
 		String jobName = (brosweSimplelDTO.get(0).getJobFieldDTO().get(0).getJobName()).toString();
-		
-//		for(int i = 0; i < brosweSimplelDTO.size(); i++) {
-//			
-//			System.out.println(")(*!)@(*#)(!"  + brosweSimplelDTO.get(i).getCompanyCareerHistoryDTO().get(0));
-//			
-//		}
-//		CompanyCareerHistoryDTO browseCareer = (brosweSimplelDTO.get(i).getCompanyCareerHistoryDTO().get(0));
-		
-		
-		
+		int number = (brosweSimplelDTO.get(0).getResumeNo());	
+//		System.out.println("browseSkills" + browseSkills.get(1));
 		
 		Map<String,Object> simpleInfo =  new HashMap<>();
 		simpleInfo.put("browseName", browseName);
@@ -85,11 +68,52 @@ public class MainScoutListService {
 		
 //		simpleInfo.put("browseCareer", brosweSimplelDTO);
 		simpleInfo.put("careeaNumber", careeaNumber);
+		simpleInfo.put("number",number);
 		
 		session.close();
 		
 		return simpleInfo;
 	}
+	
+//	public int readingCnt() {
+//		
+//		SqlSession session = getSqlSession();
+//		
+//		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
+//		
+//		int result = mapper.modifyReadingCnt();
+//		
+//		if(result > 0) {
+//			session.commit();
+//			System.out.println("@@@@@@@@@@@@@@@@바꼈쓰ㅃ니따@@@@@@@@@@@@@@@");
+//		}else {
+//			session.rollback();
+//		}
+//		session.close();
+//		
+//		
+//		return result;
+//	}
+	
+	
+	
+	public static List<BrosweHistoryDTO> selectBrowseUsingHistroy() {
+		
+		SqlSession session = getSqlSession();
+		
+		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
+		
+		 List<BrosweHistoryDTO>  selectBrowseUsingHistroy = mapper.selectBrowseUsingHistroy();
+		 
+		 
+		 
+		 session.close();
+		
+		return selectBrowseUsingHistroy;
+	}
+	
+	
+	
 }
 
 

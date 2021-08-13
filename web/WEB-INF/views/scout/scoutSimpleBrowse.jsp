@@ -93,7 +93,9 @@
 										<td class="td-w25">보유기술</td>
 										<td class="td-w10">:</td>
 										<c:forEach items="${ requestScope.browseSkills }" var="holdingSkill">
+										<c:if test="${requestScope.number eq holdingSkill.resumeNo }">
 										<td class="td-w65"><c:out value="${ holdingSkill.skillsAndCategory.skillsName }"></c:out></td>
+										</c:if>
 										</c:forEach>
 									</tr>
 									<tr>

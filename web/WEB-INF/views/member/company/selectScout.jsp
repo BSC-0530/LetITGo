@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 	
 <!DOCTYPE html>
 <html>
 <head>
@@ -126,7 +127,8 @@
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_counter_main_wrapper">
-								<h1 align="left">지원현황</h1>
+								<h1 align="left">스카우트 현황</h1>
+								<br>
 								<div class="container">
 									<div class="gc_counter_cont_wrapper">
 										<div class="count-description">
@@ -151,7 +153,8 @@
 								<br>
 							</div>
 							<!-- 데이터 테이들 -->
-							<h1>전체 지원</h1>
+							<h2>이력서 열람 이력</h2>
+							<br><br>
 							
 						</div>
 						<table id="table_scout" class="hover cell-border stripe">
@@ -165,6 +168,7 @@
 										<td>상세보기</td>
 									</tr>
 								</thead>
+								<c:forEach var="broswe" items="${ paymentBrowseUsingHistroyList }">
 								<tbody align="center">
 									<tr>
 										<td></td>
@@ -175,6 +179,7 @@
 										<td><button type="button">asd</button></td>
 									</tr>
 								</tbody>
+								</c:forEach>
 							</table>
 					</div>
 				</div>

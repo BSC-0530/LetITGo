@@ -154,8 +154,20 @@
 		<result property="payNo" column="PAY_NO"/>
 		<result property="coMemNo" column="CO_MEM_NO"/>
 		<result property="productUseDate" column="PRODUCT_USE_DATE"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.company.scout.model.dto.CountReadingNumDTO" id="modifyProductStatus">
+		<id property="productStatus" column="PRODUCT_STATUS"/>
+		<result property="coMemNo" column="CO_MEM_NO"/>
+		<result property="readingLeftNum" column="READING_LEFT_NUM"/>
 	</resultMap>	
-			
+			<resultMap type="com.itsme.letitgo.company.scout.model.dto.BrosweHistoryDTO" id="myPageScoutList">
+				<result property="resumeTitle" column="RESUME_TITLE"/>
+				<result property="memName" column="MEM_NAME"/>
+				<result property="jobName" column="JOB_NAME"/>
+				<result property="resumeNo" column="RESUME_NO"/>
+				<result property="resumeBrowseKinds" column="RESUME_BROWSE_KINDS"/>
+			</resultMap>
 		
 		<select id="companySelectAllScout" resultMap="mainScoutResultMap">
 		SELECT
@@ -173,27 +185,31 @@
 		  FROM TBL_RESUME_HOLDING_SKILLS RS
           JOIN TBL_SKILLS S ON (S.SKILLS_NO = RS.SKILLS_NO)
           GROUP BY RS.RESUME_NO
+           	
           
 		</select>
 		
 		<select id="companyScoutCareea" resultType="HashMap">
-		 SELECT
-			     R.RESUME_NO
-               , SUM( ROUND(ABS(MONTHS_BETWEEN(CR.CAR_HIRE_DATE,CR.CAR_ENT_DATE)),0)) as careea
-		    FROM TBL_CAREER_HISTORY CR
-		    JOIN TBL_RESUME R ON (R.RESUME_NO = CR.RESUME_NO)
-     	   GROUP BY R.RESUME_NO
-     	    HAVING (R.RESUME_NO = CR.RESUME_NO)
+<!-- 		 SELECT -->
+<!-- 			     R.RESUME_NO -->
+<!--                , SUM( ROUND(ABS(MONTHS_BETWEEN(CR.CAR_HIRE_DATE,CR.CAR_ENT_DATE)),0)) as careea -->
+<!-- 		    FROM TBL_CAREER_HISTORY CR -->
+<!-- 		    JOIN TBL_RESUME R ON (R.RESUME_NO = CR.RESUME_NO) -->
+<!--      	   GROUP BY R.RESUME_NO -->
+<!--      	    HAVING (R.RESUME_NO = CR.RESUME_NO) -->
+			
+			SELECT
+                  R.RESUME_NO
+				, SUM( ROUND(ABS(MONTHS_BETWEEN(CH.CAR_HIRE_DATE,CH.CAR_ENT_DATE)),0)) as CAREER
+			  FROM TBL_RESUME R
+			  JOIN TBL_MEMBER M ON (M.MEM_NO = R.IN_MEM_NO)
+			  JOIN TBL_CAREER_HISTORY CH ON (R.RESUME_NO = CH.RESUME_NO) 
+              group by R.RESUME_NO
+     	    
+     	    
 		</select>
 		
-<!-- 		<select id="companyScoutCareea" resultMap="careeaHistoryResultMap"> -->
-<!-- 			SELECT -->
-<!-- 			       CR.CAR_HIRE_DATE -->
-<!-- 			     , CR.CAR_ENT_DATE -->
-<!-- 			  FROM TBL_CAREER_HISTORY CR -->
-<!-- 			JOIN TBL_RESUME R ON (R.RESUME_NO = CR.RESUME_NO)       -->
-<!-- 		</select>	 -->
-		
+
 		
 <!-- 간단열람 -->		
 <!-- 		<select id="browseSelectInfo" resultMap="simpleBrowse"> -->
@@ -220,6 +236,7 @@
 			<select id="browseSelectInfo" resultMap="simpleBrowse">
 			SELECT
 			        M.MEM_NAME
+			      , R.RESUME_NO 
 			      , JF.JOB_NAME
                   , CH.CAR_COM_NAME
 		      FROM TBL_RESUME R
@@ -240,4 +257,26 @@
               GROUP BY R.RESUME_NO 
               HAVING R.RESUME_NO = #{ onClickResumeNo }
 		</select>		
+		
+		
+		<select id="selectBrowseUsingHistroy" resultMap="myPageScoutList">
+			SELECT
+		        J.JOB_NAME
+		       ,R.RESUME_NO 
+		       ,M.MEM_NAME
+		       ,R.RESUME_TITLE
+		       ,RH.RESUME_BROWSE_KINDS
+		       ,RH.RESUME_BROWSE_DATE
+		    FROM TBL_RESUME R
+		    JOIN TBL_JOB_FIELD J ON (R.JOB_NO = J.JOB_NO)
+		    JOIN TBL_MEMBER M ON (R.IN_MEM_NO = M.MEM_NO)
+		    JOIN TBL_RESUME_READING_HISTORY RH ON (RH.RESUME_NO = R.RESUME_NO)
+		</select>
+		
+<!-- 		<update id="modifyReadingCnt" > -->
+<!-- 			UPDATE TBL_MEMBER_HOLDING_PRODUCT  -->
+<!--              	SET -->
+<!--              	    READING_LEFT_NUM = READING_LEFT_NUM -1 -->
+<!--               WHERE CO_MEM_NO = 2 -->
+<!-- 		</update> -->
 </mapper>
