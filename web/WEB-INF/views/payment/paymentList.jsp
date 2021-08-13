@@ -5,8 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<title>WebStandard example</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">              
+<script language="javascript" type="text/javascript" src="https://stdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script>
     <link rel="stylesheet" type="text/css" href="css/animate.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
@@ -133,6 +134,34 @@
         </div>
     </div>
     
+    <!-- 결제test-->
+     <form id="SendPayForm_id" method="POST" >
+
+        <input type="hidden"  name="goodname" value="브론즈" >
+        <input type="hidden"  name="buyername" value="정현수" >
+        <input type="hidden"  name="buyertel" value="010-2728-7526" >
+        <input type="hidden"  name="buyeremail" value="hsjung3679@naver.com" >
+        <input type="hidden"  name="price" value="1000" >
+        <input type="hidden"  name="mid" value="INIpayTest" >
+        <input type="hidden"  name="gopaymethod" value="onlykakaopay" >
+        <input type="hidden"  name="mKey" value="3a9503069192f207491d4b19bd743fc249a761ed94246c8c42fed06c3cd15a33" >
+        <input type="hidden"  name="signature" value="162868db635c605a7f4d4876ba650ba97f28e95b8702e9b29f922cc969678993" >
+        <input type="hidden"  name="oid" value="INIpayTest_1628840602127" >
+        <input type="hidden"  name="timestamp" value="1628840602127" >
+        <input type="hidden"  name="version" value="1.0" >
+        <input type="hidden"  name="currency" value="WON" >
+        <input type="hidden"  name="acceptmethod" value="below1000" >
+        <input type="hidden"  name="returnUrl" value="http://127.0.0.1:8009/let/productList/select"  >
+        <input type="hidden"  name="closeUrl" value="http://127.0.0.1:8009/let/productList/select" >
+
+   </form>
+
+      <button onclick="INIStdPay.pay('SendPayForm_id')" style="padding:10px; margin-left:10%">결제요청</button>
+	
+
+
+
+       
 
 <jsp:include page="../common/footer.jsp"/>
 </html>
