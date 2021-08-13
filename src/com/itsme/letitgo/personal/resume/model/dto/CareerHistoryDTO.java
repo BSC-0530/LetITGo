@@ -44,6 +44,128 @@ public class CareerHistoryDTO implements java.io.Serializable {
 		this.resumeDTO = resumeDTO;
 	}
 
+	
+	
+	public String getCarComName() {
+		return carComName;
+	}
+
+	public void setCarComName(String carComName) {
+		this.carComName = carComName;
+	}
+
+	public java.sql.Date getCarHireDate() {
+		return carHireDate;
+	}
+
+	public void setCarHireDate(java.sql.Date carHireDate) {
+		this.carHireDate = carHireDate;
+	}
+
+	public java.sql.Date getCarEntDate() {
+		return carEntDate;
+	}
+
+	public void setCarEntDate(java.sql.Date carEntDate) {
+		this.carEntDate = carEntDate;
+	}
+
+	public String getCarStatus() {
+		return carStatus;
+	}
+
+	public void setCarStatus(String carStatus) {
+		this.carStatus = carStatus;
+	}
+
+	public String getCarDeptName() {
+		return carDeptName;
+	}
+
+	public void setCarDeptName(String carDeptName) {
+		this.carDeptName = carDeptName;
+	}
+
+	public String getCarJobName() {
+		return carJobName;
+	}
+
+	public void setCarJobName(String carJobName) {
+		this.carJobName = carJobName;
+	}
+
+	public String getProjectName() {
+		return projectName;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+
+	public java.sql.Date getProjectStartDate() {
+		return projectStartDate;
+	}
+
+	public void setProjectStartDate(java.sql.Date projectStartDate) {
+		this.projectStartDate = projectStartDate;
+	}
+
+	public java.sql.Date getProjectEndDate() {
+		return projectEndDate;
+	}
+
+	public void setProjectEndDate(java.sql.Date projectEndDate) {
+		this.projectEndDate = projectEndDate;
+	}
+
+	public String getProjectContent() {
+		return projectContent;
+	}
+
+	public void setProjectContent(String projectContent) {
+		this.projectContent = projectContent;
+	}
+
+	public String getCarWorkField() {
+		return carWorkField;
+	}
+
+	public void setCarWorkField(String carWorkField) {
+		this.carWorkField = carWorkField;
+	}
+
+	public int getJobNo() {
+		return jobNo;
+	}
+
+	public void setJobNo(int jobNo) {
+		this.jobNo = jobNo;
+	}
+
+	public int getResumeNo() {
+		return resumeNo;
+	}
+
+	public void setResumeNo(int resumeNo) {
+		this.resumeNo = resumeNo;
+	}
+
+	public int getCarNo() {
+		return carNo;
+	}
+
+	public void setCarNo(int carNo) {
+		this.carNo = carNo;
+	}
+
+	public ResumeDTO getResumeDTO() {
+		return resumeDTO;
+	}
+
+	public void setResumeDTO(ResumeDTO resumeDTO) {
+		this.resumeDTO = resumeDTO;
+	}
+
 	@Override
 	public String toString() {
 		return "CareerHistoryDTO [carComName=" + carComName + ", carHireDate=" + carHireDate + ", carEntDate="
