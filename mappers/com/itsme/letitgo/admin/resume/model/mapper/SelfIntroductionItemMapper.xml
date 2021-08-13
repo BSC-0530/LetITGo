@@ -23,7 +23,7 @@
 		VALUES
 		(
 		  SEQ_SELF_INTRO_ITEM_NO.NEXTVAL
-		, # { selfIntroItemName	}  
+		, #{ selfIntroItemName	}  
 		)
 	</insert>
 	

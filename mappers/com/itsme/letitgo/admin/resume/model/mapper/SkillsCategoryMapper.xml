@@ -32,8 +32,8 @@
 		VALUES
 		(
 		  SEQ_CATEGORY_NO.NEXTVAL
-		, # { name }  
-		, # { upperNo }
+		, #{ name }  
+		, #{ upperNo }
 		)
 	</insert>
 	

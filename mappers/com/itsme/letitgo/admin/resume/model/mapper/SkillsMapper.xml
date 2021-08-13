@@ -26,8 +26,8 @@
 		VALUES
 		(
 		   SEQ_SKILLS_NO.NEXTVAL
-		 , # { no }  
-		 , # { name }  
+		 , #{ no }  
+		 , #{ name }  
 		)
 	</insert>
 	<select id="selectAllSkillsList" resultMap="skillsResultMap">

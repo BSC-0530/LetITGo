@@ -30,7 +30,7 @@ public class SelfIntroductionItemListServlet extends HttpServlet {
 		
 		request.getRequestDispatcher(path).forward(request, response);
 		
-	}
+	} 
 
 
 

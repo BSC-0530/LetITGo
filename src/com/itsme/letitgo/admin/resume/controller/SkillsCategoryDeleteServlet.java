@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.itsme.letitgo.admin.resume.model.dto.SkillsCategoryDTO;
 import com.itsme.letitgo.admin.resume.service.SkillsCategoryService;
 
-/**
- * Servlet implementation class SkillsCategoryDeleteServlet
- */
 @WebServlet("/skillscategory/delete")
 public class SkillsCategoryDeleteServlet extends HttpServlet {
 
