@@ -29,18 +29,7 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!-- <script>
-	var count = 1;
-	var careerDiv =
 
-	$(document).ready(function() {
-		$(".addCareerBtn").click(function() {
-			$('#inputCareer').append(count);
-
-			count += 1;
-		});
-	});
-</script> -->
 </head>
 <body>
 	<jsp:include page="../common/header/personalHeader.jsp" />
@@ -85,7 +74,7 @@
 							</h3>
 						</div>
 						<div class="jp_adp_form_wrapper">
-							<h3>직무 선택</h3>
+							<h3>직무 / 경력</h3>
 							<br> <label><input
 								style="width: 20px; height: 20px; border: 1px;" type="radio"
 								id="jobNo" value="1" name="jobNo">서버/백엔드</label> <label><input
@@ -117,10 +106,11 @@
 								style="width: 20px; height: 20px; border: 1px;" type="radio"
 								id="jobNo" value="14" name="jobNo">SW/솔루션</label>
 						</div>
-						<button type="button" class="addCareerBtn">+</button>
+						
 						<div class="row" id="inputCareer">
 							<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
 								<div class="jp_adp_form_wrapper">
+								
 									<input type="text" placeholder="회사명 *" name="carComName">
 								</div>
 							</div>
@@ -197,6 +187,11 @@
 										data-placeholder="프로젝트 종료일" name="projectEndDate">
 								</div>
 							</div>
+							<div class="col-lg-12 col-md-12 col-md-12 col-xs-12">
+								<div class="jp_adp_form_wrapper">
+									<button id="addCareerBtn" type="button">추가 +</button>
+								</div>
+							</div>
 						</div>
 						<div class="jp_adp_form_wrapper">
 							<h3>포트폴리오 링크</h3>
@@ -216,7 +211,7 @@
 					</div>
 
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<div class="jp_adp_textarea_main_wrapper">
+						<div class="jp_adp_textarea_main_wrapper" id="selfIntro">
 							<h3>자기소개서</h3>
 							<select name="selfIntroItemNo">
 								<option value="" selected>-- 카테고리 선택 --</option>
@@ -230,81 +225,88 @@
 						</div>
 					</div>
 					<br> <br>
-					<div class="row" id="inputLicense">
-						<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-							<div class="jp_adp_form_wrapper">
-								<h3>자격증 이력</h3>
-								<input type="text" placeholder="자격증 명" name="licenseName">
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-							<div class="jp_adp_form_wrapper">
-
-								<br> <input type="text" placeholder="발행처"
-									name="licenseAgency">
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-							<div class="jp_adp_form_wrapper">
-								<label>자격증 취득일</label> <input type="date" name="licenseDate">
-							</div>
-						</div>
-					</div>
-
-					<div class="row" id="inputEdu">
-						<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-							<div class="jp_adp_form_wrapper">
-								<h3>교육 이력</h3>
-								<input type="text" placeholder="교육명" name="eduName">
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-							<div class="jp_adp_form_wrapper">
-								<br> <input type="text" placeholder="교육기관" name="eduAgency">
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-							<div class="jp_adp_form_wrapper">
-								<label>교육 시작일</label> <input type="date" name="eduStartDate">
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-							<div class="jp_adp_form_wrapper">
-								<label>교육 종료일</label> <input type="date"
-									data-placeholder="프로젝트 종료일" name="eduEndDate">
-							</div>
-						</div>
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<div class="jp_adp_textarea_main_wrapper">
-								<h5>교육 내용</h5>
-								<textarea rows="7" placeholder="교육 내용을 입력하세요"
-									name="eduContent"></textarea>
-							</div>
-						</div>
-					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					
-					<div class="row" id="inputAwd">
-						<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-							<div class="jp_adp_form_wrapper">
-								<h3>수상 이력</h3>
-								<input type="text" placeholder="수상 내역" name="awdName">
+						<div class="row" id="inputLicense">
+							<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
+								<div class="jp_adp_form_wrapper">
+									<h3>자격증 이력</h3>
+									<input type="text" placeholder="자격증 명" name="licenseName">
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
+								<div class="jp_adp_form_wrapper">
+	
+									<br> <input type="text" placeholder="발행처"
+										name="licenseAgency">
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
+								<div class="jp_adp_form_wrapper">
+									<label>자격증 취득일</label> <input type="date" name="licenseDate">
+								</div>
 							</div>
 						</div>
-						<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-							<div class="jp_adp_form_wrapper">
-								<br> <input type="text" placeholder="수여기관" name="awdAgency">
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					
+						<div class="row" id="inputEdu">
+							<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
+								<div class="jp_adp_form_wrapper">
+									<h3>교육 이력</h3>
+									<input type="text" placeholder="교육명" name="eduName">
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
+								<div class="jp_adp_form_wrapper">
+									<br> <input type="text" placeholder="교육기관" name="eduAgency">
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
+								<div class="jp_adp_form_wrapper">
+									<label>교육 시작일</label> <input type="date" name="eduStartDate">
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
+								<div class="jp_adp_form_wrapper">
+									<label>교육 종료일</label> <input type="date"
+										data-placeholder="프로젝트 종료일" name="eduEndDate">
+								</div>
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="jp_adp_textarea_main_wrapper">
+									<h5>교육 내용</h5>
+									<textarea rows="7" placeholder="교육 내용을 입력하세요"
+										name="eduContent"></textarea>
+								</div>
 							</div>
 						</div>
-						<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-							<div class="jp_adp_form_wrapper">
-								<label>수상 일자</label> <input type="date" name="awdDate">
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					
+						<div class="row" id="inputAwd">
+							<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
+								<div class="jp_adp_form_wrapper">
+									<h3>수상 이력</h3>
+									<input type="text" placeholder="수상 내역" name="awdName">
+								</div>
 							</div>
-						</div>
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<div class="jp_adp_textarea_main_wrapper">
-								<h5>수상 내용</h5>
-								<textarea rows="7" placeholder="수상 내용을 입력하세요"
-									name="awdContent"></textarea>
+							<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
+								<div class="jp_adp_form_wrapper">
+									<br> <input type="text" placeholder="수여기관" name="awdAgency">
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
+								<div class="jp_adp_form_wrapper">
+									<label>수상 일자</label> <input type="date" name="awdDate">
+								</div>
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="jp_adp_textarea_main_wrapper">
+									<h5>수상 내용</h5>
+									<textarea rows="7" placeholder="수상 내용을 입력하세요"
+										name="awdContent"></textarea>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -312,7 +314,7 @@
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="jp_adp_choose_resume_bottom_btn_post">
 							<ul>
-								<li><button id="sendResume">이력서 등록</button></li>
+								<li><button id="sendResume" type="submit">이력서 등록</button></li>
 							</ul>
 						</div>
 					</div>
@@ -323,58 +325,122 @@
 		<!-- jp ad post Wrapper End -->
 
 	</form>
-	<!-- <script>
-		$('#sendResume').click(function() {
+ 	<script type="text/javascript">
+		$('#addCareerBtn').on('click', function() {
+ 			$('#inputCareer')
+ 				.append("<div class='row' id='inputCareer'>")
+ 				.append("<div class='col-lg-3 col-md-3 col-md-3 col-xs-12'>")
+ 				.append("<div class='jp_adp_form_wrapper'>")
+ 				.append("<input type='text' placeholder='회사명 *' name='carComName'>")
+ 				.append("</div>")
+ 				.append("</div>")
+ 				.append("<div class='col-lg-3 col-md-3 col-md-3 col-xs-12'>")
+ 				.append("<div class='jp_adp_form_wrapper'>")
+ 				.append("<input type='text' placeholder='부서명 *' name='carDeptName'>")
+ 				.append("</div>")
+ 				.append("</div>")
+ 				.append("<div class='col-lg-3 col-md-3 col-md-3 col-xs-12'>")
+ 				.append("<div class='jp_adp_form_wrapper'>")
+ 				.append("<input type='text' placeholder='직책 *' name='carJobName'>")
+ 				.append("</div>")
+ 				.append("</div>")
+ 				.append("<div class='col-lg-3 col-md-3 col-md-3 col-xs-12'>")
+ 				.append("<div class='jp_adp_form_wrapper'>")
+ 				.append("<input type='text' placeholder='업무 분야 *' name='carWorkField'>")
+ 				.append("</div>")
+ 				.append("</div>")
+ 				.append("<div class='col-lg-3 col-md-3 col-md-3 col-xs-12'>")
+ 				.append("<div class='jp_adp_form_wrapper'>")
+ 				.append("<label>입사일 *</label> <input type='date' name='carHireDate'>")
+ 				.append("</div>")
+ 				.append("</div>")
+ 				.append("<div class='col-lg-3 col-md-3 col-md-3 col-xs-12'>")
+ 				.append("<div class='jp_adp_form_wrapper'>")
+ 				.append("<label>퇴사일 *</label> <input type='date' name='carEntDate'>")
+ 				.append("</div>")
+ 				.append("</div>")
+ 				.append("<div class='col-lg-3 col-md-3 col-md-3 col-xs-12'>")
+ 				.append("<div class='jp_adp_form_wrapper'>")
+ 				.append("<br> <br> <label><input style='width: 17px; height: 17px; border: 1px;' type='checkbox' name='carStatus'> 현재 재직 중</label>")
+ 				.append("</div>")
+ 				.append("</div>")
+ 				.append("<div class='col-lg-3 col-md-3 col-md-3 col-xs-12'>")
+ 				.append("<div class='jp_adp_form_wrapper'>")
+ 				.append("<label> </label>")
+ 				.append("</div>")
+ 				.append("</div>")
+ 				.append("<div class='col-lg-3 col-md-3 col-md-3 col-xs-12'>")
+ 				.append("<div class='jp_adp_form_wrapper'>")
+ 				.append("<label> </label>")
+ 				.append("</div>")
+ 				.append("</div>")
+ 				.append("<div class='col-lg-3 col-md-3 col-md-3 col-xs-12'>")
+ 				.append("<div class='jp_adp_form_wrapper'>")
+ 				.append("<label> </label>")
+ 				.append("</div>")
+ 				.append("</div>")
+ 				.append("<div class='col-lg-3 col-md-3 col-md-3 col-xs-12'>")
+ 				.append("<div class='jp_adp_form_wrapper'>")
+ 				.append("<input type='text' placeholder='직책 *' name='carJobName'>")
+ 				.append("</div>")
+ 				.append("</div>")
+ 				.append("<div class='col-lg-3 col-md-3 col-md-3 col-xs-12'>")
+ 				.append("<div class='jp_adp_form_wrapper'>")
+ 				.append("<input type='text' placeholder='직책 *' name='carJobName'>")
+ 				.append("</div>")
+ 				.append("</div>")
+ 				.append("<div class='col-lg-3 col-md-3 col-md-3 col-xs-12'>")
+ 				.append("<div class='jp_adp_form_wrapper'>")
+ 				.append("<input type='text' placeholder='직책 *' name='carJobName'>")
+ 				.append("</div>")
+ 				.append("</div>")
+ 				.append("<div class='col-lg-3 col-md-3 col-md-3 col-xs-12'>")
+ 				.append("<div class='jp_adp_form_wrapper'>")
+ 				.append("<input type='text' placeholder='직책 *' name='carJobName'>")
+ 				.append("</div>")
+ 				.append("</div>")
+ 				.append("")
+ 				.append("")
+ 				.append("")
+ 				.append("</div>")
+ 				
 			
-			const inputResume = {
-					resumeTitle: resumeTitle,
-					jobNo: jobNo,
-					carComName: carComName,
-					carDeptName: carDeptName,
-					carJobName: carJobName,
-					carWorkField: carWorkField,
-					carHireDate: carHireDate,
-					carEntDate: carEntDate,
-					carStatus: carStatus,
-					projectName: projectName,
-					projectContent: projectContent,
-					projectStartDate: projectStartDate,
-					projectEndDate: projectEndDate,
-					potLinkAddress: potLinkAddress,
-					potFilePath: potFilePath,
-					selfIntroItemNo: selfIntroItemNo,
-					selfIntroItemContent: selfIntroItemContent,
-					licenseName: licenseName,
-					licenseAgency: licenseAgency,
-					licenseDate: licenseDate,
-					eduName: eduName,
-					eduAgency: eduAgency,
-					eduStartDate: eduStartDate,
-					eduEndDate: eduEndDate,
-					eduContent: eduContent,
-					awdName: awdName,
-					awdAgency: awdAgency,
-					awdDate: awdDate,
-					awdContent: awdContent
-			};
-			
-			const jsonString = JSON.stringify(inputResume);
-			
-			$.ajax({
-				url: "/let/resume/insert",
-				type: "post",
-				data: {jsonString: jsonString},
-				success: function(data, textStatus, xhr) {
-					alert('성공');
-					location.href = "../list";
-				},
-				failed: function(xhr, status, error) {
-					alert('실패');
-					location.href = "../list";
-				}
-			});
-		});
-	</script> -->
+ 		});
+
+
+
+// 		<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
+// 			<div class="jp_adp_form_wrapper">
+// 				<br> <input type="text" placeholder="프로젝트명"
+// 					name="projectName">
+// 			</div>
+// 		</div>
+// 		<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
+// 			<div class="jp_adp_form_wrapper">
+// 				<br> <input type="text" placeholder="프로젝트 업무 내용"
+// 					name="projectContent">
+// 			</div>
+// 		</div>
+// 		<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
+// 			<div class="jp_adp_form_wrapper">
+// 				<label>프로젝트 시작일</label> <input type="date"
+// 					name="projectStartDate">
+// 			</div>
+// 		</div>
+// 		<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
+// 			<div class="jp_adp_form_wrapper">
+// 				<label>프로젝트 퇴사일</label> <input type="date"
+// 					data-placeholder="프로젝트 종료일" name="projectEndDate">
+// 			</div>
+// 		</div>
+// 		<div class="col-lg-12 col-md-12 col-md-12 col-xs-12">
+// 			<div class="jp_adp_form_wrapper">
+// 				<button id="addCareerBtn" type="button">추가 +</button>
+// 			</div>
+// 		</div>
+// 	</div>
+// </div>
+ 	</script>
 	<jsp:include page="../common/footer.jsp" />
 </body>
 </html>
