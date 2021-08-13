@@ -91,9 +91,10 @@
 									 </c:forEach>
 									</p>
 									<c:forEach items="${ requestScope.scoutCareea }" var="careea">
-									<c:out value ="${ careea.ResumeNoDTO.resumeNo }"/>
+									<c:if test="${  careea.resumeNo eq mainScout.resumeNo }">
+									<c:out value ="${ careea }"/>
+									</c:if>
 <%-- 									<i><c:out value= " 경력  ${ scoutCareea } 개월"/> </i> --%>
-<%-- 									</c: if> --%>
 									</c:forEach>
 								</div>
 								<div class="jp_recent_resume_btn_wrapper">
