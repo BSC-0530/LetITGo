@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper">
+
+	<resultMap type="com.itsme.letitgo.personal.recruit.apply.model.dto.SelectPersonalApplyDTO" id="selectPersonalApplyResultMap">
+		<id property="jobPostNo" column="JOB_POST_NO"/>
+		<result property="resumeNo" column="RESUME_NO"/>
+		<result property="jobPostTitle" column="JOB_POST_TITLE"/>
+		<result property="coComName" column="CO_COM_NAME"/>
+		<result property="jobPostEnrollDate" column="JOB_POST_ENROLL_DATE"/>
+		<result property="jobPostDeadLine" column="JOB_POST_DEADLINE"/>
+		<result property="jobPostApplyingStatus" column="JOB_POST_APPLYING_STATUS"/>
+		<result property="jobPostBrowesStatus" column="JOB_POST_BROWES_STATUS"/>
+		<result property="jobPostBrowesStatus" column="JOB_POST_BROWES_STATUS"/>
+		<result property="jobPostApplyingKinds" column="JOB_POST_APPLYING_KINDS"/>
+	</resultMap>
+	
+	<select id="selectPersonalApply" resultMap="selectPersonalApplyResultMap">
+		SELECT
+		       A.JOB_POST_NO
+		     , D.RESUME_NO
+		     , A.JOB_POST_TITLE
+		     , C.CO_COM_NAME
+		     , A.JOB_POST_ENROLL_DATE
+		     , A.JOB_POST_DEADLINE
+		     , D.JOB_POST_APPLYING_STATUS
+		     , D.JOB_POST_BROWES_STATUS
+		     , A.JOB_POST_APPLYING_KINDS
+		  FROM TBL_JOB_POSTING A
+		  JOIN TBL_MEMBER B ON (A.CO_MEM_NO = B.MEM_NO)
+		  JOIN TBL_CO_MEMBER_ADD_INFO C ON (B.MEM_NO = C.CO_MEM_NO)
+		  JOIN TBL_APPLYING_HISTORY D ON (A.JOB_POST_NO = D.JOB_POST_NO)
+		  JOIN TBL_RESUME E ON (D.RESUME_NO = E.RESUME_NO)
+		 WHERE E.IN_MEM_NO = '3'
+	</select>
+	
+	<select id="selectOwnFormCheck" resultType="_int">
+		SELECT
+   			    COUNT(*)
+		  FROM TBL_OWN_FORM_RESUME_ATTACHMENT A
+		 WHERE JOB_POST_NO = '1'
+	</select>
+	
+	
+	
+</mapper>

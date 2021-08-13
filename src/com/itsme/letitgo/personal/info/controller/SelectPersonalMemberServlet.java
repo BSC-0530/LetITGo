@@ -8,35 +8,37 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itsme.letitgo.personal.info.model.dto.InfoMemberDTO;
-import com.itsme.letitgo.personal.info.model.service.PersonalMemberService;
+import com.itsme.letitgo.personal.info.model.service.SelectBrowsingNumService;
 
-
-@WebServlet("/personal/memberInfo/select")
+@WebServlet("/personal/myPage/select")
 public class SelectPersonalMemberServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		InfoMemberDTO memberInfo = new InfoMemberDTO();
+		SelectBrowsingNumService service = new SelectBrowsingNumService();
+						
+		int shallowBrowsingNum = service.selectShallowBrowsingNum();
+		int deepBrowsingNum = service.selectDeepBrowsingNum();
+		int interviewProposalNum = service.selectInterviewProposalNum();
+		int applicationCompletedNum = service.selectApplicationCompletedNum();
+		int applicationCanceledNum = service.selectApplicationCanceledNum();
+		int bookmarkNum = service.selectBookmarkNum();
 		
-		PersonalMemberService memberService = new PersonalMemberService();
+		System.out.println("shallowBrowsingNum : " + shallowBrowsingNum );
+		System.out.println("deepBrowsingNum : " + deepBrowsingNum );
+		System.out.println("interviewProposalNum : " + interviewProposalNum );
+		System.out.println("applicationCompletedNum : " + applicationCompletedNum );
+		System.out.println("applicationCanceledNum : " + applicationCanceledNum );
+		System.out.println("bookmarkNum : " + bookmarkNum );
 		
-		memberInfo = memberService.selectMemberInfo();
+		String path = "/WEB-INF/views/member/personal/personalMyPage.jsp";	
 		
-		
-		
-		System.out.println(memberInfo);
-		
-		String path = "";
-		
-		if(memberInfo != null) {
-			path = "/WEB-INF/views/member/personal/personalMyPage.jsp";
-			request.setAttribute("memberInfo", memberInfo);
-			
-		} else {
-			System.out.println("일시적 오류");
-		}
-		
+		request.setAttribute("shallowBrowsingNum", shallowBrowsingNum);
+		request.setAttribute("deepBrowsingNum", deepBrowsingNum);
+		request.setAttribute("interviewProposalNum", interviewProposalNum);
+		request.setAttribute("applicationCompletedNum", applicationCompletedNum);
+		request.setAttribute("applicationCanceledNum", applicationCanceledNum);
+		request.setAttribute("bookmarkNum", bookmarkNum);
 		request.getRequestDispatcher(path).forward(request, response);
 		
 	}
