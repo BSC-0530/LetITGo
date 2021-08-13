@@ -19,13 +19,12 @@ public class CompanyCareerHistoryDTO implements java.io.Serializable{
 	private int jobNo;
 	private int resumeNo;
 	private int carNo;
-	private ResumeDTO resumeDTO;
 	
 	public CompanyCareerHistoryDTO() {}
 
 	public CompanyCareerHistoryDTO(String carComName, Date carHireDate, Date carEntDate, String carStatus,
 			String carDeptName, String carJobName, String projectName, Date projectStartDate, Date projectEndDate,
-			String projectContent, String carWorkField, int jobNo, int resumeNo, int carNo, ResumeDTO resumeDTO) {
+			String projectContent, String carWorkField, int jobNo, int resumeNo, int carNo) {
 		super();
 		this.carComName = carComName;
 		this.carHireDate = carHireDate;
@@ -41,7 +40,6 @@ public class CompanyCareerHistoryDTO implements java.io.Serializable{
 		this.jobNo = jobNo;
 		this.resumeNo = resumeNo;
 		this.carNo = carNo;
-		this.resumeDTO = resumeDTO;
 	}
 
 	public String getCarComName() {
@@ -156,25 +154,21 @@ public class CompanyCareerHistoryDTO implements java.io.Serializable{
 		this.carNo = carNo;
 	}
 
-	public ResumeDTO getResumeDTO() {
-		return resumeDTO;
-	}
-
-	public void setResumeDTO(ResumeDTO resumeDTO) {
-		this.resumeDTO = resumeDTO;
-	}
-
 	@Override
 	public String toString() {
 		return "CompanyCareerHistoryDTO [carComName=" + carComName + ", carHireDate=" + carHireDate + ", carEntDate="
 				+ carEntDate + ", carStatus=" + carStatus + ", carDeptName=" + carDeptName + ", carJobName="
 				+ carJobName + ", projectName=" + projectName + ", projectStartDate=" + projectStartDate
 				+ ", projectEndDate=" + projectEndDate + ", projectContent=" + projectContent + ", carWorkField="
-				+ carWorkField + ", jobNo=" + jobNo + ", resumeNo=" + resumeNo + ", carNo=" + carNo + ", resumeDTO="
-				+ resumeDTO + "]";
+				+ carWorkField + ", jobNo=" + jobNo + ", resumeNo=" + resumeNo + ", carNo=" + carNo
+				+ ", getCarComName()=" + getCarComName() + ", getCarHireDate()=" + getCarHireDate()
+				+ ", getCarEntDate()=" + getCarEntDate() + ", getCarStatus()=" + getCarStatus() + ", getCarDeptName()="
+				+ getCarDeptName() + ", getCarJobName()=" + getCarJobName() + ", getProjectName()=" + getProjectName()
+				+ ", getProjectStartDate()=" + getProjectStartDate() + ", getProjectEndDate()=" + getProjectEndDate()
+				+ ", getProjectContent()=" + getProjectContent() + ", getCarWorkField()=" + getCarWorkField()
+				+ ", getJobNo()=" + getJobNo() + ", getResumeNo()=" + getResumeNo() + ", getCarNo()=" + getCarNo()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
 	}
 
-
-	
-	
 }
