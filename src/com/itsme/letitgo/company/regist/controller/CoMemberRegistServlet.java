@@ -1,4 +1,4 @@
-package com.itsme.letitgo.personal.regist.controller;
+package com.itsme.letitgo.company.regist.controller;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itsme.letitgo.personal.regist.model.dto.CoMemberDTO;
+import com.itsme.letitgo.company.regist.model.dto.CoMemberDTO;
+import com.itsme.letitgo.company.regist.model.service.ComMemberService;
 import com.itsme.letitgo.personal.regist.model.dto.MemberDTO;
 import com.itsme.letitgo.personal.regist.model.service.MemberService;
 
@@ -72,7 +73,7 @@ public class CoMemberRegistServlet extends HttpServlet {
 		coMemberDTO.setStatus(status);
 		coMemberDTO.setWebsite(website);
 		
-		int result = new MemberService().registCoMember(coMemberDTO);
+		int result = new ComMemberService().registCoMember(coMemberDTO);
 		
 		String page = "";
 		
