@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper">
+<mapper namespace="com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper">
 	<resultMap type="com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO" id="resultMyJobPosting">	
 		<id property="jobPostNo" column="JOB_POST_NO"/>
 		<result property="jobPostTitle" column="JOB_POST_TITLE" javaType="string"/>
@@ -18,11 +17,18 @@
 		<result property="jobName" column="JOB_NAME"/>
 	</resultMap>
 	
-	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpSkillsDTO" id="resultJpSkills" >
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpSkillsDTO" id="resultSkills" >
 		<result property="skillsNo" column="SKILLS_NO"/>
 		<result property="jobPostNo" column="JOB_POST_NO"/>
 		<result property="skillsName" column="SKILLS_NAME"/>
 	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpSkillsCategoryDTO" id="resultSkillsCategory">
+		<id property="categoryNo" column="CATEGORY_NO"/>
+		<result property="categoryName" column="CATEGORY_NAME"/>
+		<result property="categoryUpperNo" column="CATEGORY_UPPER_NO"/>
+	</resultMap>
+	
 	<select id="selectCoMyJobPosting" parameterType="com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO" resultMap="resultMyJobPosting">
 		SELECT
 	    	   JP.JOB_POST_NO
@@ -67,11 +73,27 @@
 	       AND JP.JOB_POST_KINDS = '승인대기중인공고'
 	</select>
 	
-	<select id="insertRecruit" resultMap="resultJobField">
+	<select id="selectJobName" resultMap="resultJobField">
 		SELECT
 			   JF.JOB_NO
 			 , JF.JOB_NAME
 		  FROM TBL_JOB_FIELD JF
+	</select>
+	
+	<select id="selectSkillsCategory" resultMap="resultSkillsCategory">
+		SELECT
+			   SC.CATEGORY_NO
+			 , SC.CATEGORY_NAME
+			 , SC.CATEGORY_UPPER_NO
+		  FROM TBL_SKILLS_CATEGORY SC
+	</select>
+	
+	<select id="selectSkills" resultMap="resultSkills">
+		SELECT
+			   S.SKILLS_NO
+			 , S.SKILLS_NAME
+			 , S.CATEGORY_NO S
+		  FROM TBL_SKILLS S
 	</select>
 	
 	

@@ -13,6 +13,10 @@ public interface SelectCoMyJobPostingMapper {
 
 	List<Object> selectRequestMyJobPosting(SelectCoMyJobPostingDTO selectCoMyJobPostingDTO);
 
-	List<JpJobFieldDTO> insertRecruit();
+	List<Object> selectJobName();
+
+	List<Object> selectSkillsCategory();
+
+	List<Object> selectSkills();
 
 }

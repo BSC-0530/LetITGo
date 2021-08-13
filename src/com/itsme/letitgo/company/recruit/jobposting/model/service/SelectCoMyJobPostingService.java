@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.itsme.letitgo.company.recruit.jobposting.model.dto.RequestJobPostingDTO;
 import com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO;
 import com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper;
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpJobFieldDTO;
@@ -39,17 +40,34 @@ public class SelectCoMyJobPostingService {
 		return selectJobPosting;
 	}
 
-	public List<JpJobFieldDTO> insertRecruit() {
+	public Map<String, List<Object>> selectRecruitOption() {
 		SqlSession session = getSqlSession();
 		
 		SelectCoMyJobPostingMapper mapper = session.getMapper(SelectCoMyJobPostingMapper.class);
 		
-		List<JpJobFieldDTO> jobNameList = mapper.insertRecruit();
-		System.out.println("Service jobNameList : " + jobNameList);
-				
+		Map<String, List<Object>> recruitOption = new HashMap<>();
+		
+		List<Object> jobNameList = mapper.selectJobName();
+		List<Object> skillsCategoryList = mapper.selectSkillsCategory();
+		List<Object> skillsList = mapper.selectSkills();
+		
+		recruitOption.put("jobNameList", jobNameList);
+		recruitOption.put("skillsCategoryList", skillsCategoryList);
+		recruitOption.put("skillsList", skillsList);
+
 		session.close();
 				
-		return jobNameList;
+		return recruitOption;
+		
+	}
+
+	public boolean RequestInsertJobPosting(RequestJobPostingDTO dto) {
+		
+		SqlSession session = getSqlSession();
+		
+		SelectCoMyJobPostingMapper mapper = session.getMapper(SelectCoMyJobPostingMapper.class);
+		
+		return true;
 	}
 
 }
