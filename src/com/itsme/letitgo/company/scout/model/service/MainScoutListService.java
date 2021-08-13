@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 import org.apache.ibatis.javassist.bytecode.Descriptor.Iterator;
 import org.apache.ibatis.session.SqlSession;
 
+import com.itsme.letitgo.company.scout.model.dto.BrosweSimplelDTO;
 import com.itsme.letitgo.company.scout.model.mapper.CompanyScoutMapper;
 
 public class MainScoutListService {
@@ -48,4 +49,48 @@ public class MainScoutListService {
 		 
 		return scoutList;
 	}
+//간단열람 
+	public List<BrosweSimplelDTO> browseSelectInfo(int onClickResumeNo) {
+		
+		SqlSession session = getSqlSession();
+		
+		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
+		
+		List<BrosweSimplelDTO> brosweSimplelDTO =mapper.browseSelectInfo(onClickResumeNo);
+
+		
+		System.out.println("@@@@@@@@@@@@@@@@" + brosweSimplelDTO);
+		
+		System.out.println(brosweSimplelDTO.get(0).getMemDTO().get(0).getMemName());
+		
+		System.out.println(brosweSimplelDTO.get(0).getCompanyCareerHistoryDTO());
+		
+//		Map<String,Object> simpleInfo =  new HashMap<String, Object>();
+		
+		
+		
+//		simpleInfo.put("no", brosweSimplelDTO);
+		
+		
+		return brosweSimplelDTO;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

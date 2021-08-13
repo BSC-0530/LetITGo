@@ -5,22 +5,22 @@ import java.sql.Date;
 public class ResumeReadingHistoryDTO {
 
 	private int resumeBrowseNo;
-	private int CoMemNo;
+	private int coMemNo;
+	private int resumeNo;
 	private java.sql.Date resumeBrowseDate;
 	private String resumeBrowseKinds;
 	
 	public ResumeReadingHistoryDTO() {}
 
-	
-	public ResumeReadingHistoryDTO(int resumeBrowseNo, int coMemNo, Date resumeBrowseDate, String resumeBrowseKinds) {
+	public ResumeReadingHistoryDTO(int resumeBrowseNo, int coMemNo, int resumeNo, Date resumeBrowseDate,
+			String resumeBrowseKinds) {
 		super();
 		this.resumeBrowseNo = resumeBrowseNo;
-		CoMemNo = coMemNo;
+		this.coMemNo = coMemNo;
+		this.resumeNo = resumeNo;
 		this.resumeBrowseDate = resumeBrowseDate;
 		this.resumeBrowseKinds = resumeBrowseKinds;
 	}
-
-
 
 	public int getResumeBrowseNo() {
 		return resumeBrowseNo;
@@ -31,11 +31,19 @@ public class ResumeReadingHistoryDTO {
 	}
 
 	public int getCoMemNo() {
-		return CoMemNo;
+		return coMemNo;
 	}
 
 	public void setCoMemNo(int coMemNo) {
-		CoMemNo = coMemNo;
+		this.coMemNo = coMemNo;
+	}
+
+	public int getResumeNo() {
+		return resumeNo;
+	}
+
+	public void setResumeNo(int resumeNo) {
+		this.resumeNo = resumeNo;
 	}
 
 	public java.sql.Date getResumeBrowseDate() {
@@ -54,12 +62,13 @@ public class ResumeReadingHistoryDTO {
 		this.resumeBrowseKinds = resumeBrowseKinds;
 	}
 
-
 	@Override
 	public String toString() {
-		return "ResumeReadingHistoryDTO [resumeBrowseNo=" + resumeBrowseNo + ", CoMemNo=" + CoMemNo
-				+ ", resumeBrowseDate=" + resumeBrowseDate + ", resumeBrowseKinds=" + resumeBrowseKinds + "]";
+		return "ResumeReadingHistoryDTO [resumeBrowseNo=" + resumeBrowseNo + ", coMemNo=" + coMemNo + ", resumeNo="
+				+ resumeNo + ", resumeBrowseDate=" + resumeBrowseDate + ", resumeBrowseKinds=" + resumeBrowseKinds
+				+ "]";
 	}
+
 	
 }
 
