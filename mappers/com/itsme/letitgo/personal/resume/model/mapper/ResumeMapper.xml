@@ -339,4 +339,74 @@
 		, #{ awdDate }, #{ awdContent }, #{ resumeNo }
 		)
 	</insert>
+	
+	<update id="updateResume">
+		UPDATE
+		       TBL_RESUME A
+		   SET A.RESUME_TITLE = #{ resumeTitle }
+		     , A.JOB_NO = #{ jobNo } 
+		 WHERE A.RESUME_NO = #{ resumeNo }
+	</update>
+	
+	<update id="updateCareer">
+		UPDATE
+		       TBL_CAREER_HISTORY A
+		   SET A.CAR_COM_NAME = #{ carComName }
+		     , A.CAR_DEPT_NAME = #{ carDeptName }
+		     , A.CAR_JOB_NAME = #{ carJobName }
+		     , A.CAR_WORK_FIELD = #{ carWorkField }
+		     , A.CAR_HIRE_DATE = #{ carHireDate }
+		     , A.CAR_ENT_DATE = #{ carEntDate }
+		     , A.CAR_STATUS = 'Y'
+		     , A.PROJECT_NAME = #{ projectName }
+		     , A.PROJECT_CONTENT = #{ projectContent }
+		     , A.PROJECT_START_DATE = #{ projectStartDate, jdbcType = NULL }
+		     , A.PROJECT_END_DATE = #{ projectEndDate, jdbcType = NULL }
+		 WHERE A.RESUME_NO = #{ resumeNo }
+	</update>
+	
+	<update id="updatePot">
+		UPDATE
+		       TBL_PORTFOLIO A
+		   SET A.POT_LINK_ADDRESS = #{ potLinkAddress }
+		 WHERE A.RESUME_NO = #{ resumeNo }
+	</update>
+	
+	<update id="updateIntroContent">
+		UPDATE
+		       TBL_SELF_INTRODUCTION_CONTENT A
+		   SET A.SELF_INTRO_ITEM_CONTENT = #{ selfIntroItemContent }
+		     , A.SELF_INTRO_ITEM_NO = #{ selfIntroItemNo }
+		 WHERE A.RESUME_NO = #{ resumeNo }
+	</update>
+	
+	<update id="updateLicense">
+		UPDATE
+		       TBL_LICENSE_HISTORY A
+		   SET A.LICENSE_NAME = #{ licenseName }
+		     , A.LICENSE_AGENCY = #{ licenseAgency }
+		     , A.LICENSE_DATE = #{ licenseDate }
+		 WHERE A.RESUME_NO = #{ resumeNo }
+	</update>
+	
+	<update id="updateEdu">
+		UPDATE
+		       TBL_EDUCATION_HISTORY A
+		   SET A.EDU_NAME = #{ eduName }
+		     , A.EDU_AGENCY = #{ eduAgency }
+		     , A.EDU_START_DATE = #{ eduStartDate }
+		     , A.EDU_END_DATE = #{ eduEndDate }
+		     , A.EDU_CONTENT = #{ eduContent }
+		 WHERE A.RESUME_NO = #{ resumeNo }
+	</update>
+	
+	<update id="updateAwd">
+		UPDATE
+		       TBL_AWARD_HISTORY A
+		   SET A.AWD_NAME = #{ awdName }
+		     , A.AWD_AGENCY = #{ awdAgency }
+		     , A.AWD_DATE = #{ awdDate }
+		     , A.AWD_CONTENT = #{ awdContent }
+		 WHERE A.RESUME_NO = #{ resumeNo }
+	</update>
 </mapper>
