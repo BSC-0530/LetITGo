@@ -9,43 +9,37 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.itsme.letitgo.company.recruit.jobposting.model.dto.RequestJobPostingDTO;
 import com.itsme.letitgo.company.recruit.jobposting.model.service.SelectCoMyJobPostingService;
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpJobFieldDTO;
 
 
 @WebServlet("/recruit/insert")
 public class InsertRecruitServlet extends HttpServlet {
-       
-	// 직무 조회필요, 기술 전체 조회 필요(카테고리를 조회하고 ajax를 통해서  카테고리별 기술 조회 필요), 
+   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		SelectCoMyJobPostingService service = new SelectCoMyJobPostingService();
-		
-		// 직무 전체를 담아올 DTO 인스턴스 생성 후 값 리턴 받음
-		List<JpJobFieldDTO> jobNameList = service.insertRecruit();
-		
-		System.out.println("Servlet jobNameList : " + jobNameList);
-		
-		request.setAttribute("jobNameList", jobNameList);
-		
-		String path = "/WEB-INF/views/recruit/insertJobPosting.jsp";
-		
-		request.getRequestDispatcher(path).forward(request, response);
-		
-		
-		
-		
-		
-		
+
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		RequestJobPostingDTO dto = new RequestJobPostingDTO();
+		
+		// json String으로 받은 값들을 DB로 전달하기 위해 getParameter로 꺼내 DTO의 필드에 값을 저장s하는 과정
+		dto.setJobPostTitle(request.getParameter("jobPostTitle"));
+		dto.setJobNo(Integer.parseInt(request.getParameter("jobNo")));
+		dto.setJobPostMinExperience(Integer.parseInt(request.getParameter("jobPostMinExperience")));
+		dto.setJobPostMaxExperience(Integer.parseInt(request.getParameter("jobPostMaxExperience")));
+		dto.setJobPostContents(request.getParameter("jobPostContents"));
+		dto.setJobPostEnrollDate(java.sql.Date.valueOf(request.getParameter("jobPostEnrollDate")));
+		
+		SelectCoMyJobPostingService service = new SelectCoMyJobPostingService();
+		
+		boolean result = service.RequestInsertJobPosting(dto);
+		
+		
+
 	}
 
 }

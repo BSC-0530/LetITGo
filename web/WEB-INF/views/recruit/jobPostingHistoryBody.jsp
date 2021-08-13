@@ -260,10 +260,9 @@
 	};
 	
 	$('#insertJobPosting').click(function(){
+	
 		
-		alert("");
-		
-		location.href = "${ pageContext.servletContext.contextPath }/recruit/insert"
+		location.href = "${ pageContext.servletContext.contextPath }/recruit/option/select"
 	})
 	
 	

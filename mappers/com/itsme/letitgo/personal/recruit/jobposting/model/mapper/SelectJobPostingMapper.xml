@@ -69,6 +69,7 @@
 		<result property="coSectors" column="CO_SECTORS"/>
 		<result property="coStatus" column="CO_STATUS"/>
 	</resultMap>
+	
 	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpSkillsDTO" id="resultJpSkills" >
 		<result property="skillsNo" column="SKILLS_NO"/>
 		<result property="jobPostNo" column="JOB_POST_NO"/>
