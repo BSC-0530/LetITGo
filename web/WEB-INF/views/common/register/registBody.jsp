@@ -35,163 +35,35 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
 <link rel="shortcut icon" type="image/png"
 	href="${ pageContext.servletContext.contextPath }/resources/image/header/favicon.ico" />
-<script>
-	
-
-	function sendIt() {
-
-		var idJ = /^[a-z0-9]{4,12}$/;
-		
-		
-		$("#id").click(function () {
-			
-			var id = $('#id').val();
-			$.ajax({
-				url : '${pageContext.request.contextPath}/user/idCheck?userId='+ user_id,
-				
-				type : 'get',
-				success : function(data) {
-					
-					console.log("1 = 중복O / 0 = 중복X : " + data);
-					
-					if(date == 1){
-						
-					alert("사용중인 아이디입니다.");
-					$("#id_check").css("color", "red");
-					$("#reg_submit").attr("disabled", true);
-					}else{
-						
-						if(idJ.test(id)){
-							// 0 : 아이디 길이 / 문자열 검사
-							$("#id_check").text("");
-							$("#reg_submit").attr("disabled", false);
-				
-						} else if(id == ""){
-							
-							alert('아이디를 입력해주세요');
-							$('#id_check').css('color', 'red');
-							$("#reg_submit").attr("disabled", true);				
-							
-						} else {
-							
-							alert("아이디는 소문자와 숫자 4~12자리만 가능합니다.");
-							$("#reg_submit").attr("disabled", true);
-						}
-						
-					}
-				}, error : function() {
-						console.log("실패");
-				}
-			});
-		});
-		
-		
-		var pwd = document.getElementById("pw1");
-		var repwd = document.getElementById("pw2");
-		var email = document.getElementById("email");
-		var comfirm = document.getElementById("comfirm");
-		var name = document.getElementById("name");
-		var phone = document.getElementById("phone");
-		var agree = document.getElementById("agree");
-
-
-
-		if (pwd.value == "") {
-			alert("비밀번호를 입력하세요.");
-			pwd.focus();
-			return false;
-		};
-
-		//비밀번호 영문자 + 숫자 + 특수조합(8~25자리 입력) 정규식
-		var pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*++-])(?=.*[0-9]).{8,18}$/;
-
-		if (!pwdCheck.test(pwd.value)) {
-			alert("비밀번호는 영문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.");
-			pwd.focus();
-			return false;
-		};
-
-		if (repwd.value !== pwd.value) {
-			alert("비밀번호가 일치하지 않습니다..");
-			repwd.focus();
-			return false;
-		};
-
-		if (email.value == "") {
-			alert("이메일 주소를 입력하세요.");
-			email.focus();
-			return false;
-		};
-
-		var reg = /^[0-9]+/g;
-
-		if (!reg.test(phone.value)) {
-			alert("전화번호는 숫자만 입력할 수 있습니다.")
-			phone.focus();
-			return false;
-		};
-
-		if (!agree.checked) {
-			alert("약관 동의를 체크하세요.!!!");
-			agree.focus();
-			return false;
-		};
-
-		document.join_form.submit();
-
-$("btemail").click(function() {
-	//alert("이메일 인증 시작");
-	var user_mail = $(".email").val();
-	
-	var key;
-	var bool = true;
-	
-	if(bool){
-		
+<script type="text/javascript">
+	function registerCheckFunction(){
+		var userID = $('#userID').val();
 		$.ajax({
-			url:"",
-			type:"post",
-			dataType:"json"
-			data:{"user_mail":user_mail},
-			success: function(result){
-						alert("인증번호 발송!");
-						key=result;
-						bool=false;
-			},
-			
-			error:function(xhr, status, error){
-			alert("Error : " + status + " >>> " + error);
-			}
-			
-		});//ajax
-		
-		$(".mailcheck").show();	// 이메일 인증 입력란
-		$(".btemail").val("인증번호 확인!"); //이메일 인증 버튼 -> 내용변경
-		
-		$(".mailcheck").keyup(function () {
-			
-			if($(".mailcheck").val()>=6){
-				var userContent = $(".mailcheck").val();
-				
-				if(userContent == key){
-					alert("인증 성공!!!")
-					$("#btemail"),val("인증완료!");
-					$("#btemail").attr("disabled", true);
-					$(".mailcheck").attr("disabled", true);
-				}else{
-					$("#btemail").val("인증번호 재 발송!");
-					event.preventDefault();
+			type: 'POST',
+			url: './UserRegisterCheckServlet',
+			date: { userID : userID},
+			success: function (result) {
+				if(result == 1){
+					$('#checkMessage').html('사용할 수 있는 아이디입니다.');
+					$('#checkType').attr('class', 'modal-content panel-success');
 				}
-				
+				else{
+					$('#checkMessage').html('사용할 수 없는 아이디입니다.');
+					$('#checkType').attr('class', 'modal-content panel-warning');
+				}
+				$('#checkModal').modal("show");
 			}
-		});
-	
-	}else{
-		alert("test1 >> false");
-		event.preventDefault();
+		})
 	}
-	
-
+	function passwordCheckFunction() {
+		var userPassword1 = $('#userPassword1').val();
+		var userPassword2 = $('#userPassword2').val();
+		if(userPassword1 != userPassword2){
+			$('#passwordCheckMessage').html('비밀번호가 서로 일치하지 않습니다.');
+		}else{
+			$('#passwordCheckMessage').html('');
+		}
+	}
 </script>
 </head>
 <body>
@@ -203,15 +75,11 @@ $("btemail").click(function() {
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="jp_tittle_heading_wrapper">
                         <div class="jp_tittle_heading">
-                            <h2>상세 공고</h2>
+                            <h2>회원가입</h2>
                         </div>
                         <div class="jp_tittle_breadcrumb_main_wrapper">
                             <div class="jp_tittle_breadcrumb_wrapper">
-                                <ul>
-                                    <li><a href="#">Home</a> <i class="fa fa-angle-right"></i></li>
-                                    <li><a href="#">채용공고</a> <i class="fa fa-angle-right"></i></li>
-                                    <li>상세공고</li>
-                                </ul>
+                              
                             </div>
                         </div>
                     </div>
@@ -220,7 +88,7 @@ $("btemail").click(function() {
         </div>
     </div>
 	   <!-- 여기부터 시작-->
-	<form action="/regist/member" name="join_form" method="post">
+	<form action="/regist/member" name="join_form" id="sendIt()" method="post">
     <div class="register_section">
         
         <div class="register_tab_wrapper">
@@ -229,7 +97,8 @@ $("btemail").click(function() {
                     <div class="col-md-10 col-md-offset-1">
                         <div role="tabpanel">
 
-                            <!-- Nav tabs -->
+                         
+                            
                             <ul id="tabOne" class="nav register-tabs">
                                 <li class="active"><a href="#contentOne-1" data-toggle="tab">개인회원 가입 <br> <span>구직하고 싶어요</span></a>
                                 </li>
@@ -248,13 +117,13 @@ $("btemail").click(function() {
                                     <div class="row">
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                         
-                                            <input type="text" name="id" class="form-control"  style="text-transform: lowercase" placeholder="아이디">
-											<input type="button" name="id" value="중복체크">
+                                            <input type="text" name="userID" class="userID"  style="text-transform: lowercase" placeholder="아이디" maxlength="20">
+											<button name="idCheck" onclick="registerCheckFunction();" type="button">중복체크</button>
                                         </div>
                                         
 
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="email" name="email"  onchange="sendIt()" style="text-transform: lowercase" placeholder="이메일">
+                                            <input type="email" name="email"   style="text-transform: lowercase" placeholder="이메일">
                                             <input type="button" value="이메일 보내기" class="btemail" id="btemail" >
                                             <img id="id_check_sucess" style="display: none;">
                                         </div>
@@ -266,12 +135,12 @@ $("btemail").click(function() {
 
                                        
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="password" name="pw1" onchange="sendIt()" style="text-transform: lowercase" placeholder="비밀번호">
+                                            <input type="password" onkeyup="passwordCheckFunction();" name="userPassword1"  style="text-transform: lowercase" placeholder="비밀번호">
                                         </div>
                                         
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
-                                            <input type="password" name="pw2" onchange="sendIt()"  style="text-transform: lowercase" placeholder="비밀번호 확인">
+                                            <input type="password" name="userPassword2" onchange="sendIt()"  style="text-transform: lowercase" placeholder="비밀번호 확인">
                                         </div>
                                         
                                         
@@ -295,12 +164,15 @@ $("btemail").click(function() {
                                     </div>
 
                                     <div class="login_btn_wrapper register_btn_wrapper login_wrapper ">
-                                        <a href="#" class="btn btn-primary login_btn" id="reg_submit"> 회원가입 </a>
+<!--                                         <a href="#" class="btn btn-primary login_btn" id="reg_submit"> 회원가입 </a> -->
+											<h5  style="color: red;" id="passwordCheckMessage"></h5>
+											<input class="btn btn-regist" type="submit" value="회원가입"> 
                                     </div>
                                     <div class="login_message">
                                         <p>회원인가요? <a href="#"> Login Here </a> </p>
                                     </div>
                                 </div>
+                               
 
                                 <div class="tab-pane fade register_left_form" id="contentOne-2">
 
@@ -367,7 +239,7 @@ $("btemail").click(function() {
                                     </div>
 
                                 </div>
-
+						
                             </div>
                             <p class="btm_txt_register_form">In case you are using a public/shared computer we recommend that you logout to prevent any un-authorized access to your account</p>
                         </div>
@@ -377,5 +249,65 @@ $("btemail").click(function() {
         </div>
     </div>
     </form>
+    <%
+    	String messageContent = null;
+        if(session.getAttribute("messageContent") != null){
+        	messageContent = (String) session.getAttribute("messageContent");
+        }
+        String messageType = null;
+        if(session.getAttribute("messageType") != null){
+        	messageType = (String) session.getAttribute("messageType");
+        }
+        if(messageContent != null){
+     %>
+    	<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-hidden="true">
+    		<div class="modal-dialog vertical-align-center">
+    			<div class="modal-content <% if(messageType.equals("오류 메세지")) out.println("panel-warning"); else out.println("panel-success");%>">
+    				<div class="modal-header panel-heading">
+    					<button type="button" class="close" data-dismiss="modal">
+    						<span aria-hidden="true">&times;</span>
+    						<span class="sr-only">Close</span>
+    					</button>
+    					<h4 class="modal-title">
+    						<%= messageType %>
+    					</h4>
+    				</div>
+    				<div class="modal-body">
+    					<%= messageContent %>
+    				</div>
+    				<div class="modal-footer">
+    					<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+    				</div>
+    		</div>
+    		</div>
+    	</div>
+    	<script>
+    		$('#messageModal').modal("show");
+    	</script>
+    <% 
+ 		session.removeAttribute("messageContnt");
+    	session.removeAttribute("messageType");
+        }
+    %>
+    <div class="modal fade" id="checkModal" tabindex="-1" role="dialog" aria-hidden="true">
+    		<div class="modal-dialog vertical-align-center">
+    			<div id="checkType" class="modal-content panel-info%>">
+    				<div class="modal-header panel-heading">
+    					<button type="button" class="close" data-dismiss="modal">
+    						<span aria-hidden="true">&times;</span>
+    						<span class="sr-only">Close</span>
+    					</button>
+    					<h4 class="modal-title">
+    						확인 메세지
+    					</h4>
+    				</div>
+    				<div class="modal-body" id="checkMessage">
+    				</div>
+    				<div class="modal-footer">
+    					<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+    				</div>
+    		</div>
+    		</div>
+    	</div>
 </body>
 </html>

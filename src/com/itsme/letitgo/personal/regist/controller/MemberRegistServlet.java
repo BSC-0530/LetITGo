@@ -9,25 +9,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.itsme.letitgo.login.model.mapper.MemberMapper;
+import com.itsme.letitgo.personal.regist.model.dto.CoMemberDTO;
 import com.itsme.letitgo.personal.regist.model.dto.MemberDTO;
+import com.itsme.letitgo.personal.regist.model.mapper.RegistMemberMapper;
 import com.itsme.letitgo.personal.regist.model.service.MemberService;
 
 
-@WebServlet("/regist/member")
+@WebServlet("/UserRegisterCheckServlet")
 public class MemberRegistServlet extends HttpServlet {
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String path = "";
-		
-		request.getRequestDispatcher(path).forward(request, response);
-	}
 
+	
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String memberId = request.getParameter("memberId");
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
+		
+		
+		
+		String memberId = request.getParameter("userID");
 		String memberPwd = request.getParameter("memberPwd");
 		String email = request.getParameter("email");
 		String name = request.getParameter("memberName");
@@ -50,19 +52,19 @@ public class MemberRegistServlet extends HttpServlet {
 		
 		int result = new MemberService().registMember(memberDTO);
 		
-		String page = "";
+		
 		
 		if(result > 0) {
 			
-			page = "";
-			
-			
 			request.setAttribute("successCode", "insertMember");
+			response.sendRedirect("regist.jsp");
+			return;
+			
 		}else {
 			
-			page ="";
-			
 			request.setAttribute("message", "회원 가입 실패!");
+			response.sendRedirect("regist.jsp");
+			return;
 		}
 	}
 
