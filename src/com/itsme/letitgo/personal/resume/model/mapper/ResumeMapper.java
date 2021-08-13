@@ -31,5 +31,19 @@ public interface ResumeMapper {
 
 	int selectResume(String resumeTitle);
 
+	int updateResume(InsertResumeDTO ir);
+
+	int updateCareer(InsertResumeDTO ir);
+
+	int updatePot(InsertResumeDTO ir);
+
+	int updateIntroContent(InsertResumeDTO ir);
+
+	int updateLicense(InsertResumeDTO ir);
+
+	int updateEdu(InsertResumeDTO ir);
+
+	int updateAwd(InsertResumeDTO ir);
+
 
 }

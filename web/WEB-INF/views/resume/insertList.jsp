@@ -381,65 +381,36 @@
  				.append("</div>")
  				.append("<div class='col-lg-3 col-md-3 col-md-3 col-xs-12'>")
  				.append("<div class='jp_adp_form_wrapper'>")
- 				.append("<input type='text' placeholder='직책 *' name='carJobName'>")
+ 				.append("<br> <input type='text' placeholder='프로젝트명' name='projectName'>")
  				.append("</div>")
  				.append("</div>")
  				.append("<div class='col-lg-3 col-md-3 col-md-3 col-xs-12'>")
  				.append("<div class='jp_adp_form_wrapper'>")
- 				.append("<input type='text' placeholder='직책 *' name='carJobName'>")
+ 				.append("<br> <input type='text' placeholder='프로젝트 업무 내용' name='projectContent'>")
  				.append("</div>")
  				.append("</div>")
  				.append("<div class='col-lg-3 col-md-3 col-md-3 col-xs-12'>")
  				.append("<div class='jp_adp_form_wrapper'>")
- 				.append("<input type='text' placeholder='직책 *' name='carJobName'>")
+ 				.append("<label>프로젝트 시작일</label> <input type='date' name='projectStartDate'>")
  				.append("</div>")
  				.append("</div>")
  				.append("<div class='col-lg-3 col-md-3 col-md-3 col-xs-12'>")
  				.append("<div class='jp_adp_form_wrapper'>")
- 				.append("<input type='text' placeholder='직책 *' name='carJobName'>")
+ 				.append("<label>프로젝트 종료일</label> <input type='date' data-placeholder='프로젝트 종료일' name='projectEndDate'>")
  				.append("</div>")
  				.append("</div>")
- 				.append("")
- 				.append("")
- 				.append("")
+ 				.append("<div class='col-lg-12 col-md-12 col-md-12 col-xs-12'>")
+ 				.append("<div class='jp_adp_form_wrapper'>")
+ 				.append("<button id='addCareerBtn' type='button'>추가 +</button>")
  				.append("</div>")
+ 				.append("</div>")
+ 				.append("</div>");
  				
 			
  		});
+		
+		
 
-
-
-// 		<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-// 			<div class="jp_adp_form_wrapper">
-// 				<br> <input type="text" placeholder="프로젝트명"
-// 					name="projectName">
-// 			</div>
-// 		</div>
-// 		<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-// 			<div class="jp_adp_form_wrapper">
-// 				<br> <input type="text" placeholder="프로젝트 업무 내용"
-// 					name="projectContent">
-// 			</div>
-// 		</div>
-// 		<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-// 			<div class="jp_adp_form_wrapper">
-// 				<label>프로젝트 시작일</label> <input type="date"
-// 					name="projectStartDate">
-// 			</div>
-// 		</div>
-// 		<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-// 			<div class="jp_adp_form_wrapper">
-// 				<label>프로젝트 퇴사일</label> <input type="date"
-// 					data-placeholder="프로젝트 종료일" name="projectEndDate">
-// 			</div>
-// 		</div>
-// 		<div class="col-lg-12 col-md-12 col-md-12 col-xs-12">
-// 			<div class="jp_adp_form_wrapper">
-// 				<button id="addCareerBtn" type="button">추가 +</button>
-// 			</div>
-// 		</div>
-// 	</div>
-// </div>
  	</script>
 	<jsp:include page="../common/footer.jsp" />
 </body>

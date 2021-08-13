@@ -96,6 +96,34 @@ public class ResumeService {
 		return result;
 	}
 
+	public int updateDetailResume(InsertResumeDTO ir) {
+
+		SqlSession session = getSqlSession();
+		ResumeMapper mapper = session.getMapper(ResumeMapper.class);
+		
+		int resultResume = mapper.updateResume(ir);
+		int resultCareer = mapper.updateCareer(ir);
+		int resultPot = mapper.updatePot(ir);
+//		int resultIntroNo = mapper.insertIntroNo(irList);
+		int resultIntroContent = mapper.updateIntroContent(ir);
+		int resultLicense = mapper.updateLicense(ir);
+		int resultEdu = mapper.updateEdu(ir);
+		int resultAwd = mapper.updateAwd(ir);
+		
+		int result = resultCareer + resultPot + resultResume
+				+ resultIntroContent + resultLicense + resultEdu + resultAwd;
+		
+		if(result > 6) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
 	
 
 }
