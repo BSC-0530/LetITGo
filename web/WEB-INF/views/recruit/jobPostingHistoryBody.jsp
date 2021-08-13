@@ -111,7 +111,7 @@
 											<h5 class="con2">진행중 공고</h5>
 										</div>
 									</div>
-									<div class="gc_counter_cont_wrapper3" style="cursor:pointer;" onclick="select()">
+									<div class="gc_counter_cont_wrapper3" style="cursor:pointer;" onclick="select('승인대기중인공고')">
 										<div class="count-description">
 											<span class="timer"><c:out value="${ requestScope.requestJobPosting.size() }" /></span>
 											<i class="fa"></i>
@@ -126,13 +126,13 @@
 						<!-- 데이터 테이블 내역모음 -->
 						<div>
 						<c:if test="${ requestScope.kinds eq null }" >
-						<h1>전체 공고</h1><button style="margin-left: 100%">dd</button>
+						<h1>전체 공고</h1>
 						</c:if>
 						<c:if test="${ requestScope.kinds eq '승인된공고' }" >
-						<h1>진행중 공고</h1><button style="margin-left: 100%">dd</button>
+						<h1>진행중 공고</h1>
 						</c:if>
 						<c:if test="${ requestScope.kinds eq '승인대기중인공고' }" >
-						<h1>요청중 공고</h1><button style="margin-left: 100%">dd</button>
+						<h1>요청중 공고</h1>
 						</c:if>
 						</div>
 						<br>
@@ -160,7 +160,7 @@
 										
 										<!-- 공고 상태에 따라 view에 다르게 표기 -->
 										<td>
-										<c:if test="${jobPosting.jobPostKinds eq '승인된공고' }">
+										<c:if test="${ jobPosting.jobPostKinds eq '승인된공고' }">
 										<c:out value="채용중"/>
 										</c:if>
 										</td>
@@ -238,9 +238,8 @@
 							</c:if>
 							
 						</table>
-						
-						
-						
+						<br>
+						<button type="submit" class="btn btn-info" id="insertJobPosting" style=" float: right;" >공고 등록</button>
 						
 					</div>
 				</div>
@@ -258,7 +257,15 @@
 	function select(kinds) {
 		
 		location.href = "${ pageContext.servletContext.contextPath }/company/jobPostingHistory/select?kinds=" + kinds
-	}
+	};
+	
+	$('#insertJobPosting').click(function(){
+		
+		alert("");
+		
+		location.href = "${ pageContext.servletContext.contextPath }/recruit/insert"
+	})
+	
 	
 	
 	</script>

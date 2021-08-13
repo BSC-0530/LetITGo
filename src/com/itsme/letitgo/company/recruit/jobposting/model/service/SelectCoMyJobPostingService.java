@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO;
 import com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper;
+import com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpJobFieldDTO;
 
 
 public class SelectCoMyJobPostingService {
@@ -33,9 +34,22 @@ public class SelectCoMyJobPostingService {
 		selectJobPosting.put("recruitingJopPosting", recruitingJopPosting);
 		selectJobPosting.put("requestJobPosting", requestJobPosting);
 		
-		
+		session.close();
 		
 		return selectJobPosting;
+	}
+
+	public List<JpJobFieldDTO> insertRecruit() {
+		SqlSession session = getSqlSession();
+		
+		SelectCoMyJobPostingMapper mapper = session.getMapper(SelectCoMyJobPostingMapper.class);
+		
+		List<JpJobFieldDTO> jobNameList = mapper.insertRecruit();
+		System.out.println("Service jobNameList : " + jobNameList);
+				
+		session.close();
+				
+		return jobNameList;
 	}
 
 }

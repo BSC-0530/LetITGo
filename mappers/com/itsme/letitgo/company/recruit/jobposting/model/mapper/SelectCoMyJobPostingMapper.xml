@@ -12,6 +12,17 @@
 		<result property="jobPostKinds" column="JOB_POST_KINDS"/>
 		<result property="exposureUseCheck" column="EXPOSURE_USE_CHECK"/>
 	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpJobFieldDTO" id="resultJobField">
+		<id property="jobNo" column="JOB_NO"/>
+		<result property="jobName" column="JOB_NAME"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpSkillsDTO" id="resultJpSkills" >
+		<result property="skillsNo" column="SKILLS_NO"/>
+		<result property="jobPostNo" column="JOB_POST_NO"/>
+		<result property="skillsName" column="SKILLS_NAME"/>
+	</resultMap>
 	<select id="selectCoMyJobPosting" parameterType="com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO" resultMap="resultMyJobPosting">
 		SELECT
 	    	   JP.JOB_POST_NO
@@ -54,6 +65,13 @@
 	      FROM TBL_JOB_POSTING JP
 	     WHERE JP.CO_MEM_NO = #{ coMemNo }
 	       AND JP.JOB_POST_KINDS = '승인대기중인공고'
+	</select>
+	
+	<select id="insertRecruit" resultMap="resultJobField">
+		SELECT
+			   JF.JOB_NO
+			 , JF.JOB_NAME
+		  FROM TBL_JOB_FIELD JF
 	</select>
 	
 	
