@@ -158,6 +158,7 @@
 											<td align="center">기업명</td>
 											<td align="center">요청일자</td>
 											<td align="center">응답일자</td>
+											<td align="center">상태</td>
 											<td align="center">거절사유</td>
 											<td align="center">상세보기</td>
 										</tr>
@@ -178,15 +179,17 @@
 												<td>-</td>		
 												</c:if>
 												
+												<td><c:out value="${ adminPostRequest.jobPostAnsKinds }"/></td>
+												
 												<c:if test="${ adminPostRequest.jobPostRejectReason != null }">								
-												<td><c:out value="${ adminPostRequest.jobPostAnsDate }"/></td>			
+												<td><c:out value="${ adminPostRequest.jobPostRejectReason }"/></td>			
 												</c:if>		
 												
 												<c:if test="${ adminPostRequest.jobPostRejectReason == null }">								
 												<td>-</td>			
 												</c:if>
 												
-												<td><button type="submit" onclick="resume(this);">미리보기</button></td>
+												<td><button type="submit" onclick="post2(this);">미리보기</button></td>
 												
 												<c:if test="${  adminPostRequest.jobPostAnsDate != null }">
 												<td><button disabled>승인</button></td>
@@ -244,8 +247,17 @@ function jobPostReject(button) {
 		$("body").append($form);
 			
 		$form.submit();	
-		
+}
+
+function post2(button) { 
+			
+		const selectJobPostNo = button.parentNode.parentNode.children[1].innerText;
+			
+		location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?selectJobPostNo=" +selectJobPostNo
+					
 }		
+		
+		
 </script>
 </body>
 </html>
