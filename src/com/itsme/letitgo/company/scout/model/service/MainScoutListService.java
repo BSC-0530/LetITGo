@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.itsme.letitgo.company.scout.model.dto.BrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.BrosweSimplelDTO;
 import com.itsme.letitgo.company.scout.model.dto.CountReadingNumDTO;
+import com.itsme.letitgo.company.scout.model.dto.PersonalBrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.ResumeReadingHistoryDTO;
 import com.itsme.letitgo.company.scout.model.mapper.CompanyScoutMapper;
 
@@ -27,7 +28,7 @@ public class MainScoutListService {
 		List<Object> scoutListSkills = mapper.companyScoutSkills();
 		
 		List<Object> scoutCareea = mapper.companyScoutCareea();
-		
+	
 		System.out.println("sadasdasdaskjdhasdka : " + scoutCareea);
 		
 			Map<String, Object> scoutList = new HashMap<>();
@@ -36,8 +37,9 @@ public class MainScoutListService {
 			scoutList.put("scoutListSkills", scoutListSkills);
 			scoutList.put("scoutCareea", scoutCareea );
 			
-			System.out.println("스킬확인 : " + scoutListSkills);
-		 session.close();
+			System.out.println("스킬확인 : " + scoutCareea);
+	
+			session.close();
 		 
 		return scoutList;
 	}
@@ -175,6 +177,22 @@ public class MainScoutListService {
 		
 		
 		return CountNum;
+	}
+	public List<PersonalBrosweHistoryDTO> personalBrosweSelect() {
+		
+		 SqlSession session = getSqlSession();
+		
+		 CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
+		
+		 List<PersonalBrosweHistoryDTO>  personalBrosweHistorySelect = mapper.personalBrosweHistorySelect();
+		 
+		 System.out.println("개인마이페이지개인마이페이지개인마이페이지" + personalBrosweHistorySelect);
+		 
+		 session.close();
+		
+		return personalBrosweHistorySelect;
+		
+		
 	}
 	
 	

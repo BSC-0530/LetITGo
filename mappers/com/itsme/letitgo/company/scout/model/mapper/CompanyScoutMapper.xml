@@ -167,6 +167,13 @@
 				<result property="resumeNo" column="RESUME_NO"/>
 				<result property="resumeBrowseKinds" column="RESUME_BROWSE_KINDS"/>
 			</resultMap>
+		<resultMap type="com.itsme.letitgo.company.scout.model.dto.PersonalBrosweHistoryDTO" id="personalMypageScoutMap">
+			<result property="coComName" column="CO_COM_NAME"/>
+			<result property="address" column="CO_ADDRESS"/>
+			<result property="coStatus" column="CO_STATUS"/>
+			<result property="resumeBrowseKinds" column="RESUME_BROWSE_KINDS"/>
+		</resultMap>
+		
 		
 		<select id="companySelectAllScout" resultMap="mainScoutResultMap">
 		SELECT
@@ -184,8 +191,6 @@
 		  FROM TBL_RESUME_HOLDING_SKILLS RS
           JOIN TBL_SKILLS S ON (S.SKILLS_NO = RS.SKILLS_NO)
           GROUP BY RS.RESUME_NO
-           	
-          
 		</select>
 		
 		<select id="companyScoutCareea" resultType="HashMap">
@@ -196,7 +201,6 @@
 <!-- 		    JOIN TBL_RESUME R ON (R.RESUME_NO = CR.RESUME_NO) -->
 <!--      	   GROUP BY R.RESUME_NO -->
 <!--      	    HAVING (R.RESUME_NO = CR.RESUME_NO) -->
-			
 			SELECT
                   R.RESUME_NO
 				, SUM( ROUND(ABS(MONTHS_BETWEEN(CH.CAR_HIRE_DATE,CH.CAR_ENT_DATE)),0)) as CAREER
@@ -204,10 +208,7 @@
 			  JOIN TBL_MEMBER M ON (M.MEM_NO = R.IN_MEM_NO)
 			  JOIN TBL_CAREER_HISTORY CH ON (R.RESUME_NO = CH.RESUME_NO) 
               group by R.RESUME_NO
-     	    
-     	    
 		</select>
-		
 
 		
 <!-- 간단열람 -->		
@@ -331,6 +332,18 @@
 					COUNT(1) 
 			   FROM TBL_RESUME_READING_HISTORY
 			  WHERE RESUME_BROWSE_KINDS ='면접제안'
+		</select>
+		
+		<select id="personalBrosweHistorySelect" resultMap="personalMypageScoutMap">
+			SELECT
+			     C.CO_COM_NAME
+			   , REGEXP_SUBSTR(C.CO_ADDRESS, '[^$]+',1,2) as CO_ADDRESS
+			   , R.RESUME_BROWSE_KINDS
+			   , C.CO_STATUS
+			FROM TBL_RESUME_READING_HISTORY R
+			JOIN TBL_CO_MEMBER_ADD_INFO C ON (R.CO_MEM_NO = C.CO_MEM_NO)
+			WHERE R.co_mem_no = 2
+		
 		</select>
 		
 		

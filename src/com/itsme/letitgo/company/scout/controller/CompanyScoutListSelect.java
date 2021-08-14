@@ -41,14 +41,12 @@ public class CompanyScoutListSelect extends HttpServlet {
 		String path = "/WEB-INF/views/member/company/scoutMyPage.jsp";
 		
 		
-		
 		request.setAttribute("paymentBrowseUsingHistroyList", paymentBrowseUsingHistroyList);
 		request.setAttribute("deepCountNum", deepOpen);
 		request.setAttribute("simpleCountNum", simpleOpen);
 		request.setAttribute("scoutNum", scoutNum);
 		
 		request.getRequestDispatcher(path).forward(request, response);
-		
 		
 	}
 

@@ -91,7 +91,7 @@
 												<br>
 												<br>
 												<p>
-													<a href="#">스카우트 현황</a>
+													<a href="${ pageContext.servletContext.contextPath }/scout/myPageList/servlet">스카우트 현황</a>
 												</p>
 												<br>
 												<br>
