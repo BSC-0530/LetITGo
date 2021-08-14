@@ -39,12 +39,12 @@
 		  FROM TBL_SELF_INTRODUCTION_ITEM A     
 	</select>
 	
-	<!-- <delete id="selfIntroductionItemDelete" parameterType="int" resultType="_int">
+	<delete id="selfIntroductionItemDelete">
 		DELETE
 		  FROM TBL_SELF_INTRODUCTION_ITEM A
 		 WHERE A.SELF_INTRO_ITEM_NO = #{ selfIntroItemNo }
 	</delete>
-	 -->
+	
 </mapper>
 
 
