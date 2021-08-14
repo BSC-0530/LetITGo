@@ -18,14 +18,8 @@ import com.itsme.letitgo.personal.regist.model.service.MemberService;
 @WebServlet("/regist/coMember")
 public class CoMemberRegistServlet extends HttpServlet {
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String path = "";
-		
-		request.getRequestDispatcher(path).forward(request, response);
-		
-	}
-
+	
+	private static final long serialVersionUID = 1L;
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,8 +28,6 @@ public class CoMemberRegistServlet extends HttpServlet {
 		String memberId = request.getParameter("userId");
 		String email = request.getParameter("email");
 		String pwd = request.getParameter("pw");
-		String name = request.getParameter("name");
-		String phone = request.getParameter("phone");
 //		String kinds = request.getParameter("kinds");
 //		java.sql.Date enrollDate = java.sql.Date.valueOf(request.getParameter("enrollDate"));
 //		int entYn = Integer.parseInt(request.getParameter("entYn"));
@@ -56,8 +48,6 @@ public class CoMemberRegistServlet extends HttpServlet {
 		coMemberDTO.setId(memberId);
 		coMemberDTO.setEmail(email);
 		coMemberDTO.setPwd(pwd);
-		coMemberDTO.setName(name);
-		coMemberDTO.setPhone(phone);
 		coMemberDTO.setKinds("기업회원");
 //		coMemberDTO.setEnrollDate(enrollDate);
 //		coMemberDTO.setEntYn(entYn);
@@ -75,18 +65,13 @@ public class CoMemberRegistServlet extends HttpServlet {
 		
 		int result = new ComMemberService().registCoMember(coMemberDTO);
 		
-		String page = "";
 		
 		if(result > 0) {
-			
-			page = "";
-			
 			request.setAttribute("successCode", "insertMember");
+			response.sendRedirect("success.jsp");
 		}else {
-			
-			page ="";
-			
 			request.setAttribute("message", "회원 가입 실패!");
+			response.sendRedirect("failed.jsp");
 		}
 	}
 

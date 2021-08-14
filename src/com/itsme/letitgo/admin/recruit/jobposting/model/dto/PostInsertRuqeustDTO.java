@@ -10,11 +10,12 @@ public class PostInsertRuqeustDTO {
 	private java.sql.Date jobPostReqDate;
 	private java.sql.Date jobPostAnsDate;
 	private String jobPostRejectReason;
+	private String jobPostAnsKinds;
 
 	public PostInsertRuqeustDTO() {}
 
 	public PostInsertRuqeustDTO(int jobPostReqNo, int jobPostNo, String coComName, Date jobPostReqDate,
-			Date jobPostAnsDate, String jobPostRejectReason) {
+			Date jobPostAnsDate, String jobPostRejectReason, String jobPostAnsKinds) {
 		super();
 		this.jobPostReqNo = jobPostReqNo;
 		this.jobPostNo = jobPostNo;
@@ -22,6 +23,7 @@ public class PostInsertRuqeustDTO {
 		this.jobPostReqDate = jobPostReqDate;
 		this.jobPostAnsDate = jobPostAnsDate;
 		this.jobPostRejectReason = jobPostRejectReason;
+		this.jobPostAnsKinds = jobPostAnsKinds;
 	}
 
 	public int getJobPostReqNo() {
@@ -72,13 +74,22 @@ public class PostInsertRuqeustDTO {
 		this.jobPostRejectReason = jobPostRejectReason;
 	}
 
+	public String getJobPostAnsKinds() {
+		return jobPostAnsKinds;
+	}
+
+	public void setJobPostAnsKinds(String jobPostAnsKinds) {
+		this.jobPostAnsKinds = jobPostAnsKinds;
+	}
+
 	@Override
 	public String toString() {
 		return "PostInsertRuqeustDTO [jobPostReqNo=" + jobPostReqNo + ", jobPostNo=" + jobPostNo + ", coComName="
 				+ coComName + ", jobPostReqDate=" + jobPostReqDate + ", jobPostAnsDate=" + jobPostAnsDate
-				+ ", jobPostRejectReason=" + jobPostRejectReason + "]";
+				+ ", jobPostRejectReason=" + jobPostRejectReason + ", jobPostAnsKinds=" + jobPostAnsKinds + "]";
 	}
 
+	
 	
 	
 }

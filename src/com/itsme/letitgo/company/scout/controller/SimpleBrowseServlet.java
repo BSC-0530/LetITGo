@@ -31,19 +31,19 @@ public class SimpleBrowseServlet extends HttpServlet {
 		
 		ResumeReadingHistoryDTO  kinds = browseInfoService.brosweHistoryKindsSelect(onClickResumeNo);
 		
-		
 		request.setAttribute("browseName", browseInfo.get("browseName"));
 		request.setAttribute("jobName", browseInfo.get("jobName"));
 		request.setAttribute("browseSkills", browseInfo.get("browseSkills"));
 		request.setAttribute("careeaNumber", browseInfo.get("careeaNumber"));
 		request.setAttribute("number", browseInfo.get("number"));
 		
+		
 		String path = "";
 		if(kinds == null) {
 			int kindsInsert = browseInfoService.readingKindsInsert(onClickResumeNo);
-//			System.out.println(kinds.getResumeBrowseKinds());
 			
 			path = "/WEB-INF/views/scout/scoutSimpleBrowse.jsp";
+			
 		}else if(kinds.getResumeBrowseKinds().equals("얕은열람")) {
 			int updateTime = browseInfoService.upDateTime(onClickResumeNo);
 			
@@ -54,6 +54,7 @@ public class SimpleBrowseServlet extends HttpServlet {
 			
 		}
 		
+		request.setAttribute("getResumeNo", kinds.getResumeNo());
 		
 		
 		request.getRequestDispatcher(path).forward(request, response);
