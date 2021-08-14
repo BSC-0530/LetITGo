@@ -26,6 +26,7 @@ public class ScoutMyPageListServlet extends HttpServlet {
 			System.out.println(personalBrosweHistory);
 		}
 		
+		
 		String path="";
 		
 		path="/WEB-INF/views/member/personal/SideScoutPage.jsp";

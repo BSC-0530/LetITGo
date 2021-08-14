@@ -14,6 +14,7 @@ import com.itsme.letitgo.company.scout.model.dto.CountReadingNumDTO;
 import com.itsme.letitgo.company.scout.model.dto.PersonalBrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.ResumeReadingHistoryDTO;
 import com.itsme.letitgo.company.scout.model.mapper.CompanyScoutMapper;
+import com.itsme.letitgo.personal.resume.model.dto.SkillsAndCategoryDTO;
 
 public class MainScoutListService {
 
@@ -126,6 +127,7 @@ public class MainScoutListService {
 		return kinds;
 	}
 	
+	
 	public int upDateTime(int onClickResumeNo) {
 		
 		SqlSession session = getSqlSession();
@@ -144,6 +146,7 @@ public class MainScoutListService {
 		return result;
 		
 	}
+	
 	//얕은열람카운트
 	public int selectAllCountDeepOpen() {
 		
@@ -184,6 +187,8 @@ public class MainScoutListService {
 		
 		 SqlSession session = getSqlSession();
 		
+		 
+		 
 		 CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
 		
 		 List<PersonalBrosweHistoryDTO>  personalBrosweHistorySelect = mapper.personalBrosweHistorySelect();
@@ -196,6 +201,20 @@ public class MainScoutListService {
 		
 		
 	}
+//	public List<SkillsAndCategoryDTO> skillsSelect() {
+//		
+//		
+//		SqlSession session = getSqlSession();
+//		 
+//		 CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
+//		 
+//		 List<SkillsAndCategoryDTO> skillsSelect = mapper.skillsSelect();
+//		 
+//		System.out.println("!@@@@@@@@@@@#@##@@" + skillsSelect);
+//		session.close();
+//		
+//		return skillsSelect;
+//	}
 	
 	
 	
