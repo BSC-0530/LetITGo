@@ -19,4 +19,13 @@ public interface AdminJobPostMapper {
 
 	List<PostInsertRuqeustDTO> selectPostInsertUpdate();
 
+	int updatePostUpdateApp1(int jobPostNo);
+	
+	int updatePostUpdateApp2(int jobPostReqNo);
+
+	int updatePostUpdateRejectRequest1(Map<String, Object> map);
+
+	int updatePostUpdateRejectRequest2(Map<String, Object> map);
+
+
 }

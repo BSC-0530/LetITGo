@@ -158,6 +158,7 @@
 											<td align="center">기업명</td>
 											<td align="center">요청일자</td>
 											<td align="center">응답일자</td>
+											<td align="center">상태</td>
 											<td align="center">거절사유</td>
 											<td align="center">상세보기</td>
 										</tr>
@@ -178,15 +179,17 @@
 												<td>-</td>		
 												</c:if>
 												
+												<td><c:out value="${ adminPostUpdate.jobPostAnsKinds }"/></td>
+												
 												<c:if test="${ adminPostUpdate.jobPostRejectReason != null }">								
-												<td><c:out value="${ adminPostUpdate.jobPostAnsDate }"/></td>			
+												<td><c:out value="${ adminPostUpdate.jobPostRejectReason }"/></td>			
 												</c:if>		
 												
 												<c:if test="${ adminPostUpdate.jobPostRejectReason == null }">								
 												<td>-</td>			
 												</c:if>
-												
-												<td><button type="submit" onclick="resume(this);">미리보기</button></td>
+				
+												<td><button type="submit" onclick="post3(this);">미리보기</button></td>
 												
 												<c:if test="${  adminPostUpdate.jobPostAnsDate != null }">
 												<td><button disabled>승인</button></td>
@@ -231,6 +234,7 @@ function jobPostApproval(button) {
 		
 	$form.submit();
 }
+
 function jobPostReject(button) {
 		
 		var jobPostReqNo = button.parentNode.parentNode.children[0].innerText;
@@ -245,7 +249,16 @@ function jobPostReject(button) {
 			
 		$form.submit();	
 		
-}		
+}
+
+function post3(button) { 
+	
+	const selectJobPostNo = button.parentNode.parentNode.children[1].innerText;
+		
+	location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?selectJobPostNo=" +selectJobPostNo
+				
+}	
+
 </script>
 </body>
 </html>

@@ -9,6 +9,7 @@
 		<result property="jobPostReqDate" column="JOB_POST_REQ_DATE"/>
 		<result property="jobPostAnsDate" column="JOB_POST_ANS_DATE"/>
 		<result property="jobPostRejectReason" column="JOB_POST_REJECT_REASON"/>
+		<result property="jobPostAnsKinds" column="JOB_POST_ANS_KINDS"/>
 	</resultMap>
 
 	
@@ -20,6 +21,7 @@
 		     , A.JOB_POST_REQ_DATE
 		     , A.JOB_POST_ANS_DATE
 		     , A.JOB_POST_REJECT_REASON
+		     , A.JOB_POST_ANS_KINDS
 		  FROM TBL_JOB_POSTING_APP_HISTORY A
 		  JOIN TBL_JOB_POSTING B ON (A.JOB_POST_NO = B.JOB_POST_NO)
 		  JOIN TBL_MEMBER C ON (B.CO_MEM_NO = C.MEM_NO)
@@ -32,6 +34,7 @@
 		UPDATE 
 		       TBL_JOB_POSTING
 		   SET JOB_POST_KINDS = '승인된공고'
+		     , JOB_POST_ENROLL_DATE = SYSDATE
 		 WHERE JOB_POST_NO = #{ jobPostNo }
 	</update>
 	
@@ -67,6 +70,7 @@
 		     , A.JOB_POST_REQ_DATE
 		     , A.JOB_POST_ANS_DATE
 		     , A.JOB_POST_REJECT_REASON
+		     , A.JOB_POST_ANS_KINDS
 		  FROM TBL_JOB_POSTING_APP_HISTORY A
 		  JOIN TBL_JOB_POSTING B ON (A.JOB_POST_NO = B.JOB_POST_NO)
 		  JOIN TBL_MEMBER C ON (B.CO_MEM_NO = C.MEM_NO)
@@ -74,5 +78,37 @@
 		 WHERE A.JOB_POST_REQ_KINDS = '공고수정'
 		 ORDER BY A.JOB_POST_REQ_NO
 	</select>
+	
+	<update id="updatePostUpdateApp1">
+		UPDATE 
+		       TBL_JOB_POSTING
+		   SET JOB_POST_KINDS = '승인된공고'
+		     , JOB_POST_UPDATE_DATE = SYSDATE;
+		 WHERE JOB_POST_NO = #{ jobPostNo }
+	</update>
+	
+	<update id="updatePostUpdateApp2">
+		UPDATE 
+		       TBL_JOB_POSTING_APP_HISTORY		       
+		   SET JOB_POST_ANS_KINDS = '승인'
+		     , JOB_POST_ANS_DATE = SYSDATE
+		 WHERE JOB_POST_REQ_NO = #{ jobPostReqNo }
+	</update>
+	
+	<update id="updatePostUpdateRejectRequest1">
+		UPDATE 
+		       TBL_JOB_POSTING		       
+		   SET JOB_POST_KINDS = '거절된공고'
+		 WHERE JOB_POST_NO = #{ jobPostNo }
+	</update>
+	
+	<update id="updatePostUpdateRejectRequest2">
+		UPDATE 
+		       TBL_JOB_POSTING_APP_HISTORY		       
+		   SET JOB_POST_ANS_KINDS = '거절'
+		     , JOB_POST_ANS_DATE = SYSDATE
+		     , JOB_POST_REJECT_REASON = #{ rejectMessage }
+		 WHERE JOB_POST_REQ_NO = #{ jobPostReqNo }
+	</update>
 	
 </mapper>

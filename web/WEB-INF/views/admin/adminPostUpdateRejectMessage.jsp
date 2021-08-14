@@ -150,7 +150,7 @@
 					</div>
 				</div>
 
-				<form id="postInsertRejectMessage" action="${ pageContext.servletContext.contextPath }/admin/post/reject/update" method="post">
+				<form id="postUpdateRejectMessage" action="${ pageContext.servletContext.contextPath }/admin/post/update/reject/update" method="post">
 					<div style="width: 500px;" class="jp_contact_form_main_wrapper">
 						<div class="container">
 							<div class="row">
