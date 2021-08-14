@@ -23,6 +23,7 @@ import com.itsme.letitgo.login.model.mapper.MemberMapper;
 import com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper;
 import com.itsme.letitgo.personal.regist.model.mapper.RegistMemberMapper;
 import com.itsme.letitgo.personal.resume.model.mapper.ResumeMapper;
+import com.itsme.letitgo.personal.scout.model.mapper.PersonalScoutMapper;
 
 
 public class Template {
@@ -50,8 +51,9 @@ public class Template {
 			//configuration.addMapper(PersonalMemberMapper.class);
 			
 
-
+			// 봉석
 			configuration.addMapper(ResumeMapper.class);
+			configuration.addMapper(PersonalScoutMapper.class);
 			
 			//현수
 			configuration.addMapper(PaymentMapper.class);
