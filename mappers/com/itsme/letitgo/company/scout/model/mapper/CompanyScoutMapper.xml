@@ -310,6 +310,7 @@
 			UPDATE
 				TBL_RESUME_READING_HISTORY
 				SET RESUME_BROWSE_DATE = SYSDATE
+				   ,RESUME_BROWSE_KINDS = '얕은열람'
 				   WHERE RESUME_NO = #{ onClickResumeNo }
 		</update>
 		
@@ -342,8 +343,11 @@
 			   , C.CO_STATUS
 			FROM TBL_RESUME_READING_HISTORY R
 			JOIN TBL_CO_MEMBER_ADD_INFO C ON (R.CO_MEM_NO = C.CO_MEM_NO)
-			WHERE R.co_mem_no = 2
 		</select>
 		
-		
+<!-- 		<select id="skillsSelect" resultType="java.lang.String"> -->
+<!-- 			SELECT -->
+<!-- 				SKILLS_NAME -->
+<!-- 			FROM TBL_SKILLS	 -->
+<!-- 		</select> -->
 </mapper>

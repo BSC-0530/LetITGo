@@ -133,20 +133,20 @@
 								<div class="container">
 									<div class="gc_counter_cont_wrapper">
 										<div class="count-description">
-											<span class="timer"><c:out value="${ deepCountNum }"></c:out></span>
+											<span class="timer"><c:out value="${ simpleCountNum }"></c:out></span>
 											<h5 class="con1">얕은 열람</h5>
 										</div>
 									</div>
 									<div class="gc_counter_cont_wrapper2">
 										<div class="count-description">
-											<span class="timer"><c:out value="${ simpleCountNum }"></c:out> </span>
+											<span class="timer"><c:out value="${ deepCountNum }"></c:out> </span>
 											<h5 class="con2">깊은 열람</h5>
 										</div>
 									</div>
 									<div class="gc_counter_cont_wrapper3">
 										<div class="count-description">
 											<span class="timer"><c:out value="${ scoutNum }"></c:out></span>
-											<h5 class="con3">면접 제안</h5>
+											<h5 class="con3"><a href=""> 면접 제안</a></h5>
 										</div>
 									</div>
 								</div>
