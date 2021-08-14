@@ -55,7 +55,7 @@ public class SkillsInsertServlet extends HttpServlet {
 			request.setAttribute("message", "기술 등록에 실패하셨습니다.");
 		}
 		
-		request.getRequestDispatcher(path).forward(request, response);	
+		response.sendRedirect("/let/skills/list");	
 	
 	}
 

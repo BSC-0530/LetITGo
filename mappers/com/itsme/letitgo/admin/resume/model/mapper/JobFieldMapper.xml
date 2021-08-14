@@ -39,12 +39,12 @@
 	 	  FROM TBL_JOB_FIELD A   
 	</select>
 	
-	<!-- <delete id="jobFieldDelete" parameterType="int" resultType="_int">
+	<delete id="jobFieldDelete">
 		DELETE
 		  FROM TBL_JOB_FIELD A	
 		 WHERE A.JOB_NO = #{ no } 
 	</delete>
-	 -->
+	 
 </mapper>
 
 

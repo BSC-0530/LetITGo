@@ -194,7 +194,9 @@
 											<tr>
 												<td id="no"><c:out value="${ controllJobField.no }" /></td>
 												<td id="name"><c:out value="${ controllJobField.name }" /></td>
-												<td><button type="button" disabled>삭제</button></td>
+												<!-- <td><button type="button" disabled>삭제</button></td>  -->
+												<td><button class="btn-info" onClick="jobFieldDelete(this);" value="${ controllJobField.no }">삭제</button></td>
+												<!-- 위의 것을 실행하려면 div 안에 담아야 하는? --> 
 											</tr>
 										</tbody>
 									</c:forEach>
@@ -234,6 +236,21 @@
 			 location.href = "${ pageContext.servletContext.contextPath }/jobfield/insert" 
 			
 		}
+	</script>
+	
+	<script type="text/javascript">
+		
+		function jobFieldDelete(button) {
+			
+			const no = button.value;
+			location.href = "${ pageContext.servletContext.contextPath }/jobfield/delete?no=" + no;
+			
+		}
+		
+		$("input").filter("[value='null']").val("");
+		
+		/* location.reload();  무한로딩; 함수 안에서도 안먹힘  */
+	
 	</script>
 	
 </body>
