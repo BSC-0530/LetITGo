@@ -177,7 +177,6 @@
 					<h2 align="center">직무 분야 등록</h2>
 					<br>
 					<br>
-
 					<div class="table-area">
 						<form
 							action="${ pageContext.servletContext.contextPath }/skillscategory/insert"
@@ -186,16 +185,18 @@
 								<input type="number" placeholder="상위 카테고리" name="upperNo">
 							</div>
 							<br>
+
 							<div align="center">
 								<input type="text" placeholder="카테고리 이름" name="name">
 							</div>
 							<br>
 							<div align="center">
 								<!-- <button type="reset" id="cancleInsert">취소하기</button> -->
+							</div>
+
 								<button type="button" onClick="history.go(-1)">취소하기</button>
 								<button type="submit"
 									onclick="href='${ pageContext.servletContext.contextPath }/skillscategory/list'">등록하기</button>
-							</div>
 						</form>
 					</div>
 				</div>

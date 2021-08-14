@@ -44,6 +44,23 @@ public class SkillsService {
 		
 	}
 
+	/*
+	 * public int skillsNoDelete(int no) {
+	 * 
+	 * SqlSession session = getSqlSession();
+	 * 
+	 * SkillsMapper skillsMapper = session.getMapper(SkillsMapper.class);
+	 * 
+	 * int result1 = skillsMapper.skillsNoDelete(no);
+	 * 
+	 * if(result1 > 0) { session.commit(); } else { session.rollback(); }
+	 * 
+	 * session.close();
+	 * 
+	 * return result1; }
+	 */
+		
+	
 	public int skillsDelete(int skillsNo) {
 
 		SqlSession session = getSqlSession();
@@ -62,6 +79,25 @@ public class SkillsService {
 		
 		return result;
 	}
+
+	/*
+	 * public int skillsSkillsDelete(int skillsNo) {
+	 * 
+	 * SqlSession session = getSqlSession();
+	 * 
+	 * SkillsMapper skillsMapper = session.getMapper(SkillsMapper.class);
+	 * 
+	 * int result2 = skillsMapper.skillsDelete(skillsNo);
+	 * 
+	 * if(result2 > 0) { session.commit(); } else { session.rollback(); }
+	 * 
+	 * session.close();
+	 * 
+	 * return result2;
+	 * 
+	 * }
+	 */
+
 
 }
 
