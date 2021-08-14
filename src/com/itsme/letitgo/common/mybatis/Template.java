@@ -16,7 +16,7 @@ import com.itsme.letitgo.admin.resume.model.mapper.JobFieldMapper;
 import com.itsme.letitgo.admin.resume.model.mapper.SelfIntroductionItemMapper;
 import com.itsme.letitgo.admin.resume.model.mapper.SkillsCategoryMapper;
 import com.itsme.letitgo.admin.resume.model.mapper.SkillsMapper;
-import com.itsme.letitgo.company.info.model.mapper.CompanyTestMapper;
+import com.itsme.letitgo.company.info.model.mapper.CompanyInfoMapper;
 import com.itsme.letitgo.company.payment.model.mapper.PaymentMapper;
 import com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper;
 import com.itsme.letitgo.company.scout.model.mapper.CompanyScoutMapper;
@@ -48,7 +48,7 @@ public class Template {
 			
 			Configuration configuration = new Configuration(environment);
 			
-			configuration.addMapper(CompanyTestMapper.class);
+			configuration.addMapper(CompanyInfoMapper.class);
 			configuration.addMapper(CompanyScoutMapper.class);
 
 			//configuration.addMapper(PersonalMemberMapper.class);

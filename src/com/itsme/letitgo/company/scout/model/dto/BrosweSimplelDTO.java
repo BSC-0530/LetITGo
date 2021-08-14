@@ -3,7 +3,7 @@ package com.itsme.letitgo.company.scout.model.dto;
 import java.sql.Date;
 import java.util.List;
 
-import com.itsme.letitgo.company.info.model.dto.CompanyTestDTO;
+import com.itsme.letitgo.company.info.model.dto.CompanyInfoDTO;
 import com.itsme.letitgo.personal.resume.model.dto.HoldingAndSkillsDTO;
 
 public class BrosweSimplelDTO {
@@ -15,7 +15,7 @@ public class BrosweSimplelDTO {
 	private int jobNo;
 	private String resumeTitle;
 
-	private List<CompanyTestDTO> memDTO;                   // 회원
+	private List<CompanyInfoDTO> memDTO;                   // 회원
 	private List<HoldingAndSkillsDTO> holdingAndSkillsDTO;      //보유기술
 	private List<CompanyJobFieldDTO> jobFieldDTO;                 //직무 
 	private List<CompanyCareerHistoryDTO> companyCareerHistoryDTO;     //경력
@@ -27,7 +27,7 @@ public class BrosweSimplelDTO {
 	public BrosweSimplelDTO() {}
 
 	public BrosweSimplelDTO(int resumeNo, int inMemNo, Date resumeWriteDate, String resumeScoutStatus, int jobNo,
-			String resumeTitle, List<CompanyTestDTO> memDTO, List<HoldingAndSkillsDTO> holdingAndSkillsDTO,
+			String resumeTitle, List<CompanyInfoDTO> memDTO, List<HoldingAndSkillsDTO> holdingAndSkillsDTO,
 			List<CompanyJobFieldDTO> jobFieldDTO, List<CompanyCareerHistoryDTO> companyCareerHistoryDTO,
 			List<CandidateDibsDTO> candidateDibsDTO, List<ResumeReadingHistoryDTO> resumeReadingHistoryDTO,
 			List<ReadingUsageHistoryDTO> readingUsageHistoryDTO) {
@@ -82,10 +82,10 @@ public class BrosweSimplelDTO {
 	public void setResumeTitle(String resumeTitle) {
 		this.resumeTitle = resumeTitle;
 	}
-	public List<CompanyTestDTO> getMemDTO() {
+	public List<CompanyInfoDTO> getMemDTO() {
 		return memDTO;
 	}
-	public void setMemDTO(List<CompanyTestDTO> memDTO) {
+	public void setMemDTO(List<CompanyInfoDTO> memDTO) {
 		this.memDTO = memDTO;
 	}
 	public List<HoldingAndSkillsDTO> getHoldingAndSkillsDTO() {

@@ -2,7 +2,7 @@ package com.itsme.letitgo.company.info.model.dto;
 
 import java.sql.Date;
 
-public class CompanyTestDTO implements java.io.Serializable {
+public class CompanyInfoDTO implements java.io.Serializable {
 	
 	private int memNO;
 	private String memId;
@@ -16,10 +16,10 @@ public class CompanyTestDTO implements java.io.Serializable {
 	private Date entDate;
 	private int memEntNo;
 	
-	public CompanyTestDTO() {}
+	public CompanyInfoDTO() {}
 	
 	
-	public CompanyTestDTO(int memNO, String memId, String memPwd, String memName, String memEmail, String memPhone,
+	public CompanyInfoDTO(int memNO, String memId, String memPwd, String memName, String memEmail, String memPhone,
 			String memKinds, Date enrollDate, String entYn, Date entDate, int memEntNo) {
 		super();
 		this.memNO = memNO;
