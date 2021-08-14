@@ -32,7 +32,6 @@ public class MainScoutList extends HttpServlet {
 		System.out.println("scoutListSkills : " + scoutList.get("scoutListSkills"));
 		System.out.println("scoutCareea : " + scoutList.get("scoutCareea"));
 		
-		
 		request.setAttribute("mainScoutList", scoutList.get("scoutListName"));
 		request.setAttribute("scoutListSkills", scoutList.get("scoutListSkills"));
 		request.setAttribute("scoutCareea", scoutList.get("scoutCareea"));

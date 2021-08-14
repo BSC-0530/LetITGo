@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.itsme.letitgo.company.scout.model.dto.BrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.BrosweSimplelDTO;
+import com.itsme.letitgo.company.scout.model.dto.PersonalBrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.ResumeReadingHistoryDTO;
 
 
@@ -33,6 +34,9 @@ public interface CompanyScoutMapper {
 	int selectAllCountSimpleOpen();
 
 	int selectAllScountNum();
+//개인 마이페이지 쪽 스카우트 현황
+	List<PersonalBrosweHistoryDTO> personalBrosweHistorySelect();
+
 
 
 //	int modifyReadingCnt();

@@ -40,8 +40,10 @@
 		    , CM.CO_SECTORS
 		    , CM.CO_STATUS
 		    , CM.CO_INTRO
+		    , CM.CO_ADDRESS
 		    , CM.CO_WEBSITE
 		FROM TBL_CO_MEMBER_ADD_INFO CM
+		WHERE CM.CO_MEM_NO = 2
 		
 	
 	</select>

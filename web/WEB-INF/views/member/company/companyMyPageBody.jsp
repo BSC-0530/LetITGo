@@ -158,7 +158,7 @@
 											<input type="text" name="field-name" value=""placeholder="${coStatus }" readonly>
 										</div>
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="field-name" value=""placeholder="${site } 주소" readonly>
+											<input type="text" name="field-name" value=""placeholder="${address } 주소" readonly>
 										</div>
 									</div>
 								</div>
