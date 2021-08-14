@@ -31,6 +31,17 @@
 	
 	</resultMap>
 	
+	<!-- 동기 기업 조회시 하단의 채용공고 조회를 위한 resultMap -->
+	<resultMap type="com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO" id="resultMyJobPosting">	
+		<id property="jobPostNo" column="JOB_POST_NO"/>
+		<result property="jobPostTitle" column="JOB_POST_TITLE" javaType="string"/>
+		<result property="jobPostMinExperience" column="JOB_POST_MIN_EXPERIENCE"/>
+		<result property="jobPostMaxExperience" column="JOB_POST_MAX_EXPERIENCE"/>
+		<result property="jobPostEnrollDate" column="JOB_POST_ENROLL_DATE"/>
+		<result property="jobPostDeadline" column="JOB_POST_DEADLINE"/>
+		<result property="jobPostKinds" column="JOB_POST_KINDS"/>
+		<result property="exposureUseCheck" column="EXPOSURE_USE_CHECK"/>
+	</resultMap>
 	<select id="selectedInfoCompany" resultMap="comAddInfoResultMap">
 		SELECT
 			  CM.CO_MEM_NO
@@ -62,5 +73,20 @@
 		     , AI.CO_WEBSITE
 		  FROM TBL_CO_MEMBER_ADD_INFO AI
 		 WHERE AI.CO_MEM_NO = #{ coMemNo }
+	</select>
+	<!--  기업정보 조회시 하단 기업의 jobPosting으로 이동하기 위해서 -->
+	<select id="myJobPosting" parameterType="com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectJobPostingDTO" resultMap="resultMyJobPosting">
+			SELECT
+	    	   JP.JOB_POST_NO
+	    	 , JP.JOB_POST_TITLE
+	    	 , JP.JOB_POST_MIN_EXPERIENCE
+	    	 , JP.JOB_POST_MAX_EXPERIENCE
+	    	 , JP.JOB_POST_ENROLL_DATE
+	    	 , JP.JOB_POST_DEADLINE
+	    	 , JP.JOB_POST_KINDS
+	    	 , JP.EXPOSURE_USE_CHECK
+	      FROM TBL_JOB_POSTING JP
+	     WHERE JP.CO_MEM_NO = #{ coMemNo }
+	       AND JP.JOB_POST_KINDS = '승인된공고'
 	</select>
 </mapper>

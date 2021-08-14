@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,18 +42,21 @@
                 <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
                     <div class="about_text_wrapper">
                         <div class="section_heading section_2_heading">
-                            <h2>위쪽<span>do it ?</span></h2>
+                            <c:forEach var="companyAddInfo" items="${ requestScope.companyAddInfo }">
+                            <h2><c:out value="${ companyAddInfo.coComName }"></c:out></h2>
+                            </c:forEach>
                         </div>
-                        <p>Proin gravida nibh vel velit auctor aliquet. aks Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem.consequat ipsum, nec sagittis sem nibh id elit.Donec vestibulum justo a diam ultricies. pel lentesque. Quisque mattis diam vel.</p>
-                        <p>Lorem Ipsum has been the industry's standard dummy text ever sincer they 1500s, when an unknown printer took and galley of type and scrambled. nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-                        <ul>
-                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a href="#">We sell all over the world.</a>
-                            </li>
-                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a href="#">Satisfaction or money refund guaranteed.</a>
-                            </li>
-                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a href="#">Lifetime updates & support.</a>
-                                    </li>
-                        </ul>
+                       	<br>
+                        <c:forEach var="companyAddInfo" items="${ requestScope.companyAddInfo }">
+	                        <ul>
+	                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a>대표자명 : <c:out value="${ companyAddInfo.coCeoName }"/></a></li>
+	                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a>업종       : <c:out value="${ companyAddInfo.coSectors }"/></a></li>
+	                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a>회사주소 : <c:out value="${ companyAddInfo.webSite }"/></a></li>
+	                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a href="${ companyAddInfo.webSite }">홈페이지 : <c:out value="${ companyAddInfo.coCeoName }"/></a></li>
+	                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a>사업장전화번호 : <c:out value="${ companyAddInfo.coPhone }"/></a></li>
+	                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a>사업장팩스번호 : <c:out value="${ companyAddInfo.coPax }"/></a></li>
+	                        </ul>
+                        </c:forEach>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
@@ -62,10 +67,11 @@
                 <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                     <div class="about_text_wrapper abt_2_para">
                         <div class="section_heading section_2_heading">
-                            <h2>여기<span> do it ?</span></h2>
+                            <h2>기업 간단소개</h2>
                         </div>
-                        <p>Proin gravida nibh vel velit auctor aliquet. aks Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem.consequat ipsum,rmentum nunc. Etiam pharetra, erat sed fermentum feugiat, velit sum, nec sagittis sem.consequat ipsum,rmentum nunc. Etiam pharetra, mauris egestas quam, ut aliquam massa nisl quis neque. Suspendissenec sagittis sem.conse nec sagittis sem nibh id elit.Donec vesquat ipsum, nec sa tibulum justo a diam ultricies. pel lentesque. Quisque mattis diam vel.</p>
-                        <p>Lorem Ipsum has been the industry's standard dummy text ever sincer they 1500s, when an unknown printer took and galley onsequat ipsum, orbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad a diam ultricie of type and scrambled. nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
+                        <c:forEach var="companyAddInfo" items="${ requestScope.companyAddInfo }">
+                        <p><c:out value="${ companyAddInfo.coIntro }"/></p>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
@@ -81,27 +87,30 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="jp_hiring_slider_main_wrapper">
                         <div class="jp_career_slider_heading_wrapper">
-                            <h2>Career advice</h2>
+                            <h2>채용중 공고</h2>
                         </div>
                         <div class="jp_career_slider_wrapper">
                             <div class="owl-carousel owl-theme">
                                 <!-- 공고 반복 -->
-                                <div class="item jp_recent_main">
-                                    <div class="jp_career_main_box_wrapper">
-                                        <div class="jp_career_img_wrapper">
-                                            <img src="/let/resources/image/content/car_img1.jpg" alt="career_img" /> <!-- 370 X 250 로고이미지-->
-                                        </div>
-                                        <div class="jp_career_cont_wrapper">
-                                            <p><i class="fa fa-calendar"></i>&nbsp;&nbsp; <a>20 OCT, 2017</ a></p>
-                                            <h3><a href="#">채용공고 제목</a></h3>
-                                            <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat.</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <c:forEach var="myJobPosting" items="${ requestScope.myJobPosting }">
+	                                <div class="item jp_recent_main">
+	                                    <div class="jp_career_main_box_wrapper">
+	                                        <div class="jp_career_img_wrapper">
+	                                            <img src="/let/resources/image/content/car_img1.jpg" alt="career_img" /> <!-- 370 X 250 로고이미지-->
+	                                        </div>
+	                                        <div class="jp_career_cont_wrapper">
+	                                            <p><i class="fa fa-calendar"></i>&nbsp;&nbsp; <a><c:out value="${ myJobPosting.jobPostDeadline }"/></a></p>
+	                                            <h3><a href="#"><c:out value="${ myJobPosting.jobPostTitle }"/></a></h3>
+	                                            <P>경력 :<c:out value="${ myJobPosting.jobPostMinExperience }"/> ~ <c:out value="${ myJobPosting.jobPostMaxExperience }"/> 년</P><br>
+	                                            
+	                                        </div>
+	                                    </div>
+	                                </div>
+                                </c:forEach>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div><c:out value=""/>
             </div>
         </div>
     </div>

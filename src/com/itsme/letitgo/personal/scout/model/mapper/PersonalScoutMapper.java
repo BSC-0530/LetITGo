@@ -11,6 +11,6 @@ public interface PersonalScoutMapper {
 
 	List<ResumeDTO> selectResume();
 
-	List<ScoutDetailResumeDTO> selectDetailResume();
+	
 
 }
