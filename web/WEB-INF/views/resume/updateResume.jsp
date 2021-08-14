@@ -1045,13 +1045,13 @@
 					</div>
 				</div>
 			</div>
+			<!-- jp ad post Wrapper End -->
+		</c:forEach>
 			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 jp_cl_right_bar"></div>
 				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 jp_cl_right_bar">
 					<button id="confirmUpdate" class="btn-info" type="submit">수정 완료</button>
 					<button id="cancleUpdate" class="btn-info" value="back" onClick="history.go(-1)">돌아가기</button>
 			</div>
-			<!-- jp ad post Wrapper End -->
-		</c:forEach>
 	</form>
 
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 jp_cl_right_bar"></div>

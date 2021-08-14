@@ -20,9 +20,7 @@ public class ResumeUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		int resumeNo = Integer.parseInt(request.getParameter("selectedUpdateResumeNo"));
-		List<DetailResumeDTO> detailResume = new ResumeService().selectDetailResumeList(resumeNo);
-		
-		System.out.println(detailResume.toString());
+		List<DetailResumeDTO> detailResume = new ResumeService().selectDetailResumeList(resumeNo);	
 		
 		String path = "";
 		

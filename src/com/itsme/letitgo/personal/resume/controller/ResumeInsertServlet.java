@@ -132,7 +132,7 @@ public class ResumeInsertServlet extends HttpServlet {
 		String path = "";
 		
 		if(result > 0) {
-			System.out.println("내가 이겼다");
+			
 			path = "/WEB-INF/views/resume/resumeList.jsp";
 		}
 		response.setCharacterEncoding("UTF-8");
