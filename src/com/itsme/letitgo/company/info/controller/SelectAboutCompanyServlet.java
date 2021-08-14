@@ -27,18 +27,19 @@ public class SelectAboutCompanyServlet extends HttpServlet {
 		CompanyInfoService service = new CompanyInfoService();
 		
 		// 기업 정보 dto, 채용중인 공고 정보 리스트
-		Map<String, Object> coMemInfo = service.selectCoInfoAndJp(dto);
+		Map<String, List<Object>> coAddInfoAndJobPosting = service.selectCoInfoAndJp(dto);
 		
 		// 담아온 값을 꺼내서 request영역에 담기
 		
+		request.setAttribute("companyAddInfo", coAddInfoAndJobPosting.get("companyAddInfo"));
+		request.setAttribute("myJobPosting", coAddInfoAndJobPosting.get("myJobPosting"));
 		
+	
 		String path = "/WEB-INF/views/common/aboutCompany/aboutCompany.jsp";
 		
 		request.getRequestDispatcher(path).forward(request, response);
 		
 		
 	}
-
-	
 
 }

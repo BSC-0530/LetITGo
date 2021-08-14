@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectApplyngYnDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectJobPostingDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper;
 
@@ -63,6 +64,11 @@ public class SelectJobPostingService {
 	
 		
 		return jp;
+	}
+
+	public boolean selectApplyingHistory(SelectApplyngYnDTO dto) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

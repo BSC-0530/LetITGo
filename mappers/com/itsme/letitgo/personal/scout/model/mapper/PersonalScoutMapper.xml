@@ -3,7 +3,6 @@
 <mapper
 	namespace="com.itsme.letitgo.personal.scout.model.mapper.PersonalScoutMapper">
 
-
 	<resultMap type="com.itsme.letitgo.personal.scout.model.dto.ResumeDTO" id="resumeResultMap">
 		<id property="resumeNo" column="RESUME_NO"/>
 		<result property="resumeTitle" column="RESUME_TITLE"/>
@@ -29,6 +28,8 @@
 		 WHERE A.IN_MEM_NO = 3
 	</select>
 
+	
+	
 	
 	
 	
