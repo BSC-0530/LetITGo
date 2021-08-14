@@ -3,7 +3,7 @@ package com.itsme.letitgo.company.scout.model.dto;
 
 import java.util.List;
 
-import com.itsme.letitgo.company.info.model.dto.CompanyTestDTO;
+import com.itsme.letitgo.company.info.model.dto.CompanyInfoDTO;
 import com.itsme.letitgo.personal.resume.model.dto.HoldingAndSkillsDTO;
 import com.itsme.letitgo.personal.resume.model.dto.ResumeDTO;
 
@@ -13,14 +13,14 @@ public class MainScoutListingDTO implements java.io.Serializable {
 	private int resumeNo;
 	private int carNo;
 	private int skillNo;
-	private CompanyTestDTO memberDTO;
+	private CompanyInfoDTO memberDTO;
 	private ResumeDTO resumeDTO;
 	private List<CompanyCareerHistoryDTO> carHistoryDTO;
 	private List<HoldingAndSkillsDTO> holdingSkillDTO;
 	
 	public MainScoutListingDTO() {}
 
-	public MainScoutListingDTO(int memNo, int resumeNo, int carNo, int skillNo, CompanyTestDTO memberDTO,
+	public MainScoutListingDTO(int memNo, int resumeNo, int carNo, int skillNo, CompanyInfoDTO memberDTO,
 			ResumeDTO resumeDTO, List<CompanyCareerHistoryDTO> carHistoryDTO,
 			List<HoldingAndSkillsDTO> holdingSkillDTO) {
 		super();
@@ -66,11 +66,11 @@ public class MainScoutListingDTO implements java.io.Serializable {
 		this.skillNo = skillNo;
 	}
 
-	public CompanyTestDTO getMemberDTO() {
+	public CompanyInfoDTO getMemberDTO() {
 		return memberDTO;
 	}
 
-	public void setMemberDTO(CompanyTestDTO memberDTO) {
+	public void setMemberDTO(CompanyInfoDTO memberDTO) {
 		this.memberDTO = memberDTO;
 	}
 

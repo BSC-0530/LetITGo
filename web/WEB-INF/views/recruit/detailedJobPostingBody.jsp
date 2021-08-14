@@ -188,12 +188,12 @@
 	<script>
 		function aboutCompany(label) {
 			
-			const coComNo = label.parentNode.children[4].value;
+			const coMemNo = label.parentNode.children[4].value;
 			
-			alert(coComNo);
+			alert(coMemNo);
 			alert("");
 			
-			location.href = "${ pageContext.servletContext.contextPath }/aboutCompany/select?coComNo="+ coComNo;
+			location.href = "${ pageContext.servletContext.contextPath }/aboutCompany/select?coMemNo="+ coMemNo;
 	
 		}
 	</script>

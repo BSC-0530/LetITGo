@@ -12,7 +12,7 @@
 <!-- 		<collection property="carHistoryDTO" resultMap="mainScoutCarHistoryDTO"/> -->
 	</resultMap>
 	
-		<resultMap type="com.itsme.letitgo.company.info.model.dto.CompanyTestDTO" id="mainScoutMemberDTO">
+		<resultMap type="com.itsme.letitgo.company.info.model.dto.CompanyInfoDTO" id="mainScoutMemberDTO">
 			<id property="memNO" column="MEM_NO"/>
 			<result property="memId" column="MEM_ID"/>
 			<result property="memPwd" column="MEM_PWD"/>
@@ -87,7 +87,7 @@
 <!-- 		<collection property="readingUsageHistoryDTO" resultMap="usageHistoryResultMap" /> -->
 	</resultMap>
 		
-	<resultMap type="com.itsme.letitgo.company.info.model.dto.CompanyTestDTO" id="candiMemResultMap">
+	<resultMap type="com.itsme.letitgo.company.info.model.dto.CompanyInfoDTO" id="candiMemResultMap">
 		<id property="memNO" column="MEM_NO"/>
 		<result property="memId" column="MEM_ID"/>
 		<result property="memPwd" column="MEM_PWD"/>

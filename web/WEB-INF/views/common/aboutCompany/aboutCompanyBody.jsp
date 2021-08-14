@@ -92,19 +92,7 @@
                                             <img src="/let/resources/image/content/car_img1.jpg" alt="career_img" /> <!-- 370 X 250 로고이미지-->
                                         </div>
                                         <div class="jp_career_cont_wrapper">
-                                            <p><i class="fa fa-calendar"></i>&nbsp;&nbsp; <a href="#">20 OCT, 2017</a></p>
-                                            <h3><a href="#">채용공고 제목</a></h3>
-                                            <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item jp_recent_main">
-                                    <div class="jp_career_main_box_wrapper">
-                                        <div class="jp_career_img_wrapper">
-                                            <img src="images/content/car_img1.jpg" alt="career_img" /> <!-- 370 X 250 로고이미지-->
-                                        </div>
-                                        <div class="jp_career_cont_wrapper">
-                                            <p><i class="fa fa-calendar"></i>&nbsp;&nbsp; <a href="#">20 OCT, 2017</a></p>
+                                            <p><i class="fa fa-calendar"></i>&nbsp;&nbsp; <a>20 OCT, 2017</ a></p>
                                             <h3><a href="#">채용공고 제목</a></h3>
                                             <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat.</p>
                                         </div>

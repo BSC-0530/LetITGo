@@ -1,7 +1,5 @@
 package com.itsme.letitgo.company.info.model.dto;
 
-import com.itsme.letitgo.login.model.dto.MemberDTO;
-
 public class CompanyAddInfoDTO implements java.io.Serializable {
 
 	private int coMemNo;
