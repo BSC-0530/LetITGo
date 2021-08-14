@@ -43,4 +43,33 @@ public class JobFieldService {
 		return jobFieldList;
 	}
 
+	public int jobFieldDelete(int no) {
+		
+		SqlSession session = getSqlSession();
+		
+		JobFieldMapper jobFieldMapper = session.getMapper(JobFieldMapper.class);
+		
+		int result = jobFieldMapper.jobFieldDelete(no);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+		
+	}
+
 }
+
+
+
+
+
+
+
+
+

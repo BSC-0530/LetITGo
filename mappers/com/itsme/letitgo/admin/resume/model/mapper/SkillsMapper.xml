@@ -14,6 +14,12 @@
 		<result property="no" column="CATEGORY_NO"/>
 		<result property="name" column="SKILLS_NAME"/>
 	</resultMap>
+	<!-- delete resultMap -->
+	<resultMap type="com.itsme.letitgo.admin.resume.model.dto.SkillsDTO" id="skillsDeleteResultMap">
+		<id property="skillsNo" column="SKILLS_NO"/>
+		<result property="name" column="SKILLS_NAME"/>
+		<result property="no" column="CATEGORY_NO"/>
+	</resultMap>
 		
 	<insert id="skillsInsert" parameterType="com.itsme.letitgo.admin.resume.model.dto.SkillsDTO">
 		INSERT
@@ -30,6 +36,7 @@
 		 , #{ name }  
 		)
 	</insert>
+	
 	<select id="selectAllSkillsList" resultMap="skillsResultMap">
 		SELECT
 		       A.SKILLS_NO
@@ -38,6 +45,12 @@
 		  FROM TBL_SKILLS A     
 	</select>
 	
+	<!-- <delete id="skillsDelete" parameterType="int" resultType="_int">
+		DELETE
+		  FROM TBL_SKILLS A
+		 WHERE A.SKILLS_NO = #{ skillsNo }   
+	</delete>
+	 -->
 </mapper>
 
 
