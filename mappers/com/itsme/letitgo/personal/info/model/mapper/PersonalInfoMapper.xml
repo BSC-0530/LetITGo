@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itsme.letitgo.personal.info.model.mapper.PersonalInfoMapper">
+
+	<select id="selectshallowBrowsingNum" resultType="_int">
+		SELECT /* com.itsme.letitgo.personal.info.model.mapper.PersonalInfoMapper#selectshallowBrowsingNum()  */
+		       COUNT(*)
+		  FROM TBL_RESUME_READING_HISTORY A
+		  JOIN TBL_RESUME B ON (A.RESUME_NO = B.RESUME_NO)
+		 WHERE RESUME_BROWSE_KINDS = '얕은열람'
+		   AND B.IN_MEM_NO = '3'
+		   AND B.RESUME_SCOUT_STATUS = 'Y'
+	</select>
+	
+	<select id="selectDeepBrowsingNum" resultType="_int">
+		SELECT /* com.itsme.letitgo.personal.info.model.mapper.PersonalInfoMapper#selectDeepBrowsingNum()  */
+		       COUNT(*)
+		  FROM TBL_RESUME_READING_HISTORY A
+		  JOIN TBL_RESUME B ON (A.RESUME_NO = B.RESUME_NO)
+		 WHERE RESUME_BROWSE_KINDS = '깊은열람'
+		   AND B.IN_MEM_NO = '3'
+		   AND B.RESUME_SCOUT_STATUS = 'Y'
+	</select>
+	
+	<select id="selectinterviewProposalNum" resultType="_int">
+		SELECT /* com.itsme.letitgo.personal.info.model.mapper.PersonalInfoMapper#selectinterviewProposalNum()  */
+		       COUNT(*)
+ 		 FROM TBL_INTERVIEW_PROPOSAL
+ 		WHERE IN_MEM_NO = '3'
+	</select>
+	
+	<select id="selectApplicationCompletedNum" resultType="_int">
+		SELECT /* com.itsme.letitgo.personal.info.model.mapper.PersonalInfoMapper#selectApplicationCompletedNum()  */
+		       COUNT(*)
+ 		 FROM TBL_APPLYING_HISTORY A
+ 		 LEFT JOIN TBL_RESUME B ON (A.RESUME_NO = B.RESUME_NO)
+ 		WHERE B.IN_MEM_NO = '3'
+ 		  AND A.JOB_POST_APPLYING_STATUS = '지원완료'
+	</select>
+	
+	<select id="selectApplicationCanceledNum" resultType="_int">
+		SELECT /* com.itsme.letitgo.personal.info.model.mapper.PersonalInfoMapper#selectApplicationCanceledNum()  */
+		       COUNT(*)
+ 		 FROM TBL_APPLYING_HISTORY A
+ 		 LEFT JOIN TBL_RESUME B ON (A.RESUME_NO = B.RESUME_NO)
+ 		WHERE B.IN_MEM_NO = '3'
+ 		  AND A.JOB_POST_APPLYING_STATUS = '지원취소'
+	</select>
+	
+	<select id="selectBookmarkNum" resultType="_int">
+		SELECT /* com.itsme.letitgo.personal.info.model.mapper.PersonalInfoMapper#selectBookmarkNum()  */
+		       COUNT(*)
+  		FROM TBL_BOOKMARK
+ 		WHERE IN_MEM_NO = '3'
+	</select>
+	
+	
+
+</mapper>

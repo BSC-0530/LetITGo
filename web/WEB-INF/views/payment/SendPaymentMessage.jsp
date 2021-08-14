@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 </head>
-<body >
+<body>
 
 <% 
 
@@ -29,4 +29,7 @@ temp = (String) elems.nextElement();
 paramMap.put(temp, request.getParameter(temp));
 }
 System.out.println("paramMap : "+ paramMap.toString());
- --%>
+
+%>
+</body>
+</html> --%>

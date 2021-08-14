@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper">
+
+	<resultMap type="com.itsme.letitgo.personal.recruit.apply.model.dto.SelectPersonalApplyDTO" id="selectPersonalApplyResultMap">
+		<id property="jobPostNo" column="JOB_POST_NO"/>
+		<result property="resumeNo" column="RESUME_NO"/>
+		<result property="jobPostTitle" column="JOB_POST_TITLE"/>
+		<result property="coComName" column="CO_COM_NAME"/>
+		<result property="jobPostEnrollDate" column="JOB_POST_ENROLL_DATE"/>
+		<result property="jobPostDeadLine" column="JOB_POST_DEADLINE"/>
+		<result property="jobPostApplyingStatus" column="JOB_POST_APPLYING_STATUS"/>
+		<result property="jobPostBrowesStatus" column="JOB_POST_BROWES_STATUS"/>
+		<result property="jobPostApplyingKinds" column="JOB_POST_APPLYING_KINDS"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.personal.recruit.apply.model.dto.SelectPersonlCompletedApplyDTO" id="selectPersonlCompletedApplyResultMap">
+		<id property="jobPostNo" column="JOB_POST_NO"/>
+		<result property="resumeNo" column="RESUME_NO"/>
+		<result property="jobPostTitle" column="JOB_POST_TITLE"/>
+		<result property="coComName" column="CO_COM_NAME"/>
+		<result property="jobPostEnrollDate" column="JOB_POST_ENROLL_DATE"/>
+		<result property="jobPostDeadLine" column="JOB_POST_DEADLINE"/>
+		<result property="jobPostApplyingDate" column="JOB_POST_APPLYING_DATE"/>
+		<result property="jobPostApplyingStatus" column="JOB_POST_APPLYING_STATUS"/>
+		<result property="jobPostBrowesStatus" column="JOB_POST_BROWES_STATUS"/>
+		<result property="jobPostApplyingKinds" column="JOB_POST_APPLYING_KINDS"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.personal.recruit.apply.model.dto.SelectPersonlCanceledApplyDTO" id="selectPersonlCanceledApplyResultMap">
+		<result property="jobPostTitle" column="JOB_POST_TITLE"/>
+		<result property="coComName" column="CO_COM_NAME"/>
+		<result property="jobPostEnrollDate" column="JOB_POST_ENROLL_DATE"/>
+		<result property="jobPostDeadLine" column="JOB_POST_DEADLINE"/>
+		<result property="jobPostApplyingDate" column="JOB_POST_APPLYING_DATE"/>
+		<result property="jobPostApplyingCancelDate" column="JOB_POST_APPLYING_CANCEL_DATE"/>
+		<result property="jobPostApplyingStatus" column="JOB_POST_APPLYING_STATUS"/>
+		<result property="jobPostBrowesStatus" column="JOB_POST_BROWES_STATUS"/>
+		<result property="jobPostApplyingKinds" column="JOB_POST_APPLYING_KINDS"/>
+	</resultMap>
+
+	<select id="selectPersonalApply" resultMap="selectPersonalApplyResultMap">
+		SELECT /* com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper#selectPersonalApply() */
+		       A.JOB_POST_NO
+		     , D.RESUME_NO
+		     , A.JOB_POST_TITLE
+		     , C.CO_COM_NAME
+		     , A.JOB_POST_ENROLL_DATE
+		     , A.JOB_POST_DEADLINE
+		     , D.JOB_POST_APPLYING_STATUS
+		     , D.JOB_POST_BROWES_STATUS
+		     , A.JOB_POST_APPLYING_KINDS
+		  FROM TBL_JOB_POSTING A
+		  JOIN TBL_MEMBER B ON (A.CO_MEM_NO = B.MEM_NO)
+		  JOIN TBL_CO_MEMBER_ADD_INFO C ON (B.MEM_NO = C.CO_MEM_NO)
+		  JOIN TBL_APPLYING_HISTORY D ON (A.JOB_POST_NO = D.JOB_POST_NO)
+		  JOIN TBL_RESUME E ON (D.RESUME_NO = E.RESUME_NO)
+		 WHERE E.IN_MEM_NO = '3'
+	</select>
+
+	<update id="updateApplyStatus">
+		UPDATE /* com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper#updateApplyStatus() */
+		       TBL_APPLYING_HISTORY
+		   SET JOB_POST_APPLYING_STATUS = '지원취소'
+		 WHERE RESUME_NO = #{ resumeNo }
+		   AND JOB_POST_NO = #{ jobPostNo }
+	</update>
+	
+	<insert id="insertApplyStatus" >
+		INSERT /* com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper#insertApplyStatus() */
+		  INTO TBL_APPLYING_CHANGE_HISTORY
+		  (
+		    APPLYING_CHANGE_NO
+		  , RESUME_NO
+		  , JOB_POST_NO
+		  , APPLYING_CHANGE_DATE
+		  , APPLYING_CHANGE_KINDS
+		  )
+		  VALUES
+		  (
+		  	SEQ_APPLYING_CHANGE_NO.NEXTVAL
+		  , #{ resumeNo }
+		  , #{ jobPostNo }
+		  , SYSDATE
+		  , '지원상태'
+		  )
+	</insert>
+	
+	<select id="selectPersonalCompletedApply" resultMap="selectPersonlCompletedApplyResultMap">
+		SELECT /* com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper#selectPersonalCompletedApply() */
+		       A.JOB_POST_NO
+		     , D.RESUME_NO
+		     , A.JOB_POST_TITLE
+		     , C.CO_COM_NAME
+		     , A.JOB_POST_ENROLL_DATE
+		     , A.JOB_POST_DEADLINE
+		     , D.JOB_POST_APPLYING_DATE
+		     , D.JOB_POST_APPLYING_STATUS
+		     , D.JOB_POST_BROWES_STATUS
+		     , A.JOB_POST_APPLYING_KINDS
+		  FROM TBL_JOB_POSTING A
+		  JOIN TBL_MEMBER B ON (A.CO_MEM_NO = B.MEM_NO)
+		  JOIN TBL_CO_MEMBER_ADD_INFO C ON (B.MEM_NO = C.CO_MEM_NO)
+		  JOIN TBL_APPLYING_HISTORY D ON (A.JOB_POST_NO = D.JOB_POST_NO)
+		  JOIN TBL_RESUME E ON (D.RESUME_NO = E.RESUME_NO)
+		 WHERE E.IN_MEM_NO = '3'
+		   AND D.JOB_POST_APPLYING_STATUS = '지원완료'
+	</select>
+	
+	<select id="selectPersonalCanceledApply" resultMap="selectPersonlCanceledApplyResultMap">
+		SELECT /* com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper#selectPersonalCanceledApply() */
+		       A.JOB_POST_TITLE
+		     , C.CO_COM_NAME
+		     , A.JOB_POST_ENROLL_DATE
+		     , A.JOB_POST_DEADLINE
+		     , D.JOB_POST_APPLYING_DATE
+		     , D.JOB_POST_APPLYING_CANCEL_DATE
+		     , D.JOB_POST_APPLYING_STATUS
+		     , D.JOB_POST_BROWES_STATUS
+		     , A.JOB_POST_APPLYING_KINDS
+		  FROM TBL_JOB_POSTING A
+		  JOIN TBL_MEMBER B ON (A.CO_MEM_NO = B.MEM_NO)
+		  JOIN TBL_CO_MEMBER_ADD_INFO C ON (B.MEM_NO = C.CO_MEM_NO)
+		  JOIN TBL_APPLYING_HISTORY D ON (A.JOB_POST_NO = D.JOB_POST_NO)
+		  JOIN TBL_RESUME E ON (D.RESUME_NO = E.RESUME_NO)
+		 WHERE E.IN_MEM_NO = '3'
+		   AND D.JOB_POST_APPLYING_STATUS = '지원취소'
+	</select>
+	
+	
+	
+	
+</mapper>
