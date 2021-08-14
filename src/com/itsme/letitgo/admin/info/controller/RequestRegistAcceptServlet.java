@@ -31,9 +31,9 @@ public class RequestRegistAcceptServlet extends HttpServlet {
 		StringBuilder redirectText = new StringBuilder();
 		
 		if(result1 > 0 && result2 > 0) {
-			redirectText.append("<script>alert('채용공고등록을 승인하셨습니다.'); location.href='../../post/insertRequest/select';</script>");
+			redirectText.append("<script>alert('기업회원가입을 승인하셨습니다.'); location.href='../../post/insertRequest/select';</script>");
 		} else {
-			redirectText.append("<script>alert('채용공고등록승인에 실패하셨습니다.'); location.href='../../post/insertRequest/select';</script>");
+			redirectText.append("<script>alert('기업회원가입에 실패하셨습니다.'); location.href='../../post/insertRequest/select';</script>");
 		}
 		 
 									

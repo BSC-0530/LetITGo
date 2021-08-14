@@ -15,7 +15,7 @@ import com.itsme.letitgo.admin.info.model.service.RequestJoinRejectService;
 
 
 
-@WebServlet("/info/reject")
+@WebServlet("/admin/post/reject/InsertUpdate")
 public class RequestRejectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -28,7 +28,7 @@ public class RequestRejectServlet extends HttpServlet {
 		coReqNo = Integer.parseInt(request.getParameter("coReqNo"));
 		coMemNo = Integer.parseInt(request.getParameter("coMemNo"));
 		
-		String path = "";
+		String path = "/WEB-INF/views/admin/adminInsertReject.jsp";
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	}
@@ -53,9 +53,9 @@ public class RequestRejectServlet extends HttpServlet {
 		StringBuilder redirectText = new StringBuilder();
 		
 		if(result1 > 0 && result2 > 0) {
-			redirectText.append("");
+			redirectText.append("<script>alert('기업회원 가입 거절하였습니다.'); location.href='../../updateRequest/select';</script>\"");
 		}else {
-			redirectText.append("");
+			redirectText.append("<script>alert('기업회원 가입 거절을 실패하셨습니다.');location.href='../../updateRequest/select';</script>\"");
 		}
 		
 		response.setContentType("");
