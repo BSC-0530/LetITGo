@@ -2,7 +2,6 @@ package com.itsme.letitgo.personal.regist.model.service;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.itsme.letitgo.personal.regist.model.dto.CoMemberDTO;
 import com.itsme.letitgo.personal.regist.model.dto.MemberDTO;
 import com.itsme.letitgo.personal.regist.model.mapper.RegistMemberMapper;
 
@@ -30,27 +29,7 @@ public class MemberService {
 		return result;
 	}
 
-	/*기업 회원 가입용*/
-	public int registCoMember(CoMemberDTO coMemberDTO) {
-		
-		SqlSession session = getSqlSession();
-		
-		RegistMemberMapper mapper = session.getMapper(RegistMemberMapper.class);
-		
-		int result = mapper.coMemberReigst(coMemberDTO);
-
-		
-		int result2 = mapper.coMemberReigstInfo(coMemberDTO);
-		
-		if(result > 0) {
-			session.commit();
-		}else {
-			session.rollback();
-		}
-		session.close();
-		
-		return result;
-	}
+	
 
 	public int idCheck(String id) {
 		

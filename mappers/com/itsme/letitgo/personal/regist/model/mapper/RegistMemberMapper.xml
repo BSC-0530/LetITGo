@@ -14,28 +14,7 @@
 		<result property="entYn" column="MEM_ENT_YN"/>
 		<result property="entDate" column="MEM_ENT_DATE"/>
 	</resultMap>
-	<resultMap type="com.itsme.letitgo.personal.regist.model.dto.CoMemberDTO" id="insertCoMember">
-		<id property="memNo" column="CO_MEM_NO"/>
-		<result property="id" column="MEM_ID"/>
-		<result property="pwd" column="MEM_PWD"/>
-		<result property="name" column="MEM_NAME"/>
-		<result property="email" column="MEM_EMAIL"/>
-		<result property="phone" column="MEN_PHONE"/>
-		<result property="kinds" column="MEM_KINDS"/>
-		<result property="enrollDate" column="MEM_ENROLL_DATE"/>
-		<result property="entYn" column="MEM_ENT_YN"/>
-		<result property="entDate" column="MEM_ENT_DATE"/>
-		<result property="intro" column="CO_INTRO"/>
-		<result property="coNo" column="CO_NO"/>
-		<result property="comName" column="CO_COM_NAME"/>
-		<result property="ceoName" column="CO_CEO_NAME"/>
-		<result property="address" column="CO_ADDRESS"/>
-		<result property="comPhone" column="CO_PHONE"/>
-		<result property="fax" column="CO_PAX"/>
-		<result property="sectors" column="CO_SECTORS"/>
-		<result property="status" column="CO_STATUS"/>
-		<result property="website" column="CO_WEBSITE"/>
-	</resultMap>
+	
 	<insert id="MemberReigst" parameterType="com.itsme.letitgo.personal.regist.model.dto.MemberDTO">
 		INSERT
 		  INTO TBL_MEMBER A
@@ -65,67 +44,6 @@
 		  , #{ entYn }
 		  , #{ entDate }
 		  )
-	</insert>
-	<insert id="coMemberReigst" parameterType="com.itsme.letitgo.personal.regist.model.dto.CoMemberDTO">
-	    INSERT
-			INTO TBL_MEMBER A
-		  	(
-		  		 A.MEM_NO
-		      	,A.MEM_ID
-		      	,A.MEM_PWD
-		      	,A.MEM_NAME
-		      	,A.MEM_EMAIL
-		      	,A.MEM_PHONE
-		      	,A.MEM_KINDS
-		      	,A.MEM_ENROLL_DATE
-		      	,A.MEM_ENT_YN
-		      	,A.MEM_ENT_DATE
-		      	,A.MEM_ENT_NO
-		 	)	
-		  	VALUES
-		  	(
-		    	 SEQ_MEM_NO.NEXTVAL
-		  		, #{ id }
-		  		, #{ pwd }
-		  		, #{ name }
-		  		, #{ email }
-		  		, #{ phone }
-		  		, #{ kinds }s
-		  		, #{ enrollDate }
-		  		, #{ entYn }
-		  		, #{ entDate }
-		  	)
-	</insert >
-	<insert id="coMemberReigstInfo"  parameterType="com.itsme.letitgo.personal.regist.model.dto.CoMemberDTO">
-		INSERT
-			INTO TBL_CO_MEMBER_ADD_INFO B
-		  	(
-		  		B.CO_MEM_NO
-		  	   ,B.CO_INTRO
-		  	   ,B.CO_NO
-		  	   ,B.CO_COM_NAME
-		  	   ,B.CO_CEO_NAME
-		  	   ,B.CO_ADDRESS
-		  	   ,B.CO_PHONE
-		  	   ,B.CO_PAX
-		  	   ,B.CO_SECTORS
-		  	   ,B.CO_STATUS
-		  	   ,B.CO_WEBSITE	
-		  	 )
-		  	 VALUES
-		  	 (
-		  	 	 SEQ_CO_MEM_NO.NEXTVAL
-		  		, #{ intro }
-		  		, #{ coNO }
-		  		, #{ comName }
-		  		, #{ ceoName }
-		  		, #{ comPhone }
-		  		, #{ coAddress }
-		  		, #{ fax }
-		  		, #{ sectors }
-		  		, #{ status }	
-		  		, #{ website }
-		  	 )
 	</insert>
 	<select id="idCheck" parameterType="String" resultType="Integer">
 		SELECT COUNT(*)

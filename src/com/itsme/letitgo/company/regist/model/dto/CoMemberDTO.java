@@ -1,4 +1,4 @@
-package com.itsme.letitgo.personal.regist.model.dto;
+package com.itsme.letitgo.company.regist.model.dto;
 
 import java.io.Serializable;
 import java.sql.Date;
