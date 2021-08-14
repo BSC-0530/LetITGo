@@ -1,6 +1,6 @@
 package com.itsme.letitgo.personal.recruit.jobposting.model.dto;
 
-public class JpCoMemberAddInfo implements java.io.Serializable {
+public class JpCoMemberAddInfoDTO implements java.io.Serializable {
 
 	private int coMemNo;
 	private String coIntro;
@@ -14,9 +14,9 @@ public class JpCoMemberAddInfo implements java.io.Serializable {
 	private String coStatus;
 	private String coWebsite;
 	
-	public JpCoMemberAddInfo() {}
+	public JpCoMemberAddInfoDTO() {}
 	
-	public JpCoMemberAddInfo(int coMemNo, String coIntro, String coNo, String coComName, String coCeoName,
+	public JpCoMemberAddInfoDTO(int coMemNo, String coIntro, String coNo, String coComName, String coCeoName,
 			String coAddress, String coPhone, String coPax, String coSectors, String coStatus, String coWebsite) {
 		super();
 		this.coMemNo = coMemNo;
