@@ -111,7 +111,7 @@
         </div>
     </div>
 	   <!-- 여기부터 시작-->
-	<form action="/regist/member" name="join" onsubmit="return validate();" method="post">
+	<form action="${ pageContext.servletContext.contextPath }/UserRegisterCheckServlet" name="join" onsubmit="return validate();" method="post">
     <div class="register_section">
         
         <div class="register_tab_wrapper">
@@ -137,7 +137,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                         
-                                            <input type="text" name="id" class="id"  style="text-transform: lowercase" placeholder="아이디" maxlength="20">
+                                            <input type="text" name="userId"  style="text-transform: lowercase" placeholder="아이디" maxlength="20">
 											<button name="idCheck" onclick="registerCheckFunction();" type="button">중복체크</button>
                                         </div>
                                         

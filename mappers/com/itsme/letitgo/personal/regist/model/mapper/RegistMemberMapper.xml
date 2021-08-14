@@ -27,9 +27,6 @@
 		      , A.MEM_PHONE
 		      , A.MEM_KINDS
 		      , A.MEM_ENROLL_DATE
-		      , A.MEM_ENT_YN
-		      , A.MEM_ENT_DATE
-		      , A.MEM_ENT_NO
 		  )
 		  VALUES
 		  (
@@ -39,15 +36,14 @@
 		  , #{ name }
 		  , #{ email }
 		  , #{ phone }
-		  , #{ kinds }s
-		  , #{ enrollDate }
-		  , #{ entYn }
-		  , #{ entDate }
+		  , #{ kinds }
+		  , SYSDATE
 		  )
 	</insert>
 	<select id="idCheck" parameterType="String" resultType="Integer">
 		SELECT COUNT(*)
 				FROM TBL_MEMBER
 			WHERE MEM_ID = ?
+			
 	</select>
 </mapper>
