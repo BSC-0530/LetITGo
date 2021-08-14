@@ -2,6 +2,7 @@ package com.itsme.letitgo.personal.recruit.jobposting.model.mapper;
 
 import java.util.List;
 
+import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectAppliyngYnDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectJobPostingDTO;
 
 public interface SelectJobPostingMapper {
@@ -15,6 +16,8 @@ public interface SelectJobPostingMapper {
 	SelectJobPostingDTO selectDetailedJobPosting(int selectJobPostNo);
 
 	List<Object> selectDeteildeJpSkills(int selectJobPostNo);
+
+	SelectAppliyngYnDTO selectApplyingHistory(SelectAppliyngYnDTO dto);
 
 
 }

@@ -8,7 +8,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectApplyngYnDTO;
+import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectAppliyngYnDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectJobPostingDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper;
 
@@ -62,13 +62,28 @@ public class SelectJobPostingService {
 		jp.put("deteildeJpSkills", deteildeJpSkills);
 		
 	
+		session.close();
 		
 		return jp;
 	}
 
-	public boolean selectApplyingHistory(SelectApplyngYnDTO dto) {
-		// TODO Auto-generated method stub
-		return false;
+	public SelectAppliyngYnDTO selectApplyingHistory(SelectAppliyngYnDTO dto) {
+		
+		
+		SqlSession session = getSqlSession();
+		
+		
+		SelectJobPostingMapper mapper = session.getMapper(SelectJobPostingMapper.class);
+		
+		dto = mapper.selectApplyingHistory(dto);
+		
+		
+		System.out.println("applying service : " +  dto);
+		
+				
+		
+		// 반환받은 dto가 null일 경우 0 null이 아닐경우 1반환
+		return dto;
 	}
 
 }

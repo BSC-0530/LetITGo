@@ -1,14 +1,14 @@
 package com.itsme.letitgo.personal.recruit.jobposting.model.dto;
 
-public class SelectApplyngYnDTO {
+public class SelectAppliyngYnDTO {
 	
 	private int resumeNo;
 	private int jobPostNo;
 	private String jobPostApplyingStatus;
 	private int memNo;
 	
-	public SelectApplyngYnDTO() {}	
-	public SelectApplyngYnDTO(int resumeNo, int jobPostNo, String jobPostApplyingStatus, int memNo) {
+	public SelectAppliyngYnDTO() {}	
+	public SelectAppliyngYnDTO(int resumeNo, int jobPostNo, String jobPostApplyingStatus, int memNo) {
 		super();
 		this.resumeNo = resumeNo;
 		this.jobPostNo = jobPostNo;
