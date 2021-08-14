@@ -161,7 +161,8 @@
 											<td align="center">요청응답일자</td>
 											<td align="center">결제금액</td>
 											<td align="center">환불상태</td>
-											<td align="center">환불 사유</td>
+											<td align="center">환불사유</td>
+											<td align="center">환불거절사유</td>
 										</tr>
 									</thead>
 									<c:forEach var="adminRefund" items="${ requestScope.refundHistoryList }">
@@ -183,7 +184,8 @@
 												<td><fmt:formatNumber value="${ adminRefund.payPrice }" pattern="###,###"/></td>
 												<td><c:out value="${ adminRefund.payChangeStatus }"/></td>
 												<td><c:out value="${ adminRefund.payChangeReason }"/></td>
-												
+												<td><c:out value="${ adminRefund.payRejectReason }"/></td>
+											
 												<c:if test="${ adminRefund.payChangeStatus eq '환불요청'  }">
 												<td><button type="submit" onclick="approval(this);">승인</button></td>
 												<td><button type="submit" onclick="reject(this);">거절</button></td>
@@ -204,6 +206,7 @@
 					</div>
 					<br>
 				</div>
+				
 				<br>
 			</div>
 		</div>
@@ -227,7 +230,8 @@
 		
 		$form.submit();
 	}	
-	
+</script>
+<script>	
 	function reject(button) {
 		
 		var payChangeNo = button.parentNode.parentNode.children[0].innerText;

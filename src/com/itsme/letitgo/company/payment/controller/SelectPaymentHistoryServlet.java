@@ -13,7 +13,6 @@ import com.itsme.letitgo.company.payment.model.dto.BrowseUsingHistoryDTO;
 import com.itsme.letitgo.company.payment.model.dto.ExposureUsingHistoryDTO;
 import com.itsme.letitgo.company.payment.model.dto.HoldingRequestingSkillsDTO;
 import com.itsme.letitgo.company.payment.model.dto.PaymentHistoryDTO;
-import com.itsme.letitgo.company.payment.model.dto.RefundChangeStatusDTO;
 import com.itsme.letitgo.company.payment.model.service.SelectPaymentHistoryService;
 
 
@@ -26,9 +25,6 @@ public class SelectPaymentHistoryServlet extends HttpServlet {
 		
 		/* 결제내역 */
 		List<PaymentHistoryDTO> paymentHistoryList = selectPaymentHistoryService.selectPaymentHistory();		
-		
-		/* 환불상태 */
-		List<RefundChangeStatusDTO> refundChangeStatus = selectPaymentHistoryService.selectRefundChangeStatus();
 		
 		/* 열람권 남은 갯수 */
 		int resumeBrowsingNum = selectPaymentHistoryService.selectResumeBrowsingNum();		
@@ -66,10 +62,6 @@ public class SelectPaymentHistoryServlet extends HttpServlet {
 			System.out.println(BrowseUsingHistroy);
 		}
 		
-		for(RefundChangeStatusDTO rc : refundChangeStatus) {
-			System.out.println(rc);
-		}
-		
 		for(HoldingRequestingSkillsDTO HoldingRequestingSkills : paymentHoldingSkillsList) {
 			System.out.println(HoldingRequestingSkills);
 		}
@@ -85,7 +77,6 @@ public class SelectPaymentHistoryServlet extends HttpServlet {
 		String path = "/WEB-INF/views/payment/paymentHistory.jsp";
 		
 		request.setAttribute("paymentHistoryList", paymentHistoryList);
-		request.setAttribute("refundChangeStatus", refundChangeStatus);
 		request.setAttribute("resumeBrowsingNum", resumeBrowsingNum);
 		request.setAttribute("exposureUsingPostNum", exposureUsingPostNum);
 		request.setAttribute("exposureRestHour", exposureRestMinute);

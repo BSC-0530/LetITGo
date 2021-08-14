@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,18 +79,24 @@
 												</p>
 												<br>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/payment/select">결제 내역 조회</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/admin/payment/select">결제
+														내역 조회</a>
 												</p>
 												<br>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/refund/select">환불 요청 관리</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/admin/refund/select">환불
+														요청 관리</a>
 												</p>
 												<br> <br>
 												<h3 style="font-weight: bold">기업 요청 관리</h3>
 												<br>
 												<p>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/post/insertRequest/select">공고 등록 요청</a>											
+													<a
+														href="${ pageContext.servletContext.contextPath }/admin/post/insertRequest/select">공고
+														등록 요청</a>
 												</p>
 												<br>
 												<p align="center">
@@ -144,50 +150,43 @@
 					</div>
 				</div>
 
-				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-					<div class="row">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<br><br><br>
-							<h1>결제 내역 조회</h1>
-							<div class="jp_listing_tabs_wrapper">
-								<table id="table_payment" class="hover cell-border stripe">
-									<thead>
-										<tr>
-											<td align="center">결제번호</td>
-											<td align="center">기업명</td>
-											<td align="center">결제일자</td>
-											<td align="center">상품이름</td>
-											<td align="center">결제금액</td>
-											
-										</tr>
-									</thead>
-									<c:forEach var="adminPayment" items="${ requestScope.adminPaymentHistory }">
-									<tbody align="center">
-											<tr>
-												<td><c:out value="${ adminPayment.payNo }"/></td>
-												<td><c:out value="${ adminPayment.coComName }"/></td>									
-												<td><c:out value="${ adminPayment.payDate }"/></td>
-												<td><c:out value="${ adminPayment.productName }"/></td>
-												<td><fmt:formatNumber value="${ adminPayment.payPrice }" pattern="###,###"/></td>
-											</tr>
-									</tbody>				
-									</c:forEach>				
-								</table>
-								<br>
-								<br>
+				<form id="postUpdateRejectMessage" action="${ pageContext.servletContext.contextPath }/admin/refund/reject/update" method="post">
+					<div style="width: 500px;" class="jp_contact_form_main_wrapper">
+						<div class="container">
+							<div class="row">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="jp_contact_form_heading_wrapper"></div>
+								</div>
+								<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+									<div class="jp_contact_form_box">
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<h3>거절 사유</h3>
+										</div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<div
+												class="jp_contact_inputs_wrapper jp_contact_inputs4_wrapper">
+												<i class="fa fa-text-height"></i>
+												<textarea name="rejectMessage" rows="6"
+													placeholder="Type Your Message *"></textarea>
+											</div>
+										</div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<div class="jp_contact_form_btn_wrapper">
+
+												<input type="submit" value="거절 사유 등록">
+
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-					<br>
-				</div>
+				</form>
 				<br>
 			</div>
 		</div>
 	</div>
-<script>
-		$(document).ready(function() {
-			$('#table_payment').DataTable();
-		});
-</script>
+
 </body>
 </html>

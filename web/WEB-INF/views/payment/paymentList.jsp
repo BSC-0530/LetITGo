@@ -112,7 +112,7 @@
                         <div class="pricing_cont_wrapper">
                             <div class="pricing_cont">
                                 <ul>
-                                    <li>메인 공고 노출 <span><fmt:formatNumber value="${ product.upperExposureHour/24 }" groupingUsed="true"/></span><span>일권</span></li>                                                                                             
+                                    <li>메인 공고 노출 <span><fmt:formatNumber value="${ product.upperExposureTime/24 }" groupingUsed="true"/></span><span>일권</span></li>                                                                                             
                                 </ul>
                             </div>
                         </div>
