@@ -44,6 +44,7 @@ public class MemberRegistServlet extends HttpServlet {
 //		java.sql.Date entDate = java.sql.Date.valueOf(request.getParameter("entDate"));
 		
 		
+		
 				
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO.setId(memberId);

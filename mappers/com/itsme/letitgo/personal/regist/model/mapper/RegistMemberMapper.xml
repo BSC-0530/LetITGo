@@ -44,5 +44,6 @@
 		SELECT COUNT(*)
 				FROM TBL_MEMBER
 			WHERE MEM_ID = ?
+			
 	</select>
 </mapper>
