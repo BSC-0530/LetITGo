@@ -26,7 +26,7 @@ public class MainScoutList extends HttpServlet {
 		
 		MainScoutListService mainScoutListService = new MainScoutListService();
 		
-			Map<String,List< Object>> scoutList= mainScoutListService.selectAllScoutList();
+			Map<String, Object> scoutList= mainScoutListService.selectAllScoutList();
 		
 		System.out.println("scoutListname : " + scoutList.get("scoutListName"));
 		System.out.println("scoutListSkills : " + scoutList.get("scoutListSkills"));
