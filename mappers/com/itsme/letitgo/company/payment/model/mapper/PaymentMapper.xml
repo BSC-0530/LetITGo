@@ -6,7 +6,7 @@
 		<id property="productNo" column="PRODUCT_NO"/>
 		<result property="productPrice" column="PRODUCT_PRICE"/>
 		<result property="readingNum" column="READING_NUM"/>
-		<result property="upperExposureHour" column="UPPER_EXPOSURE_HOUR"/>
+		<result property="upperExposureTime" column="UPPER_EXPOSURE_TIME"/>
 		<result property="productKinds" column="PRODUCT_KINDS"/>
 		<result property="productExposureStatus" column="PRODUCT_EXPOSURE_STATUS"/>	
 		<result property="productName" column="PRODUCT_NAME"/>
@@ -59,16 +59,12 @@
 		<result property="payAnsDate" column="PAY_ANS_DATE"/>
 	</resultMap>
 
-	<resultMap type="com.itsme.letitgo.company.payment.model.dto.RefundChangeStatusDTO" id="refundChangeStatus"> 
-		<result property="payChangeStatus" column="PAY_CHANGE_STATUS"/>
-	</resultMap>
-
 	<select id="selectProductList" resultMap="productResultMap">
 	   SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectProductList() */
 	          PRODUCT_NO
 	        , PRODUCT_PRICE
 	        , READING_NUM
-	        , UPPER_EXPOSURE_HOUR
+	        , UPPER_EXPOSURE_TIME
 	        , PRODUCT_KINDS
 	        , PRODUCT_EXPOSURE_STATUS
 	        , PRODUCT_NAME
@@ -109,7 +105,7 @@
 	
 	<select id="selectExposureRestTime" resultType="_long">
 		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#SelectExposureRestTime() */
-       		   A.EXPOSURE_HOUR
+       		   A.EXPOSURE_TIME
           FROM TBL_MEMBER_HOLDING_PRODUCT A
           JOIN TBL_PRODUCT_LIST B ON (A.PRODUCT_NO = B.PRODUCT_NO)
          WHERE A.PRODUCT_STATUS = '사용가능'
@@ -227,14 +223,6 @@
             SET PAY_KINDS = '결제완료'
           WHERE PAY_NO = #{ payNo }
 	</update>
-	
-	<select id="selectRefundChangeStatus" resultMap="refundChangeStatus">
-		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectRefundChangeStatus() */
-		       A.PAY_CHANGE_STATUS
-		  FROM TBL_PAYMENT_CHANGE_HISTORY A
-		  JOIN TBL_PAYMENT_HISTORY B ON (A.PAY_NO = B.PAY_NO)
-		 WHERE CO_MEM_NO = '2'	
-	</select>
 	
 	<select id="selectPayNo" resultType="_int">
 		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectPayNo() */

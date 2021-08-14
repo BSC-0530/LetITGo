@@ -19,6 +19,7 @@
 		<result property="payPrice" column="PAY_PRICE"/>	
 		<result property="payChangeStatus" column="PAY_CHANGE_STATUS"/>
 		<result property="payChangeReason" column="PAY_CHANGE_REASON"/>
+		<result property="payRejectReason" column="PAY_REJECT_REASON"/>
 	</resultMap>
 
 	<select id="selectAdminPaymentHistory" resultMap="adminPaymentHistoryResultMap">
@@ -44,6 +45,7 @@
 		     , B.PAY_PRICE
 		     , A.PAY_CHANGE_STATUS
 		     , A.PAY_CHANGE_REASON
+		     , A.PAY_REJECT_REASON
 		  FROM TBL_PAYMENT_CHANGE_HISTORY A
 		  JOIN TBL_PAYMENT_HISTORY B ON (A.PAY_NO = B.PAY_NO)
 		 ORDER BY A.PAY_CHANGE_NO 
@@ -64,11 +66,12 @@
 		 WHERE PAY_NO = #{ payNo }    
 	</update>
 	
-	<update id="updateRefundRejectStatus">
+	<update id="updateRefundRejectStatus1">
 		UPDATE /* com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper#updateRefundRejectStatus() */
 		       TBL_PAYMENT_CHANGE_HISTORY
 		   SET PAY_ANS_DATE = SYSDATE
 		     , PAY_CHANGE_STATUS = '환불거절'
+		     , PAY_REJECT_REASON = #{ rejectMessage }
 		 WHERE PAY_CHANGE_NO = #{ payChangeNo }
 	</update>
 	

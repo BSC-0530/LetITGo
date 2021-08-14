@@ -31,7 +31,7 @@
 	</select>
 	
 	<update id="updatePostRequestApp1">
-		UPDATE 
+		UPDATE /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#updatePostRequestApp1() */
 		       TBL_JOB_POSTING
 		   SET JOB_POST_KINDS = '승인된공고'
 		     , JOB_POST_ENROLL_DATE = SYSDATE
@@ -39,7 +39,7 @@
 	</update>
 	
 	<update id="updatePostRequestApp2">
-		UPDATE 
+		UPDATE /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#updatePostRequestApp2() */
 		       TBL_JOB_POSTING_APP_HISTORY		       
 		   SET JOB_POST_ANS_KINDS = '승인'
 		     , JOB_POST_ANS_DATE = SYSDATE
@@ -47,14 +47,14 @@
 	</update>
 	
 	<update id="updatePostRejectRequest1">
-		UPDATE 
+		UPDATE /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#updatePostRejectRequest1() */
 		       TBL_JOB_POSTING		       
 		   SET JOB_POST_KINDS = '거절된공고'
 		 WHERE JOB_POST_NO = #{ jobPostNo }
 	</update>
 	
 	<update id="updatePostRejectRequest2">
-		UPDATE 
+		UPDATE /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#updatePostRejectRequest2() */
 		       TBL_JOB_POSTING_APP_HISTORY		       
 		   SET JOB_POST_ANS_KINDS = '거절'
 		     , JOB_POST_ANS_DATE = SYSDATE
@@ -80,7 +80,7 @@
 	</select>
 	
 	<update id="updatePostUpdateApp1">
-		UPDATE 
+		UPDATE /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#updatePostUpdateApp1() */
 		       TBL_JOB_POSTING
 		   SET JOB_POST_KINDS = '승인된공고'
 		     , JOB_POST_UPDATE_DATE = SYSDATE;
@@ -88,7 +88,7 @@
 	</update>
 	
 	<update id="updatePostUpdateApp2">
-		UPDATE 
+		UPDATE /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#updatePostUpdateApp2() */
 		       TBL_JOB_POSTING_APP_HISTORY		       
 		   SET JOB_POST_ANS_KINDS = '승인'
 		     , JOB_POST_ANS_DATE = SYSDATE
@@ -96,14 +96,14 @@
 	</update>
 	
 	<update id="updatePostUpdateRejectRequest1">
-		UPDATE 
+		UPDATE /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#updatePostUpdateRejectRequest1() */
 		       TBL_JOB_POSTING		       
 		   SET JOB_POST_KINDS = '거절된공고'
 		 WHERE JOB_POST_NO = #{ jobPostNo }
 	</update>
 	
 	<update id="updatePostUpdateRejectRequest2">
-		UPDATE 
+		UPDATE /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#updatePostUpdateRejectRequest2() */
 		       TBL_JOB_POSTING_APP_HISTORY		       
 		   SET JOB_POST_ANS_KINDS = '거절'
 		     , JOB_POST_ANS_DATE = SYSDATE

@@ -73,9 +73,11 @@
 							<br> <br> <br> 
 							<ul>
 								<li><a href="#"><i class="fa fa-download"></i> &nbsp;상세 이력서 보기</a></li>
-								<li><a><button class="dibsbutton" style="width:350px; background-color:transparent;  border:0px transparent solid;" onclick="dibsbutton;" ><i class="fa fa-phone"></i> &nbsp;후보자찜하기</button></a></li>
+								<li><a><button class="dibsbutton" type="button"
+								 style="width:350px; background-color:transparent;  border:0px transparent solid;" onclick="dibsbutton();" >
+								 <i class="fa fa-phone"></i> &nbsp;후보자찜하기</button></a></li>
 							</ul>
-							<input type="text" id="hiddenResumeNo" value="${ getResumeNo }">
+							<input type="text" id="hiddenResumeNo" value="${ number }">
 						</div>
 					</div>
 				</div>
@@ -205,15 +207,16 @@
 <script>
 
 	
-function dibsbutton(button){
 	
-	const num = button.parentNode.children[3].value
+// function dibsbutton(dibsbutton){
 	
-	alert(num);
+// 	const num = button.parentNode.children[3].value
+	
+// 	alert(num);
 	
 // 	location.href="${ pageContext.servletContext.contextPath }/simple/browse/select?num="+num
 			
-}	
+// }	
 	
 	
 

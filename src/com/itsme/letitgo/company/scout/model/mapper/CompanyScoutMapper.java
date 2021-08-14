@@ -7,6 +7,11 @@ import com.itsme.letitgo.company.scout.model.dto.BrosweSimplelDTO;
 import com.itsme.letitgo.company.scout.model.dto.PersonalBrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.ResumeReadingHistoryDTO;
 
+import com.itsme.letitgo.personal.scout.model.dto.ScoutDetailResumeDTO;
+
+import com.itsme.letitgo.personal.resume.model.dto.SkillsAndCategoryDTO;
+
+
 
 public interface CompanyScoutMapper {
 
@@ -36,6 +41,14 @@ public interface CompanyScoutMapper {
 	int selectAllScountNum();
 //개인 마이페이지 쪽 스카우트 현황
 	List<PersonalBrosweHistoryDTO> personalBrosweHistorySelect();
+
+
+//	깊은 열람
+	List<ScoutDetailResumeDTO> selectDetailResume();
+
+//	List<SkillsAndCategoryDTO> skillsSelect();
+
+
 
 
 

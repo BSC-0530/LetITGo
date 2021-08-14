@@ -26,6 +26,7 @@ public class RequestService {
 
 
 
+	
 	public static int detailInfo(InsertRequestDTO insertRequestDTO) {
 		
 		SqlSession session = getSqlSession();

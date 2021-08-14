@@ -10,7 +10,6 @@ import com.itsme.letitgo.company.payment.model.dto.BrowseUsingHistoryDTO;
 import com.itsme.letitgo.company.payment.model.dto.ExposureUsingHistoryDTO;
 import com.itsme.letitgo.company.payment.model.dto.HoldingRequestingSkillsDTO;
 import com.itsme.letitgo.company.payment.model.dto.PaymentHistoryDTO;
-import com.itsme.letitgo.company.payment.model.dto.RefundChangeStatusDTO;
 import com.itsme.letitgo.company.payment.model.mapper.PaymentMapper;
 
 public class SelectPaymentHistoryService {
@@ -126,18 +125,5 @@ public class SelectPaymentHistoryService {
 	
 	}
 	
-	public List<RefundChangeStatusDTO> selectRefundChangeStatus() {
-		
-		SqlSession session = getSqlSession();
-		
-		PaymentMapper refundChangeStatusMapper = session.getMapper(PaymentMapper.class);
-		
-		List<RefundChangeStatusDTO> RefundChangeStatus = refundChangeStatusMapper.selectRefundChangeStatus();
-		
-		session.close();
-			
-		return RefundChangeStatus;
-		
-	}
 
 }
