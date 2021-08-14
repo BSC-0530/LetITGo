@@ -23,7 +23,8 @@ public class SimpleBrowseServlet extends HttpServlet {
 		
 		System.out.println("ASD!@#!@#!@ : " + request.getParameter("num"));
 		
-		int onClickResumeNo = Integer.parseInt(request.getParameter("num"));
+			
+			int onClickResumeNo = Integer.parseInt(request.getParameter("num"));
 		
 		MainScoutListService browseInfoService = new MainScoutListService();
 		
@@ -37,6 +38,7 @@ public class SimpleBrowseServlet extends HttpServlet {
 		request.setAttribute("careeaNumber", browseInfo.get("careeaNumber"));
 		request.setAttribute("number", browseInfo.get("number"));
 		
+//		request.setAttribute("getResumeNo", kinds.getResumeNo());
 		
 		String path = "";
 		if(kinds == null) {
@@ -44,17 +46,11 @@ public class SimpleBrowseServlet extends HttpServlet {
 			
 			path = "/WEB-INF/views/scout/scoutSimpleBrowse.jsp";
 			
-		}else if(kinds.getResumeBrowseKinds().equals("얕은열람")) {
+		}else if(kinds != null && kinds.getResumeBrowseKinds().equals("얕은열람")) {
 			int updateTime = browseInfoService.upDateTime(onClickResumeNo);
-			
 			path = "/WEB-INF/views/scout/scoutSimpleBrowse.jsp";
-		}else {
-			int updateTime = browseInfoService.upDateTime(onClickResumeNo);
-			path = "/WEB-INF/views/resume/resumeList.jsp";
-			
 		}
 		
-		request.setAttribute("getResumeNo", kinds.getResumeNo());
 		
 		
 		request.getRequestDispatcher(path).forward(request, response);

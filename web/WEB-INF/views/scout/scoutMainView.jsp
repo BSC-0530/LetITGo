@@ -28,12 +28,39 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/style_II.css" />
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
+	
+	
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
+	
 </head>
 <body>
 <!-- -----------------------헤더------------------------------------- -->
 	<jsp:include page="../common/header/companyHeader.jsp"/>
 	<!-- -----------------------헤더끝------------------------------------- -->
-	
+	<div class="jp_tittle_main_wrapper">
+        <div class="jp_tittle_img_overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="jp_tittle_heading_wrapper">
+                        <div class="jp_tittle_heading">
+                            <h2>스카우트</h2>
+                        </div>
+                        <div class="jp_tittle_breadcrumb_main_wrapper">
+                            <div class="jp_tittle_breadcrumb_wrapper">
+                                <ul>
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#">스카우트</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 	 <!-- jp listing sidebar Wrapper Start -->
     <div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
@@ -48,10 +75,9 @@
 								</div>
 								<div style="height: 200px; background: white;"
 									class="jp_form_location_wrapper">
-									<select style="border: 1px solid;">
-										<option value="" disabled selected>경력을 선택해주세요</option>
-										<option value="">신입</option>
-									</select>
+									<label style="border: 1px solid;">
+										<input id="searchhBox">
+									</label>
 								</div>
 							</div>
 						</div>
@@ -62,10 +88,9 @@
 								</div>
 								<div style="height: 200px; background: white;"
 									class="jp_form_location_wrapper">
-									<select style="border: 1px solid;">
-										<option value="" disabled selected>보유기술을 검색해주세요</option>
-										<option value=""></option>
-									</select>
+									<label style="border: 1px solid;">
+										<input id="searchhBox">
+									</label>
 								</div>
 							</div>
 						</div>
@@ -125,8 +150,50 @@
 		location.href="${ pageContext.servletContext.contextPath }/simple/browse/select?num="+num
 				
 	}	
-
 </script>
-	
+<script>
+// $(function() {
+//     $('#searchBox').autocomplete({
+//         source : function(reuqest, response) {
+//             $.ajax({
+//                 type : 'post',
+//                 url: '/LetITGo//main/Scout/List',
+//                 dataType : 'json',
+//                 success : function(data) {
+//                     // 서버에서 json 데이터 response 후 목록 추가
+//                     response(
+//                         $.map(data, function(item) {
+//                             return {
+//                                 label : item + 'label',
+//                                 value : item,
+//                                 test : item + 'test'
+//                             }
+//                         })
+//                     );
+//                 }
+//             });
+//         },
+//         select : function(event, ui) {
+//             console.log(ui);
+//             console.log(ui.item.label);
+//             console.log(ui.item.value);
+//             console.log(ui.item.test);
+//         },
+//         focus : function(event, ui) {
+//             return false;
+//         },
+//         minLength : 1,
+//         autoFocus : true,
+//         classes : {
+//             'ui-autocomplete': 'highlight'
+//         },
+//         delay : 500,
+//         position : { my : 'right top', at : 'right bottom' },
+//         close : function(event) {
+//             console.log(event);
+//         }
+//     });
+// });
+ </script>
 </body>
 </html>
