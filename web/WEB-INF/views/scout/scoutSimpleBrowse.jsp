@@ -73,8 +73,9 @@
 							<br> <br> <br> 
 							<ul>
 								<li><a href="#"><i class="fa fa-download"></i> &nbsp;상세 이력서 보기</a></li>
-								<li><a href="#"><i class="fa fa-phone"></i> &nbsp;후보자찜하기</a></li>
+								<li><a><button class="dibsbutton" style="width:350px; background-color:transparent;  border:0px transparent solid;" onclick="dibsbutton;" ><i class="fa fa-phone"></i> &nbsp;후보자찜하기</button></a></li>
 							</ul>
+							<input type="text" id="hiddenResumeNo" value="${ getResumeNo }">
 						</div>
 					</div>
 				</div>
@@ -199,20 +200,35 @@
 
 		</div>
 	</div>
-
-
 	<jsp:include page="../common/footer.jsp" />
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script type="text/javascript" src="../../../resources/js/bootstrap.js"></script>
-	<script src="/resources/js/jquery_min.js"></script>
-	<script src="/resources/js/bootstrap.js"></script>
-	<script src="/resources/js/jquery.menu-aim.js"></script>
-	<script src="/resources/js/jquery.countTo.js"></script>
-	<script src="/resources/js/jquery.inview.min.js"></script>
-	<script src="/resources/js/owl.carousel.js"></script>
-	<script src="/resources/js/modernizr.js"></script>
-	<script src="/resources/js/jquery.magnific-popup.js"></script>
-	<script src="/resources/js/custom_II.js"></script>
+<script>
+
+	
+function dibsbutton(button){
+	
+	const num = button.parentNode.children[3].value
+	
+	alert(num);
+	
+// 	location.href="${ pageContext.servletContext.contextPath }/simple/browse/select?num="+num
+			
+}	
+	
+	
+
+
+</script>
+
+	<script type="text/javascript" src="/web/resources/js/jquery_min.js"></script>
+    <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/bootstrap.js"></script>
+    <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery.menu-aim.js"></script>
+    <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery.countTo.js"></script>
+    <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery.inview.min.js"></script>
+    <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/owl.carousel.js"></script>
+    <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/modernizr.js"></script>
+    <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery.magnific-popup.js"></script>
+    <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/custom_II.js"></script>
+    
 </body>
 </html>
