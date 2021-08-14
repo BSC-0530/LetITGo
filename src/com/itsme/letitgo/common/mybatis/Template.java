@@ -71,7 +71,7 @@ public class Template {
 
 			//승수
 			configuration.addMapper(MemberMapper.class);
-			configuration.addMapper(RegistMemberMapper.class);
+			//configuration.addMapper(RegistMemberMapper.class);
 			
 			//태훈 시험용 넣었음 (콘솔에 출력됨, view만들고 보여지는지 확인해야함)
 			configuration.addMapper(JobFieldMapper.class);
