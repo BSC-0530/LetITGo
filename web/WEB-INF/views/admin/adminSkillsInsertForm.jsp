@@ -165,80 +165,46 @@
 						</div>
 					</div>
 				</div>
+
 				<!-- 옆에 넣으려면 여기에 넣어야함 -->
 				<!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
 				<br>
 				<br>
 				<br>
-				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-					<div class="row">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<h1>직무 분야 관리</h1>
-							<div class="jp_listing_tabs_wrapper">
 
-								<!-- 이거는 이제 정보뜨는 칸 -->
-								<!-- 데이터 테이블 내역모음 -->
-								<table id="job_field" class="hover cell-border stripe">
-									<thead>
-										<tr>
-											<td align="center">직무코드</td>
-											<td align="center">직무이름</td>
-											<td align="center">삭제여부</td>
-										</tr>
-									</thead>
-									<c:forEach var="controllJobField"
-										items="${ requestScope.jobFieldList }">
-
-										<tbody align="center">
-
-											<tr>
-												<td id="no"><c:out value="${ controllJobField.no }" /></td>
-												<td id="name"><c:out value="${ controllJobField.name }" /></td>
-												<td><button type="button" disabled>삭제</button></td>
-											</tr>
-										</tbody>
-									</c:forEach>
-
-								</table>
-								<br>
-								<br>
-
-								<div class="job-field-insert-wrapper" onclick="post(this);">
-									<button type="submit">등록하기</button>
-								</div>
-
-							</div>
-						</div>
-					</div>
+				<div class="outer outer-skills-insert">
 					<br>
-					<!-- end -->
+					<h2 align="center">직무 분야 등록</h2>
+					<br>
+					<br>
+
+					<div class="table-area">
+						<form
+							action="${ pageContext.servletContext.contextPath }/skills/insert"
+							method="post">
+							<div align="center">
+								<input type="number" placeholder="카테고리" name="no">
+							</div>
+							<br>
+							<div align="center">
+								<input type="text" placeholder="기술 이름" name="name">
+							</div>
+							<br>
+							<div align="center">
+								<!-- <button type="reset" id="cancleInsert">취소하기</button> -->
+								<button type="button" onClick="history.go(-1)">취소하기</button>
+								<button type="submit"
+									onclick="href='${ pageContext.servletContext.contextPath }/skills/list'">등록하기</button>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<script>
-		$(document).ready(function() {
-			$('#job_field').DataTable();
-		});
-	</script>
-	
-	<script>
-		function post(div) {
-			
-			/* 
-			 == alert()로 이동되는지 확인 ==
-			 alert();  
-			*/
-			
-			 location.href = "${ pageContext.servletContext.contextPath }/jobfield/insert" 
-			
-		}
-	</script>
-	
 </body>
 </html>
-
 
 
 

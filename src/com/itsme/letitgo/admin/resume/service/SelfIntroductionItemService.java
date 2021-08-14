@@ -43,6 +43,27 @@ public class SelfIntroductionItemService {
 		return selfIntroductionItemList;
 		
 	}
+
+	public int selfIntroductionItemDelete(int selfIntroItemNo) {
+
+		SqlSession session = getSqlSession();
+		
+		SelfIntroductionItemMapper selfIntroductionItemMapper = session.getMapper(SelfIntroductionItemMapper.class);
+		
+		int result = selfIntroductionItemMapper.selfIntroductionItemDelete(selfIntroItemNo);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return 0;
+	}
+
+	
 	
 }
 
