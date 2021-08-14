@@ -44,4 +44,32 @@ public class SkillsService {
 		
 	}
 
+	public int skillsDelete(int skillsNo) {
+
+		SqlSession session = getSqlSession();
+		
+		SkillsMapper skillsMapper = session.getMapper(SkillsMapper.class);
+		
+		int result = skillsMapper.skillsDelete(skillsNo);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
 }
+
+
+
+
+
+
+
+
+

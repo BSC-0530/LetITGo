@@ -118,11 +118,11 @@
 												<br>
 												<p>
 												<p align="center">
-													<a href="#">공고 등록 요청</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/post/insertRequest/select">공고 등록 요청</a>
 												</p>
 												<br>
 												<p align="center">
-													<a href="#">공고 수정 요청</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/post/updateRequest/select">공고 수정 요청</a>
 												</p>
 												<br>
 												<p align="center">

@@ -10,4 +10,6 @@ public interface JobFieldMapper {
 
 	List<JobFieldDTO> selectAllJobFieldList();
 
+	int jobFieldDelete(int no);
+
 }

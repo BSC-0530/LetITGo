@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 
 </head>
@@ -12,7 +12,6 @@
 	<jsp:include page="../../common/header/personalHeader.jsp"/>
 	
 	<jsp:include page="personalMyPageBody.jsp"/>
-	
 	
 	<jsp:include page="../../common/footer.jsp"/>
 

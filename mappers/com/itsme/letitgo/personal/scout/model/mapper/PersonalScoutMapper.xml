@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.itsme.letitgo.personal.scout.model.mapper.PersonalScoutMapper">
+	
+	<resultMap type="com.itsme.letitgo.personal.scout.model.dto.ResumeDTO" id="resumeResultMap">
+		<id property="resumeNo" column="RESUME_NO"/>
+		<result property="resumeTitle" column="RESUME_TITLE"/>
+		<result property="inMemNo" column="IN_MEM_NO"/>
+		<result property="resumeWriteDate" column="RESUME_WRITE_DATE"/>
+		<result property="resumeScoutStatus" column="RESUMW_SCOUT_STATUS"/>
+		<result property="jobNo" column="JOB_NO"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.PortfolioDTO" id="potResultMap">
+		<id property="potNo" column="POT_NO"/>
+		<result property="resumeNo" column="RESUME_NO"/>
+		<result property="potKinds" column="POT_KINDS"/>
+		<result property="potLinkAddress" column="POT_LINK_ADDRESS"/>
+		<result property="potFilePath" column="POT_FILE_PATH"/>
+	</resultMap>
+	
+	<update id="updateScoutStatus" parameterType="_int">
+		UPDATE /* com.itsme.letitgo.personal.scout.model.mapper.PersonalScoutMapper#updateScoutStatus() #*/
+		       TBL_RESUME A
+		   SET A.RESUME_SCOUT_STATUS = 'Y'
+		 WHERE A.RESUME_NO = #{ resumeNo }
+	</update>
+	
+	<select id="selectResume" resultMap="resumeResultMap">
+		SELECT
+		       A.RESUME_NO
+		     , A.RESUME_TITLE
+		     , A.RESUME_WRITE_DATE
+		  FROM TBL_RESUME A
+		 WHERE A.IN_MEM_NO = 3
+	</select>
+	
+</mapper>

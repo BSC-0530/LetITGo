@@ -90,16 +90,15 @@
 									</c:if>
 									 </c:forEach>
 									</p>
-									<c:forEach items="${ requestScope.scoutCareea }" var="careea">
-									<c:if test="${  careea.resumeNo eq mainScout.resumeNo }">
-									<c:out value ="${ careea }"/>
+									<c:forEach items="${ requestScope.scoutCareea }" var="careea" varStatus="status">
+									<c:if test="${ mainScout.resumeNo eq careea.RESUME_NO}">
+									<i><c:out value= " 경력  ${ careea.CAREER } 개월"/> </i>
 									</c:if>
-<%-- 									<i><c:out value= " 경력  ${ scoutCareea } 개월"/> </i> --%>
 									</c:forEach>
 								</div>
 								<div class="jp_recent_resume_btn_wrapper">
 									<button style="margin-left:150px; margin-top:20px;" type="submit" class="btn btn-info" onclick="browse(this);">간단 조회</button>
-									<input type="text" id="hiddenResumeNo" value="${ mainScout.resumeNo }">
+									<input type="hidden" id="hiddenResumeNo" value="${ mainScout.resumeNo }">
 								</div>
 							</div>
 						</div>
@@ -120,9 +119,11 @@
 		
 		const num = button.parentNode.children[1].value
 		
-		alert(num);
+// 		location.href="${ pageContext.servletContext.contextPath }/Company/Scout/List/Select?num="+num
+		
 		
 		location.href="${ pageContext.servletContext.contextPath }/simple/browse/select?num="+num
+				
 	}	
 
 </script>

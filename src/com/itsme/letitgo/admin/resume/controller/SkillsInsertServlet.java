@@ -16,7 +16,7 @@ public class SkillsInsertServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String path = "경로 지정해주기";
+		String path = "/WEB-INF/views/admin/adminSkillsInsertForm.jsp";
 		
 		request.getRequestDispatcher(path).forward(request, response);
 		
@@ -26,15 +26,16 @@ public class SkillsInsertServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 
-		int skillsNo = Integer.parseInt(request.getParameter("skillsNo"));
+		/* int skillsNo = Integer.parseInt(request.getParameter("skillsNo")); */
 		
 		//입력한 값을 직접 DB에 저장되게끔??? 어케????
 		String name = request.getParameter("name");
 		int no = Integer.parseInt(request.getParameter("no"));
 		
 		SkillsDTO requestSkills = new SkillsDTO();
-		requestSkills.setSkillsNo(3);
-		requestSkills.setName("GitLab");
+		/* requestSkills.setSkillsNo(3); */
+		requestSkills.setName(name);
+		requestSkills.setNo(no);
 		
 		//requestSkills 확인
 		System.out.println("skillsController requestSkills : " + requestSkills);
@@ -54,7 +55,7 @@ public class SkillsInsertServlet extends HttpServlet {
 			request.setAttribute("message", "기술 등록에 실패하셨습니다.");
 		}
 		
-		request.getRequestDispatcher(path).forward(request, response);	
+		response.sendRedirect("/let/skills/list");	
 	
 	}
 

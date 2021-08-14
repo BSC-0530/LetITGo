@@ -17,7 +17,7 @@ public class SelectJobPostingDTO implements java.io.Serializable {
 	private int jobNo;
 	private String exposureUseCheck;
 	private String jobPostApplying_kinds;
-	private JpCoMemberAddInfo coMemberAddInfoDTO;
+	private JpCoMemberAddInfoDTO coMemberAddInfoDTO;
 	private JpJobFieldDTO jobFieldDTO;
 	private JpAttachmentDTO attachmentDTO;
 	private JpJobPostingAppHistoryDTO jobPostingAppHistoryDTO;
@@ -29,7 +29,7 @@ public class SelectJobPostingDTO implements java.io.Serializable {
 	public SelectJobPostingDTO(int jobPostNo, int coMemNo, String jobPostTitle, String jobPostMinExperience,
 			String jobPostMaxExperience, Date jobPostEnrollDate, Date jobPostDeadline, String jobPostContents,
 			String jobPostKinds, int jobNo, String exposureUseCheck, String jobPostApplying_kinds,
-			JpCoMemberAddInfo coMemberAddInfoDTO, JpJobFieldDTO jobFieldDTO, JpAttachmentDTO attachmentDTO,
+			JpCoMemberAddInfoDTO coMemberAddInfoDTO, JpJobFieldDTO jobFieldDTO, JpAttachmentDTO attachmentDTO,
 			JpJobPostingAppHistoryDTO jobPostingAppHistoryDTO, List<JpSkillsDTO> reqSkillsList,
 			JpOwnFormResumeAttachmentDTO ownFormResumeAttachmentDTO) {
 		super();
@@ -149,11 +149,11 @@ public class SelectJobPostingDTO implements java.io.Serializable {
 		this.jobPostApplying_kinds = jobPostApplying_kinds;
 	}
 
-	public JpCoMemberAddInfo getCoMemberAddInfoDTO() {
+	public JpCoMemberAddInfoDTO getCoMemberAddInfoDTO() {
 		return coMemberAddInfoDTO;
 	}
 
-	public void setCoMemberAddInfoDTO(JpCoMemberAddInfo coMemberAddInfoDTO) {
+	public void setCoMemberAddInfoDTO(JpCoMemberAddInfoDTO coMemberAddInfoDTO) {
 		this.coMemberAddInfoDTO = coMemberAddInfoDTO;
 	}
 

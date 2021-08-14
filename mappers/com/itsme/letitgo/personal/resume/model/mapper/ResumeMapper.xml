@@ -182,41 +182,9 @@
 		 WHERE A.IN_MEM_NO = 3
 	</select>
 	
-	<select id="selectDetailResumeList" resultMap="detailResumeResultMap">
+	<select id="selectDetailResumeList" parameterType="_int" resultMap="detailResumeResultMap">
 		SELECT /* com.itsme.letitgo.personal.resume.model.mapper.ResumeMapper#selectDetailResumeList() */
 		       *
-		       <!-- R.RESUME_WRITE_DATE
-		     , R.RESUME_TITLE
-		     , P.POT_KINDS
-		     , SII.SELF_INTRO_ITEM_NAME
-		     , SIC.SELF_INTRO_ITEM_CONTENT
-		     , AH.AWD_NAME
-		     , AH.AWD_AGENCY
-		     , AH.AWD_DATE
-		     , AH.AWD_CONTENT
-		     , EH.EDU_NAME
-		     , EH.EDU_AGENCY
-		     , EH.EDU_START_DATE
-		     , EH.EDU_END_DATE
-		     , EH.EDU_CONTENT
-		     , LH.LICENSE_NAME
-		     , LH.LICENSE_AGENCY
-		     , LH.LICENSE_DATE
-		     , SC.CATEGORY_NAME
-		     , SC.CATEGORY_UPPER_NO
-		     , S.SKILLS_NAME
-		     , CH.CAR_COM_NAME
-		     , CH.CAR_HIRE_DATE
-		     , CH.CAR_ENT_DATE
-		     , CH.CAR_STATUS
-		     , CH.CAR_DEPT_NAME
-		     , CH.CAR_JOB_NAME
-		     , CH.PROJECT_NAME
-		     , CH.PROJECT_START_DATE
-		     , CH.PROJECT_END_DATE
-		     , CH.PROJECT_CONTENT
-		     , CH.CAR_WORK_FIELD
-		     , JF.JOB_NAME -->
 		  FROM TBL_RESUME R
 		  JOIN TBL_PORTFOLIO P ON (R.RESUME_NO = P.RESUME_NO)
 		  JOIN TBL_SELF_INTRODUCTION_CONTENT SIC ON (R.RESUME_NO = SIC.RESUME_NO)
@@ -229,7 +197,7 @@
 		  JOIN TBL_SKILLS_CATEGORY SC ON (SC.CATEGORY_NO = S.CATEGORY_NO)
 		  JOIN TBL_CAREER_HISTORY CH ON (R.RESUME_NO = CH.RESUME_NO)
 		  JOIN TBL_JOB_FIELD JF ON (R.JOB_NO = JF.JOB_NO)
-		 WHERE R.RESUME_NO = 1
+		 WHERE R.RESUME_NO = #{ resumeNo }
 	</select>
 	
 	<select id="selectResume" parameterType="string" resultType="_int">
@@ -251,6 +219,12 @@
 		  SEQ_RESUME_NO.NEXTVAL, 3, SYSDATE
 		, 'Y', #{ jobNo }, #{ resumeTitle }
 		)
+		
+		<selectKey keyColumn="RESUME_NO" keyProperty="resumeNo" resultType="_int" order="AFTER">
+			SELECT
+				   SEQ_RESUME_NO.CURRVAL
+		  	  FROM DUAL
+		</selectKey>
 	</insert>
 	
 	<insert id="insertCareer">
@@ -409,4 +383,52 @@
 		     , A.AWD_CONTENT = #{ awdContent }
 		 WHERE A.RESUME_NO = #{ resumeNo }
 	</update>
+	
+	<delete id="deleteResume">
+		DELETE
+		  FROM TBL_RESUME R
+		 WHERE R.RESUME_NO = #{ resumeNo }
+	</delete>
+	
+	<delete id="deleteAwd">
+		DELETE
+		  FROM TBL_AWARD_HISTORY A
+		 WHERE A.RESUME_NO = #{ resumeNo }
+	</delete>
+	
+	<delete id="deleteLicense">
+		DELETE
+		  FROM TBL_LICENSE_HISTORY A
+		 WHERE A.RESUME_NO = #{ resumeNo }
+	</delete>
+	
+	<delete id="deleteIntroContent">
+		DELETE
+		  FROM TBL_SELF_INTRODUCTION_CONTENT A
+		 WHERE A.RESUME_NO = #{ resumeNo }
+	</delete>
+	
+	<delete id="deletePot">
+		DELETE
+		  FROM TBL_PORTFOLIO A
+		 WHERE A.RESUME_NO = #{ resumeNo }
+	</delete>
+	
+	<delete id="deleteEdu">
+		DELETE
+		  FROM TBL_EDUCATION_HISTORY A
+		 WHERE A.RESUME_NO = #{ resumeNo }
+	</delete>
+	
+	<delete id="deleteCareer">
+		DELETE
+		  FROM TBL_CAREER_HISTORY A
+		 WHERE A.RESUME_NO = #{ resumeNo }
+	</delete>
+	
+	<delete id="deleteSkills">
+		DELETE
+		  FROM TBL_RESUME_HOLDING_SKILLS A
+		 WHERE A.RESUME_NO = #{ resumeNo }
+	</delete>
 </mapper>

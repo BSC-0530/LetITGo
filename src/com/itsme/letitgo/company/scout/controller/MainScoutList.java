@@ -26,12 +26,11 @@ public class MainScoutList extends HttpServlet {
 		
 		MainScoutListService mainScoutListService = new MainScoutListService();
 		
-			Map<String,List< Object>> scoutList= mainScoutListService.selectAllScoutList();
+			Map<String, Object> scoutList= mainScoutListService.selectAllScoutList();
 		
 		System.out.println("scoutListname : " + scoutList.get("scoutListName"));
 		System.out.println("scoutListSkills : " + scoutList.get("scoutListSkills"));
 		System.out.println("scoutCareea : " + scoutList.get("scoutCareea"));
-		
 		
 		request.setAttribute("mainScoutList", scoutList.get("scoutListName"));
 		request.setAttribute("scoutListSkills", scoutList.get("scoutListSkills"));

@@ -10,5 +10,7 @@ public interface SelfIntroductionItemMapper {
 
 	List<SelfIntroductionItemDTO> selectAllSelfIntroductionItemList();
 
+	int selfIntroductionItemDelete(int selfIntroItemNo);
+
 }
 

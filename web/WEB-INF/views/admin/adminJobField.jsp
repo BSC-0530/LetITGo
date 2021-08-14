@@ -63,35 +63,44 @@
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_rightside_job_categories_wrapper">
 								<div class="jp_rightside_job_categories_heading">
-									<h4 style="font-weight : bold">My Page</h4>
+									<h4 style="font-weight: bold">My Page</h4>
 								</div>
 								<div class="jp_rightside_job_categories_content">
 									<div class="handyman_sec1_wrapper">
 										<div class="content">
-											
+
 											<div class="box">
-												<h3 style="font-weight : bold">회원정보</h3>
+												<h3 style="font-weight: bold">회원정보</h3>
 												<p>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/selfintroductionitem/list">자기소개서 항목 관리</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/selfintroductionitem/list">자기소개서
+														항목 관리</a>
 												</p>
 												<br>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/jobfield/list">직무분야 관리</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/jobfield/list">직무분야
+														관리</a>
 												</p>
 												<br>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/skills/list">기술 관리</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/skills/list">기술
+														관리</a>
 												</p>
-												<br>	
+												<br>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/skillscategory/list">기술 카테고리 관리</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/skillscategory/list">기술
+														카테고리 관리</a>
 												</p>
-												<br><br>
-												<h3 style="font-weight : bold">결제 관리</h3>
+												<br>
+												<br>
+												<h3 style="font-weight: bold">결제 관리</h3>
 												<p>
 												<p align="center">
-													<a href="#" >상품 관리</a>
+													<a href="#">상품 관리</a>
 												</p>
 												<br>
 												<p align="center">
@@ -100,12 +109,13 @@
 												<br>
 												<p align="center">
 													<a href="#">환불 요청 관리</a>
-												</p>	
-												<br><br>
-												<h3 style="font-weight : bold">기업 요청 관리</h3>
+												</p>
+												<br>
+												<br>
+												<h3 style="font-weight: bold">기업 요청 관리</h3>
 												<p>
 												<p align="center">
-													<a href="#" >공고 등록 요청</a>
+													<a href="#">공고 등록 요청</a>
 												</p>
 												<br>
 												<p align="center">
@@ -114,35 +124,39 @@
 												<br>
 												<p align="center">
 													<a href="#">기업 회원 가입 요청</a>
-												</p>	
+												</p>
 												<p align="center">
 													<a href="#">기업 정보 변경 요청</a>
 												</p>
-												<br><br>
-												<h3 style="font-weight : bold">회원 탈퇴</h3>
+												<br>
+												<br>
+												<h3 style="font-weight: bold">회원 탈퇴</h3>
 												<p>
 												<p align="center">
-													<a href="#" >회원 탈퇴 사유 조회</a>
+													<a href="#">회원 탈퇴 사유 조회</a>
 												</p>
-												<br><br>
-												<h3 style="font-weight : bold">게시물 관리</h3>
+												<br>
+												<br>
+												<h3 style="font-weight: bold">게시물 관리</h3>
 												<p>
 												<p align="center">
-													<a href="#" >공지사항 관리</a>
+													<a href="#">공지사항 관리</a>
 												</p>
 												<p align="center">
 													<a href="#">개인정보 처리 방침, 이용약관 관리</a>
 												</p>
-												<br><br>
-												<h3 style="font-weight : bold">1:1 문의</h3>
+												<br>
+												<br>
+												<h3 style="font-weight: bold">1:1 문의</h3>
 												<p>
 												<p align="center">
-													<a href="#" >1:1 문의 조회</a>
+													<a href="#">1:1 문의 조회</a>
 												</p>
 												<p align="center">
 													<a href="#">1:1 문의 카테고리 관리</a>
 												</p>
-												<br><br>
+												<br>
+												<br>
 											</div>
 										</div>
 									</div>
@@ -151,76 +165,65 @@
 						</div>
 					</div>
 				</div>
-<!-- 옆에 넣으려면 여기에 넣어야함 -->
-<!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
-<br><br><br>
+				<!-- 옆에 넣으려면 여기에 넣어야함 -->
+				<!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
+				<br>
+				<br>
+				<br>
 				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<h1>직무 분야 관리</h1>
+							<h1>직무 분야 관리</h1>
 							<div class="jp_listing_tabs_wrapper">
 
 								<!-- 이거는 이제 정보뜨는 칸 -->
 								<!-- 데이터 테이블 내역모음 -->
-						<table id="job_field" class="hover cell-border stripe">
-							<thead>
-								<tr>
-									<td align="center">직무코드</td>
-									<td align="center">직무이름</td>
-									<td align="center">삭제여부</td>
-								</tr>
-							</thead>
-							<c:forEach var="controllJobField" items="${ requestScope.jobFieldList }">
-							
-							<tbody align="center">
-							
-								<tr>
-									<td id="no"><c:out value="${ controllJobField.no }"/></td>
-									<td id="name"><c:out value="${ controllJobField.name }"/></td>
-									<td><button type="button" disabled>삭제</button></td>
-								</tr>
-							</tbody>
-							</c:forEach>
-							
-						</table>
-						<br><br>
-								 <!-- <div align="right">
-									<table>
+								<table id="job_field" class="hover cell-border stripe">
+									<thead>
 										<tr>
-											<td><button type="button"
-													onclick="location.href='adminJobFieldInsertForm.jsp'">등록하기</button></td>
+											<td align="center">직무코드</td>
+											<td align="center">직무이름</td>
+											<td align="center">삭제여부</td>
 										</tr>
-									</table>
-								</div>  -->
-								
+									</thead>
+									<c:forEach var="controllJobField"
+										items="${ requestScope.jobFieldList }">
+
+										<tbody align="center">
+
+											<tr>
+												<td id="no"><c:out value="${ controllJobField.no }" /></td>
+												<td id="name"><c:out value="${ controllJobField.name }" /></td>
+												<!-- <td><button type="button" disabled>삭제</button></td>  -->
+												<td><button class="btn-info" onClick="jobFieldDelete(this);" value="${ controllJobField.no }">삭제</button></td>
+												<!-- 위의 것을 실행하려면 div 안에 담아야 하는? --> 
+											</tr>
+										</tbody>
+									</c:forEach>
+
+								</table>
+								<br>
+								<br>
+
 								<div class="job-field-insert-wrapper" onclick="post(this);">
 									<button type="submit">등록하기</button>
 								</div>
-								
+
 							</div>
 						</div>
 					</div>
 					<br>
-				<!-- end --> 
-            	</div>
+					<!-- end -->
+				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<script>
 		$(document).ready(function() {
 			$('#job_field').DataTable();
 		});
 	</script>
-
-	<!-- <div align="center">
-	<table>
-		<tr>
-			<td><button type="button" onclick="location='adminJobFieldInsertForm.jsp'">등록하기</button></td>
-		</tr>
-	</table> 
-	</div> -->
-	<!-- <input type="button" value="확인" onclick="location.href='/adminJobFieldInsertForm.jsp'"><button>등록하기</button> -->
 	
 	<script>
 		function post(div) {
@@ -233,6 +236,21 @@
 			 location.href = "${ pageContext.servletContext.contextPath }/jobfield/insert" 
 			
 		}
+	</script>
+	
+	<script type="text/javascript">
+		
+		function jobFieldDelete(button) {
+			
+			const no = button.value;
+			location.href = "${ pageContext.servletContext.contextPath }/jobfield/delete?no=" + no;
+			
+		}
+		
+		$("input").filter("[value='null']").val("");
+		
+		/* location.reload();  무한로딩; 함수 안에서도 안먹힘  */
+	
 	</script>
 	
 </body>

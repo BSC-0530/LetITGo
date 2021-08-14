@@ -10,7 +10,6 @@
 		<association property="memberDTO" resultMap="mainScoutMemberDTO"/>
 		<association property="resumeDTO" resultMap="mainScoutResumeDTO"/>
 <!-- 		<collection property="carHistoryDTO" resultMap="mainScoutCarHistoryDTO"/> -->
-			
 	</resultMap>
 	
 		<resultMap type="com.itsme.letitgo.company.info.model.dto.CompanyTestDTO" id="mainScoutMemberDTO">
@@ -154,8 +153,27 @@
 		<result property="payNo" column="PAY_NO"/>
 		<result property="coMemNo" column="CO_MEM_NO"/>
 		<result property="productUseDate" column="PRODUCT_USE_DATE"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.company.scout.model.dto.CountReadingNumDTO" id="modifyProductStatus">
+		<id property="productStatus" column="PRODUCT_STATUS"/>
+		<result property="coMemNo" column="CO_MEM_NO"/>
+		<result property="readingLeftNum" column="READING_LEFT_NUM"/>
 	</resultMap>	
-			
+			<resultMap type="com.itsme.letitgo.company.scout.model.dto.BrosweHistoryDTO" id="myPageScoutList">
+				<result property="resumeTitle" column="RESUME_TITLE"/>
+				<result property="memName" column="MEM_NAME"/>
+				<result property="jobName" column="JOB_NAME"/>
+				<result property="resumeNo" column="RESUME_NO"/>
+				<result property="resumeBrowseKinds" column="RESUME_BROWSE_KINDS"/>
+			</resultMap>
+		<resultMap type="com.itsme.letitgo.company.scout.model.dto.PersonalBrosweHistoryDTO" id="personalMypageScoutMap">
+			<result property="coComName" column="CO_COM_NAME"/>
+			<result property="address" column="CO_ADDRESS"/>
+			<result property="coStatus" column="CO_STATUS"/>
+			<result property="resumeBrowseKinds" column="RESUME_BROWSE_KINDS"/>
+		</resultMap>
+		
 		
 		<select id="companySelectAllScout" resultMap="mainScoutResultMap">
 		SELECT
@@ -173,27 +191,25 @@
 		  FROM TBL_RESUME_HOLDING_SKILLS RS
           JOIN TBL_SKILLS S ON (S.SKILLS_NO = RS.SKILLS_NO)
           GROUP BY RS.RESUME_NO
-          
 		</select>
 		
 		<select id="companyScoutCareea" resultType="HashMap">
-		 SELECT
-			     R.RESUME_NO
-               , SUM( ROUND(ABS(MONTHS_BETWEEN(CR.CAR_HIRE_DATE,CR.CAR_ENT_DATE)),0)) as careea
-		    FROM TBL_CAREER_HISTORY CR
-		    JOIN TBL_RESUME R ON (R.RESUME_NO = CR.RESUME_NO)
-     	   GROUP BY R.RESUME_NO
-     	    HAVING (R.RESUME_NO = CR.RESUME_NO)
+<!-- 		 SELECT -->
+<!-- 			     R.RESUME_NO -->
+<!--                , SUM( ROUND(ABS(MONTHS_BETWEEN(CR.CAR_HIRE_DATE,CR.CAR_ENT_DATE)),0)) as careea -->
+<!-- 		    FROM TBL_CAREER_HISTORY CR -->
+<!-- 		    JOIN TBL_RESUME R ON (R.RESUME_NO = CR.RESUME_NO) -->
+<!--      	   GROUP BY R.RESUME_NO -->
+<!--      	    HAVING (R.RESUME_NO = CR.RESUME_NO) -->
+			SELECT
+                  R.RESUME_NO
+				, SUM( ROUND(ABS(MONTHS_BETWEEN(CH.CAR_HIRE_DATE,CH.CAR_ENT_DATE)),0)) as CAREER
+			  FROM TBL_RESUME R
+			  JOIN TBL_MEMBER M ON (M.MEM_NO = R.IN_MEM_NO)
+			  JOIN TBL_CAREER_HISTORY CH ON (R.RESUME_NO = CH.RESUME_NO) 
+              group by R.RESUME_NO
 		</select>
-		
-<!-- 		<select id="companyScoutCareea" resultMap="careeaHistoryResultMap"> -->
-<!-- 			SELECT -->
-<!-- 			       CR.CAR_HIRE_DATE -->
-<!-- 			     , CR.CAR_ENT_DATE -->
-<!-- 			  FROM TBL_CAREER_HISTORY CR -->
-<!-- 			JOIN TBL_RESUME R ON (R.RESUME_NO = CR.RESUME_NO)       -->
-<!-- 		</select>	 -->
-		
+
 		
 <!-- 간단열람 -->		
 <!-- 		<select id="browseSelectInfo" resultMap="simpleBrowse"> -->
@@ -220,6 +236,7 @@
 			<select id="browseSelectInfo" resultMap="simpleBrowse">
 			SELECT
 			        M.MEM_NAME
+			      , R.RESUME_NO 
 			      , JF.JOB_NAME
                   , CH.CAR_COM_NAME
 		      FROM TBL_RESUME R
@@ -240,4 +257,93 @@
               GROUP BY R.RESUME_NO 
               HAVING R.RESUME_NO = #{ onClickResumeNo }
 		</select>		
+		
+		
+		<select id="selectBrowseUsingHistroy" resultMap="myPageScoutList">
+			SELECT
+		        J.JOB_NAME
+		       ,R.RESUME_NO 
+		       ,M.MEM_NAME
+		       ,R.RESUME_TITLE
+		       ,RH.RESUME_BROWSE_KINDS
+		       ,RH.RESUME_BROWSE_DATE
+		    FROM TBL_RESUME R
+		    JOIN TBL_JOB_FIELD J ON (R.JOB_NO = J.JOB_NO)
+		    JOIN TBL_MEMBER M ON (R.IN_MEM_NO = M.MEM_NO)
+		    JOIN TBL_RESUME_READING_HISTORY RH ON (RH.RESUME_NO = R.RESUME_NO)
+		</select>
+		
+		<select id="brosweHistoryKindsSelect" resultMap="readingHistoryResultMap">
+			SELECT
+			       RESUME_BROWSE_NO
+				 , CO_MEM_NO
+				 , RESUME_NO
+				 , RESUME_BROWSE_DATE
+				 , RESUME_BROWSE_KINDS
+			FROM TBL_RESUME_READING_HISTORY
+			WHERE RESUME_NO = #{ onClickResumeNo } 
+		</select>
+		
+		
+		<insert id="readingKindsInsert">
+			INSERT 
+				INTO TBL_RESUME_READING_HISTORY A
+				(
+				  A.RESUME_BROWSE_NO
+				, A.CO_MEM_NO
+				, A.RESUME_NO
+				, A.RESUME_BROWSE_DATE
+				, A.RESUME_BROWSE_KINDS
+				)
+				VALUES
+				(
+                 SEQ_RESUME_BROWSE_NO.nextval
+                , 2
+                , #{ onClickResumeNo }
+                , SYSDATE
+               
+                , '얕은열람'
+				)
+		</insert>
+		
+		<update id="updateTime">
+			UPDATE
+				TBL_RESUME_READING_HISTORY
+				SET RESUME_BROWSE_DATE = SYSDATE
+				   WHERE RESUME_NO = #{ onClickResumeNo }
+		</update>
+		
+		<select id="selectAllCountDeepOpen" resultType="_int">
+			SELECT
+					COUNT(1) 
+			   FROM TBL_RESUME_READING_HISTORY
+			  WHERE RESUME_BROWSE_KINDS ='깊은열람'
+		</select>
+		
+		<select id="selectAllCountSimpleOpen" resultType="_int">
+			SELECT
+					COUNT(1) 
+			   FROM TBL_RESUME_READING_HISTORY
+			  WHERE RESUME_BROWSE_KINDS ='얕은열람'
+		</select>
+		
+		<select id="selectAllScountNum" resultType="_int">
+			SELECT
+					COUNT(1) 
+			   FROM TBL_RESUME_READING_HISTORY
+			  WHERE RESUME_BROWSE_KINDS ='면접제안'
+		</select>
+		
+		<select id="personalBrosweHistorySelect" resultMap="personalMypageScoutMap">
+			SELECT
+			     C.CO_COM_NAME
+			   , REGEXP_SUBSTR(C.CO_ADDRESS, '[^$]+',1,2) as CO_ADDRESS
+			   , R.RESUME_BROWSE_KINDS
+			   , C.CO_STATUS
+			FROM TBL_RESUME_READING_HISTORY R
+			JOIN TBL_CO_MEMBER_ADD_INFO C ON (R.CO_MEM_NO = C.CO_MEM_NO)
+			WHERE R.co_mem_no = 2
+		</select>
+		
+		
 </mapper>

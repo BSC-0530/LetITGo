@@ -55,6 +55,8 @@ public class SelectJobPostingService {
 		System.out.println("deteildeJpSkills : " + deteildeJpSkills);
 		
 		// return값으로 넘겨주기 위해 map에 담기 
+		System.out.println("service detailedJobPosting : " + detailedJobPosting);
+		
 		jp.put("detailedJobPosting", detailedJobPosting);
 		jp.put("deteildeJpSkills", deteildeJpSkills);
 		

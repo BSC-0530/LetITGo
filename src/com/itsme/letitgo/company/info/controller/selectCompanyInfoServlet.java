@@ -23,7 +23,7 @@ public class selectCompanyInfoServlet extends HttpServlet {
 		
 		
 		System.out.println("ASDASD!@#!@#!@#" + comDTO.get(0));
-		
+//		
 		String intro = comDTO.get(0).getCoIntro();
 		String coNo = comDTO.get(0).getCoNo();
 		String coName = comDTO.get(0).getCoComName();
@@ -41,8 +41,9 @@ public class selectCompanyInfoServlet extends HttpServlet {
 		request.setAttribute("secTors", secTors);
 		request.setAttribute("coStatus", coStatus);
 		request.setAttribute("site", site);
+		request.setAttribute("comDTO", comDTO);
 		
-		System.out.println("ASKDJAKSDAJSDH" + intro);
+		System.out.println("ASKDJAKSDAJSDH" + comDTO);
 		
 		String path="/WEB-INF/views/member/company/companyMyPage.jsp";
 		request.getRequestDispatcher(path).forward(request, response);

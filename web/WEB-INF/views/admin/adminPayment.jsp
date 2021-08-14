@@ -90,11 +90,11 @@
 												<br>
 												<p>
 												<p align="center">
-													<a href="#">공고 등록 요청</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/post/insertRequest/select">공고 등록 요청</a>											
 												</p>
 												<br>
 												<p align="center">
-													<a href="#">공고 수정 요청</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/post/updateRequest/select">공고 수정 요청</a>
 												</p>
 												<br>
 												<p align="center">
@@ -148,7 +148,7 @@
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<br><br><br>
-							<h1>결제 내역 조회</h1>
+							<h1>결제 내역 관리</h1>
 							<div class="jp_listing_tabs_wrapper">
 								<table id="table_payment" class="hover cell-border stripe">
 									<thead>

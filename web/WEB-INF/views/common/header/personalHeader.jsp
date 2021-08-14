@@ -11,7 +11,7 @@
 	<div class="gc_main_menu_wrapper">
             <div class="jp_top_header_right_cont">
                 <ul>
-                    <li><a href="#" align="center" style="background:red; margin-right: 30px; border-radius: 10px; width:100px">로그아웃</a></li>
+                    <li><a href="../common/login/logout.jsp" align="center" style="background:red; margin-right: 30px; border-radius: 10px; width:100px">로그아웃</a></li>
                 </ul>
             </div>
             <div class="container-fluid">
@@ -28,7 +28,7 @@
                             <div class="mainmenu">
                                  <ul class="float_left">
                                  	<li class="has-mega gc_main_navigation">
-                                    	<a href="${ pageContext.servletContext.contextPath }/testServlet" class="gc_main_navigation" class="gc_main_navigation">마이페이지</a>
+                                    	<a href="${ pageContext.servletContext.contextPath }/personal/myPage/select" class="gc_main_navigation" class="gc_main_navigation">마이페이지</a>
                                     </li>
                                  	<li class="has-mega gc_main_navigation">
                                     	<a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation" class="gc_main_navigation">채용공고</a>

@@ -22,7 +22,7 @@
 		<association property="jobPostingAppHistoryDTO" resultMap="resultAppHistoty"/>
 <!-- 		<association property="ownFormResumeAttachmentDTO" resultMap="resultAttachment"/> -->
 	</resultMap>
-	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpCoMemberAddInfo" id="resultCoMemberAddInfo">
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpCoMemberAddInfoDTO" id="resultCoMemberAddInfo">
 		<id property="coMemNo" column="CO_MEM_NO"/>
 		<result property="coIntro" column="CO_INTRO"/>
 		<result property="coNo" column="CO_NO"/>
@@ -57,7 +57,7 @@
 		<result property="jobPostRejectReason" column="JOB_POST_REJECT_REASON"/>
 		
 	</resultMap>
-	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpCoMemberAddInfo" id="resultCompanyAddInfo">
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpCoMemberAddInfoDTO" id="resultCompanyAddInfo">
 		<id property="coMemNo" column="CO_MEM_NO"/>
 		<result property="coIntro" column="CO_INTRO"/>
 		<result property="coNo" column="CO_NO"/>
@@ -121,9 +121,11 @@
 			 , JF.JOB_NAME
 		  FROM TBL_JOB_FIELD JF
 	</select>
+	
 	<select id="selectDetailedJobPosting" parameterType="_int" resultMap="resultJobPosting">
 		SELECT
-		       JP.JOB_POST_NO
+		       JP.CO_MEM_NO
+		     , JP.JOB_POST_NO
 		     , JP.JOB_POST_TITLE
 		     , JP.JOB_POST_MIN_EXPERIENCE
 			 , JP.JOB_POST_MAX_EXPERIENCE
@@ -139,6 +141,7 @@
 		  JOIN TBL_JOB_FIELD JF ON(JF.JOB_NO = JP.JOB_NO)
 		 WHERE JP.JOB_POST_NO = #{ selectJobPostNo }
 	</select>
+	
 	<select id="selectDeteildeJpSkills" parameterType="_int" resultMap="resultJpSkills">
 		SELECT
 			   RS.JOB_POST_NO

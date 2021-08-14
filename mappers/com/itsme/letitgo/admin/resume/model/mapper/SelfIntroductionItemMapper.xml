@@ -12,6 +12,11 @@
 		<id property="selfIntroItemNo" column="SELF_INTRO_ITEM_NO"/>
 		<result property="selfIntroItemName" column="SELF_INTRO_ITEM_NAME"/>
 	</resultMap>
+	<!-- delete resultMap -->
+	<resultMap type="com.itsme.letitgo.admin.resume.model.dto.SelfIntroductionItemDTO" id="selfIntroductionItemDeleteResultMap">
+		<id property="selfIntroItemNo" column="SELF_INTRO_ITEM_NO"/>
+		<result property="selfIntroItemName" column="SELF_INTRO_ITEM_NAME"/>
+	</resultMap>
 	
 	<insert id="selfIntroductionItemInsert" parameterType="com.itsme.letitgo.admin.resume.model.dto.SelfIntroductionItemDTO">
 		INSERT
@@ -23,7 +28,7 @@
 		VALUES
 		(
 		  SEQ_SELF_INTRO_ITEM_NO.NEXTVAL
-		, # { selfIntroItemName	}  
+		, #{ selfIntroItemName	}  
 		)
 	</insert>
 	
@@ -34,6 +39,12 @@
 		  FROM TBL_SELF_INTRODUCTION_ITEM A     
 	</select>
 	
+	<!-- <delete id="selfIntroductionItemDelete" parameterType="int" resultType="_int">
+		DELETE
+		  FROM TBL_SELF_INTRODUCTION_ITEM A
+		 WHERE A.SELF_INTRO_ITEM_NO = #{ selfIntroItemNo }
+	</delete>
+	 -->
 </mapper>
 
 

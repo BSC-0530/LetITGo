@@ -62,7 +62,7 @@
 					<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 hidden-sm hidden-xs">
 						<div class="jp_navi_right_btn_wrapper">
 							<ul>
-								<li><a href="#">·Î±×¾Æ¿ô</a></li>
+								<li><a href="../common/login/logout.jsp">·Î±×¾Æ¿ô</a></li>
 							</ul>
 						</div>
 					</div>

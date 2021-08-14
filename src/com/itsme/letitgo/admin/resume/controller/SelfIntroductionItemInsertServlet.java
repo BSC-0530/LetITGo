@@ -16,7 +16,7 @@ public class SelfIntroductionItemInsertServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String path = "경로 지정해주기";
+		String path = "/WEB-INF/views/admin/adminSelfIntroductionItemInsertForm.jsp";
 		
 		request.getRequestDispatcher(path).forward(request, response);
 		
@@ -26,11 +26,13 @@ public class SelfIntroductionItemInsertServlet extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 
-		int selfIntroItemNo = Integer.parseInt(request.getParameter("selfIntroItemNo"));
+		/*
+		 * int selfIntroItemNo = Integer.parseInt(request.getParameter("selfIntroItemNo"));
+		 */
 		String selfIntroItemName = request.getParameter("selfIntroItemName");
 		
 		SelfIntroductionItemDTO requestSelfIntroductionItem = new SelfIntroductionItemDTO();
-		requestSelfIntroductionItem.setSelfIntroItemNo(selfIntroItemNo);
+		/* requestSelfIntroductionItem.setSelfIntroItemNo(selfIntroItemNo); */
 		requestSelfIntroductionItem.setSelfIntroItemName(selfIntroItemName);
 		
 		//requestSelfIntroduction 확인
@@ -51,7 +53,7 @@ public class SelfIntroductionItemInsertServlet extends HttpServlet {
 			request.setAttribute("message", "자기소개서 항목 등록에 실패하셨습니다.");
 		}
 	
-		request.getRequestDispatcher(path).forward(request, response);
+		response.sendRedirect("/let/selfintroductionitem/list");
 		
 	}
 

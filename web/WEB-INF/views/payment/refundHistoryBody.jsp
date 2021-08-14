@@ -122,11 +122,11 @@
 					</div>
 				</div>
 				
-				<!-- 파란색 박스 -->
+				<!-- 데이터 테이블 내역모음 -->
 				
 				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 					<div class="row">		
-						<!-- 데이터 테이블 내역모음 --><br><br><br>
+						<br><br><br>
 						<h1>환불 내역</h1>
 						<br>
 						<table id="table_refund" class="hover cell-border stripe">

@@ -12,6 +12,11 @@
 		<id property="no" column="JOB_NO"/>
 		<result property="name" column="JOB_NAME"/>
 	</resultMap>
+	<!-- delete resultMap -->
+	<resultMap type="com.itsme.letitgo.admin.resume.model.dto.JobFieldDTO" id="jobFieldDeleteResultMap">
+		<id property="no" column="JOB_NO"/>
+		<result property="name" column="JOB_NAME"/>
+	</resultMap>
 	
 	<insert id="jobFieldInsert" parameterType="com.itsme.letitgo.admin.resume.model.dto.JobFieldDTO">
 		INSERT
@@ -34,6 +39,12 @@
 	 	  FROM TBL_JOB_FIELD A   
 	</select>
 	
+	<delete id="jobFieldDelete">
+		DELETE
+		  FROM TBL_JOB_FIELD A	
+		 WHERE A.JOB_NO = #{ no } 
+	</delete>
+	 
 </mapper>
 
 

@@ -29,6 +29,8 @@
 		<result property="categoryUpperNo" column="CATEGORY_UPPER_NO"/>
 	</resultMap>
 	
+	
+	
 	<select id="selectCoMyJobPosting" parameterType="com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO" resultMap="resultMyJobPosting">
 		SELECT
 	    	   JP.JOB_POST_NO
@@ -96,6 +98,79 @@
 		  FROM TBL_SKILLS S
 	</select>
 	
+	<!-- 공고 등록 입력한 값 insert 후 seq로 입력한 jobPostNo dto에 저장 -->
+	<insert id="insertJobPosting" parameterType="com.itsme.letitgo.company.recruit.jobposting.model.dto.RequestJobPostingDTO">
+		INSERT
+		  INTO TBL_JOB_POSTING JP
+		(
+		  JP.JOB_POST_NO
+		, JP.CO_MEM_NO
+		, JP.JOB_POST_TITLE
+		, JP.JOB_NO
+		, JP.JOB_POST_DEADLINE
+		, JP.JOB_POST_CONTENTS
+		<if test="jobPostMinExperience != null">
+		, JP.JOB_POST_MIN_EXPERIENCE
+		</if>
+		<if test="jobPostMaxExperience != null">
+		, JP.JOB_POST_MAX_EXPERIENCE
+		</if>
+		)
+		VALUES
+		(
+		  SEQ_JOB_POST_NO.NEXTVAL
+		, #{ coMemNo }
+		, #{ jobPostTitle }
+		, #{ jobNo }
+		, #{ jobPostDeadLine }
+		, #{ jobPostContents }
+		<if test="jobPostMinExperience != null">
+		, #{ jobPostMinExperience }
+		</if>
+		<if test="jobPostMaxExperience != null">
+		, #{ jobPostMaxExperience }
+		</if>
+		
+		)
+		<selectKey keyColumn="JOB_POST_NO" keyProperty="jobPostNo" resultType="_int" order="AFTER">
+	        SELECT
+	               SEQ_JOB_POST_NO.CURRVAL
+	          FROM DUAL
+        </selectKey>
+	</insert>
+	<!-- 공고 등록 선택한 skills insert -->
+	<insert id="insertSkills" parameterType="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpSkillsDTO">
+		INSERT
+		  INTO TBL_JOB_POSTING_REQ_SKILLS RS
+		(
+		  RS.JOB_POST_NO
+		, RS.SKILLS_NO
+		)
+		VALUES
+		(
+		  #{ jobPostNo }
+		, #{ skillsNo }
+		)
+	</insert>
+	<!-- 공고 등록 history에 insert -->
+	<insert id="insertjobPostingAppHistory" parameterType="_int">
+		INSERT
+		  INTO TBL_JOB_POSTING_APP_HISTORY AH
+		(
+		  AH.JOB_POST_REQ_NO
+		, AH.JOB_POST_REQ_DATE
+		, AH.JOB_POST_REQ_KINDS
+		, AH.JOB_POST_NO
+		)
+		VALUES
+		(
+		  SEQ_JOB_POST_REQ_NO.NEXTVAL
+		, SYSDATE
+		, '공고등록'
+		, #{ jobPostNo }
+		)
+	</insert>
+
 	
 	
 </mapper>
