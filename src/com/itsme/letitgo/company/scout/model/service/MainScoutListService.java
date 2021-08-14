@@ -75,25 +75,6 @@ public class MainScoutListService {
 		return simpleInfo;
 	}
 	
-//	public int readingCnt() {
-//		
-//		SqlSession session = getSqlSession();
-//		
-//		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
-//		
-//		int result = mapper.modifyReadingCnt();
-//		
-//		if(result > 0) {
-//			session.commit();
-//			System.out.println("@@@@@@@@@@@@@@@@바꼈쓰ㅃ니따@@@@@@@@@@@@@@@");
-//		}else {
-//			session.rollback();
-//		}
-//		session.close();
-//		
-//		
-//		return result;
-//	}
 	
 	
 	

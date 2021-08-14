@@ -122,6 +122,7 @@
 		alert('열람권 1개가 소모됩니다.');
 		
 		location.href="${ pageContext.servletContext.contextPath }/simple/browse/select?num="+num
+				
 	}	
 
 </script>

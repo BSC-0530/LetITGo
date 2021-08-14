@@ -171,11 +171,11 @@
 								<c:forEach var="broswe" items="${ paymentBrowseUsingHistroyList }">
 								<tbody align="center">
 									<tr>
-										<td></td>
+										<td><c:out value="${ broswe.resumeTitle }"></c:out></td>
+										<td><c:out value="${ broswe.memName }"></c:out> </td>
 										<td>1</td>
-										<td>1</td>
-										<td>1</td>
-										<td>1</td>
+										<td><c:out value="${broswe.jobName }"></c:out> </td>
+										<td><c:out value="${broswe.resumeBrowseKinds }"></c:out> </td>
 										<td><button type="button">asd</button></td>
 									</tr>
 								</tbody>
