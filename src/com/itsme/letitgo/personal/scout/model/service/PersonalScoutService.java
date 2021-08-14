@@ -42,14 +42,7 @@ public class PersonalScoutService {
 		return resumeList;
 	}
 
-	public List<ScoutDetailResumeDTO> selectDetailResume() {
 	
-		SqlSession session = getSqlSession();
-		PersonalScoutMapper mapper = session.getMapper(PersonalScoutMapper.class);
-		
-		List<ScoutDetailResumeDTO> detailResume = mapper.selectDetailResume();
-		return null;
-	}
 	
 	
 

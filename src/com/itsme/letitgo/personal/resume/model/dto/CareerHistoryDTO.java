@@ -19,6 +19,8 @@ public class CareerHistoryDTO implements java.io.Serializable {
 	private int resumeNo;
 	private int carNo;
 	
+	
+	
 	private ResumeDTO resumeDTO;
 	
 	public CareerHistoryDTO() {}
