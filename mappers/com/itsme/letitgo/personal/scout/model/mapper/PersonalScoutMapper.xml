@@ -12,6 +12,14 @@
 		<result property="jobNo" column="JOB_NO"/>
 	</resultMap>
 	
+	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.PortfolioDTO" id="potResultMap">
+		<id property="potNo" column="POT_NO"/>
+		<result property="resumeNo" column="RESUME_NO"/>
+		<result property="potKinds" column="POT_KINDS"/>
+		<result property="potLinkAddress" column="POT_LINK_ADDRESS"/>
+		<result property="potFilePath" column="POT_FILE_PATH"/>
+	</resultMap>
+	
 	<update id="updateScoutStatus" parameterType="_int">
 		UPDATE /* com.itsme.letitgo.personal.scout.model.mapper.PersonalScoutMapper#updateScoutStatus() #*/
 		       TBL_RESUME A
