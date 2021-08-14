@@ -126,7 +126,6 @@
 												</p>
 												<br> <br>
 												<h3 style="font-weight: bold">1:1 문의</h3>
-												
 												<br>
 												<p>
 												<p align="center">
@@ -149,33 +148,29 @@
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<br><br><br>
-							<h1>결제 내역 조회</h1>
+							<h1>1:1문의 카테고리 관리</h1>
 							<div class="jp_listing_tabs_wrapper">
 								<table id="table_payment" class="hover cell-border stripe">
 									<thead>
 										<tr>
-											<td align="center">결제번호</td>
-											<td align="center">기업명</td>
-											<td align="center">결제일자</td>
-											<td align="center">상품이름</td>
-											<td align="center">결제금액</td>
-											
+											<td align="center">카테고리 코드</td>
+											<td align="center">카테고리 이름</td>
+											<td align="center">삭제</td>
 										</tr>
 									</thead>
-									<c:forEach var="adminPayment" items="${ requestScope.adminPaymentHistory }">
-									<tbody align="center">
+								<c:forEach var="categoryList" items="${ requestScope.inquiryCategory }">
+										<tbody align="center">
 											<tr>
-												<td><c:out value="${ adminPayment.payNo }"/></td>
-												<td><c:out value="${ adminPayment.coComName }"/></td>									
-												<td><c:out value="${ adminPayment.payDate }"/></td>
-												<td><c:out value="${ adminPayment.productName }"/></td>
-												<td><fmt:formatNumber value="${ adminPayment.payPrice }" pattern="###,###"/></td>
+												<td><c:out value="${categoryList.inquiryCategoryNo }"/></td>
+												<td><c:out value="${categoryList.inquiryCategoryName }"/></td>									
+												<td><button type="submit" class="btn btn-info" onclick="browse(this);" >삭제</button></td>
 											</tr>
-									</tbody>				
-									</c:forEach>				
+										</tbody>	
+								</c:forEach>			
 								</table>
 								<br>
 								<br>
+									<button style="margin-left: 90%" type="submit" class="btn btn-info" onclick="browse(this);" >등록</button>
 							</div>
 						</div>
 					</div>
@@ -189,6 +184,18 @@
 		$(document).ready(function() {
 			$('#table_payment').DataTable();
 		});
+</script>
+
+<script>
+// 	function browse(button){
+		
+// 		const emaill = button.parentNode.parentNode.children[5].text();
+
+// 					alert(emaill);
+		
+// 		location.href="${ pageContext.servletContext.contextPath }/admin/Answer/Servlet?num="+num
+				
+// 	}	
 </script>
 </body>
 </html>

@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 
 import com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper;
+import com.itsme.letitgo.admin.question.model.mapper.AdminInquiryMapper;
 import com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper;
 import com.itsme.letitgo.admin.resume.model.mapper.JobFieldMapper;
 import com.itsme.letitgo.admin.resume.model.mapper.SelfIntroductionItemMapper;
@@ -50,7 +51,7 @@ public class Template {
 			
 			configuration.addMapper(CompanyInfoMapper.class);
 			configuration.addMapper(CompanyScoutMapper.class);
-
+			configuration.addMapper(AdminInquiryMapper.class);
 			//configuration.addMapper(PersonalMemberMapper.class);
 			
 

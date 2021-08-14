@@ -126,7 +126,6 @@
 												</p>
 												<br> <br>
 												<h3 style="font-weight: bold">1:1 문의</h3>
-												
 												<br>
 												<p>
 												<p align="center">
@@ -134,7 +133,7 @@
 												</p>
 												<br>
 												<p align="center">
-													<a href="#">1:1 문의 카테고리 관리</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/Category/Page">1:1 문의 카테고리 관리</a>
 												</p>
 											</div>
 										</div>
@@ -149,30 +148,33 @@
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<br><br><br>
-							<h1>결제 내역 조회</h1>
+							<h1>1:1문의 내역 조회</h1>
 							<div class="jp_listing_tabs_wrapper">
 								<table id="table_payment" class="hover cell-border stripe">
 									<thead>
 										<tr>
-											<td align="center">결제번호</td>
-											<td align="center">기업명</td>
-											<td align="center">결제일자</td>
-											<td align="center">상품이름</td>
-											<td align="center">결제금액</td>
-											
+											<td align="center">카테고리</td>
+											<td align="center">제목</td>
+											<td align="center">상세보기</td>
+											<td align="center">문의일자</td>
+											<td align="center">이메일</td>
+											<td align="center">응답여부</td>
 										</tr>
 									</thead>
-									<c:forEach var="adminPayment" items="${ requestScope.adminPaymentHistory }">
-									<tbody align="center">
+								<c:forEach var="inq" items="${ requestScope.InquirySelectHistory }">
+										<tbody align="center">
 											<tr>
-												<td><c:out value="${ adminPayment.payNo }"/></td>
-												<td><c:out value="${ adminPayment.coComName }"/></td>									
-												<td><c:out value="${ adminPayment.payDate }"/></td>
-												<td><c:out value="${ adminPayment.productName }"/></td>
-												<td><fmt:formatNumber value="${ adminPayment.payPrice }" pattern="###,###"/></td>
+												<td><c:out value="${ inq.categoryNameDTO.inquiryCategoryName }"/></td>
+												<td><c:out value="${ inq.inquiryTitle }"/></td>									
+												<td><button type="submit" onclick="browse(this);" >상세보기</button></td>
+												<td><c:out value="${ inq.inquiryDate }"/></td>
+												<td><c:out value="${ inq.inquiryEmail }"/></td>
+												<td><c:out value="${ inq.inquiryAnsYN }"/></td>
+												<td style="font-size: 0px; width:0px; height:0px"><c:out value="${ inq.inquiryNo }"/></td>
 											</tr>
-									</tbody>				
-									</c:forEach>				
+										</tbody>	
+										
+								</c:forEach>			
 								</table>
 								<br>
 								<br>
@@ -189,6 +191,18 @@
 		$(document).ready(function() {
 			$('#table_payment').DataTable();
 		});
+</script>
+
+<script>
+	function browse(button){
+		
+		const num = button.parentNode.children[3].val
+
+					alert(num);
+					
+// 		location.href="${ pageContext.servletContext.contextPath }/admin/Answer/Servlet?num="+num
+				
+	}	
 </script>
 </body>
 </html>
