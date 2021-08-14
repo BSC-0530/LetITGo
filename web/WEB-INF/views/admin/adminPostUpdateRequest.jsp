@@ -148,9 +148,9 @@
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<br><br><br>
-							<h1>공고 등록 요청</h1>
+							<h1>공고 수정 요청</h1>
 							<div class="jp_listing_tabs_wrapper">
-								<table id="table_postReqest" class="hover cell-border stripe">
+								<table id="table_postUpdate" class="hover cell-border stripe">
 									<thead>
 										<tr>
 											<td align="center">요청번호</td>
@@ -162,38 +162,38 @@
 											<td align="center">상세보기</td>
 										</tr>
 									</thead>
-									<c:forEach var="adminPostRequest" items="${ requestScope.postInsertRuqeustList }">							
+									<c:forEach var="adminPostUpdate" items="${ requestScope.postInsertUpdateList }">							
 									<tbody align="center">
 											<tr>
-												<td><c:out value="${ adminPostRequest.jobPostReqNo }"/></td>								
-												<td><c:out value="${ adminPostRequest.jobPostNo }"/></td>								
-												<td><c:out value="${ adminPostRequest.coComName }"/></td>								
-												<td><c:out value="${ adminPostRequest.jobPostReqDate }"/></td>
+												<td><c:out value="${ adminPostUpdate.jobPostReqNo }"/></td>								
+												<td><c:out value="${ adminPostUpdate.jobPostNo }"/></td>								
+												<td><c:out value="${ adminPostUpdate.coComName }"/></td>								
+												<td><c:out value="${ adminPostUpdate.jobPostReqDate }"/></td>
 												
-												<c:if test="${ adminPostRequest.jobPostAnsDate != null }">								
-												<td><c:out value="${ adminPostRequest.jobPostAnsDate }"/></td>		
+												<c:if test="${ adminPostUpdate.jobPostAnsDate != null }">								
+												<td><c:out value="${ adminPostUpdate.jobPostAnsDate }"/></td>		
 												</c:if>		
 												
-												<c:if test="${ adminPostRequest.jobPostAnsDate == null }">								
+												<c:if test="${ adminPostUpdate.jobPostAnsDate == null }">								
 												<td>-</td>		
 												</c:if>
 												
-												<c:if test="${ adminPostRequest.jobPostRejectReason != null }">								
-												<td><c:out value="${ adminPostRequest.jobPostAnsDate }"/></td>			
+												<c:if test="${ adminPostUpdate.jobPostRejectReason != null }">								
+												<td><c:out value="${ adminPostUpdate.jobPostAnsDate }"/></td>			
 												</c:if>		
 												
-												<c:if test="${ adminPostRequest.jobPostRejectReason == null }">								
+												<c:if test="${ adminPostUpdate.jobPostRejectReason == null }">								
 												<td>-</td>			
 												</c:if>
 												
 												<td><button type="submit" onclick="resume(this);">미리보기</button></td>
 												
-												<c:if test="${  adminPostRequest.jobPostAnsDate != null }">
+												<c:if test="${  adminPostUpdate.jobPostAnsDate != null }">
 												<td><button disabled>승인</button></td>
 												<td><button disabled>거절</button></td>
 												</c:if>
 												
-												<c:if test="${  adminPostRequest.jobPostAnsDate == null }">
+												<c:if test="${  adminPostUpdate.jobPostAnsDate == null }">
 												<td><button type="submit" onclick="jobPostApproval(this);">승인</button></td>
 												<td><button type="submit" onclick="jobPostReject(this);">거절</button></td>
 												</c:if>																			
@@ -214,7 +214,7 @@
 	</div>
 <script>
 	$(document).ready(function() {
-		$('#table_postReqest').DataTable();
+		$('#table_postUpdate').DataTable();
 	});
 	
 function jobPostApproval(button) {
@@ -222,7 +222,7 @@ function jobPostApproval(button) {
 	var jobPostReqNo = button.parentNode.parentNode.children[0].innerText;
 	var jobPostNo = button.parentNode.parentNode.children[1].innerText;
 		
-	var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/admin/post/app/update").attr("method", "get");
+	var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/admin/post/update/app/update").attr("method", "get");
 		
 	$form.append($("<input>").attr("name", "jobPostReqNo").attr("type", "hidden").val(jobPostReqNo));
 	$form.append($("<input>").attr("name", "jobPostNo").attr("type", "hidden").val(jobPostNo));
@@ -236,7 +236,7 @@ function jobPostReject(button) {
 		var jobPostReqNo = button.parentNode.parentNode.children[0].innerText;
 		var jobPostNo = button.parentNode.parentNode.children[1].innerText;
 			
-		var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/admin/post/reject/update").attr("method", "get");
+		var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/admin/post/update/reject/update").attr("method", "get");
 			
 		$form.append($("<input>").attr("name", "jobPostReqNo").attr("type", "hidden").val(jobPostReqNo));
 		$form.append($("<input>").attr("name", "jobPostNo").attr("type", "hidden").val(jobPostNo));

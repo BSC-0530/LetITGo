@@ -2,19 +2,21 @@ package com.itsme.letitgo.admin.recruit.jobposting.model.service;
 
 import static com.itsme.letitgo.common.mybatis.Template.getSqlSession;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper;
 
-public class UpdatePostRequestAppService {
+public class UpdatePostRequestRejectService {
 
-	public int updatePostRequestApp1(int jobPostNo) {
+	public int updatePostRejectRequest1(Map<String, Object> map) {
 		
 		SqlSession session = getSqlSession();
 		
 		AdminJobPostMapper mapper = session.getMapper(AdminJobPostMapper.class);
 		
-		int result = mapper.updatePostRequestApp1(jobPostNo);
+		int result = mapper.updatePostRejectRequest1(map);
 		
 		if(result > 0) {
 			session.commit();
@@ -25,19 +27,17 @@ public class UpdatePostRequestAppService {
 		session.close();
 		
 		return result;
-		
-		
 	}
 
-	public int updatePostRequestApp2(int jobPostReqNo) {
+	public int updatePostRejectRequest2(Map<String, Object> map) {
 		
 		SqlSession session = getSqlSession();
 		
 		AdminJobPostMapper mapper = session.getMapper(AdminJobPostMapper.class);
 		
-		int result2 = mapper.updatePostRequestApp2(jobPostReqNo);
+		int result = mapper.updatePostRejectRequest2(map);
 		
-		if(result2 > 0) {
+		if(result > 0) {
 			session.commit();
 		} else {
 			session.rollback();
@@ -45,8 +45,7 @@ public class UpdatePostRequestAppService {
 		
 		session.close();
 		
-		return result2;
-		
+		return result;
 	}
 
 }

@@ -22,10 +22,16 @@ public class UpdatePostRequestAppServlet extends HttpServlet {
 		
 		UpdatePostRequestAppService service = new UpdatePostRequestAppService();
 		
+		System.out.println("jobPostNo :	" + jobPostNo);
+		System.out.println("jobPostReqNo :	" + jobPostReqNo);
+		
 		int result1 = service.updatePostRequestApp1(jobPostNo);
 		int result2 = service.updatePostRequestApp2(jobPostReqNo);
 		
 		StringBuilder redirectText = new StringBuilder();
+		
+		System.out.println(result1);
+		System.out.println(result2);
 		
 		if(result1 > 0 && result2 > 0) {
 			redirectText.append("<script>alert('채용공고등록을 승인하셨습니다.'); location.href='../../post/insertRequest/select';</script>");
