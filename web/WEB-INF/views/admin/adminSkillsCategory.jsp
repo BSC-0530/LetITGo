@@ -201,8 +201,8 @@
 												<td id="name"><c:out
 														value="${ controllSkillsCategory.name }" /></td>
 
-												<td><button type="button" disabled>삭제</button></td>
-
+												<!-- <td><button type="button" disabled>삭제</button></td> -->
+												
 											</tr>
 										</tbody>
 									</c:forEach>
