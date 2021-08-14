@@ -14,7 +14,12 @@ import com.itsme.letitgo.company.scout.model.dto.CountReadingNumDTO;
 import com.itsme.letitgo.company.scout.model.dto.PersonalBrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.ResumeReadingHistoryDTO;
 import com.itsme.letitgo.company.scout.model.mapper.CompanyScoutMapper;
+
+import com.itsme.letitgo.personal.scout.model.dto.ScoutDetailResumeDTO;
+import com.itsme.letitgo.personal.scout.model.mapper.PersonalScoutMapper;
+
 import com.itsme.letitgo.personal.resume.model.dto.SkillsAndCategoryDTO;
+
 
 public class MainScoutListService {
 
@@ -201,6 +206,18 @@ public class MainScoutListService {
 		
 		
 	}
+
+	public List<ScoutDetailResumeDTO> selectDetailResume() {
+		
+		SqlSession session = getSqlSession();
+		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
+		
+		List<ScoutDetailResumeDTO> detailResume = mapper.selectDetailResume();
+		
+		session.close();
+		return detailResume;
+	}
+
 //	public List<SkillsAndCategoryDTO> skillsSelect() {
 //		
 //		
@@ -215,6 +232,7 @@ public class MainScoutListService {
 //		
 //		return skillsSelect;
 //	}
+
 	
 	
 	
