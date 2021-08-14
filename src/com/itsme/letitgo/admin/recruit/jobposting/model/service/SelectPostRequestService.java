@@ -24,4 +24,17 @@ public class SelectPostRequestService {
 		return postInsertRuqeustList;
 	}
 
+	public List<PostInsertRuqeustDTO> selectPostInsertUpdate() {
+		
+		SqlSession session = getSqlSession();
+		
+		AdminJobPostMapper mapper = session.getMapper(AdminJobPostMapper.class);
+		
+		List<PostInsertRuqeustDTO> postInsertUpdateList = mapper.selectPostInsertUpdate();
+		
+		session.close();
+				
+		return postInsertUpdateList;
+	}
+
 }
