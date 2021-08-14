@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper">
+
+	<resultMap type="com.itsme.letitgo.admin.recruit.jobposting.model.dto.PostInsertRuqeustDTO" id="postInsertRuqeustResultMap">
+		<id property="jobPostReqNo" column="JOB_POST_REQ_NO"/>
+		<result property="jobPostNo" column="JOB_POST_NO"/>
+		<result property="coComName" column="CO_COM_NAME"/>
+		<result property="jobPostReqDate" column="JOB_POST_REQ_DATE"/>
+		<result property="jobPostAnsDate" column="JOB_POST_ANS_DATE"/>
+		<result property="jobPostRejectReason" column="JOB_POST_REJECT_REASON"/>
+	</resultMap>
+
+	
+	<select id="selectPostRequest" resultMap="postInsertRuqeustResultMap">
+		SELECT /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#selectPostRequest() */ 
+		       A.JOB_POST_REQ_NO
+		     , A.JOB_POST_NO
+		     , D.CO_COM_NAME
+		     , A.JOB_POST_REQ_DATE
+		     , A.JOB_POST_ANS_DATE
+		     , A.JOB_POST_REJECT_REASON
+		  FROM TBL_JOB_POSTING_APP_HISTORY A
+		  JOIN TBL_JOB_POSTING B ON (A.JOB_POST_NO = B.JOB_POST_NO)
+		  JOIN TBL_MEMBER C ON (B.CO_MEM_NO = C.MEM_NO)
+		  JOIN TBL_CO_MEMBER_ADD_INFO D ON (C.MEM_NO = D.CO_MEM_NO)
+		 ORDER BY A.JOB_POST_REQ_NO
+	</select>
+	
+<!-- 	<update id="updatePostRequestApp1"> -->
+<!-- 		UPDATE  -->
+<!-- 		       TBL_JOB_POSTING -->
+<!-- 		   SET JOB_POST_KINDS = '승인된 공고' -->
+<!-- 		 WHERE JOB_POST_NO = #{ jobPostNo } -->
+<!-- 	</update> -->
+	
+	
+	
+</mapper>

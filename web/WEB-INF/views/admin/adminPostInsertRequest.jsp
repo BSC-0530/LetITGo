@@ -90,7 +90,7 @@
 												<br>
 												<p>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/post/insertRequest/select">공고 등록 요청</a>											
+													<a href="${ pageContext.servletContext.contextPath }/admin/post/insertRequest/select">공고 등록 요청</a>
 												</p>
 												<br>
 												<p align="center">
@@ -148,29 +148,58 @@
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<br><br><br>
-							<h1>결제 내역 관리</h1>
+							<h1>공고 등록 요청</h1>
 							<div class="jp_listing_tabs_wrapper">
-								<table id="table_payment" class="hover cell-border stripe">
+								<table id="table_postReqest" class="hover cell-border stripe">
 									<thead>
 										<tr>
-											<td align="center">결제번호</td>
+											<td align="center">요청번호</td>
+											<td align="center">공고번호</td>
 											<td align="center">기업명</td>
-											<td align="center">결제일자</td>
-											<td align="center">상품이름</td>
-											<td align="center">결제금액</td>
+											<td align="center">요청일자</td>
+											<td align="center">응답일자</td>
+											<td align="center">거절사유</td>
+											<td align="center">상세보기</td>
 										</tr>
 									</thead>
-									<c:forEach var="adminPayment" items="${ requestScope.adminPaymentHistory }">
+									<c:forEach var="adminPostRequest" items="${ requestScope.postInsertRuqeustList }">							
 									<tbody align="center">
 											<tr>
-												<td><c:out value="${ adminPayment.payNo }"/></td>
-												<td><c:out value="${ adminPayment.coComName }"/></td>									
-												<td><c:out value="${ adminPayment.payDate }"/></td>
-												<td><c:out value="${ adminPayment.productName }"/></td>
-												<td><fmt:formatNumber value="${ adminPayment.payPrice }" pattern="###,###"/></td>
+												<td><c:out value="${ adminPostRequest.jobPostReqNo }"/></td>								
+												<td><c:out value="${ adminPostRequest.jobPostNo }"/></td>								
+												<td><c:out value="${ adminPostRequest.coComName }"/></td>								
+												<td><c:out value="${ adminPostRequest.jobPostReqDate }"/></td>
+												
+												<c:if test="${ adminPostRequest.jobPostAnsDate != null }">								
+												<td><c:out value="${ adminPostRequest.jobPostAnsDate }"/></td>		
+												</c:if>		
+												
+												<c:if test="${ adminPostRequest.jobPostAnsDate == null }">								
+												<td>-</td>		
+												</c:if>
+												
+												<c:if test="${ adminPostRequest.jobPostRejectReason != null }">								
+												<td><c:out value="${ adminPostRequest.jobPostAnsDate }"/></td>			
+												</c:if>		
+												
+												<c:if test="${ adminPostRequest.jobPostRejectReason == null }">								
+												<td>-</td>			
+												</c:if>
+												
+												<td><button type="submit" onclick="resume(this);">미리보기</button></td>
+												
+												<c:if test="${  adminPostRequest.jobPostAnsDate != null }">
+												<td><button disabled>승인</button></td>
+												<td><button disabled>거절</button></td>
+												</c:if>
+												
+												<c:if test="${  adminPostRequest.jobPostAnsDate == null }">
+												<td><button type="submit" onclick="jobPostApproval(this);">승인</button></td>
+												<td><button type="submit" onclick="jobPostReject(this);">거절</button></td>
+												</c:if>																			
 											</tr>
-									</tbody>				
-									</c:forEach>				
+									</tbody>
+									</c:forEach>															
 								</table>
 								<br>
 								<br>
@@ -183,10 +212,25 @@
 			</div>
 		</div>
 	</div>
-	<script>
-		$(document).ready(function() {
-			$('#table_payment').DataTable();
-		});
-	</script>
+<script>
+	$(document).ready(function() {
+		$('#table_postReqest').DataTable();
+	});
+	
+function jobPostApproval(button) {
+		
+	var jobPostReqNo = button.parentNode.parentNode.children[0].innerText;
+	var jobPostNo = button.parentNode.parentNode.children[1].innerText;
+		
+	var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/admin/post/app/update").attr("method", "get");
+		
+	$form.append($("<input>").attr("name", "jobPostReqNo").attr("type", "hidden").val(jobPostReqNo));
+	$form.append($("<input>").attr("name", "jobPostNo").attr("type", "hidden").val(jobPostNo));
+		
+	$("body").append($form);
+		
+	$form.submit();
+}		
+</script>
 </body>
 </html>

@@ -18,23 +18,24 @@ public class UpdateApplyStatusServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		String resumeNo = request.getParameter("resumeNo");
-		String jobPostNo = request.getParameter("jobPostNo");
+		int resumeNo = Integer.parseInt(request.getParameter("resumeNo"));
+		int jobPostNo = Integer.parseInt(request.getParameter("jobPostNo"));
 
-		Map<String, String> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>();
 		map.put("resumeNo", resumeNo);
 		map.put("jobPostNo", jobPostNo);
 		
 		UpdateApplyStatusService service = new UpdateApplyStatusService();
 		
-		int result = service.updateApplyStatus();
-		
+		int result = service.updateApplyStatus(map);
+		int result2 = service.insertApplyStatus(map);
+				
 		StringBuilder redirectText = new StringBuilder();
 		
-		if(result > 0) {
-			redirectText.append("<script>alert('환불요청이 정상적으로 취소되었습니다.'); location.href='../../company/refundHistory/select';</script>");
+		if(result > 0 && result2 > 0 ) {
+			redirectText.append("<script>alert('지원취소가 정상적으로 처리되었습니다..'); location.href='../../apply/select';</script>");
 		} else {
-			redirectText.append("<script>alert('환불요청취소가 실패하였습니다.'); location.href='../../company/refundHistory/select';</script>");
+			redirectText.append("<script>alert('지원취소를 실패하셨습니다..'); location.href='../../apply/select';</script>");
 		}
 		 								
 		response.setContentType("text/html; charset=UTF-8");

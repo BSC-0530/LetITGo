@@ -91,7 +91,7 @@
 												<br>
 												<p>
 												<p align="center">
-													<a href="#">공고 등록 요청</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/post/insertRequest/select">공고 등록 요청</a>												
 												</p>
 												<br>
 												<p align="center">
@@ -149,7 +149,7 @@
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<br><br><br>
-							<h1>환불 내역 조회</h1>
+							<h1>환불 요청 관리</h1>
 							<div class="jp_listing_tabs_wrapper">
 								<table id="table_refund" class="hover cell-border stripe">
 									<thead>
@@ -185,7 +185,7 @@
 												<td><c:out value="${ adminRefund.payChangeReason }"/></td>
 												
 												<c:if test="${ adminRefund.payChangeStatus eq '환불요청'  }">
-												<td><button type="submit" onclick="approval(this);">수락</button></td>
+												<td><button type="submit" onclick="approval(this);">승인</button></td>
 												<td><button type="submit" onclick="reject(this);">거절</button></td>
 												</c:if>	
 												

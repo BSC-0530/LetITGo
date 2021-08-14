@@ -141,10 +141,10 @@
 									<td align="center">이력서확인</td>
 								</tr>
 							</thead>	
-							<c:forEach var="whole" items="${ requestScope.PersonalApplyList }">									
 							<tbody align="center">
+							<c:forEach var="whole" items="${ requestScope.PersonalApplyList }">									
 								<tr>
-									<td><c:out value="${ whole.jobPostTitle }"/></td>
+									<td onclick="post1(this);"><c:out value="${ whole.jobPostTitle }"/></td>
 									<td><c:out value="${ whole.coComName }"/></td>
 									<td><c:out value="${ whole.jobPostEnrollDate }"/></td>
 									<td><c:out value="${ whole.jobPostDeadLine }"/></td>
@@ -171,8 +171,8 @@
 									<td style="font-size: 0px; width:0px; height:0px;"><c:out value="${ whole.resumeNo }"/></td>			
 									
 								</tr>
-							</tbody>
 							</c:forEach>				
+							</tbody>
 						</table>
 					</div>
 				</div>
@@ -187,28 +187,47 @@
 						<table id="table_apply_complete" class="hover cell-border stripe">
 							<thead>
 								<tr>
-									<td align="center">환불요청번호</td>
-									<td align="center">결제번호</td>
-									<td align="center">상품명</td>
-									<td align="center">환불금액</td>
-									<td align="center">환불사유</td>
-									<td align="center">변경상태</td>
-									<td align="center">요청일자</td>
-									<td align="center">요청응답일자</td>
+									<td align="center">공고제목</td>
+									<td align="center">기업명</td>
+									<td align="center">등록일자</td>
+									<td align="center">마감일자</td>
+									<td align="center">지원일자</td>
+									<td align="center">열람상태</td>
+									<td align="center">지원취소</td>
+									<td align="center">이력서확인</td>
 								</tr>
-							</thead>											
+							</thead>		
 							<tbody align="center">
+							<c:forEach var="complete" items="${ requestScope.PersonalApplyCompletedList }">											
 								<tr>
-									<td><c:out value=""/></td>
-									<td><c:out value=""/></td>
-									<td><c:out value=""/></td>
-									<td><c:out value=""/></td>
-									<td><c:out value=""/></td>
-									<td><c:out value=""/></td>
-									<td><button type="submit" onclick="req(this);">환불취소</button></td>				
-									<td><button type="submit" disabled>환불불가</button></td>																
+									<td><c:out value="${ complete.jobPostTitle }"/></td>
+									<td><c:out value="${ complete.coComName }"/></td>
+									<td><c:out value="${ complete.jobPostEnrollDate }"/></td>
+									<td><c:out value="${ complete.jobPostDeadLine }"/></td>
+									<td><c:out value="${ complete.jobPostApplyingDate }"/></td>
+									<td><c:out value="${ complete.jobPostBrowesStatus }"/></td>
+									
+									<c:if test="${complete.jobPostApplyingStatus eq '지원완료' }">
+									<td><button type="submit" onclick="cancel(this);">취소</button></td>	
+									</c:if>	
+									
+									<c:if test="${complete.jobPostApplyingStatus != '지원완료' }">
+									<td><button disabled>취소완료</button></td>	
+									</c:if>
+									
+									<c:if test="${complete.jobPostApplyingKinds eq '플랫폼양식' }">										
+									<td><button type="submit">확인</button></td>	
+									</c:if>
+									
+									<c:if test="${complete.jobPostApplyingKinds eq '자사양식' }">										
+									<td><button type="submit" disabled>자샤양식</button></td>	
+									</c:if>		
+															
+									<td style="font-size: 0px; width:0px; height:0px;"><c:out value="${ complete.jobPostNo }"/></td>			
+									<td style="font-size: 0px; width:0px; height:0px;"><c:out value="${ complete.resumeNo }"/></td>											
 								</tr>
-							</tbody>				
+							</c:forEach>				
+							</tbody>
 						</table>
 					</div>
 				</div>
@@ -223,27 +242,28 @@
 						<table id="table_apply_cancel" class="hover cell-border stripe">
 							<thead>
 								<tr>
-									<td align="center">환불요청번호</td>
-									<td align="center">결제번호</td>
-									<td align="center">상품명</td>
-									<td align="center">환불금액</td>
-									<td align="center">환불사유</td>
-									<td align="center">변경상태</td>
-									<td align="center">요청일자</td>
-									<td align="center">요청응답일자</td>
+									<td align="center">공고제목</td>
+									<td align="center">기업명</td>
+									<td align="center">등록일자</td>
+									<td align="center">마감일</td>
+									<td align="center">지원일자</td>
+									<td align="center">취소일자</td>
+									<td align="center">열람상태</td>
+
 								</tr>
 							</thead>											
 							<tbody align="center">
+							<c:forEach var="canceled" items="${ requestScope.PersonalApplyCanceledList }">
 								<tr>
-									<td><c:out value=""/></td>
-									<td><c:out value=""/></td>
-									<td><c:out value=""/></td>
-									<td><c:out value=""/></td>
-									<td><c:out value=""/></td>
-									<td><c:out value=""/></td>
-									<td><button type="submit" onclick="req(this);">환불취소</button></td>				
-									<td><button type="submit" disabled>환불불가</button></td>																
+									<td><c:out value="${ canceled.jobPostTitle }"/></td>
+									<td><c:out value="${ canceled.coComName }"/></td>
+									<td><c:out value="${ canceled.jobPostEnrollDate }"/></td>
+									<td><c:out value="${ canceled.jobPostDeadLine }"/></td>
+									<td><c:out value="${ canceled.jobPostApplyingDate }"/></td>
+									<td><c:out value="${ canceled.jobPostApplyingCancelDate }"/></td>
+									<td><c:out value="${ canceled.jobPostBrowesStatus }"/></td>	
 								</tr>
+							</c:forEach>
 							</tbody>				
 						</table>
 					</div>
@@ -276,6 +296,14 @@ function cancel(button) {
 	$("body").append($form);
 	
 	$form.submit();
+}
+
+function post1(td) { 
+	
+	const selectJobPostNo = td.parentNode.children[8].innerText;
+	
+	location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?selectJobPostNo=" +selectJobPostNo
+			
 }
 </script>
 </body>

@@ -7,6 +7,8 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.itsme.letitgo.personal.recruit.apply.model.dto.SelectPersonalApplyDTO;
+import com.itsme.letitgo.personal.recruit.apply.model.dto.SelectPersonlCanceledApplyDTO;
+import com.itsme.letitgo.personal.recruit.apply.model.dto.SelectPersonlCompletedApplyDTO;
 import com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper;
 
 public class SelectPersonalApplyService {
@@ -24,17 +26,33 @@ public class SelectPersonalApplyService {
 		return PersonalApplyList;
 	}
 
-	public int selectOwnFormCheck() {
+	public List<SelectPersonlCompletedApplyDTO> selectPersonalCompletedApply() {
+
+		SqlSession session = getSqlSession();
+		
+		PersonalApplyMapper mapper = session.getMapper(PersonalApplyMapper.class);
+		
+		List<SelectPersonlCompletedApplyDTO> PersonalApplyCompletedList = mapper.selectPersonalCompletedApply();
+		
+		session.close();
+		
+		return PersonalApplyCompletedList;
+	}
+	
+	public List<SelectPersonlCanceledApplyDTO> selectPersonalCanceledApply() {
 		
 		SqlSession session = getSqlSession();
 		
 		PersonalApplyMapper mapper = session.getMapper(PersonalApplyMapper.class);
 		
-		int PersonalApplyList = mapper.selectOwnFormCheck();
+		List<SelectPersonlCanceledApplyDTO> PersonalApplyCanceledList = mapper.selectPersonalCanceledApply();
 		
 		session.close();
 		
-		return PersonalApplyList;
+		return PersonalApplyCanceledList;
+		
 	}
+
+
 
 }
