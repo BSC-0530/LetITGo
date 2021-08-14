@@ -29,7 +29,7 @@
                             <div class="mainmenu">
                                  <ul class="float_left">
                                  	<li class="has-mega gc_main_navigation">
-                                    	<a href="${ pageContext.servletContext.contextPath }/scout/personal/insert" class="gc_main_navigation" class="gc_main_navigation">봉석</a>
+                                    	<a href="${ pageContext.servletContext.contextPath }/detail/browse/select" class="gc_main_navigation" class="gc_main_navigation">봉석</a>
                                     </li>
                                  	<li class="has-mega gc_main_navigation">
                                     	<a href="${ pageContext.servletContext.contextPath }/regist/member" class="gc_main_navigation" class="gc_main_navigation">승수</a>

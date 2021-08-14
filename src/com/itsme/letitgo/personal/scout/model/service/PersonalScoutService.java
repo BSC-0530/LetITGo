@@ -3,6 +3,7 @@ package com.itsme.letitgo.personal.scout.model.service;
 import org.apache.ibatis.session.SqlSession;
 
 import com.itsme.letitgo.personal.scout.model.dto.ResumeDTO;
+import com.itsme.letitgo.personal.scout.model.dto.ScoutDetailResumeDTO;
 import com.itsme.letitgo.personal.scout.model.mapper.PersonalScoutMapper;
 
 import static com.itsme.letitgo.common.mybatis.Template.getSqlSession;
@@ -39,6 +40,15 @@ public class PersonalScoutService {
 		session.close();
 		
 		return resumeList;
+	}
+
+	public List<ScoutDetailResumeDTO> selectDetailResume() {
+	
+		SqlSession session = getSqlSession();
+		PersonalScoutMapper mapper = session.getMapper(PersonalScoutMapper.class);
+		
+		List<ScoutDetailResumeDTO> detailResume = mapper.selectDetailResume();
+		return null;
 	}
 	
 	
