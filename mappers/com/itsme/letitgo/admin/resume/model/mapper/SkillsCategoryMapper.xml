@@ -45,10 +45,10 @@
 		  FROM TBL_SKILLS_CATEGORY A     
 	</select>
 	
-<!-- 	<delete id="skillsCategoryDelete" parameterType="int" resultType="_int">
+	<delete id="skillsCategoryDelete">
 		DELETE
 		  FROM TBL_SKILLS_CATEGORY A
 		 WHERE A.CATEGORY_NO =  #{ no }     
-	</delete> -->
+	</delete> 
 	
 </mapper>

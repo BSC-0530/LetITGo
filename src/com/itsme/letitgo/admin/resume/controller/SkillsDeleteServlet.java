@@ -14,7 +14,7 @@ import com.itsme.letitgo.admin.resume.service.SkillsService;
 @WebServlet("/skills/delete")
 public class SkillsDeleteServlet extends HttpServlet {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
 		
@@ -38,7 +38,7 @@ public class SkillsDeleteServlet extends HttpServlet {
 			request.setAttribute("message", "기술 삭제에 실패하셨습니다.");
 		}
 		
-		request.getRequestDispatcher(path).forward(request, response);
+		response.sendRedirect("/let/skills/list"); 
 		
 	}
 

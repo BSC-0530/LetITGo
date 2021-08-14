@@ -13,18 +13,8 @@ import com.itsme.letitgo.admin.resume.service.SkillsCategoryService;
 
 @WebServlet("/skillscategory/delete")
 public class SkillsCategoryDeleteServlet extends HttpServlet {
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		/* 안넘어가니까 필요없음
-		 * String path = "/WEB-INF/views/admin/??????.jsp"; //경로 지정해주기
-		 * 
-		 * request.getRequestDispatcher(path).forward(request, response);
-		 */
-		
-	}
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
 		
@@ -57,7 +47,7 @@ public class SkillsCategoryDeleteServlet extends HttpServlet {
 			request.setAttribute("message", "기술 카테고리 삭제에 실패하셨습니다.");
 		}
 		
-		request.getRequestDispatcher(path).forward(request, response);
+		response.sendRedirect("/let/skillscategory/list"); 
 		
 		
 	}

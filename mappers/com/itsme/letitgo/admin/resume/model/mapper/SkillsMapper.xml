@@ -45,12 +45,18 @@
 		  FROM TBL_SKILLS A     
 	</select>
 	
-	<!-- <delete id="skillsDelete" parameterType="int" resultType="_int">
+	<!-- <delete id="skillsDelete">
 		DELETE
 		  FROM TBL_SKILLS A
-		 WHERE A.SKILLS_NO = #{ skillsNo }   
-	</delete>
-	 -->
+		 WHERE A.CATEGORY_NO =    
+		 (
+		SELECT B.CATEGORY_NO  
+		  FROM TBL_SKILLS_CATEGORY B
+		 WHERE A.CATEGORY_NO = B.CATEGORY_NO
+		   AND B.CATEGORY_NO = #{ no } 
+		 )
+	</delete> -->
+	 
 </mapper>
 
 

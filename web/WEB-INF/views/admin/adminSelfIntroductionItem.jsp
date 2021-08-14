@@ -200,7 +200,7 @@
 														value="${ controllSelfIntroductionItem.selfIntroItemName }" /></td>
 
 												<!-- <td><button type="button" disabled>삭제</button></td> -->
-												<td><button class="btn-info" onClick="selfIntroductionItemDelete(this);" value="${ controllJobField.selfIntroItemNo }">삭제</button></td>
+												<td><button class="btn-info" onClick="selfIntroductionItemDelete(this);" value="${ controllSelfIntroductionItem.selfIntroItemNo }">삭제</button></td>
 
 											</tr>
 										</tbody>
@@ -245,7 +245,7 @@
 		
 		function selfIntroductionItemDelete(button) {
 			
-			const no = button.value;
+			const selfIntroItemNo = button.value;
 			location.href = "${ pageContext.servletContext.contextPath }/selfintroductionitem/delete?selfIntroItemNo=" + selfIntroItemNo;
 			
 		}
