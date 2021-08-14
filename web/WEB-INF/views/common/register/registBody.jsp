@@ -145,7 +145,6 @@
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                             <input type="email" name="email"   style="text-transform: lowercase" placeholder="이메일">
                                             <input type="button" value="이메일 보내기" class="btemail" id="btemail" >
-                                            <img id="id_check_sucess" style="display: none;">
                                         </div>
 
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
@@ -201,47 +200,71 @@
                                     <div class="row clearfix">
                                         <!--Form Group-->
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="field-name" value="" placeholder="Username*">
+                                            <input type="text" name="userId" value="" placeholder="아이디">
+                                            <button name="idCheck" onclick="registerCheckFunction();" type="button">중복체크</button>
                                         </div>
                                         <!--Form Group-->
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="field-name" value="" placeholder="Email*">
+                                            <input type="text" name="email" value="" placeholder="이메일">
+                                               <input type="button" value="이메일 보내기" class="btemail" id="btemail" >
                                         </div>
-                                        <!--Form Group-->
+                                        
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-
-                                            <input type="password" name="field-name" value="" placeholder="password*">
-                                        </div>
-                                        <!--Form Group-->
-                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
-
-                                            <input type="password" name="field-name" value="" placeholder="re-enter password*">
-                                        </div>
-
-                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
-
-                                            <input type="text" name="field-name" value="" placeholder="phone">
-                                        </div>
-
-                                        <!--Form Group-->
-                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
-
-                                            <input type="text" name="field-name" value="" placeholder="company name">
-
-                                        </div>
-
-                                        <!--Form Group-->
-                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
-
-                                            <input type="text" name="field-name" value="" placeholder="website">
-
+                                              <input type="text" name="comfirm" class="comfirm"value="인증번호 확인"  style="text-transform: lowercase" placeholder="인증번호">
+                                              <input type="button" value="인증번호 확인" id="mailcheck"  class="mailcheck" >
                                         </div>
                                         <!--Form Group-->
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
-                                            <input type="text" name="field-name" value="" placeholder="address line">
+                                            <input type="password" name="pw" value="" placeholder="비밀번호">
+                                        </div>
+                                        <!--Form Group-->
+                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+
+                                            <input type="password" name="pw2" value="" placeholder="비밀번호 재입력">
                                         </div>
 
+                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name="managerName" value="" placeholder="담당자 이름">
+                                        </div>
+
+                                        <!--Form Group-->
+                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name="coPhone" value="" placeholder="담당자 전화번호">
+                                        </div>
+
+										<div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name="coNo" value="" placeholder="사업자 등록번호">
+                                            <input type="button" value="인증번호 확인" id="coNoCo"  >
+                                        </div>
+                                        
+                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name="companyName" value="" placeholder="기업이름">
+                                        </div>
+                                      
+                                       <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name="ceoName" value="" placeholder="대표자 이름">
+                                        </div>
+                                        
+                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name="sectors" value="" placeholder="업종">
+                                        </div>
+                                        
+                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name="status" value="" placeholder="업태">
+                                        </div>
+                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name="adress" value="" placeholder="주소">
+                                        </div>
+                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name="adressDetail" value="" placeholder="상세 주소">
+                                        </div>
+
+                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+
+                                            <input type="text" name="website" value="" placeholder="웹주소">
+
+                                        </div>
                                         <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="check-box text-center">
                                                 <input type="checkbox" name="shipping-option" id="account-option_2"> &ensp;
@@ -251,7 +274,7 @@
                                     </div>
 
                                     <div class="login_btn_wrapper register_btn_wrapper login_wrapper ">
-                                        <a href="#" class="btn btn-primary login_btn"> register </a>
+                                        <a href="#" class="btn btn-primary login_btn"> 회원가입 </a>
                                     </div>
                                     <div class="login_message">
                                         <p>Already a member? <a href="#"> Login Here </a> </p>
