@@ -149,7 +149,7 @@
                                        <select id="selectExperience" style="border: 1px solid;">
                                            <option disabled selected>경력을 선택해주세요</option>
                                            <option value="0">신입</option>
-                                           <option value="1">1녀</option>
+                                           <option value="1">1년</option>
                                            <option value="2">2년</option>
                                            <option value="3">3년</option>
                                            <option value="4">4년</option>
@@ -243,8 +243,8 @@
 	                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 	                                                <div class="jp_job_post_main_wra[]pper_cont jp_job_post_grid_main_wrapper_cont">
 	                                                	
+	                                                	<!-- div 영역 클릭 시 상세 공고 페이지로 이동 -->
 	                                                    <div class="jp_job_post_main_wrapper jp_job_post_grid_main_wrapper" style="cursor:pointer; height: 250px" onclick="post(this);" >
-	                                                    
 	                                                    
 	                                                    	<input type="text" id="postNo" value="${ jobPosting.jobPostNo }" style="visibility: hidden;">
 	                                                    	

@@ -11,7 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.itsme.letitgo.company.recruit.jobposting.model.dto.RequestJobPostingDTO;
 import com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO;
 import com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper;
-import com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpJobFieldDTO;
+import com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpSkillsDTO;
 
 
 public class SelectCoMyJobPostingService {
@@ -67,7 +67,49 @@ public class SelectCoMyJobPostingService {
 		
 		SelectCoMyJobPostingMapper mapper = session.getMapper(SelectCoMyJobPostingMapper.class);
 		
-		return true;
+		// TBL_JOB_POSTING에 insert한 후 결과 리턴 받음 
+		int result1 = mapper.insertJobPosting(dto);
+		int result2 = 0;
+		int result3 = 0;
+		System.out.println("insert한 jobPostNo : " + dto.getJobPostNo());
+		
+		
+		if(result1 > 0) {
+			
+			JpSkillsDTO skillsDTO = new JpSkillsDTO();
+			
+			// TBL_JOB_POSTING_REQ_SKILLS에 가져온 skills 모두를 insert
+			result2 = 0;
+			for(int skillsNo : dto.getSkillsCodeList()) {
+				// 위에서 insert한 getJobPostNo를 이용해 그 채용공고에 해당하는 요구 스킬 insert 하기 위해 dto에 담아준다.
+				skillsDTO.setJobPostNo(dto.getJobPostNo());
+				skillsDTO.setSkillsNo(skillsNo);
+				
+				// insert 결과를 모두 result2에 합
+				result2 += mapper.insertSkills(skillsDTO);
+				
+			}
+			// result2의 결과가 list의 사이즈보다 크면 모두 insert 성공
+			// 이때 TBL_JOB_POSTING_APP_HISTORY에 insert
+			if(result2 >= dto.getSkillsCodeList().size()) {
+				
+				result3 = mapper.insertjobPostingAppHistory(dto.getJobPostNo());
+				
+				if(result3 > 0) {
+					
+					session.commit();
+				}
+			}
+			
+		} else {
+			session.rollback();
+		}
+		
+		
+		session.close();
+		
+		
+		return result3 > 0? true : false;
 	}
 
 }

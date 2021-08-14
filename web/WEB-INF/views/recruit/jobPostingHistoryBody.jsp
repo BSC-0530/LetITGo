@@ -151,7 +151,7 @@
 							</thead>
 							
 							<!-- requestScope에 담긴 kinds가 null일때 전체 조회된 공고를 보여줌 -->
-							<c:if test="${ requestScope.kinds eq '승인된공고' }" >
+							<c:if test="${ requestScope.kinds eq null }" >
 								<c:forEach var="jobPosting"  items="${ requestScope.recruitingJopPosting }">
 								
 								<tbody align="center">
@@ -160,9 +160,12 @@
 										
 										<!-- 공고 상태에 따라 view에 다르게 표기 -->
 										<td>
-										<c:if test="${ jobPosting.jobPostKinds eq '승인된공고' }">
-										<c:out value="채용중"/>
-										</c:if>
+										<c:choose>
+										<c:when test="${ jobPosting.jobPostKinds eq '승인된공고' }"><c:out value="채용중"/></c:when>
+										<c:when test="${ jobPosting.jobPostKinds eq '승인대기중인공고' }"><c:out value="수정/등록 요청"/></c:when>
+										<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }"><c:out value="마감"/></c:when>
+										<c:when test="${ jobPosting.jobPostKinds eq '거절된공고' }"><c:out value="등록 거절"/></c:when>
+										</c:choose>
 										</td>
 										<td><c:out value="${ jobPosting.jobPostMinExperience }" />년 ~ <c:out value="${ jobPosting.jobPostMaxExperience }" />년</td>								
 										<td><c:out value="${ jobPosting.jobPostEnrollDate }" /></td>								
@@ -260,9 +263,10 @@
 	};
 	
 	$('#insertJobPosting').click(function(){
-	
 		
-		location.href = "${ pageContext.servletContext.contextPath }/recruit/option/select"
+		alert("");
+		
+		location.href = "${ pageContext.servletContext.contextPath }/recruit/insert"
 	})
 	
 	

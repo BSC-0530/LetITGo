@@ -82,8 +82,11 @@
                                 </div>
                                 <div class="jp_job_listing_single_post_right_cont">
                                     <div class="jp_job_listing_single_post_right_cont_wrapper">
-                                        <h4><c:out value="${ requestScope.detailedJobPosting.jobPostTitle }"/></h4>
-                                        <p><c:out value="${ requestScope.detailedJobPosting.coMemberAddInfoDTO.coComName }"/></p>
+                                        <label style="font-size:20px;"><c:out value="${ requestScope.detailedJobPosting.jobPostTitle }"/></label>
+                                        <br>
+                                        <p  style="cursor:pointer; font-size: 20px;" onclick="aboutCompany(this);"><c:out value="${ requestScope.detailedJobPosting.coMemberAddInfoDTO.coComName }"/></p>
+ 										<br>
+ 										<input type="text" id="postNo" value="${ requestScope.detailedJobPosting.coMemNo }" style="visibility: hidden;">
                                     </div>
                                 </div>
                                 <div class="jp_job_post_right_overview_btn_wrapper">
@@ -154,8 +157,8 @@
                 </div>
             </div>
         </div>
-        
     </div>
+    
    
 <!--     main js file start -->
 <!--     <script src="js/jquery_min.js"></script> -->
@@ -179,6 +182,20 @@
 		};
 
 		var map = new kakao.maps.Map(container, options);
+		
+	</script>
+	
+	<script>
+		function aboutCompany(label) {
+			
+			const coComNo = label.parentNode.children[4].value;
+			
+			alert(coComNo);
+			alert("");
+			
+			location.href = "${ pageContext.servletContext.contextPath }/aboutCompany/select?coComNo="+ coComNo;
+	
+		}
 	</script>
 </body>
 </html>
