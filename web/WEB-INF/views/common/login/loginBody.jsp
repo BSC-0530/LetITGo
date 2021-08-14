@@ -69,8 +69,8 @@
 <!-- 								<a href="#" class="btn btn-primary login_btn">login</a> -->
 								<button type="submit">login</button>
 							</div>
-							<div class="login_message">
-								<p> 새로운 개발자인가요?<a href="#"> 가입하기</a> </p>
+							<div class="login_message"  align="center">
+								<p>새로운 개발자인가요?<a href="/web/WEB-INF/views/register/regist.jsp"> 가입하기</a> </p>
 							</div>
 							</form>
 						</div>

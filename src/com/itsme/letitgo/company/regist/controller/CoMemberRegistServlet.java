@@ -31,15 +31,15 @@ public class CoMemberRegistServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		/*기본적인사항*/
-		String memberId = request.getParameter("memberId");
+		String memberId = request.getParameter("userId");
 		String email = request.getParameter("email");
-		String pwd = request.getParameter("pwd");
+		String pwd = request.getParameter("pw");
 		String name = request.getParameter("name");
 		String phone = request.getParameter("phone");
-		String kinds = request.getParameter("kinds");
-		java.sql.Date enrollDate = java.sql.Date.valueOf(request.getParameter("enrollDate"));
-		int entYn = Integer.parseInt(request.getParameter("entYn"));
-		java.sql.Date entDate = java.sql.Date.valueOf(request.getParameter("entDate"));
+//		String kinds = request.getParameter("kinds");
+//		java.sql.Date enrollDate = java.sql.Date.valueOf(request.getParameter("enrollDate"));
+//		int entYn = Integer.parseInt(request.getParameter("entYn"));
+//		java.sql.Date entDate = java.sql.Date.valueOf(request.getParameter("entDate"));
 		/*기업 상세사항*/
 		String intro = request.getParameter("intre");
 		String coNo = request.getParameter("coNo");
@@ -58,10 +58,10 @@ public class CoMemberRegistServlet extends HttpServlet {
 		coMemberDTO.setPwd(pwd);
 		coMemberDTO.setName(name);
 		coMemberDTO.setPhone(phone);
-		coMemberDTO.setKinds(kinds);
-		coMemberDTO.setEnrollDate(enrollDate);
-		coMemberDTO.setEntYn(entYn);
-		coMemberDTO.setEntDate(entDate);
+		coMemberDTO.setKinds("기업회원");
+//		coMemberDTO.setEnrollDate(enrollDate);
+//		coMemberDTO.setEntYn(entYn);
+//		coMemberDTO.setEntDate(entDate);
 		coMemberDTO.setIntro(intro);
 		coMemberDTO.setCoNo(coNo);
 		coMemberDTO.setComName(comName);
