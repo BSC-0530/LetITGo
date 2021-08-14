@@ -199,7 +199,8 @@
 												<td id="no"><c:out value="${ controllSkills.no }" /></td>
 												<td id="name"><c:out value="${ controllSkills.name }" /></td>
 
-												<td><button type="button" disabled>삭제</button></td>
+												<!-- <td><button type="button" disabled>삭제</button></td> -->
+												<td><button class="btn-info" onClick="skillsDelete(this);" value="${ controllSkills.skillsNo }">삭제</button></td>
 											</tr>
 										</tbody>
 									</c:forEach>
@@ -238,6 +239,19 @@
 			 location.href = "${ pageContext.servletContext.contextPath }/skills/insert" 
 			
 		}
+	</script>
+	
+	<script type="text/javascript">
+		
+		function skillsDelete(button) {
+			
+			const skillsNo = button.value;
+			location.href = "${ pageContext.servletContext.contextPath }/skills/delete?skillsNo=" + skillsNo;
+			
+		}
+		
+		$("input").filter("[value='null']").val("");
+		
 	</script>
 
 </body>

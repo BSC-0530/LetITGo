@@ -202,7 +202,7 @@
 														value="${ controllSkillsCategory.name }" /></td>
 
 												<!-- <td><button type="button" disabled>삭제</button></td> -->
-												
+												<td><button class="btn-info" onClick="skillsCategoryDelete(this);" value="${ controllSkillsCategory.no }">삭제</button></td>
 											</tr>
 										</tbody>
 									</c:forEach>
@@ -244,5 +244,20 @@
 		}
 	</script>
 
+<script type="text/javascript">
+		
+		function skillsCategoryDelete(button) {
+			
+			alert();
+			
+			const no = button.value;
+			location.href = "${ pageContext.servletContext.contextPath }/skillscategory/delete?no=" + no;
+			
+		}
+		
+		$("input").filter("[value='null']").val("");
+		
+	</script>
+	
 </body>
 </html>
