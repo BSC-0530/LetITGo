@@ -57,7 +57,7 @@ public class MainScoutListService {
 		
 		List<Integer> careeaNumber = mapper.careeaNumber(onClickResumeNo);
 		
-		System.out.println("@@@@@@@@@@@@@@@@" + brosweSimplelDTO);
+		System.out.println("@@@@@@@@@@@@@@@@" + careeaNumber);
 		
 		String browseName = (brosweSimplelDTO.get(0).getMemDTO().get(0).getMemName()).toString();
 		String jobName = (brosweSimplelDTO.get(0).getJobFieldDTO().get(0).getJobName()).toString();
@@ -106,6 +106,8 @@ public class MainScoutListService {
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
 		
 		 List<BrosweHistoryDTO>  selectBrowseUsingHistroy = mapper.selectBrowseUsingHistroy();
+		 
+		 
 		 System.out.println("ASDKJAHSDKJ" + selectBrowseUsingHistroy);
 		 session.close();
 		

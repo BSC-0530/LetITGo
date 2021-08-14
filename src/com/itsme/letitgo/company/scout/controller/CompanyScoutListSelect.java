@@ -2,6 +2,7 @@ package com.itsme.letitgo.company.scout.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,11 +26,14 @@ public class CompanyScoutListSelect extends HttpServlet {
 		
 		List<BrosweHistoryDTO> paymentBrowseUsingHistroyList = MainScoutListService.selectBrowseUsingHistroy();
 		
+		Map<String, Object> scoutList= mainScoutListService.selectAllScoutList();
+		
 		for(BrosweHistoryDTO BrowseUsingHistroy : paymentBrowseUsingHistroyList) {
 			
 			System.out.println(BrowseUsingHistroy);
 			
 		}
+		
 		
 		int simpleOpen = mainScoutListService.selectAllCountSimpeOpen();
 		int deepOpen = mainScoutListService.selectAllCountDeepOpen();
@@ -40,7 +44,7 @@ public class CompanyScoutListSelect extends HttpServlet {
 		
 		String path = "/WEB-INF/views/member/company/scoutMyPage.jsp";
 		
-		
+		request.setAttribute("scoutCareea", scoutList.get("scoutCareea"));
 		request.setAttribute("paymentBrowseUsingHistroyList", paymentBrowseUsingHistroyList);
 		request.setAttribute("deepCountNum", deepOpen);
 		request.setAttribute("simpleCountNum", simpleOpen);

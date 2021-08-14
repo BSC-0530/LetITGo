@@ -39,6 +39,7 @@
 
 </head>
 <body>
+
 <div class="jp_tittle_main_wrapper">
         <div class="jp_tittle_img_overlay"></div>
         <div class="container">
@@ -173,11 +174,17 @@
 									<tr>
 										<td><c:out value="${ broswe.resumeTitle }"></c:out></td>
 										<td><c:out value="${ broswe.memName }"></c:out> </td>
-										<td>1</td>
+										<td>
+										<c:forEach items="${ requestScope.scoutCareea }" var="careea" varStatus="status">
+											<c:if test="${ broswe.resumeNo eq careea.RESUME_NO}">
+												<i><c:out value= "${ careea.CAREER }개월"/> </i>
+											</c:if>
+										</c:forEach>
+										</td>
 										<td><c:out value="${broswe.jobName }"></c:out> </td>
 										<td><c:out value="${broswe.resumeBrowseKinds }"></c:out> </td>
 										<td><button type="button"  onclick="browse(this);">상세보기</button>
-										<input type="hidden" id="hiddenResumeNo" value="${ broswe.resumeNo }">
+										<input type="text" id="hiddenResumeNo" value="${ broswe.resumeNo }">
 										</td>
 									</tr>
 								</tbody>

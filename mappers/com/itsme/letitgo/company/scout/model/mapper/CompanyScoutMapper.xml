@@ -343,7 +343,6 @@
 			FROM TBL_RESUME_READING_HISTORY R
 			JOIN TBL_CO_MEMBER_ADD_INFO C ON (R.CO_MEM_NO = C.CO_MEM_NO)
 			WHERE R.co_mem_no = 2
-		
 		</select>
 		
 		
