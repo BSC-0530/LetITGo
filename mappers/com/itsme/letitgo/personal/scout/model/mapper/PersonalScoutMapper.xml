@@ -28,9 +28,4 @@
 		 WHERE A.IN_MEM_NO = 3
 	</select>
 
-	
-	
-	
-	
-	
 </mapper>

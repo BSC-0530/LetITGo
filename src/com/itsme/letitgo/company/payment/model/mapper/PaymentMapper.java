@@ -3,13 +3,11 @@ package com.itsme.letitgo.company.payment.model.mapper;
 import java.util.List;
 import java.util.Map;
 
-import com.itsme.letitgo.admin.payment.model.dto.AdminPaymentHistoryDTO;
 import com.itsme.letitgo.company.payment.model.dto.BrowseUsingHistoryDTO;
 import com.itsme.letitgo.company.payment.model.dto.ExposureUsingHistoryDTO;
 import com.itsme.letitgo.company.payment.model.dto.HoldingRequestingSkillsDTO;
 import com.itsme.letitgo.company.payment.model.dto.PaymentHistoryDTO;
 import com.itsme.letitgo.company.payment.model.dto.ProductDTO;
-import com.itsme.letitgo.company.payment.model.dto.RefundChangeStatusDTO;
 import com.itsme.letitgo.company.payment.model.dto.RefundHistoryDTO;
 import com.itsme.letitgo.company.payment.model.dto.RefundRequestProductDTO;
 
@@ -44,8 +42,6 @@ public interface PaymentMapper {
 	int selectPayNo(int payChangeNo);
 	
 	int updateRefundRequest2(int payNo  /* 기업회원번호 */);
-	
-	List<RefundChangeStatusDTO> selectRefundChangeStatus(/* 기업회원번호 */);
 
 	int updatePaymentStatus(Map<String, Object> map);
 

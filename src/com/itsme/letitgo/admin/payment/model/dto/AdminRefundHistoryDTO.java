@@ -12,11 +12,12 @@ public class AdminRefundHistoryDTO implements java.io.Serializable {
 	private int payPrice;
 	private String payChangeStatus;
 	private String payChangeReason;
-	
+	private String payRejectReason;
+
 	public AdminRefundHistoryDTO() {}
 
 	public AdminRefundHistoryDTO(int payChangeNo, int payNo, Date payDate, Date payReqDate, Date payAnsDate,
-			int payPrice, String payChangeStatus, String payChangeReason) {
+			int payPrice, String payChangeStatus, String payChangeReason, String payRejectReason) {
 		super();
 		this.payChangeNo = payChangeNo;
 		this.payNo = payNo;
@@ -26,6 +27,7 @@ public class AdminRefundHistoryDTO implements java.io.Serializable {
 		this.payPrice = payPrice;
 		this.payChangeStatus = payChangeStatus;
 		this.payChangeReason = payChangeReason;
+		this.payRejectReason = payRejectReason;
 	}
 
 	public int getPayChangeNo() {
@@ -92,15 +94,21 @@ public class AdminRefundHistoryDTO implements java.io.Serializable {
 		this.payChangeReason = payChangeReason;
 	}
 
+	public String getPayRejectReason() {
+		return payRejectReason;
+	}
+
+	public void setPayRejectReason(String payRejectReason) {
+		this.payRejectReason = payRejectReason;
+	}
+
 	@Override
 	public String toString() {
 		return "AdminRefundHistoryDTO [payChangeNo=" + payChangeNo + ", payNo=" + payNo + ", payDate=" + payDate
 				+ ", payReqDate=" + payReqDate + ", payAnsDate=" + payAnsDate + ", payPrice=" + payPrice
-				+ ", payChangeStatus=" + payChangeStatus + ", payChangeReason=" + payChangeReason + "]";
+				+ ", payChangeStatus=" + payChangeStatus + ", payChangeReason=" + payChangeReason + ", payRejectReason="
+				+ payRejectReason + "]";
 	}
-
-	
-	
 	
 	
 }

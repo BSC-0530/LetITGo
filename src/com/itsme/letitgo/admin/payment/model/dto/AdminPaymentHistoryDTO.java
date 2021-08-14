@@ -1,18 +1,17 @@
 package com.itsme.letitgo.admin.payment.model.dto;
 
-import java.util.Date;
-
 public class AdminPaymentHistoryDTO {
 	
 	private int payNo;
 	private String coComName;
-	private java.util.Date payDate;
+	private java.sql.Date payDate;
 	private String productName;
 	private int payPrice;
 
 	public AdminPaymentHistoryDTO() {}
 
-	public AdminPaymentHistoryDTO(int payNo, String coComName, Date payDate, String productName, int payPrice) {
+	public AdminPaymentHistoryDTO(int payNo, String coComName, java.sql.Date payDate, String productName,
+			int payPrice) {
 		super();
 		this.payNo = payNo;
 		this.coComName = coComName;
@@ -37,11 +36,11 @@ public class AdminPaymentHistoryDTO {
 		this.coComName = coComName;
 	}
 
-	public java.util.Date getPayDate() {
+	public java.sql.Date getPayDate() {
 		return payDate;
 	}
 
-	public void setPayDate(java.util.Date payDate) {
+	public void setPayDate(java.sql.Date payDate) {
 		this.payDate = payDate;
 	}
 
@@ -66,6 +65,8 @@ public class AdminPaymentHistoryDTO {
 		return "AdminPaymentHistoryDTO [payNo=" + payNo + ", coComName=" + coComName + ", payDate=" + payDate
 				+ ", productName=" + productName + ", payPrice=" + payPrice + "]";
 	}
+
+	
 
 	
 	
