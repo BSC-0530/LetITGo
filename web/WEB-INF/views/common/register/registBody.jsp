@@ -36,34 +36,57 @@
 <link rel="shortcut icon" type="image/png"
 	href="${ pageContext.servletContext.contextPath }/resources/image/header/favicon.ico" />
 <script type="text/javascript">
-	function registerCheckFunction(){
-		var userID = $('#userID').val();
-		$.ajax({
-			type: 'POST',
-			url: './UserRegisterCheckServlet',
-			date: { userID : userID},
-			success: function (result) {
-				if(result == 1){
-					$('#checkMessage').html('사용할 수 있는 아이디입니다.');
-					$('#checkType').attr('class', 'modal-content panel-success');
-				}
-				else{
-					$('#checkMessage').html('사용할 수 없는 아이디입니다.');
-					$('#checkType').attr('class', 'modal-content panel-warning');
-				}
-				$('#checkModal').modal("show");
-			}
-		})
+	function validate() {
+		var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디가 적합한지 검사할 정규식
+		var re2 =  /^(?=.*[a-zA-Z])(?=.*[!@#$%^*++-])(?=.*[0-9]).{8,18}$/; // 패스워드가 적합한지 검사할 정규식
+		var re3 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일이 적합한지
+		var re4 = /^[0-9]$/ //핸드폰 번호가 적합한지
+		
+		var id = document.getElementById("id");
+	    var pw = document.getElementById("pw");
+	    var phone = document.getElementById("phone")
+	    var email = document.getElementById("email");
+	    
+	    //----------유효성 검사 시작----------
+	    
+	    if(!check(re,id,"아이디는 4~12자의 영문 대소문자와 숮자로만 입력하세요!!")){
+	    	return false;
+	    }
+	    
+	    if(!check(re2,pw,"패스워드는 8~18자의 영문 대소문자, 숫자, 특수문자만 입력하세요")){
+	    	return false;
+	    }
+	    
+	    if(join.pw.value != join.value.checkpw.value){
+	    	alert("비밀번호가 다릅니다 다시 확인해 주세요.");
+	    	join.checkpw.value= "";
+	    	join.checkpw.foucus();
+	    	return false;
+	    }
+	    
+	    if(!check(re4, phone, "핸드폰 번호가 아닙니다. 다시 입력해주세요.")){
+	    	return false;
+	    }
+	    
+	    if(email.value==""){
+	    	alert("이메일을 입력해 주세요.");
+	    	email.focus();
+	    	return false;
+	    }
+	    
+	    alert("회원가입이 완료되었습니다.")
 	}
-	function passwordCheckFunction() {
-		var userPassword1 = $('#userPassword1').val();
-		var userPassword2 = $('#userPassword2').val();
-		if(userPassword1 != userPassword2){
-			$('#passwordCheckMessage').html('비밀번호가 서로 일치하지 않습니다.');
-		}else{
-			$('#passwordCheckMessage').html('');
-		}
-	}
+	
+	  function check(re, what, message) {
+	       if(re.test(what.value)) {
+	           return true;
+	       }
+	       alert(message);
+	       what.value = "";
+	       what.focus();
+	       //return false;
+	   }
+	
 </script>
 </head>
 <body>
@@ -88,7 +111,7 @@
         </div>
     </div>
 	   <!-- 여기부터 시작-->
-	<form action="/regist/member" name="join_form" id="sendIt()" method="post">
+	<form action="/regist/member" name="join" onsubmit="return validate();" method="post">
     <div class="register_section">
         
         <div class="register_tab_wrapper">
@@ -96,9 +119,6 @@
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">
                         <div role="tabpanel">
-
-                         
-                            
                             <ul id="tabOne" class="nav register-tabs">
                                 <li class="active"><a href="#contentOne-1" data-toggle="tab">개인회원 가입 <br> <span>구직하고 싶어요</span></a>
                                 </li>
@@ -117,7 +137,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                         
-                                            <input type="text" name="userID" class="userID"  style="text-transform: lowercase" placeholder="아이디" maxlength="20">
+                                            <input type="text" name="id" class="id"  style="text-transform: lowercase" placeholder="아이디" maxlength="20">
 											<button name="idCheck" onclick="registerCheckFunction();" type="button">중복체크</button>
                                         </div>
                                         
@@ -135,24 +155,24 @@
 
                                        
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="password" onkeyup="passwordCheckFunction();" name="userPassword1"  style="text-transform: lowercase" placeholder="비밀번호">
+                                            <input type="password" name="pw"  style="text-transform: lowercase" placeholder="비밀번호">
                                         </div>
                                         
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
-                                            <input type="password" name="userPassword2" onchange="sendIt()"  style="text-transform: lowercase" placeholder="비밀번호 확인">
+                                            <input type="password" name="checkpw"  style="text-transform: lowercase" placeholder="비밀번호 확인">
                                         </div>
                                         
                                         
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
-                                            <input type="text" name="name" onchange="sendIt()" style="text-transform: lowercase" placeholder="이름">
+                                            <input type="text" name="name" style="text-transform: lowercase" placeholder="이름">
 
                                         </div>
                                         
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
-                                            <input type="text" name="phone" onchange="sendIt()" style="text-transform: lowercase" placeholder="phone">
+                                            <input type="text" name="phone" style="text-transform: lowercase" placeholder="phone">
                                         </div>
 
                                         <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -165,7 +185,6 @@
 
                                     <div class="login_btn_wrapper register_btn_wrapper login_wrapper ">
 <!--                                         <a href="#" class="btn btn-primary login_btn" id="reg_submit"> 회원가입 </a> -->
-											<h5  style="color: red;" id="passwordCheckMessage"></h5>
 											<input class="btn btn-regist" type="submit" value="회원가입"> 
                                     </div>
                                     <div class="login_message">
@@ -249,65 +268,5 @@
         </div>
     </div>
     </form>
-    <%
-    	String messageContent = null;
-        if(session.getAttribute("messageContent") != null){
-        	messageContent = (String) session.getAttribute("messageContent");
-        }
-        String messageType = null;
-        if(session.getAttribute("messageType") != null){
-        	messageType = (String) session.getAttribute("messageType");
-        }
-        if(messageContent != null){
-     %>
-    	<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-hidden="true">
-    		<div class="modal-dialog vertical-align-center">
-    			<div class="modal-content <% if(messageType.equals("오류 메세지")) out.println("panel-warning"); else out.println("panel-success");%>">
-    				<div class="modal-header panel-heading">
-    					<button type="button" class="close" data-dismiss="modal">
-    						<span aria-hidden="true">&times;</span>
-    						<span class="sr-only">Close</span>
-    					</button>
-    					<h4 class="modal-title">
-    						<%= messageType %>
-    					</h4>
-    				</div>
-    				<div class="modal-body">
-    					<%= messageContent %>
-    				</div>
-    				<div class="modal-footer">
-    					<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
-    				</div>
-    		</div>
-    		</div>
-    	</div>
-    	<script>
-    		$('#messageModal').modal("show");
-    	</script>
-    <% 
- 		session.removeAttribute("messageContnt");
-    	session.removeAttribute("messageType");
-        }
-    %>
-    <div class="modal fade" id="checkModal" tabindex="-1" role="dialog" aria-hidden="true">
-    		<div class="modal-dialog vertical-align-center">
-    			<div id="checkType" class="modal-content panel-info%>">
-    				<div class="modal-header panel-heading">
-    					<button type="button" class="close" data-dismiss="modal">
-    						<span aria-hidden="true">&times;</span>
-    						<span class="sr-only">Close</span>
-    					</button>
-    					<h4 class="modal-title">
-    						확인 메세지
-    					</h4>
-    				</div>
-    				<div class="modal-body" id="checkMessage">
-    				</div>
-    				<div class="modal-footer">
-    					<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
-    				</div>
-    		</div>
-    		</div>
-    	</div>
 </body>
 </html>

@@ -71,8 +71,8 @@
 					<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 hidden-sm hidden-xs">
 						<div class="jp_navi_right_btn_wrapper">
 							<ul>
-								<li><a href="register.html">회원가입</a></li>
-								<li><a href="login.html">로그인</a></li>
+								<li><a href="${ pageContext.servletContext.contextPath }/regist/member">회원가입</a></li>
+								<li><a href="${ pageContext.servletContext.contextPath }/member/login">로그인</a></li>
 							</ul>
 						</div>
 					</div>
