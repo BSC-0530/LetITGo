@@ -53,7 +53,7 @@ public class SelfIntroductionItemInsertServlet extends HttpServlet {
 			request.setAttribute("message", "자기소개서 항목 등록에 실패하셨습니다.");
 		}
 	
-		request.getRequestDispatcher(path).forward(request, response);
+		response.sendRedirect("/let/selfintroductionitem/list");
 		
 	}
 

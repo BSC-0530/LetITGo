@@ -51,7 +51,8 @@ public class JobFieldInsertServlet extends HttpServlet {
 			request.setAttribute("message", "직무 분야 등록에 실패하셨습니다.");
 		}
 		
-		request.getRequestDispatcher(path).forward(request, response);		
+		response.sendRedirect("/let/jobfield/list");
+		/* request.getRequestDispatcher(path).forward(request, response); */	
 		//아래 경로로 해봤을때 안넘어가고 404떴음 이따가 절대경로로 다시 해보기  -> ${}
 		/*request.getRequestDispatcher("/WEB-INF/views/admin/jobfield/list").forward(request, response);*/		
 	}
