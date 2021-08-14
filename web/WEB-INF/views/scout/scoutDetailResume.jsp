@@ -6,6 +6,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/animate.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/font-awesome.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/fonts.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/reset.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/owl.carousel.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/owl.theme.default.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/flaticon.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/style.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/style_II.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
 </head>
 <body>
 	<body>
@@ -19,7 +42,7 @@
 						<div class="jp_cp_left_side_wrapper">
 							<div class="jp_cp_left_pro_wallpaper">
 								<img src="images/content/cp1.png" alt="profile_img">
-								<h2>Farhan Shaikh</h2>
+								<h2>${ detail.memName }</h2>
 								
 
 							</div>
@@ -42,22 +65,23 @@
 										<tr>
 											<td class="td-w25">이름</td>
 											<td class="td-w10">:</td>
-											<td class="td-w65">"${ detail.memName }"</td>
+											<td class="td-w65">${ detail.memName }</td>
 										</tr>
 										<tr>
 											<td class="td-w25">보유기술</td>
 											<td class="td-w10">:</td>
-											<td class="td-w65">---------</td>
+											<td class="td-w65">${ detail.scoutResume[status.index].holdingAndSkillsList[status.index].skillsAndCategory.skillsName }</td>
 										</tr>
 										<tr>
 											<td class="td-w25">직무</td>
 											<td class="td-w10">:</td>
-											<td class="td-w65">--------</td>
+											<td class="td-w65">${ detail.scoutResume[status.index].jobFieldList[status.index].jobName }</td>
 										</tr>
 										<tr>
 											<td class="td-w25">경력</td>
 											<td class="td-w10">:</td>
-											<td class="td-w65">-------</td>
+											<td class="td-w65">${ detail.scoutResume[status.index].careerHistoryList[status.index].projectStartDate }
+											~ ${ detail.scoutResume[status.index].careerHistoryList[status.index].projectEndDate }</td>
 										</tr>
 
 									</tbody>
@@ -83,7 +107,16 @@
 													<a class="collapsed" data-toggle="collapse"
 														data-parent="#accordion_threeLeft"
 														href="#collapseTwentyLeftThree" aria-expanded="false">
-														포트폴리오 </a>
+														포트폴리오<br>
+														<c:choose>
+															<c:when test="${ detail.scoutResume[status.index].portFolioList[status.index].potKinds eq '링크' }">
+																${ detail.scoutResume[status.index].portFolioList[status.index].potLinkAddress }															
+															</c:when>
+															<c:otherwise>
+																${ detail.scoutResume[status.index].portFolioList[status.index].potOriginalName }
+															</c:otherwise>
+														</c:choose>
+													</a>
 												</h4>
 											</div>
 											<div id="collapseTwentyLeftThree"
@@ -98,7 +131,9 @@
 													<a class="collapsed" data-toggle="collapse"
 														data-parent="#accordion_threeLeft"
 														href="#collapseTwentyLeftThree2" aria-expanded="false">
-														자기소개 </a>
+														자기소개<br>
+														${ detail.scoutResume[status.index].itemAndContentList[status.index].selfIntroContent.selfIntroItemContent }
+													</a>
 												</h4>
 											</div>
 											<div id="collapseTwentyLeftThree2"

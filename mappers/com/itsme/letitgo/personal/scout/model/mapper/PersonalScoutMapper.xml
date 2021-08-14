@@ -2,118 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="com.itsme.letitgo.personal.scout.model.mapper.PersonalScoutMapper">
-	
-	<resultMap type="com.itsme.letitgo.personal.scout.model.dto.ScoutDetailResumeDTO" id="scoutDetailResultMap">
-		<id property="memNo" column="MEM_NO"/>
-		<result property="memId" column="MEM_ID"/>
-		<result property="memPwd" column="MEM_PWD"/>
-		<result property="memName" column="MEM_NAME"/>
-		<result property="memEmail" column="MEM_EMAIL"/>
-		<result property="memPhone" column="MEM_PHONE"/>
-		
-		<collection property="scoutResume" resultMap="detailResumeResultMap"/>
-	</resultMap>
-	
-	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.DetailResumeDTO" id="detailResumeResultMap">
-		<id property="resumeNo" column="RESUME_NO"/>
-		<result property="inMemNo" column="IN_MEM_NO"/>
-		<result property="resumeTitle" column="RESUME_TITLE"/>
-		<result property="resumeWriteDate" column="RESUME_WRITE_DATE"/>
-		<result property="resumeScoutStatus" column="RESUME_SCOUT_STATUS"/>
-		<result property="jobNo" column="JOB_NO"/>
-		
-		<collection property="portFolioList" ofType="com.itsme.letitgo.personal.resume.model.dto.PortfolioDTO">
-			<id property="potNo" column="POT_NO"/>
-			<result property="resumeNo" column="RESUME_NO"/>
-			<result property="potKinds" column="POT_KINDS"/>
-			<result property="potLinkAddress" column="POT_LINK_ADDRESS"/>
-			<result property="potFilePath" column="POT_FILE_PATH"/>
-			<result property="potFileOriginalName" column="POT_FILE_ORIGINAL_NAME"/>
-			<result property="potFileName" column="POT_FILE_NAME"/>
-		</collection>
-		
-		<collection property="itemAndContentList" ofType="com.itsme.letitgo.personal.resume.model.dto.ItemAndContentDTO">
-			<id property="selfIntroItemNo" column="SELF_INTRO_ITEM_NO"/>
-			<result property="selfIntroItemName" column="SELF_INTRO_ITEM_NAME"/>
-			
-			<association property="selfIntroContent" javaType="com.itsme.letitgo.personal.resume.model.dto.SelfIntroductionContentDTO">
-				<id property="selfIntroItemNo" column="SELF_INTRO_ITEM_NO"/>
-				<result property="selfIntroItemContent" column="SELF_INTRO_ITEM_CONTENT"/>
-				<result property="resumeNo" column="RESUME_NO"/>
-			</association>
-		</collection>
-		
-		<collection property="awardHistoryList" ofType="com.itsme.letitgo.personal.resume.model.dto.AwardHistoryDTO">
-			<id property="awdNo" column="AWD_NO"/>
-			<result property="awdName" column="AWD_NAME"/>
-			<result property="awdAgency" column="AWD_AGENCY"/>
-			<result property="awdDate" column="AWD_DATE"/>
-			<result property="awdContent" column="AWD_CONTENT"/>
-			<result property="resumeNo" column="RESUME_NO"/>
-		</collection>
-		
-		<collection property="educationHistoryList" ofType="com.itsme.letitgo.personal.resume.model.dto.EducationHistoryDTO">
-			<id property="eduNo" column="EDU_NO"/>
-			<result property="eduName" column="EDU_NAME"/>
-			<result property="eduAgency" column="EDU_AGENCY"/>
-			<result property="eduStartDate" column="EDU_START_DATE"/>
-			<result property="eduEndDate" column="EDU_END_DATE"/>
-			<result property="eduContent" column="EDU_CONTENT"/>
-			<result property="resumeNo" column="RESUME_NO"/>
-		</collection>
-		
-		<collection property="licenseHistoryList" ofType="com.itsme.letitgo.personal.resume.model.dto.LicenseHistoryDTO">
-			<id property="licenseNo" column="LICENSE_NO"/>
-			<result property="licenseName" column="LICENSE_NAME"/>
-			<result property="licenseAgency" column="LICENSE_AGENCY"/>
-			<result property="licenseDate" column="LICENSE_DATE"/>
-			<result property="resumeNo" column="RESUME_NO"/>
-		</collection>
-		
-		<collection property="careerHistoryList" ofType="com.itsme.letitgo.personal.resume.model.dto.CareerHistoryDTO">
-			<id property="carNo" column="CAR_NO"/>
-			<result property="carComName" column="CAR_COM_NAME"/>
-			<result property="carHireDate" column="CAR_HIRE_DATE"/>
-			<result property="carEntDate" column="CAR_ENT_DATE"/>
-			<result property="carStatus" column="CAR_STATUS"/>
-			<result property="carDeptName" column="CAR_DEPT_NAME"/>
-			<result property="carJobName" column="CAR_JOB_NAME"/>
-			<result property="projectName" column="PROJECT_NAME"/>
-			<result property="projectStartDate" column="PROJECT_START_DATE"/>
-			<result property="projectEndDate" column="PROJECT_END_DATE"/>
-			<result property="projectContent" column="PROJECT_CONTENT"/>
-			<result property="carWorkField" column="CAR_WORK_FIELD"/>
-			<result property="jobNo" column="JOB_NO"/>
-			<result property="resumeNo" column="RESUME_NO"/>
-		</collection>
-		
-		<collection property="jobFieldList" ofType="com.itsme.letitgo.personal.resume.model.dto.JobFieldDTO">
-			<id property="jobNo" column="JOB_NO"/>
-			<result property="jobName" column="JOB_NAME"/>
-		</collection>
-		
-		<collection property="holdingAndSkillsList" ofType="com.itsme.letitgo.personal.resume.model.dto.HoldingAndSkillsDTO">
-			<result property="resumeNo" column="RESUME_NO"/>
-			<result property="skillsNo" column="SKILLS_NO"/>
-			
-			<association property="skillsAndCategory" javaType="com.itsme.letitgo.personal.resume.model.dto.SkillsAndCategoryDTO">
-				<id property="skillsNo" column="SKILLS_NO"/>
-				<result property="skillsName" column="SKILLS_NAME"/>
-				
-				<association property="skillsCategory" javaType="com.itsme.letitgo.personal.resume.model.dto.SkillsCategoryDTO">
-					<id property="categoryNo" column="CATEGORY_NO"/>
-					<result property="categoryName" column="CATEGORY_NAME"/>
-					<result property="categoryUpperNo" column="CATEGORY_UPPER_NO"/>
-				</association>
-			</association>
-		</collection>
-	</resultMap>
-	
-	<resultMap type="" id=""></resultMap>
-	
-	
-	
-	
+
 	<resultMap type="com.itsme.letitgo.personal.scout.model.dto.ResumeDTO" id="resumeResultMap">
 		<id property="resumeNo" column="RESUME_NO"/>
 		<result property="resumeTitle" column="RESUME_TITLE"/>
@@ -121,65 +10,6 @@
 		<result property="resumeWriteDate" column="RESUME_WRITE_DATE"/>
 		<result property="resumeScoutStatus" column="RESUMW_SCOUT_STATUS"/>
 		<result property="jobNo" column="JOB_NO"/>
-	</resultMap>
-	
-	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.PortfolioDTO" id="potResultMap">
-		<id property="potNo" column="POT_NO"/>
-		<result property="resumeNo" column="RESUME_NO"/>
-		<result property="potKinds" column="POT_KINDS"/>
-		<result property="potLinkAddress" column="POT_LINK_ADDRESS"/>
-		<result property="potFilePath" column="POT_FILE_PATH"/>
-	</resultMap>
-	
-	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.ItemAndContentDTO" id="itemAndContentResultMap">
-		<id property="selfIntroItemNo" column="SELF_INTRO_ITEM_NO"/>
-		<result property="selfIntroItemName" column="SELF_INTRO_ITEM_NAME"/>
-		<result property="selfIntroContent" column="SELF_INTRO_CONTENT"/>
-	</resultMap>
-	
-	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.AwardHistoryDTO" id="awardResultMap">
-		<id property="awdNo" column="AWD_NO"/>
-		<result property="awdName" column="AWD_NAME"/>
-		<result property="awdAgency" column="AWD_AGENCY"/>
-		<result property="awdDate" column="AWD_DATE"/>
-		<result property="awdContent" column="AWD_CONTENT"/>
-		<result property="resumeNo" column="RESUME_NO"/>
-	</resultMap>
-	
-	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.EducationHistoryDTO" id="eduResultMap">
-		<id property="eduNo" column="EDU_NO"/>
-		<result property="eduName" column="EDU_NAME"/>
-		<result property="eduAgency" column="EDU_AGENCY"/>
-		<result property="eduStartDate" column="EDU_START_DATE"/>
-		<result property="eduEndDate" column="EDU_END_DATE"/>
-		<result property="eduContent" column="EDU_CONTENT"/>
-		<result property="resumeNo" column="RESUME_NO"/>
-	</resultMap>
-	
-	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.LicenseHistoryDTO" id="licenseResultMap">
-		<id property="licenseNo" column="LICENSE_NO"/>
-		<result property="licenseName" column="LICENSE_NAME"/>
-		<result property="licenseAgency" column="LICENSE_AGENCY"/>
-		<result property="licenseDate" column="LICENSE_DATE"/>
-		<result property="resumeNo" column="RESUME_NO"/>
-	</resultMap>
-	
-	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.HoldingAndSkillsDTO" id="holdingAndSkillsResultMap">
-		<result property="resumeNo" column="RESUME_NO"/>
-		<result property="skillsNo" column="SKILLS_NO"/>
-		
-	</resultMap>
-	
-	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.SkillsAndCategoryDTO" id="skillsAndCategoryResultMap">
-		<result property="skillsNo" column="SKILLS_NO"/>
-		<result property="skillsName" column="SKILLS_NAME"/>
-		<result property="categoryNo" column="CATEGORY_NO"/>
-		
-	</resultMap>
-	
-	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.SkillsDTO" id="skillsResultMap">
-		<result property="skillsNo" column="SKILLS_NO"/>
-		<
 	</resultMap>
 	
 	<update id="updateScoutStatus" parameterType="_int">
@@ -197,5 +27,7 @@
 		  FROM TBL_RESUME A
 		 WHERE A.IN_MEM_NO = 3
 	</select>
+	
+	
 	
 </mapper>
