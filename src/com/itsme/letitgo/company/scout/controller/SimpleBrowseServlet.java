@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.itsme.letitgo.company.scout.model.dto.BrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.CountReadingNumDTO;
+import com.itsme.letitgo.company.scout.model.dto.ResumeReadingHistoryDTO;
 import com.itsme.letitgo.company.scout.model.service.MainScoutListService;
 
 @WebServlet("/simple/browse/select")
@@ -27,8 +29,7 @@ public class SimpleBrowseServlet extends HttpServlet {
 		
 		Map<String, Object> browseInfo = browseInfoService. browseSelectInfo(onClickResumeNo);
 		
-//		int cnt = browseInfoService.readingCnt();
-		
+		ResumeReadingHistoryDTO  kinds = browseInfoService.brosweHistoryKindsSelect(onClickResumeNo);
 		
 		
 		request.setAttribute("browseName", browseInfo.get("browseName"));
@@ -37,16 +38,29 @@ public class SimpleBrowseServlet extends HttpServlet {
 		request.setAttribute("careeaNumber", browseInfo.get("careeaNumber"));
 		request.setAttribute("number", browseInfo.get("number"));
 		
+		String path = "";
+		if(kinds == null) {
+			int kindsInsert = browseInfoService.readingKindsInsert(onClickResumeNo);
+//			System.out.println(kinds.getResumeBrowseKinds());
+			
+			path = "/WEB-INF/views/scout/scoutSimpleBrowse.jsp";
+		}else if(kinds.getResumeBrowseKinds().equals("얕은열람")) {
+			int updateTime = browseInfoService.upDateTime(onClickResumeNo);
+			
+			path = "/WEB-INF/views/scout/scoutSimpleBrowse.jsp";
+		}else {
+			int updateTime = browseInfoService.upDateTime(onClickResumeNo);
+			path = "/WEB-INF/views/resume/resumeList.jsp";
+			
+		}
 		
-		String path = "/WEB-INF/views/scout/scoutSimpleBrowse.jsp";
+		
 		
 		request.getRequestDispatcher(path).forward(request, response);
 		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
 		
 		
 	}

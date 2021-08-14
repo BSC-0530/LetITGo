@@ -21,6 +21,8 @@ public class CompanyScoutListSelect extends HttpServlet {
 //@#$@#$@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//마이페이지 스카우트 임@@@@@@@@@@@ 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		MainScoutListService mainScoutListService = new MainScoutListService();
+		
 		List<BrosweHistoryDTO> paymentBrowseUsingHistroyList = MainScoutListService.selectBrowseUsingHistroy();
 		
 		for(BrosweHistoryDTO BrowseUsingHistroy : paymentBrowseUsingHistroyList) {
@@ -29,13 +31,21 @@ public class CompanyScoutListSelect extends HttpServlet {
 			
 		}
 		
+		int simpleOpen = mainScoutListService.selectAllCountSimpeOpen();
+		int deepOpen = mainScoutListService.selectAllCountDeepOpen();
+		int scoutNum = mainScoutListService.selectAllScountNum();
 		
-		
+		System.out.println("깊은 열람 개수 " + deepOpen);
 		
 		
 		String path = "/WEB-INF/views/member/company/scoutMyPage.jsp";
-
+		
+		
+		
 		request.setAttribute("paymentBrowseUsingHistroyList", paymentBrowseUsingHistroyList);
+		request.setAttribute("deepCountNum", deepOpen);
+		request.setAttribute("simpleCountNum", simpleOpen);
+		request.setAttribute("scoutNum", scoutNum);
 		
 		request.getRequestDispatcher(path).forward(request, response);
 		

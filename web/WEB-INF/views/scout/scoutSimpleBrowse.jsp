@@ -129,7 +129,7 @@
 						<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
 							<div class="accordion_wrapper abt_page_2_wrapper">
 								<div class="panel-group" id="accordion_threeLeft">
-									<!-- /.panel-default -->
+<!-- 									/.panel-default -->
 									<div class="panel panel-default">
 										<div class="panel-heading bell">
 											<h4 class="panel-title">
@@ -187,9 +187,9 @@
 												urna.</div>
 										</div>
 									</div>
-									<!-- /.panel-default -->
+<!-- 									/.panel-default -->
 								</div>
-								<!--end of /.panel-group-->
+<!-- 								end of /.panel-group -->
 							</div>
 						</div>
 					</div>
@@ -203,9 +203,7 @@
 
 	<jsp:include page="../common/footer.jsp" />
 
-	<%-- 	<script src="${ pageContext.servletContext.contextPath }/resources/js/jquery_min.js"></script> --%>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript" src="../../../resources/js/bootstrap.js"></script>
 	<script src="/resources/js/jquery_min.js"></script>
 	<script src="/resources/js/bootstrap.js"></script>

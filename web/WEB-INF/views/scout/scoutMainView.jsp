@@ -119,7 +119,8 @@
 		
 		const num = button.parentNode.children[1].value
 		
-		alert('열람권 1개가 소모됩니다.');
+// 		location.href="${ pageContext.servletContext.contextPath }/Company/Scout/List/Select?num="+num
+		
 		
 		location.href="${ pageContext.servletContext.contextPath }/simple/browse/select?num="+num
 				

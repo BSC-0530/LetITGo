@@ -132,20 +132,20 @@
 								<div class="container">
 									<div class="gc_counter_cont_wrapper">
 										<div class="count-description">
-											<span class="timer">2540</span><i class="fa fa-plus"></i>
-											<h5 class="con1">전체 지원</h5>
+											<span class="timer"><c:out value="${ deepCountNum }"></c:out></span>
+											<h5 class="con1">얕은 열람</h5>
 										</div>
 									</div>
 									<div class="gc_counter_cont_wrapper2">
 										<div class="count-description">
-											<span class="timer">7325</span><i class="fa fa-plus"></i>
-											<h5 class="con2">지원 완료</h5>
+											<span class="timer"><c:out value="${ simpleCountNum }"></c:out> </span>
+											<h5 class="con2">깊은 열람</h5>
 										</div>
 									</div>
 									<div class="gc_counter_cont_wrapper3">
 										<div class="count-description">
-											<span class="timer">1924</span><i class="fa fa-plus"></i>
-											<h5 class="con3">지원 취소</h5>
+											<span class="timer"><c:out value="${ scoutNum }"></c:out></span>
+											<h5 class="con3">면접 제안</h5>
 										</div>
 									</div>
 								</div>
@@ -176,7 +176,9 @@
 										<td>1</td>
 										<td><c:out value="${broswe.jobName }"></c:out> </td>
 										<td><c:out value="${broswe.resumeBrowseKinds }"></c:out> </td>
-										<td><button type="button">asd</button></td>
+										<td><button type="button"  onclick="browse(this);">상세보기</button>
+										<input type="hidden" id="hiddenResumeNo" value="${ broswe.resumeNo }">
+										</td>
 									</tr>
 								</tbody>
 								</c:forEach>
@@ -187,13 +189,19 @@
 			</div>
 		</div>
 	</div>
-	<script>
-
+<script>
 $(document).ready(function() {
 	$('#table_scout').DataTable();
 });
+
+function browse(button){
 	
+	const num = button.parentNode.children[1].value;
 	
+	location.href="${ pageContext.servletContext.contextPath }/simple/browse/select?num="+num
+			
+}
 </script>
+
 </body>
 </html>

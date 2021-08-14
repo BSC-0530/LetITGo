@@ -10,7 +10,6 @@
 		<association property="memberDTO" resultMap="mainScoutMemberDTO"/>
 		<association property="resumeDTO" resultMap="mainScoutResumeDTO"/>
 <!-- 		<collection property="carHistoryDTO" resultMap="mainScoutCarHistoryDTO"/> -->
-			
 	</resultMap>
 	
 		<resultMap type="com.itsme.letitgo.company.info.model.dto.CompanyTestDTO" id="mainScoutMemberDTO">
@@ -273,10 +272,66 @@
 		    JOIN TBL_RESUME_READING_HISTORY RH ON (RH.RESUME_NO = R.RESUME_NO)
 		</select>
 		
-<!-- 		<update id="modifyReadingCnt" > -->
-<!-- 			UPDATE TBL_MEMBER_HOLDING_PRODUCT  -->
-<!--              	SET -->
-<!--              	    READING_LEFT_NUM = READING_LEFT_NUM -1 -->
-<!--               WHERE CO_MEM_NO = 2 -->
-<!-- 		</update> -->
+		<select id="brosweHistoryKindsSelect" resultMap="readingHistoryResultMap">
+			SELECT
+			       RESUME_BROWSE_NO
+				 , CO_MEM_NO
+				 , RESUME_NO
+				 , RESUME_BROWSE_DATE
+				 , RESUME_BROWSE_KINDS
+			FROM TBL_RESUME_READING_HISTORY
+			WHERE RESUME_NO = #{ onClickResumeNo } 
+		</select>
+		
+		
+		<insert id="readingKindsInsert">
+			INSERT 
+				INTO TBL_RESUME_READING_HISTORY A
+				(
+				  A.RESUME_BROWSE_NO
+				, A.CO_MEM_NO
+				, A.RESUME_NO
+				, A.RESUME_BROWSE_DATE
+				, A.RESUME_BROWSE_KINDS
+				)
+				VALUES
+				(
+                 SEQ_RESUME_BROWSE_NO.nextval
+                , 2
+                , #{ onClickResumeNo }
+                , SYSDATE
+               
+                , '얕은열람'
+				)
+		</insert>
+		
+		<update id="updateTime">
+			UPDATE
+				TBL_RESUME_READING_HISTORY
+				SET RESUME_BROWSE_DATE = SYSDATE
+				   WHERE RESUME_NO = #{ onClickResumeNo }
+		</update>
+		
+		<select id="selectAllCountDeepOpen" resultType="_int">
+			SELECT
+					COUNT(1) 
+			   FROM TBL_RESUME_READING_HISTORY
+			  WHERE RESUME_BROWSE_KINDS ='깊은열람'
+		</select>
+		
+		<select id="selectAllCountSimpleOpen" resultType="_int">
+			SELECT
+					COUNT(1) 
+			   FROM TBL_RESUME_READING_HISTORY
+			  WHERE RESUME_BROWSE_KINDS ='얕은열람'
+		</select>
+		
+		<select id="selectAllScountNum" resultType="_int">
+			SELECT
+					COUNT(1) 
+			   FROM TBL_RESUME_READING_HISTORY
+			  WHERE RESUME_BROWSE_KINDS ='면접제안'
+		</select>
+		
+		
 </mapper>
