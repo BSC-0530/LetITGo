@@ -29,7 +29,7 @@ public class CompanyScoutListSelect extends HttpServlet {
 		Map<String, Object> scoutList= mainScoutListService.selectAllScoutList();
 		
 		for(BrosweHistoryDTO BrowseUsingHistroy : paymentBrowseUsingHistroyList) {
-			
+			 
 			System.out.println(BrowseUsingHistroy);
 			
 		}
