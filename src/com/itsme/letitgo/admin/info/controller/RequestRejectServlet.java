@@ -57,7 +57,7 @@ public class RequestRejectServlet extends HttpServlet {
 			redirectText.append("<script>alert('기업회원 가입 거절을 실패하셨습니다.');location.href='../../updateRequest/select';</script>\"");
 		}
 		
-		response.setContentType("");
+		response.setContentType("/WEB-INF/views/admin/adminJoinDetail.jsp");
 		PrintWriter out = response.getWriter();
 		
 		out.print(redirectText.toString());

@@ -39,14 +39,11 @@ public class SelectRequestListServlet extends HttpServlet {
 		request.setAttribute("coReqKinds", coReqKinds);
 		request.setAttribute("coRejectReason", coRejectReason);
 		
-		String path ="";
+		String path ="WEB-INF/views/admin/adminJoinRequest.jsp";
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-	}
+
 
 }

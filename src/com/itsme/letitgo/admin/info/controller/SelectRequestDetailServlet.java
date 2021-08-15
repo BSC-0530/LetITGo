@@ -2,6 +2,7 @@ package com.itsme.letitgo.admin.info.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.itsme.letitgo.admin.info.model.dto.CompanyJoinDTO;
 import com.itsme.letitgo.admin.info.model.dto.InsertRequestDTO;
+import com.itsme.letitgo.admin.info.model.mapper.JoinMapper;
 import com.itsme.letitgo.admin.info.model.service.CompanyDetailService;
 import com.itsme.letitgo.admin.info.model.service.RequestService;
 import com.itsme.letitgo.company.regist.model.dto.CoMemberDTO;
@@ -52,13 +54,15 @@ public class SelectRequestDetailServlet extends HttpServlet {
 		companyJoinDTO.setStatus(status);
 		companyJoinDTO.setWebsite(website);
 		
-		Map<String, Object> result = new CompanyDetailService().detailInfo(companyJoinDTO);
+		Map<String, Object> map = new HashMap<String, Object>();
 		
-		System.out.println(result);
+		int result1 = CompanyDetailService.detailInfo1(map);
+		int result2 = CompanyDetailService.detailInfo2(map);
 		
 		
 		String path="/WEB-INF/views/admin/adminJoinDetail.jsp";
 		request.getRequestDispatcher(path).forward(request, response);
+		
 		
 	}
 }

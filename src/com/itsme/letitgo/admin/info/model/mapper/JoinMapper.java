@@ -15,9 +15,14 @@ public interface JoinMapper {
 
 	int RequestJoin2(int coMemNo);
 
-	int companyInfo1(CompanyJoinDTO companyJoinDTO);
+	int selectedDetail(CompanyJoinDTO companyJoinDTO);
 
-	int companyInfo2(CompanyJoinDTO companyJoinDTO);
+	int detailInfo1(Map<String, Object> map);
+
+	int detailInfo2(Map<String, Object> map);
+
+
+
 
 	
 
