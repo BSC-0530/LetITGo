@@ -82,8 +82,6 @@ public class Template {
 
 			//승수
 
-			configuration.addMapper(MemberMapper.class);
-			configuration.addMapper(RegistMemberMapper.class);
 			configuration.addMapper(JoinMapper.class);
 			configuration.addMapper(InsertRequestMapper.class);
 
