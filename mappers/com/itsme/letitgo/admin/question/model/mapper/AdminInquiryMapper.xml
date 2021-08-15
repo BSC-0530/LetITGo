@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.itsme.letitgo.admin.question.model.mapper.AdminInquiryMapper">
+	
+	<resultMap type="com.itsme.letitgo.admin.question.model.dto.InquiryDTO" id="selectAdminPaymentHistory">
+		<result property="inquiryNo" column="INQUIRY_NO"/>
+		<result property="managerMemberNo" column="MANAGER_MEMBER_NO"/>
+		<result property="inquiryEmail" column="INQUIRY_EMAIL"/>
+		<result property="inquiryTitle" column="INQUIRY_TITLE"/>
+		<result property="inquiryContents" column="INQUIRY_CONTENTS"/>
+		<result property="inquiryAnsYN" column="INQUIRY_ANS_YN"/>
+		<result property="inquiryDate" column="INQUIRY_DATE"/>
+		<result property="inquiryAnsContent" column="INQUIRY_ANS_CONTENT"/>
+		<result property="inquiryAnsDate" column="INQUIRY_ANS_DATE"/>
+		<result property="inquiryCategoryNo" column="INQUIRY_CATEGORY_NO"/>
+		
+		<association property="categoryNameDTO" resultMap="inqCategoryName"/>
+	</resultMap>
+	<resultMap type="com.itsme.letitgo.admin.question.model.dto.InquiryCategoryDTO" id="inqCategoryName">
+		<id property="inquiryCategoryNo" column="INQUIRY_CATEGORY_NO"/>
+		<result property="inquiryCategoryName" column="INQUIRY_CATEGORY_NAME" /> 
+	</resultMap>
+	
+	<select id="selectAdminPaymentHistory" resultMap="selectAdminPaymentHistory">
+		SELECT
+       		   A.INQUIRY_CONTENTS
+       		 , A.INQUIRY_TITLE
+      		 , A.INQUIRY_DATE
+       		 , A.INQUIRY_EMAIL
+        	 , A.INQUIRY_ANS_YN
+        	 , A.MANAGER_MEMBER_NO
+        	 , A.INQUIRY_NO
+        	 , B.INQUIRY_CATEGORY_NAME
+         FROM TBL_INQUIRY A
+         JOIN TBL_INQUIRY_CATEGORY B ON (B.INQUIRY_CATEGORY_NO = A.INQUIRY_CATEGORY_NO)
+	</select>
+	<select id="categoryListSelect" resultMap="inqCategoryName">
+		SELECT
+			   INQUIRY_CATEGORY_NO
+			 , INQUIRY_CATEGORY_NAME
+		  FROM TBL_INQUIRY_CATEGORY 	   
+	</select>
+	
+	<select id="answerInquiry" resultMap="selectAdminPaymentHistory">
+		SELECT
+       		   A.INQUIRY_CONTENTS
+       		 , A.INQUIRY_TITLE
+      		 , A.INQUIRY_DATE
+       		 , A.INQUIRY_EMAIL
+        	 , A.INQUIRY_ANS_YN
+        	 , A.MANAGER_MEMBER_NO
+        	 , B.INQUIRY_CATEGORY_NAME
+         FROM TBL_INQUIRY A
+         JOIN TBL_INQUIRY_CATEGORY B ON (B.INQUIRY_CATEGORY_NO = A.INQUIRY_CATEGORY_NO)
+         WHERE A.INQUIRY_NO = #{ inquiryNo }
+	</select>
+	
+	<update id="inquiryAnswerContent">
+		UPDATE TBL_INQUIRY A
+		   SET
+			   A.INQUIRY_ANS_CONTENT = #{ inquiryAnsContent }
+		     , A.INQUIRY_ANS_YN = 'Y'
+		     , A.INQUIRY_ANS_DATE = SYSDATE
+		 WHERE INQUIRY_NO = #{ inquiryNo }
+	
+	</update>
+	
+	<insert id="inquiryCategoryInsert">
+		INSERT 
+		  INTO TBL_INQUIRY_CATEGORY
+	    (
+		  INQUIRY_CATEGORY_NO
+	    , INQUIRY_CATEGORY_NAME
+		)
+		VALUES
+		(
+		  #{ inquiryCategoryNo }
+	    , #{ inquiryCategoryName }
+		)
+	
+	</insert>
+	<delete id="InquiryCategoryDeleted">
+		DELETE FROM TBL_INQUIRY_CATEGORY
+		WHERE INQUIRY_CATEGORY_NO = #{ categoryCode }
+	</delete>
+	
+	<insert id="requestQuestionInsert">
+		INSERT
+		  INTO TBL_INQUIRY A
+		  (
+		  	A.INQUIRY_NO
+          , A.MANAGER_MEMBER_NO  
+	      , A.INQUIRY_CONTENTS
+   		  , A.INQUIRY_TITLE
+   		  , A.INQUIRY_DATE
+   		  , A.INQUIRY_EMAIL
+   		  , A.INQUIRY_CATEGORY_NO
+		  ) 
+		  VALUES
+		  (
+		    SEQ_INQUIRY_NO.NEXTVAL
+		  , 1  
+		  , #{ inquiryContents }
+		  , #{ inquiryTitle }
+		  , #{ inquiryDate }
+		  , #{ inquiryEmail }
+		  , #{ inquiryCategoryNo }
+		  )
+	</insert>
+</mapper>

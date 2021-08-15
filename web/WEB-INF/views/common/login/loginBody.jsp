@@ -33,54 +33,50 @@
 </head>
 <body>
 
-
-<div class="login_section">
-		<!-- login_form_wrapper -->
-		<div class="login_form_wrapper">
-			<div class="container">
-				<div class="row">
+    <!-- 로그인 폼 -->
+    <form id="memberLogin" action="${ pageContext.servletContext.contextPath }/member/login" method="post">
+	<div class="login_section">
+		<div  class="login_form_wrapper">
+			<div  class="container">
+				<div  class="row">
 					<div class="col-md-8 col-md-offset-2">
-						<!-- login_wrapper -->
-						<h1>개발자의 세상으로 어서오세요</h1>
-						<div class="login_wrapper">
-							<form action="${ pageContext.servletContext.contextPath }/member/login"method="post">
-							<div class="row">
-							
-							</div>
+						<h1>Let It Go</h1>
+						<div style="background:rgb(213,213,213);" class="login_wrapper">
+							<h2>개인 / 기업 회원</h2>
 							<div class="formsix-pos">
-								<div>
-									<input type="text" class="form-control"  id="id" name="id" placeholder="아이디">
+								<div class="form-group i-email">
+									<input type="text" name="memId" class="form-control" id="email2" placeholder="Username*">
 								</div>
 							</div>
 							<div class="formsix-e">
-								<div>
-									<input type="password" class="form-control" id="password" name="password" placeholder="비밀번호">
+								<div class="form-group i-password">
+									<input type="password" name="memPwd" class="form-control" id="password2" placeholder="Password *">
 								</div>
 							</div>
 							<div class="login_remember_box">
-								<label class="control control--checkbox">로그인 정보 저장
+								<label class="control control--checkbox">Remember me
 									<input type="checkbox">
 									<span class="control__indicator"></span>
 								</label>
 								<a href="#" class="forget_password">
-									아이디/비밀번호를 잊어버렸어요
+									아이디 또는 비밀번호를 잊어버리셨나요?
 								</a>
 							</div>
 							<div class="login_btn_wrapper">
-<!-- 								<a href="#" class="btn btn-primary login_btn">login</a> -->
-								<button type="submit">login</button>
+								<!-- <a href="#" class="btn btn-primary login_btn"> Login </a> -->
+								<button class="btn btn-primary login_btn" style="width:100%" type="submit">Login</button>
 							</div>
-							<div class="login_message"  align="center">
-								<p>새로운 개발자인가요?<a href="/web/WEB-INF/views/register/regist.jsp"> 가입하기</a> </p>
+							<div align="center" class="login_message">
+								<p>아직 회원가입 안하셨나요?</p><p></p><p><a href="${ pageContext.servletContext.contextPath }/member/individual/regist">개인회원가입 </a> </p>
+								<p><p><a href="${ pageContext.servletContext.contextPath }/member/coporate/regist">기업회원가입 </a> </p>
 							</div>
-							</form>
 						</div>
-						<!-- /.login_wrapper-->
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	</form>
 
 </body>
 </html>

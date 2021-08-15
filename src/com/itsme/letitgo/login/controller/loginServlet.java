@@ -8,34 +8,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.itsme.letitgo.login.model.dto.MemberDTO;
-import com.itsme.letitgo.login.model.service.MemberService;
+import com.itsme.letitgo.login.model.dto.MemberLoginDTO;
+import com.itsme.letitgo.login.model.service.MemberLoginService;
 
 @WebServlet("/member/login")
 public class loginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String memberId = request.getParameter("id");
-		String memberPwd = request.getParameter("password");
 		
-		MemberDTO requestMember = new MemberDTO();
-		requestMember.setId(memberId);
-		requestMember.setPwd(memberPwd);
+		String memId = request.getParameter("memId");
+		String memPwd = request.getParameter("memPwd");
+		
+		MemberLoginDTO requestMember = new MemberLoginDTO();
+		requestMember.setMemId(memId);
+		requestMember.setMemPwd(memPwd);
 
 		System.out.println(requestMember);
 		
-		MemberService memberService = new MemberService();
+		MemberLoginService memberService = new MemberLoginService();
 		
-		MemberDTO loginMember = memberService.loginCheck(requestMember);
+		MemberLoginDTO loginMember = memberService.loginCheck(requestMember);
 		
-		System.out.println("loginServlet : " + loginMember);
+		System.out.println("loginMember : " + loginMember);
 		
 		if(loginMember != null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("loginMember", loginMember);
 			
+			HttpSession session = request.getSession();
+			session.setAttribute("loginMember", loginMember);		
 			response.sendRedirect(request.getContextPath());
-		}else {
+			
+		} else {
 			request.setAttribute("message", "로그인 실패!!");
 			request.getRequestDispatcher("/WEB-INF/views/common/login/failed.jsp").forward(request, response);
 		}

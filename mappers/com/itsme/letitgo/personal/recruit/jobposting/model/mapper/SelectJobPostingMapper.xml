@@ -77,9 +77,25 @@
 	</resultMap>
 
 	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpOwnFormResumeAttachmentDTO" id="자사이력서">
-	
+
 	</resultMap>
 	
+	<!-- 지원 이력 확인을 위한 resultMap -->
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectApplyingYnDTO" id="resultApplyngYn">
+		<result property="resumeNo" column="RESUME_NO"/>
+		<result property="jobPostNo" column="JOB_POST_NO"/>
+		<result property="jobPostApplyingStatus" column="JOB_POST_APPLYING_STATUS"/>
+		<result property="memNo" column="MEM_NO"/>
+	</resultMap> 
+	
+	<!-- 공고 지원 시 이력서 선택을 위한 이력서 resultMap -->
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpResumeDTO" id="resultResumeForApplying">
+		<id property="resumeNo" column="RESUME_NO"/>
+		<result property="inMemNo" column="IN_MEM_NO"/>
+		<result property="resumeWriteDate" column="RESUME_WRITE_DATE"/>
+		<result property="resumeScoutStatus" column="RESUME_SCOUT_STATUS"/>
+		<result property="resumeTitle" column="RESUME_TITLE"/>
+	</resultMap>
 	
 	<select id="selectAllJobPosting" resultMap="resultJobPosting">
 		SELECT
@@ -150,4 +166,47 @@
 		  JOIN TBL_SKILLS S ON(RS.SKILLS_NO = S.SKILLS_NO)
 		 WHERE RS.JOB_POST_NO = #{ selectJobPostNo }
 	</select>
+	<!-- 공고 상세보기 들어갈때 지원완료했는지 여부를 확인하기 위한 mapper, 지원완료로 바꿔야한다. -->
+	<select id="selectApplyingHistory" parameterType="com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectApplyingYnDTO" resultMap="resultApplyngYn">
+		SELECT
+		       AH.RESUME_NO
+		     , AH.JOB_POST_NO
+		     , AH.JOB_POST_APPLYING_STATUS
+		     , R.IN_MEM_NO
+		  FROM TBL_APPLYING_HISTORY AH 
+		  JOIN TBL_RESUME R ON (AH.RESUME_NO = R.RESUME_NO)
+		 WHERE R.IN_MEM_NO = #{ memNo } 
+		   AND AH.JOB_POST_NO = #{ jobPostNo }
+		   AND AH.JOB_POST_APPLYING_STATUS = '지원취소'
+	</select>
+	
+	<!-- 공고 지원 선택 시 회원이 보유한 이력서를 보여주기 위한 mapper -->
+	<select id="selectResumeForApplying" parameterType="_int" resultMap="resultResumeForApplying">
+		SELECT
+			   R.IN_MEM_NO
+			 , R.RESUME_NO
+			 , R.RESUME_WRITE_DATE
+			 , R.RESUME_SCOUT_STATUS
+			 , R.RESUME_TITLE
+		  FROM TBL_RESUME R
+		 WHERE R.IN_MEM_NO = #{ inMemNo }
+	</select>
+	
+	<insert id="insertApplyngHistory">
+	
+		INSERT
+		  INTO TBL_APPLYING_HISTORY AH
+		(
+		  AH.RESUME_NO
+		, AH.JOB_POST_NO
+		, AH.JOB_POST_APPLYING_STATUS
+		, AH.JOB_POST_APPLYING_CANCEL_DATE
+		)
+		VALUES
+		(
+		  
+		)
+	</insert>
+	<!--  -->
+	
 </mapper>

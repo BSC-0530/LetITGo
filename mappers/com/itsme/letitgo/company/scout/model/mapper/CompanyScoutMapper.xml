@@ -418,7 +418,7 @@
 			UPDATE
 				TBL_RESUME_READING_HISTORY
 				SET RESUME_BROWSE_DATE = SYSDATE
-				   ,RESUME_BROWSE_KINDS = '얕은열람'
+<!-- 				   ,RESUME_BROWSE_KINDS = '얕은열람' -->
 				   WHERE RESUME_NO = #{ onClickResumeNo }
 		</update>
 		
@@ -479,5 +479,17 @@
 <!-- 				SKILLS_NAME -->
 <!-- 			FROM TBL_SKILLS	 -->
 <!-- 		</select> -->
+
+	<insert id="insertInterview">
+		INSERT
+		  INTO TBL_INTERVIEW_PROPOSAL A
+		(
+		  A.SCOUT_NO, A.CO_MEM_NO, A.RESUME_NO, A.IN_MEM_NO, A.SCOUT_KINDS
+		)
+		VALUES
+		(
+		  SEQ_SCOUT_NO.NEXTVAL, #{ coMemNo }, #{ resumeNo }, #{ inMemNo }, DEFAULT
+		)
+	</insert>
 
 </mapper>

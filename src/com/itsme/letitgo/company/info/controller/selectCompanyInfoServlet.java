@@ -19,32 +19,21 @@ public class selectCompanyInfoServlet extends HttpServlet {
 
 		
 		
-		List<CompanyAddInfoDTO> comDTO = new CompanyInfoService().selectedInfoCompany();
+		CompanyAddInfoDTO comDTO = new CompanyInfoService().selectedInfoCompany();
 		
 		
-		System.out.println("ASDASD!@#!@#!@#" + comDTO.get(0));
-//		
-		String intro = comDTO.get(0).getCoIntro();
-		String coNo = comDTO.get(0).getCoNo();
-		String coName = comDTO.get(0).getCoComName();
-		String ceoName = comDTO.get(0).getCoCeoName();
-		String address = comDTO.get(0).getCoAddress();
-		String secTors = comDTO.get(0).getCoSectors();
-		String coStatus = comDTO.get(0).getCoStatus();
-		String site = comDTO.get(0).getWebSite();
-		
-		request.setAttribute("intro", intro);
-		request.setAttribute("coNo", coNo);
-		request.setAttribute("address", address);
-		request.setAttribute("coName", coName);
-		request.setAttribute("ceoName", ceoName);
-		request.setAttribute("secTors", secTors);
-		request.setAttribute("coStatus", coStatus);
-		request.setAttribute("site", site);
-		request.setAttribute("comDTO", comDTO);
+//		request.setAttribute("intro", intro);
+//		request.setAttribute("coNo", coNo);
+//		request.setAttribute("address", address);
+//		request.setAttribute("coName", coName);
+//		request.setAttribute("ceoName", ceoName);
+//		request.setAttribute("secTors", secTors);
+//		request.setAttribute("coStatus", coStatus);
+//		request.setAttribute("site", site);
 		
 		System.out.println("ASKDJAKSDAJSDH" + comDTO);
 		
+		request.setAttribute("comDTO", comDTO);
 		String path="/WEB-INF/views/member/company/companyMyPage.jsp";
 		request.getRequestDispatcher(path).forward(request, response);
 		

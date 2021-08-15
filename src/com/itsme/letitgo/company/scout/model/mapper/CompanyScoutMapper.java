@@ -46,6 +46,8 @@ public interface CompanyScoutMapper {
 //	깊은 열람
 	List<ScoutDetailResumeDTO> selectDetailResume();
 
+	int insertInterview(int memNo);
+
 //	List<SkillsAndCategoryDTO> skillsSelect();
 
 

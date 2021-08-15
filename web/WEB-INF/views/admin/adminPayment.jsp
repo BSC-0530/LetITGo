@@ -126,10 +126,11 @@
 												</p>
 												<br> <br>
 												<h3 style="font-weight: bold">1:1 문의</h3>
+												
 												<br>
 												<p>
 												<p align="center">
-													<a href="#">1:1 문의 조회</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/inquiry/select">1:1 문의 조회</a>
 												</p>
 												<br>
 												<p align="center">

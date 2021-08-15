@@ -14,12 +14,19 @@
 		<result property="no" column="CATEGORY_NO"/>
 		<result property="name" column="SKILLS_NAME"/>
 	</resultMap>
+	<!-- insert & delete는 resultMap이 필요가 없음 -->
 	<!-- delete resultMap -->
+	<!-- <resultMap type="com.itsme.letitgo.admin.resume.model.dto.SkillsDTO" id="skillsDeleteResultMap">
+		<id property="no" column="CATEGORY_NO"/>
+		<result property="name" column="SKILLS_NAME"/>
+		<result property="skillsNo" column="SKILLS_NO"/>
+	</resultMap>
+	
 	<resultMap type="com.itsme.letitgo.admin.resume.model.dto.SkillsDTO" id="skillsDeleteResultMap">
 		<id property="skillsNo" column="SKILLS_NO"/>
 		<result property="name" column="SKILLS_NAME"/>
 		<result property="no" column="CATEGORY_NO"/>
-	</resultMap>
+	</resultMap> -->
 		
 	<insert id="skillsInsert" parameterType="com.itsme.letitgo.admin.resume.model.dto.SkillsDTO">
 		INSERT
@@ -44,6 +51,31 @@
 		     , A.SKILLS_NAME
 		  FROM TBL_SKILLS A     
 	</select>
+	
+	<delete id="skillsDelete">
+		DELETE
+		  FROM TBL_SKILLS A	
+		 WHERE A.SKILLS_NO = #{ skillsNo } 
+	</delete>
+	
+	<!-- <delete id="skillsSkillsDelete">
+		DELETE
+		  FROM TBL_RESUME_HOLDING_SKILLS A	
+		 WHERE A.SKILLS_NO = #{ skillsNo } 
+	</delete>
+	
+	<delete id="skillsDelete">
+		DELETE
+		  FROM TBL_SKILLS A	
+		 WHERE A.SKILLS_NO = #{ skillsNo } 
+	</delete>
+	
+	<delete id="skillsNoDelete">
+		DELETE
+		  FROM TBL_SKILLS A	
+		 WHERE A.CATEGORY_NO = #{ no } 
+	</delete> -->
+	
 	
 	<!-- <delete id="skillsDelete">
 		DELETE

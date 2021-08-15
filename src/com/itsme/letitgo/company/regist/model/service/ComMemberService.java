@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.itsme.letitgo.company.regist.model.dto.CoMemberDTO;
 import com.itsme.letitgo.company.regist.model.mapper.ComRegistMapper;
-import com.itsme.letitgo.personal.regist.model.mapper.RegistMemberMapper;
+import com.itsme.letitgo.personal.regist.model.mapper.RegistInMemberMapper;
 
 public class ComMemberService {
 	

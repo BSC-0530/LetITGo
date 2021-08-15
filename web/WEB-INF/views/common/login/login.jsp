@@ -9,8 +9,7 @@
 </head>
 <body>
 
-
-	<jsp:include page="../../common/header/companyMainHeader.jsp"/>
+	<jsp:include page="../../common/header/header.jsp"/>
 
 	
 	<jsp:include page="loginBody.jsp"/>

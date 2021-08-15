@@ -179,6 +179,7 @@
 
 								<!-- 이거는 이제 정보뜨는 칸 -->
 								<!-- 데이터 테이블 내역모음 -->
+								<form action="${pageContext.servletContext.contextPath}/skills/delete">
 								<table id="skills" class="hover cell-border stripe">
 									<thead>
 										<tr>
@@ -190,7 +191,10 @@
 									</thead>
 									<c:forEach var="controllSkills"
 										items="${ requestScope.skillsList }">
-
+										
+										<input type="hidden" name="no" value="${ controllSkills.no }"/>
+										<input type="hidden" name="skillsNo" value="${ controllSkills.skillsNo }"/>
+										
 										<tbody align="center">
 
 											<tr>
@@ -200,11 +204,12 @@
 												<td id="name"><c:out value="${ controllSkills.name }" /></td>
 
 												<!-- <td><button type="button" disabled>삭제</button></td> -->
-												<td><button class="btn-info" onClick="skillsDelete(this);" value="${ controllSkills.skillsNo }">삭제</button></td>
+												<td><button class="btn-info" type="submit">삭제</button></td>
 											</tr>
 										</tbody>
 									</c:forEach>
 								</table>
+								</form>
 								<br>
 								<br>
 
@@ -241,6 +246,19 @@
 		}
 	</script>
 	
+	<!-- <script type="text/javascript">
+		
+		function skillsDelete(button) {
+			
+			const no = button.value;
+			location.href = "${ pageContext.servletContext.contextPath }/skills/delete?no=" + no;
+			
+		}
+		
+		$("input").filter("[value='null']").val("");
+		
+	</script>
+	
 	<script type="text/javascript">
 		
 		function skillsDelete(button) {
@@ -252,7 +270,7 @@
 		
 		$("input").filter("[value='null']").val("");
 		
-	</script>
+	</script> -->
 
 </body>
 </html>

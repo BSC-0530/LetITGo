@@ -129,6 +129,9 @@ public class MainScoutListService {
 		ResumeReadingHistoryDTO  kinds = mapper.brosweHistoryKindsSelect(onClickResumeNo);
 		
 		System.out.println("ASJDHKASJDAJDKJAS" + kinds);
+		
+		session.close();
+		 
 		return kinds;
 	}
 	
@@ -161,6 +164,7 @@ public class MainScoutListService {
 		
 		int CountNum = mapper.selectAllCountDeepOpen();
 		
+		 session.close();
 		
 		return CountNum;
 	}
@@ -174,6 +178,7 @@ public class MainScoutListService {
 		
 		int CountNum = mapper.selectAllCountSimpleOpen();
 		
+		 session.close();
 		
 		return CountNum;
 	}
@@ -185,6 +190,7 @@ public class MainScoutListService {
 		
 		int CountNum = mapper.selectAllScountNum();
 		
+		 session.close();
 		
 		return CountNum;
 	}
@@ -215,7 +221,24 @@ public class MainScoutListService {
 		List<ScoutDetailResumeDTO> detailResume = mapper.selectDetailResume();
 		
 		session.close();
+		
 		return detailResume;
+	}
+	
+	public int insertInterview(int memNo) {
+		
+		SqlSession session = getSqlSession();
+		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
+		
+		int result = mapper.insertInterview(memNo);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		return result;
 	}
 
 //	public List<SkillsAndCategoryDTO> skillsSelect() {

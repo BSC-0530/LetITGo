@@ -10,6 +10,12 @@ public interface SkillsMapper {
 
 	List<SkillsDTO> selectAllSkillsList();
 
+	/* int skillsNoDelete(int no); */
+
 	int skillsDelete(int skillsNo);
+
+	/*
+	 * int skillsSkillsDelete(int skillsNo);
+	 */
 
 }

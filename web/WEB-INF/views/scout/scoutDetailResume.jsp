@@ -47,9 +47,12 @@
 
 							</div>
 							<div class="jp_cp_rd_wrapper">
-								<ul>
-									<li><a href="#"><i class="fa fa-download"></i>
-											&nbsp;면접 제안</a></li>
+								<ul onclick="interview(this);">
+									<li><a><i class="fa fa-download"></i>
+											&nbsp;면접 제안</a>
+										<input type="hidden" value="${ detail.inMemNo }">
+									</li>
+									
 									<li><a href="#"><i class="fa fa-phone"></i>
 											&nbsp;후보자 찜하기</a></li>
 								</ul>
@@ -107,7 +110,7 @@
 													<a class="collapsed" data-toggle="collapse"
 														data-parent="#accordion_threeLeft"
 														href="#collapseTwentyLeftThree" aria-expanded="false">
-														포트폴리오<br>
+														포트폴리오<br><br>
 														<c:choose>
 															<c:when test="${ detail.scoutResume[status.index].portFolioList[status.index].potKinds eq '링크' }">
 																${ detail.scoutResume[status.index].portFolioList[status.index].potLinkAddress }															
@@ -131,7 +134,7 @@
 													<a class="collapsed" data-toggle="collapse"
 														data-parent="#accordion_threeLeft"
 														href="#collapseTwentyLeftThree2" aria-expanded="false">
-														자기소개<br>
+														자기소개<br><br>
 														${ detail.scoutResume[status.index].itemAndContentList[status.index].selfIntroContent.selfIntroItemContent }
 													</a>
 												</h4>
@@ -148,7 +151,38 @@
 													<a class="collapsed" data-toggle="collapse"
 														data-parent="#accordion_threeLeft"
 														href="#collapseTwentyLeftThree3" aria-expanded="false">
-														경력, 프로젝트 이력, 자격증, 교육, 수상 이력 </a>
+														경력, 프로젝트 이력, 자격증, 교육, 수상 이력 <br><br>
+														경력<br> 
+														회사명 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].carComName }<br>
+														부서명 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].carDeptName }<br>
+														직책 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].carJobName }<br></a>
+														업무 분야 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].carWorkField }<br>
+														입사일 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].carHireDate }<br>
+														퇴사일 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].carEntDate }<br>
+														<br>프로젝트 이력<br>
+														프로젝트명 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].projectName }<br>
+														프로젝트 업무 내용 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].projectContent }<br>
+														프로젝트 시작일 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].projectStartDate }<br>
+														프로젝트 종료일 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].projectEndDate }<br>
+														<br>
+														자격증<br>
+														자격증 명 : ${ detail.scoutResume[status.index].licenseHistoryList[status.index].licenseName }<br>
+														발행처 : ${ detail.scoutResume[status.index].licenseHistoryList[status.index].licenseAgency }<br>
+														자격증 취득일 : ${ detail.scoutResume[status.index].licenseHistoryList[status.index].licenseDate }<br>
+														<br>
+														교육 이력<br>
+														교육명 : ${ detail.scoutResume[status.index].educationHistoryList[status.index].eduName }<br>
+														교육기관 : ${ detail.scoutResume[status.index].educationHistoryList[status.index].eduAgency }<br>
+														교육 시작일 : ${ detail.scoutResume[status.index].educationHistoryList[status.index].eduStartDate }<br> 
+														교육 종료일 : ${ detail.scoutResume[status.index].educationHistoryList[status.index].eduEndDate }<br>
+														교육 내용 : ${ detail.scoutResume[status.index].educationHistoryList[status.index].eduContent }<br>
+														<br>
+														수상 이력<br>
+														수상명 : ${ detail.scoutResume[status.index].awardHistoryList[status.index].awdName }<br>
+														수상기관 : ${ detail.scoutResume[status.index].awardHistoryList[status.index].awdAgency }<br>
+														수상일 : ${ detail.scoutResume[status.index].awardHistoryList[status.index].awdDate }<br>
+														수상내용 : ${ detail.scoutResume[status.index].awardHistoryList[status.index].awdContent }<br>
+														
 												</h4>
 											</div>
 											<div id="collapseTwentyLeftThree3"
@@ -170,6 +204,16 @@
 	</c:forEach>
 	<!-- jp profile Wrapper End -->
 	<!-- jp profile Wrapper Start -->
+	
+	<script>
+		
+		function interview(ul) {
+			const memNo = ul.child[0].value;
+			location.href = "${ pageContext.servletContext.contextPath }/company/scout/interview?memNo=" + memNo;
+		}
+		
+		$("input").filter("[value='null']").val("");
+	</script>
 
 
   

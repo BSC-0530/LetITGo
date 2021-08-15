@@ -34,6 +34,8 @@
 			</div>
 		</div>
 	</div>
+	
+	
 
 
 	<!-- jp listing Single cont Wrapper Start -->
@@ -145,9 +147,25 @@
                                     </div>
                                     <div class="jp_listing_right_bar_btn_wrapper">
                                         <div class="jp_listing_right_bar_btn">
-                                            <ul>
-                                                <li><a href="#"><i class="fa fa-plus-circle"></i> &nbsp; 지원하기</a></li>
+                                        
+                                        <!--  requestScope에 담긴 applyingResult 가 != null 인경우 지원완료, null인경우 지원하지 않았음 -->
+                                        <c:if test="${ requestScope.applyingResult eq null }">
+                    	                   <ul>
+                    	                   		<c:if test="${ pageScope.postNo eq null }">
+                                                <li><a onclick="selectResume();"><i class="fa fa-plus-circle"></i> &nbsp; 이력서 선택</a></li>
+                                                </c:if>
+                                                <c:if test="${ pageScope.postNo ne null }">
+                                                <li><a onclick="apply();"><i class="fa fa-plus-circle"></i> &nbsp; 지원 하기</a></li>
+                                                </c:if>
+	                                            <li><input type="text" id="resumeNo" value="" readonly></li>
                                             </ul>
+                                        </c:if>
+                                        <c:if test="${ requestScope.applyingResult ne null }">
+                                            <ul>
+                                                <li><a onclick="cancel();"><i class="fa fa-plus-circle"></i> &nbsp; 지원 취소</a></li>
+	                                            <li><input type="text" id="postNo" value="${ jobPosting.applyingResult.resumeNo }" style="visibility: hidden;"></li>
+                                            </ul>
+                                        </c:if>
                                         </div>
                                     </div>
                                 </div>
@@ -158,7 +176,8 @@
             </div>
         </div>
     </div>
-    
+
+
    
 <!--     main js file start -->
 <!--     <script src="js/jquery_min.js"></script> -->
@@ -190,12 +209,43 @@
 			
 			const coMemNo = label.parentNode.children[4].value;
 			
-			alert(coMemNo);
-			alert("");
-			
 			location.href = "${ pageContext.servletContext.contextPath }/aboutCompany/select?coMemNo="+ coMemNo;
 	
+		};
+		
+		function selectResume() {
+			
+			var jobPostNo = "${ requestScope.detailedJobPosting.jobPostNo }";
+			
+			 alert(jobPostNo);
+			 
+			 
+			 const path = "${ pageContext.servletContext.contextPath }/resumeForApply/select?jobPostNo="+ jobPostNo;
+			 
+			 window.open( path , "이력서 선택", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+
+// 			 location.href = "${ pageContext.servletContext.contextPath }/member/allJobPosting/select"
+//  			 location.href = "${ pageContext.servletContext.contextPath }/resumeForApply/select";
+		}
+		
+		function apply(){
+			
+			
 		}
 	</script>
+
+	
+	<script>
+		window.onload = function(event) {
+			
+			var value = document.getElementById("postNo").value;
+			
+		}
+
+
+
+	</script>
+
+ 
 </body>
 </html>
