@@ -15,12 +15,13 @@ import com.itsme.letitgo.login.model.service.MemberService;
 public class loginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String memberId = request.getParameter("id");
-		String memberPwd = request.getParameter("password");
+		
+		String memId = request.getParameter("memId");
+		String memPwd = request.getParameter("memPwd");
 		
 		MemberDTO requestMember = new MemberDTO();
-		requestMember.setId(memberId);
-		requestMember.setPwd(memberPwd);
+		requestMember.setMemId(memId);
+		requestMember.setMemPwd(memPwd);
 
 		System.out.println(requestMember);
 		
@@ -31,11 +32,12 @@ public class loginServlet extends HttpServlet {
 		System.out.println("loginServlet : " + loginMember);
 		
 		if(loginMember != null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("loginMember", loginMember);
 			
+			HttpSession session = request.getSession();
+			session.setAttribute("loginMember", loginMember);		
 			response.sendRedirect(request.getContextPath());
-		}else {
+			
+		} else {
 			request.setAttribute("message", "로그인 실패!!");
 			request.getRequestDispatcher("/WEB-INF/views/common/login/failed.jsp").forward(request, response);
 		}
