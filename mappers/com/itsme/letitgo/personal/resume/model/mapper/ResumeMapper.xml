@@ -350,8 +350,8 @@
 		UPDATE
 		       TBL_SELF_INTRODUCTION_CONTENT A
 		   SET A.SELF_INTRO_ITEM_CONTENT = #{ selfIntroItemContent }
-		     , A.SELF_INTRO_ITEM_NO = #{ selfIntroItemNo }
 		 WHERE A.RESUME_NO = #{ resumeNo }
+	       AND A.SELF_INTRO_ITEM_NO = #{ selfIntroItemNo }
 	</update>
 	
 	<update id="updateLicense">

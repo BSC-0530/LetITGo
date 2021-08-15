@@ -182,7 +182,7 @@
 										</c:forEach>
 										</td>
 										<td><c:out value="${broswe.jobName }"></c:out> </td>
-										<td><c:out value="${broswe.resumeBrowseKinds }"></c:out> </td>
+										<td id="kindsName"><c:out value="${broswe.resumeBrowseKinds }"></c:out> </td>
 										<td><button type="button"  onclick="browse(this);">상세보기</button>
 										<input type="text" id="hiddenResumeNo" value="${ broswe.resumeNo }">
 										</td>
@@ -204,8 +204,16 @@ $(document).ready(function() {
 function browse(button){
 	
 	const num = button.parentNode.children[1].value;
+	const kinds = document.getElementById("kindsName").children[0].value;
 	
-	location.href="${ pageContext.servletContext.contextPath }/simple/browse/select?num="+num
+	if(kinds == '얕은열람') {
+		location.href = "${ pageContext.servletContext.contextPath }/simple/browse/select?num=" + num;
+	} else if(kinds == '깊은열람') {
+		location.href = "${ pageContext.servletContext.contextPath }/detail/browse/select?num=" + num;
+	} else {
+		location.href = "${ pageContext.servletContext.contextPath }/detail/browse/select?num=" + num;
+	}
+	
 			
 }
 </script>

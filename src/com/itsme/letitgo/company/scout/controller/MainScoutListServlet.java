@@ -22,7 +22,7 @@ import com.itsme.letitgo.personal.resume.model.dto.SkillsAndCategoryDTO;
  * Servlet implementation class MainScoutList
  */
 @WebServlet("/main/Scout/List")
-public class MainScoutList extends HttpServlet {
+public class MainScoutListServlet extends HttpServlet {
 	
 	//상단바누르면 나오는 스카우트임
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

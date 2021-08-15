@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.itsme.letitgo.company.scout.model.dto.BrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.BrosweSimplelDTO;
 import com.itsme.letitgo.company.scout.model.dto.CountReadingNumDTO;
+import com.itsme.letitgo.company.scout.model.dto.InterviewProposalDTO;
 import com.itsme.letitgo.company.scout.model.dto.PersonalBrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.ResumeReadingHistoryDTO;
 import com.itsme.letitgo.company.scout.model.mapper.CompanyScoutMapper;
@@ -37,15 +38,15 @@ public class MainScoutListService {
 	
 		System.out.println("sadasdasdaskjdhasdka : " + scoutCareea);
 		
-			Map<String, Object> scoutList = new HashMap<>();
+		Map<String, Object> scoutList = new HashMap<>();
 			
-			scoutList.put("scoutListName",scoutListName);
-			scoutList.put("scoutListSkills", scoutListSkills);
-			scoutList.put("scoutCareea", scoutCareea );
+		scoutList.put("scoutListName",scoutListName);
+		scoutList.put("scoutListSkills", scoutListSkills);
+		scoutList.put("scoutCareea", scoutCareea );
 			
-			System.out.println("스킬확인 : " + scoutCareea);
+		System.out.println("스킬확인 : " + scoutCareea);
 	
-			session.close();
+		session.close();
 		 
 		return scoutList;
 	}
@@ -120,15 +121,17 @@ public class MainScoutListService {
 		return selectBrowseUsingHistroy;
 	}
 	
-	public ResumeReadingHistoryDTO  brosweHistoryKindsSelect(int onClickResumeNo) {
+	public List<ResumeReadingHistoryDTO>  brosweHistoryKindsSelect(int onClickResumeNo) {
 		
 		SqlSession session = getSqlSession();
 		
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
 		
-		ResumeReadingHistoryDTO  kinds = mapper.brosweHistoryKindsSelect(onClickResumeNo);
+		List<ResumeReadingHistoryDTO> kinds = mapper.brosweHistoryKindsSelect(onClickResumeNo);
 		
 		System.out.println("ASJDHKASJDAJDKJAS" + kinds);
+		
+		session.close();
 		return kinds;
 	}
 	
@@ -161,6 +164,7 @@ public class MainScoutListService {
 		
 		int CountNum = mapper.selectAllCountDeepOpen();
 		
+		session.close();
 		
 		return CountNum;
 	}
@@ -174,6 +178,7 @@ public class MainScoutListService {
 		
 		int CountNum = mapper.selectAllCountSimpleOpen();
 		
+		session.close();
 		
 		return CountNum;
 	}
@@ -185,9 +190,11 @@ public class MainScoutListService {
 		
 		int CountNum = mapper.selectAllScountNum();
 		
+		session.close();
 		
 		return CountNum;
 	}
+	
 	public List<PersonalBrosweHistoryDTO> personalBrosweSelect() {
 		
 		 SqlSession session = getSqlSession();
@@ -207,24 +214,26 @@ public class MainScoutListService {
 		
 	}
 
-	public List<ScoutDetailResumeDTO> selectDetailResume() {
+	// 상세이력서 열람(깊은열람)
+	public List<ScoutDetailResumeDTO> selectDetailResume(int resumeNo) {
 		
 		SqlSession session = getSqlSession();
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
 		
-		List<ScoutDetailResumeDTO> detailResume = mapper.selectDetailResume();
+		List<ScoutDetailResumeDTO> detailResume = mapper.selectDetailResume(resumeNo);
 		
 		session.close();
 		
 		return detailResume;
 	}
 	
-	public int insertInterview(int memNo) {
+	// 면접 제안
+	public int insertInterview(InterviewProposalDTO memNos) {
 		
 		SqlSession session = getSqlSession();
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
 		
-		int result = mapper.insertInterview(memNo);
+		int result = mapper.insertInterview(memNos);
 		
 		if(result > 0) {
 			session.commit();
@@ -232,8 +241,59 @@ public class MainScoutListService {
 			session.rollback();
 		}
 		
+		session.close();
+		
 		return result;
 	}
+	
+	
+	
+	public int insertNewKinds(int onClickResumeNo) {
+		
+		SqlSession session = getSqlSession();
+		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
+		
+		int result = mapper.insertNewKinds(onClickResumeNo);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+	
+	public int updateDetailStatus(int resumeNo) {
+		SqlSession session = getSqlSession();
+		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
+		
+		int result = mapper.updateDetailStatus(resumeNo);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return 0;
+	}
+	public int selectSimpleCount() {
+		
+		SqlSession session = getSqlSession();
+		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
+		
+//		int result = mapper.selectSimpleCount();
+		
+		
+		
+		return 1;
+	}
+	
 
 //	public List<SkillsAndCategoryDTO> skillsSelect() {
 //		

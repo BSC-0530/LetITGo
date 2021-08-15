@@ -31,7 +31,8 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
 </head>
 <body>
-	<body>
+	
+	
 	
 	<c:forEach items="${ detailList }" var="detail" varStatus="status">
 
@@ -49,7 +50,7 @@
 							<div class="jp_cp_rd_wrapper">
 								<ul>
 									<li>
-										<a onclick="interview(this);">
+										<a style="background: gray;">
 											<input id="interviewMemNo" type="hidden" value="${ detail.scoutResume[status.index].inMemNo }">
 											<i class="fa fa-download"></i>
 											&nbsp;면접 제안
@@ -209,31 +210,5 @@
 		
 		
 	</c:forEach>
-	<!-- jp profile Wrapper End -->
-	<!-- jp profile Wrapper Start -->
-	
-	<script>
-		
-		function interview(a) {
-			
-			var answer;
-			answer = confirm('후보자에게 면접 제안을 하시겠습니까? \n (제안 취소는 불가능하니 신중하게 결정하세요.)');
-			
-			if(answer == true) {
-				const memNo = a.children[0].value;
-				const resumeNo = document.getElementById("resumeNo").value;
-				location.href = "${ pageContext.servletContext.contextPath }/company/scout/interview?memNo=" + memNo 
-										+"&resumeNo=" + resumeNo;
-			}
-		}
-		
-		
-	</script>
-
-
-  
-
-
-</body>
 </body>
 </html>

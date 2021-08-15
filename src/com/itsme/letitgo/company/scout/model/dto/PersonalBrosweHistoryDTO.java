@@ -1,20 +1,25 @@
 package com.itsme.letitgo.company.scout.model.dto;
 
-public class PersonalBrosweHistoryDTO {
+public class PersonalBrosweHistoryDTO implements java.io.Serializable {
 
 	private String coComName;
 	private String address;
 	private String coStatus;
 	private String resumeBrowseKinds;
+	private String scoutKinds;
+	private int coMemNo;
 	
 	public PersonalBrosweHistoryDTO() {}
 
-	public PersonalBrosweHistoryDTO(String coComName, String address, String coStatus, String resumeBrowseKinds) {
+	public PersonalBrosweHistoryDTO(String coComName, String address, String coStatus, String resumeBrowseKinds,
+			String scoutKinds, int coMemNo) {
 		super();
 		this.coComName = coComName;
 		this.address = address;
 		this.coStatus = coStatus;
 		this.resumeBrowseKinds = resumeBrowseKinds;
+		this.scoutKinds = scoutKinds;
+		this.coMemNo = coMemNo;
 	}
 
 	public String getCoComName() {
@@ -49,10 +54,30 @@ public class PersonalBrosweHistoryDTO {
 		this.resumeBrowseKinds = resumeBrowseKinds;
 	}
 
+	public String getScoutKinds() {
+		return scoutKinds;
+	}
+
+	public void setScoutKinds(String scoutKinds) {
+		this.scoutKinds = scoutKinds;
+	}
+
+	public int getCoMemNo() {
+		return coMemNo;
+	}
+
+	public void setCoMemNo(int coMemNo) {
+		this.coMemNo = coMemNo;
+	}
+
 	@Override
 	public String toString() {
 		return "PersonalBrosweHistoryDTO [coComName=" + coComName + ", address=" + address + ", coStatus=" + coStatus
-				+ ", resumeBrowseKinds=" + resumeBrowseKinds + "]";
-	};
+				+ ", resumeBrowseKinds=" + resumeBrowseKinds + ", scoutKinds=" + scoutKinds + ", coMemNo=" + coMemNo
+				+ "]";
+	}
+
+	
+
 	
 }

@@ -21,6 +21,7 @@ public class ResumeDeleteServlet extends HttpServlet {
 		
 		String path = "";
 		if(result > 6) {
+			
 			path = "/WEB-INF/views/resume/resumeList.jsp";	
 		}
 		

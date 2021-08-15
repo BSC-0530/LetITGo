@@ -26,6 +26,10 @@ public class ScoutMyPageListServlet extends HttpServlet {
 			System.out.println(personalBrosweHistory);
 		}
 		
+//		int simpleCount = mainScoutListService.selectSimpleCount();
+		
+		
+		
 		
 		String path="";
 		
