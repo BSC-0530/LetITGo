@@ -155,10 +155,11 @@
 										<tr>
 											<td align="center">카테고리</td>
 											<td align="center">제목</td>
-											<td align="center">상세보기</td>
 											<td align="center">문의일자</td>
 											<td align="center">이메일</td>
 											<td align="center">응답여부</td>
+											<td align="center">상세보기</td>
+											<td></td>
 										</tr>
 									</thead>
 								<c:forEach var="inq" items="${ requestScope.InquirySelectHistory }">
@@ -166,14 +167,13 @@
 											<tr>
 												<td><c:out value="${ inq.categoryNameDTO.inquiryCategoryName }"/></td>
 												<td><c:out value="${ inq.inquiryTitle }"/></td>									
-												<td><button type="submit" onclick="browse(this);" >상세보기</button></td>
 												<td><c:out value="${ inq.inquiryDate }"/></td>
 												<td><c:out value="${ inq.inquiryEmail }"/></td>
 												<td><c:out value="${ inq.inquiryAnsYN }"/></td>
-												<td style="font-size: 0px; width:0px; height:0px"><c:out value="${ inq.inquiryNo }"/></td>
+												<td><button  type="submit" onclick="browse(this);" >상세보기</button></td>
+												<td style="font-size: 0px; width:0px; height:0px;"><c:out value="${ inq.inquiryNo }"/></td>
 											</tr>
 										</tbody>	
-										
 								</c:forEach>			
 								</table>
 								<br>
@@ -196,11 +196,11 @@
 <script>
 	function browse(button){
 		
-		const num = button.parentNode.children[3].val
+		const num = button.parentNode.parentNode.children[6].innerText
 
 					alert(num);
 					
-// 		location.href="${ pageContext.servletContext.contextPath }/admin/Answer/Servlet?num="+num
+		location.href="${ pageContext.servletContext.contextPath }/admin/Answer/Servlet?num="+num
 				
 	}	
 </script>

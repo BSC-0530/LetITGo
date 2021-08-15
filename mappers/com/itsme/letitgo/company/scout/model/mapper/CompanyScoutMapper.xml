@@ -418,7 +418,7 @@
 			UPDATE
 				TBL_RESUME_READING_HISTORY
 				SET RESUME_BROWSE_DATE = SYSDATE
-				   ,RESUME_BROWSE_KINDS = '얕은열람'
+<!-- 				   ,RESUME_BROWSE_KINDS = '얕은열람' -->
 				   WHERE RESUME_NO = #{ onClickResumeNo }
 		</update>
 		

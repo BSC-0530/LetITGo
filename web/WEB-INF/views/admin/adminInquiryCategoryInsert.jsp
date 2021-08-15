@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +37,6 @@
 	src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
-
 </head>
 <body>
 	<div class="jp_listing_sidebar_main_wrapper">
@@ -79,22 +78,30 @@
 												</p>
 												<br>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/payment/select">결제 내역 조회</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/admin/payment/select">결제
+														내역 조회</a>
 												</p>
 												<br>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/refund/select">환불 요청 관리</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/admin/refund/select">환불
+														요청 관리</a>
 												</p>
 												<br> <br>
 												<h3 style="font-weight: bold">기업 요청 관리</h3>
 												<br>
 												<p>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/post/insertRequest/select">공고 등록 요청</a>											
+													<a
+														href="${ pageContext.servletContext.contextPath }/admin/post/insertRequest/select">공고
+														등록 요청</a>
 												</p>
 												<br>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/post/updateRequest/select">공고 수정 요청</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/admin/post/updateRequest/select">공고
+														수정 요청</a>
 												</p>
 												<br>
 												<p align="center">
@@ -129,7 +136,9 @@
 												<br>
 												<p>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/inquiry/select">1:1 문의 조회</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/admin/inquiry/select">1:1
+														문의 조회</a>
 												</p>
 												<br>
 												<p align="center">
@@ -143,86 +152,71 @@
 						</div>
 					</div>
 				</div>
-
-				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<br><br><br>
-							<h1>1:1문의 카테고리 관리</h1>
-							<div class="jp_listing_tabs_wrapper">
-								<table id="table_payment" class="hover cell-border stripe">
-									<thead>
-										<tr>
-											<td align="center">카테고리 코드</td>
-											<td align="center">카테고리 이름</td>
-											<td align="center">삭제</td>
-										</tr>
-									</thead>
-								<c:forEach var="categoryList" items="${ requestScope.inquiryCategory }">
-										<tbody align="center">
-											<tr>
-												<td><c:out value="${categoryList.inquiryCategoryNo }"/></td>
-												<td><c:out value="${categoryList.inquiryCategoryName }"/></td>									
-												<td><button type="submit" class="btn btn-info" onclick="deleted(this);" >삭제</button></td>
-												<td style="font-size: 0px; width:0px; height:0px;"><c:out value="${ categoryList.inquiryCategoryNo }"/></td>
-											</tr>
-										</tbody>	
-								</c:forEach>			
-								</table>
-								<br>
-								<br>
-								<div class="category-insert">
-									<button style="margin-left: 90%" 
-									type="submit" class="btn btn-info" onclick="insert();">등록</button>
+				<div class="jp_contact_form_main_wrapper">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="jp_contact_form_heading_wrapper">
+									<h2>1:1문의</h2>
+								</div>
+							</div>
+							<div class="jp_contact_form_box">
+							<form action="${ pageContext.servletContext.contextPath }/admin/category/Insert/Servlet" method="post">
+								<div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
+									<div
+										class="jp_contact_inputs_wrapper jp_contact_inputs2_wrapper">
+										<i class="fa fa-pencil-square-o"></i><input name="inquiryCategoryNo"  type="text"
+										 onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"
+										placeholder="카테고리 코드">
+									</div>
+								</div>
+								<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+									<div
+										class="jp_contact_inputs_wrapper jp_contact_inputs3_wrapper">
+										<i class="fa-envelope"></i><input name="inquiryCategoryName"
+											placeholder="카테고리">
+									</div>
+									<div class="category-insert">
+										<button style="margin-left: 90%; margin-top: 5%;"
+											type="submit" class="btn btn-info" onclick="insert();">등록</button>
+
+									</div>
+								</div>
+							</form>
 								</div>
 							</div>
 						</div>
+
 					</div>
-					<br>
 				</div>
-				<br>
 			</div>
 		</div>
 	</div>
-	
-<script>
-		function insert(button) {
-			
-			 alert('이이잉~');  
-			
-	 location.href = "${ pageContext.servletContext.contextPath }/admin/category/Insert/Servlet" 
-			
-		}
-</script>	
-	
-	
-	
-<script>
-		$(document).ready(function() {
-			$('#table_payment').DataTable();
-		});
-</script>
+</div>
+</div>
 
+	<script>
+		function back(back) {
+			window.history.back();
+		}
+	</script>
+</body>
+	<script>
+		function back(back) {
+			window.history.back();
+		}
+	</script>
+	
 <script>
-	function deleted(button){
-		
-		
-		var answer;
-		answer = confirm('정말 삭제하시겠습니까?');
-		if(answer == true){
-		const code = button.parentNode.parentNode.children[3].innerText
-		location.href="${ pageContext.servletContext.contextPath }/admin/category/deleted?code="+code
-			
-		}
-		
-		else if(answer == false){
-			
-		}
-		
-			
-		
-				
-	}	
+// 카테고리코드숫자만
+	function inNumber(){
+        if(event.keyCode<48 || event.keyCode>57){
+           event.returnValue=false;
+        }
+}
 </script>
 </body>
 </html>

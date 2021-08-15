@@ -120,6 +120,7 @@
 <!-- 옆에 넣으려면 여기에 넣어야함 -->
 <!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
 				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+<form action="${ pageContext.servletContext.contextPath }/company/info/change/servlet" method="get">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_listing_tabs_wrapper">
@@ -131,34 +132,34 @@
 									<div class="jp_regiter_top_heading">
 										<p><h1>기업정보</h1></p>
 									</div>
+									
 									<div class="row">
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="field-name" value=""placeholder="${ coNo }" readonly>
+											<input type="text" name="coNo" value=""placeholder="${ comDTO.coNo }" readonly>
+										</div>
+										<!--Form Group-->
+										<div class="form-group col-md-6 col-sm-6 col-xs-12">
+											<input type="text" name="webSite" value="" placeholder=${ comDTO.webSite } readonly>
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
 
-											<input type="text" name="field-name" value=""placeholder=${ address } readonly>
+											<input type="password" name="coName" value=""placeholder="${comDTO.coComName }" readonly>
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-
-											<input type="password" name="field-name" value=""placeholder="${coName }" readonly>
+											<input type="password" name="ceoName" value=""placeholder="${comDTO.coCeoName }" readonly>
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="password" name="field-name" value=""placeholder="${ceoName }" readonly>
-										</div>
-										<!--Form Group-->
-										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="field-name" value=""placeholder="${secTors }" readonly>
+											<input type="text" name="secTors" value=""placeholder="${ comDTO.coSectors }" readonly>
 										</div>
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="field-name" value=""placeholder="${coStatus }" readonly>
+											<input type="text" name="coStatus" value=""placeholder="${ comDTO.coStatus }" readonly>
 										</div>
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="field-name" value=""placeholder="${address } 주소" readonly>
+											<input type="text" name="address" value=""placeholder="${ comDTO.coAddress }" readonly>
 										</div>
 									</div>
 								</div>
@@ -166,15 +167,25 @@
 						</div>
 					</div>
 					<br>
-								<div class="companyText">	
-                                	<label>회사소개</label><input id="textArea" type="text"  placeholder="${ intro  }" >
-                            	</div>
+					<div class="companyText">	
+                              	<label>회사소개</label><input id="textArea" type="text"  placeholder="${ intro  }" >
+                    	</div>
 					
             	<!-- end --> 
+            		
 						 <button type="submit" class="btn btn-info" id="coInfoChange" style=" float: right;" >기업 정보 변경</button>
+					</form>	 
             	</div>
 			</div>
 		</div>
 	</div>
+<script>
+// function infoChange(button){
+	
+// 	location.href="${ pageContext.servletContext.contextPath }/company/info/change/servlet"	
+// }
+
+</script>	
+	
 </body>
 </html>
