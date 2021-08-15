@@ -54,7 +54,7 @@
 									<li class="has-mega gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }/productList/select" id="paymentMainPage" class="gc_main_navigation">결제페이지</a></li>
 									<li class="has-mega gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }/main/Scout/List" class="gc_main_navigation">스카우트</a> </li>
 									<li class="has-mega gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }/companyTestServlet" class="gc_main_navigation" >마이페이지</a></li>
-									<li class="gc_main_navigation parent"><a href="#" class="gc_main_navigation">문의하기</a></li>
+									<li class="gc_main_navigation parent"><a href="${ pageContext.servletContext.contextPath }/request/inquiry/servlet" class="gc_main_navigation">문의하기</a></li>
 								</ul>
 							</div>
 						</div>

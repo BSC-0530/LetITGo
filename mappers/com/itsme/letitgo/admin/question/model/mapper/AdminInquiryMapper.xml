@@ -42,4 +42,70 @@
 		  FROM TBL_INQUIRY_CATEGORY 	   
 	</select>
 	
+	<select id="answerInquiry" resultMap="selectAdminPaymentHistory">
+		SELECT
+       		   A.INQUIRY_CONTENTS
+       		 , A.INQUIRY_TITLE
+      		 , A.INQUIRY_DATE
+       		 , A.INQUIRY_EMAIL
+        	 , A.INQUIRY_ANS_YN
+        	 , A.MANAGER_MEMBER_NO
+        	 , B.INQUIRY_CATEGORY_NAME
+         FROM TBL_INQUIRY A
+         JOIN TBL_INQUIRY_CATEGORY B ON (B.INQUIRY_CATEGORY_NO = A.INQUIRY_CATEGORY_NO)
+         WHERE A.INQUIRY_NO = #{ inquiryNo }
+	</select>
+	
+	<update id="inquiryAnswerContent">
+		UPDATE TBL_INQUIRY A
+		   SET
+			   A.INQUIRY_ANS_CONTENT = #{ inquiryAnsContent }
+		     , A.INQUIRY_ANS_YN = 'Y'
+		     , A.INQUIRY_ANS_DATE = SYSDATE
+		 WHERE INQUIRY_NO = #{ inquiryNo }
+	
+	</update>
+	
+	<insert id="inquiryCategoryInsert">
+		INSERT 
+		  INTO TBL_INQUIRY_CATEGORY
+	    (
+		  INQUIRY_CATEGORY_NO
+	    , INQUIRY_CATEGORY_NAME
+		)
+		VALUES
+		(
+		  #{ inquiryCategoryNo }
+	    , #{ inquiryCategoryName }
+		)
+	
+	</insert>
+	<delete id="InquiryCategoryDeleted">
+		DELETE FROM TBL_INQUIRY_CATEGORY
+		WHERE INQUIRY_CATEGORY_NO = #{ categoryCode }
+	</delete>
+	
+	<insert id="requestQuestionInsert">
+		INSERT
+		  INTO TBL_INQUIRY A
+		  (
+		  	A.INQUIRY_NO
+          , A.MANAGER_MEMBER_NO  
+	      , A.INQUIRY_CONTENTS
+   		  , A.INQUIRY_TITLE
+   		  , A.INQUIRY_DATE
+   		  , A.INQUIRY_EMAIL
+   		  , A.INQUIRY_CATEGORY_NO
+		  ) 
+		  VALUES
+		  (
+		    SEQ_INQUIRY_NO.NEXTVAL
+		  , 1  
+		  , #{ inquiryContents }
+		  , #{ inquiryTitle }
+		  , #{ inquiryDate }
+		  , #{ inquiryEmail }
+		  , #{ inquiryCategoryNo }
+		  )
+	</insert>
 </mapper>
