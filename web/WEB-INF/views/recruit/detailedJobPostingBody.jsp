@@ -88,7 +88,7 @@
                                         <br>
                                         <p  style="cursor:pointer; font-size: 20px;" onclick="aboutCompany(this);"><c:out value="${ requestScope.detailedJobPosting.coMemberAddInfoDTO.coComName }"/></p>
  										<br>
- 										<input type="text" id="postNo" value="${ requestScope.detailedJobPosting.coMemNo }" style="visibility: hidden;">
+ 										<input type="text" id="coMemNo" value="${ requestScope.detailedJobPosting.coMemNo }" style="visibility: hidden;">
                                     </div>
                                 </div>
                                 <div class="jp_job_post_right_overview_btn_wrapper">

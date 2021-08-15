@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.itsme.letitgo.company.recruit.applicant.model.mapper.RecruitApplicantMapper">
+
+	<resultMap type="com.itsme.letitgo.company.recruit.applicant.model.dto.ResumeDTO" id="resumeResultMap">
+		<id property="resumeNo" column="RESUME_NO"/>
+		<result property="inMemNo" column="IN_MEM_NO"/>
+		<result property="resumeTitle" column="RESUME_TITLE"/>
+		<result property="resumeWriteDate" column="RESUME_WRITE_DATE"/>
+		<result property="resumeScoutStatus" column="RESUME_SCOUT_STATUS"/>
+		<result property="jobNo" column="JOB_NO"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.company.recruit.applicant.model.dto.DetailResumeDTO" id="detailResumeResultMap">
+		<id property="resumeNo" column="RESUME_NO"/>
+		<result property="inMemNo" column="IN_MEM_NO"/>
+		<result property="resumeTitle" column="RESUME_TITLE"/>
+		<result property="resumeWriteDate" column="RESUME_WRITE_DATE"/>
+		<result property="resumeScoutStatus" column="RESUME_SCOUT_STATUS"/>
+		<result property="jobNo" column="JOB_NO"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.company.recruit.applicant.model.dto.PortfolioDTO" id="portfolioResultMap">
+		<id property="potNo" column="POT_NO"/>
+		<result property="resumeNo" column="RESUME_NO"/>
+		<result property="potKinds" column="POT_KINDS"/>
+		<result property="potLinkAddress" column="POT_LINK_ADDRESS"/>
+		<result property="potFilePath" column="POT_FILE_PATH"/>
+		<result property="potFileOriginalName" column="POT_FILE_ORIGINAL_NAME"/>
+		<result property="potFileName" column="POT_FILE_NAME"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.company.recruit.applicant.model.dto.ItemAndContentDTO" id="itemAndContentResultMap">
+	
+	</resultMap>
+
+
+</mapper>

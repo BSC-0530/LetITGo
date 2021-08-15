@@ -28,8 +28,7 @@ public class SelectCoMyJobPostingServlet extends HttpServlet {
 		// 쿼리스트링을 통해 전달받은 공고종류가 null일경우 : 전체조회, null이 아닐경우 kinds라는 변수에 담아준다.
 		if( request.getParameter("kinds") != null) {
 			request.setAttribute("kinds", request.getParameter("kinds"));
-		} 
-		
+		}
 		
 		Map<String, List<Object>> jp = selectCoMyJobPostingService.selectMyJobPosting(selectCoMyJobPostingDTO);
 		
