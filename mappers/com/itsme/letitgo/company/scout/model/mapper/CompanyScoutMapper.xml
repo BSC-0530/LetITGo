@@ -480,4 +480,16 @@
 <!-- 			FROM TBL_SKILLS	 -->
 <!-- 		</select> -->
 
+	<insert id="insertInterview">
+		INSERT
+		  INTO TBL_INTERVIEW_PROPOSAL A
+		(
+		  A.SCOUT_NO, A.CO_MEM_NO, A.RESUME_NO, A.IN_MEM_NO, A.SCOUT_KINDS
+		)
+		VALUES
+		(
+		  SEQ_SCOUT_NO.NEXTVAL, #{ coMemNo }, #{ resumeNo }, #{ inMemNo }, DEFAULT
+		)
+	</insert>
+
 </mapper>

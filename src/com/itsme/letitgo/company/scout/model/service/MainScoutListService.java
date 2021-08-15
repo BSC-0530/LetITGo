@@ -215,7 +215,24 @@ public class MainScoutListService {
 		List<ScoutDetailResumeDTO> detailResume = mapper.selectDetailResume();
 		
 		session.close();
+		
 		return detailResume;
+	}
+	
+	public int insertInterview(int memNo) {
+		
+		SqlSession session = getSqlSession();
+		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
+		
+		int result = mapper.insertInterview(memNo);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		return result;
 	}
 
 //	public List<SkillsAndCategoryDTO> skillsSelect() {
