@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itsme.letitgo.personal.regist.model.dto.MemberDTO;
+import com.itsme.letitgo.personal.regist.model.dto.InMemberDTO;
 import com.itsme.letitgo.personal.regist.model.service.MemberService;
 
 
@@ -19,7 +19,7 @@ public class modifyMemberInfo extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		MemberService memberService = new MemberService();
-		MemberDTO meberDTO = new MemberDTO();		
+		InMemberDTO meberDTO = new InMemberDTO();		
 		
 		
 		
