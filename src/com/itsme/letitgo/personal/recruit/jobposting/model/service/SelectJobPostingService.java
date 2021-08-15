@@ -8,7 +8,8 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectAppliyngYnDTO;
+import com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpResumeDTO;
+import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectApplyingYnDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectJobPostingDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper;
 
@@ -67,7 +68,7 @@ public class SelectJobPostingService {
 		return jp;
 	}
 
-	public SelectAppliyngYnDTO selectApplyingHistory(SelectAppliyngYnDTO dto) {
+	public SelectApplyingYnDTO selectApplyingHistory(SelectApplyingYnDTO dto) {
 		
 		
 		SqlSession session = getSqlSession();
@@ -80,10 +81,29 @@ public class SelectJobPostingService {
 		
 		System.out.println("applying service : " +  dto);
 		
+		session.close();
+		
 				
 		
 		// 반환받은 dto가 null일 경우 0 null이 아닐경우 1반환
 		return dto;
 	}
+
+	public List<JpResumeDTO> selectResumeForApplying(int inMemNo) {
+
+		SqlSession session = getSqlSession();
+		
+		
+		SelectJobPostingMapper mapper = session.getMapper(SelectJobPostingMapper.class);
+		
+		List<JpResumeDTO> resumeList = mapper.selectResumeForApplying(inMemNo);
+		
+		System.out.println("resumeForApplying resumeList : " + resumeList);
+		
+		session.close();
+		return resumeList;
+	}
+
+
 
 }
