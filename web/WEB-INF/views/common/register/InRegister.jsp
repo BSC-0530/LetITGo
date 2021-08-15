@@ -9,12 +9,10 @@
 </head>
 <body>
 
-	<jsp:include page="../../common/header/companyHeader.jsp"/>
+	<jsp:include page="../../common/header/header.jsp"/>
 	
-	<jsp:include page="registBody.jsp"/>
-	
+	<jsp:include page="InRegisterBody.jsp"/>
 	
 	<jsp:include page="../../common/footer.jsp"/>
 
-</body>
 </html>

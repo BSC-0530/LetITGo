@@ -2,7 +2,7 @@ package com.itsme.letitgo.login.model.dto;
 
 import java.sql.Date;
 
-public class MemberDTO implements java.io.Serializable{
+public class MemberLoginDTO implements java.io.Serializable{
 	
 	/* 개인회원/기업회원/관리자 누가 로그인할지 모르니까 전부 적는다. */
 	private int memNo;							//회원번호
@@ -27,9 +27,9 @@ public class MemberDTO implements java.io.Serializable{
 	private String coStatus;					//업태
 	private String coWebsite;					//홈페이지주소
 	
-	public MemberDTO() {}
+	public MemberLoginDTO() {}
 
-	public MemberDTO(int memNo, String memId, String memEmail, String memPwd, String memName, String memPhone,
+	public MemberLoginDTO(int memNo, String memId, String memEmail, String memPwd, String memName, String memPhone,
 			String memKinds, Date memEnrollDate, String memEntYn, Date memEntDate, String memEntNo, String coIntro,
 			String coNo, String coComName, String coCeoName, String coAddress, String coPhone, String coPax,
 			String coSectors, String coStatus, String coWebsite) {

@@ -9,7 +9,6 @@
 </head>
 <body>
 
-
 	<jsp:include page="../../common/header/header.jsp"/>
 
 	

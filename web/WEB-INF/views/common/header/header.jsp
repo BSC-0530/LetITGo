@@ -125,7 +125,7 @@
 	<div class="gc_main_menu_wrapper">
 		<div class="jp_top_header_right_cont">
 			<ul>		
-				<li><a href="${ pageContext.servletContext.contextPath }/loginOut" align="center" style="background: rgb(102,114,173); margin-right: 30px; border-radius: 10px; width: 100px">Log Out</a></li>
+				<li><a href="${ pageContext.servletContext.contextPath }/member/logout" align="center" style="background: rgb(102,114,173); margin-right: 30px; border-radius: 10px; width: 100px">Log Out</a></li>
 			</ul>
 		</div>
 		<div class="container-fluid">

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.itsme.letitgo.login.model.mapper.MemberMapper">
+<mapper namespace="com.itsme.letitgo.login.model.mapper.MemberLoginMapper">
 	
-	<resultMap type="com.itsme.letitgo.login.model.dto.MemberDTO" id="memberLoginResultMap">
+	<resultMap type="com.itsme.letitgo.login.model.dto.MemberLoginDTO" id="memberLoginResultMap">
 		<id property="memNo" column="MEM_NO"/>
 		<result property="memId" column="MEM_ID"/>
 		<result property="memEmail" column="MEM_EMAIL"/>
@@ -27,7 +27,7 @@
 	</resultMap>
 	
 	<select id="selectEncryptedPwd" resultType="java.lang.String">
-		SELECT /* com.itsme.letitgo.login.model.mapper.MemberMapper# */
+		SELECT /* com.itsme.letitgo.login.model.mapper.MemberLoginMapper#selectEncryptedPwd() */
 			   A.MEM_PWD
 		  FROM TBL_MEMBER A
 		 WHERE A.MEM_ENT_YN = 'N'
@@ -35,7 +35,7 @@
 	</select>
 	
 	<select id="selectLoginMember" resultMap="memberLoginResultMap">
-		SELECT
+		SELECT /* com.itsme.letitgo.login.model.mapper.MemberLoginMapper#selectLoginMember() */
 			   A.MEM_NO
 		 	 , A.MEM_ID
 		     , A.MEM_EMAIL
