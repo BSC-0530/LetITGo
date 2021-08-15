@@ -135,7 +135,7 @@
                                     <!--Form Group-->
                                     
                                     <div class="form-group col-md-8 col-sm-6 col-xs-12">
-                                        <input type="text" name="field-name" placeholder="${ comDTO.coNo }" >
+                                        <input type="text" name="field-name" value=""placeholder="${ comDTO.coNo }" >
                                     </div>
                                     <div class="col-lg-3 col-md-8 col-sm-12 col-xs-12">
                                         <div class="jp_form_btn_wrapper" style="margin-left: 80px">
@@ -153,25 +153,7 @@
                                     <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" name="requestcoCeoName" placeholder="${ comDTO.coCeoName }" >
                                     </div>
-                                    <!--Form Group-->
-                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
-
-                                        <input type="password" name="requestcoSectors" placeholder="${comDTO.coSectors }">
-                                    </div>
-                                    <!--Form Group-->
-                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <input type="password" name="requestcoStatus" placeholder="${comDTO.coStatus }">
-                                    </div>
-                                    <!--Form Group-->
-                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" name="requestcoAddress" placeholder="${ comDTO.coAddress }" >
-                                    </div>
-                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" name="request" placeholder="상세주소" >
-                                    </div>
-                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" name="requestWebSite" placeholder="${ comDTO.webSite }" >
-                                    </div>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -179,7 +161,7 @@
                 </div>
                 <br>
                 <div class="companyText">	
-                              <label>회사소개</label><input id="textArea" name="requestcoIntro" type="text"  placeholder="${ comDTO.coIntro  }" >
+                              <label>회사소개</label><input id="request.coIntro" type="text"  placeholder="${ comDTO.coIntro  }" >
                     </div>
                     <div style="margin-left: 450px;">
                         <span><i class="fa fa-upload"></i> &nbsp;Upload Job Post</span>
@@ -187,24 +169,15 @@
                          </div>
             <!-- end --> 
 	            </div>
-                     <button type="submit" onclick="requestAdminChange();" class="btn btn-info" id="coInfoChange" style=" float: right;" >기업 정보 변경 요청 </button>
                  </form>
             
+                     <button type="submit" onclick="requestAdminChange();" class="btn btn-info" id="coInfoChange" style=" float: right;" >기업 정보 변경 요청 </button>
         </div>
     </div>
 </div>
 <script>
 function requestAdminChange(button){
-	var answer;
-	answer = confirm('변경 요청을 하시겠습니까?');
-	
-	if(answer == true){
-		location.href="${ pageContext.servletContext.contextPath }/company/info/change/servlet"
-	}
-	else if(answer == false){
-		
-	}
-	
+// 	alert('asd');
 }
 </script>
 </body>
