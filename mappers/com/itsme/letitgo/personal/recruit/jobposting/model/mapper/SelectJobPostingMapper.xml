@@ -77,8 +77,16 @@
 	</resultMap>
 
 	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpOwnFormResumeAttachmentDTO" id="자사이력서">
-	
+
 	</resultMap>
+	
+	<!-- 지원 이력 확인을 위한 resultMap -->
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectAppliyngYnDTO" id="resultApplyngYn">
+		<result property="resumeNo" column="RESUME_NO"/>
+		<result property="jobPostNo" column="JOB_POST_NO"/>
+		<result property="jobPostApplyingStatus" column="JOB_POST_APPLYING_STATUS"/>
+		<result property="memNo" column="MEM_NO"/>
+	</resultMap> 
 	
 	
 	<select id="selectAllJobPosting" resultMap="resultJobPosting">
@@ -149,5 +157,18 @@
 		  FROM TBL_JOB_POSTING_REQ_SKILLS RS
 		  JOIN TBL_SKILLS S ON(RS.SKILLS_NO = S.SKILLS_NO)
 		 WHERE RS.JOB_POST_NO = #{ selectJobPostNo }
+	</select>
+	
+	<select id="selectApplyingHistory" parameterType="com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectAppliyngYnDTO" resultMap="resultApplyngYn">
+		SELECT
+		       AH.RESUME_NO
+		     , AH.JOB_POST_NO
+		     , AH.JOB_POST_APPLYING_STATUS
+		     , R.IN_MEM_NO
+		  FROM TBL_APPLYING_HISTORY AH 
+		  JOIN TBL_RESUME R ON (AH.RESUME_NO = R.RESUME_NO)
+		 WHERE R.IN_MEM_NO = #{ memNo } 
+		   AND AH.JOB_POST_NO = #{ jobPostNo }
+		   AND AH.JOB_POST_APPLYING_STATUS = '지원취소'
 	</select>
 </mapper>
