@@ -72,7 +72,8 @@
 						<div class="jp_cp_rd_wrapper">
 							<br> <br> <br> 
 							<ul>
-								<li><a href="#"><i class="fa fa-download"></i> &nbsp;상세 이력서 보기</a></li>
+								<li><a onClick="detailResume(this);">
+									<input type="hidden" value="${ number }"><i class="fa fa-download"></i> &nbsp;상세 이력서 보기</a></li>
 								<li><a><button class="dibsbutton" type="button"
 								 style="width:350px; background-color:transparent;  border:0px transparent solid;" onclick="dibsbutton();" >
 								 <i class="fa fa-phone"></i> &nbsp;후보자찜하기</button></a></li>
@@ -217,6 +218,17 @@
 // 	location.href="${ pageContext.servletContext.contextPath }/simple/browse/select?num="+num
 			
 // }	
+
+	function detailResume(a) {
+		var answer;
+		answer = confirm('상세이력서를 조회하시겠습니까? \n (열람권 1개가 차감됩니다.)');
+		
+		if(answer == true) {
+						
+			const resumeNo = a.children[0].value;
+			location.href = "${ pageContext.servletContext.contextPath }/detail/browse/select?resumeNo=" + resumeNo;
+		}
+	}
 	
 	
 

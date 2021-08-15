@@ -122,7 +122,7 @@
 									</c:forEach>
 								</div>
 								<div class="jp_recent_resume_btn_wrapper">
-									<button style="margin-left:150px; margin-top:20px;" type="submit" class="btn btn-info" onclick="browse(this);">간단 조회</button>
+									<button style="margin-left:150px; margin-top:20px;" type="button" class="btn btn-info" onclick="browse(this);">간단 조회</button>
 									<input type="hidden" id="hiddenResumeNo" value="${ mainScout.resumeNo }">
 								</div>
 							</div>
@@ -142,12 +142,12 @@
 <script>
 	function browse(button){
 		
-		const num = button.parentNode.children[1].value
+		const num = button.parentNode.children[1].value;
 		
 // 		location.href="${ pageContext.servletContext.contextPath }/Company/Scout/List/Select?num="+num
 		
 		
-		location.href="${ pageContext.servletContext.contextPath }/simple/browse/select?num="+num
+		location.href="${ pageContext.servletContext.contextPath }/simple/browse/select?num=" + num;
 				
 	}	
 </script>

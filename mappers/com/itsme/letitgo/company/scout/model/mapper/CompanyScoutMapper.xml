@@ -172,6 +172,8 @@
 			<result property="address" column="CO_ADDRESS"/>
 			<result property="coStatus" column="CO_STATUS"/>
 			<result property="resumeBrowseKinds" column="RESUME_BROWSE_KINDS"/>
+			<result property="scoutKinds" column="SCOUT_KINDS"/>
+			<result property="coMemNo" column="CO_MEM_NO"/>
 		</resultMap>
 		
 	<!-- 깊은열람 -->
@@ -388,7 +390,7 @@
 				 , RESUME_NO
 				 , RESUME_BROWSE_DATE
 				 , RESUME_BROWSE_KINDS
-			FROM TBL_RESUME_READING_HISTORY
+			 FROM TBL_RESUME_READING_HISTORY
 			WHERE RESUME_NO = #{ onClickResumeNo } 
 		</select>
 		
@@ -416,10 +418,11 @@
 		
 		<update id="updateTime">
 			UPDATE
-				TBL_RESUME_READING_HISTORY
-				SET RESUME_BROWSE_DATE = SYSDATE
-<!-- 				   ,RESUME_BROWSE_KINDS = '얕은열람' -->
-				   WHERE RESUME_NO = #{ onClickResumeNo }
+
+			   TBL_RESUME_READING_HISTORY
+			   SET RESUME_BROWSE_DATE = SYSDATE
+			 WHERE RESUME_NO = #{ onClickResumeNo }
+
 		</update>
 		
 		<select id="selectAllCountDeepOpen" resultType="_int">
@@ -449,12 +452,15 @@
 			   , REGEXP_SUBSTR(C.CO_ADDRESS, '[^$]+',1,2) as CO_ADDRESS
 			   , R.RESUME_BROWSE_KINDS
 			   , C.CO_STATUS
+			   , I.SCOUT_KINDS
+			   , I.CO_MEM_NO
 			FROM TBL_RESUME_READING_HISTORY R
 			JOIN TBL_CO_MEMBER_ADD_INFO C ON (R.CO_MEM_NO = C.CO_MEM_NO)
+			JOIN TBL_INTERVIEW_PROPOSAL I ON (C.CO_MEM_NO = I.CO_MEM_NO)
 		</select>
 		
 
-		<select id="selectDetailResume" resultMap="detailScoutResumeResultMap">
+		<select id="selectDetailResume" parameterType="_int" resultMap="detailScoutResumeResultMap">
 		SELECT
 		       *
 		  FROM TBL_MEMBER M
@@ -472,6 +478,7 @@
 		  JOIN TBL_JOB_FIELD JF ON (R.JOB_NO = JF.JOB_NO)
 		 WHERE M.MEM_NO = 3
 		   AND R.RESUME_SCOUT_STATUS = 'Y'
+		   AND R.RESUME_NO = #{ resumeNo }
 	</select>
 
 <!-- 		<select id="skillsSelect" resultType="java.lang.String"> -->
@@ -479,6 +486,8 @@
 <!-- 				SKILLS_NAME -->
 <!-- 			FROM TBL_SKILLS	 -->
 <!-- 		</select> -->
+
+	
 
 	<insert id="insertInterview">
 		INSERT
@@ -488,8 +497,27 @@
 		)
 		VALUES
 		(
-		  SEQ_SCOUT_NO.NEXTVAL, #{ coMemNo }, #{ resumeNo }, #{ inMemNo }, DEFAULT
+		  SEQ_SCOUT_NO.NEXTVAL, 2, #{ resumeNo }, #{ inMemNo }, DEFAULT
 		)
 	</insert>
+	
+	<insert id="insertNewKinds" parameterType="_int">
+		INSERT
+		  INTO TBL_RESUME_READING_HISTORY A
+		(
+		  A.RESUME_BROWSE_NO, A.CO_MEM_NO, A.RESUME_NO, A.RESUME_BROWSE_DATE, A.RESUME_BROWSE_KINDS
+		)
+		VALUES
+		(
+		  SEQ_RESUME_BROWSE_NO.NEXTVAL, 2, #{ onClickResumeNo }, SYSDATE, '얕은열람'
+		)
+	</insert>
+	
+	<update id="updateDetailStatus">
+		UPDATE
+		       TBL_RESUME_READING_HISTORY
+		   SET RESUME_BROWSE_KINDS = '깊은열람'
+		 WHERE RESUME_NO = #{ resumeNo }
+	</update>
 
 </mapper>

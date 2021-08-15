@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.itsme.letitgo.company.scout.model.dto.BrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.BrosweSimplelDTO;
+import com.itsme.letitgo.company.scout.model.dto.InterviewProposalDTO;
 import com.itsme.letitgo.company.scout.model.dto.PersonalBrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.ResumeReadingHistoryDTO;
 
@@ -30,7 +31,7 @@ public interface CompanyScoutMapper {
 
 	List<BrosweHistoryDTO> selectBrowseUsingHistroy();
 
-	ResumeReadingHistoryDTO brosweHistoryKindsSelect(int onClickResumeNo);
+	List<ResumeReadingHistoryDTO> brosweHistoryKindsSelect(int onClickResumeNo);
 
 	int updateTime(int onClickResumeNo);
 
@@ -44,9 +45,18 @@ public interface CompanyScoutMapper {
 
 
 //	깊은 열람
-	List<ScoutDetailResumeDTO> selectDetailResume();
+	List<ScoutDetailResumeDTO> selectDetailResume(int resumeNo);
 
-	int insertInterview(int memNo);
+//	면접 제안
+	int insertInterview(InterviewProposalDTO memNos);
+
+//	얕은 열람시 열람이력 추가
+	int insertNewKinds(int onClickResumeNo);
+
+	int insertReadingNewInterview(InterviewProposalDTO memNos);
+
+//	깊은 열람으로 상태 변경
+	int updateDetailStatus(int resumeNo);
 
 //	List<SkillsAndCategoryDTO> skillsSelect();
 

@@ -1,6 +1,7 @@
 package com.itsme.letitgo.personal.resume.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -146,14 +147,19 @@ public class ResumeUpdateServlet extends HttpServlet {
 		
 		int result = resultDetail;
 		
-		String path = "";
+		StringBuilder redirectText = new StringBuilder();
 		
-		if(result > 1) {
-			System.out.println("내가 이겼다");
-			path = "/WEB-INF/views/resume/resumeList.jsp";
+		if(result > 0) {
+			redirectText.append("<script>alert('이력서 수정을 완료했습니다.'); location.href='/let/resume/list';</script>");
 		}
-		response.setCharacterEncoding("UTF-8");
-		response.sendRedirect("/let/resume/list");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		out.print(redirectText.toString());
+		out.flush();
+		out.close();
+		
+		
 		
 	}
 }

@@ -158,7 +158,7 @@
 										<td>상세보기</td>
 									</tr>
 								</thead>
-								<c:forEach var ="myscout" items="${personalBrosweHistoryDTO }">
+								<c:forEach var ="myscout" items="${ personalBrosweHistoryDTO }">
 								<tbody align="center">
 									<tr>
 										<td><c:out value="${ myscout.coComName }"></c:out></td>
@@ -172,6 +172,8 @@
 								</tbody>
 								</c:forEach>
 							</table>
+							
+							
 					</div>
 				</div>
 				
@@ -185,6 +187,8 @@
 $(document).ready(function() {
 	$('#table_personal_scout').DataTable();
 });
+
+
 </script>
 		
 		

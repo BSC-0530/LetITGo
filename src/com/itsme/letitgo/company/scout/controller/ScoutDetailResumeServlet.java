@@ -17,8 +17,12 @@ public class ScoutDetailResumeServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		List<ScoutDetailResumeDTO> detailResume = new MainScoutListService().selectDetailResume();
-		System.out.println("return resume : " + detailResume);
+		int resumeNo = Integer.parseInt(request.getParameter("resumeNo"));
+		System.out.println(resumeNo);
+		List<ScoutDetailResumeDTO> detailResume = new MainScoutListService().selectDetailResume(resumeNo);
+		
+		int result = new MainScoutListService().updateDetailStatus(resumeNo);
+		
 		String path = "";
 		
 		if(detailResume != null) {

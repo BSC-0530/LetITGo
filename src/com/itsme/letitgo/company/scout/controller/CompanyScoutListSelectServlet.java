@@ -17,7 +17,7 @@ import com.itsme.letitgo.company.scout.model.service.MainScoutListService;
  * Servlet implementation class CompanyScoutListSelect
  */
 @WebServlet("/Company/Scout/List/Select")
-public class CompanyScoutListSelect extends HttpServlet {
+public class CompanyScoutListSelectServlet extends HttpServlet {
        
 //@#$@#$@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//마이페이지 스카우트 임@@@@@@@@@@@ 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
