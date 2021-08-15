@@ -15,13 +15,13 @@ import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectJobPostingD
 
 public class CompanyInfoService {
 
-	public List<CompanyAddInfoDTO> selectedInfoCompany() {
+	public CompanyAddInfoDTO selectedInfoCompany() {
 		
 		SqlSession session = getSqlSession();
 		
 		CompanyInfoMapper mapper = session.getMapper(CompanyInfoMapper.class);
 		
-		List<CompanyAddInfoDTO> infoList = mapper.selectedInfoCompany();
+		CompanyAddInfoDTO infoList = mapper.selectedInfoCompany();
 		
 		session.close();
 		

@@ -11,16 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.itsme.letitgo.company.regist.model.dto.CoMemberDTO;
 import com.itsme.letitgo.company.regist.model.service.ComMemberService;
-import com.itsme.letitgo.personal.regist.model.dto.MemberDTO;
+import com.itsme.letitgo.personal.regist.model.dto.InMemberDTO;
 import com.itsme.letitgo.personal.regist.model.service.MemberService;
 
 
-@WebServlet("/regist/coMember")
+@WebServlet("/member/coporate/regist")
 public class CoMemberRegistServlet extends HttpServlet {
-	
-	
-	private static final long serialVersionUID = 1L;
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String path = "/WEB-INF/views/common/register/CoRegister.jsp";
+		
+		request.getRequestDispatcher(path).forward(request, response);
+		
+	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

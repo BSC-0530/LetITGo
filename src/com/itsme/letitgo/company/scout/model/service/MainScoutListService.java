@@ -132,6 +132,7 @@ public class MainScoutListService {
 		System.out.println("ASJDHKASJDAJDKJAS" + kinds);
 		
 		session.close();
+
 		return kinds;
 	}
 	
@@ -164,7 +165,9 @@ public class MainScoutListService {
 		
 		int CountNum = mapper.selectAllCountDeepOpen();
 		
+
 		session.close();
+
 		
 		return CountNum;
 	}
@@ -178,7 +181,9 @@ public class MainScoutListService {
 		
 		int CountNum = mapper.selectAllCountSimpleOpen();
 		
+
 		session.close();
+
 		
 		return CountNum;
 	}
@@ -190,7 +195,9 @@ public class MainScoutListService {
 		
 		int CountNum = mapper.selectAllScountNum();
 		
+
 		session.close();
+
 		
 		return CountNum;
 	}

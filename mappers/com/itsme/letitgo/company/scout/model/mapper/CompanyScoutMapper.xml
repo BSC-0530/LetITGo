@@ -418,9 +418,11 @@
 		
 		<update id="updateTime">
 			UPDATE
+
 			   TBL_RESUME_READING_HISTORY
 			   SET RESUME_BROWSE_DATE = SYSDATE
 			 WHERE RESUME_NO = #{ onClickResumeNo }
+
 		</update>
 		
 		<select id="selectAllCountDeepOpen" resultType="_int">

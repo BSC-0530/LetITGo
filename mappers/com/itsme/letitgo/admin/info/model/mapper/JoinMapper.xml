@@ -11,7 +11,32 @@
 		<result property="coReqKinds" column="CO_REQ_KINDS"/>
 		<result property="coRejectReason" column="CO_REJECT_REASON"/>
 	</resultMap>
-	
+	<resultMap type="com.itsme.letitgo.admin.info.model.dto.CompanyJoinDTO" id="SelectJoinInfo1">
+		<result property="id" column="MEM_ID"/>
+		<result property="email" column="MEM_EMAIL"/>
+	</resultMap>
+	<resultMap type="com.itsme.letitgo.admin.info.model.dto.CompanyJoinDTO" id="SelectJoinInfo2">
+		<id property="memNo" column="CO_MEM_NO"/>
+		<result property="id" column="MEM_ID"/>
+		<result property="pwd" column="MEM_PWD"/>
+		<result property="name" column="MEM_NAME"/>
+		<result property="email" column="MEM_EMAIL"/>
+		<result property="phone" column="MEN_PHONE"/>
+		<result property="kinds" column="MEM_KINDS"/>
+		<result property="enrollDate" column="MEM_ENROLL_DATE"/>
+		<result property="entYn" column="MEM_ENT_YN"/>
+		<result property="entDate" column="MEM_ENT_DATE"/>
+		<result property="intro" column="CO_INTRO"/>
+		<result property="coNo" column="CO_NO"/>
+		<result property="comName" column="CO_COM_NAME"/>
+		<result property="ceoName" column="CO_CEO_NAME"/>
+		<result property="address" column="CO_ADDRESS"/>
+		<result property="comPhone" column="CO_PHONE"/>
+		<result property="fax" column="CO_PAX"/>
+		<result property="sectors" column="CO_SECTORS"/>
+		<result property="status" column="CO_STATUS"/>
+		<result property="website" column="CO_WEBSITE"/>
+	</resultMap>
 	<update id="RequestJoin">
 		UPDATE
 				TBL_CO_MEMBER_APP_HISTORY
@@ -30,17 +55,40 @@
 	
 	<update id="RequestJoinReject1">
 		UPDATE
-				TBL_CO_MEMBER_APP_HISTORY
+			   TBL_CO_MEMBER_APP_HISTORY
 			SET CO_ANS_KINDS = '거절된 기업회원 아이디'
-		WHERE CO_MEM_NO = #{ coMemNo }
+		  WHERE CO_MEM_NO = #{ coMemNo }
 	</update>
 	
 	<update id="RequestJoinReject2">
 		UPDATE
-				TBL_CO_MEMBER_APP_HISTORY
-			SET CO_ANS_KINDS = '거절'
-			  , CO_ANS_DATE = SYSDATE
-			  , CO_REJECT_REASON = #{ rejectMessage }
-		  WHERE CO_REQ_NO = #{ coReqNo }
+			   TBL_CO_MEMBER_APP_HISTORY
+		   SET CO_ANS_KINDS = '거절'
+			 , CO_ANS_DATE = SYSDATE
+			 , CO_REJECT_REASON = #{ rejectMessage }
+		 WHERE CO_REQ_NO = #{ coReqNo }
 	</update>
+	
+	<select id="SelectJoinInfo1" resultMap="SelectJoinInfo1">
+		SELECT	/*com.itsme.letitgo.admin.info.model.dto.CompanyJoinDTO#SelectJoinInfo2()*/
+		       A.MEM_ID
+		     , A.MEM_EMAIL
+		FROM  TBL_MEMBER A
+	</select>
+	
+	<select id="SelectJoinInfo2" resultMap="SelectJoinInfo2">
+		SELECT	/*com.itsme.letitgo.admin.info.model.dto.CompanyJoinDTO#SelectJoinInfo2()*/
+			   CO_MEM_NO
+			 , CO_INTRO
+			 , CO_NO
+			 , CO_COM_NAME
+			 , CO_CEO_NAME
+			 , CO_ADDRESS
+			 , CO_PHONE
+			 , CO_PAX
+			 , CO_SECTORS
+			 , CO_STATUS
+			 , CO_WEBSITE
+		 FROM TBL_CO_MEMBER_ADD_INFO
+	</select>
 </mapper>

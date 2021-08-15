@@ -163,14 +163,18 @@
 											<tr>
 												<td><c:out value="${categoryList.inquiryCategoryNo }"/></td>
 												<td><c:out value="${categoryList.inquiryCategoryName }"/></td>									
-												<td><button type="submit" class="btn btn-info" onclick="browse(this);" >삭제</button></td>
+												<td><button type="submit" class="btn btn-info" onclick="deleted(this);" >삭제</button></td>
+												<td style="font-size: 0px; width:0px; height:0px;"><c:out value="${ categoryList.inquiryCategoryNo }"/></td>
 											</tr>
 										</tbody>	
 								</c:forEach>			
 								</table>
 								<br>
 								<br>
-									<button style="margin-left: 90%" type="submit" class="btn btn-info" onclick="browse(this);" >등록</button>
+								<div class="category-insert">
+									<button style="margin-left: 90%" 
+									type="submit" class="btn btn-info" onclick="insert();">등록</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -180,6 +184,19 @@
 			</div>
 		</div>
 	</div>
+	
+<script>
+		function insert(button) {
+			
+			 alert('이이잉~');  
+			
+	 location.href = "${ pageContext.servletContext.contextPath }/admin/category/Insert/Servlet" 
+			
+		}
+</script>	
+	
+	
+	
 <script>
 		$(document).ready(function() {
 			$('#table_payment').DataTable();
@@ -187,15 +204,25 @@
 </script>
 
 <script>
-// 	function browse(button){
+	function deleted(button){
 		
-// 		const emaill = button.parentNode.parentNode.children[5].text();
-
-// 					alert(emaill);
 		
-// 		location.href="${ pageContext.servletContext.contextPath }/admin/Answer/Servlet?num="+num
+		var answer;
+		answer = confirm('정말 삭제하시겠습니까?');
+		if(answer == true){
+		const code = button.parentNode.parentNode.children[3].innerText
+		location.href="${ pageContext.servletContext.contextPath }/admin/category/deleted?code="+code
+			
+		}
+		
+		else if(answer == false){
+			
+		}
+		
+			
+		
 				
-// 	}	
+	}	
 </script>
 </body>
 </html>
