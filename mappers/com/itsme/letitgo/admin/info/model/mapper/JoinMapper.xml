@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.itsme.letitgo.admin.board.model.mapper.JoinMapper">
+	<resultMap type="com.itsme.letitgo.admin.info.model.dto.InsertRequestDTO" id="InsertRequestMap">
+		<id property="coReqNo" column="CO_REQ_NO"/>
+		<result property="coMemNo" column="CO_MEM_NO"/>
+		<result property="coAnsKinds" column="CO_ANS_KINDS"/>
+		<result property="coReqDate" column="CO_REQ_DATE"/>
+		<result property="coAnsDate" column="CO_ANS_DATE"/>
+		<result property="coReqKinds" column="CO_REQ_KINDS"/>
+		<result property="coRejectReason" column="CO_REJECT_REASON"/>
+	</resultMap>
+	
+	<update id="RequestJoin">
+		UPDATE
+				TBL_CO_MEMBER_APP_HISTORY
+		   SET CO_ANS_KINDS = '승인된 기업회원 아이디'
+			 , CO_ANS_DATE = SYSDATE
+		   WHERE CO_MEM_NO = #{ coMemNo }
+	</update>
+	
+	<update id="RequestJoin2">
+		UPDATE
+				TBL_CO_MEMBER_APP_HISTORY
+		   SET SET CO_ANS_KINDS = '승인'
+			  , CO_ANS_DATE = SYSDATE
+		  WHERE CO_REQ_NO = #{ coReqNo }
+	</update>
+	
+	<update id="RequestJoinReject1">
+		UPDATE
+				TBL_CO_MEMBER_APP_HISTORY
+			SET CO_ANS_KINDS = '거절된 기업회원 아이디'
+		WHERE CO_MEM_NO = #{ coMemNo }
+	</update>
+	
+	<update id="RequestJoinReject2">
+		UPDATE
+				TBL_CO_MEMBER_APP_HISTORY
+			SET CO_ANS_KINDS = '거절'
+			  , CO_ANS_DATE = SYSDATE
+			  , CO_REJECT_REASON = #{ rejectMessage }
+		  WHERE CO_REQ_NO = #{ coReqNo }
+	</update>
+</mapper>
