@@ -3,7 +3,7 @@
 <mapper namespace="com.itsme.letitgo.company.info.model.mapper.CompanyInfoMapper">
 
 	<resultMap type="com.itsme.letitgo.company.info.model.dto.CompanyAddInfoDTO" id="comAddInfoResultMap">
-		<id property="coMemNo" column="COM_MEM_NO"/>
+		<id property="coMemNo" column="CO_MEM_NO"/>
 		<result property="coIntro" column="CO_INTRO"/>
 		<result property="coNo" column="CO_NO"/>
 		<result property="coComName" column="CO_COM_NAME"/>

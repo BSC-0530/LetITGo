@@ -126,6 +126,8 @@
 							<div class="jp_listing_tabs_wrapper">
 
 								<!--                             이거는 이제 정보뜨는 칸 -->
+								<input type="hidden" name="comDTO" value="${ comDTO }">
+								<input type="hidden" name="coMemNo" value="${ comDTO.coMemNo }">
 								<div class="tab-pane fade in active register_left_form"
 									id="contentOne-1">
 
@@ -136,32 +138,32 @@
 									<div class="row">
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="coNo" value=""placeholder="${ comDTO.coNo }" readonly>
+											<input type="text" name="coNo" value="${ comDTO.coNo }" readonly>
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="webSite" value="" placeholder=${ comDTO.webSite } readonly>
+											<input type="text" name="webSite" value="${ comDTO.webSite }" readonly>
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
 
 
-											<input type="text" name="field-name" value=""placeholder="${coName }" readonly>
+											<input type="text" name="coComName" value="${comDTO.coComName }" readonly>
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="field-name" value=""placeholder="${ceoName }" readonly>
+											<input type="text" name="coCeoName" value="${comDTO.coCeoName }" readonly>
 										
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="secTors" value=""placeholder="${ comDTO.coSectors }" readonly>
+											<input type="text" name="secTors" value="${ comDTO.coSectors }" readonly>
 										</div>
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="coStatus" value=""placeholder="${ comDTO.coStatus }" readonly>
+											<input type="text" name="coStatus" value="${ comDTO.coStatus }" readonly>
 										</div>
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="address" value=""placeholder="${ comDTO.coAddress }" readonly>
+											<input type="text" name="address" value="${ comDTO.coAddress }" readonly>
 										</div>
 									</div>
 								</div>
@@ -170,7 +172,7 @@
 					</div>
 					<br>
 					<div class="companyText">	
-                              	<label>회사소개</label><input id="textArea" type="text"  placeholder="${ intro  }" >
+                              	<label>회사소개</label><input id="textArea" name="intro" value="${ comDTO.coIntro  }" readonly >
                     	</div>
 					
             	<!-- end --> 
