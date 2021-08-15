@@ -144,11 +144,11 @@
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
 
-											<input type="password" name="field-name" value=""placeholder="${coName }" readonly>
+											<input type="text" name="field-name" value=""placeholder="${coName }" readonly>
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="password" name="field-name" value=""placeholder="${ceoName }" readonly>
+											<input type="text" name="field-name" value=""placeholder="${ceoName }" readonly>
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">

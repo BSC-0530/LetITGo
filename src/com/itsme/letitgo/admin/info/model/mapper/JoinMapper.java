@@ -2,6 +2,8 @@ package com.itsme.letitgo.admin.info.model.mapper;
 
 import java.util.Map;
 
+import com.itsme.letitgo.admin.info.model.dto.CompanyJoinDTO;
+
 public interface JoinMapper {
 
 
@@ -12,6 +14,10 @@ public interface JoinMapper {
 	int RequestJoin(int coReqNo);
 
 	int RequestJoin2(int coMemNo);
+
+	int companyInfo1(CompanyJoinDTO companyJoinDTO);
+
+	int companyInfo2(CompanyJoinDTO companyJoinDTO);
 
 	
 

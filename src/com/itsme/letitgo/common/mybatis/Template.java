@@ -10,6 +10,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 
+import com.itsme.letitgo.admin.info.model.mapper.InsertRequestMapper;
+import com.itsme.letitgo.admin.info.model.mapper.JoinMapper;
 import com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper;
 import com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper;
 import com.itsme.letitgo.admin.resume.model.mapper.JobFieldMapper;
@@ -72,6 +74,8 @@ public class Template {
 			//승수
 			configuration.addMapper(MemberMapper.class);
 			configuration.addMapper(RegistMemberMapper.class);
+			configuration.addMapper(JoinMapper.class);
+			configuration.addMapper(InsertRequestMapper.class);
 			
 			//태훈 시험용 넣었음 (콘솔에 출력됨, view만들고 보여지는지 확인해야함)
 			configuration.addMapper(JobFieldMapper.class);

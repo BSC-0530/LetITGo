@@ -126,7 +126,7 @@
 												</p>
 												<br>
 												<p align="center">
-													<a href="#">기업 회원 가입 요청</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/post/reject/InsertUpdate">기업 회원 가입 요청</a>
 												</p>
 												<br>
 												<p align="center">
