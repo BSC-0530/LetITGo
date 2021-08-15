@@ -12,6 +12,16 @@
 		<result property="jobNo" column="JOB_NO"/>
 	</resultMap>
 	
+	<resultMap type="com.itsme.letitgo.personal.scout.model.dto.ReadingResumeListOfPersonalDTO" id="readKindsListResultMap">
+		<result property="coComName" column="CO_COM_NAME"/>
+		<result property="address" column="CO_ADDRESS"/>
+		<result property="coStatus" column="CO_STATUS"/>
+		<result property="resumeBrowseKinds" column="RESUME_BROWSE_KINDS"/>
+		<result property="scoutKinds" column="SCOUT_KINDS"/>
+		<result property="coMemNo" column="CO_MEM_NO"/>
+		<result property="resumeNo" column="RESUME_NO"/>
+	</resultMap>
+	
 	<update id="updateScoutStatus" parameterType="_int">
 		UPDATE /* com.itsme.letitgo.personal.scout.model.mapper.PersonalScoutMapper#updateScoutStatus() #*/
 		       TBL_RESUME A
@@ -26,6 +36,32 @@
 		     , A.RESUME_WRITE_DATE
 		  FROM TBL_RESUME A
 		 WHERE A.IN_MEM_NO = 3
+	</select>
+	
+	<select id="selectSimpleCount" resultType="_int">
+		SELECT
+			   COUNT(1) 
+		  FROM TBL_RESUME_READING_HISTORY
+		 WHERE RESUME_BROWSE_KINDS ='얕은열람'
+		   AND RESUME_NO = #{ resumeNo }
+	</select>
+	
+	<select id="selectReadingResumeListOfPersonal" resultMap="readKindsListResultMap">
+		SELECT
+			   C.CO_COM_NAME
+			 , REGEXP_SUBSTR(C.CO_ADDRESS, '[^$]+',1,2) as CO_ADDRESS
+		     , R.RESUME_BROWSE_KINDS
+			 , C.CO_STATUS
+			 , R.CO_MEM_NO
+			 , I.SCOUT_KINDS
+			 , RS.RESUME_NO
+	   	  FROM TBL_RESUME_READING_HISTORY R
+		  JOIN TBL_CO_MEMBER_ADD_INFO C ON (R.CO_MEM_NO = C.CO_MEM_NO)
+		  JOIN TBL_MEMBER M ON (C.CO_MEM_NO = M.MEM_NO)
+          JOIN TBL_RESUME RS ON (RS.RESUME_NO = R.RESUME_NO)
+		  JOIN TBL_INTERVIEW_PROPOSAL I ON (I.CO_MEM_NO = M.MEM_NO)
+	     WHERE M.MEM_NO = 2
+           AND RS.RESUME_SCOUT_STATUS = 'Y'
 	</select>
 
 </mapper>

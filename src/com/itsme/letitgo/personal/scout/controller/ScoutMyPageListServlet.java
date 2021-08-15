@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.itsme.letitgo.company.scout.model.dto.PersonalBrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.service.MainScoutListService;
+import com.itsme.letitgo.personal.scout.model.dto.ReadingResumeListOfPersonalDTO;
+import com.itsme.letitgo.personal.scout.model.service.PersonalScoutService;
 
 @WebServlet("/scout/myPageList/servlet")
 public class ScoutMyPageListServlet extends HttpServlet {
@@ -18,15 +20,14 @@ public class ScoutMyPageListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		MainScoutListService mainScoutListService = new MainScoutListService();
+		List<ReadingResumeListOfPersonalDTO> readList = new PersonalScoutService().selectReadingResumeListOfPersonal();
 		
-		List<PersonalBrosweHistoryDTO> personalBrosweHistoryDTO = mainScoutListService.personalBrosweSelect();
 		
-		for(PersonalBrosweHistoryDTO personalBrosweHistory : personalBrosweHistoryDTO) {
-			System.out.println(personalBrosweHistory);
-		}
+		
 		
 //		int simpleCount = mainScoutListService.selectSimpleCount();
+		
+		
 		
 		
 		
@@ -37,7 +38,7 @@ public class ScoutMyPageListServlet extends HttpServlet {
 		
 		
 		
-		request.setAttribute("personalBrosweHistoryDTO", personalBrosweHistoryDTO);
+		request.setAttribute("readList", readList);
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	}
