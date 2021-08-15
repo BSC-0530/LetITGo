@@ -7,12 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<jsp:include page="../common/header/personalMainHeader.jsp"/>
+	
+	<jsp:include page="../common/header/header.jsp"/>
 
     <jsp:include page="mainPage.jsp"/>
 
     <jsp:include page="../common/footer.jsp"/>
-  
+	
 </body>
 </html>

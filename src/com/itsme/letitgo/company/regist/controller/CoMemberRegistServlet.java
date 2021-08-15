@@ -1,7 +1,9 @@
 package com.itsme.letitgo.company.regist.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,73 +12,91 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itsme.letitgo.company.regist.model.dto.CoMemberDTO;
-import com.itsme.letitgo.company.regist.model.service.ComMemberService;
-import com.itsme.letitgo.personal.regist.model.dto.InMemberDTO;
-import com.itsme.letitgo.personal.regist.model.service.MemberService;
+import com.itsme.letitgo.company.regist.model.service.CoMemberService;
 
 
 @WebServlet("/member/coporate/regist")
 public class CoMemberRegistServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		String path = "/WEB-INF/views/common/register/CoRegister.jsp";
-		
+
 		request.getRequestDispatcher(path).forward(request, response);
-		
+
 	}
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		request.setCharacterEncoding("UTF-8");
 		
-		/*기본적인사항*/
-		String memberId = request.getParameter("userId");
-		String email = request.getParameter("email");
-		String pwd = request.getParameter("pw");
-//		String kinds = request.getParameter("kinds");
-//		java.sql.Date enrollDate = java.sql.Date.valueOf(request.getParameter("enrollDate"));
-//		int entYn = Integer.parseInt(request.getParameter("entYn"));
-//		java.sql.Date entDate = java.sql.Date.valueOf(request.getParameter("entDate"));
-		/*기업 상세사항*/
-		String intro = request.getParameter("intre");
+		String memId = request.getParameter("memId");
+		String memEmail = request.getParameter("memEmail");
+		String memPwd = request.getParameter("memPwd");
+		String memName = request.getParameter("memName");
+		String memPhone = request.getParameter("memPhone");
+		String coIntro = request.getParameter("coIntro");
 		String coNo = request.getParameter("coNo");
-		String comName = request.getParameter("comName");
-		String ceoName = request.getParameter("ceoName");
-		String coAddress = request.getParameter("coAddress");
-		String comPhone = request.getParameter("comPhone");
-		String fax = request.getParameter("pax");
-		String sectors = request.getParameter("sectors");
-		String status = request.getParameter("status");
-		String website = request.getParameter("website");
+		String coComName = request.getParameter("coComName");
+		String coCeoName = request.getParameter("coCeoName");
+		String coAddress = request.getParameter("zipCode") + "$" + request.getParameter("address1") + "$" + request.getParameter("address2");
+		String coPhone = request.getParameter("coPhone");
+		String coPax = request.getParameter("coPax");
+		String coSectors = request.getParameter("coSectors");
+		String coStatus = request.getParameter("coStatus");
+		String coWebsite = request.getParameter("coWebsite");
+
+		System.out.println("memId : " + memId);
+		System.out.println("memEmail : " + memEmail);
+		System.out.println("memPwd : " + memPwd);
+		System.out.println("memName : " + memName);
+		System.out.println("memPhone : " + memPhone);
+		System.out.println("coIntro : " + coIntro);
+		System.out.println("coNo : " + coNo);
+		System.out.println("coComName : " + coComName);
+		System.out.println("coCeoName : " + coCeoName);
+		System.out.println("coAddress : " + coAddress);
+		System.out.println("coPhone : " + coPhone);
+		System.out.println("coPax : " + coPax);
+		System.out.println("coSectors : " + coSectors);
+		System.out.println("coStatus : " + coStatus);
+		System.out.println("coWebsite : " + coWebsite);
 		
-		CoMemberDTO coMemberDTO = new CoMemberDTO();
-		coMemberDTO.setId(memberId);
-		coMemberDTO.setEmail(email);
-		coMemberDTO.setPwd(pwd);
-		coMemberDTO.setKinds("기업회원");
-//		coMemberDTO.setEnrollDate(enrollDate);
-//		coMemberDTO.setEntYn(entYn);
-//		coMemberDTO.setEntDate(entDate);
-		coMemberDTO.setIntro(intro);
-		coMemberDTO.setCoNo(coNo);
-		coMemberDTO.setComName(comName);
-		coMemberDTO.setCeoName(ceoName);
-		coMemberDTO.setComPhone(comPhone);
-		coMemberDTO.setAddress(coAddress);
-		coMemberDTO.setFax(fax);
-		coMemberDTO.setSectors(sectors);
-		coMemberDTO.setStatus(status);
-		coMemberDTO.setWebsite(website);
+		CoMemberDTO coMember = new CoMemberDTO();
+		coMember.setMemId(memId);
+		coMember.setMemEmail(memEmail);
+		coMember.setMemPwd(memPwd);
+		coMember.setMemName(memName);
+		coMember.setMemPhone(memPhone);
+		coMember.setCoIntro(coIntro);
+		coMember.setCoNo(coNo);
+		coMember.setCoComName(coComName);
+		coMember.setCoCeoName(coCeoName);
+		coMember.setCoAddress(coAddress);
+		coMember.setCoPhone(coPhone);
+		coMember.setCoPax(coPax);
+		coMember.setCoSectors(coSectors);
+		coMember.setCoStatus(coStatus);
+		coMember.setCoWebsite(coWebsite);
+
+		CoMemberService serivce = new CoMemberService();
 		
-		int result = new ComMemberService().registCoMember(coMemberDTO);
+		Map<String, Object> result = serivce.registCoMember(coMember);
 		
+		StringBuilder redirectText = new StringBuilder();
 		
-		if(result > 0) {
-			request.setAttribute("successCode", "insertMember");
-			response.sendRedirect("success.jsp");
-		}else {
-			request.setAttribute("message", "회원 가입 실패!");
-			response.sendRedirect("failed.jsp");
+		if((int) result.get("result1") > 0 && (int) result.get("result1") > 0) {
+			redirectText.append("<script>alert('회원가입이 완료되었습니다.'); location.href='../../loginPage';</script>");
+		} else {
+			redirectText.append("<script>alert('회원가입을 실패하였습니다.'); location.href='../../loginPage';</script>");
 		}
+								
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		out.print(redirectText.toString());
+		out.flush();
+		out.close();
 	}
 
 }

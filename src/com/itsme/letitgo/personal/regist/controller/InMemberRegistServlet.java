@@ -1,6 +1,7 @@
 package com.itsme.letitgo.personal.regist.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 
 import javax.servlet.ServletException;
@@ -52,21 +53,20 @@ public class InMemberRegistServlet extends HttpServlet {
 		int result = memberService.registInMember(requestMember);
 		System.out.println("result : " + result);
 		
-		String path = "";
+		StringBuilder redirectText = new StringBuilder();
 		
 		if(result > 0) {
-			
-			path = "/WEB-INF/views/common/register/success.jsp";
-			request.setAttribute("successCode", "insertMember");
-		
+			redirectText.append("<script>alert('회원가입이 완료되었습니다.'); location.href='../../loginPage';</script>");
 		} else {
-			
-			path = "/WEB-INF/views/common/failed.jsp";
-			request.setAttribute("message", "회원 가입 실패!");
-		
+			redirectText.append("<script>alert('회원가입을 실패하였습니다.'); location.href='../../loginPage';</script>");
 		}
+								
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		
-		request.getRequestDispatcher(path).forward(request, response);
+		out.print(redirectText.toString());
+		out.flush();
+		out.close();
 	}
 
 }
