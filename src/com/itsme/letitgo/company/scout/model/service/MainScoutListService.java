@@ -292,11 +292,17 @@ public class MainScoutListService {
 	public int selectSimpleCount() {
 		
 		SqlSession session = getSqlSession();
-		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
+		PersonalScoutMapper mapper = session.getMapper(PersonalScoutMapper.class);
 		
-//		int result = mapper.selectSimpleCount();
+		int result = mapper.selectSimpleCount();
 		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
 		
+		session.close();
 		
 		return 1;
 	}

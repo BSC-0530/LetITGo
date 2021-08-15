@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -34,39 +34,42 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css" />
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 
 </head>
 <body>
-	<jsp:include page="../../common/header/personalHeader.jsp"/>
-		
-		<div class="jp_tittle_main_wrapper">
-        <div class="jp_tittle_img_overlay"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="jp_tittle_heading_wrapper">
-                        <div class="jp_tittle_heading">
-                            <h2>기업 마이페이지</h2>
-                        </div>
-                        <div class="jp_tittle_breadcrumb_main_wrapper">
-                            <div class="jp_tittle_breadcrumb_wrapper">
-                                <ul>
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="#">기업 마이페이지</a></li>
-                                    <li>기업 마이페이지</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
+	<jsp:include page="../../common/header/personalHeader.jsp" />
+
+	<div class="jp_tittle_main_wrapper">
+		<div class="jp_tittle_img_overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="jp_tittle_heading_wrapper">
+						<div class="jp_tittle_heading">
+							<h2>기업 마이페이지</h2>
+						</div>
+						<div class="jp_tittle_breadcrumb_main_wrapper">
+							<div class="jp_tittle_breadcrumb_wrapper">
+								<ul>
+									<li><a href="#">Home</a></li>
+									<li><a href="#">기업 마이페이지</a></li>
+									<li>기업 마이페이지</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
@@ -85,23 +88,23 @@
 												<p>
 													<a href="#">회원 정보</a>
 												</p>
-												<br>
-												<br>
+												<br> <br>
 												<p>
-													<a href="${ pageContext.servletContext.contextPath }/personal/apply/select">지원 현황</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/personal/apply/select">지원
+														현황</a>
 												</p>
-												<br>
-												<br>
+												<br> <br>
 												<p>
-													<a href="${ pageContext.servletContext.contextPath }/scout/myPageList/servlet">스카우트 현황</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/scout/myPageList/servlet">스카우트
+														현황</a>
 												</p>
-												<br>
-												<br>
+												<br> <br>
 												<p>
 													<a href="#">북마크</a>
 												</p>
-												<br>
-												<br>
+												<br> <br>
 												<p>
 													<a href="#">회원탈퇴</a>
 												</p>
@@ -141,56 +144,110 @@
 										</div>
 									</div>
 								</div>
-								<br>
-								<br>
+								<br> <br>
 							</div>
 							<!-- 데이터 테이들 -->
 							<h2>이력서 열람 이력</h2>
-							<br><br>
+							<br>
+							<br>
 						</div>
 						<table id="table_personal_scout" class="hover cell-border stripe">
-								<thead>
-									<tr>
-										<td>기업이름</td>
-										<td>지역</td>
-										<td>업태</td>
-										<td>구분</td>
-										<td>상세보기</td>
-									</tr>
-								</thead>
-								<c:forEach var ="myscout" items="${ personalBrosweHistoryDTO }">
+							<thead>
+								<tr>
+									<td>기업이름</td>
+									<td>지역</td>
+									<td>업태</td>
+									<td>구분</td>
+									<td>상세보기</td>
+								</tr>
+							</thead>
+							<c:forEach var="list" items="${ readList }">
 								<tbody align="center">
 									<tr>
-										<td><c:out value="${ myscout.coComName }"></c:out></td>
-										<td><c:out value="${ myscout.address }"></c:out> </td>
-										<td><c:out value="${ myscout.coStatus }"></c:out> </td>
-										<td><c:out value="${ myscout.resumeBrowseKinds }"></c:out> </td>
-										<td><button type="button"  onclick="browse(this);">상세보기</button>
-										<input type="hidden" id="hiddenResumeNo" value="${ broswe.resumeNo }">
+										<td><c:out value="${ list.coComName }"></c:out></td>
+										<td><c:out value="${ list.address }"></c:out></td>
+										<td><c:out value="${ list.coStatus }"></c:out></td>
+										<td><c:out value="${ list.resumeBrowseKinds }"></c:out>
+										</td>
+										<td><button type="button" onclick="browse(this);">상세보기</button>
+											
+									</tr>
+								</tbody>
+							</c:forEach>
+						</table>
+						<br><br>
+						<h2>면접 제안</h2><br><br>
+						<table id="table_personal_interview" class="hover cell-border stripe">
+							<thead>
+								<tr>
+									<td>기업이름</td>
+									<td>지역</td>
+									<td>업태</td>
+									<td>구분</td>
+									<td>상세보기</td>
+								</tr>
+							</thead>
+							<c:forEach var="list" items="${ readList }">
+								<tbody align="center">
+									<tr>
+										<td><c:out value="${ list.coComName }"></c:out></td>
+										<td><c:out value="${ list.address }"></c:out></td>
+										<td><c:out value="${ list.coStatus }"></c:out></td>
+										<td><c:out value="${ list.scoutKinds }"></c:out></td>
+										<td>
+												
+											<c:choose>
+												<c:when test="${ list.scoutKinds eq '대기'}">
+													<button type="button" id="selectedYN" value="${ list.resumeNo }" onclick="acceptInterview(this);">수락</button>
+													
+													<button type="button" id="selectedYN" value="${ list.resumeNo }" onclick="refuseInterview(this);">
+														거절
+													</button>											
+												</c:when>
+												<c:otherwise>
+													<button type="button" value="${ list.resumeNo }" onclick="acceptInterview(this);" disabled>수락</button>
+													
+													<button type="button" value="${ list.resumeNo }" onclick="refuseInterview(this);" disabled>거절</button>	
+												</c:otherwise>
+											</c:choose>
 										</td>
 									</tr>
 								</tbody>
-								</c:forEach>
-							</table>
-							
-							
+							</c:forEach>
+						</table>
+
 					</div>
 				</div>
-				
+
 			</div>
 		</div>
 	</div>
 
-	<jsp:include page="../../common/footer.jsp"/>
-	
-<script>
-$(document).ready(function() {
-	$('#table_personal_scout').DataTable();
-});
+	<jsp:include page="../../common/footer.jsp" />
+
+	<script>
+		$(document).ready(function() {
+			$('#table_personal_scout').DataTable();
+		});
+
+		$(document).ready(function() {
+			$('#table_personal_interview').DataTable();
+		});
+		
+		function acceptInterview(button) {
+			var answer;
+			answer = confirm('면접 제안을 수락하시겠습니까 \n (면접 취소는 불가능하니 신중하게 결정하세요.)');
+			
+			if(answer == true) {
+				const btn = document.getElementById("selectedYN");
+				const resumeNo = btn.value;
+				document.getElementById("selectedYN").disabled = true;
+			}
+		}
 
 
-</script>
-		
-		
+	</script>
+
+
 </body>
 </html>
