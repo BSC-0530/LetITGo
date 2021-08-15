@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 
+import com.itsme.letitgo.admin.board.notice.model.mapper.PersonalInfoPolicyMapper;
 import com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper;
 import com.itsme.letitgo.admin.question.model.mapper.AdminInquiryMapper;
 import com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper;
@@ -25,7 +26,6 @@ import com.itsme.letitgo.login.model.mapper.MemberMapper;
 import com.itsme.letitgo.personal.info.model.mapper.PersonalInfoMapper;
 import com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper;
 import com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper;
-import com.itsme.letitgo.personal.regist.model.mapper.RegistMemberMapper;
 import com.itsme.letitgo.personal.resume.model.mapper.ResumeMapper;
 import com.itsme.letitgo.personal.scout.model.mapper.PersonalScoutMapper;
 
@@ -79,6 +79,7 @@ public class Template {
 			configuration.addMapper(SkillsMapper.class);
 			configuration.addMapper(SkillsCategoryMapper.class);
 			configuration.addMapper(SelfIntroductionItemMapper.class);
+			configuration.addMapper(PersonalInfoPolicyMapper.class);
 			 
 
 
