@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper">
+
+	<insert id="coMemberRegist">
+		INSERT /* com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper#coMemberRegist() */
+		  INTO TBL_MEMBER A
+		  (
+		 	A.MEM_NO
+		  , A.MEM_ID
+		  , A.MEM_EMAIL
+		  , A.MEM_PWD
+		  , A.MEM_NAME
+		  , A.MEM_PHONE
+		  , A.MEM_KINDS
+		  , A.MEM_ENROLL_DATE
+		  , A.MEM_ENT_YN
+		  , A.MEM_ENT_DATE
+		  , A.MEM_ENT_NO	      
+		  )
+		  VALUES
+		  (
+		    SEQ_MEM_NO.NEXTVAL
+		  , #{ memId }
+		  , #{ memEmail }
+		  , #{ memPwd }
+		  , #{ memName }
+		  , #{ memPhone }
+		  , '기업회원'
+		  , SYSDATE
+		  , 'N'
+		  , NULL
+		  , NULL
+		  )
+	</insert>
+	
+	<select id="SelectCoMemberNo" resultType="_int">
+	   SELECT 
+	          MEM_NO
+	     FROM TBL_MEMBER
+	    WHERE MEM_ID = #{ memId }
+	</select>
+	
+	<insert id="coMemberAddInfoRegist">
+		INSERT /* com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper#coMemberAddInfoRegist() */
+		  INTO TBL_CO_MEMBER_ADD_INFO A
+		(
+		  A.CO_MEM_NO
+		, A.CO_INTRO
+		, A.CO_NO
+		, A.CO_COM_NAME
+		, A.CO_CEO_NAME
+		, A.CO_ADDRESS
+		, A.CO_PHONE
+		, A.CO_PAX
+		, A.CO_SECTORS
+		, A.CO_STATUS
+		, A.CO_WEBSITE
+		)
+		VALUES
+		(
+          #{ memNo }
+		, #{ coIntro }
+		, #{ coNo }
+		, #{ coComName }
+		, #{ coCeoName }
+		, #{ coAddress }
+		, #{ coPhone }
+		, #{ coPax }
+		, #{ coSectors }
+		, #{ coStatus }
+		, #{ coWebsite }
+		)
+	</insert>
+
+
+
+</mapper>

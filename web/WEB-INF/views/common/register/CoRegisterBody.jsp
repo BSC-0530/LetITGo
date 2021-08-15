@@ -163,6 +163,10 @@
 						                    <input type="text" name="memPhone" placeholder="담당자 전화번호*" required>
                                         </div>
                                         
+                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+						                    <input type="text" name="coNo" placeholder="사업자등록번호*" required>
+                                        </div>
+                                        
                                          <div class="form-group col-md-6 col-sm-6 col-xs-12">
 						                    <input type="text" name="coComName"  placeholder="기업 이름*" required>
                                         </div>
@@ -175,20 +179,21 @@
                                             <input type="text" name="coSectors"  placeholder="업종 *" required>
                                         </div>
                                        
-                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                        <div  style="width:460px;" class="form-group col-md-6 col-sm-6 col-xs-12">
                                             <input type="text" name="coStatus"  placeholder="업태* " required>
                                         </div>
                                         
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="zipCode"  placeholder="우편번호 *" required>
+                                            <input type="text" name="zipCode" id="zipCode" readonly  placeholder="우편번호 *">
+                                            <input style="width:120px; border:2px solid black; height:50px; border-radius: 10px;" type="button" value="검색" class="btn btn-yg" id="searchZipCode">                                         
                                         </div>
                                         
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="address1"  placeholder="주소 *" required>
+                                            <input type="text" name="address1" id="address1"  placeholder="주소 *" readonly>
                                         </div>
                                         
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="address2"  placeholder="상세주소 *">
+                                            <input type="text" name="address2"  id="address2" placeholder="상세주소 *">
                                         </div>
                                         
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
@@ -199,7 +204,7 @@
                                             <input type="text" name="coPhone" value="" placeholder="기업 전화번호">
                                         </div>
                                         
-                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                         <div style="width:460px;" class="form-group col-md-6 col-sm-6 col-xs-12">
                                             <input type="text" name="coPax" value="" placeholder="기업 팩스번호">
                                         </div>
                                         
@@ -256,7 +261,7 @@
                                     </div>
 
                                     <div class="login_btn_wrapper register_btn_wrapper login_wrapper ">
-                                        <a href="#" class="btn btn-primary login_btn"> 회원가입 </a>
+                                        <button class="btn btn-primary login_btn" style="width:100%; height:50px;" type="submit">회원가입</button>
                                     </div>
                                     <div class="login_message">
                                         <p>이미 회원이신가요? <a href="${ pageContext.servletContext.contextPath }/loginPage"> 로그인 </a> </p>
@@ -271,6 +276,25 @@
         </div>
     </div>
  </form>	
+ 
+ <script
+		src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js">
+</script>
+
+<script>
+		const $searchZipCode = document.getElementById("searchZipCode");
+		
+		$searchZipCode.onclick = function() {
+			
+			new daum.Postcode({
+				oncomplete: function(data) {
+					document.getElementById("zipCode").value = data.zonecode;
+					document.getElementById("address1").value = data.address;
+					document.getElementById("address2").focus();
+				}
+			}).open();
+		}
+</script>
  
 </body>
 </html>

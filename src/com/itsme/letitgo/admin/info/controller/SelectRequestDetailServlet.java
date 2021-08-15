@@ -17,7 +17,7 @@ import com.itsme.letitgo.admin.info.model.mapper.JoinMapper;
 import com.itsme.letitgo.admin.info.model.service.CompanyDetailService;
 import com.itsme.letitgo.admin.info.model.service.RequestService;
 import com.itsme.letitgo.company.regist.model.dto.CoMemberDTO;
-import com.itsme.letitgo.company.regist.model.service.ComMemberService;
+import com.itsme.letitgo.company.regist.model.service.CoMemberService;
 
 @WebServlet("/info/detail")
 public class SelectRequestDetailServlet extends HttpServlet {
