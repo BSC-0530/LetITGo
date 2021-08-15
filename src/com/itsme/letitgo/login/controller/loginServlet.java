@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.itsme.letitgo.login.model.dto.MemberDTO;
-import com.itsme.letitgo.login.model.service.MemberService;
+import com.itsme.letitgo.login.model.dto.MemberLoginDTO;
+import com.itsme.letitgo.login.model.service.MemberLoginService;
 
 @WebServlet("/member/login")
 public class loginServlet extends HttpServlet {
@@ -19,17 +19,17 @@ public class loginServlet extends HttpServlet {
 		String memId = request.getParameter("memId");
 		String memPwd = request.getParameter("memPwd");
 		
-		MemberDTO requestMember = new MemberDTO();
+		MemberLoginDTO requestMember = new MemberLoginDTO();
 		requestMember.setMemId(memId);
 		requestMember.setMemPwd(memPwd);
 
 		System.out.println(requestMember);
 		
-		MemberService memberService = new MemberService();
+		MemberLoginService memberService = new MemberLoginService();
 		
-		MemberDTO loginMember = memberService.loginCheck(requestMember);
+		MemberLoginDTO loginMember = memberService.loginCheck(requestMember);
 		
-		System.out.println("loginServlet : " + loginMember);
+		System.out.println("loginMember : " + loginMember);
 		
 		if(loginMember != null) {
 			

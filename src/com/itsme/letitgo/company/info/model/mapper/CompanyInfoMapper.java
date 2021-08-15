@@ -8,7 +8,7 @@ import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectJobPostingD
 
 public interface CompanyInfoMapper {
 
-	List<CompanyAddInfoDTO> selectedInfoCompany();
+	CompanyAddInfoDTO selectedInfoCompany();
 
 
 	List<Object> companyAddInfo(CompanyAddInfoDTO dto);

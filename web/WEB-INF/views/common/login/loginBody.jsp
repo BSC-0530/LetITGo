@@ -67,7 +67,8 @@
 								<button class="btn btn-primary login_btn" style="width:100%" type="submit">Login</button>
 							</div>
 							<div align="center" class="login_message">
-								<p>아직 회원가입 안하셨나요?</p><p></p><p><a href="#">회원 가입 </a> </p>
+								<p>아직 회원가입 안하셨나요?</p><p></p><p><a href="${ pageContext.servletContext.contextPath }/member/individual/regist">개인회원가입 </a> </p>
+								<p><p><a href="${ pageContext.servletContext.contextPath }/member/coporate/regist">기업회원가입 </a> </p>
 							</div>
 						</div>
 					</div>

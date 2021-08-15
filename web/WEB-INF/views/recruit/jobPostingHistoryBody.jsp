@@ -139,110 +139,53 @@
 						<table id="table_myPosting" class="hover cell-border stripe">
 							<thead>
 								<tr align="center">
+									<td>공고 번호</td>
 									<td>공고 제목</td>
 									<td>공고 상태</td>
 									<td style="width:70px;">요구 경력</td>
 									<td style="width:70px;">등록일자</td>
-									<td style="width:70px;">마감일자</td>
-									<td style="width:70px;">공고 수정 </td>
-									<td style="width:90px;">지원자 확인</td>
+									<td style="width:50px;">마감일자</td>
+									<td style="width:50px;">공고 수정 </td>
+									<td style="width:50px;">지원자 확인</td>
 									<td style="width:90px;">공고 노출권</td>
 								</tr>
 							</thead>
 							
 							<!-- requestScope에 담긴 kinds가 null일때 전체 조회된 공고를 보여줌 -->
 							<c:if test="${ requestScope.kinds eq null }" >
-								<c:forEach var="jobPosting"  items="${ requestScope.recruitingJopPosting }">
-								
-								<tbody align="center">
-									<tr>
-										<td><c:out value="${ jobPosting.jobPostTitle }"/></td>
-										
-										<!-- 공고 상태에 따라 view에 다르게 표기 -->
-										<td>
-										<c:choose>
-										<c:when test="${ jobPosting.jobPostKinds eq '승인된공고' }"><c:out value="채용중"/></c:when>
-										<c:when test="${ jobPosting.jobPostKinds eq '승인대기중인공고' }"><c:out value="수정/등록 요청"/></c:when>
-										<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }"><c:out value="마감"/></c:when>
-										<c:when test="${ jobPosting.jobPostKinds eq '거절된공고' }"><c:out value="등록 거절"/></c:when>
-										</c:choose>
-										</td>
-										<td><c:out value="${ jobPosting.jobPostMinExperience }" />년 ~ <c:out value="${ jobPosting.jobPostMaxExperience }" />년</td>								
-										<td><c:out value="${ jobPosting.jobPostEnrollDate }" /></td>								
-										<td><c:out value="${ jobPosting.jobPostDeadline }" /></td>			
-										<td><button>수정</button></td>			
-										<td><button>지원자 확인</button></td>
-										<c:if test="${ jobPosting.exposureUseCheck eq 'N' }">
-										<td><button type="submit" onclick="req(this);">사용하기</button></td>
-										</c:if>
-										<c:if test="${ jobPosting.exposureUseCheck eq 'Y' }">
-										<td>사용중</td>
-										</c:if>
-									</tr>
-								</tbody>
-								</c:forEach>
-							</c:if>
-							<c:if test="${ requestScope.kinds eq '승인대기중인공고' }" >
-								<c:forEach var="jobPosting"  items="${ requestScope.requestJobPosting }">
-								
-								<tbody align="center">
-									<tr>
-										<td><c:out value="${ jobPosting.jobPostTitle }"/></td>
-										
-										<!-- 공고 상태에 따라 view에 다르게 표기 -->
-										<td>
-										<c:if test="${jobPosting.jobPostKinds eq '승인된공고' }">
-										<c:out value="채용중"/>
-										</c:if>
-										</td>
-										<td><c:out value="${ jobPosting.jobPostMinExperience }" />년 ~ <c:out value="${ jobPosting.jobPostMaxExperience }" />년</td>								
-										<td><c:out value="${ jobPosting.jobPostEnrollDate }" /></td>								
-										<td><c:out value="${ jobPosting.jobPostDeadline }" /></td>			
-										<td><button>수정</button></td>			
-										<td><button>지원자 확인</button></td>
-										<c:if test="${ jobPosting.exposureUseCheck eq 'N' }">
-										<td><button type="submit" onclick="req(this);">사용하기</button></td>
-										</c:if>
-										<c:if test="${ jobPosting.exposureUseCheck eq 'Y' }">
-										<td>사용중</td>
-										</c:if>
-									</tr>
-								</tbody>
-								</c:forEach>
-							</c:if>
-							
-							<c:if test="${ requestScope.kinds eq null }" >
 								<c:forEach var="jobPosting"  items="${ requestScope.allJobPosting }">
 								
 								<tbody align="center">
 									<tr>
+										<td><c:out value="${ jobPosting.jobPostNo }"/></td>
 										<td><c:out value="${ jobPosting.jobPostTitle }"/></td>
 										
 										<!-- 공고 상태에 따라 view에 다르게 표기 -->
 										<td>
-										<c:if test="${jobPosting.jobPostKinds eq '승인된공고' }">
-										<c:out value="채용중"/>
-										</c:if>
+										<c:if test="${ jobPosting.jobPostKinds eq '승인된공고' }"><c:out value="채용중"/></c:if>
+										<c:if test="${ jobPosting.jobPostKinds eq '승인대기중인공고' }"><c:out value="수정/등록 요청"/></c:if>
+										<c:if test="${ jobPosting.jobPostKinds eq '마감된공고' }"><c:out value="마감"/></c:if>
+										<c:if test="${ jobPosting.jobPostKinds eq '거절된공고' }"><c:out value="등록 거절"/></c:if>
 										</td>
 										<td><c:out value="${ jobPosting.jobPostMinExperience }" />년 ~ <c:out value="${ jobPosting.jobPostMaxExperience }" />년</td>								
 										<td><c:out value="${ jobPosting.jobPostEnrollDate }" /></td>								
 										<td><c:out value="${ jobPosting.jobPostDeadline }" /></td>			
-										<td><button>수정</button></td>			
-										<td><button>지원자 확인</button></td>
+										<td><button onclick="updateJobPosting(this);">수정</button></td>			
+										<td><button>지원자</button></td>
 										<c:if test="${ jobPosting.exposureUseCheck eq 'N' }">
 										<td><button type="submit" onclick="req(this);">사용하기</button></td>
 										</c:if>
 										<c:if test="${ jobPosting.exposureUseCheck eq 'Y' }">
+										<!-- 노출권 마감일자가 나와주면 좋을듯  -->
 										<td>사용중</td>
 										</c:if>
 									</tr>
 								</tbody>
 								</c:forEach>
 							</c:if>
-							
 						</table>
 						<br>
-						<button type="submit" class="btn btn-info" id="insertJobPosting" style=" float: right;" >공고 등록</button>
+						<button onclick="insertJobPosting();" class="btn btn-info" style=" float: right;" >공고 등록</button>
 						
 					</div>
 				</div>
@@ -257,17 +200,24 @@
 		$('#table_myPosting').DataTable();
 	});
 	
-	function select(kinds) {
-		
-		location.href = "${ pageContext.servletContext.contextPath }/company/jobPostingHistory/select?kinds=" + kinds
-	};
 	
-	$('#insertJobPosting').click(function(){
-		
+	function insertJobPosting() {
 		alert("");
 		
 		location.href = "${ pageContext.servletContext.contextPath }/recruit/insert"
-	})
+		
+	}
+	
+	function updateJobPosting(button) {
+		
+		
+		let jobPostNo = button.parentNode.parentNode.children[0].innerText;
+		
+		alert("");
+		
+		location.href = "${ pageContext.servletContext.contextPath }/recruit/update?jobPostNo=" + jobPostNo
+		
+	}
 	
 	
 	

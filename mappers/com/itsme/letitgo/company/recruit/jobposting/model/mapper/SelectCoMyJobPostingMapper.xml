@@ -10,6 +10,7 @@
 		<result property="jobPostDeadline" column="JOB_POST_DEADLINE"/>
 		<result property="jobPostKinds" column="JOB_POST_KINDS"/>
 		<result property="exposureUseCheck" column="EXPOSURE_USE_CHECK"/>
+		<result property="jobPostContents" column="JOB_POST_CONTENTS"/>
 	</resultMap>
 	
 	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpJobFieldDTO" id="resultJobField">
@@ -32,7 +33,7 @@
 	
 	
 	<select id="selectCoMyJobPosting" parameterType="com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO" resultMap="resultMyJobPosting">
-		SELECT
+		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#updateRecruit() */
 	    	   JP.JOB_POST_NO
 	    	 , JP.JOB_POST_TITLE
 	    	 , JP.JOB_POST_MIN_EXPERIENCE
@@ -46,7 +47,7 @@
 	</select>
 	
 	<select id="selectRecruitingMyJobPosting" parameterType="com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO" resultMap="resultMyJobPosting">
-		SELECT
+		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectRecruitingMyJobPosting() */
 	    	   JP.JOB_POST_NO
 	    	 , JP.JOB_POST_TITLE
 	    	 , JP.JOB_POST_MIN_EXPERIENCE
@@ -61,7 +62,7 @@
 	</select>
 	
 	<select id="selectRequestMyJobPosting" parameterType="com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO" resultMap="resultMyJobPosting">
-		SELECT
+		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectRequestMyJobPosting() */
 	    	   JP.JOB_POST_NO
 	    	 , JP.JOB_POST_TITLE
 	    	 , JP.JOB_POST_MIN_EXPERIENCE
@@ -76,14 +77,14 @@
 	</select>
 	
 	<select id="selectJobName" resultMap="resultJobField">
-		SELECT
+		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectJobName() */
 			   JF.JOB_NO
 			 , JF.JOB_NAME
 		  FROM TBL_JOB_FIELD JF
 	</select>
 	
 	<select id="selectSkillsCategory" resultMap="resultSkillsCategory">
-		SELECT
+		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectSkillsCategory() */
 			   SC.CATEGORY_NO
 			 , SC.CATEGORY_NAME
 			 , SC.CATEGORY_UPPER_NO
@@ -91,7 +92,7 @@
 	</select>
 	
 	<select id="selectSkills" resultMap="resultSkills">
-		SELECT
+		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectSkills() */
 			   S.SKILLS_NO
 			 , S.SKILLS_NAME
 			 , S.CATEGORY_NO S
@@ -100,7 +101,7 @@
 	
 	<!-- 공고 등록 입력한 값 insert 후 seq로 입력한 jobPostNo dto에 저장 -->
 	<insert id="insertJobPosting" parameterType="com.itsme.letitgo.company.recruit.jobposting.model.dto.RequestJobPostingDTO">
-		INSERT
+		INSERT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#insertJobPosting() */
 		  INTO TBL_JOB_POSTING JP
 		(
 		  JP.JOB_POST_NO
@@ -133,14 +134,14 @@
 		
 		)
 		<selectKey keyColumn="JOB_POST_NO" keyProperty="jobPostNo" resultType="_int" order="AFTER">
-	        SELECT
+	        SELECT 
 	               SEQ_JOB_POST_NO.CURRVAL
 	          FROM DUAL
         </selectKey>
 	</insert>
 	<!-- 공고 등록 선택한 skills insert -->
 	<insert id="insertSkills" parameterType="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpSkillsDTO">
-		INSERT
+		INSERT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#insertSkills() */
 		  INTO TBL_JOB_POSTING_REQ_SKILLS RS
 		(
 		  RS.JOB_POST_NO
@@ -154,7 +155,7 @@
 	</insert>
 	<!-- 공고 등록 history에 insert -->
 	<insert id="insertjobPostingAppHistory" parameterType="_int">
-		INSERT
+		INSERT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#insertjobPostingAppHistory() */
 		  INTO TBL_JOB_POSTING_APP_HISTORY AH
 		(
 		  AH.JOB_POST_REQ_NO
@@ -170,6 +171,21 @@
 		, #{ jobPostNo }
 		)
 	</insert>
+	
+<!-- 	<select id="updateRecruit" parameterType="_int" resultMap="resultMyJobPosting"> -->
+<!-- 		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#updateRecruit() */ -->
+<!-- 		  	   JP.CO_MEM_NO -->
+<!-- 		  	 , JP.JOB_POST_NO -->
+<!-- 		  	 , JP.JOB_POST_TITLE -->
+<!-- 		  	 , JP.JOB_POST_MIN_EXPERIENCE -->
+<!-- 		  	 , JP.JOB_POST_MAX_EXPERIENCE -->
+<!-- 		  	 , JP.JOB_POST_DEADLINE -->
+<!-- 		  	 , JP.JOB_POST_CONTENTS -->
+<!-- 		  	 , JP.JOB_POST_KINDS -->
+<!-- 		  	 , JP.JOB_NO -->
+<!-- 		  	 , JOB_POST_ENROLL_DATE -->
+<!-- 		  FROM TBL_JOB_POSTING JP -->
+<!-- 	</select> -->
 
 	
 	

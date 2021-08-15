@@ -10,7 +10,12 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 
+
 import com.itsme.letitgo.admin.board.notice.model.mapper.PersonalInfoPolicyMapper;
+
+import com.itsme.letitgo.admin.info.model.mapper.InsertRequestMapper;
+import com.itsme.letitgo.admin.info.model.mapper.JoinMapper;
+
 import com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper;
 import com.itsme.letitgo.admin.question.model.mapper.AdminInquiryMapper;
 import com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper;
@@ -22,10 +27,13 @@ import com.itsme.letitgo.company.info.model.mapper.CompanyInfoMapper;
 import com.itsme.letitgo.company.payment.model.mapper.PaymentMapper;
 import com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper;
 import com.itsme.letitgo.company.scout.model.mapper.CompanyScoutMapper;
-import com.itsme.letitgo.login.model.mapper.MemberMapper;
+import com.itsme.letitgo.login.model.mapper.MemberLoginMapper;
 import com.itsme.letitgo.personal.info.model.mapper.PersonalInfoMapper;
 import com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper;
 import com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper;
+
+import com.itsme.letitgo.personal.regist.model.mapper.RegistInMemberMapper;
+
 import com.itsme.letitgo.personal.resume.model.mapper.ResumeMapper;
 import com.itsme.letitgo.personal.scout.model.mapper.PersonalScoutMapper;
 
@@ -65,14 +73,20 @@ public class Template {
 			configuration.addMapper(PersonalInfoMapper.class);
 			configuration.addMapper(PersonalApplyMapper.class);
 			configuration.addMapper(AdminJobPostMapper.class);
+			configuration.addMapper(MemberLoginMapper.class);
+			configuration.addMapper(RegistInMemberMapper.class);
 
 			// 동기
 			configuration.addMapper(SelectJobPostingMapper.class);
 			configuration.addMapper(SelectCoMyJobPostingMapper.class);
 
 			//승수
+
 			configuration.addMapper(MemberMapper.class);
-			//configuration.addMapper(RegistMemberMapper.class);
+			configuration.addMapper(RegistMemberMapper.class);
+			configuration.addMapper(JoinMapper.class);
+			configuration.addMapper(InsertRequestMapper.class);
+
 			
 			//태훈 시험용 넣었음 (콘솔에 출력됨, view만들고 보여지는지 확인해야함)
 			configuration.addMapper(JobFieldMapper.class);

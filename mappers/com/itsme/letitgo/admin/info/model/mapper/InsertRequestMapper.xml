@@ -13,14 +13,13 @@
 	</resultMap>
 	<select id="selectedInsertRequest" resultMap="requestInsert">
 		SELECT
-			  *
+			   CO_REQ_NO
+			 , CO_MEM_NO
+			 , CO_ANS_KINDS
+			 , CO_REQ_DATE
+			 , CO_ANS_DATE
+			 , CO_REQ_KINDS
+			 , CO_REJECT_REASON
 	    FROM TBL_CO_MEMBER_APP_HISTORY
 	</select>
-	<select id="detailInfo" resultMap="requestInsert">
-		SELECT
-			  *
-	    FROM TBL_CO_MEMBER_APP_HISTORY
-	    WHERE CO_MEM_NO = #{ coMemNo }
-	</select>
-	
 </mapper>

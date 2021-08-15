@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.catalina.ant.SessionsTask;
 import org.apache.ibatis.session.SqlSession;
 
 import com.itsme.letitgo.company.recruit.jobposting.model.dto.RequestJobPostingDTO;
@@ -105,11 +106,23 @@ public class SelectCoMyJobPostingService {
 			session.rollback();
 		}
 		
-		
 		session.close();
 		
 		
 		return result3 > 0? true : false;
+	}
+
+	public SelectCoMyJobPostingDTO updateRecruit(int jobPostNo) {
+		
+		SqlSession session = getSqlSession();
+		
+		SelectCoMyJobPostingMapper mapper = session.getMapper(SelectCoMyJobPostingMapper.class);
+		
+		
+		SelectCoMyJobPostingDTO dto = mapper.updateRecruit(jobPostNo);
+		
+		
+		return dto;
 	}
 
 }

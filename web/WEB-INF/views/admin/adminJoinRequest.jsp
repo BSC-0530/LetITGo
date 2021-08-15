@@ -98,7 +98,7 @@
 												</p>
 												<br>
 												<p align="center">
-													<a href="#">기업 회원 가입 요청</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/post/reject/InsertUpdate">기업 회원 가입 요청</a>
 												</p>
 												<br>
 												<p align="center">
@@ -163,7 +163,7 @@
 											<td align="center">상세보기</td>
 										</tr>
 									</thead>
-									<c:forEach var="adminInsertJoin" items="${ requestScope.postInsertUpdateList }">							
+									<c:forEach var="adminInsertJoin" items="${ requestScope.insertRequestDTO }">							
 									<tbody align="center">
 											<tr>
 												<td><c:out value="${ adminInsertJoin.coReqNo }"/></td>								
@@ -255,7 +255,7 @@ function post3(button) {
 	
 	const selectJobPostNo = button.parentNode.parentNode.children[1].innerText;
 		
-	location.href = "${ pageContext.servletContext.contextPath }/info/detail=" +selectJobPostNo
+	location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?selectJobPostNo=" +selectJobPostNo
 				
 }	
 

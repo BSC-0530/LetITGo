@@ -13,14 +13,14 @@ public class InquiryDTO {
 	private java.sql.Date inquiryDate; //문의일자
 	private String inquiryAnsContent; //답변내용
 	private java.sql.Date inquiryAnsDate; //답변 일자
-	private String inquiryCategoryNo; //카테고리 번호
+	private int inquiryCategoryNo; //카테고리 번호
 	private InquiryCategoryDTO categoryNameDTO;
 	
 	public InquiryDTO() {}
 
 	public InquiryDTO(int inquiryNo, int managerMemberNo, String inquiryEmail, String inquiryTitle,
 			String inquiryContents, String inquiryAnsYN, Date inquiryDate, String inquiryAnsContent,
-			Date inquiryAnsDate, String inquiryCategoryNo, InquiryCategoryDTO categoryNameDTO) {
+			Date inquiryAnsDate, int inquiryCategoryNo, InquiryCategoryDTO categoryNameDTO) {
 		super();
 		this.inquiryNo = inquiryNo;
 		this.managerMemberNo = managerMemberNo;
@@ -107,11 +107,11 @@ public class InquiryDTO {
 		this.inquiryAnsDate = inquiryAnsDate;
 	}
 
-	public String getInquiryCategoryNo() {
+	public int getInquiryCategoryNo() {
 		return inquiryCategoryNo;
 	}
 
-	public void setInquiryCategoryNo(String inquiryCategoryNo) {
+	public void setInquiryCategoryNo(int inquiryCategoryNo) {
 		this.inquiryCategoryNo = inquiryCategoryNo;
 	}
 
@@ -131,6 +131,7 @@ public class InquiryDTO {
 				+ inquiryAnsContent + ", inquiryAnsDate=" + inquiryAnsDate + ", inquiryCategoryNo=" + inquiryCategoryNo
 				+ ", categoryNameDTO=" + categoryNameDTO + "]";
 	}
+
 
 	
 	

@@ -8,6 +8,5 @@ public interface InsertRequestMapper {
 
 	List<InsertRequestDTO> selectedInsertRequest();
 
-	int detailInfo(InsertRequestDTO insertRequestDTO);
 
 }

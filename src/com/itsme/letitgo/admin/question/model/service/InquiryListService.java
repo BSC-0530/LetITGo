@@ -39,5 +39,104 @@ public class InquiryListService {
 		
 		return categoryList;
 	}
+	//관리자 답변창
+	public List<InquiryDTO> answerInquiry(int num) {
+		
+		SqlSession session = getSqlSession();
+		
+		AdminInquiryMapper mapper = session.getMapper(AdminInquiryMapper.class);
+		
+		List<InquiryDTO> answerInquiry = mapper.answerInquiry(num);
+		
+		session.close();
+		
+		return answerInquiry;
+	}
+
+	public int inquiryAnswerContent(InquiryDTO inquiryDTO) {
+		
+		SqlSession session = getSqlSession();
+		
+		AdminInquiryMapper mapper= session.getMapper(AdminInquiryMapper.class);
+		
+		int result = mapper.inquiryAnswerContent(inquiryDTO);
+		
+		if(result > 0) {
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
+	public int inquiryCategoryInsert(InquiryCategoryDTO insertCategory) {
+		
+		SqlSession session = getSqlSession();
+		
+		AdminInquiryMapper mapper= session.getMapper(AdminInquiryMapper.class);
+		
+		int result = mapper.inquiryCategoryInsert(insertCategory);
+		
+		if(result > 0) {
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
+	public int InquiryCategoryDeleted(int categoryCode) {
+		
+		SqlSession session = getSqlSession();
+		
+		AdminInquiryMapper mapper = session.getMapper(AdminInquiryMapper.class);
+		
+		int result = mapper.InquiryCategoryDeleted(categoryCode);
+		
+		if(result > 0) {
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
+	public int requestQuestionInsert(InquiryDTO inquiryDTO) {
+		
+		SqlSession session = getSqlSession();
+		
+		AdminInquiryMapper mapper= session.getMapper(AdminInquiryMapper.class);
+		
+		int result = mapper.requestQuestionInsert(inquiryDTO);
+		
+		if(result > 0) {
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+		
+	}
+
 
 }
+
+
+
+
+
+
+
+

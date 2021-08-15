@@ -128,6 +128,48 @@
 	</select>
 	
 	
+	<!-- 동기 지원하기시 insert -->
+	<insert id="insertApplyngHistory">
+		INSERT /* com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper#insertApplyngHistory() */
+		  INTO TBL_APPLYING_HISTORY AH
+		(
+		  AH.RESUME_NO
+		, AH.JOB_POST_NO
+		, AH.JOB_POST_APPLYING_STATUS
+		, AH.JOB_POST_BROWES_STATUS
+		, AH.JOB_POST_APPLYING_DATE
+		, AH.JOB_POST_APPLYING_CANCEL_DATE
+		)
+		VALUES
+		(
+		  #{ resumeNo }
+		, #{ jobPostNo }
+		, '지원완료'
+		, '미열람'
+		, SYSDATE
+		, NULL
+		)
+	</insert>
+	<insert id="insertApplyingChangeHistory">
+	  INSERT /* com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper#insertApplyingChangeHistory() */
+	    INTO TBL_APPLYING_CHANGE_HISTORY CH
+	  (
+	    CH.APPLYING_CHANGE_NO
+	  , CH.RESUME_NO
+	  , CH.JOB_POST_NO
+	  , CH.APPLYING_CHANGE_DATE
+	  , CH.APPLYING_CHANGE_KINDS
+	  )
+	  VALUES
+	  (
+	    SEQ_APPLYING_CHANGE_NO.NEXTVAL
+	  , #{ resumeNo }
+	  , #{ jobPostNo }
+	  , SYSDATE
+	  , '지원상태'
+	  )
+	</insert>
+	
 	
 	
 </mapper>
