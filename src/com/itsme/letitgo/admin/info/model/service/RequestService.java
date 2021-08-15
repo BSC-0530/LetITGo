@@ -27,21 +27,5 @@ public class RequestService {
 
 
 	
-	public static int detailInfo(InsertRequestDTO insertRequestDTO) {
-		
-		SqlSession session = getSqlSession();
-		
-		InsertRequestMapper mapper = session.getMapper(InsertRequestMapper.class);
-		
-		int result = mapper.detailInfo(insertRequestDTO);
-		
-		if(result > 0) {
-			session.commit();
-		}else {
-			session.rollback();
-		}
-			session.close();
-		return result;
-	}
 
 }

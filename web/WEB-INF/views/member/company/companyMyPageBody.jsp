@@ -145,11 +145,13 @@
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
 
-											<input type="password" name="coName" value=""placeholder="${comDTO.coComName }" readonly>
+
+											<input type="text" name="field-name" value=""placeholder="${coName }" readonly>
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="password" name="ceoName" value=""placeholder="${comDTO.coCeoName }" readonly>
+											<input type="text" name="field-name" value=""placeholder="${ceoName }" readonly>
+										
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">

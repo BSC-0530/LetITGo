@@ -17,7 +17,6 @@ import com.itsme.letitgo.admin.info.model.service.RequestJoinRejectService;
 
 @WebServlet("/admin/post/reject/InsertUpdate")
 public class RequestRejectServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
 	private int coReqNo;
 	private int coMemNo;
