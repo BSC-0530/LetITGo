@@ -69,14 +69,14 @@
 		 WHERE CO_REQ_NO = #{ coReqNo }
 	</update>
 	
-	<select id="SelectJoinInfo1" resultMap="SelectJoinInfo1">
+	<select id="detailInfo1" resultMap="SelectJoinInfo1">
 		SELECT	/*com.itsme.letitgo.admin.info.model.dto.CompanyJoinDTO#SelectJoinInfo2()*/
 		       A.MEM_ID
 		     , A.MEM_EMAIL
 		FROM  TBL_MEMBER A
 	</select>
 	
-	<select id="SelectJoinInfo2" resultMap="SelectJoinInfo2">
+	<select id="detailInfo2" resultMap="SelectJoinInfo2">
 		SELECT	/*com.itsme.letitgo.admin.info.model.dto.CompanyJoinDTO#SelectJoinInfo2()*/
 			   CO_MEM_NO
 			 , CO_INTRO
