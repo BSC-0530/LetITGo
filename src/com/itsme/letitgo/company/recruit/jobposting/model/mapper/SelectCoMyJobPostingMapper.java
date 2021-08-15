@@ -27,6 +27,8 @@ public interface SelectCoMyJobPostingMapper {
 	int insertSkills(RequestJobPostingDTO dto);
 
 	int insertjobPostingAppHistory(int jobPostNo);
+
+	SelectCoMyJobPostingDTO updateRecruit(int jobPostNo);
 	
 
 

@@ -7,27 +7,29 @@ public class SelectCoMyJobPostingDTO {
 	private int coMemNo;
 	private int jobPostNo;
 	private String jobPostTitle;
-	private String jobPostKinds;
+	private String jobPostContents;
 	private String jobPostMinExperience;
 	private String jobPostMaxExperience;
-	private Date jobPostEnrollDate;
-	private Date jobPostDeadline;
+	private java.sql.Date jobPostEnrollDate;
+	private java.sql.Date jobPostDeadline;
+	private String jobPostKinds;
 	private String exposureUseCheck;
 	
 	public SelectCoMyJobPostingDTO() {}
 
-	public SelectCoMyJobPostingDTO(int coMemNo, int jobPostNo, String jobPostTitle, String jobPostKinds,
+	public SelectCoMyJobPostingDTO(int coMemNo, int jobPostNo, String jobPostTitle, String jobPostContents,
 			String jobPostMinExperience, String jobPostMaxExperience, Date jobPostEnrollDate, Date jobPostDeadline,
-			String exposureUseCheck) {
+			String jobPostKinds, String exposureUseCheck) {
 		super();
 		this.coMemNo = coMemNo;
 		this.jobPostNo = jobPostNo;
 		this.jobPostTitle = jobPostTitle;
-		this.jobPostKinds = jobPostKinds;
+		this.jobPostContents = jobPostContents;
 		this.jobPostMinExperience = jobPostMinExperience;
 		this.jobPostMaxExperience = jobPostMaxExperience;
 		this.jobPostEnrollDate = jobPostEnrollDate;
 		this.jobPostDeadline = jobPostDeadline;
+		this.jobPostKinds = jobPostKinds;
 		this.exposureUseCheck = exposureUseCheck;
 	}
 
@@ -55,12 +57,12 @@ public class SelectCoMyJobPostingDTO {
 		this.jobPostTitle = jobPostTitle;
 	}
 
-	public String getJobPostKinds() {
-		return jobPostKinds;
+	public String getJobPostContents() {
+		return jobPostContents;
 	}
 
-	public void setJobPostKinds(String jobPostKinds) {
-		this.jobPostKinds = jobPostKinds;
+	public void setJobPostContents(String jobPostContents) {
+		this.jobPostContents = jobPostContents;
 	}
 
 	public String getJobPostMinExperience() {
@@ -79,20 +81,28 @@ public class SelectCoMyJobPostingDTO {
 		this.jobPostMaxExperience = jobPostMaxExperience;
 	}
 
-	public Date getJobPostEnrollDate() {
+	public java.sql.Date getJobPostEnrollDate() {
 		return jobPostEnrollDate;
 	}
 
-	public void setJobPostEnrollDate(Date jobPostEnrollDate) {
+	public void setJobPostEnrollDate(java.sql.Date jobPostEnrollDate) {
 		this.jobPostEnrollDate = jobPostEnrollDate;
 	}
 
-	public Date getJobPostDeadline() {
+	public java.sql.Date getJobPostDeadline() {
 		return jobPostDeadline;
 	}
 
-	public void setJobPostDeadline(Date jobPostDeadline) {
+	public void setJobPostDeadline(java.sql.Date jobPostDeadline) {
 		this.jobPostDeadline = jobPostDeadline;
+	}
+
+	public String getJobPostKinds() {
+		return jobPostKinds;
+	}
+
+	public void setJobPostKinds(String jobPostKinds) {
+		this.jobPostKinds = jobPostKinds;
 	}
 
 	public String getExposureUseCheck() {
@@ -106,11 +116,13 @@ public class SelectCoMyJobPostingDTO {
 	@Override
 	public String toString() {
 		return "SelectCoMyJobPostingDTO [coMemNo=" + coMemNo + ", jobPostNo=" + jobPostNo + ", jobPostTitle="
-				+ jobPostTitle + ", jobPostKinds=" + jobPostKinds + ", jobPostMinExperience=" + jobPostMinExperience
-				+ ", jobPostMaxExperience=" + jobPostMaxExperience + ", jobPostEnrollDate=" + jobPostEnrollDate
-				+ ", jobPostDeadline=" + jobPostDeadline + ", exposureUseCheck=" + exposureUseCheck + "]";
-	};
-	
+				+ jobPostTitle + ", jobPostContents=" + jobPostContents + ", jobPostMinExperience="
+				+ jobPostMinExperience + ", jobPostMaxExperience=" + jobPostMaxExperience + ", jobPostEnrollDate="
+				+ jobPostEnrollDate + ", jobPostDeadline=" + jobPostDeadline + ", jobPostKinds=" + jobPostKinds
+				+ ", exposureUseCheck=" + exposureUseCheck + "]";
+	}
+
+
 	
 	
 }
