@@ -44,6 +44,41 @@ public class PersonalInfoPolicyService {
 		return personalInfoPolicyList;
 	}
 
+	public PersonalInfoPolicyDTO selectAllPersonalInfoPolicyDetail(int postNo) {
+		
+		SqlSession session = getSqlSession();
+		
+		PersonalInfoPolicyMapper personalInfoPolicyMapper = session.getMapper(PersonalInfoPolicyMapper.class);
+		
+		PersonalInfoPolicyDTO detailPersonalInfoPolicy = personalInfoPolicyMapper.selectDetailPersonalInfoPolicy(postNo);
+		//detailPersonalInfoPolicy 이거 경로?????????? 잘생각해보기
+		
+		session.close();
+		
+		return detailPersonalInfoPolicy;
+	}
+
+	public int personalInfoPolicyModifyInsert(PersonalInfoPolicyDTO personalInfoPolicyModifyInsert) {
+
+		SqlSession session = getSqlSession();
+		
+		PersonalInfoPolicyMapper personalInfoPolicyMapper = session.getMapper(PersonalInfoPolicyMapper.class);
+		
+		System.out.println("personalInfoPolicyModifyInsert : " + personalInfoPolicyModifyInsert);
+		
+		int result = personalInfoPolicyMapper.personalInfoPolicyModifyInsert(personalInfoPolicyModifyInsert);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
 }
 
 
