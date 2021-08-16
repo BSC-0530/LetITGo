@@ -60,8 +60,15 @@
 		  JOIN TBL_MEMBER M ON (C.CO_MEM_NO = M.MEM_NO)
           JOIN TBL_RESUME RS ON (RS.RESUME_NO = R.RESUME_NO)
 		  JOIN TBL_INTERVIEW_PROPOSAL I ON (I.CO_MEM_NO = M.MEM_NO)
-	     WHERE M.MEM_NO = 2
-           AND RS.RESUME_SCOUT_STATUS = 'Y'
+	     WHERE RS.RESUME_SCOUT_STATUS = 'Y'
 	</select>
+	
+	<update id="updateAcceptScoutKinds">
+		UPDATE
+		       TBL_INTERVIEW_PROPOSAL
+		   SET SCOUT_KINDS = '수락'
+		 WHERE RESUME_NO = #{ resumeNo }
+		   AND CO_MEM_NO = #{ coMemNo }
+	</update>
 
 </mapper>

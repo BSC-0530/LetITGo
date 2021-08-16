@@ -18,15 +18,15 @@ public class CompleteInterviewServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-//		StringBuilder redirectText = new StringBuilder();
-//		
-//		redirectText.append("<script>alert('면접 제안을 완료했습니다.');</script>");
-//		
-//		response.setContentType("text/html; charset=UTF-8");
-//		PrintWriter out = response.getWriter();
-//		
-//		out.print(redirectText.toString());
-//		out.flush();
+		StringBuilder redirectText = new StringBuilder();
+		
+		redirectText.append("<script>alert('면접 제안을 완료했습니다.');</script>");
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		out.print(redirectText.toString());
+		out.flush();
 		
 		
 		int resumeNo = Integer.parseInt(request.getParameter("resumeNo"));

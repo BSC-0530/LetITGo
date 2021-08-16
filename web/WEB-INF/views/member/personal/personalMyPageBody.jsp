@@ -80,29 +80,14 @@
 									<div class="handyman_sec1_wrapper">
 										<div class="content">
 											<div class="box">
-												<p>
-													<a href="#">회원 정보</a>
-												</p>
-												<br>
-												<br>
-												<p>
-													<a href="${ pageContext.servletContext.contextPath }/personal/apply/select">지원 현황</a>
-												</p>
-												<br>
-												<br>
-												<p>
-													<a href="${ pageContext.servletContext.contextPath }/scout/myPageList/servlet">스카우트 현황</a>
-												</p>
-												<br>
-												<br>
-												<p>
-													<a href="#">북마크</a>
-												</p>
-												<br>
-												<br>
-												<p>
-													<a href="#">회원탈퇴</a>
-												</p>
+												<p><a href="${ pageContext.servletContext.contextPath }/personalMyInfo">회원정보</a></p>
+												<br> <br>
+												<p><a href="${ pageContext.servletContext.contextPath }/personal/apply/select">지원 현황</a></p>
+												<br> <br>
+												<p><a href="${ pageContext.servletContext.contextPath }">스카우트현황</a></p>
+												<br> <br>
+												<p><a href="${ pageContext.servletContext.contextPath }">회원탈퇴</a></p>
+												<br> <br>
 											</div>
 										</div>
 									</div>

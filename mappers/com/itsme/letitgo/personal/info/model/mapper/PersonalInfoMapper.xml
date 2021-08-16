@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itsme.letitgo.personal.info.model.mapper.PersonalInfoMapper">
 
+	<resultMap type="com.itsme.letitgo.personal.info.model.dto.RestrictedCompanyDTO" id="restricedCompanyResult">
+		<id property="inMemNo" column="IN_MEM_NO"/>
+		<result property="coComName" column="CO_COM_NAME"/>
+		<result property="coMemNo" column="CO_MEM_NO"/>
+	</resultMap>
+	
+
 	<select id="selectshallowBrowsingNum" resultType="_int">
 		SELECT /* com.itsme.letitgo.personal.info.model.mapper.PersonalInfoMapper#selectshallowBrowsingNum()  */
 		       COUNT(*)
@@ -52,6 +59,16 @@
 		       COUNT(*)
   		FROM TBL_BOOKMARK
  		WHERE IN_MEM_NO = '3'
+	</select>
+	
+	<!-- 개인 열람제한기업 조회 -->
+	<select id="selectRectrictedCompany" parameterType="_int" resultMap="restricedCompanyResult">
+		SELECT
+			   RC.IN_MEM_NO
+			 , RC.CO_COM_NAME
+			 , RC.CO_MEM_NO
+		  FROM TBL_RESTRICTED_COMPANY RC
+		 WHERE IN_MEM_NO = #{ memNo }
 	</select>
 	
 	

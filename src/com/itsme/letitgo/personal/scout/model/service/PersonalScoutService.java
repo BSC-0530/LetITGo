@@ -55,6 +55,24 @@ public class PersonalScoutService {
 		return readList;
 	}
 
+	public int updateAcceptScoutKinds(ReadingResumeListOfPersonalDTO resumeAndCoMem) {
+		
+		SqlSession session = getSqlSession();
+		PersonalScoutMapper mapper = session.getMapper(PersonalScoutMapper.class);
+		
+		int result = mapper.updateAcceptScoutKinds(resumeAndCoMem);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
 	
 	
 	

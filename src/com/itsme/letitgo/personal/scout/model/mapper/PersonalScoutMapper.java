@@ -18,6 +18,9 @@ public interface PersonalScoutMapper {
 	// 열람 상태 조회
 	List<ReadingResumeListOfPersonalDTO> selectReadingResumeListOfPersonal();
 
+	// 면접 제안 수락 상태 업데이트
+	int updateAcceptScoutKinds(ReadingResumeListOfPersonalDTO resumeAndCoMem);
+
 	
 
 }

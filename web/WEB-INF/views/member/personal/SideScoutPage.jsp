@@ -180,11 +180,11 @@
 						<table id="table_personal_interview" class="hover cell-border stripe">
 							<thead>
 								<tr>
-									<td>기업이름</td>
-									<td>지역</td>
-									<td>업태</td>
-									<td>구분</td>
-									<td>상세보기</td>
+									<th>기업이름</th>
+									<th>지역</th>
+									<th>업태</th>
+									<th>구분</th>
+									<th>상세보기</th>
 								</tr>
 							</thead>
 							<c:forEach var="list" items="${ readList }">
@@ -195,7 +195,7 @@
 										<td><c:out value="${ list.coStatus }"></c:out></td>
 										<td><c:out value="${ list.scoutKinds }"></c:out></td>
 										<td>
-												
+											<input  id="returnCoMemNo" value="${ list.coMemNo }">	
 											<c:choose>
 												<c:when test="${ list.scoutKinds eq '대기'}">
 													<button type="button" id="selectedYN" value="${ list.resumeNo }" onclick="acceptInterview(this);">수락</button>
@@ -236,12 +236,31 @@
 		
 		function acceptInterview(button) {
 			var answer;
-			answer = confirm('면접 제안을 수락하시겠습니까 \n (면접 취소는 불가능하니 신중하게 결정하세요.)');
+			answer = confirm('면접 제안을 수락하시겠습니까? \n (면접 취소는 불가능하니 신중하게 결정하세요.)');
+			const coMemNo = document.getElementById("returnCoMemNo").value;
 			
 			if(answer == true) {
 				const btn = document.getElementById("selectedYN");
 				const resumeNo = btn.value;
+				const selectedYN = 'Y';
 				document.getElementById("selectedYN").disabled = true;
+				location.href = "${ pageContext.servletContext.contextPath }/personal/scout/response?selectedYN="
+						+ selectedYN + "&resumeNo=" + resumeNo + "&coMemNo=" + coMemNo;
+			}
+		}
+		
+		function refuseInterview(button) {
+			var answer;
+			answer = confirm('면접 제안을 거절하시겠습니까? \n (면접 거절 취소는 불가능하니 신중하게 결정하세요.)');
+			
+			if(answer == true) {
+				const btn = document.getElementById("selectedYN");
+				const resumeNo = btn.value;
+				const selectedYN = 'N';
+				const coMemNo = document.getElementById("coMemNo");
+				document.getElementById("selectedYN").disabled = true;
+				location.href = encodeURI("${ pageContext.servletContext.contextPath }/personal/scout/response?selecteYN="
+						+ selectedYN + "&resumeNo=" + resumeNo + "&coMemNo=" + coMemNo);
 			}
 		}
 

@@ -146,11 +146,7 @@
 										<div id="collapseTwentyLeftThree"
 											class="panel-collapse collapse" aria-expanded="false"
 											role="tablist">
-											<div class="panel-body">Praesent in nisl egestas mauris
-												aliquam luctus. Ut auctor faucibus orci, nec semper purus
-												ultrices idorbi nec lorem risus orbi vitae felis gravida
-												Pellentesque id eros quis massa convallis feugiat eu quis
-												urna.</div>
+											<div class="panel-body">열람권이 필요합니다.</div>
 										</div>
 									</div>
 									<div class="panel panel-default">
@@ -165,11 +161,7 @@
 										<div id="collapseTwentyLeftThree2"
 											class="panel-collapse collapse" aria-expanded="false"
 											role="tablist">
-											<div class="panel-body">Praesent in nisl egestas mauris
-												aliquam luctus. Ut auctor faucibus orci, nec semper purus
-												ultrices idorbi nec lorem risus orbi vitae felis gravida
-												Pellentesque id eros quis massa convallis feugiat eu quis
-												urna.</div>
+											<div class="panel-body">열람권이 필요합니다.</div>
 										</div>
 									</div>
 									<div class="panel panel-default">
@@ -178,17 +170,13 @@
 												<a class="collapsed" data-toggle="collapse"
 													data-parent="#accordion_threeLeft"
 													href="#collapseTwentyLeftThree3" aria-expanded="false">
-													경력,프로젝트 이력,자기소개 </a>
+													경력, 프로젝트 이력, 자격증, 교육, 수상 이력</a>
 											</h4>
 										</div>
 										<div id="collapseTwentyLeftThree3"
 											class="panel-collapse collapse" aria-expanded="false"
 											role="tablist">
-											<div class="panel-body">Praesent in nisl egestas mauris
-												aliquam luctus. Ut auctor faucibus orci, nec semper purus
-												ultrices idorbi nec lorem risus orbi vitae felis gravida
-												Pellentesque id eros quis massa convallis feugiat eu quis
-												urna.</div>
+											<div class="panel-body">열람권이 필요합니다.</div>
 										</div>
 									</div>
 <!-- 									/.panel-default -->

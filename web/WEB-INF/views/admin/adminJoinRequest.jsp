@@ -163,13 +163,14 @@
 											<td align="center">상세보기</td>
 										</tr>
 									</thead>
-									<c:forEach var="adminInsertJoin" items="${ requestScope.insertRequestDTO }">							
+									<c:forEach var="adminInsertJoin" items="${ requestScope.insertRequestDTO }/info/requestList">							
 									<tbody align="center">
 											<tr>
 												<td><c:out value="${ adminInsertJoin.coReqNo }"/></td>								
 												<td><c:out value="${ adminInsertJoin.coMemNo }"/></td>								
 												<td><c:out value="${ adminInsertJoin.coComName }"/></td>								
 												<td><c:out value="${ adminInsertJoin.coReqDate }"/></td>
+												
 												
 												<c:if test="${ adminInsertJoin.coAnsDate != null }">								
 												<td><c:out value="${ adminInsertJoin.coAnsDate }"/></td>		
@@ -182,7 +183,7 @@
 												<td><c:out value="${ adminInsertJoin.coAnsKinds }"/></td>
 												
 												<c:if test="${ adminInsertJoin.coRejectReason != null }">								
-												<td><c:out value="${ adminInsertJoin.jobPostRejectReason }"/></td>			
+												<td><c:out value="${ adminInsertJoin.coRejectReason }"/></td>			
 												</c:if>		
 												
 												<c:if test="${ adminInsertJoin.coRejectReason == null }">								
@@ -255,7 +256,7 @@ function post3(button) {
 	
 	const selectJobPostNo = button.parentNode.parentNode.children[1].innerText;
 		
-	location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?selectJobPostNo=" +selectJobPostNo
+	location.href = "${ pageContext.servletContext.contextPath }/info/detail?selectJobPostNo=" +selectJobPostNo;
 				
 }	
 
