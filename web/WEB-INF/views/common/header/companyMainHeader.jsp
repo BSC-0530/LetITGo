@@ -71,8 +71,11 @@
 					<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 hidden-sm hidden-xs">
 						<div class="jp_navi_right_btn_wrapper">
 							<ul>
-								<li><a href="${ pageContext.servletContext.contextPath }/regist/member">회원가입</a></li>
-								<li><a href="${ pageContext.servletContext.contextPath }/member/login">로그인</a></li>
+								<li><a
+										href="${ pageContext.servletContext.contextPath }/member/logout"
+										align="center"
+										style="background: rgb(226, 113, 109); margin-right: 30px; border-radius: 10px; width: 130px">Log
+											Out</a></li>
 							</ul>
 						</div>
 					</div>

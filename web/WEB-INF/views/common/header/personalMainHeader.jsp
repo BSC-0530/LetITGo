@@ -62,7 +62,11 @@
 					<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 hidden-sm hidden-xs">
 						<div class="jp_navi_right_btn_wrapper">
 							<ul>
-								<li><a href="../common/login/logout.jsp">·Î±×¾Æ¿ô</a></li>
+								<li><a
+										href="${ pageContext.servletContext.contextPath }/member/logout"
+										align="center"
+										style="background: rgb(102, 114, 173); margin-right: 30px; border-radius: 10px; width: 100px">Log
+											Out</a></li>
 							</ul>
 						</div>
 					</div>
