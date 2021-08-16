@@ -174,8 +174,7 @@
 	
 	<select id="updateRecruit" parameterType="_int" resultMap="resultMyJobPosting">
 		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#updateRecruit() */
-		  	   JP.CO_MEM_NO
-		  	 , JP.JOB_POST_NO
+		  	   JP.JOB_POST_NO
 		  	 , JP.JOB_POST_TITLE
 		  	 , JP.JOB_POST_MIN_EXPERIENCE
 		  	 , JP.JOB_POST_MAX_EXPERIENCE

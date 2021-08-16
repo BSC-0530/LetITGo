@@ -20,9 +20,11 @@ public interface PersonalApplyMapper {
 	List<SelectPersonlCanceledApplyDTO> selectPersonalCanceledApply(/* 개인회원번호 */);
 
 	// 동기 지원하기 시 insert
-	int insertApplyngHistory(Map<String, Object> applyMap);
+	int insertApplyngHistory(Map<String, Integer> applyMap);
 
-	int insertApplyingChangeHistory(Map<String, Object> applyMap);
+	int insertApplyingChangeHistory(Map<String, Integer> applyMap);
+
+	int modifyApplyingHistory(Map<String, Integer> applyMap);
 
 
 

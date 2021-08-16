@@ -49,40 +49,37 @@
             	
             }
             // 이력서 선택 버튼
-           	function selectResume(button){
-        	   
-            	alert("");
-           		// resumeNo에 id로 값을 꺼내와서 저장
-                var resumeNo = button.parentNode.children[0].value;
-           		
-           		alert(resumeNo);
-           		
-           		var jobPostNo = button.parentNode.parentNode.parentNode.children[0].innerText;
-           		
-           		alert(jobPostNo);
-           		
-           		var path = "/let/detail/jobPosting/select?selectJobPostNo=" + jobPostNo + "&resumeNo="+ resumeNo ;
-           		
-           		alert(path);
-           		
-            	// 부모창에 있는 resumeNo에 value에 저장
+            
+
+
+
+           	function selectResume() {
             	
-//             	opener.parent.location= "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?selectJobPostNo=" +selectJobPostNo
             	
-//                 window.opener.document.getElementById("resumeNo").value = resumeNo ;
-//                 location.href = ${ pageContext.servletContext.contextPath }/detail/jobPosting/select?resumeNo=" +selectResumeNo ;
-				
-				window.opener.loaction.href = path;
-				window.close();
+            	// radio버튼의 길이 저장
+            	var radio_length = document.getElementsByName("resumeNo").length;
             	
-				alert("");
-            	// 창 닫아줌
-               
+            	for(var i = 0; i < radio_length; i++) {
+            		// 
+            		if(document.getElementsByName("resumeNo")[i].checked == true) {
+            			// 체크된 라디오 버튼의 value를 공고 상세페이지 쪽으로 넘겨줌
+            			var resumeNo = document.getElementsByName("resumeNo")[i].value;
+            			
+            			alert("선택한 이력서는 : " );
+            			
+                        window.opener.document.getElementById("resumeNo").value = resumeNo ;
+                        window.close();
+            		}
+            	}
             }
+            function closeTab() {
+            	
+            	window.close();
+            }
+           
         </script>
 </head>
 <body>
-	
 	<c:if test="${ requestScope.resumeStatus eq  'Y' }">
   
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -93,21 +90,23 @@
 			<div class="jp_rightside_job_categories_content">
 				<div class="handyman_sec1_wrapper">
 					<div class="content">
+					
+<%-- 						<label><c:out value="${ requestScope.jobPostNo }"/></label> --%>
 						
-						<label><c:out value="${ requestScope.jobPostNo }"/></label>
 						<h4 align="center">이력서를 선택해주세요</h4>
 						<c:forEach var="resumeList" items="${ requestScope.resumeList }" varStatus="status">
 						<div class="box">
 							<p>
-								<input type="radio" id="${ status.index }" value=${ resumeList.resumeNo } name="resumeNo">
+								<input type="radio" id="${ status.index }" value="${ resumeList.resumeNo }" name="resumeNo">
 								<button onclick="updateResult(this);">수정하기</button>
-								<button onclick="selectResume(this)">이력서 선택</button>
 								<label for="${ status.index }"><c:out value="${ resumeList.resumeTitle }"/></label>
 								<label for="${ status.index }">/<c:out value="${ resumeList.resumeWriteDate }"/></label>
 								
 							</p>			
 						</div>
 						</c:forEach>
+						<button onclick="selectResume()">이력서 선택</button>
+						<button onclick="closeTab()">닫기</button>
 					</div>
 				</div>
 			</div>
@@ -134,13 +133,7 @@
 	 
 	 </c:if>
   
-  <!-- 보유 이력서 정보 가져오고, 보여주고 check박스로 선택하고 옆에 button 으로 이력서 페이지로 이동하고 -->
 
-	<script>
-		$(document).ready(function() {
-			$('#table_resume').DataTable();
-		});
-	</script>
 
 
 </body>

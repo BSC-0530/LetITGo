@@ -150,24 +150,31 @@
 		, NULL
 		)
 	</insert>
+		
+	<!-- 공고 지원, 취소 시 지원내역상태변경이력에 저장 -->
 	<insert id="insertApplyingChangeHistory">
-	  INSERT /* com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper#insertApplyingChangeHistory() */
-	    INTO TBL_APPLYING_CHANGE_HISTORY CH
-	  (
-	    CH.APPLYING_CHANGE_NO
-	  , CH.RESUME_NO
-	  , CH.JOB_POST_NO
-	  , CH.APPLYING_CHANGE_DATE
-	  , CH.APPLYING_CHANGE_KINDS
-	  )
-	  VALUES
-	  (
-	    SEQ_APPLYING_CHANGE_NO.NEXTVAL
-	  , #{ resumeNo }
-	  , #{ jobPostNo }
-	  , SYSDATE
-	  , '지원상태'
-	  )
+		INSERT /* com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper#insertApplyingChangeHistory() */
+		  INTO TBL_APPLYING_CHANGE_HISTORY CH
+		(
+		  CH.APPLYING_CHANGE_NO
+		, CH.RESUME_NO
+		, CH.JOB_POST_NO
+		, CH.APPLYING_CHANGE_DATE
+		, CH.APPLYING_CHANGE_KINDS
+		)
+		VALUES
+		(
+		  SEQ_APPLYING_CHANGE_NO.NEXTVAL
+		, #{ resumeNo }
+		, #{ jobPostNo }
+		, SYSDATE
+		, '지원상태'
+		)
+	</insert>
+	<!-- 공고 지원 취소  -->
+	<insert id="modifyApplyingHistory">
+		INSERT /* com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper#modifyApplyingHistory() */
+	
 	</insert>
 	
 	
