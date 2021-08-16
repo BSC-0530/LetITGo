@@ -67,11 +67,13 @@ public class MainScoutListService {
 		System.out.println("@@@@@@@@@@@@@@@@" + careeaNumber);
 		
 		String browseName = (brosweSimplelDTO.get(0).getMemDTO().get(0).getMemName()).toString();
+		System.out.println("ASDASADASDSD" +browseName);
 		String jobName = (brosweSimplelDTO.get(0).getJobFieldDTO().get(0).getJobName()).toString();
 		int number = (brosweSimplelDTO.get(0).getResumeNo());	
 //		System.out.println("browseSkills" + browseSkills.get(1));
 		
 		Map<String,Object> simpleInfo =  new HashMap<>();
+		
 		simpleInfo.put("browseName", browseName);
 		simpleInfo.put("jobName", jobName);
 		simpleInfo.put("browseSkills", browseSkills);
@@ -102,7 +104,6 @@ public class MainScoutListService {
 		
 		return result;
 	}
-	
 	
 	
 //	스카우트 현황 데이터테이블조회

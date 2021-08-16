@@ -246,9 +246,11 @@
 <script>
 //등록버튼
 var check = $("input[type='checkbox']");
+
 check.click(function(){
 	
-	alert('공지사항 오프');
+	const num = input.parentNode.parentNode.parentNode.children[7].children[0].innerText
+	alert(num);
 	
 });
 	

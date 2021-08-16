@@ -10,4 +10,8 @@ public interface NoticeMapper {
 
 	int noticeInsert(PersonalInfoPolicyDTO notice);
 
+	PersonalInfoPolicyDTO selectDetailsNotice(int postNo);
+
+	int noticeModifyInsert(PersonalInfoPolicyDTO noticeModifyInsert);
+
 }
