@@ -14,6 +14,8 @@ public interface SelectJobPostingMapper {
 	List<Object> selectJpSkills();
 
 	List<Object> selectJobNames();
+	
+	List<Object> selectSkills();
 
 	SelectJobPostingDTO selectDetailedJobPosting(int selectJobPostNo);
 
@@ -27,6 +29,7 @@ public interface SelectJobPostingMapper {
 	int insertApplyngHistory(Map<String, Object> applyMap);
 
 	int insertApplyingChangeHistory(Map<String, Object> applyMap);
+
 
 
 }

@@ -128,7 +128,7 @@
 	</select>
 	
 	
-	<!-- 동기 지원하기시 insert -->
+	<!-- 공고 지원 insert -->
 	<insert id="insertApplyngHistory">
 		INSERT /* com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper#insertApplyngHistory() */
 		  INTO TBL_APPLYING_HISTORY AH
@@ -172,14 +172,15 @@
 		)
 	</insert>
 	<!-- 공고 지원 취소  -->
-	<insert id="modifyApplyingHistory">
-		UPDATE /* com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper#modifyApplyingHistory() */
-			   TBL_APPLYING_HISTORY AH
+	<update id="modifyApplyingHistory">
+		UPDATE 
+		       TBL_APPLYING_HISTORY AH
 		   SET AH.JOB_POST_APPLYING_STATUS = '지원취소'
 		     , AH.JOB_POST_APPLYING_CANCEL_DATE = SYSDATE
-	 	 WHERE AH.
-		   
-	</insert>
+		 WHERE AH.RESUME_NO = #{ resumeNo }
+		   AND AH.JOB_POST_NO = #{ jobPostNo }
+	</update>
+	
 	
 	
 	

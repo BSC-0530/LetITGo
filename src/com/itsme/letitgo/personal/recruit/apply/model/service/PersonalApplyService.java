@@ -46,7 +46,16 @@ public class PersonalApplyService {
 		int result1 = mapper.modifyApplyingHistory(applyMap);
 		
 		int result2 = mapper.insertApplyingChangeHistory(applyMap);
-		return 0;
+		
+		if (result1 + result2 >= 2) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result1 + result2;
 	}
 
 }
