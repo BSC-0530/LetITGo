@@ -1,6 +1,8 @@
 package com.itsme.letitgo.login.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,18 +32,41 @@ public class loginServlet extends HttpServlet {
 		MemberLoginDTO loginMember = memberService.loginCheck(requestMember);
 		
 		System.out.println("loginMember : " + loginMember);
+		System.out.println("loginMember.getMemKinds() : " + loginMember.getMemKinds());
+		StringBuilder redirectText = new StringBuilder();
 		
-		if(loginMember != null) {
+		if((loginMember != null) && (loginMember.getMemKinds().equals("개인회원"))) {
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("loginMember", loginMember);		
-			response.sendRedirect(request.getContextPath());
+			redirectText.append("<script>alert('로그인이 완료되었습니다.'); location.href='/let/mainPage/InMember';</script>");
+			
+		} else if((loginMember != null) && (loginMember.getMemKinds().equals("기업회원"))) {
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("loginMember", loginMember);		
+			redirectText.append("<script>alert('로그인이 완료되었습니다.'); location.href='/let/mainPage/CoMember';</script>");
+			
+		} else if((loginMember != null) && (loginMember.getMemKinds().equals("관리자"))) {
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("loginMember", loginMember);		
+			redirectText.append("<script>alert('로그인이 완료되었습니다.'); location.href='/let/mainPage/Admin';</script>");
+			
 			
 		} else {
-			request.setAttribute("message", "로그인 실패!!");
-			request.getRequestDispatcher("/WEB-INF/views/common/login/failed.jsp").forward(request, response);
+			
+			redirectText.append("<script>alert('로그인에 실패하셨습니다.'); location.href='/let/loginPage';</script>");
+			
 		}
+									
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		out.print(redirectText.toString());
+		out.flush();
+		out.close();
 	}
-	
+
 
 }

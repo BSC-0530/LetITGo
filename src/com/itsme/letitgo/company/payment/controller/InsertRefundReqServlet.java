@@ -76,7 +76,6 @@ public class InsertRefundReqServlet extends HttpServlet {
 		out.flush();
 		out.close();
 		
-		/* response.sendRedirect("/let/company/paymentHistory/select"); */
 	}
 
 }
