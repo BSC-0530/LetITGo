@@ -72,6 +72,13 @@
 		, #{ coWebsite }
 		)
 	</insert>
+	
+	<select id="duplicateIdCheck" resultType="_int">
+		SELECT
+	           COUNT(*)
+		  FROM TBL_MEMBER
+		 WHERE MEM_ID = #{ memId }
+	</select>
 
 
 
