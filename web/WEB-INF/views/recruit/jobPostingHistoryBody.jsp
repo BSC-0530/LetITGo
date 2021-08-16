@@ -213,7 +213,7 @@
 		
 		let jobPostNo = button.parentNode.parentNode.children[0].innerText;
 		
-		alert("");
+		alert(jobPostNo);
 		
 		location.href = "${ pageContext.servletContext.contextPath }/recruit/update?jobPostNo=" + jobPostNo
 		

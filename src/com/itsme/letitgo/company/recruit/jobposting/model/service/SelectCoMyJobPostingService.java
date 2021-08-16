@@ -121,6 +121,8 @@ public class SelectCoMyJobPostingService {
 		
 		SelectCoMyJobPostingDTO dto = mapper.updateRecruit(jobPostNo);
 		
+		session.close();
+		
 		
 		return dto;
 	}
