@@ -14,4 +14,6 @@ public interface NoticeMapper {
 
 	int noticeModifyInsert(PersonalInfoPolicyDTO noticeModifyInsert);
 
+	int updateStatus(PersonalInfoPolicyDTO updateStatus);
+
 }

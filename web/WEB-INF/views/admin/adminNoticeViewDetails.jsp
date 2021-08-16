@@ -176,12 +176,13 @@
 						<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
 							<div class="jp_contact_inputs_wrapper jp_contact_inputs3_wrapper">
 						<c:choose>
-							<c:when test="${empty notice.postModifiedDate }">
+							<c:when test="${empty noticeDetails.postModifiedDate } }">
 								<i class="fa fa-pencil-square-o">
 								</i><input name="postModifiedDate"placeholder="수정일: 없음" readonly="readonly">
 							</c:when>
 							<c:otherwise>
-								<i class="fa-pencil-square-o"><input name="postModifiedDate" value="${ noticeDetails.postModifiedDate }" readonly="readonly"></i>
+								<i class="fa-pencil-square-o">
+								</i><input name="postModifiedDate" value="${ noticeDetails.postModifiedDate }" readonly="readonly">
 							</c:otherwise>
 						</c:choose>
 							</div>

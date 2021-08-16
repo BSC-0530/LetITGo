@@ -148,8 +148,9 @@
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<br><br><br>
-							<h1>1:1문의 내역 조회</h1>
+							<h1>관리자 공지사항 조회</h1>
 							<div class="jp_listing_tabs_wrapper">
+<%-- 									<form action="${ pageContext.servletContext.contextPath }/notice/check/ynupdate" method="get" > --%>
 								<table id="table_payment" class="hover cell-border stripe">
 									<thead>
 										<tr>
@@ -158,17 +159,17 @@
 											<td align="center">등록일자</td>
 											<td align="center">상세보기</td>
 											<td align="center">수정일자</td>
-											<td align="center">수정</td>
 											<td align="center">노출여부</td>
+											<td align="center">노출수정</td>
 										</tr>
 									</thead>
 								<c:forEach var="notice" items="${ requestScope.notice }">
 										<tbody align="center">
-											<tr>
+											<tr id="postNo">
 												<td><c:out value="${ notice.postNo }"/></td>									
 												<td><c:out value="${ notice.postTitle }"/></td>
 												<td><c:out value="${ notice.postRegistrationDate }"/></td>
-												<td><button  type="submit" onclick="browse(this);" >상세보기</button></td>
+												<td><button type="button" onclick="browse(this);" >상세보기</button></td>
 												<c:choose>
 												<c:when test="${empty notice.postModifiedDate }">
 												<td><c:out value="수정사항 없음 "/></td>
@@ -177,18 +178,18 @@
 												<td><c:out value="${ notice.postModifiedDate }"/></td>
 												</c:otherwise>
 												</c:choose>
+												<td><c:out value="${ notice.postExposureStatus }"/></td>
 												<td><button  type="submit" onclick="modify(this);" >수정</button></td>
-												<td><label class="switch"><input name="switchbox"type="checkbox"><span class="slider round"></span></label>
-													<p>OFF</p>
-													<p style="display:none;">ON</p></td>
-<%-- 												<td style="font-size: 0px; width:0px; height:0px;"><c:out value="${ inq.inquiryNo }"/></td> --%>
+<!-- 												<td><button class="fa fa-plus-circle" type="submit" ></button></td> -->
 											</tr>
 										</tbody>	
-								</c:forEach>			
+								</c:forEach>					
 								</table>
+<!-- 								</form> -->
 								<br>
 								<br>
 							</div>
+							
 						</div>
 						
 					</div>
@@ -197,12 +198,15 @@
 											type="submit" class="btn btn-info" onclick="insert();">등록</button>
 					</div>
 					<br>
+					
 				</div>
 				
 				<br>
 			</div>
 		</div>
 	</div>
+	
+	
 	
 <script>
 // 데이터테이블
@@ -215,15 +219,31 @@
 //등록버튼
 		function insert(button) {
 			
-			 alert('이이잉~');  
-			
 	 location.href = "${ pageContext.servletContext.contextPath }/notice/insert/servlet" 
 			
 		}
 </script>
-
 <script>
-//상세보기 버튼
+//노출이력수정
+// function modify(button){
+	
+// 		const ynNo = button.parentNode.parentNode.children[0].innerText
+// 		const ynChange = button.parentNode.parentNode.children[5].innerText
+// 				alert(ynNo);
+// 		var answer1;
+// 		answer1 = confirm('노출 상태를 변경하시겠습니까?');
+		
+// 		if(ynChange == 'Y'){
+// 			if(answer1 == true){
+// 				return true;
+// 			}else if(answer1 == false){
+// 				return false;
+// 		}
+// 	}
+// }
+</script>
+<script>
+// 상세보기 버튼
 	function browse(button){
 		
 		const postNo = button.parentNode.parentNode.children[0].innerText
@@ -232,28 +252,14 @@
 				
 	}	
 </script>
-<script>
-//수정 버튼
-	function modify(button){
-		
-		const num = button.parentNode.parentNode.children[0].innerText
 
-		alert(num);
-		
-	}
-</script>
-
-<script>
-//등록버튼
-var check = $("input[type='checkbox']");
-
-check.click(function(){
-	
-	const num = input.parentNode.parentNode.parentNode.children[7].children[0].innerText
-	alert(num);
-	
-});
-	
-</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
