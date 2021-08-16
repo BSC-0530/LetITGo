@@ -28,12 +28,15 @@ public class SelectJobPostingService {
 		List<Object> jpSkills = mapper.selectJpSkills();
 		
 		List<Object> jobNameList = mapper.selectJobNames();
+		
+		List<Object> skillsList = mapper.selectSkills();
 		System.out.println(jobNameList);
 		
 		Map<String, List<Object>> jp = new HashMap<>();
 		jp.put("jpAndInfo", jpAndInfo);
 		jp.put("jpSkills", jpSkills);
 		jp.put("jobNameList", jobNameList);
+		jp.put("skillsList", skillsList);
 		
 		System.out.println("service jpAndInfo : " + jpAndInfo);
 		session.close();

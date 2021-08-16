@@ -21,7 +21,6 @@ public class SelectAllJobPostingServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		
-		
 		SelectRequestJobPostingDTO requestJobPostingDTO = new SelectRequestJobPostingDTO();
 
 	
@@ -37,8 +36,11 @@ public class SelectAllJobPostingServlet extends HttpServlet {
 		request.setAttribute("jobPostingList", jp.get("jpAndInfo"));
 		request.setAttribute("jpSkills", jp.get("jpSkills"));
 		request.setAttribute("jobNameList", jp.get("jobNameList"));
+		request.setAttribute("skillsList", jp.get("skillsList"));
+		
 
 
+		System.out.println(jp.get("jpSkills"));
 
 		String path = "/WEB-INF/views/recruit/jobPostingList.jsp";
 		request.getRequestDispatcher(path).forward(request, response);

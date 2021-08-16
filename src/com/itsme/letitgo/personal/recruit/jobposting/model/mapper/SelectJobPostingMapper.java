@@ -15,6 +15,8 @@ public interface SelectJobPostingMapper {
 	List<Object> selectJpSkills();
 
 	List<Object> selectJobNames();
+	
+	List<Object> selectSkills();
 
 	SelectJobPostingDTO selectDetailedJobPosting(int selectJobPostNo);
 
@@ -34,6 +36,7 @@ public interface SelectJobPostingMapper {
 	List<BookmarkDTO> selectBookmark(int inMemNo);
 
 	int deleteBookmark(BookmarkDTO deleteBm);
+
 
 
 }

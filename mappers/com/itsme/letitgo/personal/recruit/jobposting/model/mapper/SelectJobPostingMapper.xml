@@ -144,6 +144,13 @@
 			 , JF.JOB_NAME
 		  FROM TBL_JOB_FIELD JF
 	</select>
+	<!-- 공고 조회 시 스킬 선택을 위해 조회 -->
+	<select id="selectSkills" resultMap="resultJpSkills">
+		SELECT
+			   S.SKILLS_NO
+			 , S.SKILLS_NAME
+		  FROM TBL_SKILLS S
+	</select>
 	
 	<select id="selectDetailedJobPosting" parameterType="_int" resultMap="resultJobPosting">
 		SELECT
@@ -236,5 +243,7 @@
 	
 	<!-- 공고 지원, 취소 시 지원내역상태변경이력에 저장 -->
 	<!-- 공고 지원 취소  -->
+
+	
 	
 </mapper>
