@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,6 +37,7 @@
 	src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
 </head>
 <body>
 	<div class="jp_listing_sidebar_main_wrapper">
@@ -78,30 +79,22 @@
 												</p>
 												<br>
 												<p align="center">
-													<a
-														href="${ pageContext.servletContext.contextPath }/admin/payment/select">결제
-														내역 조회</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/payment/select">결제 내역 조회</a>
 												</p>
 												<br>
 												<p align="center">
-													<a
-														href="${ pageContext.servletContext.contextPath }/admin/refund/select">환불
-														요청 관리</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/refund/select">환불 요청 관리</a>
 												</p>
 												<br> <br>
 												<h3 style="font-weight: bold">기업 요청 관리</h3>
 												<br>
 												<p>
 												<p align="center">
-													<a
-														href="${ pageContext.servletContext.contextPath }/admin/post/insertRequest/select">공고
-														등록 요청</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/post/insertRequest/select">공고 등록 요청</a>											
 												</p>
 												<br>
 												<p align="center">
-													<a
-														href="${ pageContext.servletContext.contextPath }/admin/post/updateRequest/select">공고
-														수정 요청</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/post/updateRequest/select">공고 수정 요청</a>
 												</p>
 												<br>
 												<p align="center">
@@ -124,7 +117,7 @@
 												<br>
 												<p>
 												<p align="center">
-													<a href="#">공지사항 관리</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/notice/manger/servlet">공지사항 관리</a>
 												</p>
 												<br>
 												<p align="left">
@@ -136,13 +129,11 @@
 												<br>
 												<p>
 												<p align="center">
-													<a
-														href="${ pageContext.servletContext.contextPath }/admin/inquiry/select">1:1
-														문의 조회</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/inquiry/select">1:1 문의 조회</a>
 												</p>
 												<br>
 												<p align="center">
-													<a href="#">1:1 문의 카테고리 관리</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/Category/Page">1:1 문의 카테고리 관리</a>
 												</p>
 											</div>
 										</div>
@@ -152,60 +143,115 @@
 						</div>
 					</div>
 				</div>
-			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+
+				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<div class="jp_contact_form_main_wrapper">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-								<div class="jp_contact_form_heading_wrapper">
-									<h2>1:1문의</h2>
-								</div>
-							</div>
-							<div class="jp_contact_form_box">
-							<form action="${ pageContext.servletContext.contextPath }/admin/category/Insert/Servlet" method="post">
-								<div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
-									<div
-										class="jp_contact_inputs_wrapper jp_contact_inputs2_wrapper">
-										<i class="fa fa-pencil-square-o"></i><input name="inquiryCategoryNo"  type="text"
-										 onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"
-										placeholder="카테고리 코드">
-									</div>
-								</div>
-								<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-									<div
-										class="jp_contact_inputs_wrapper jp_contact_inputs3_wrapper">
-										<i class="fa-envelope"></i><input name="inquiryCategoryName"
-											placeholder="카테고리">
-									</div>
-									<div class="category-insert">
-										<button style="margin-left: 90%; margin-top: 5%;"
-											type="submit" class="btn btn-info" onclick="insert();">등록</button>
-
-									</div>
-								</div>
-							</form>
-								</div>
+							<br><br><br>
+							<h1>1:1문의 내역 조회</h1>
+							<div class="jp_listing_tabs_wrapper">
+								<table id="table_payment" class="hover cell-border stripe">
+									<thead>
+										<tr>
+											<td align="center">번호</td>
+											<td align="center">제목</td>
+											<td align="center">등록일자</td>
+											<td align="center">상세보기</td>
+											<td align="center">수정일자</td>
+											<td align="center">수정</td>
+											<td align="center">노출여부</td>
+										</tr>
+									</thead>
+								<c:forEach var="notice" items="${ requestScope.notice }">
+										<tbody align="center">
+											<tr>
+												<td><c:out value="${ notice.postNo }"/></td>									
+												<td><c:out value="${ notice.postTitle }"/></td>
+												<td><c:out value="${ notice.postRegistrationDate }"/></td>
+												<td><button  type="submit" onclick="browse(this);" >상세보기</button></td>
+												<c:choose>
+												<c:when test="${empty notice.postModifiedDate }">
+												<td><c:out value="수정사항 없음 "/></td>
+												</c:when>
+												<c:otherwise>
+												<td><c:out value="${ notice.postModifiedDate }"/></td>
+												</c:otherwise>
+												</c:choose>
+												<td><button  type="submit" onclick="modify(this);" >수정</button></td>
+												<td><label class="switch"><input name="switchbox"type="checkbox"><span class="slider round"></span></label>
+													<p>OFF</p>
+													<p style="display:none;">ON</p></td>
+<%-- 												<td style="font-size: 0px; width:0px; height:0px;"><c:out value="${ inq.inquiryNo }"/></td> --%>
+											</tr>
+										</tbody>	
+								</c:forEach>			
+								</table>
+								<br>
+								<br>
 							</div>
 						</div>
-
+						
 					</div>
+					<div class="category-insert">
+										<button style="margin-left: 90%; margin-top: 5%;"
+											type="submit" class="btn btn-info" onclick="insert();">등록</button>
+					</div>
+					<br>
 				</div>
+				
+				<br>
 			</div>
 		</div>
 	</div>
-</div>
-</div>
-</body>
 	
 <script>
-// 카테고리코드숫자만
-	function inNumber(){
-        if(event.keyCode<48 || event.keyCode>57){
-           event.returnValue=false;
-        }
-}
+// 데이터테이블
+		$(document).ready(function() {
+			$('#table_payment').DataTable();
+		});
+</script>
+
+<script>
+//등록버튼
+		function insert(button) {
+			
+			 alert('이이잉~');  
+			
+	 location.href = "${ pageContext.servletContext.contextPath }/notice/insert/servlet" 
+			
+		}
+</script>
+
+<script>
+//상세보기 버튼
+	function browse(button){
+		
+		const postNo = button.parentNode.parentNode.children[0].innerText
+					
+		location.href="${ pageContext.servletContext.contextPath }/notice/details/servlet?postNo="+postNo
+				
+	}	
+</script>
+<script>
+//수정 버튼
+	function modify(button){
+		
+		const num = button.parentNode.parentNode.children[0].innerText
+
+		alert(num);
+		
+	}
+</script>
+
+<script>
+//등록버튼
+var check = $("input[type='checkbox']");
+check.click(function(){
+	
+	alert('공지사항 오프');
+	
+});
+	
 </script>
 </body>
 </html>

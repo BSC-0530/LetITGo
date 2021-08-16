@@ -223,15 +223,15 @@
 
 </script>
 
-	<script type="text/javascript" src="/web/resources/js/jquery_min.js"></script>
-    <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/bootstrap.js"></script>
-    <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery.menu-aim.js"></script>
-    <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery.countTo.js"></script>
-    <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery.inview.min.js"></script>
-    <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/owl.carousel.js"></script>
-    <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/modernizr.js"></script>
-    <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery.magnific-popup.js"></script>
-    <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/custom_II.js"></script>
+	<script type="text/javascript" src="/let/resources/js/jquery_min.js"></script>
+    <script type="text/javascript" src="/let/resources/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/let/resources/js/jquery.menu-aim.js"></script>
+    <script type="text/javascript" src="/let/resources/js/jquery.countTo.js"></script>
+    <script type="text/javascript" src="/let/resources/js/jquery.inview.min.js"></script>
+    <script type="text/javascript" src="/let/resources/js/owl.carousel.js"></script>
+    <script type="text/javascript" src="/let/resources/js/modernizr.js"></script>
+    <script type="text/javascript" src="/let/resources/js/jquery.magnific-popup.js"></script>
+    <script type="text/javascript" src="/let/resources/js/custom_II.js"></script>
     
 </body>
 </html>

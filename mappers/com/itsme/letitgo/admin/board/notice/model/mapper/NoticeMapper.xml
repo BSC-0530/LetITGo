@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.itsme.letitgo.admin.board.notice.model.mapper.NoticeMapper">
+	
+	<resultMap type="com.itsme.letitgo.admin.board.notice.model.dto.PersonalInfoPolicyDTO" id="noticeSelect">
+		<id property="postNo" column="POST_NO"/>
+		<result property="postTitle" column="POST_TITLE"/>
+		<result property="postContent" column="POST_CONTENT"/>
+		<result property="postRegistrationDate" column="POST_REGISTRATION_DATE"/>
+		<result property="postKinds" column="POST_KINDS"/>
+		<result property="postModifiedDate" column="POST_MODIFIED_DATE"/>
+		<result property="postExposureStatus" column="POST_EXPOSURE_STATUS"/>
+		<result property="managerMemberNo" column="MANAGER_MEMBER_NO"/>
+	</resultMap>
+	
+	
+	<select id="noticeAllSelected" resultMap="noticeSelect">
+		SELECT
+		       A.POST_NO
+		     , A.POST_TITLE
+		     , A.POST_REGISTRATION_DATE
+		     , A.POST_MODIFIED_DATE
+		     , A.POST_EXPOSURE_STATUS
+		 FROM TBL_POST A
+		 WHERE POST_KINDS = '공지사항'
+	</select>
+	
+	<insert id="noticeInsert">
+		INSERT
+		  INTO TBL_POST A
+		(
+	       A.POST_NO
+	     , A.POST_TITLE
+	     , A.POST_CONTENT
+         , A.POST_KINDS
+	     , A.POST_REGISTRATION_DATE
+         , A.MANAGER_MEMBER_NO
+		)
+        VALUES
+        (
+          SEQ_POST_NO.NEXTVAL
+        , #{ postTitle }
+        , #{ postContent }
+        , '공지사항'
+        , SYSDATE
+        , 1
+        )
+	
+	</insert>
+</mapper>
