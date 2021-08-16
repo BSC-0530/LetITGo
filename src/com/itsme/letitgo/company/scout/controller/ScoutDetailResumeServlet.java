@@ -20,6 +20,7 @@ public class ScoutDetailResumeServlet extends HttpServlet {
 		int resumeNo = Integer.parseInt(request.getParameter("resumeNo"));
 		System.out.println(resumeNo);
 		List<ScoutDetailResumeDTO> detailResume = new MainScoutListService().selectDetailResume(resumeNo);
+		System.out.println("detail con : " + detailResume);
 		
 		int result = new MainScoutListService().updateDetailStatus(resumeNo);
 		

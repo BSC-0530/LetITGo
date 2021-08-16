@@ -3,6 +3,7 @@ package com.itsme.letitgo.personal.recruit.jobposting.model.mapper;
 import java.util.List;
 import java.util.Map;
 
+import com.itsme.letitgo.personal.recruit.jobposting.model.dto.BookmarkDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpResumeDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectApplyingYnDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectJobPostingDTO;
@@ -29,6 +30,12 @@ public interface SelectJobPostingMapper {
 	int insertApplyngHistory(Map<String, Object> applyMap);
 
 	int insertApplyingChangeHistory(Map<String, Object> applyMap);
+
+	int insertBookmark(int jobPostNo);
+
+	List<BookmarkDTO> selectBookmark(int inMemNo);
+
+	int deleteBookmark(BookmarkDTO deleteBm);
 
 
 

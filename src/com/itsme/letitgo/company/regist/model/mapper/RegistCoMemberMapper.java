@@ -10,4 +10,6 @@ public interface RegistCoMemberMapper {
 
 	int SelectCoMemberNo(String memId);
 
+	int duplicateIdCheck(String memId);
+
 }

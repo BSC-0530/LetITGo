@@ -29,6 +29,9 @@ public class PersonalInfoPolicyInsertServlet extends HttpServlet {
 		String postTitle = request.getParameter("postTitle");
 		String postContent = request.getParameter("postContent");
 		String postKinds = request.getParameter("postKinds"); 
+		
+		System.out.println(postTitle);
+		System.out.println(postContent);
 		/*
 		 * java.sql.Date postRegistrationDate =
 		java.sql.Date.valueOf(request.getParameter("postRegistrationDate")); String
@@ -66,7 +69,7 @@ public class PersonalInfoPolicyInsertServlet extends HttpServlet {
 			request.setAttribute("message", "개인정보처리방침 등록에 실패하셨습니다.");
 		}
 		
-		response.sendRedirect(""); // -> 이건 조회 화면으로 돌아가야함 : /let/personalInfoPolicy/list 만들어서 넘겨줄거임
+		response.sendRedirect("/let/personalinfopolicy/list"); // -> 이건 조회 화면으로 돌아가야함 : /let/personalInfoPolicy/list 만들어서 넘겨줄거임
 		
 	}
 

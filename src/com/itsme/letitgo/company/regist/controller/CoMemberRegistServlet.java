@@ -30,11 +30,11 @@ public class CoMemberRegistServlet extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 		
-		String memId = request.getParameter("memId");
-		String memEmail = request.getParameter("memEmail");
-		String memPwd = request.getParameter("memPwd");
-		String memName = request.getParameter("memName");
-		String memPhone = request.getParameter("memPhone");
+		String memId = request.getParameter("cmemId");
+		String memEmail = request.getParameter("cmemEmail");
+		String memPwd = request.getParameter("cmemPwd");
+		String memName = request.getParameter("cmemName");
+		String memPhone = request.getParameter("cmemPhone");
 		String coIntro = request.getParameter("coIntro");
 		String coNo = request.getParameter("coNo");
 		String coComName = request.getParameter("coComName");

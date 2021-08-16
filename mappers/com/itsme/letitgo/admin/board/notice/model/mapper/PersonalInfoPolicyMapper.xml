@@ -29,7 +29,30 @@
 	
 	<!-- 수정날짜빼고는 다 입력해야됨 -->
 	<insert id="personalInfoPolicyInsert" parameterType="com.itsme.letitgo.admin.board.notice.model.dto.PersonalInfoPolicyDTO">
-       INSERT
+      
+      INSERT
+		  INTO TBL_POST A
+		(
+	       A.POST_NO
+	     , A.POST_TITLE
+	     , A.POST_CONTENT
+         , A.POST_KINDS
+         , A.POST_EXPOSURE_STATUS
+	     , A.POST_REGISTRATION_DATE
+         , A.MANAGER_MEMBER_NO
+		)
+        VALUES
+        (
+          SEQ_POST_NO.NEXTVAL
+        , #{ postTitle }
+        , #{ postContent }
+        , '개인정보처리방침'
+        , 'Y'
+        , SYSDATE
+        , 1
+        )
+      
+       <!-- INSERT
          INTO TBL_POST A
        (
          A.POST_NO
@@ -37,7 +60,7 @@
        , A.POST_CONTENT
        , A.POST_REGISTRATION_DATE
        , A.POST_KINDS
-       ,, A.POST_EXPOSURE_STATUS
+       , A.POST_EXPOSURE_STATUS
        , A.MANAGER_MEMBER_NO  
        )
        VALUES
@@ -49,7 +72,7 @@
        , #{ postKinds } 
        , 'Y' 
        , #{ managerMemberNo }  
-       )
+       ) -->
 	</insert>
 	
 	<select id="selectAllPersonalInfoPolicyList" resultMap="PersonalInfoPolicyResultMap">
@@ -64,6 +87,47 @@
       		 , A.MANAGER_MEMBER_NO  
           FROM TBL_POST A 
 	</select>
+	
+	<!-- 공지 상세 보기 -->
+	<select id="selectDetailPersonalInfoPolicy">
+		SELECT
+		       A.POST_NO
+		     , A.POST_TITLE
+		     , A.POST_CONTENT
+		     , A.POST_REGISTRATION_DATE
+		     , A.POST_MODIFIED_DATE
+		     , A.POST_EXPOSURE_STATUS
+		     , A.MANAGER_MEMBER_NO
+		  FROM TBL_POST A
+		 WHERE A.POST_NO = #{ postNo } AND A.POST_KINDS='개인정보처리방침'      
+	</select>
+
+	<!-- 수정하기 등록 -->	
+	<insert id="personalInfoPolicyModifyInsert">
+		INSERT
+		  INTO TBL_POST A
+		(
+		  A.POST_NO
+		, A.POST_TITLE
+		, A.POST_CONTENT
+		, A.POST_REGISTRATION_DATE
+		, A.POST_MODIFIED_DATE
+		, A.POST_EXPOSURE_STATUS
+		, A.MANAGER_MEMBER_NO
+		, A.POST_KINDS  
+		)
+		VALUES
+		(
+		  SEQ_POST_NO.NEXTVAL
+		, #{ postTitle}  
+		, #{ postContent}  
+		, #{ postRegistrationDate}  
+		, SYSDATE  
+		, 'Y'  
+		, #{ managerMemberNo }  
+		, '개인정보처리방침'  
+		)
+	</insert>
 	
 </mapper>
 

@@ -97,6 +97,11 @@
                                             <li><a href="#">141 Jobs</a></li>
                                         </ul>
                                     </div>
+                                    <div class="jp_job_post_right_overview_btn">
+                                        <ul>
+                                        	<li><a id="bookmarkLink" onClick="addBookmark(this);">북마크</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div class="jp_listing_overview_list_outside_main_wrapper">
                                     <div class="jp_listing_overview_list_main_wrapper">
@@ -266,6 +271,7 @@
 			}
 
 		}
+
 	</script>
 
 
