@@ -34,20 +34,18 @@ public class ResetPassword extends HttpServlet {
 		CompanyInfoDTO companyInfoDTO = new CompanyInfoDTO();
 		
 		String userId = companyInfoDTO.getMemId();
-		String userNowPwd = request.getParameter("memPwd");
-		String userNewPwd = request.getParameter("NewPwd");
-		String userNewPwdCheck = request.getParameter("newPwdCheck");
 		
+		String userNowPwd = request.getParameter("memPwd");
+		String userNewPwd = request.getParameter("chagePwd");
+		String userNewPwdCheck = request.getParameter("userNewPwdCheck");
+
 		
 		ModifyChageDTO modifyChangeDTO = new ModifyChageDTO();
 		
 		modifyChangeDTO.setMemberId(userId);
 		modifyChangeDTO.setNowPwd(userNowPwd);
 		modifyChangeDTO.setNewPwd(userNewPwd);
-		
-		System.out.println(userId);
-		
-	
+
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); 
 		
 		 if (passwordEncoder.matches(userNewPwdCheck, userNewPwd)) {
@@ -56,8 +54,11 @@ public class ResetPassword extends HttpServlet {
 		         int MemberPWDUpdate = companyModifyService.PwdCheck(modifyChangeDTO);
 		         
 		         if(MemberPWDUpdate > 0) {
-		            response.sendRedirect(request.getContextPath());  
-		            System.out.println(request.getContextPath()); 
+
+
+		            response.sendRedirect(request.getContextPath());   //경로
+		            System.out.println(request.getContextPath());  //"groubear" 주소이다
+
 		            
 		         } else {
 		            request.setAttribute("message", "비밀번호 변경실패");

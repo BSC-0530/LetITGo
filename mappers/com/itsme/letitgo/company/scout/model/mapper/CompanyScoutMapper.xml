@@ -88,7 +88,7 @@
 	</resultMap>
 		
 	<resultMap type="com.itsme.letitgo.company.info.model.dto.CompanyInfoDTO" id="candiMemResultMap">
-		<id property="memNO" column="MEM_NO"/>
+		<id property="memNo" column="MEM_NO"/>
 		<result property="memId" column="MEM_ID"/>
 		<result property="memPwd" column="MEM_PWD"/>
 		<result property="memName" column="MEM_NAME"/>
@@ -283,15 +283,25 @@
 		</collection>
 	</resultMap>
 	
+	<resultMap type="com.itsme.letitgo.company.scout.model.dto.CandidateRegistrationDTO" id="wishInfoResultMap">
+		<result property="resumeNo" column="RESUME_NO"/>
+		<result property="coMemNo" column="CO_MEM_NO"/>
+		<result property="memName" column="MEM_NAME"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.company.scout.model.dto.CandidateRegisterSkillsDTO" id="wishSkillsResultMap">
+		<result property="skills" column="SKILLS_NAME"/>
+	</resultMap>
+	
 		
 		
 		<select id="companySelectAllScout" resultMap="mainScoutResultMap">
-		SELECT
-			   M.MEM_NAME
-		     , R.RESUME_NO
-		FROM TBL_MEMBER M
-		JOIN TBL_RESUME R ON (R.IN_MEM_NO = M.MEM_NO )
-        WHERE RESUME_SCOUT_STATUS = 'Y'
+			SELECT
+				   M.MEM_NAME
+			     , R.RESUME_NO
+			  FROM TBL_MEMBER M
+			  JOIN TBL_RESUME R ON (R.IN_MEM_NO = M.MEM_NO)
+	         WHERE R.RESUME_SCOUT_STATUS = 'Y'
         
 		</select>
 		<select id="companyScoutSkills" resultMap="mainScoutHoldingSkillsDTO">
@@ -524,7 +534,7 @@
 		)
 		VALUES
 		(
-		  SEQ_SCOUT_NO.NEXTVAL, 2, #{ resumeNo }, #{ inMemNo }, DEFAULT
+		  SEQ_SCOUT_NO.NEXTVAL, #{ sessionScope.loginMember.memNo }, #{ resumeNo }, #{ inMemNo }, DEFAULT
 		)
 	</insert>
 	
@@ -546,5 +556,44 @@
 		   SET RESUME_BROWSE_KINDS = '깊은열람'
 		 WHERE RESUME_NO = #{ resumeNo }
 	</update>
+	
+	<insert id="insertWishList">
+		INSERT
+		  INTO TBL_CANDIDATE_REGISTRATION A
+		(
+		  A.RESUME_NO
+		, A.CO_MEM_NO
+		)
+		VALUES
+		(
+		  #{ resumeNo }
+		, 4
+		)
+	</insert>
+	
+	<select id="selectWishInfoList" resultMap="wishInfoResultMap">
+		SELECT
+		       C.RESUME_NO
+		     , C.CO_MEM_NO
+             , M.MEM_NAME
+		  FROM TBL_CANDIDATE_REGISTRATION C
+          JOIN TBL_RESUME R ON (C.RESUME_NO = R.RESUME_NO)
+          JOIN TBL_MEMBER M ON (R.IN_MEM_NO = M.MEM_NO)
+		 WHERE R.RESUME_NO = 1
+	</select>
+	
+	<select id="selectWishSkillsList" parameterType="_int" resultMap="wishSkillsResultMap">
+		SELECT
+		       S.SKILLS_NAME
+		  FROM TBL_SKILLS S
+		  JOIN TBL_RESUME_HOLDING_SKILLS H ON (S.SKILLS_NO = H.SKILLS_NO)
+		 WHERE H.RESUME_NO = #{ resumeNo }
+	</select>
+	
+	<delete id="deleteWishList" parameterType="_int">
+		DELETE
+		  FROM TBL_CANDIDATE_REGISTRATION
+		 WHERE RESUME_NO = #{ resumeNo }
+	</delete>
 
 </mapper>

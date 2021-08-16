@@ -97,6 +97,11 @@
                                             <li><a href="#">141 Jobs</a></li>
                                         </ul>
                                     </div>
+                                    <div class="jp_job_post_right_overview_btn">
+                                        <ul>
+                                        	<li><a id="bookmarkLink" onClick="addBookmark(this);">북마크</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div class="jp_listing_overview_list_outside_main_wrapper">
                                     <div class="jp_listing_overview_list_main_wrapper">
@@ -150,20 +155,16 @@
                                         
                                         <!--  requestScope에 담긴 applyingResult 가 != null 인경우 지원완료, null인경우 지원하지 않았음 -->
                                         <c:if test="${ requestScope.applyingResult eq null }">
-                    	                   <ul>
-                    	                   		<c:if test="${ pageScope.postNo eq null }">
-                                                <li><a onclick="selectResume();"><i class="fa fa-plus-circle"></i> &nbsp; 이력서 선택</a></li>
-                                                </c:if>
-                                                <c:if test="${ pageScope.postNo ne null }">
-                                                <li><a onclick="apply();"><i class="fa fa-plus-circle"></i> &nbsp; 지원 하기</a></li>
-                                                </c:if>
-	                                            <li><input type="text" id="resumeNo" value="" readonly></li>
+											<ul>
+                                                <li><a onclick="apply();" style="width:200px"><i class="fa fa-plus-circle"></i> &nbsp; 지원 하기</a></li>
+                                                <li><a onclick="selectResume();" style="width:200px"><i class="fa fa-plus-circle"></i> &nbsp; 이력서 선택</a></li>
                                             </ul>
+	                                            <input type="text" id="resumeNo" readonly>
                                         </c:if>
                                         <c:if test="${ requestScope.applyingResult ne null }">
                                             <ul>
-                                                <li><a onclick="cancel();"><i class="fa fa-plus-circle"></i> &nbsp; 지원 취소</a></li>
-	                                            <li><input type="text" id="postNo" value="${ jobPosting.applyingResult.resumeNo }" style="visibility: hidden;"></li>
+                                                <li><a onclick="cancel();" style="width:200px"><i class="fa fa-plus-circle"></i> &nbsp; 지원 취소</a></li>
+<!-- 	                                            <li><input type="text" id="resumeNo" value="requestScope.applyingResult."readonly></li> -->
                                             </ul>
                                         </c:if>
                                         </div>
@@ -215,36 +216,58 @@
 		
 		function selectResume() {
 			
+			// 공고번호 변수에 저장
 			var jobPostNo = "${ requestScope.detailedJobPosting.jobPostNo }";
-			
-			 alert(jobPostNo);
 			 
 			 
-			 const path = "${ pageContext.servletContext.contextPath }/resumeForApply/select?jobPostNo="+ jobPostNo;
+			var path = "${ pageContext.servletContext.contextPath }/resumeForApply/select?jobPostNo="+ jobPostNo;
 			 
-			 window.open( path , "이력서 선택", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+			window.open( path , "이력서 선택", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 
-// 			 location.href = "${ pageContext.servletContext.contextPath }/member/allJobPosting/select"
-//  			 location.href = "${ pageContext.servletContext.contextPath }/resumeForApply/select";
 		}
 		
-		function apply(){
+		function apply() {
 			
+			// 이력서 번호 변수에 저장
+			var resumeNo = document.getElementById("resumeNo").value;
 			
+			// 공고번호 변수에 저장
+			var jobPostNo = "${ requestScope.detailedJobPosting.jobPostNo }";
+			
+			// 이력서를 선택했을때만 지원 가능
+			if(resumeNo != "") {
+	 			var path = "${ pageContext.servletContext.contextPath }/recruit/apply/insert?resumeNo=" + resumeNo + "&jobPostNo=" + jobPostNo;				
+	  			location.href = path;
+	  			
+			} else {
+				alert("이력서를 선택하지 않았습니다. 이력서를 선택해주세요");
+			}
 		}
+		
+// 		function cancel() {
+			
+
+// 			var answer;
+			
+// 			answer = confirm('공고에 지원 하시겠습니까? \n (공고에 지원 후 개별적으로 기업에서 개별적으로 연락이 갑니다.)');
+			
+// 			if(answer == true) {
+				
+// 			var jobPostNo = "${ requestScope.detailedJobPosting.jobPostNo }";
+// 			location.href = "${ pageContext.servletContext.contextPath }/recruit/cancleApply/update?jobPostNo=" + jobPostNo;
+				
+// 			}
+// 		}
+
+		function addBookmark(a) {
+			
+			var jobPostNo = "${ requestScope.detailedJobPosting.jobPostNo }";
+			
+			location.href = "${ pageContext.servletContext.contextPath }/jobposting/bookmark/insert?jobPostNo=" + jobPostNo;
+		}
+			
 	</script>
 
-	
-	<script>
-		window.onload = function(event) {
-			
-			var value = document.getElementById("postNo").value;
-			
-		}
-
-
-
-	</script>
 
  
 </body>

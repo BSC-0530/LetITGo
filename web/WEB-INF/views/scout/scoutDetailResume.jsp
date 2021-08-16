@@ -41,11 +41,14 @@
 						<div class="jp_cp_left_side_wrapper">
 							<div class="jp_cp_left_pro_wallpaper">
 								<img src="images/content/cp1.png" alt="profile_img">
-								<h2>${ detail.memName }</h2>
+								<c:forEach items="${ detailList }" var="detail">
+									<h2>${ detail.memName }</h2>						
+								</c:forEach>
 								
 
 							</div>
 							<div class="jp_cp_rd_wrapper">
+							<c:forEach items="${ detailList }" var="detail">
 								<ul>
 									<li>
 										<a onclick="interview(this);">
@@ -55,9 +58,14 @@
 										</a>
 									</li>
 									
-									<li><a href="#"><i class="fa fa-phone"></i>
-											&nbsp;후보자 찜하기</a></li>
+									<li>
+										<a href="#">
+											<input id="addWishList" type="hidden" value="${ detail.scoutResume[status.index].resumeNo }"><i class="fa fa-phone"></i>
+											&nbsp;후보자 찜하기
+										</a>
+									</li>
 								</ul>
+								</c:forEach>
 							</div>
 						</div>
 					</div>
@@ -70,7 +78,9 @@
 										<tr>
 											<td class="td-w25">이름</td>
 											<td class="td-w10">:</td>
+											<c:forEach items="${ detailList }" var="detail">
 											<td class="td-w65">${ detail.memName }</td>
+											</c:forEach>
 										</tr>
 										<tr>
 											<td class="td-w25">보유기술</td>
@@ -82,7 +92,9 @@
 										<tr>
 											<td class="td-w25">직무</td>
 											<td class="td-w10">:</td>
+											<c:forEach items="${ detailList }" var="detail" varStatus="status">
 											<td class="td-w65">${ detail.scoutResume[status.index].jobFieldList[status.index].jobName }</td>
+											</c:forEach>
 										</tr>
 										<tr>
 											<td class="td-w25">경력</td>
@@ -177,7 +189,7 @@
 													경력<br> 
 														<label>회사명 : </label>${ detail.scoutResume[status.index].careerHistoryList[status.index].carComName }<br>
 														부서명 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].carDeptName }<br>
-														직책 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].carJobName }<br></a>
+														직책 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].carJobName }<br>
 														업무 분야 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].carWorkField }<br>
 														입사일 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].carHireDate }<br>
 														퇴사일 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].carEntDate }<br>
@@ -239,6 +251,8 @@
 										+"&resumeNo=" + resumeNo;
 			}
 		}
+		
+		function 
 		
 		
 	</script>

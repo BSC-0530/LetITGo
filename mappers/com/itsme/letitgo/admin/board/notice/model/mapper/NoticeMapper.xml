@@ -14,7 +14,7 @@
 		<result property="managerMemberNo" column="MANAGER_MEMBER_NO"/>
 	</resultMap>
 	
-	
+<!-- 	관리자 전체조회 -->
 	<select id="noticeAllSelected" resultMap="noticeSelect">
 		SELECT
 		       A.POST_NO
@@ -25,7 +25,7 @@
 		 FROM TBL_POST A
 		 WHERE POST_KINDS = '공지사항'
 	</select>
-	
+<!-- 	공지 등록  -->
 	<insert id="noticeInsert">
 		INSERT
 		  INTO TBL_POST A
@@ -46,6 +46,44 @@
         , SYSDATE
         , 1
         )
-	
+	</insert>
+<!-- 	공지 상세보기 -->
+	<select id="selectDetailsNotice" resultMap="noticeSelect">
+		SELECT
+			   A.POST_NO
+			 , A.POST_TITLE
+			 , A.POST_CONTENT
+			 , A.POST_REGISTRATION_DATE
+	     	 , A.POST_MODIFIED_DATE
+			 , A.MANAGER_MEMBER_NO
+			 , A.POST_EXPOSURE_STATUS
+		FROM TBL_POST A
+		WHERE A.POST_NO = #{ postNo } AND A.POST_KINDS='공지사항'
+	</select>
+<!-- 	수정하기 인서트 -->
+	<insert id="noticeModifyInsert">
+		INSERT
+		  INTO TBL_POST A
+		  (
+		    A.POST_NO
+		  , A.POST_TITLE
+		  , A.POST_CONTENT
+		  , A.POST_REGISTRATION_DATE
+	      , A.POST_MODIFIED_DATE
+	      , A.MANAGER_MEMBER_NO
+	      , A.POST_EXPOSURE_STATUS 
+	      , A.POST_KINDS
+		  )
+		  VALUES
+		  (
+		  	SEQ_POST_NO.NEXTVAL
+		  , #{ postTitle }	
+		  , #{ postContent }
+		  , #{ postRegistrationDate }
+		  , SYSDATE
+		  , #{ managerMemberNo }
+		  ,#{ postExposureStatus }
+		  , '공지사항'
+		  )
 	</insert>
 </mapper>

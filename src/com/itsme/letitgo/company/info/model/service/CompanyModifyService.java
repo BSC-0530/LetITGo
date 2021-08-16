@@ -18,12 +18,14 @@ public class CompanyModifyService {
 		
 		ModifyPassworMapper mapper = session.getMapper(ModifyPassworMapper.class);
 		
+
 		
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); 
 		
 //		int result = mapper.ModifyPassword(modifyChangeDTO);
 		
 		return 0;
+
 	}
 	
 	

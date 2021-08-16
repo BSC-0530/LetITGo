@@ -31,13 +31,13 @@ public class SimpleBrowseServlet extends HttpServlet {
 		List<ResumeReadingHistoryDTO> kinds = browseInfoService.brosweHistoryKindsSelect(onClickResumeNo);
 		
 		
+		System.out.println("kinds : " + kinds);
+		
 		request.setAttribute("browseName", browseInfo.get("browseName"));
 		request.setAttribute("jobName", browseInfo.get("jobName"));
 		request.setAttribute("browseSkills", browseInfo.get("browseSkills"));
 		request.setAttribute("careeaNumber", browseInfo.get("careeaNumber"));
 		request.setAttribute("number", browseInfo.get("number"));
-		
-//		request.setAttribute("getResumeNo", kinds.getResumeNo());
 		
 		String path = "";
 		if(kinds == null) {
@@ -45,14 +45,13 @@ public class SimpleBrowseServlet extends HttpServlet {
 			
 			path = "/WEB-INF/views/scout/scoutSimpleBrowse.jsp";
 			
-		}else if(kinds != null && kinds.get(0).getResumeBrowseKinds().equals("얕은열람")) {
-			int updateTime = browseInfoService.upDateTime(onClickResumeNo);
-			path = "/WEB-INF/views/scout/scoutSimpleBrowse.jsp";
+//		}else if(kinds != null && kinds.get(0).getResumeBrowseKinds().equals("얕은열람")) {
+//			int updateTime = browseInfoService.upDateTime(onClickResumeNo);
+//			path = "/WEB-INF/views/scout/scoutSimpleBrowse.jsp";
+		}else {
+			path="/WEB-INF/views/scout/scoutSimpleBrowse.jsp";
+				request.getRequestDispatcher(path).forward(request, response);
 		}
-		
-		
-		
-		request.getRequestDispatcher(path).forward(request, response);
 		
 	}
 

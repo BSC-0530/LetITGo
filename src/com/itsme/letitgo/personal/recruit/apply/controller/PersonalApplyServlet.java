@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itsme.letitgo.personal.recruit.apply.model.service.InsertApplyingHistoryService;
+import com.itsme.letitgo.personal.recruit.apply.model.service.PersonalApplyService;
 
 
-@WebServlet("/applyingHistory/insert")
-public class InsertApplyingHistoryServlet extends HttpServlet {
+@WebServlet("/recruit/apply/insert")
+public class PersonalApplyServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -23,23 +23,27 @@ public class InsertApplyingHistoryServlet extends HttpServlet {
 		int resumeNo = Integer.parseInt(request.getParameter("resumeNo"));
 		int jobPostNo = Integer.parseInt(request.getParameter("jobPostNo"));
 		
-		Map<String, Object> applyMap = new HashMap<>();
+		Map<String, Integer> applyMap = new HashMap<>();
 		
 		applyMap.put("resumeNo", resumeNo);
 		applyMap.put("jobPostNo", jobPostNo);
 		
-		InsertApplyingHistoryService service = new InsertApplyingHistoryService();
+		PersonalApplyService service = new PersonalApplyService();
 		
-		int result = service.requestApplyServlet(applyMap);
+		int result = service.personalRecruitApply(applyMap);
 			
 		// insert성공
 		
 		StringBuilder redirectText = new StringBuilder();
 		
 		if(result >= 2) {
-			redirectText.append("<script>alert('공고 지원이 정상적으로 처리되었습니다.'); location.href='${ pageConrtext.ServletContext.contextPath }/detail/jobPosting/select';</script>");
+			redirectText.append("<script>alert('공고 지원이 정상적으로 처리되었습니다.'); location.href='/let/detail/jobPosting/select?jobPostNo=" + jobPostNo + "';</script>");
+			
+//			redirectText.append("<script>alert('이력서 수정을 완료했습니다.'); location.href='/let/resume/list';</script>");
+
+		
 		} else {
-			redirectText.append("<script>alert('공고 지원에 실패하였습니다.'); location.href='${ pageConrtext.ServletContext.contextPath }/detail/jobPosting/select';</script>");
+			redirectText.append("<script>alert('공고 지원에 실패하였습니다.'); location.href='/let/detail/jobPosting/select?jobPostNo=" + jobPostNo + "';</script>");
 		}
 									
 		response.setContentType("text/html; charset=UTF-8");

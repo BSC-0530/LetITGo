@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.itsme.letitgo.company.scout.model.dto.BrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.BrosweSimplelDTO;
+import com.itsme.letitgo.company.scout.model.dto.CandidateRegisterSkillsDTO;
+import com.itsme.letitgo.company.scout.model.dto.CandidateRegistrationDTO;
 import com.itsme.letitgo.company.scout.model.dto.InterviewProposalDTO;
 import com.itsme.letitgo.company.scout.model.dto.PersonalBrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.ResumeReadingHistoryDTO;
@@ -57,6 +59,18 @@ public interface CompanyScoutMapper {
 
 //	깊은 열람으로 상태 변경
 	int updateDetailStatus(int resumeNo);
+
+//	찜하기 목록 추가
+	int insertWishList(int resumeNo);
+
+//	찜하기 리스트 조회
+	List<CandidateRegistrationDTO> selectWishInfoList();
+
+//	찜하기 보유 스킬 조회
+	List<CandidateRegisterSkillsDTO> selectWishSkillsList(int resumeNo);
+
+//	찜하기 리스트 삭제
+	int deleteWishList(int resumeNo);
 
 //	List<SkillsAndCategoryDTO> skillsSelect();
 
