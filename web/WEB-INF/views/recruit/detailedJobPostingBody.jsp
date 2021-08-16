@@ -97,6 +97,11 @@
                                             <li><a href="#">141 Jobs</a></li>
                                         </ul>
                                     </div>
+                                    <div class="jp_job_post_right_overview_btn">
+                                        <ul>
+                                        	<li><a id="bookmarkLink" onClick="addBookmark(this);">북마크</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div class="jp_listing_overview_list_outside_main_wrapper">
                                     <div class="jp_listing_overview_list_main_wrapper">
@@ -249,10 +254,17 @@
 // 			if(answer == true) {
 				
 // 			var jobPostNo = "${ requestScope.detailedJobPosting.jobPostNo }";
-// 			location.href = "${ pageContext.serveltContext.contextPath }/recruit/cancleApply/update?jobPostNo=" + jobPostNo;
+// 			location.href = "${ pageContext.servletContext.contextPath }/recruit/cancleApply/update?jobPostNo=" + jobPostNo;
 				
 // 			}
 // 		}
+
+		function addBookmark(a) {
+			
+			var jobPostNo = "${ requestScope.detailedJobPosting.jobPostNo }";
+			
+			location.href = "${ pageContext.servletContext.contextPath }/jobposting/bookmark/insert?jobPostNo=" + jobPostNo;
+		}
 			
 	</script>
 
