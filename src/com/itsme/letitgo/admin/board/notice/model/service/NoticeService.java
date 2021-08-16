@@ -79,4 +79,22 @@ public class NoticeService {
 		
 		return result;
 	}
+
+	public int updateStatus(PersonalInfoPolicyDTO updateStatus) {
+		
+		SqlSession session = getSqlSession();
+		
+		NoticeMapper mapper = session.getMapper(NoticeMapper.class);
+		
+		int result = mapper.updateStatus(updateStatus);
+		
+		if(result > 0) {
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		session.close();
+		
+		return result;
+	}
 }

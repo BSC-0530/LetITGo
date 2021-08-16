@@ -86,8 +86,16 @@
 		  , '공지사항'
 		  )
 	</insert>
+
+	
+	<update id="updateStatus">
+		UPDATE TBL_POST
+		   SET
+		       POST_EXPOSURE_STATUS = #{ postExposureStatus }
+	     WHERE POST_NO = #{ postNo }
+	
+	</update>
+	
+	
 </mapper>
-
-
-
 
