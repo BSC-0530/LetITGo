@@ -18,17 +18,14 @@ public class CompanyModifyService {
 		
 		ModifyPassworMapper mapper = session.getMapper(ModifyPassworMapper.class);
 		
-		int result = mapper.ModifyPassword(modifyChangeDTO);
+
 		
-		if(result > 0) {
-			session.commit();
-		} else {
-			session.rollback();
-		}
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); 
 		
-		session.close();
+//		int result = mapper.ModifyPassword(modifyChangeDTO);
 		
-		return result;
+		return 0;
+
 	}
 	
 	

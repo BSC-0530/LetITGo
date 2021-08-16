@@ -97,6 +97,13 @@
 		<result property="resumeTitle" column="RESUME_TITLE"/>
 	</resultMap>
 	
+	<!-- 북마크 조회 -->
+	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.BookmarkDTO" id="bookmarkResultMap">
+		<result property="inMemNo" column="IN_MEM_NO"/>
+		<result property="jobPostNo" column="JOB_POST_NO"/>
+		<result property="coComName" column="CO_COM_NAME"/>
+	</resultMap>
+	
 	<select id="selectAllJobPosting" resultMap="resultJobPosting">
 		SELECT
 			   JP.JOB_POST_NO
@@ -136,6 +143,13 @@
 			   JF.JOB_NO
 			 , JF.JOB_NAME
 		  FROM TBL_JOB_FIELD JF
+	</select>
+	<!-- 공고 조회 시 스킬 선택을 위해 조회 -->
+	<select id="selectSkills" resultMap="resultJpSkills">
+		SELECT
+			   S.SKILLS_NO
+			 , S.SKILLS_NAME
+		  FROM TBL_SKILLS S
 	</select>
 	
 	<select id="selectDetailedJobPosting" parameterType="_int" resultMap="resultJobPosting">
@@ -193,7 +207,43 @@
 		 WHERE R.IN_MEM_NO = #{ inMemNo }
 	</select>
 	
+	<!-- 북마크 등록 mapper -->
+	<insert id="insertBookmark" parameterType="_int">
+		INSERT
+		  INTO TBL_BOOKMARK B
+		(
+		  B.IN_MEM_NO, B.JOB_POST_NO
+		)
+		VALUES
+		(
+		  3, #{ jobPostNo }
+		)
+	</insert>
+	
+	<!-- 북마크 리스트 조회 -->
+	<select id="selectBookmark" parameterType="_int" resultMap="bookmarkResultMap">
+		SELECT
+		       B.IN_MEM_NO
+		     , B.JOB_POST_NO
+             , C.CO_COM_NAME
+		  FROM TBL_BOOKMARK B
+		  JOIN TBL_JOB_POSTING J ON (B.JOB_POST_NO = J.JOB_POST_NO)
+		  JOIN TBL_MEMBER M ON (J.CO_MEM_NO = M.MEM_NO)
+		  JOIN TBL_CO_MEMBER_ADD_INFO C ON (M.MEM_NO = C.CO_MEM_NO)
+		 WHERE B.IN_MEM_NO = #{ inMemNo }
+	</select>
+	
+	<!-- 북마크 삭제 -->
+	<delete id="deleteBookmark" parameterType="com.itsme.letitgo.personal.recruit.jobposting.model.dto.BookmarkDTO">
+		DELETE
+		  FROM TBL_BOOKMARK
+		 WHERE IN_MEM_NO = #{ inMemNo }
+		   AND JOB_POST_NO = #{ jobPostNo }
+	</delete>
+	
 	<!-- 공고 지원, 취소 시 지원내역상태변경이력에 저장 -->
 	<!-- 공고 지원 취소  -->
+
+	
 	
 </mapper>

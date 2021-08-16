@@ -97,6 +97,11 @@
                                             <li><a href="#">141 Jobs</a></li>
                                         </ul>
                                     </div>
+                                    <div class="jp_job_post_right_overview_btn">
+                                        <ul>
+                                        	<li><a id="bookmarkLink" onClick="addBookmark(this);">북마크</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div class="jp_listing_overview_list_outside_main_wrapper">
                                     <div class="jp_listing_overview_list_main_wrapper">
@@ -159,7 +164,7 @@
                                         <c:if test="${ requestScope.applyingResult ne null }">
                                             <ul>
                                                 <li><a onclick="cancel();" style="width:200px"><i class="fa fa-plus-circle"></i> &nbsp; 지원 취소</a></li>
-<!-- 	                                            <li><input type="text" id="resumeNo" value="requestScope.applyingResult."readonly></li> -->
+	                                            <li><input type="text" id="resumeNo" value="${ requestScope.applyingResult.resumeNo }" readonly></li>
                                             </ul>
                                         </c:if>
                                         </div>
@@ -231,29 +236,42 @@
 			
 			// 이력서를 선택했을때만 지원 가능
 			if(resumeNo != "") {
-	 			var path = "${ pageContext.servletContext.contextPath }/recruit/apply/insert?resumeNo=" + resumeNo + "&jobPostNo=" + jobPostNo;				
-	  			location.href = path;
+				var answer;
+				
+				// confirm창으로 확인 후  확인시에 경로 이동
+				answer = confirm('공고에 지원 하시겠습니까?');
+				
+				if(answer == true) {
+					var path = "${ pageContext.servletContext.contextPath }/recruit/apply/insert?resumeNo=" + resumeNo + "&jobPostNo=" + jobPostNo;				
+		  			location.href = path;
+				}
 	  			
 			} else {
 				alert("이력서를 선택하지 않았습니다. 이력서를 선택해주세요");
 			}
 		}
 		
-// 		function cancel() {
-			
+		function cancel() {
 
-// 			var answer;
-			
-// 			answer = confirm('공고에 지원 하시겠습니까? \n (공고에 지원 후 개별적으로 기업에서 개별적으로 연락이 갑니다.)');
-			
-// 			if(answer == true) {
+			// 이력서 번호 변수에 저장
+			var resumeNo = document.getElementById("resumeNo").value;
+
+			// 공고번호 변수에 저장
+			var jobPostNo = "${ requestScope.detailedJobPosting.jobPostNo }";
+
+			var answer;
+
+			// confirm창으로 확인 후  확인시에 경로 이동
+			answer = confirm('공고에 취소 하시겠습니까? \n (공고에 지원 후 개별적으로 기업에서 개별적으로 연락이 갑니다.)');
+
+			if (answer == true) {
 				
-// 			var jobPostNo = "${ requestScope.detailedJobPosting.jobPostNo }";
-// 			location.href = "${ pageContext.serveltContext.contextPath }/recruit/cancleApply/update?jobPostNo=" + jobPostNo;
-				
-// 			}
-// 		}
-			
+				var path = "${ pageContext.servletContext.contextPath }/recruit/cancelApply/update?resumeNo="+ resumeNo + "&jobPostNo=" + jobPostNo;
+				location.href = path;
+			}
+
+		}
+
 	</script>
 
 

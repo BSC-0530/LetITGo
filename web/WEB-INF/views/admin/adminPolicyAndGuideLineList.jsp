@@ -183,7 +183,7 @@
 										<tr>
 											<td align="center">번호</td>
 											<td align="center">제목</td>
-				<!-- 상세보기 버튼 만들기 -->		<td align="center">상세보기(내용)</td>
+				<!-- 상세보기 버튼 만들기 -->		<td align="center">상세보기</td>
 											<td align="center">등록일자</td>
 											<td align="center">분류</td>
 											<td align="center">수정일자</td>
@@ -198,11 +198,11 @@
 											<tr>
 												<td id="postNo"><c:out value="${ controllPersonalInfoPolicy.postNo }" /></td>
 												<td id="postTitle"><c:out value="${ controllPersonalInfoPolicy.postTitle }" /></td>
-	<!-- onClick 안에 상세보기 인터페이스 메소드명 넣어주기 -->	<td><button class="btn-info" onClick="상세보기(this);" value="${ controllPersonalInfoPolicy.postNo }">상세보기</button></td>
+	<!-- onClick 안에 상세보기 인터페이스 메소드명 넣어주기 -->	<td><button class="btn-info" onClick="detail(this);" value="${ controllPersonalInfoPolicy.postNo }">상세보기</button></td>
 												<td id="postRegistrationDate"><c:out value="${ controllPersonalInfoPolicy.postRegistrationDate }" /></td>
 												<td id="postKinds"><c:out value="${ controllPersonalInfoPolicy.postKinds }" /></td>
 												<td id="postModifiedDate"><c:out value="${ controllPersonalInfoPolicy.postModifiedDate }" /></td>
-	<!-- onClick 안에 수정 인터페이스 메소드명 넣어주기 -->	<td><button class="btn-info" onClick="수정(this);" value="${ controllPersonalInfoPolicy.postNo }">수정</button></td>
+	<!-- onClick 안에 수정 인터페이스 메소드명 넣어주기 -->	<td><button class="btn-info" onClick="modify(this);" value="${ controllPersonalInfoPolicy.postNo }">수정</button></td>
 											</tr>
 										</tbody>
 									</c:forEach>
@@ -273,6 +273,28 @@
 		/* location.reload();  무한로딩; 함수 안에서도 안먹힘  */
 	
 	</script> -->
+	
+	<script>
+	//상세보기 버튼
+	function detail(button){
+		
+		const postNo = button.parentNode.parentNode.children[0].innerText
+					
+		location.href="${ pageContext.servletContext.contextPath }/personalinfopolicy/detail?postNo="+postNo
+				
+	}	
+	</script>
+
+	<script>
+	//수정 버튼
+	function modify(button){
+		
+		const num = button.parentNode.parentNode.children[0].innerText
+
+		alert(num);
+		
+	}
+</script>	
 	
 </body>
 </html>

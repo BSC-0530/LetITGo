@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.itsme.letitgo.personal.recruit.jobposting.model.dto.BookmarkDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpResumeDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectApplyingYnDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectJobPostingDTO;
@@ -27,12 +28,15 @@ public class SelectJobPostingService {
 		List<Object> jpSkills = mapper.selectJpSkills();
 		
 		List<Object> jobNameList = mapper.selectJobNames();
+		
+		List<Object> skillsList = mapper.selectSkills();
 		System.out.println(jobNameList);
 		
 		Map<String, List<Object>> jp = new HashMap<>();
 		jp.put("jpAndInfo", jpAndInfo);
 		jp.put("jpSkills", jpSkills);
 		jp.put("jobNameList", jobNameList);
+		jp.put("skillsList", skillsList);
 		
 		System.out.println("service jpAndInfo : " + jpAndInfo);
 		session.close();
@@ -102,6 +106,54 @@ public class SelectJobPostingService {
 		
 		session.close();
 		return resumeList;
+	}
+
+	public int insertBookmark(int jobPostNo) {
+
+		SqlSession session = getSqlSession();
+		SelectJobPostingMapper mapper = session.getMapper(SelectJobPostingMapper.class);
+		
+		int result = mapper.insertBookmark(jobPostNo);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+
+		return result;
+	}
+
+	public List<BookmarkDTO> selectBookmark(int inMemNo) {
+
+		SqlSession session = getSqlSession();
+		SelectJobPostingMapper mapper = session.getMapper(SelectJobPostingMapper.class);
+		
+		List<BookmarkDTO> bookmarkList = mapper.selectBookmark(inMemNo);
+		
+		session.close();
+		
+		return bookmarkList;
+	}
+
+	public int deleteBookmark(BookmarkDTO deleteBm) {
+		
+		SqlSession session = getSqlSession();
+		SelectJobPostingMapper mapper = session.getMapper(SelectJobPostingMapper.class);
+		
+		int result = mapper.deleteBookmark(deleteBm);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
 	}
 
 

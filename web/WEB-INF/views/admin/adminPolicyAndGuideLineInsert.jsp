@@ -194,7 +194,7 @@ td {
 											class="jp_contact_inputs_wrapper jp_contact_inputs2_wrapper">
 											<select name="postKinds">
 												<option value="" selected>분류</option>
-												<option value="1">개인정보 처리 방침</option>
+												<option value="1">개인정보처리방침</option>
 												<option value="2">이용약관</option>
 											</select>
 										</div>
@@ -213,7 +213,7 @@ td {
 											class="jp_contact_inputs_wrapper jp_contact_inputs4_wrapper">
 											<i class="fa fa-text-height"></i>
 											<textarea style="overflow-x: hidden; overflow-y: auto;"
-												rows="16" placeholder="내용" name="contents"></textarea>
+												rows="16" placeholder="내용" name="postContent"></textarea>
 										</div>
 									</div>
 

@@ -86,6 +86,7 @@
 		  , '공지사항'
 		  )
 	</insert>
+
 	
 	<update id="updateStatus">
 		UPDATE TBL_POST
@@ -97,3 +98,4 @@
 	
 	
 </mapper>
+
