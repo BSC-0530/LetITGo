@@ -3,17 +3,17 @@
 <mapper
 	namespace="com.itsme.letitgo.admin.board.notice.model.mapper.PersonalInfoPolicyMapper">
 	
-	<!-- insert resultMap -->
-	<!-- <resultMap type="com.itsme.letitgo.admin.board.notice.model.dto.PersonalInfoPolicyDTO" id="personalInfoPolicyInsertResultMap">
-		<id property="postNo" column="POST_NO"/>
-		<result property="postTitle" column="POST_TITLE"/>
-		<result property="postContent" column="POST_CONTENT"/>
-		<result property="postRegistrationDate" column="POST_REGISTRATION_DATE"/>
-		<result property="postKinds" column="POST_KINDS"/>
-		<result property="postModifiedDate" column="POST_MODIFIED_DATE"/>
-		<result property="postExposureStatus" column="POST_EXPOSURE_STATUS"/>
-		<result property="manageMemberNo" column="MANAGER_MEMBER_NO"/>
-	</resultMap> -->
+<!-- 	insert resultMap -->
+<!-- 	<resultMap type="com.itsme.letitgo.admin.board.notice.model.dto.PersonalInfoPolicyDTO" id="personalInfoPolicyInsertResultMap"> -->
+<!-- 		<id property="postNo" column="POST_NO"/> -->
+<!-- 		<result property="postTitle" column="POST_TITLE"/> -->
+<!-- 		<result property="postContent" column="POST_CONTENT"/> -->
+<!-- 		<result property="postRegistrationDate" column="POST_REGISTRATION_DATE"/> -->
+<!-- 		<result property="postKinds" column="POST_KINDS"/> -->
+<!-- 		<result property="postModifiedDate" column="POST_MODIFIED_DATE"/> -->
+<!-- 		<result property="postExposureStatus" column="POST_EXPOSURE_STATUS"/> -->
+<!-- 		<result property="managerMemberNo" column="MANAGER_MEMBER_NO"/> -->
+<!-- 	</resultMap> -->
 	
 	<!-- 수정날짜빼고는 다 입력해야됨 -->
 	<insert id="personalInfoPolicyInsert" parameterType="com.itsme.letitgo.admin.board.notice.model.dto.PersonalInfoPolicyDTO">

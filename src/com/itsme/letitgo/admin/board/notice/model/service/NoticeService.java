@@ -44,4 +44,39 @@ public class NoticeService {
 		
 		return result;
 	}
+
+	public PersonalInfoPolicyDTO selectDetailsNotice(int postNo) {
+		
+		SqlSession session = getSqlSession();
+		
+		NoticeMapper mapper = session.getMapper(NoticeMapper.class);
+		
+		PersonalInfoPolicyDTO detailsNotice = mapper.selectDetailsNotice(postNo);
+		
+		session.close();
+		
+		return detailsNotice;
+	}
+
+	public int noticeModifyInsert(PersonalInfoPolicyDTO noticeModifyInsert) {
+		
+		SqlSession session = getSqlSession();
+		
+		NoticeMapper mapper = session.getMapper(NoticeMapper.class);
+		
+		System.out.println("값확인" + noticeModifyInsert);
+		
+		int result = mapper.noticeModifyInsert(noticeModifyInsert);
+		
+		if(result > 0) {
+			session.commit();
+		}else {
+			
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
 }
