@@ -28,20 +28,25 @@ public class PersonalInfoPolicyInsertServlet extends HttpServlet {
 		
 		String postTitle = request.getParameter("postTitle");
 		String postContent = request.getParameter("postContent");
-		java.sql.Date postRegistrationDate = java.sql.Date.valueOf(request.getParameter("postRegistrationDate"));
-		String postKinds = request.getParameter("postKinds");
-		java.sql.Date postModifiedDate = java.sql.Date.valueOf(request.getParameter("postModifiedDate"));
-		String postExposureStatus = request.getParameter("postExposureStatus");
-		int managerMemberNo = Integer.parseInt(request.getParameter("managerMemberNo"));
+		String postKinds = request.getParameter("postKinds"); 
+		/*
+		 * java.sql.Date postRegistrationDate =
+		java.sql.Date.valueOf(request.getParameter("postRegistrationDate")); String
+		 * = java.sql.Date.valueOf(request.getParameter("postModifiedDate")); String
+		 * postExposureStatus = request.getParameter("postExposureStatus"); int java.sql.Date postModifiedDate
+		 * managerMemberNo = Integer.parseInt(request.getParameter("managerMemberNo"));
+		 */
 		
 		PersonalInfoPolicyDTO requestPersonalInfoPolicy = new PersonalInfoPolicyDTO();
 		requestPersonalInfoPolicy.setPostTitle(postTitle);
 		requestPersonalInfoPolicy.setPostContent(postContent);
-		requestPersonalInfoPolicy.setPostRegistrationDate(postRegistrationDate);
 		requestPersonalInfoPolicy.setPostKinds(postKinds);
-		requestPersonalInfoPolicy.setPostModifiedDate(postModifiedDate);
-		requestPersonalInfoPolicy.setPostExposureStatus(postExposureStatus);
-		requestPersonalInfoPolicy.setManagerMemberNo(managerMemberNo);
+		requestPersonalInfoPolicy.setManagerMemberNo(1);
+		/*
+		 * requestPersonalInfoPolicy.setPostRegistrationDate(postRegistrationDate);
+		 * requestPersonalInfoPolicy.setPostModifiedDate(postModifiedDate);
+		 * requestPersonalInfoPolicy.setPostExposureStatus(postExposureStatus);
+		 */
 		
 		//requestPersonalInfoPolicy 확인
 		System.out.println("personalInfoPolicyController requestPersonalInfoPolicy : " + requestPersonalInfoPolicy);

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,31 +29,38 @@
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
-  
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 
 <!-- letitgo 제작 css -->
-<link rel="stylesheet" type="text/css" href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css"/>
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css" />
 
 <style>
-	.h4 {
-		font-weight: bold;
-	}
-	td {
-		width: 400px;
-	}
+.h4 {
+	font-weight: bold;
+}
+
+td {
+	width: 400px;
+}
 </style>
 
 </head>
 
 <body>
 
-<!-- 사이드바 -->
+	<!-- 사이드바 -->
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
@@ -95,8 +102,7 @@
 														href="${ pageContext.servletContext.contextPath }/skillscategory/list">기술
 														카테고리 관리</a>
 												</p>
-												<br>
-												<br>
+												<br> <br>
 												<h3 style="font-weight: bold">결제 관리</h3>
 												<p>
 												<p align="center">
@@ -110,8 +116,7 @@
 												<p align="center">
 													<a href="#">환불 요청 관리</a>
 												</p>
-												<br>
-												<br>
+												<br> <br>
 												<h3 style="font-weight: bold">기업 요청 관리</h3>
 												<p>
 												<p align="center">
@@ -128,25 +133,24 @@
 												<p align="center">
 													<a href="#">기업 정보 변경 요청</a>
 												</p>
-												<br>
-												<br>
+												<br> <br>
 												<h3 style="font-weight: bold">회원 탈퇴</h3>
 												<p>
 												<p align="center">
 													<a href="#">회원 탈퇴 사유 조회</a>
 												</p>
-												<br>
-												<br>
+												<br> <br>
 												<h3 style="font-weight: bold">게시물 관리</h3>
 												<p>
 												<p align="center">
 													<a href="#">공지사항 관리</a>
 												</p>
 												<p align="center">
-													<a href="#">개인정보 처리 방침, 이용약관 관리</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/personalinfopolicy/list">개인정보
+														처리 방침, 이용약관 관리</a>
 												</p>
-												<br>
-												<br>
+												<br> <br>
 												<h3 style="font-weight: bold">1:1 문의</h3>
 												<p>
 												<p align="center">
@@ -155,8 +159,7 @@
 												<p align="center">
 													<a href="#">1:1 문의 카테고리 관리</a>
 												</p>
-												<br>
-												<br>
+												<br> <br>
 											</div>
 										</div>
 									</div>
@@ -167,90 +170,72 @@
 				</div>
 				<!-- 옆에 넣으려면 여기에 넣어야함 -->
 				<!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
-				<br>
-				<br>
-				<br>
-				<div class="outer outer-policy-and-guideline-insert">
-					<br>
-					<h2 align="center">개인정보 처리 방침 및 이용약관</h2>
-					<br>
-					<br>
-					<div class="table-area">
-						<form
-							action="${ pageContext.servletContext.contextPath }/personalinfopolicy/insert"
-							method="post">
-							<div>
-								<input type="text" placeholder="제목" name="postTitle">
-							</div>
-							<br> 
-							<select name="postKinds">
-								<option value="" selected>분류</option>
-								<option value="1">개인정보 처리 방침</option>
-								<option value="2">이용약관</option>
-							</select> 
+				<br> <br> <br>
+
+				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<br>
-							
-							<div align="center">
-								<p>
-									<textarea 
-										 placeholder="내용" name="postContent" cols="50" rows="10">
-									</textarea>
-								</p>
+							<br>
+							<br>
+
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="jp_contact_form_heading_wrapper">
+									<h2>개인정보 처리 방침 및 이용약관 등록</h2>
+								</div>
 							</div>
-							
-							<button type="button" onClick="history.go(-1)">취소하기</button>
-<!-- 경로 지정해주기 (list로 받아오게)-->
-							<button type="submit"
-								onclick="href='${ pageContext.servletContext.contextPath }/'">등록하기</button>
-						</form>
+							<form
+								action="${ pageContext.servletContext.contextPath }/personalinfopolicy/insert"
+								method="post">
+								<div class="jp_contact_form_box">
+								
+				<!-- 분류 -->			<div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+										<div
+											class="jp_contact_inputs_wrapper jp_contact_inputs2_wrapper">
+											<select name="postKinds">
+												<option value="" selected>분류</option>
+												<option value="1">개인정보 처리 방침</option>
+												<option value="2">이용약관</option>
+											</select>
+										</div>
+									</div>
+									<br><br>
+									<div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+			<!-- 제목  -->					<div
+											class="jp_contact_inputs_wrapper jp_contact_inputs2_wrapper">
+											<i class="fa fa-pencil-square-o"></i><input name="postTitle"
+												placeholder="제목">
+										</div>
+									</div>				
+
+			<!-- 내용 -->				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div
+											class="jp_contact_inputs_wrapper jp_contact_inputs4_wrapper">
+											<i class="fa fa-text-height"></i>
+											<textarea style="overflow-x: hidden; overflow-y: auto;"
+												rows="16" placeholder="내용" name="contents"></textarea>
+										</div>
+									</div>
+
+									<button type="button" onClick="history.go(-1)">취소하기</button>
+									<!-- 경로 지정해주기 (list로 받아오게)-->
+									<button type="submit"
+										onclick="href='${ pageContext.servletContext.contextPath }/personalinfopolicy/list'">등록하기</button>
+
+								</div>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- <script>
-		$(document).ready(function() {
-			$('#job_field').DataTable();
-		});
-	</script>
-	
-	<script>
-		function post(div) {
-			
-			/* 
-			 == alert()로 이동되는지 확인 ==
-			 alert();  
-			*/
-			
-			 location.href = "${ pageContext.servletContext.contextPath }/jobfield/insert" 
-			
-		}
-	</script>
-	
-	<script type="text/javascript">
-		
-		function jobFieldDelete(button) {
-			
-			const no = button.value;
-			location.href = "${ pageContext.servletContext.contextPath }/jobfield/delete?no=" + no;
-			
-		}
-		
-		$("input").filter("[value='null']").val("");
-		
-		/* location.reload();  무한로딩; 함수 안에서도 안먹힘  */
-	
-	</script> -->
-	
+
+
 </body>
 </html>
 
-
-<!-- 
-	select 박스로 option 넣어서 personalInfoPolicy & guideLine 분류해서 
-	나눠서 입력 받을 수 있게 해야함
- -->
 
 
 
