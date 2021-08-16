@@ -9,8 +9,7 @@
 <title>Insert title here</title>
 
 <!-- letitgo 제작 css -->
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css" />
+<link rel="stylesheet" type="text/css" href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css" />
 </head>
 <body>
 	<!-- 상단 검은색 -->
@@ -70,14 +69,14 @@
 					</div>
 				</div>
 				<!-- 옆에 넣으려면 여기에 넣어야함 -->
-				<!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
 				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+				<form action="${ pageContext/servletContext/contextPath }/personalMyInfo/update">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_listing_tabs_wrapper">
 								<label style="font-size:30px;">개인회원 정보</label><br>
 								<img alt="대표이미지없음" src="/let/resources/image/bmw.png" style="width: 300px; height:300px">
-														<!--                             이거는 이제 정보뜨는 칸 -->
+								<input type="file" name="memImage">
 								<div class="tab-pane fade in active register_left_form"id="contentOne-1">
 
 									<div class="jp_regiter_top_heading">
@@ -85,19 +84,20 @@
 									<div class="row">
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="id" value="${ sessionScope.loginMember.memId }" placeholder="아이디" readonly>
+											<input type="text" name="memId" value="${ sessionScope.loginMember.memId }" placeholder="아이디">
 										</div>
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="" value="${ sessionScope.loginMember.memEmail }" placeholder="이메일" readonly>
+											<input type="text" name="memEmail" value="${ sessionScope.loginMember.memEmail }" placeholder="이메일">
 										</div>
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="" value="${ sessionScope.loginMember.memName }" placeholder="이름" readonly>
+											<input type="text" name="memName" value="${ sessionScope.loginMember.memName }" placeholder="이름">
 										</div>
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="" value="${ sessionScope.loginMember.memPhone }" placeholder="phone" readonly>
+											<input type="text" name="memPhone" value="${ sessionScope.loginMember.memPhone }" placeholder="phone">
 										</div>
 									</div>
 								</div>
+							</div>
 							<div class="jp_listing_tabs_wrapper">
 								<label style="font-size:30px;">열람제한기업</label><br>
 								<c:if test="${requestScope.restrictedCompany eq null }">
@@ -108,12 +108,17 @@
 								<c:out value="d${ restricedComapny.coComName }"></c:out>
 								</c:forEach>
 								</c:if>
+								<button onclick="infoChange();" class="btn btn-info" id="infoChange" style="float: right;">열람제한기업 변경</button>
+								
 							</div>
 						</div>
 					</div>
 					<br>
 					
-					<button onclick="infoChange();" class="btn btn-info" id="coInfoChange" style="float: right;">회원 정보 변경</button>
+					<button type="submit" class="btn btn-info" id="infoChange" style="float: right;">회원 정보 변경</button>
+					
+					</form>
+					
 				</div>
 			</div>
 		</div>
@@ -122,7 +127,7 @@
 	function infoChange() {
 		alert("");	
 		
-		location.href ="/let/personalMyInfo/update";
+		location.href ="/let/personalInfo/update";
 		
 	}
 	
