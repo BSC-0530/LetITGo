@@ -75,7 +75,8 @@
 								<li><a onClick="detailResume(this);">
 									<input type="hidden" value="${ number }"><i class="fa fa-download"></i> &nbsp;상세 이력서 보기</a></li>
 								<li><a><button class="dibsbutton" type="button"
-								 style="width:350px; background-color:transparent;  border:0px transparent solid;" onclick="dibsbutton();" >
+								 style="width:350px; background-color:transparent; border:0px transparent solid;" 
+								 onclick="addWishList(this);" value="${ number }">
 								 <i class="fa fa-phone"></i> &nbsp;후보자찜하기</button></a></li>
 							</ul>
 							<input type="text" id="hiddenResumeNo" value="${ number }">
@@ -216,6 +217,14 @@
 			const resumeNo = a.children[0].value;
 			location.href = "${ pageContext.servletContext.contextPath }/detail/browse/select?resumeNo=" + resumeNo;
 		}
+	}
+	
+	function addWishList(button) {
+		
+		const resumeNo = button.value;
+		const inputPage = 'simple';
+		location.href = "${ pageContext.servletContext.contextPath }/company/scout/wish/insert?resumeNo=" + resumeNo
+						+ "&inputPage=" + inputPage;
 	}
 	
 	

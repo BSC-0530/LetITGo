@@ -10,6 +10,8 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.itsme.letitgo.company.scout.model.dto.BrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.BrosweSimplelDTO;
+import com.itsme.letitgo.company.scout.model.dto.CandidateRegisterSkillsDTO;
+import com.itsme.letitgo.company.scout.model.dto.CandidateRegistrationDTO;
 import com.itsme.letitgo.company.scout.model.dto.CountReadingNumDTO;
 import com.itsme.letitgo.company.scout.model.dto.InterviewProposalDTO;
 import com.itsme.letitgo.company.scout.model.dto.PersonalBrosweHistoryDTO;
@@ -57,28 +59,36 @@ public class MainScoutListService {
 		
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
 		
-		List<BrosweSimplelDTO> brosweSimplelDTO =mapper.browseSelectInfo(onClickResumeNo);
-//		List<Object> brosweSimplelDTO =mapper.browseSelectInfo(onClickResumeNo);
+		List<BrosweSimplelDTO> brosweSimplelDTO = mapper.browseSelectInfo(onClickResumeNo);
 		
 		List<Object> browseSkills = mapper.companyScoutSkills();
 		
 		List<Integer> careeaNumber = mapper.careeaNumber(onClickResumeNo);
 		
-		System.out.println("@@@@@@@@@@@@@@@@" + careeaNumber);
-		
-		String browseName = (brosweSimplelDTO.get(0).getMemDTO().get(0).getMemName()).toString();
-		String jobName = (brosweSimplelDTO.get(0).getJobFieldDTO().get(0).getJobName()).toString();
-		int number = (brosweSimplelDTO.get(0).getResumeNo());	
-//		System.out.println("browseSkills" + browseSkills.get(1));
-		
+		for(BrosweSimplelDTO a : brosweSimplelDTO) {
+			System.out.println(a);
+		}
 		Map<String,Object> simpleInfo =  new HashMap<>();
-		simpleInfo.put("browseName", browseName);
-		simpleInfo.put("jobName", jobName);
-		simpleInfo.put("browseSkills", browseSkills);
 		
-//		simpleInfo.put("browseCareer", brosweSimplelDTO);
-		simpleInfo.put("careeaNumber", careeaNumber);
-		simpleInfo.put("number",number);
+		if(brosweSimplelDTO.size() != 0) {
+			String browseName = (brosweSimplelDTO.get(0).getMemDTO().get(0).getMemName()).toString();			
+			simpleInfo.put("browseName", browseName);
+		}
+		if(brosweSimplelDTO.size() != 0) {
+			String jobName = (brosweSimplelDTO.get(0).getJobFieldDTO().get(0).getJobName()).toString();			
+			simpleInfo.put("jobName", jobName);
+		}
+		if(brosweSimplelDTO.size() != 0) {
+			int number = (brosweSimplelDTO.get(0).getResumeNo());			
+			simpleInfo.put("number",number);
+		}
+		if(browseSkills != null) {
+			simpleInfo.put("browseSkills", browseSkills);			
+		}
+		if(careeaNumber != null) {
+			simpleInfo.put("careeaNumber", careeaNumber);			
+		}
+		
 		
 		session.close();
 		
@@ -305,6 +315,66 @@ public class MainScoutListService {
 		session.close();
 		
 		return 1;
+	}
+	public int insertWishList(int resumeNo) {
+		
+		SqlSession session = getSqlSession();
+		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
+		
+		int result = mapper.insertWishList(resumeNo);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+	
+	// 찜하기 조회(회원 정보)
+	public List<CandidateRegistrationDTO> selectWishInfoList() {
+		
+		SqlSession session = getSqlSession();
+		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
+		
+		List<CandidateRegistrationDTO> wishInfoList = mapper.selectWishInfoList();
+		
+		session.close();
+
+		return wishInfoList;
+	}
+	
+	// 찜하기 조회(보유 기술)
+	public List<CandidateRegisterSkillsDTO> selectWishSkillsList(int resumeNo) {
+		
+		SqlSession session = getSqlSession();
+		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
+		
+		List<CandidateRegisterSkillsDTO> wishSkillList = mapper.selectWishSkillsList(resumeNo);
+		
+		session.close();
+		
+		return wishSkillList;
+	}
+	public int deleteWishList(int resumeNo) {
+		
+		SqlSession session = getSqlSession();
+		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
+		
+		int result = mapper.deleteWishList(resumeNo);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
 	}
 	
 

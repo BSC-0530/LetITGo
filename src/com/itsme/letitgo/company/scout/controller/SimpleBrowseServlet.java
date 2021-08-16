@@ -31,13 +31,13 @@ public class SimpleBrowseServlet extends HttpServlet {
 		List<ResumeReadingHistoryDTO> kinds = browseInfoService.brosweHistoryKindsSelect(onClickResumeNo);
 		
 		
+		System.out.println("kinds : " + kinds);
+		
 		request.setAttribute("browseName", browseInfo.get("browseName"));
 		request.setAttribute("jobName", browseInfo.get("jobName"));
 		request.setAttribute("browseSkills", browseInfo.get("browseSkills"));
 		request.setAttribute("careeaNumber", browseInfo.get("careeaNumber"));
 		request.setAttribute("number", browseInfo.get("number"));
-		
-//		request.setAttribute("getResumeNo", kinds.getResumeNo());
 		
 		String path = "";
 		if(kinds == null) {

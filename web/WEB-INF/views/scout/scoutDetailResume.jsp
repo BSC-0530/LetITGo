@@ -55,8 +55,12 @@
 										</a>
 									</li>
 									
-									<li><a href="#"><i class="fa fa-phone"></i>
-											&nbsp;후보자 찜하기</a></li>
+									<li>
+										<a href="#">
+											<input id="addWishList" type="hidden" value="${ detail.scoutResume[status.index].resumeNo }"><i class="fa fa-phone"></i>
+											&nbsp;후보자 찜하기
+										</a>
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -239,6 +243,8 @@
 										+"&resumeNo=" + resumeNo;
 			}
 		}
+		
+		function 
 		
 		
 	</script>

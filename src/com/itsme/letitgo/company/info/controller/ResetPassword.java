@@ -11,7 +11,7 @@ import com.itsme.letitgo.company.info.model.dto.CompanyInfoDTO;
 import com.itsme.letitgo.company.info.model.service.CompanyModifyService;
 
 
-@WebServlet("company/resetpassword")
+@WebServlet("/company/resetpassword")
 public class ResetPassword extends HttpServlet {
 	
        
