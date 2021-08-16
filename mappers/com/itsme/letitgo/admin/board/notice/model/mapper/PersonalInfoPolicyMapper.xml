@@ -15,6 +15,18 @@
 <!-- 		<result property="managerMemberNo" column="MANAGER_MEMBER_NO"/> -->
 <!-- 	</resultMap> -->
 	
+	<!-- select resultMap -->
+	<resultMap type="com.itsme.letitgo.admin.board.notice.model.dto.PersonalInfoPolicyDTO" id="PersonalInfoPolicyResultMap">
+		<id property="postNo" column="POST_NO"/>
+		<result property="postTitle" column="POST_TITLE"/>
+		<result property="postContent" column="POST_CONTENT"/>
+		<result property="postRegistrationDate" column="POST_REGISTRATION_DATE"/>
+		<result property="postKinds" column="POST_KINDS"/>
+		<result property="postModifiedDate" column="POST_MODIFIED_DATE"/>
+		<result property="postExposureStatus" column="POST_EXPOSURE_STATUS"/>
+		<result property="managerMemberNo" column="MANAGER_MEMBER_NO"/>
+	</resultMap>
+	
 	<!-- 수정날짜빼고는 다 입력해야됨 -->
 	<insert id="personalInfoPolicyInsert" parameterType="com.itsme.letitgo.admin.board.notice.model.dto.PersonalInfoPolicyDTO">
        INSERT
@@ -25,8 +37,7 @@
        , A.POST_CONTENT
        , A.POST_REGISTRATION_DATE
        , A.POST_KINDS
-       , A.POST_MODIFIED_DATE
-       , A.POST_EXPOSURE_STATUS
+       ,, A.POST_EXPOSURE_STATUS
        , A.MANAGER_MEMBER_NO  
        )
        VALUES
@@ -34,14 +45,25 @@
          SEQ_POST_NO.NEXTVAL
        , #{ postTitle } 
        , #{ postContent } 
-       , #{ postRegistrationDate } 
+       , SYSDATE
        , #{ postKinds } 
-       , #{ postModifiedDate } 
-       , #{ postExposureStatus }  
+       , 'Y' 
        , #{ managerMemberNo }  
        )
 	</insert>
 	
+	<select id="selectAllPersonalInfoPolicyList" resultMap="PersonalInfoPolicyResultMap">
+		SELECT
+		       A.POST_NO
+      		 , A.POST_TITLE
+      		 , A.POST_CONTENT
+      		 , A.POST_REGISTRATION_DATE
+      		 , A.POST_KINDS
+      		 , A.POST_MODIFIED_DATE
+      		 , A.POST_EXPOSURE_STATUS
+      		 , A.MANAGER_MEMBER_NO  
+          FROM TBL_POST A 
+	</select>
 	
 </mapper>
 

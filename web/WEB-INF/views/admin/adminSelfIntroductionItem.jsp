@@ -143,7 +143,7 @@
 													<a href="#">공지사항 관리</a>
 												</p>
 												<p align="center">
-													<a href="#">개인정보 처리 방침, 이용약관 관리</a>
+													<a href="${ pageContext.servletContext.contextPath }/personalinfopolicy/list">개인정보 처리 방침, 이용약관 관리</a>
 												</p>
 												<br>
 												<br>
