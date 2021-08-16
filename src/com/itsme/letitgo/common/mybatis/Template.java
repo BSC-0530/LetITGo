@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 
+import com.itsme.letitgo.admin.board.notice.model.mapper.NoticeMapper;
 import com.itsme.letitgo.admin.board.notice.model.mapper.PersonalInfoPolicyMapper;
 import com.itsme.letitgo.admin.info.model.mapper.InsertRequestMapper;
 import com.itsme.letitgo.admin.info.model.mapper.JoinMapper;
@@ -56,6 +57,7 @@ public class Template {
 			configuration.addMapper(CompanyInfoMapper.class);
 			configuration.addMapper(CompanyScoutMapper.class);
 			configuration.addMapper(AdminInquiryMapper.class);
+			configuration.addMapper(NoticeMapper.class);
 			//configuration.addMapper(PersonalMemberMapper.class);
 			
 

@@ -117,7 +117,7 @@
 												<br>
 												<p>
 												<p align="center">
-													<a href="#">공지사항 관리</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/notice/manger/servlet">공지사항 관리</a>
 												</p>
 												<br>
 												<p align="left">
@@ -194,6 +194,7 @@
 </script>
 
 <script>
+
 	function browse(button){
 		
 		const num = button.parentNode.parentNode.children[6].innerText

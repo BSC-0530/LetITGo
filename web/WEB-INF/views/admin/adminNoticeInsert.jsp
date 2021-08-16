@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,15 +29,9 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript" charset="utf8"
-	src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 </head>
 <body>
-	<div class="jp_listing_sidebar_main_wrapper">
+ <div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
 				<div
@@ -78,30 +70,22 @@
 												</p>
 												<br>
 												<p align="center">
-													<a
-														href="${ pageContext.servletContext.contextPath }/admin/payment/select">결제
-														내역 조회</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/payment/select">결제 내역 조회</a>
 												</p>
 												<br>
 												<p align="center">
-													<a
-														href="${ pageContext.servletContext.contextPath }/admin/refund/select">환불
-														요청 관리</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/refund/select">환불 요청 관리</a>
 												</p>
 												<br> <br>
 												<h3 style="font-weight: bold">기업 요청 관리</h3>
 												<br>
 												<p>
 												<p align="center">
-													<a
-														href="${ pageContext.servletContext.contextPath }/admin/post/insertRequest/select">공고
-														등록 요청</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/post/insertRequest/select">공고 등록 요청</a>											
 												</p>
 												<br>
 												<p align="center">
-													<a
-														href="${ pageContext.servletContext.contextPath }/admin/post/updateRequest/select">공고
-														수정 요청</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/post/updateRequest/select">공고 수정 요청</a>
 												</p>
 												<br>
 												<p align="center">
@@ -124,7 +108,7 @@
 												<br>
 												<p>
 												<p align="center">
-													<a href="#">공지사항 관리</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/notice/manger/servlet">공지사항 관리</a>
 												</p>
 												<br>
 												<p align="left">
@@ -136,13 +120,11 @@
 												<br>
 												<p>
 												<p align="center">
-													<a
-														href="${ pageContext.servletContext.contextPath }/admin/inquiry/select">1:1
-														문의 조회</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/inquiry/select">1:1 문의 조회</a>
 												</p>
 												<br>
 												<p align="center">
-													<a href="#">1:1 문의 카테고리 관리</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/Category/Page">1:1 문의 카테고리 관리</a>
 												</p>
 											</div>
 										</div>
@@ -152,40 +134,53 @@
 						</div>
 					</div>
 				</div>
-			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+
+				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<div class="jp_contact_form_main_wrapper">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-								<div class="jp_contact_form_heading_wrapper">
-									<h2>1:1문의</h2>
-								</div>
+							<br><br><br>
+   
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="jp_contact_form_heading_wrapper">
+						<h2>공지사항 등록</h2>
+					</div>
+				</div>
+			<form action="${ pageContext.servletContext.contextPath }/notice/insert/servlet" method="post">
+				<div class="jp_contact_form_box">
+						<div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+							<div class="jp_contact_inputs_wrapper jp_contact_inputs2_wrapper">
+								<i class="fa fa-pencil-square-o"></i><input name="postTitle"
+									placeholder="제목">
 							</div>
-							<div class="jp_contact_form_box">
-							<form action="${ pageContext.servletContext.contextPath }/admin/category/Insert/Servlet" method="post">
-								<div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
-									<div
-										class="jp_contact_inputs_wrapper jp_contact_inputs2_wrapper">
-										<i class="fa fa-pencil-square-o"></i><input name="inquiryCategoryNo"  type="text"
-										 onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"
-										placeholder="카테고리 코드">
-									</div>
-								</div>
-								<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-									<div
-										class="jp_contact_inputs_wrapper jp_contact_inputs3_wrapper">
-										<i class="fa-envelope"></i><input name="inquiryCategoryName"
-											placeholder="카테고리">
-									</div>
-									<div class="category-insert">
-										<button style="margin-left: 90%; margin-top: 5%;"
-											type="submit" class="btn btn-info" onclick="insert();">등록</button>
-
-									</div>
-								</div>
-							</form>
+						</div>
+						
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="jp_contact_inputs_wrapper jp_contact_inputs4_wrapper">
+								<i class="fa fa-text-height"></i>
+								<textarea style="overflow-x:hidden; overflow-y:auto;" rows="16" placeholder="내용" name="contents"></textarea>
+							</div>
+						</div>
+					
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="jp_contact_form_btn_wrapper">
+							<ul>
+								<li><a href="#"><button type="submit" id="send-btn"
+											style="background-color: transparent; border: 0px transparent solid; width: 150px; height: 50px;">&nbsp;
+											SEND</button>
+										<i class="fa fa-plus-circle"></i> </a></li>
+							</ul>
+							</div>
+						</div>
+						</div>
+				</form>			
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="jp_contact_form_btn_wrapper">
+									<ul>
+										<li><a href="#"><button onclick="back();"
+													style="background-color: transparent; border: 0px transparent solid; width: 150px; height: 50px;">&nbsp;
+													back</button>
+												<i class="fa fa-plus-circle"></i> </a></li>
+									</ul>
 								</div>
 							</div>
 						</div>
@@ -193,19 +188,12 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-</div>
-</div>
-</body>
-	
-<script>
-// 카테고리코드숫자만
-	function inNumber(){
-        if(event.keyCode<48 || event.keyCode>57){
-           event.returnValue=false;
-        }
-}
+            </div>
+           </div>
+	<script>
+	function back(back){
+		window.history.back();
+	}	
 </script>
 </body>
 </html>

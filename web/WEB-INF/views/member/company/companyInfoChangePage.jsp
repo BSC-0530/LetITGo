@@ -32,6 +32,8 @@
 
 <!-- letitgo 제작 css -->
 <link rel="stylesheet" type="text/css" href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css"/>
+
+
 </head>
 <body>
   <!-- 상단 검은색 -->
@@ -187,25 +189,26 @@
                          </div>
             <!-- end --> 
 	            </div>
-                     <button type="submit" onclick="requestAdminChange();" class="btn btn-info" id="coInfoChange" style=" float: right;" >기업 정보 변경 요청 </button>
+<!--                      <button type="submit" onclick="requestAdminChange();" class="btn btn-info" id="coInfoChange" style=" float: right;" >기업 정보 변경 요청 </button> -->
                  </form>
-            
         </div>
     </div>
 </div>
 <script>
 function requestAdminChange(button){
-	var answer;
-	answer = confirm('변경 요청을 하시겠습니까?');
+// 	var answer;
+// 	answer = confirm('변경 요청을 하시겠습니까?');
 	
-	if(answer == true){
-		location.href="${ pageContext.servletContext.contextPath }/company/info/change/servlet"
-	}
-	else if(answer == false){
+// 	if(answer == true){
+// 		location.href="${ pageContext.servletContext.contextPath }/company/info/change/servlet"
+// 	}
+// 	else if(answer == false){
 		
-	}
+// 	}
 	
 }
 </script>
+
+
 </body>
 </html>
