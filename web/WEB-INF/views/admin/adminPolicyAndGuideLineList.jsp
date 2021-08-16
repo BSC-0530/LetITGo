@@ -143,7 +143,7 @@
 													<a href="#">공지사항 관리</a>
 												</p>
 												<p align="center">
-													<a href="#">개인정보 처리 방침, 이용약관 관리</a>
+													<a href="${ pageContext.servletContext.contextPath }/personalinfopolicy/list">개인정보 처리 방침, 이용약관 관리</a>
 												</p>
 												<br>
 												<br>
@@ -173,30 +173,36 @@
 				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<h1>직무 분야 관리</h1>
+							<h1>개인정보 처리 방침 및 이용약관</h1>
 							<div class="jp_listing_tabs_wrapper">
 
 								<!-- 이거는 이제 정보뜨는 칸 -->
 								<!-- 데이터 테이블 내역모음 -->
-								<table id="job_field" class="hover cell-border stripe">
+								<table id="personal_info_policy" class="hover cell-border stripe">
 									<thead>
 										<tr>
-											<td align="center">직무코드</td>
-											<td align="center">직무이름</td>
-											<td align="center">삭제여부</td>
+											<td align="center">번호</td>
+											<td align="center">제목</td>
+				<!-- 상세보기 버튼 만들기 -->		<td align="center">상세보기(내용)</td>
+											<td align="center">등록일자</td>
+											<td align="center">분류</td>
+											<td align="center">수정일자</td>
+				<!-- 수정 버튼 만들기 -->			<td align="center">수정</td>
 										</tr>
 									</thead>
-									<c:forEach var="controllJobField"
-										items="${ requestScope.jobFieldList }">
+									<c:forEach var="controllPersonalInfoPolicy"
+										items="${ requestScope.personalInfoPolicyList }">
 
 										<tbody align="center">
 
 											<tr>
-												<td id="no"><c:out value="${ controllJobField.no }" /></td>
-												<td id="name"><c:out value="${ controllJobField.name }" /></td>
-												<!-- <td><button type="button" disabled>삭제</button></td>  -->
-												<td><button class="btn-info" onClick="jobFieldDelete(this);" value="${ controllJobField.no }">삭제</button></td>
-												<!-- 위의 것을 실행하려면 div 안에 담아야 하는? --> 
+												<td id="postNo"><c:out value="${ controllPersonalInfoPolicy.postNo }" /></td>
+												<td id="postTitle"><c:out value="${ controllPersonalInfoPolicy.postTitle }" /></td>
+	<!-- onClick 안에 상세보기 인터페이스 메소드명 넣어주기 -->	<td><button class="btn-info" onClick="상세보기(this);" value="${ controllPersonalInfoPolicy.postNo }">상세보기</button></td>
+												<td id="postRegistrationDate"><c:out value="${ controllPersonalInfoPolicy.postRegistrationDate }" /></td>
+												<td id="postKinds"><c:out value="${ controllPersonalInfoPolicy.postKinds }" /></td>
+												<td id="postModifiedDate"><c:out value="${ controllPersonalInfoPolicy.postModifiedDate }" /></td>
+	<!-- onClick 안에 수정 인터페이스 메소드명 넣어주기 -->	<td><button class="btn-info" onClick="수정(this);" value="${ controllPersonalInfoPolicy.postNo }">수정</button></td>
 											</tr>
 										</tbody>
 									</c:forEach>
@@ -205,8 +211,8 @@
 								<br>
 								<br>
 
-								<div class="job-field-insert-wrapper" onclick="post(this);">
-									<button type="submit">등록하기</button>
+								<div class="personal-info-policy-insert-wrapper" onclick="post(this);">
+									<button type="submit">작성</button>
 								</div>
 
 							</div>
@@ -221,7 +227,7 @@
 
 	<script>
 		$(document).ready(function() {
-			$('#job_field').DataTable();
+			$('#personal_info_policy').DataTable();
 		});
 	</script>
 	
@@ -233,14 +239,14 @@
 			 alert();  
 			*/
 			
-			 location.href = "${ pageContext.servletContext.contextPath }/jobfield/insert" 
+			 location.href = "${ pageContext.servletContext.contextPath }/personalinfopolicy/insert" 
 			
 		}
 	</script>
 	
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		
-		function jobFieldDelete(button) {
+		function 상세보기(this)(button) {
 			
 			const no = button.value;
 			location.href = "${ pageContext.servletContext.contextPath }/jobfield/delete?no=" + no;
@@ -251,7 +257,22 @@
 		
 		/* location.reload();  무한로딩; 함수 안에서도 안먹힘  */
 	
-	</script>
+	</script> -->
+	
+	<!-- <script type="text/javascript">
+		
+		function 수정(this)(button) {
+			
+			const no = button.value;
+			location.href = "${ pageContext.servletContext.contextPath }/jobfield/delete?no=" + no;
+			
+		}
+		
+		$("input").filter("[value='null']").val("");
+		
+		/* location.reload();  무한로딩; 함수 안에서도 안먹힘  */
+	
+	</script> -->
 	
 </body>
 </html>

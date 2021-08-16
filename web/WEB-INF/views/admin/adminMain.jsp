@@ -63,6 +63,13 @@
 </head>
 <body>
 	<!-- 관리자 사이드 바 -->
+<!-- 	<ul> -->
+<!--                                 <li><a -->
+<%--                                         href="${ pageContext.servletContext.contextPath }/member/logout" --%>
+<!--                                         align="center" -->
+<!--                                         style="background: rgb(226, 113, 109); margin-right: 30px; border-radius: 10px; width: 130px">Log -->
+<!--                                             Out</a></li> -->
+<!--                             </ul> -->
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
@@ -150,7 +157,7 @@
 													<a href="#">공지사항 관리</a>
 												</p>
 												<br>
-												<p align="left"><a href="#">개인정보 처리 방침 및 <br>이용약관 관리</a>
+												<p align="left"><a href="${ pageContext.servletContext.contextPath }/personalinfopolicy/list">개인정보 처리 방침 및 <br>이용약관 관리</a>
 												</p>
 												<br>
 												<br>
@@ -225,13 +232,24 @@
 									</div>
 								</div>
 							</div>
+							
 						</div>
 						<br>
 					</div>
+					
 				</div>
 				<br>
 			</div>
 		</div>
 	</div>
+	
+	
+	<ul>
+		<li><a
+			href="${ pageContext.servletContext.contextPath }/member/logout"
+			align="center"
+			style="background: rgb(226, 113, 109); margin-right: 30px; border-radius: 10px; width: 130px">Log
+				Out</a></li>
+	</ul>
 </body>
 </html>

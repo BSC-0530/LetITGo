@@ -45,14 +45,13 @@ public class SimpleBrowseServlet extends HttpServlet {
 			
 			path = "/WEB-INF/views/scout/scoutSimpleBrowse.jsp";
 			
-		}else if(kinds != null && kinds.get(0).getResumeBrowseKinds().equals("얕은열람")) {
-			int updateTime = browseInfoService.upDateTime(onClickResumeNo);
-			path = "/WEB-INF/views/scout/scoutSimpleBrowse.jsp";
+//		}else if(kinds != null && kinds.get(0).getResumeBrowseKinds().equals("얕은열람")) {
+//			int updateTime = browseInfoService.upDateTime(onClickResumeNo);
+//			path = "/WEB-INF/views/scout/scoutSimpleBrowse.jsp";
+		}else {
+			path="/WEB-INF/views/scout/scoutSimpleBrowse.jsp";
+				request.getRequestDispatcher(path).forward(request, response);
 		}
-		
-		
-		
-		request.getRequestDispatcher(path).forward(request, response);
 		
 	}
 

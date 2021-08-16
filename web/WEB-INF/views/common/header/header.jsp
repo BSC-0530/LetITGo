@@ -90,7 +90,7 @@
 							<div class="mainmenu">
 								<ul class="float_left">
 									<li class="has-mega gc_main_navigation"><a
-										href="${ pageContext.servletContext.contextPath }/detail/browse/select"
+										href="${ pageContext.servletContext.contextPath }/request/inquiry/servlet"
 										class="gc_main_navigation" class="gc_main_navigation">1:1
 											문의</a></li>
 								</ul>

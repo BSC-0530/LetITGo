@@ -36,56 +36,139 @@
 <link rel="shortcut icon" type="image/png"
 	href="${ pageContext.servletContext.contextPath }/resources/image/header/favicon.ico" />
 <script type="text/javascript">
-	function validate() {
-		var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디가 적합한지 검사할 정규식
-		var re2 =  /^(?=.*[a-zA-Z])(?=.*[!@#$%^*++-])(?=.*[0-9]).{8,18}$/; // 패스워드가 적합한지 검사할 정규식
-		var re3 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일이 적합한지
-		var re4 = /^[0-9]$/ //핸드폰 번호가 적합한지
-		
-		var id = document.getElementById("id");
-	    var pw = document.getElementById("pw");
-	    var phone = document.getElementById("phone")
-	    var email = document.getElementById("email");
-	    
-	    //----------유효성 검사 시작----------
-	    
-	    if(!check(re,id,"아이디는 4~12자의 영문 대소문자와 숮자로만 입력하세요!!")){
-	    	return false;
-	    }
-	    
-	    if(!check(re2,pw,"패스워드는 8~18자의 영문 대소문자, 숫자, 특수문자만 입력하세요")){
-	    	return false;
-	    }
-	    
-	    if(join.pw.value != join.value.checkpw.value){
-	    	alert("비밀번호가 다릅니다 다시 확인해 주세요.");
-	    	join.checkpw.value= "";
-	    	join.checkpw.foucus();
-	    	return false;
-	    }
-	    
-	    if(!check(re4, phone, "핸드폰 번호가 아닙니다. 다시 입력해주세요.")){
-	    	return false;
-	    }
-	    
-	    if(email.value==""){
-	    	alert("이메일을 입력해 주세요.");
-	    	email.focus();
-	    	return false;
-	    }
-	    
-	    alert("회원가입이 완료되었습니다.")
+	
+function checkValue() {
+	
+	var form = document.inMemberRegist;
+
+	if(!form.memId.value) {
+		alert("아이디를 입력하세요.");
+		return false;
 	}
 	
-	  function check(re, what, message) {
-	       if(re.test(what.value)) {
-	           return true;
-	       }
-	       alert(message);
-	       what.value = "";
-	       what.focus();
-	       //return false;
-	   }
+	if(form.idDuplication.value != "idCheck") {
+		alert("아이디 중복체크를 해주세요.")
+		return false;
+	}
+	
+	if(!form.memEmail.value){
+        alert("이름을 입력하세요.");
+        return false;
+    }
+	
+	if(!form.memPwd.value){
+        alert("비밀번호를 입력하세요.");
+        return false;
+    }
+
+	if(form.memPwd.value != form.memPwd2.value ){
+        alert("비밀번호를 동일하게 입력하세요.");
+        return false;
+    }   
+	
+	if(!form.memPhone.value){
+        alert("핸드폰 번호를 입력하세요.");
+        return false;
+    }
+
+	var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디가 적합한지 검사할 정규식
+	var re2 =  /^(?=.*[a-zA-Z])(?=.*[!@#$%^*++-])(?=.*[0-9]).{8,18}$/; // 패스워드가 적합한지 검사할 정규식
+	var re3 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일이 적합한지
+	var re4 = /^[0-9]$/ //핸드폰 번호가 적합한지
+	
+	var memId = document.getElementById("memId");
+    var memPwd = document.getElementById("memPwd");
+    var memPhone = document.getElementById("memPhone");
+    var memEmail = document.getElementById("memEmail");
+    
+    if(!check(re,memId,"아이디는 4~12자의 영문 대소문자와 숮자로만 입력하세요!!")){
+    	return false;
+    }
+    
+    if(!check(re2,memPwd,"패스워드는 8~18자의 영문 대소문자, 숫자, 특수문자만 입력하세요")){
+    	return false;
+    }
+    
+    if(inMemberRegist.memPwd.value != inMemberRegist.memPwd2.value){
+    	alert("비밀번호가 다릅니다 다시 확인해 주세요.");
+    	inMemberRegist.memPwd2.value= "";
+    	inMemberRegist.memPwd2.foucus();
+    	return false;
+    }
+    
+    if(!check(re4, memPhone, "핸드폰 번호가 아닙니다. 다시 입력해주세요.")){
+    	return false;
+    }
+    
+    if(memEmail.value==""){
+    	alert("이메일을 입력해 주세요.");
+    	email.focus();
+    	return false;
+    }
+    
+}	
+	
+function openIdChk() {
+	 
+	 window.name = "parentForm";
+	 window.open("/let/member/individual/idCheck", "chkForm", "width=500, height=300, resizable = no, scorllbars = no");
+	 
+}
+
+function inputIdChk(){
+    document.inMemberRegist.idDuplication.value ="idUncheck";
+}	
+
+function validate() {
+	var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디가 적합한지 검사할 정규식
+	var re2 =  /^(?=.*[a-zA-Z])(?=.*[!@#$%^*++-])(?=.*[0-9]).{8,18}$/; // 패스워드가 적합한지 검사할 정규식
+	var re3 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일이 적합한지
+	var re4 = /^[0-9]$/ //핸드폰 번호가 적합한지
+	
+	var memId = document.getElementById("memId");
+    var memPwd = document.getElementById("memPwd");
+    var memPhone = document.getElementById("memPhone")
+    var memEmail = document.getElementById("memEmail");
+    
+    //----------유효성 검사 시작----------
+    
+    if(!check(re,memId,"아이디는 4~12자의 영문 대소문자와 숮자로만 입력하세요!!")){
+    	return false;
+    }
+    
+    if(!check(re2,memPwd,"패스워드는 8~18자의 영문 대소문자, 숫자, 특수문자만 입력하세요")){
+    	return false;
+    }
+    
+    if(inMemberRegist.memPwd.value != inMemberRegist.memPwd2.value){
+    	alert("비밀번호가 다릅니다 다시 확인해 주세요.");
+    	inMemberRegist.memPwd2.value= "";
+    	inMemberRegist.memPwd2.foucus();
+    	return false;
+    }
+    
+    if(!check(re4, memPhone, "핸드폰 번호가 아닙니다. 다시 입력해주세요.")){
+    	return false;
+    }
+    
+    if(memEmail.value==""){
+    	alert("이메일을 입력해 주세요.");
+    	email.focus();
+    	return false;
+    }
+    
+    alert("회원가입이 완료되었습니다.")
+}
+
+  function check(re, what, message) {
+       if(re.test(what.value)) {
+           return true;
+       }
+       alert(message);
+       what.value = "";
+       what.focus();
+       //return false;
+   }
 	
 </script>
 </head>
@@ -112,7 +195,7 @@
     </div>
 	   <!-- 여기부터 시작-->
 <%-- 	<form action="${ pageContext.servletContext.contextPath }/UserRegisterCheckServlet" name="join" onsubmit="return validate();" method="post"> --%>
-	<form action="${ pageContext.servletContext.contextPath }/member/individual/regist"  method="post">
+	<form action="${ pageContext.servletContext.contextPath }/member/individual/regist" onsubmit="return checkValue();" name="inMemberRegist" method="post">
     <!-- jp register wrapper start -->
     <div class="register_section">
         <!-- register_form_wrapper -->
@@ -139,34 +222,35 @@
                                     <div class="row clearfix">
                                         <!--Form Group-->
                                         <div style="width:460px;" class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="memId" maxlength="13"  placeholder="아이디 *" required>
-                                            <button style="width:120px; height:50px; border-radius: 10px;" type="submit">중복확인</button>                                          
+                                            <input type="text" maxlength = "50" name="memId" id="memId" maxlength="13"  placeholder="아이디 *" onkeydown="onputIdChk()" required>
+                                            <input style="width:120px; height:50px; border-radius: 10px;" type="button" value="중복확인" onclick="openIdChk()">
+                                            <input type="hidden" name="idDuplication" value="idUncheck">                                       
                                         </div>
                                         
                                         <!--Form Group-->
                                         <div style="width:460px;" class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input style="margin-top:30px;" type="email" name="memEmail"  placeholder="이메일*"  required>
+                                            <input style="margin-top:30px;" type="email" id="memEmail" name="memEmail"  placeholder="이메일*"  required>
                                             <button style="width:120px; height:50px; border-radius: 10px;" type="submit">인증번호발송</button> 
                                              <input  style="margin-top:30px;" type="text" name="memEmailNum"  placeholder="인증번호 *"  required>
                                         </div>
                                                                              
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="password" name="memPwd"   placeholder="비밀번호*"  required>
+                                            <input type="password" name="memPwd" id="memPwd"  placeholder="비밀번호*"  required>
                                         </div>
                                         
                                         <!--Form Group-->
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="password" name="memPwd2"  placeholder="비밀번호 재입력*" required>
+                                            <input type="password" name="memPwd2" id="memPwd2"  placeholder="비밀번호 재입력*" required>
                                         </div>
 
                                         <!--Form Group-->
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="memName" placeholder="이름" required>
+                                            <input type="text" name="memName" id="memName" placeholder="이름" required>
                                         </div>
 
                                         <!--Form Group-->
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" name="memPhone" placeholder="핸드폰 번호" required>
+                                            <input type="text" name="memPhone" id="memPhone" placeholder="핸드폰 번호" required>
                                         </div>
 
                                          <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -193,6 +277,8 @@
         </div>
     </div>
  </form>	
+ 
+ 
  
 </body>
 </html>

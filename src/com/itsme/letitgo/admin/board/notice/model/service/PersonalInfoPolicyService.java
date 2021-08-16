@@ -2,6 +2,8 @@ package com.itsme.letitgo.admin.board.notice.model.service;
 
 import static com.itsme.letitgo.common.mybatis.Template.getSqlSession;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.itsme.letitgo.admin.board.notice.model.dto.PersonalInfoPolicyDTO;
@@ -29,4 +31,27 @@ public class PersonalInfoPolicyService {
 		
 	}
 
+	public List<PersonalInfoPolicyDTO> selectAllPersonalInfoPolicyList() {
+
+		SqlSession session = getSqlSession();
+		
+		PersonalInfoPolicyMapper personalInfoPolicyMapper = session.getMapper(PersonalInfoPolicyMapper.class);
+		
+		List<PersonalInfoPolicyDTO> personalInfoPolicyList = personalInfoPolicyMapper.selectAllPersonalInfoPolicyList();
+		
+		session.close();
+		
+		return personalInfoPolicyList;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+

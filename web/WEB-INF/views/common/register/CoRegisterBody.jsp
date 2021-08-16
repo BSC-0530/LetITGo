@@ -114,8 +114,8 @@
     
     
 	   <!-- 여기부터 시작-->
-<%-- 	<form action="${ pageContext.servletContext.contextPath }/UserRegisterCheckServlet" name="join" onsubmit="return validate();" method="post"> --%>
-	<form action="${ pageContext.servletContext.contextPath }/member/coporate/regist"  method="post">
+<%-- 	<form action="${ pageContext.servletContext.contextPath }/UserRegisterCheckServlet" name="join" onSubmit="return validate();" method="post"> --%>
+	<form action="${ pageContext.servletContext.contextPath }/member/coporate/regist" name="join" onSubmit="return validate();"  method="post">
     <div class="register_section">
         <div class="register_tab_wrapper">
             <div class="container">

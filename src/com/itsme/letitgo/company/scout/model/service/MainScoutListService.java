@@ -65,6 +65,7 @@ public class MainScoutListService {
 		
 		List<Integer> careeaNumber = mapper.careeaNumber(onClickResumeNo);
 		
+
 		for(BrosweSimplelDTO a : brosweSimplelDTO) {
 			System.out.println(a);
 		}
@@ -112,7 +113,6 @@ public class MainScoutListService {
 		
 		return result;
 	}
-	
 	
 	
 //	스카우트 현황 데이터테이블조회

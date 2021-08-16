@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -142,37 +144,69 @@
    
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="jp_contact_form_heading_wrapper">
-						<h2>공지사항 등록</h2>
+						<h2>공지사항 상세보기</h2>
 					</div>
 				</div>
-			<form action="${ pageContext.servletContext.contextPath }/notice/insert/servlet" method="post">
+		<form action="${ pageContext.servletContext.contextPath }/notice/details/servlet" method="post" onsubmit="check();">	
 				<div class="jp_contact_form_box">
-						<div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
-							<div class="jp_contact_inputs_wrapper jp_contact_inputs2_wrapper">
-								<i class="fa fa-pencil-square-o"></i><input name="postTitle"
-									placeholder="제목">
+						<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+							<div class="jp_contact_inputs_wrapper jp_contact_inputs1_wrapper">
+								<i class="fa fa-pencil-square-o"></i><input name="postNo"
+									 placeholder="번호 : ${ noticeDetails.postNo }" readonly="readonly">
 							</div>
 						</div>
-						
+						<div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
+							<div class="jp_contact_inputs_wrapper jp_contact_inputs1_wrapper">
+								<i class="fa fa-pencil-square-o"></i><input name="managerMemberNo"
+									placeholder="관리자자번호 : "value="${noticeDetails.managerMemberNo }">
+							</div>
+						</div>
+						<div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+							<div class="jp_contact_inputs_wrapper jp_contact_inputs3_wrapper">
+								<i class="fa fa-pencil-square-o"></i><input name="postTitle"
+									value="${ noticeDetails.postTitle }" readonly="readonly">
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+							<div class="jp_contact_inputs_wrapper jp_contact_inputs3_wrapper">
+								<i class="fa fa-pencil-square-o"></i><input name="postRegistrationDate"
+									 value="${ noticeDetails.postRegistrationDate }" readonly="readonly">
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+							<div class="jp_contact_inputs_wrapper jp_contact_inputs3_wrapper">
+						<c:choose>
+							<c:when test="${empty notice.postModifiedDate }">
+								<i class="fa fa-pencil-square-o">
+								</i><input name="postModifiedDate"placeholder="수정일: 없음" readonly="readonly">
+							</c:when>
+							<c:otherwise>
+								<i class="fa-pencil-square-o"><input name="postModifiedDate" value="${ noticeDetails.postModifiedDate }" readonly="readonly"></i>
+							</c:otherwise>
+						</c:choose>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+							<div class="jp_contact_inputs_wrapper jp_contact_inputs3_wrapper">
+								<i class="fa fa-pencil-square-o"></i><input name="postExposureStatus"
+									value="${ noticeDetails.postExposureStatus }" readonly="readonly">
+							</div>
+						</div>
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_contact_inputs_wrapper jp_contact_inputs4_wrapper">
 								<i class="fa fa-text-height"></i>
-								<textarea style="overflow-x:hidden; overflow-y:auto;" rows="16" placeholder="내용" name="contents"></textarea>
+								<textarea style="overflow-x:hidden; overflow-y:auto;" rows="16" name="postContent">${ noticeDetails.postContent }</textarea>
 							</div>
 						</div>
-					
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<div class="jp_contact_form_btn_wrapper">
-							<ul>
-								<li><a href="#"><button type="submit" id="send-btn"
-											style="background-color: transparent; border: 0px transparent solid; width: 150px; height: 50px;">&nbsp;
-											SEND</button>
-										<i class="fa fa-plus-circle"></i> </a></li>
-							</ul>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="jp_contact_inputs_wrapper jp_contact_inputs6_wrapper">
+								<i class="fa fa-pencil-square-o"></i>
+								<button style="width: 100px; height: 50px; margin-left: 85%"
+								         type="submit" class="btn btn-info">수정하기</button>
 							</div>
 						</div>
 						</div>
-				</form>			
+				</form>	
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<div class="jp_contact_form_btn_wrapper">
 									<ul>
@@ -183,6 +217,7 @@
 									</ul>
 								</div>
 							</div>
+							
 						</div>
 
 					</div>
@@ -190,10 +225,22 @@
 			</div>
             </div>
            </div>
+<script>
+function check(){
+	
+	var answer;
+	answer = confirm('수정하시겠습니까?');
+	
+	if(answer == true){
+		return true;
+	}
+	else if(answer == false){
+		return false;
+	}
+}	
+</script>           
 	<script>
 	function back(back){
 		window.history.back();
 	}	
 </script>
-</body>
-</html>
