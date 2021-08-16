@@ -10,4 +10,8 @@ public interface PersonalInfoPolicyMapper {
 
 	List<PersonalInfoPolicyDTO> selectAllPersonalInfoPolicyList();
 
+	PersonalInfoPolicyDTO selectDetailPersonalInfoPolicy(int postNo);
+
+	int personalInfoPolicyModifyInsert(PersonalInfoPolicyDTO personalInfoPolicyModifyInsert);
+
 }
