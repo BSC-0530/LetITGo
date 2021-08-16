@@ -332,9 +332,9 @@
 
     	function post(div) { 
     		
-			const selectJobPostNo = div.children[0].value;
+			const jobPostNo = div.children[0].value;
 			
-			location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?selectJobPostNo=" +selectJobPostNo
+			location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?jobPostNo=" +jobPostNo;
 					
     	}
     </script>

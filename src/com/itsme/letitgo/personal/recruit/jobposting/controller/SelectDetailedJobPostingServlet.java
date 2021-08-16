@@ -20,30 +20,28 @@ public class SelectDetailedJobPostingServlet extends HttpServlet {
 		// if문을 통해서 회원번호, 공고번호를 가져온다. 회원번호와 공고 번호를 넘겨줘서 이력서의 지원 여부를 확인한다. 지원여부를 가져온다. 이 때 지원여부가 	
 		SelectApplyingYnDTO dto = new SelectApplyingYnDTO();
 		
-		int jobPostNo = Integer.parseInt(request.getParameter("selectJobPostNo"));
-		
-		
+		int jobPostNo = Integer.parseInt(request.getParameter("jobPostNo"));
 		
 		dto.setMemNo(3);
 		dto.setJobPostNo(jobPostNo);
 		
 		SelectJobPostingService service = new SelectJobPostingService();
 		
-		// 지원여부 가져와서 담아준다
+		// 지원여부 db에서 조회한다.
 		SelectApplyingYnDTO applyingResult = service.selectApplyingHistory(dto);
 		
-		request.setAttribute("applyingResult", applyingResult);
-		
-		// 채용공고 정보 조회
+		// jobPostring에 대한 상세 정보를 db에서 조회한다.
 		Map<String, Object> jp = service.selectDetailedJobPosting(jobPostNo);
 		
-		System.out.println(jp.get("detailedJobPosting"));
 		
 		request.setAttribute("detailedJobPosting", jp.get("detailedJobPosting"));
 		request.setAttribute("deteildeJpSkills", jp.get("deteildeJpSkills"));
+		request.setAttribute("applyingResult", applyingResult);
 		
 		
 		String path = "/WEB-INF/views/recruit/detailedJobPosting.jsp";
+
+		
 		request.getRequestDispatcher(path).forward(request, response);
 		
 	}

@@ -166,6 +166,7 @@
 		  JOIN TBL_SKILLS S ON(RS.SKILLS_NO = S.SKILLS_NO)
 		 WHERE RS.JOB_POST_NO = #{ selectJobPostNo }
 	</select>
+	
 	<!-- 공고 상세보기 들어갈때 지원완료했는지 여부를 확인하기 위한 mapper, 지원완료로 바꿔야한다. -->
 	<select id="selectApplyingHistory" parameterType="com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectApplyingYnDTO" resultMap="resultApplyngYn">
 		SELECT
@@ -177,7 +178,7 @@
 		  JOIN TBL_RESUME R ON (AH.RESUME_NO = R.RESUME_NO)
 		 WHERE R.IN_MEM_NO = #{ memNo } 
 		   AND AH.JOB_POST_NO = #{ jobPostNo }
-		   AND AH.JOB_POST_APPLYING_STATUS = '지원취소'
+		   AND AH.JOB_POST_APPLYING_STATUS = '지원완료'
 	</select>
 	
 	<!-- 공고 지원 선택 시 회원이 보유한 이력서를 보여주기 위한 mapper -->
@@ -192,21 +193,7 @@
 		 WHERE R.IN_MEM_NO = #{ inMemNo }
 	</select>
 	
-	<insert id="insertApplyngHistory">
-	
-		INSERT
-		  INTO TBL_APPLYING_HISTORY AH
-		(
-		  AH.RESUME_NO
-		, AH.JOB_POST_NO
-		, AH.JOB_POST_APPLYING_STATUS
-		, AH.JOB_POST_APPLYING_CANCEL_DATE
-		)
-		VALUES
-		(
-		  
-		)
-	</insert>
-	<!--  -->
+	<!-- 공고 지원, 취소 시 지원내역상태변경이력에 저장 -->
+	<!-- 공고 지원 취소  -->
 	
 </mapper>
