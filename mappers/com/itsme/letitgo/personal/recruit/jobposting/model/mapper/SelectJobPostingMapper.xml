@@ -194,21 +194,6 @@
 	</select>
 	
 	<!-- 공고 지원, 취소 시 지원내역상태변경이력에 저장 -->
-	<insert id="insertApplyngHistory">
-	
-		INSERT
-		  INTO TBL_APPLYING_HISTORY AH
-		(
-		  AH.RESUME_NO
-		, AH.JOB_POST_NO
-		, AH.JOB_POST_APPLYING_STATUS
-		, AH.JOB_POST_APPLYING_CANCEL_DATE
-		)
-		VALUES
-		(
-		  
-		)
-	</insert>
 	<!-- 공고 지원 취소  -->
 	
 </mapper>
