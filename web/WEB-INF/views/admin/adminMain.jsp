@@ -233,5 +233,14 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	<ul>
+		<li><a
+			href="${ pageContext.servletContext.contextPath }/member/logout"
+			align="center"
+			style="background: rgb(226, 113, 109); margin-right: 30px; border-radius: 10px; width: 130px">Log
+				Out</a></li>
+	</ul>
 </body>
 </html>

@@ -6,7 +6,9 @@ public interface RegistInMemberMapper {
 
 	int InMemberReigst(InMemberDTO memberDTO);
 
-//	int idCheck(String id);
+	int duplicateIdCheck(String memId);
+
+
 
 	
 
