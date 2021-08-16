@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.itsme.letitgo.company.info.model.mapper.ModifyPassworMapper">
+	<resultMap type="com.itsme.letitgo.company.info.model.dto.CompanyInfoDTO" id="userInfotMap">
+		<id property="memNO" column="MEM_NO"/>
+		<result property="memId" column="EMP_ID"/>
+		<result property="memPwd" column="MEM_PWD"/>
+		<result property="memName" column="MEM_NAME"/>
+		<result property="memEmail" column="MEM_EMAIL"/>
+		<result property="memPhone" column="MEM_PHONE"/>
+		<result property="memKinds" column="MEM_KINDS"/>
+		<result property="enrollDate" column="MEM_ENROLL_DATE"/>
+		<result property="entYn" column="MEM_ENT_DATE"/>
+		<result property="memEntNo" column="MEM_ENT_NO"/>
+	</resultMap>
+		<update id="ModifyPassword">
+			UPDATE
+			  	   UPDATE TBL_MEMBER
+			       MEMBER_PWD = ?
+			 WHERE MEMBER_PWD = ?
+		</update>	
+</mapper>
