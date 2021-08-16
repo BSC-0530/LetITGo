@@ -14,20 +14,14 @@ import com.itsme.letitgo.personal.info.model.dto.RestrictedCompanyDTO;
 import com.itsme.letitgo.personal.info.model.service.PersonalInfoService;
 
 
-@WebServlet("/personalMyInfo")
-public class PersonalMyInfoServlet extends HttpServlet {
+@WebServlet("/personalMyInfo/update")
+public class UpdatePersonalInfo extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-//		HttpSession session = request.getSession();
-//		
-//		int memNo = (int) session.getAttribute("memNo");
-//		
-//		System.out.println(memNo);
-		
 		int memNo = 2;
 		
-//		// 마이페이지 회원정보 확인 페이지로 이동
+		// 마이페이지 회원정보 확인 페이지로 이동
 		PersonalInfoService service = new PersonalInfoService();
 		
 		List<RestrictedCompanyDTO> restrictedCompanyList = new ArrayList<>();
@@ -35,16 +29,15 @@ public class PersonalMyInfoServlet extends HttpServlet {
 		
 		String path = "";
 		if(restrictedCompanyList != null) {
-			path = "/WEB-INF/views/member/personal/personalMyInfo.jsp";
+			path = "/WEB-INF/views/member/personal/personalChangeInfo.jsp";
 			request.setAttribute("restrictedComapny", restrictedCompanyList);
 		}
 		
-		
 		request.getRequestDispatcher(path).forward(request, response);
+
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	
 	}
 
 }

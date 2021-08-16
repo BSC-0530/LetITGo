@@ -50,12 +50,7 @@
 									href="${ pageContext.servletContext.contextPath }/member/allJobPosting/select"
 									class="gc_main_navigation" class="gc_main_navigation">동기</a>
 								</li>
-								<li class="has-mega gc_main_navigation">
-									<%-- <a href="${ pageContext.servletContext.contextPath }/personal/memberInfo/select" class="gc_main_navigation" class="gc_main_navigation">동기</a> --%>
-									<a
-									href="${ pageContext.servletContext.contextPath }/personalMyInfo"
-									class="gc_main_navigation" class="gc_main_navigation">동기2</a>
-								</li>
+								
 							</ul>
 						</div>
 					</div>

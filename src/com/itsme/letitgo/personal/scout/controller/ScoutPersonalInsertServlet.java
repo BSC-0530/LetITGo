@@ -22,6 +22,7 @@ public class ScoutPersonalInsertServlet extends HttpServlet {
 		System.out.println("con resumeList : " + resumeList);
 		
 		String path = "";
+		
 		if(resumeList != null) {
 			path = "/WEB-INF/views/scout/scoutPersonalInsert.jsp";
 			request.setAttribute("resumeList", resumeList);
