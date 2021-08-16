@@ -20,6 +20,11 @@ public class ResetPassword extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		  String path = "/WEB-INF/views/member/company/companyresetpassword.jsp";
+	      
+	      request.getRequestDispatcher(path).forward(request, response);
+
 	}
 
 	
@@ -33,13 +38,14 @@ public class ResetPassword extends HttpServlet {
 		String userNowPwd = request.getParameter("memPwd");
 		String userNewPwd = request.getParameter("chagePwd");
 		String userNewPwdCheck = request.getParameter("userNewPwdCheck");
+
 		
 		ModifyChageDTO modifyChangeDTO = new ModifyChageDTO();
 		
 		modifyChangeDTO.setMemberId(userId);
 		modifyChangeDTO.setNowPwd(userNowPwd);
 		modifyChangeDTO.setNewPwd(userNewPwd);
-		
+
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); 
 		
 		 if (passwordEncoder.matches(userNewPwdCheck, userNewPwd)) {
@@ -48,8 +54,11 @@ public class ResetPassword extends HttpServlet {
 		         int MemberPWDUpdate = companyModifyService.PwdCheck(modifyChangeDTO);
 		         
 		         if(MemberPWDUpdate > 0) {
+
+
 		            response.sendRedirect(request.getContextPath());   //경로
 		            System.out.println(request.getContextPath());  //"groubear" 주소이다
+
 		            
 		         } else {
 		            request.setAttribute("message", "비밀번호 변경실패");
