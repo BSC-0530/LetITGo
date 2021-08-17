@@ -39,7 +39,7 @@ public class CoMemberRegistServlet extends HttpServlet {
 		String coNo = request.getParameter("coNo");
 		String coComName = request.getParameter("coComName");
 		String coCeoName = request.getParameter("coCeoName");
-		String coAddress = request.getParameter("zipCode") + "$" + request.getParameter("address1") + "$" + request.getParameter("address2");
+		String coAddress =request.getParameter("address1") + "$" + request.getParameter("address2") + "$" + request.getParameter("zipCode"); 
 		String coPhone = request.getParameter("coPhone");
 		String coPax = request.getParameter("coPax");
 		String coSectors = request.getParameter("coSectors");
