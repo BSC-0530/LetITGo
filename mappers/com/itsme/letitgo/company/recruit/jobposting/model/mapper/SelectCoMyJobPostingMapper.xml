@@ -110,12 +110,8 @@
 		, JP.JOB_NO
 		, JP.JOB_POST_DEADLINE
 		, JP.JOB_POST_CONTENTS
-		<if test="jobPostMinExperience != null">
 		, JP.JOB_POST_MIN_EXPERIENCE
-		</if>
-		<if test="jobPostMaxExperience != null">
 		, JP.JOB_POST_MAX_EXPERIENCE
-		</if>
 		)
 		VALUES
 		(
@@ -125,12 +121,8 @@
 		, #{ jobNo }
 		, #{ jobPostDeadLine }
 		, #{ jobPostContents }
-		<if test="jobPostMinExperience != null">
 		, #{ jobPostMinExperience }
-		</if>
-		<if test="jobPostMaxExperience != null">
 		, #{ jobPostMaxExperience }
-		</if>
 		
 		)
 		<selectKey keyColumn="JOB_POST_NO" keyProperty="jobPostNo" resultType="_int" order="AFTER">
@@ -171,7 +163,7 @@
 		, #{ jobPostNo }
 		)
 	</insert>
-	
+	<!-- 공고 수정 -->
 	<select id="updateRecruit" parameterType="_int" resultMap="resultMyJobPosting">
 		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#updateRecruit() */
 		  	   JP.JOB_POST_NO
@@ -186,6 +178,7 @@
 		  FROM TBL_JOB_POSTING JP
 		 WHERE JP.JOB_POST_NO = #{ jobPostNo }
 	</select>
+
 
 	
 	

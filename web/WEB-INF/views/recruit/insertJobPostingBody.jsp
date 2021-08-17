@@ -89,8 +89,7 @@
                                 </div>
                                 <label id="titleFont">경력</label><br>
                                 <select name="jobPostMinExperience" >
-                                	<option value="" selected>최소경력 선택</option>
-                                	<option value="0">신입</option>
+                                	<option value="0" selected  >신입</option>
                                 	<c:forEach var="index" begin="1" end="9" step="1">
                                     <option value="${ index }"><c:out value="${ index }년"></c:out></option>
                                     </c:forEach>
@@ -98,21 +97,16 @@
                                 </select>
                                 <label>~</label>
                                 <select name="jobPostMaxExperience" >
-                                    <option value="" selected>최대경력 선택</option>
                                     <option value="0">신입</option>
                                 	<c:forEach var="index" begin="1" end="9" step="1">
                                     <option value="${ index }"><c:out value="${ index }년"></c:out></option>
                                     </c:forEach>
-                                    <option value="10">10년 이상</option>
+                                    <option value="10" selected  >10년 이상</option>
                                 </select>
                                 <br><br>
                                 <label style="font-size: 10px">
-                                	1) 최소 경력만 입력하는 경우 n년 이상 경력자를 구하는 글로 게시됩니다.<br>
-                                	2) 최대 경력만 입력하는 경우 n년 이하 경력자를 구하는 글로 게시됩니다.<br>
-                                	3) 최소경력과 최대 경력이 같은 경우 n년 이상 경력자를 구하는 글로 게시됩니다. <br>
-                                	4) 최소경력과 최대경력의 위치가 바뀔 경우 자동으로 높은 수가 최대경력으로 입력됩니다.<br>
-                                	5) 최대경력이 0인경우 경력무관으로 게시됩니다.<br>
-                                	6) 경력을 입력하지 않을 경우 경력무관으로 게시됩니다.
+                                	1) 최소경력과 최대 경력이 같은 경우 n년 이상 경력자를 구하는 글로 게시됩니다. <br>
+                                	2) 신입 ~ 10년차 이상 경력무관으로 게시됩니다.
                                 </label>
                             </div>
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">
@@ -146,6 +140,10 @@
 		</div>
 	</form>
 	<script>
+	
+	function() {
+		action="${ pageContext.servletContext.contextPath }/recruit/insert" method="post"
+	}
 		
 		$('#preview').click(function(){
 			

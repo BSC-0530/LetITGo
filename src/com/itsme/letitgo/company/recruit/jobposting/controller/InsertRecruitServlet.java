@@ -71,53 +71,21 @@ public class InsertRecruitServlet extends HttpServlet {
 		
 		
 		// 전달받은 경력에 입력된 value에 따라 db에 다르게 저장해주기 위해 예외처리
-		String minExperience = request.getParameter("jobPostMinExperience");
-		String maxExperience = request.getParameter("jobPostMaxExperience");
-	
-		// 최소경력이 최대경력보다 큰 경우 바꿔서 저장하기 위해 파싱 한 후 대소비교
-		if(Integer.parseInt(minExperience) > Integer.parseInt(maxExperience)) {
+		
+		// 최소 경력과 최대경력이 널이 아닐때만 변수에 초기화 하기
+		
+		int minExperience = Integer.parseInt(request.getParameter("jobPostMinExperience"));
+		int maxExperience = Integer.parseInt(request.getParameter("jobPostMaxExperience"));
+		if(minExperience > maxExperience) {
 			// 대소 비교 후 값 1,2  의 값 바꿔 저장
-			String temp = "";
+			int temp = 0;
 			temp = minExperience;
 			minExperience = maxExperience;
 			maxExperience = temp;
 		} 
-		// 전달받은 경력이 둘다 없을 경우 상관없음으로 저장하기 위해
-		if(minExperience == null && maxExperience == null) {
-			dto.setJobPostMinExperience("경력무관");
-		} else {
-			
-			// 최소만 입력
-			if(maxExperience == null) {
-				// min이 0인경우
-				if(minExperience == "0") {
-					// 최소만 선택 -> 최소가 0인경우
-					dto.setJobPostMinExperience("경력무관");
-				} else {
-					dto.setJobPostMinExperience(minExperience);
-				}
-			// 최대만 입력
-			} else if(minExperience == null) {
-				// max가 0인경우
-				if(maxExperience == "0") {
-					dto.setJobPostMinExperience("신입");
-				} else {
-					dto.setJobPostMaxExperience(maxExperience);
-				}
-			} else {
-				// min과 max가 같은 경우
-				if(minExperience == maxExperience) {
-					dto.setJobPostMinExperience(minExperience);
-					
-				// 정상적으로 min과 max를 모두 입력 
-				} else {
-					dto.setJobPostMinExperience(minExperience);
-					dto.setJobPostMaxExperience(maxExperience);
-				}
-			}
-		}
-		
-		
+		dto.setJobPostMinExperience(minExperience);
+		dto.setJobPostMaxExperience(maxExperience);
+	
 		SelectCoMyJobPostingService service = new SelectCoMyJobPostingService();
 		
 		

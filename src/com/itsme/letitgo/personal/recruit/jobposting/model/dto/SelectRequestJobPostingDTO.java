@@ -1,74 +1,76 @@
 package com.itsme.letitgo.personal.recruit.jobposting.model.dto;
 
+import java.util.List;
+
 public class SelectRequestJobPostingDTO {
 	
 	private int jobNo;
-	private int career;
-	private int skillsNo;
-	private String area;
-	
-	private int arrayNo;
+	private String skills;
+	private int experience;
+	private List<String> areaList;
 
 	
-	public SelectRequestJobPostingDTO() {};
-	
-	public SelectRequestJobPostingDTO(int jobNo, int career, int skillsNo, String area, int arrayNo) {
+	public SelectRequestJobPostingDTO() {}
+
+
+	public SelectRequestJobPostingDTO(int jobNo, String skills, int experience, List<String> areaList) {
 		super();
 		this.jobNo = jobNo;
-		this.career = career;
-		this.skillsNo = skillsNo;
-		this.area = area;
-		this.arrayNo = arrayNo;
+		this.skills = skills;
+		this.experience = experience;
+		this.areaList = areaList;
 	}
+
 
 	public int getJobNo() {
 		return jobNo;
 	}
 
+
 	public void setJobNo(int jobNo) {
 		this.jobNo = jobNo;
 	}
 
-	public int getCareer() {
-		return career;
+
+	public String getSkills() {
+		return skills;
 	}
 
-	public void setCareer(int career) {
-		this.career = career;
+
+	public void setSkills(String skills) {
+		this.skills = skills;
 	}
 
-	public int getSkillsNo() {
-		return skillsNo;
+
+	public int getExperience() {
+		return experience;
 	}
 
-	public void setSkillsNo(int skillsNo) {
-		this.skillsNo = skillsNo;
+
+	public void setExperience(int experience) {
+		this.experience = experience;
 	}
 
-	public String getArea() {
-		return area;
+
+	public List<String> getAreaList() {
+		return areaList;
 	}
 
-	public void setArea(String area) {
-		this.area = area;
+
+	public void setAreaList(List<String> areaList) {
+		this.areaList = areaList;
 	}
 
-	public int getArrayNo() {
-		return arrayNo;
-	}
-
-	public void setArrayNo(int arrayNo) {
-		this.arrayNo = arrayNo;
-	}
 
 	@Override
 	public String toString() {
-		return "SelectRequestJobPostingDTO [jobNo=" + jobNo + ", career=" + career + ", skillsNo=" + skillsNo
-				+ ", area=" + area + ", arrayNo=" + arrayNo + "]";
+		return "SelectRequestJobPostingDTO [jobNo=" + jobNo + ", skills=" + skills + ", experience=" + experience
+				+ ", areaList=" + areaList + "]";
 	}
-	
-	
-	
+
+
 	
 
+
+	
 }

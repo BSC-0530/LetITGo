@@ -104,6 +104,14 @@
 		<result property="coComName" column="CO_COM_NAME"/>
 	</resultMap>
 	
+<!-- 	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectRequestJobPostingDTO" id="searchJobPostingResultMap"> -->
+<!-- 		<result property="jobNo" column="JOB_NO"/> -->
+<!-- 		<result property="skills" column="SKILLS_NAME"/> -->
+<!-- 		<result property="experience" column="JOB_POST_MIN_EXPERIENCE"/> -->
+<!-- 		<result property="areaList" column="CO_ADDRESS"/> -->
+<!-- 	</resultMap> -->
+	
+	<!-- 전체 조회 -->
 	<select id="selectAllJobPosting" resultMap="resultJobPosting">
 		SELECT
 			   JP.JOB_POST_NO
@@ -121,13 +129,57 @@
 <!-- 		     , A.MEM_FILE_PATH -->
 <!-- 		     , MEM_FILE_KINDS -->
 		  FROM TBL_JOB_POSTING JP
-		     , TBL_ATTACHMENT A
-		     , TBL_CO_MEMBER_ADD_INFO AI
-		     , TBL_JOB_FIELD JF
-		 WHERE JP.CO_MEM_NO = AI.CO_MEM_NO
-		   AND A.MEM_NO = JP.CO_MEM_NO
-		   AND JF.JOB_NO = JP.JOB_NO
-		   AND JP.JOB_POST_KINDS = '승인된공고'
+	      JOIN TBL_CO_MEMBER_ADD_INFO AI ON (JP.CO_MEM_NO = AI.CO_MEM_NO)
+	      JOIN TBL_JOB_FIELD JF ON (JP.JOB_NO = JF.JOB_NO)
+<!-- 	      JOIN TBL_ATTACHMENT A ON (JP.CO_MEM_NO = A.MEM_NO) -->
+		 WHERE JP.JOB_POST_KINDS = '승인된공고'
+	</select>
+	
+	<!-- 공고 전체 조회/ 조건조회 -->
+	<select id="selectOptionJobPosting" resultMap="resultJobPosting" parameterType="com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectRequestJobPostingDTO">
+	  <!-- 공고 조건 조회시 skills에 값이 담겨있다면 조회한 테이블을 생성 후 그 테이블의 조회 결과를 가지고 JOB_POSTING을 조회하기 위해 서브쿼리 이용 -->
+	  WITH /* com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper#selectOptionJobPosting()*/
+	       OPTION_JOB_POSTING 
+	    AS (SELECT 
+	               DISTINCT JP.JOB_POST_NO
+	             , JP.JOB_POST_TITLE
+	             , AI.CO_COM_NAME
+	             , JP.JOB_POST_MIN_EXPERIENCE
+	             , JP.JOB_POST_MAX_EXPERIENCE
+	             , JF.JOB_NAME
+	             , JP.JOB_NO
+	             , JP.JOB_POST_ENROLL_DATE
+	             , JP.JOB_POST_DEADLINE
+	             , JP.JOB_POST_APPLYING_KINDS
+	             , AI.CO_ADDRESS
+	             , JP.JOB_POST_CONTENTS
+	             , JP.JOB_POST_KINDS
+	          FROM TBL_JOB_POSTING JP
+	          JOIN TBL_CO_MEMBER_ADD_INFO AI ON (JP.CO_MEM_NO = AI.CO_MEM_NO)
+	          JOIN TBL_JOB_FIELD JF ON (JP.JOB_NO = JF.JOB_NO)
+	          JOIN TBL_JOB_POSTING_REQ_SKILLS RS ON (JP.JOB_POST_NO = RS.JOB_POST_NO)
+	          JOIN TBL_SKILLS S ON (S.SKILLS_NO = RS.SKILLS_NO)
+	          <if test="skills != null">
+	         WHERE LOWER(S.SKILLS_NAME) LIKE '%' ||  #{ skills } ||  '%'
+<!-- 	         WHERE LOWER(S.SKILLS_NAME) LIKE CONCAT('%', #{ skills }, + '%') -->
+	          </if>
+	       )  
+	SELECT 
+	       *
+	  FROM OPTION_JOB_POSTING JP
+	 WHERE JP.JOB_POST_KINDS = '승인된공고'
+	  <if test="jobNo > 0">
+	   AND JP.JOB_NO = #{ jobNo }
+	  </if>
+	  <if test="experience > 0">
+	   AND #{ experience } BETWEEN JP.JOB_POST_MIN_EXPERIENCE AND JP.JOB_POST_MAX_EXPERIENCE
+	  </if>
+	  <if test="areaList != null and areaList.size() != 0">
+	  <!-- 반복문 시작 시 AND( 로 시작 반복문 중간에 OR 추가 닫을떄 ) 추가 -->
+	  <foreach collection="areaList" item="areaList" open="AND(" separator="OR " close=")">
+	       JP.CO_ADDRESS LIKE '%' || #{ areaList } || '%'
+	  </foreach>
+	  </if>
 	</select>
 	
 	<select id="selectJpSkills" resultMap="resultJpSkills">

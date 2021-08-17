@@ -12,6 +12,7 @@ import com.itsme.letitgo.personal.recruit.jobposting.model.dto.BookmarkDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpResumeDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectApplyingYnDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectJobPostingDTO;
+import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectRequestJobPostingDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper;
 
 public class SelectJobPostingService {
@@ -154,6 +155,35 @@ public class SelectJobPostingService {
 		session.close();
 		
 		return result;
+	}
+
+	public Map<String, List<Object>> selectOptionJobPosting(SelectRequestJobPostingDTO dto) {
+
+		SqlSession session = getSqlSession();
+		
+		
+		SelectJobPostingMapper mapper = session.getMapper(SelectJobPostingMapper.class);
+		
+		List<Object> jpAndInfo = mapper.selectOptionJobPosting(dto);
+		
+		List<Object> jpSkills = mapper.selectJpSkills();
+		
+		List<Object> jobNameList = mapper.selectJobNames();
+		
+		List<Object> skillsList = mapper.selectSkills();
+		System.out.println(jobNameList);
+		
+		Map<String, List<Object>> jp = new HashMap<>();
+		jp.put("jpAndInfo", jpAndInfo);
+		jp.put("jpSkills", jpSkills);
+		jp.put("jobNameList", jobNameList);
+		jp.put("skillsList", skillsList);
+		
+		System.out.println("service jpAndInfo : " + jpAndInfo);
+		session.close();
+		
+		return jp;
+		
 	}
 
 
