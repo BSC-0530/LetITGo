@@ -79,7 +79,7 @@
 													<a href="#">회원정보</a>
 												</p>
 												<br><br>
-												<p>
+												<p> 
 													<a href="${ pageContext.servletContext.contextPath }/companyTestServlet">기업정보</a>
 												</p>
 												<br><br>
@@ -102,7 +102,7 @@
 												</p>
 												<br><br>
 												<p>
-													<a href="#">찜한 후보자</a>
+													<a href="${ pageContext.servletContext.contextPath }/company/scout/wish/select">찜한 후보자</a>
 												</p>
 												<br><br>
 												<p>
@@ -120,7 +120,7 @@
 <!-- 옆에 넣으려면 여기에 넣어야함 -->
 <!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
 				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-<form action="${ pageContext.servletContext.contextPath }/company/info/change/servlet" method="get">
+<form action="${ pageContext.servletContext.contextPath }/company/info/change/servlet" method="post" accept-charset="utf-8">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_listing_tabs_wrapper">

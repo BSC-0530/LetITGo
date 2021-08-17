@@ -2,6 +2,7 @@ package com.itsme.letitgo.company.scout.model.mapper;
 
 import java.util.List;
 
+import com.itsme.letitgo.company.recruit.applicant.model.dto.SkillsDTO;
 import com.itsme.letitgo.company.scout.model.dto.BrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.BrosweSimplelDTO;
 import com.itsme.letitgo.company.scout.model.dto.CandidateRegisterSkillsDTO;
@@ -71,6 +72,8 @@ public interface CompanyScoutMapper {
 
 //	찜하기 리스트 삭제
 	int deleteWishList(int resumeNo);
+
+	List<SkillsDTO> selectSkillsName();
 
 //	List<SkillsAndCategoryDTO> skillsSelect();
 

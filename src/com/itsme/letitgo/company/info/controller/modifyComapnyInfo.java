@@ -19,9 +19,17 @@ public class modifyComapnyInfo extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		response.setCharacterEncoding("UTF-8");
 		
+		String coNo = request.getParameter("requestcoNo");
+		String name = request.getParameter("requestComName");
+		String ceo = request.getParameter("requestcoCeoName");
+		String sectors = request.getParameter("requestcoSectors");
+		String status = request.getParameter("requestcoStatus");
+		String address = request.getParameter("requestcoAddress");
+		String website = request.getParameter("requestWebSite");
 		
-		
+
 	}
 
 }

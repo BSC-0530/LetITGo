@@ -10,7 +10,6 @@
 <meta name="keywords" content="Job Pro" />
 <meta name="author" content="" />
 <meta name="MobileOptimized" content="320" />
-<!--srart theme style -->
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/animate.css" />
 <link rel="stylesheet" type="text/css"
@@ -35,15 +34,16 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
 <link rel="shortcut icon" type="image/png"
 	href="${ pageContext.servletContext.contextPath }/resources/image/header/favicon.ico" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
-	function checkValue() {
+	function checkValue2() {
 
 		var form = document.coMemberRegist;
 
 		var re = /^[a-zA-Z0-9]{4,12}$/; // 아이디가 적합한지 검사할 정규식
 		var re2 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*++-])(?=.*[0-9]).{8,18}$/; // 패스워드가 적합한지 검사할 정규식
 		var re3 = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/; //핸드폰 번호 정규식
-		var re4 = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/; // 전화번호/팩스번호 입력하는 정규식
+		var re4 = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/; // 전화번호/팩스번호 입력하는 정규식
 		var re5 = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/; //이름 정규식
 
 		var cmemId = document.getElementById("cmemId");
@@ -53,7 +53,7 @@
 		var ccoPhone = document.getElementById("ccoPhone");
 		var ccoPax = document.getElementById("ccoPax");
 
-		if (!check(re, cmemId, "아이디는 4~12자의 영문 대소문자와 숫자로 입력해주세요")) {
+		if (!check2(re, cmemId, "아이디는 4~12자의 영문 대소문자와 숫자로 입력해주세요")) {
 			return false;
 		}
 
@@ -62,7 +62,8 @@
 			return false;
 		}
 
-		if (!check(re2, cmemPwd, "패스워드는 8~18자의 영문 대소문자, 숫자, 특수문자를 모두 포함시켜 입력해주세요")) {
+		if (!check2(re2, cmemPwd,
+				"패스워드는 8~18자의 영문 대소문자, 숫자, 특수문자를 모두 포함시켜 입력해주세요")) {
 			return false;
 		}
 
@@ -71,25 +72,25 @@
 			return false;
 		}
 
-		if (!check(re5, cmemName, "이름의 양식이 맞지 않습니다. 다시 입력해주세요.")) {
+		if (!check2(re5, cmemName, "이름의 양식이 맞지 않습니다. 다시 입력해주세요.")) {
 			return false;
 		}
 
-		if (!check(re3, cmemPhone, "핸드폰 번호양식이 맞지 않습니다. 다시 입력해주세요.")) {
+		if (!check2(re3, cmemPhone, "핸드폰 번호양식이 맞지 않습니다. 다시 입력해주세요.")) {
 			return false;
 		}
 
-		if (!check(re4, ccoPhone, "전화번호의 양식이 맞지 않습니다. 다시 입력해주세요.")) {
+		if (!check2(re4, ccoPhone, "전화번호의 양식이 맞지 않습니다. 다시 입력해주세요.")) {
 			return false;
 		}
 
-		if (!check(re4, ccoPax, "팩스 번호의 양식이 맞지 않습니다. 다시 입력해주세요.")) {
+		if (!check2(re4, ccoPax, "팩스 번호의 양식이 맞지 않습니다. 다시 입력해주세요.")) {
 			return false;
 		}
 
 	}
 
-	function check(re, what, message) {
+	function check2(re, what, message) {
 		if (re.test(what.value)) {
 			return true;
 		}
@@ -98,17 +99,65 @@
 		what.focus();
 
 	}
-	
+
 	function openIdChk2() {
-		 
-		 window.name = "parentForm";
-		 window.open("/let/member/coporate/idCheck2", "chkForm", "width=500, height=300, resizable = no, scorllbars = no");
-		 
+
+		window.name = "parentForm";
+		window.open("/let/member/coporate/idCheck2", "chkForm",
+				"width=500, height=300, resizable = no, scorllbars = no");
+
 	}
 
-	function inputIdChk2(){
-	    document.coMemberRegist.idDuplication.value ="idUncheck";
-	}	
+	function inputIdChk2() {
+		document.coMemberRegist.idDuplication.value = "idUncheck";
+	}
+
+	function emailSend2() {
+
+		let cmemEmail = document.getElementById('cmemEmail').value;
+		
+		$.ajax({
+			type : "get",
+			url : "${ pageContext.servletContext.contextPath }/member/coperate/email",
+			data : {
+				cmemEmail: cmemEmail
+			},
+			success : function(data) {
+				alert('인증번호가 전송되었습니다.');
+
+			}
+		});
+
+	}
+
+	function checkEmailCode2() {
+
+		var certificationNumber = document
+				.getElementById("certificationNumber").value;
+
+		var form = document.coMemberRegist;
+
+		$.ajax({
+			type : "post",
+			url : "email",
+			data : {
+				certificationNumber : certificationNumber
+			},
+			success : function(data) {
+				if (data == "true") {
+					alert('이메일 인증에 성공하였습니다.');
+				} else {
+					alert('이메일 인증에 실패하였습니다.');
+					form.certificationNumber.value = "";
+					form.certificationNumber.focus();
+					return false;
+				}
+			},
+			error : function(xhr) {
+				alert('jsp : 이메일 인증에 오류가 있습니다.')
+			}
+		});
+	}
 </script>
 </head>
 <body>
@@ -132,8 +181,9 @@
 	</div>
 
 	<form
-		action="${ pageContext.servletContext.contextPath }/member/coporate/regist" id="coMemberRegist"
-		name="coMemberRegist" onSubmit="return checkValue();" method="post">
+		action="${ pageContext.servletContext.contextPath }/member/coporate/regist"
+		id="coMemberRegist" name="coMemberRegist"
+		onSubmit="return checkValue2();" method="post">
 		<div class="register_section">
 			<div class="register_tab_wrapper">
 				<div class="container">
@@ -148,78 +198,108 @@
 								</ul>
 
 								<div class="tab-content">
-									<div class="tab-pane fade in active register_left_form"
-										id="contentOne-1">
+									<div id="contentOne-1">
 										<div class="jp_regiter_top_heading">
 											<p>필수항목 *</p>
 										</div>
 										<div class="row">
-											<div style="width: 460px;" class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" maxlength = "50" name="cmemId" id="cmemId" maxlength="13"  placeholder="아이디 *" onkeydown="onputIdChk2()" required>
-                                       	   		 <input style="width:120px; height:50px; border-radius: 10px;" type="button" value="중복확인" onclick="openIdChk2()">
-                                           		 <input type="hidden" name="idDuplication" value="idUncheck"> 
-                                           		 <input style="margin-top: 30px; width:460px;" type="email"
-													name="cmemEmail" id="cmemEmail" placeholder="이메일*" required>
+											<div style="width: 460px;"
+												class="form-group col-md-6 col-sm-6 col-xs-12">
+												<input
+													style="width: 430px; height: 60px; border-radius: 5px;"
+													type="text" maxlength="50" name="cmemId" id="cmemId"
+													maxlength="13" placeholder="아이디 *"
+													onkeydown="inputIdChk2()" required> <input
+													style="width: 120px; height: 50px; border-radius: 10px;"
+													type="button" value="중복확인" onclick="openIdChk2()">
+												<input type="hidden" name="idDuplication" value="idUncheck">
+												<input
+													style="width: 430px; height: 60px; border-radius: 5px; margin-top: 30px;"
+													type="email" name="cmemEmail" id="cmemEmail"
+													placeholder="이메일*" required>
 												<button
 													style="width: 120px; height: 50px; border-radius: 10px;"
-													type="submit">인증번호발송</button>
-													<input style="margin-top: 30px;" type="text"
-													name="cmemEmailNum" id="cmemEmailNum" placeholder="인증번호 *"
-													required>
+													id="cemailcheck" onclick="emailSend2()" type="button">인증번호발송</button>
+												<input
+													style="margin-top: 30px; width: 430px; height: 60px; border-radius: 5px;"
+													type="text" name="certificationNumber" id="certificationNumber"
+													placeholder="인증번호 *" required>
 												<button
 													style="width: 120px; height: 50px; border-radius: 10px;"
-													type="submit">인증번호확인</button>													
+													id="certificationBtn" type="button"
+													onclick="checkEmailCode2();">인증하기</button>
+												<input type="hidden" id="certificationYn" value="false">
 											</div>
 
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
 
-												<input type="password" name="cmemPwd" id="cmemPwd"
+												<input
+													style="width: 430px; height: 60px; magin-top: 30px; border-radius: 5px;"
+													type="password" name="cmemPwd" id="cmemPwd"
 													placeholder=" 비밀번호*" required>
 											</div>
 
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="password" name="cmemPwd2" id="cmemPwd2" value=""
+												<input
+													style="width: 430px; height: 60px; magin-left: 20px; border-radius: 5px;"
+													type="password" name="cmemPwd2" id="cmemPwd2" value=""
 													placeholder="비밀번호 재입력*" required>
 											</div>
 
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="cmemName" id="cmemName"
+												<input
+													style="width: 430px; height: 60px; border-radius: 5px;"
+													type="text" name="cmemName" id="cmemName"
 													placeholder="담당자 이름*" required>
 											</div>
 
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="cmemPhone" id="cmemPhone"
+												<input
+													style="width: 430px; height: 60px; border-radius: 5px;"
+													type="text" name="cmemPhone" id="cmemPhone"
 													placeholder="담당자 전화번호  ex) 010-1234-5678*" required>
 											</div>
 
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="coNo" id="coNo"
-													placeholder="사업자등록번호*" required>
+												<input
+													style="width: 430px; height: 60px; border-radius: 5px;"
+													type="text" name="coNo" id="coNo" placeholder="사업자등록번호*"
+													required>
 											</div>
 
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="coComName" id="coComName"
+												<input
+													style="width: 430px; height: 60px; border-radius: 5px;"
+													type="text" name="coComName" id="coComName"
 													placeholder="기업 이름*" required>
 											</div>
 
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="coCeoName" id="coCeoName"
-													placeholder="대표자 이름 " required>
+												<input
+													style="width: 430px; height: 60px; border-radius: 5px;"
+													type="text" name="coCeoName" id="coCeoName"
+													placeholder="대표자 이름 *" required>
 											</div>
 
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="coSectors" id="coSectors"
+												<input
+													style="width: 430px; height: 60px; border-radius: 5px;"
+													type="text" name="coSectors" id="coSectors"
 													placeholder="업종 *" required>
 											</div>
 
 											<div style="width: 460px;"
 												class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="coStatus" id="coStatus"
+												<input
+													style="width: 430px; height: 60px; border-radius: 5px;"
+													type="text" name="coStatus" id="coStatus"
 													placeholder="업태* " required>
 											</div>
 
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="zipCode" id="zipCode" id="zipCode"
+												<input
+													style="width: 430px; height: 60px; magin-left: 20px; border-radius: 5px;"
+													type="text" name="zipCode" id="zipCode" id="zipCode"
 													readonly placeholder="우편번호 *"> <input
 													style="width: 120px; border: 2px solid black; height: 50px; border-radius: 10px;"
 													type="button" value="검색" class="btn btn-yg"
@@ -227,28 +307,38 @@
 											</div>
 
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="address1" id="address1"
+												<input
+													style="width: 430px; height: 60px; magin-left: 20px; border-radius: 5px;"
+													type="text" name="address1" id="address1"
 													placeholder="주소 *" readonly>
 											</div>
 
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="address2" id="address2"
+												<input
+													style="width: 430px; height: 60px; magin-left: 20px; border-radius: 5px;"
+													type="text" name="address2" id="address2"
 													placeholder="상세주소 *">
 											</div>
 
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="coWebsite" id="coWebsite"
-													placeholder="웹사이트 주소 *">
+												<input
+													style="width: 430px; height: 60px; magin-left: 20px; border-radius: 5px;"
+													type="text" name="coWebsite" id="coWebsite"
+													placeholder="웹사이트 주소">
 											</div>
 
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="coPhone" id="coPhone"
+												<input
+													style="width: 430px; height: 60px; magin-left: 20px; border-radius: 5px;"
+													type="text" name="coPhone" id="coPhone"
 													placeholder="기업 전화번호 ex) 02-0000-0000">
 											</div>
 
 											<div style="width: 460px;"
 												class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="coPax" id="coPax"
+												<input
+													style="width: 430px; height: 60px; magin-left: 20px; border-radius: 5px;"
+													type="text" name="coPax" id="coPax"
 													placeholder="기업 팩스번호 ex) 02-0000-0000">
 											</div>
 
@@ -256,68 +346,41 @@
 												<h2>회사소개글</h2>
 												<div
 													class="jp_contact_inputs_wrapper jp_contact_inputs4_wrapper">
-													<textarea style="width: 207%; height: 500px;"
+													<textarea style="width: 207%; height: 200px;"
 														name="coIntro" id="coIntro" rows="6" cols="10"
 														placeholder="회사소개 *" required></textarea>
+
 												</div>
-											</div>
-
-
-
-											<!-- 디자인을 위해서 공간확보 -->
-											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input style="visibility: hidden;" value=""
-													placeholder="">
-											</div>
-											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input style="visibility: hidden;"   value=""
-													placeholder="">
-											</div>
-											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input style="visibility: hidden;"   value=""
-													placeholder="">
-											</div>
-											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input style="visibility: hidden;"   value=""
-													placeholder="">
-											</div>
-											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input style="visibility: hidden;"   value=""
-													placeholder="">
-											</div>
-											<!-- 디자인을 위해서 공간확보 -->
-
-
-
-											<div
-												class="form-group col-md-6 col-sm-6 col-xs-12 custom_input">
-												<input type="file" name="coLogo" id="coLogo" required>
-												<p></p>
-												<p>회사 로고</p>
-											</div>
-
-											<div
-												class="form-group col-md-6 col-sm-6 col-xs-12 custom_input">
-												<input type="file" name="coRepresentativImage" id="coRepresentativImage" required>
-												<p></p>
-												<p>회사 대표이미지</p>
-											</div>
-
-											<div
-												class="form-group col-md-6 col-sm-6 col-xs-12 custom_input">
-												<input type="file" name="businessRegistration" id="businessRegistration" required>
-												<p></p>
-												<p>사업자 등록증</p>
+												<div
+													class="form-group col-md-6 col-sm-6 col-xs-12 custom_input">
+													<input type="file" name="coLogo" id="coLogo" required>
+													<p></p>
+													<p>회사 로고</p>
+													<input type="file" name="coRepresentativImage"
+														id="coRepresentativImage" required>
+													<p></p>
+													<p>회사 대표이미지</p>
+													<input type="file" name="businessRegistration"
+														id="businessRegistration" required>
+													<p></p>
+													<p>사업자 등록증</p>
+												</div>
+												<div
+													class="form-group col-md-6 col-sm-6 col-xs-12 custom_input">
+												</div>
+												<div
+													class="form-group col-md-6 col-sm-6 col-xs-12 custom_input">
+												</div>
 											</div>
 
 											<div
 												class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 												<div class="check-box text-center">
 													<input type="checkbox" name="shipping-option"
-														id="account-option_1" required> &ensp; <label
-														for="account-option_1"> LetItGo 웹사이트 <a href="#"
-														class="check_box_anchr">이용약관</a> 에 동의합니다.
-													</label>
+														id="account-option_1" required> &ensp; <span>
+														LetItGo 웹사이트 <a href="#" class="check_box_anchr">이용약관</a>
+														에 동의합니다.
+													</span>
 												</div>
 											</div>
 										</div>
