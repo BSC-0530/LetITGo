@@ -38,6 +38,7 @@ public class ModifyPersonalInfoServlet extends HttpServlet {
 		mdMemberDTO.setMemName(personalName);
 		mdMemberDTO.setMemPhone(personalPhone);
 		
+		
 		PersonalInfoService personalInfoService = new PersonalInfoService();	//service를 생성
 		int result = personalInfoService.modifyPersonalInfo(mdMemberDTO);		//service에 modifypersonalInfo 메소드를 담는다
 		

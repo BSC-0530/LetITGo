@@ -29,6 +29,7 @@ public class ProductListServlet extends HttpServlet {
 			request.setAttribute("productList", productList);
 		// product라는 name 속성 값을 value로 지정한다.
 		
+			
 		}
 		request.getRequestDispatcher(path).forward(request, response);
 	}

@@ -13,6 +13,7 @@ public interface PersonalInfoMapper {
 
 	int selectinterviewProposalNum(/* 개인회원번호 */);
 
+	
 	int selectApplicationCompletedNum(/* 개인회원번호 */);
 
 	int selectApplicationCanceledNum(/* 개인회원번호 */);

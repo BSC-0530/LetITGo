@@ -18,6 +18,7 @@ public class PersonalInfoService {
 		
 		PersonalInfoMapper mapper = session.getMapper(PersonalInfoMapper.class);
 		
+		
 		List<RestrictedCompanyDTO> restrictedCompanyList = mapper.selectRectrictedCompany(memNo);
 		
 		session.close();

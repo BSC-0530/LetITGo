@@ -17,6 +17,7 @@ public class ModifyMemberDTO implements java.io.Serializable{
 	
 	public ModifyMemberDTO () {}
 
+	
 	public ModifyMemberDTO(int memNo, String memId, String memPwd, String memName, String memPhone, String memKinds,
 			String email, Date memEnrollDate, String memEntYn, Date memEntDate) {
 		super();

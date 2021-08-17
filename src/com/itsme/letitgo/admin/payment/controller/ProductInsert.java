@@ -21,6 +21,7 @@ public class ProductInsert extends HttpServlet {
 	}
 
 	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");			//UTF-8 로 인코딩

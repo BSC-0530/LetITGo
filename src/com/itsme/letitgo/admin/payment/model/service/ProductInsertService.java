@@ -17,6 +17,7 @@ public class ProductInsertService {
 		
 		int result = adminPaymentMapper.productInsert(productListDTO);
 		
+		
 		if(result > 0) {
 			session.commit();
 		}else {

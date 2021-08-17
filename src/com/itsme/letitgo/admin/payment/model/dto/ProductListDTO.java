@@ -1,5 +1,6 @@
 package com.itsme.letitgo.admin.payment.model.dto;
 
+
 public class ProductListDTO implements java.io.Serializable{
 
 	private int productNo;

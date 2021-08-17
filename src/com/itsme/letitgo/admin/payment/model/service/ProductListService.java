@@ -19,6 +19,7 @@ public class ProductListService {
 		
 		List<ProductListDTO> productList = adminPaymentMapper.productList();
 		//List 할 때 이렇게 쓴다. 기억하자
+		
 		session.close();
 		
 		return productList;

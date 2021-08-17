@@ -10,6 +10,7 @@
 		<result property="payPrice" column="PAY_PRICE"/>
 	</resultMap>
 	
+	
 	<resultMap type="com.itsme.letitgo.admin.payment.model.dto.AdminRefundHistoryDTO" id="adminRefundHistoryResultMap">
 		<id property="payChangeNo" column="PAY_CHANGE_NO"/>
 		<result property="payNo" column="PAY_NO"/>
