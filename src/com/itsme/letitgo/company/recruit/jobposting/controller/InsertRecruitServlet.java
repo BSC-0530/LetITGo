@@ -28,16 +28,12 @@ public class InsertRecruitServlet extends HttpServlet {
 		
 		
 		request.setAttribute("jobNameList", recruitOption.get("jobNameList"));
-		request.setAttribute("skillsCategoryList", recruitOption.get("skillsCategoryList"));
+		request.setAttribute("skillsCategory", recruitOption.get("skillsCategoryList"));
 		request.setAttribute("skillsList", recruitOption.get("skillsList"));
 	
 		
 		String path = "/WEB-INF/views/recruit/insertJobPosting.jsp";
 		request.getRequestDispatcher(path).forward(request, response);
-		
-		
-		
-		
 		
 		
 		

@@ -19,9 +19,59 @@
         }
 
     </style>
+    <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+	$(function() {
+		var select = "<option>선택좀해주세용</option>";
+		$("#skillsCategory").change(function() {
+			if($("#skillsCategory").val() == "") {
+			$("#skills").find("option").remove().end().append(select);
+			
+			} else {
+				categoryChange($(this).val());
+			}
+			
+		});
+		
+		function categoryChange() {
+			
+			var categoryNo = $("#skillsCategory option:selected").val();
+			
+			$.ajax({
+				type: "post",
+				url: "${ pageContext.servletContext.contextPath }/fromCategory/getSkills/select",
+				data: { categoryNo : categoryNo },
+				dataType : "json",
+				success: function(data) {
+					alert(data[1].skillsName)
+					alert(data.length)
+					
+					if(data.length >= 1) {
+						$("#skills").find("option").remove().end();
+						
+						for(var i = 0; i < data.length; i++) {
+							$("#skills").append("<option value=" + data[i].skillsNo + ">" + data[i].skillsName + "</option>");
+
+						};
+					} else {
+						$("#skills").find("option").remove().end().append(select);
+					}
+				},
+				error:function(x,o,e){
+					var msg = "페이지 호출 중 에러 발생 \n" + x.status + " : " + o + " : " + e; 
+						alert(msg);
+				}
+			});
+			
+		}
+		
+	});
+
+
+    </script>
 </head>
 <body>
-
 	<div class="jp_tittle_main_wrapper">
             <div class="jp_tittle_img_overlay"></div>
             <div class="container">
@@ -45,13 +95,14 @@
                 </div>
             </div>
         </div>
-        <form action="${ pageContext.servletContext.contextPath }/recruit/insert" method="post">
+
+        <form id="insertForm"action="${ pageContext.servletContext.contextPath }/recruit/insert" method="post">
             <!-- jp ad post Wrapper Start -->
             <div class="jp_adp_main_section_wrapper">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" > 
-                            
+                        
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">
                                 <div class="jp_adp_form_wrapper" >
                                     <label id="titleFont"> 공고 제목</label>
@@ -73,17 +124,31 @@
                                     </c:forEach>
                                 </div>
                             </div>
+<!--                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%; margin-top: 30px;"> -->
+<!--                                 <div class="jp_adp_form_wrapper"> -->
+<!--                                 </div> -->
+<!--                                 <label id="titleFont">요구 기술</label><br> -->
+<%--                                 <c:forEach var="skills" items="${ requestScope.skillsList }" varStatus="status"> --%>
+<%-- 	                                <input type="checkBox" name="skills" id="s${ status.index }" value="${ skills.skillsNo }"> --%>
+<%-- 	                                <label for="s${ status.index }"><c:out value="${ skills.skillsName }"></c:out></label> --%>
+<%--                                 </c:forEach> --%>
+<!--                             </div> -->
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%; margin-top: 30px;">
                                 <div class="jp_adp_form_wrapper">
                                 </div>
-                                <label id="titleFont">요구 기술</label><br>
-                                <c:forEach var="skills" items="${ requestScope.skillsList }" varStatus="status">
-	                                <input type="checkBox" name="skills" id="s${ status.index }" value="${ skills.skillsNo }">
-	                                <label for="s${ status.index }"><c:out value="${ skills.skillsName }"></c:out></label>
+                                <label id="titleFont">기술</label><br>
+                                <label>카테고리</label>
+                                <select name="skillsCategory" id="skillsCategory">
+                                <option value="">전체</option>
+                                <c:forEach items="${ requestScope.skillsCategory }" var="categoryList">
+                                	<option value="${ categoryList.categoryNo }"><c:out value="${ categoryList.categoryName }"/>
                                 </c:forEach>
-                                
+                                </select>
+                                <label>기술</label>
+                                <select name="skills" id="skills">
+                                <option>전체</option>
+                                </select>
                             </div>
-                            
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%; margin-top: 30px;">
                                 <div class="jp_adp_form_wrapper">
                                 </div>
@@ -101,7 +166,7 @@
                                 	<c:forEach var="index" begin="1" end="9" step="1">
                                     <option value="${ index }"><c:out value="${ index }년"></c:out></option>
                                     </c:forEach>
-                                    <option value="10" selected  >10년 이상</option>
+                                    <option value="10" selected>10년 이상</option>
                                 </select>
                                 <br><br>
                                 <label style="font-size: 10px">
@@ -134,49 +199,13 @@
                                 <button class="recruit" id="preview">미리보기</button>
                                 <button type="button" onClick="history.go(-1)">뒤로가기</button>
                         </div>
+                        
                     </div>
                 </div>
             </div>
 		</div>
 	</form>
-	<script>
-	
-	function() {
-		action="${ pageContext.servletContext.contextPath }/recruit/insert" method="post"
-	}
-		
-		$('#preview').click(function(){
-			
-			window.location.href()
-			
-			
-		});
-		
-		document.getElementId('jobPostTitle').addEvenetListener('keyup', checkByte);
-		var countSpan = document.getElementById('count');
-		var message = "";
-		var MAX_MESSAGE_BYTE = 30;
-		document.getElementById('max-count').innerHTML = MAX_MESSAGE_BYTE.toString();
-		
-		function count(message) {
-			var totalByte = 0;
-			
-			for(var index = 0, lenghth = message.leght; index < length; index++) {
-				var currentByte = message.charCodeAt(index);
-				(currentByte > 128)? totalByte += 2: totalByte++;
-			}
-		}
-		function checkByte(event) {
-			const totalByte = count(event.target.value);
-			if(totalByte <= MAX_MESSAGE_BYTE) {
-				countSpan.innerText = totalByte.toString();
-				
-			} else {
-				alert(MAX_MESSAGE_BYTE + "바이트까지 전송 가능합니다.");
-				countSpan.innerText = count(message).toString();
-				event.target.value = message;
-			}
-		}
-        </script>
-    </body>
+</body>
+
+   
 </html>
