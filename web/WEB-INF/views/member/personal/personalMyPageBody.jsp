@@ -84,7 +84,7 @@
 												<br> <br>
 												<p><a href="${ pageContext.servletContext.contextPath }/personal/apply/select">지원 현황</a></p>
 												<br> <br>
-												<p><a href="${ pageContext.servletContext.contextPath }">스카우트현황</a></p>
+												<p><a href="${ pageContext.servletContext.contextPath }/scout/myPageList/servlet">스카우트현황</a></p>
 												<br> <br>
 												<p><a href="${ pageContext.servletContext.contextPath }">회원탈퇴</a></p>
 												<br> <br>

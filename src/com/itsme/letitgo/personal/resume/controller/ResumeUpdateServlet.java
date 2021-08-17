@@ -157,7 +157,6 @@ public class ResumeUpdateServlet extends HttpServlet {
 		
 		out.print(redirectText.toString());
 		out.flush();
-		out.close();
 		
 		
 		

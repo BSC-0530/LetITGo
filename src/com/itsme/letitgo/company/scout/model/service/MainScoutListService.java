@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.itsme.letitgo.company.recruit.applicant.model.dto.SkillsDTO;
 import com.itsme.letitgo.company.scout.model.dto.BrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.BrosweSimplelDTO;
 import com.itsme.letitgo.company.scout.model.dto.CandidateRegisterSkillsDTO;
@@ -375,6 +376,18 @@ public class MainScoutListService {
 		session.close();
 		
 		return result;
+	}
+	public List<SkillsDTO> selectSkillsName() {
+		
+		SqlSession session = getSqlSession();
+		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
+		
+		List<SkillsDTO> skillsList = mapper.selectSkillsName();
+		
+		
+		session.close();
+		
+		return skillsList;
 	}
 	
 

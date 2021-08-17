@@ -1,7 +1,6 @@
 package com.itsme.letitgo.company.scout.controller;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -15,8 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.google.gson.Gson;
+import com.itsme.letitgo.company.recruit.applicant.model.dto.SkillsDTO;
 import com.itsme.letitgo.company.scout.model.service.MainScoutListService;
-import com.itsme.letitgo.personal.resume.model.dto.SkillsAndCategoryDTO;
 
 /**
  * Servlet implementation class MainScoutList
@@ -30,17 +30,25 @@ public class MainScoutListServlet extends HttpServlet {
 		
 		MainScoutListService mainScoutListService = new MainScoutListService();
 		
-			Map<String, Object> scoutList= mainScoutListService.selectAllScoutList();
+		Map<String, Object> scoutList= mainScoutListService.selectAllScoutList();
 		
 		System.out.println("scoutListname : " + scoutList.get("scoutListName"));
 		System.out.println("scoutListSkills : " + scoutList.get("scoutListSkills"));
 		System.out.println("scoutCareea : " + scoutList.get("scoutCareea"));
 		
+		List<SkillsDTO> skillsList = new ArrayList<>();
+		
+		skillsList = mainScoutListService.selectSkillsName();
+		System.out.println("skillsList : " + skillsList);
+		
+		String jsonList = new Gson().toJson(skillsList);
+		System.out.println("jsonList : " + jsonList);
+		
 		request.setAttribute("mainScoutList", scoutList.get("scoutListName"));
 		request.setAttribute("scoutListSkills", scoutList.get("scoutListSkills"));
 		request.setAttribute("scoutCareea", scoutList.get("scoutCareea"));
 		
-		
+		response.setContentType("application/json; charset=UTF-8");
 		
 		String path="/WEB-INF/views/scout/scoutMainView.jsp";
 		
