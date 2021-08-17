@@ -115,7 +115,22 @@
 <!-- 		 WHERE A.POST_NO = #{ postNo } AND A.POST_KINDS='개인정보처리방침'       -->
 <!-- 	</select> -->
 		
-	<select id="selectDetailList"  resultMap="detailviewResultMap">
+<!-- 	<select id="selectDetailList"  resultMap="detailviewResultMap"> -->
+<!-- 		SELECT -->
+<!-- 		       A.POST_NO -->
+<!-- 		     , A.POST_TITLE -->
+<!-- 		     , A.POST_KINDS -->
+<!-- 		     , A.POST_CONTENT -->
+<!-- 		     , A.POST_REGISTRATION_DATE -->
+<!-- 		     , A.POST_MODIFIED_DATE -->
+<!-- 		     , A.POST_EXPOSURE_STATUS -->
+<!-- 		     , A.MANAGER_MEMBER_NO -->
+<!-- 		  FROM TBL_POST A -->
+<!-- 		 WHERE A.POST_NO = #{ postNo } AND A.POST_KINDS='개인정보처리방침' OR A.POST_KINDS='이용약관' -->
+<!--  		  AND A.POST_KINDS='개인정보처리방침'       --> 
+<!-- 	</select> -->
+
+		<select id="selectDetailList"  resultMap="detailviewResultMap">
 		SELECT
 		       A.POST_NO
 		     , A.POST_TITLE
@@ -127,9 +142,9 @@
 		     , A.MANAGER_MEMBER_NO
 		  FROM TBL_POST A
 		 WHERE A.POST_NO = #{ postNo }
-<!-- 		  AND A.POST_KINDS='개인정보처리방침'       -->
-	</select>
-
+		</select>
+		
+		
 	<!-- 수정하기 등록 -->	
 	<insert id="personalInfoPolicyModifyInsert">
 		INSERT
