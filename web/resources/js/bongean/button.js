@@ -1,9 +1,9 @@
 //window.onload = function() {
-//	if(document.getElementById("simpleBrowse")) {
-//		
-//		const $simpleBrowse = document.getElementById("simpleBrowse");
-//		$simpleBrowse.onclick = function() {
-//			location.href = "/simple/browse/select";
-//		}
+//	function inNumber(){
+//		alert('asdasd');
+////        if(event.keyCode<48 || event.keyCode>57){
+////           event.returnValue=false;
+//      }
 //	}
-//}
+//	
+	

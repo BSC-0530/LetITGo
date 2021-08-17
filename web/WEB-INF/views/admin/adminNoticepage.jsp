@@ -29,8 +29,7 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/style_II.css" />
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css" />
+<link rel="stylesheet" type="text/css" href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" charset="utf8"
@@ -149,8 +148,8 @@
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<br><br><br>
 							<h1>관리자 공지사항 조회</h1>
+<%-- 									<form action="${ pageContext.servletContext.contextPath }/notice/check/ynupdate" method="post" > --%>
 							<div class="jp_listing_tabs_wrapper">
-<%-- 									<form action="${ pageContext.servletContext.contextPath }/notice/check/ynupdate" method="get" > --%>
 								<table id="table_payment" class="hover cell-border stripe">
 									<thead>
 										<tr>
@@ -169,7 +168,7 @@
 												<td><c:out value="${ notice.postNo }"/></td>									
 												<td><c:out value="${ notice.postTitle }"/></td>
 												<td><c:out value="${ notice.postRegistrationDate }"/></td>
-												<td><button type="button" onclick="browse(this);" >상세보기</button></td>
+												<td><button type=button onclick="browse(this);" >상세보기</button></td>
 												<c:choose>
 												<c:when test="${empty notice.postModifiedDate }">
 												<td><c:out value="수정사항 없음 "/></td>
@@ -179,13 +178,15 @@
 												</c:otherwise>
 												</c:choose>
 												<td><c:out value="${ notice.postExposureStatus }"/></td>
-												<td><button  type="submit" onclick="modify(this);" >수정</button></td>
+												<td><button type=button onclick="modify(this);" >Y/N수정</button></td>
+<%-- 												<td><input name="no" value="${ notice.postNo }"> --%>
 <!-- 												<td><button class="fa fa-plus-circle" type="submit" ></button></td> -->
 											</tr>
 										</tbody>	
 								</c:forEach>					
 								</table>
-<!-- 								</form> -->
+								</div>
+<!-- 						</form> -->
 								<br>
 								<br>
 							</div>
@@ -204,7 +205,6 @@
 				<br>
 			</div>
 		</div>
-	</div>
 	
 	
 	
@@ -225,29 +225,46 @@
 </script>
 <script>
 //노출이력수정
-// function modify(button){
+function modify(button){
 	
-// 		const ynNo = button.parentNode.parentNode.children[0].innerText
-// 		const ynChange = button.parentNode.parentNode.children[5].innerText
-// 				alert(ynNo);
-// 		var answer1;
-// 		answer1 = confirm('노출 상태를 변경하시겠습니까?');
+		const no = button.parentNode.parentNode.children[0].innerText
+		const yn = button.parentNode.parentNode.children[5].innerText
 		
-// 		if(ynChange == 'Y'){
-// 			if(answer1 == true){
-// 				return true;
-// 			}else if(answer1 == false){
-// 				return false;
-// 		}
-// 	}
-// }
+// 		console.log(no);
+// 		console.log(yn);
+		
+		let postNo = no;
+		let postExposureStatus = yn;
+		
+		console.log(postNo);
+		console.log(postExposureStatus);
+		
+// 		let date = { "postNo":postNo, "postExposureStatus":postExposureStatus};
+		
+		$.ajax({
+			url:"${ pageContext.servletContext.contextPath }/notice/check/ynupdate",
+			type:'post',
+			data: {postNo:postNo,
+				   postExposureStatus:postExposureStatus
+			},
+			success: function(date) {
+				alert('노출사항을 변경하였습니다.');
+				window.location.reload();
+			},
+			error: function(xhr, error){
+				console.log(xhr);
+			}
+			
+		});
+}
 </script>
 <script>
 // 상세보기 버튼
 	function browse(button){
 		
 		const postNo = button.parentNode.parentNode.children[0].innerText
-					
+		
+		
 		location.href="${ pageContext.servletContext.contextPath }/notice/details/servlet?postNo="+postNo
 				
 	}	

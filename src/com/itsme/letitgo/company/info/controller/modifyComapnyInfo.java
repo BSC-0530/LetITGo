@@ -19,17 +19,29 @@ public class modifyComapnyInfo extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		response.setCharacterEncoding("UTF-8");
 		
+		String coNo = request.getParameter("requestcoNo");
+		String name = request.getParameter("requestComName");
+		String ceo = request.getParameter("requestcoCeoName");
+		String sectors = request.getParameter("requestcoSectors");
+		String status = request.getParameter("requestcoStatus");
+		String address = request.getParameter("requestcoAddress");
+		String website = request.getParameter("requestWebSite");
 		
 		CompanyAddInfoDTO coAddInfo = new CompanyAddInfoDTO();
-		coAddInfo.getCoComName(); //담당자 이름
-		coAddInfo.getCoPhone(); //담당자 전화번호
-		coAddInfo.getCoCeoName(); //대표자 이름
-		coAddInfo.getCoAddress(); //기업주소
-		coAddInfo.getCoPax();	//회사 팩스
-		coAddInfo.getCoSectors();	//업종
-		coAddInfo.getCoStatus();	//업태
-		coAddInfo.getCoIntro();
+		coAddInfo.setCoNo(coNo);
+		coAddInfo.setCoCeoName(name);
+		coAddInfo.setCoCeoName(ceo);
+		coAddInfo.setCoSectors(sectors);
+		coAddInfo.setCoStatus(status);
+		coAddInfo.setCoAddress(address);
+		coAddInfo.setWebSite(website);
+		
+		System.out.println("askjdasjkdasjdlads"+coAddInfo);
+		
+		
+		
 	}
 
 }
