@@ -144,10 +144,10 @@
    
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="jp_contact_form_heading_wrapper">
-						<h2>개인정보 처리 방침 상세보기</h2>
+						<h2>개인정보 처리 방침 및 이용약관 상세보기</h2>
 					</div>
 				</div>
-		<form action="${ pageContext.servletContext.contextPath }/personalinfopolicy/detail" method="post" onsubmit="check();">	
+		<form action="${ pageContext.servletContext.contextPath }" method="post" onsubmit="check();">	
 				<div class="jp_contact_form_box">
 						<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
 							<div class="jp_contact_inputs_wrapper jp_contact_inputs1_wrapper">

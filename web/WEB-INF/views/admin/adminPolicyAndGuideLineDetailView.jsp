@@ -181,30 +181,49 @@ td {
 
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<div class="jp_contact_form_heading_wrapper">
-									<h2>개인정보 처리 방침 및 이용약관 등록</h2>
+									<h2>개인정보 처리 방침 및 이용약관</h2>
 								</div>
 							</div>
 							<form
-								action="${ pageContext.servletContext.contextPath }/personalinfopolicy/insert"
+								action="${ pageContext.servletContext.contextPath }/personalinfo/policy/detailview"
 								method="post">
 								<div class="jp_contact_form_box">
 								
-				<!-- 분류 -->			<div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+<%-- 				<!-- 분류 -->			<c:choose>  --%>
+<%--  									<c:when  --%>
+<%--  										test="${ detailList.postKinds eq '개인정보처리방침' }">  --%>
+<!-- 										<select name="postKinds" disabled>  -->
+<!--  											<option value="">분류</option>  -->
+<!--  											<option value="1" selected>개인정보 처리 방침</option>  -->
+<!--  											<option value="2">이용약관</option>  -->
+<!--  										</select>  -->
+<%--  									</c:when>  --%>
+<%--  									<c:when  --%>
+<%--  										test="${ detail.postKinds eq '이용약관' }">  --%>
+<!--  										<select name="postKinds" disabled>  -->
+<!--  											<option value="">분류</option>  -->
+<!--  											<option value="1">개인정보 처리 방침</option>  -->
+<!--  											<option value="2" selected>이용약관</option>   -->
+<!--  										</select>  -->
+<%-- 									</c:when>  --%>
+<%--  								</c:choose>  --%>
+									<br><br>
+									
+									<div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
 										<div
 											class="jp_contact_inputs_wrapper jp_contact_inputs2_wrapper">
-											<select name="postKinds">
-												<option value="" selected>분류</option>
-												<option value="개인정보처리방침">개인정보처리방침</option>
-												<option value="이용약관">이용약관</option>
-											</select>
+											<input name="postKinds"
+<%-- 												placeholder="${ requestScope.detailList.postKinds }"> --%>
+												value="${ detailList.postKinds }">
 										</div>
 									</div>
-									<br><br>
+									
 									<div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
 			<!-- 제목  -->					<div
 											class="jp_contact_inputs_wrapper jp_contact_inputs2_wrapper">
-											<i class="fa fa-pencil-square-o"></i><input name="postTitle"
-												placeholder="제목">
+											<input name="postTitle"
+<%-- 												placeholder="${ requestScope.detailList.postTitle }"> --%>
+												value="${ detailList.postTitle }">
 										</div>
 									</div>				
 
@@ -213,7 +232,8 @@ td {
 											class="jp_contact_inputs_wrapper jp_contact_inputs4_wrapper">
 											<i class="fa fa-text-height"></i>
 											<textarea style="overflow-x: hidden; overflow-y: auto;"
-												rows="16" placeholder="내용" name="postContent"></textarea>
+<%-- 												rows="16" placeholder="${ requestScope.detailList.postContent }" name="postContent"></textarea> --%>
+												rows="16" placeholder="${ detailList.postContent }" name="postContent"></textarea>
 										</div>
 									</div>
 
@@ -228,8 +248,101 @@ td {
 					</div>
 				</div>
 			</div>
+
+
+
+<!-- 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> -->
+<!-- 							<div class="jp_adp_textarea_main_wrapper"> -->
+<!-- 								<h3>개인정보 처리 방침 및 이용약관</h3> -->
+<%-- 								<c:choose> --%>
+<%-- 									<c:when --%>
+<%-- 										test="${ detail.PersonalInfoPolicyList[status.index].postKinds eq 1 }"> --%>
+<!-- 										<select name="postKinds" disabled> -->
+<!-- 											<option value="">분류</option> -->
+<!-- 											<option value="1" selected>개인정보 처리 방침</option> -->
+<!-- 											<option value="2">이용약관</option> -->
+<!-- 										</select> -->
+<%-- 									</c:when> --%>
+<%-- 									<c:when --%>
+<%-- 										test="${ detail.PersonalInfoPolicyList[status.index].postKinds eq 2 }"> --%>
+<!-- 										<select name="postKinds" disabled> -->
+<!-- 											<option value="">분류</option> -->
+<!-- 											<option value="1">개인정보 처리 방침</option> -->
+<!-- 											<option value="2" selected>이용약관</option> -->
+<!-- 										</select> -->
+<%-- 									</c:when> --%>
+<%-- 								</c:choose> --%>
+
+<!-- 								<textarea rows="16" -->
+<%-- 									placeholder="${ detail.PersonalInfoPolicyList[status.index].postContent}" --%>
+<!-- 									name="postContent" disabled></textarea> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+
+
+
+
+
+				<!-- 				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12"> -->
+<!-- 					<div class="row"> -->
+<!-- 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> -->
+<!-- 							<br> -->
+<!-- 							<br> -->
+<!-- 							<br> -->
+
+<!-- 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> -->
+<!-- 								<div class="jp_contact_form_heading_wrapper"> -->
+<!-- 									<h2>개인정보 처리 방침 및 이용약관 상세보기</h2> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 							<form -->
+<%-- 								action="${ pageContext.servletContext.contextPath }/personalinfopolicy/insert" --%>
+<!-- 								method="post"> -->
+<!-- 								<div class="jp_contact_form_box"> -->
+								
+<!-- 				분류			<div class="col-lg-12 col-md-6 col-sm-12 col-xs-12"> -->
+<!-- 										<div -->
+<!-- 											class="jp_contact_inputs_wrapper jp_contact_inputs2_wrapper"> -->
+<!-- 											<select name="postKinds"> -->
+<!-- 												<option value="" selected>분류</option> -->
+<!-- 												<option value="개인정보처리방침">개인정보처리방침</option> -->
+<!-- 												<option value="이용약관">이용약관</option> -->
+<!-- 											</select> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 									<br><br> -->
+<!-- 									<div class="col-lg-12 col-md-6 col-sm-12 col-xs-12"> -->
+			<!-- 제목  -->				<!-- 	<div -->
+<!-- 											class="jp_contact_inputs_wrapper jp_contact_inputs2_wrapper"> -->
+<!-- 											<i class="fa fa-pencil-square-o"></i><input name="postTitle" -->
+<!-- 												placeholder="제목"> -->
+<!-- 										</div> -->
+<!-- 									</div>				 -->
+
+<!-- 			<!-- 내용 -->				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
+<!-- 										<div -->
+<!-- 											class="jp_contact_inputs_wrapper jp_contact_inputs4_wrapper"> -->
+<!-- 											<i class="fa fa-text-height"></i> -->
+<!-- 											<textarea style="overflow-x: hidden; overflow-y: auto;" -->
+<!-- 												rows="16" placeholder="내용" name="postContent"></textarea> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+
+ 									<button type="button" onClick="history.go(-1)">취소하기</button> 
+ 									<button type="submit" 
+											onclick="href='${ pageContext.servletContext.contextPath }/personalinfopolicy/list'">수정하기</button> 
+
+<!-- 								</div> -->
+<!-- 							</form> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+				
+				
+			</div>
 		</div>
 	</div>
+
 
 
 

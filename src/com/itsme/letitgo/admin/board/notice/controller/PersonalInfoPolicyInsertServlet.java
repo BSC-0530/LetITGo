@@ -18,6 +18,7 @@ public class PersonalInfoPolicyInsertServlet extends HttpServlet {
 
 		String path = "/WEB-INF/views/admin/adminPolicyAndGuideLineInsert.jsp"; // -> 경로지정해주기(아마도 adminPolicyAndGuideLineInsertForm.jsp로 만들듯)
 		
+		
 		request.getRequestDispatcher(path).forward(request, response);
 		
 	}
@@ -29,6 +30,8 @@ public class PersonalInfoPolicyInsertServlet extends HttpServlet {
 		String postTitle = request.getParameter("postTitle");
 		String postContent = request.getParameter("postContent");
 		String postKinds = request.getParameter("postKinds"); 
+		
+		System.out.println("카인드 : " + postKinds);
 		
 		System.out.println(postTitle);
 		System.out.println(postContent);
@@ -45,6 +48,7 @@ public class PersonalInfoPolicyInsertServlet extends HttpServlet {
 		requestPersonalInfoPolicy.setPostContent(postContent);
 		requestPersonalInfoPolicy.setPostKinds(postKinds);
 		requestPersonalInfoPolicy.setManagerMemberNo(1);
+		/* System.out.println("@@"+postKinds); */
 		/*
 		 * requestPersonalInfoPolicy.setPostRegistrationDate(postRegistrationDate);
 		 * requestPersonalInfoPolicy.setPostModifiedDate(postModifiedDate);

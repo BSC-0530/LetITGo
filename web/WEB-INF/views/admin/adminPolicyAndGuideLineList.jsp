@@ -212,7 +212,7 @@
 								<br>
 
 								<div class="personal-info-policy-insert-wrapper" onclick="post(this);">
-									<button type="submit">작성</button>
+									<button type="submit">등록</button>
 								</div>
 
 							</div>
@@ -244,20 +244,20 @@
 		}
 	</script>
 	
-	<!-- <script type="text/javascript">
+<!-- 	 <script type="text/javascript"> -->
 		
-		function 상세보기(this)(button) {
+<%-- // 		function detail(this)(button) {
 			
-			const no = button.value;
-			location.href = "${ pageContext.servletContext.contextPath }/jobfield/delete?no=" + no;
+// 			const no = button.value;
+// 			location.href = "${ pageContext.servletContext.contextPath }/personalinfopolicy/detailview?postNo=" + postNo;
 			
-		}
+// 		}
 		
-		$("input").filter("[value='null']").val("");
+// 		$("input").filter("[value='null']").val("");
 		
-		/* location.reload();  무한로딩; 함수 안에서도 안먹힘  */
+// 		/* location.reload();  무한로딩; 함수 안에서도 안먹힘  */ --%>
 	
-	</script> -->
+<!-- 	</script>  -->
 	
 	<!-- <script type="text/javascript">
 		
@@ -278,23 +278,30 @@
 	//상세보기 버튼
 	function detail(button){
 		
-		const postNo = button.parentNode.parentNode.children[0].innerText
+// 		const postNo = button.parentNode.parentNode.children[0].innerText 
+		const postNo = button.value; 
 					
-		location.href="${ pageContext.servletContext.contextPath }/personalinfopolicy/detail?postNo="+postNo
-				
+// 		alert(postNo);
+					
+// 		location.href="${ pageContext.servletContext.contextPath }/personalinfopolicy/detailview?postNo="+postNo
+		location.href="${ pageContext.servletContext.contextPath }/personalinfo/policy/detailview?postNo="+postNo
+			
 	}	
 	</script>
 
-	<script>
-	//수정 버튼
-	function modify(button){
+<!-- 	<script> -->
+<!-- // 	//수정 버튼 -->
+<!-- // 	function modify(button){ -->
 		
-		const num = button.parentNode.parentNode.children[0].innerText
+<!-- // 		const postNo = button.parentNode.parentNode.children[0].innerText -->
+<!-- // // 		const num = button.value;  -->
 
-		alert(num);
+<!-- // 		alert(postNo); -->
 		
-	}
-</script>	
+<%-- // 		location.href="${ pageContext.servletContext.contextPath }/personalinfopolicy/detail?postNo="+postNo --%>
+		
+<!-- // 	} -->
+<!-- </script>	 -->
 	
 </body>
 </html>
