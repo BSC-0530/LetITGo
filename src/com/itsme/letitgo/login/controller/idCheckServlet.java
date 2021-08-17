@@ -21,9 +21,9 @@ public class idCheckServlet extends HttpServlet {
 		
 		MemberService ms = new MemberService();
 		
-		int result = ms.idCheck(id);
+//		int result = ms.idCheck(id);
 		
-		response.getWriter().print((result > 0) ? "no" : "ok");
+//		response.getWriter().print((result > 0) ? "no" : "ok");
 	}
 
 	/**
