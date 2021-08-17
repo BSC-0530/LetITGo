@@ -14,24 +14,24 @@ import com.itsme.letitgo.admin.board.notice.model.service.PersonalInfoPolicyServ
 @WebServlet("/personalinfopolicy/detail")
 public class PersonalInfoPolicyDetailServlet extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		PersonalInfoPolicyService personalInfoPolicyService = new PersonalInfoPolicyService();
-		
-		int postNo = Integer.parseInt(request.getParameter("postNo"));
-		
-		PersonalInfoPolicyDTO personalInfoPolicyDatail = personalInfoPolicyService.selectAllPersonalInfoPolicyDetail(postNo);		
-		
-		System.out.println(personalInfoPolicyDatail);
-		
-		request.setAttribute("personalInfoPolicyDatail", personalInfoPolicyDatail);
-		
-		String path = "";
-		
-		path = "/WEB-INF/views/admin/adminPolicyAndGuideLineDetail.jsp"; //jsp경로 지정해주기 아마도 adminPersonalInfoPolicyDetail.jsp로 만들듯
-		request.getRequestDispatcher(path).forward(request, response);
-		
-	}
+//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		
+//		PersonalInfoPolicyService personalInfoPolicyService = new PersonalInfoPolicyService();
+//		
+//		int postNo = Integer.parseInt(request.getParameter("postNo"));
+//		
+//		PersonalInfoPolicyDTO personalInfoPolicyDatail = personalInfoPolicyService.selectAllPersonalInfoPolicyDetail(postNo);		
+//		
+//		System.out.println(personalInfoPolicyDatail);
+//		
+//		request.setAttribute("personalInfoPolicyDatail", personalInfoPolicyDatail);
+//		
+//		String path = "";
+//		
+//		path = "/WEB-INF/views/admin/adminPolicyAndGuideLineDetail.jsp"; //jsp경로 지정해주기 아마도 adminPersonalInfoPolicyDetail.jsp로 만들듯
+//		request.getRequestDispatcher(path).forward(request, response);
+//		
+//	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -40,37 +40,37 @@ public class PersonalInfoPolicyDetailServlet extends HttpServlet {
 		PersonalInfoPolicyDTO personalInfoPolicyModifyInsert = new PersonalInfoPolicyDTO();
 		PersonalInfoPolicyService personalInfoPolicyService = new PersonalInfoPolicyService();
 		
-		int managerMemberNo = Integer.parseInt(request.getParameter("managerMemberNo"));
-		System.out.println("managerMemberNo : " + request.getParameter("managerMemberNo"));;
+		int postNo = Integer.parseInt(request.getParameter("postNo"));
+		System.out.println("postNo : " + postNo);
 		
-		String postTitle = request.getParameter("postTitle");
+//		String postTitle = request.getParameter("postTitle");
+//		
+//		java.sql.Date postRegistrationDate = java.sql.Date.valueOf(request.getParameter("postRegistrationDate"));
+//		
+//		String upper = request.getParameter("postExposureStatus");
+//		String postContent = request.getParameter("postContent");
+//		
+//		System.out.println("postExposureStatus : " + upper);
 		
-		java.sql.Date postRegistrationDate = java.sql.Date.valueOf(request.getParameter("postRegistrationDate"));
-		
-		String upper = request.getParameter("postExposureStatus");
-		String postContent = request.getParameter("postContent");
-		
-		System.out.println("postExposureStatus : " + upper);
-		
-		String postExposureStatus = upper.trim();
-		System.out.println(postExposureStatus);
-		
-		personalInfoPolicyModifyInsert.setManagerMemberNo(managerMemberNo);
-		personalInfoPolicyModifyInsert.setPostTitle(postTitle);
-		personalInfoPolicyModifyInsert.setPostRegistrationDate(postRegistrationDate);
-		personalInfoPolicyModifyInsert.setPostExposureStatus(postExposureStatus);
-		personalInfoPolicyModifyInsert.setPostContent(postContent);
-		
-		String path = "";
-		
-		int result = personalInfoPolicyService.personalInfoPolicyModifyInsert(personalInfoPolicyModifyInsert);
-		
-		response.setCharacterEncoding("UTF-8");
-		
-		if(result > 0) {
-			response.sendRedirect("/let/personalinfopolicy/list");   // 관리하는 경로 지정해주기 
+//		String postExposureStatus = upper.trim();
+//		System.out.println(postExposureStatus);
+//		
+//		personalInfoPolicyModifyInsert.setManagerMemberNo(managerMemberNo);
+//		personalInfoPolicyModifyInsert.setPostTitle(postTitle);
+//		personalInfoPolicyModifyInsert.setPostRegistrationDate(postRegistrationDate);
+//		personalInfoPolicyModifyInsert.setPostExposureStatus(postExposureStatus);
+//		personalInfoPolicyModifyInsert.setPostContent(postContent);
+//		
+//		String path = "";
+//		
+//		int result = personalInfoPolicyService.personalInfoPolicyModifyInsert(personalInfoPolicyModifyInsert);
+//		
+//		response.setCharacterEncoding("UTF-8");
+//		
+//		if(result > 0) {
+//			response.sendRedirect("/let/personalinfopolicy/list");   // 관리하는 경로 지정해주기 
 		}
 		
 	}
 
-}
+

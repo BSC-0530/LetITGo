@@ -27,6 +27,17 @@
 		<result property="managerMemberNo" column="MANAGER_MEMBER_NO"/>
 	</resultMap>
 	
+	<resultMap type="com.itsme.letitgo.admin.board.notice.model.dto.PersonalInfoPolicyDTO" id="detailviewResultMap">
+		<id property="postNo" column="POST_NO"/>
+		<result property="postTitle" column="POST_TITLE"/>
+		<result property="postContent" column="POST_CONTENT"/>
+		<result property="postRegistrationDate" column="POST_REGISTRATION_DATE"/>
+		<result property="postKinds" column="POST_KINDS"/>
+		<result property="postModifiedDate" column="POST_MODIFIED_DATE"/>
+		<result property="postExposureStatus" column="POST_EXPOSURE_STATUS"/>
+		<result property="managerMemberNo" column="MANAGER_MEMBER_NO"/>
+	</resultMap>
+	
 	<!-- 수정날짜빼고는 다 입력해야됨 -->
 	<insert id="personalInfoPolicyInsert" parameterType="com.itsme.letitgo.admin.board.notice.model.dto.PersonalInfoPolicyDTO">
       
@@ -46,7 +57,7 @@
           SEQ_POST_NO.NEXTVAL
         , #{ postTitle }
         , #{ postContent }
-        , '개인정보처리방침'
+        , #{ postKinds }
         , 'Y'
         , SYSDATE
         , 1
@@ -86,20 +97,37 @@
       		 , A.POST_EXPOSURE_STATUS
       		 , A.MANAGER_MEMBER_NO  
           FROM TBL_POST A 
+         WHERE A.POST_KINDS='이용약관' OR A.POST_KINDS='개인정보처리방침'  
+          
 	</select>
 	
 	<!-- 공지 상세 보기 -->
-	<select id="selectDetailPersonalInfoPolicy">
+<!-- 	<select id="selectDetailPersonalInfoPolicy"> -->
+<!-- 		SELECT -->
+<!-- 		       A.POST_NO -->
+<!-- 		     , A.POST_TITLE -->
+<!-- 		     , A.POST_CONTENT -->
+<!-- 		     , A.POST_REGISTRATION_DATE -->
+<!-- 		     , A.POST_MODIFIED_DATE -->
+<!-- 		     , A.POST_EXPOSURE_STATUS -->
+<!-- 		     , A.MANAGER_MEMBER_NO -->
+<!-- 		  FROM TBL_POST A -->
+<!-- 		 WHERE A.POST_NO = #{ postNo } AND A.POST_KINDS='개인정보처리방침'       -->
+<!-- 	</select> -->
+		
+	<select id="selectDetailList"  resultMap="detailviewResultMap">
 		SELECT
 		       A.POST_NO
 		     , A.POST_TITLE
+		     , A.POST_KINDS
 		     , A.POST_CONTENT
 		     , A.POST_REGISTRATION_DATE
 		     , A.POST_MODIFIED_DATE
 		     , A.POST_EXPOSURE_STATUS
 		     , A.MANAGER_MEMBER_NO
 		  FROM TBL_POST A
-		 WHERE A.POST_NO = #{ postNo } AND A.POST_KINDS='개인정보처리방침'      
+		 WHERE A.POST_NO = #{ postNo }
+<!-- 		  AND A.POST_KINDS='개인정보처리방침'       -->
 	</select>
 
 	<!-- 수정하기 등록 -->	

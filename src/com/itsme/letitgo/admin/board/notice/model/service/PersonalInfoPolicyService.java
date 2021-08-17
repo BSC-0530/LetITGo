@@ -44,19 +44,19 @@ public class PersonalInfoPolicyService {
 		return personalInfoPolicyList;
 	}
 
-	public PersonalInfoPolicyDTO selectAllPersonalInfoPolicyDetail(int postNo) {
-		
-		SqlSession session = getSqlSession();
-		
-		PersonalInfoPolicyMapper personalInfoPolicyMapper = session.getMapper(PersonalInfoPolicyMapper.class);
-		
-		PersonalInfoPolicyDTO detailPersonalInfoPolicy = personalInfoPolicyMapper.selectDetailPersonalInfoPolicy(postNo);
-		//detailPersonalInfoPolicy 이거 경로?????????? 잘생각해보기
-		
-		session.close();
-		
-		return detailPersonalInfoPolicy;
-	}
+//	public PersonalInfoPolicyDTO selectAllPersonalInfoPolicyDetail(int postNo) {
+//		
+//		SqlSession session = getSqlSession();
+//		
+//		PersonalInfoPolicyMapper personalInfoPolicyMapper = session.getMapper(PersonalInfoPolicyMapper.class);
+//		
+//		PersonalInfoPolicyDTO detailPersonalInfoPolicy = personalInfoPolicyMapper.selectDetailPersonalInfoPolicy(postNo);
+//		//detailPersonalInfoPolicy 이거 경로?????????? 잘생각해보기
+//		
+//		session.close();
+//		
+//		return detailPersonalInfoPolicy;
+//	}
 
 	public int personalInfoPolicyModifyInsert(PersonalInfoPolicyDTO personalInfoPolicyModifyInsert) {
 
@@ -77,6 +77,23 @@ public class PersonalInfoPolicyService {
 		session.close();
 		
 		return result;
+	}
+
+	public List<PersonalInfoPolicyDTO> selectDetailList(int postNo) {
+
+		SqlSession session = getSqlSession();
+		
+		PersonalInfoPolicyMapper mapper = session.getMapper(PersonalInfoPolicyMapper.class);
+		
+		List<PersonalInfoPolicyDTO> detailList = mapper.selectDetailList(postNo);
+		System.out.println("detailList : " + detailList );
+		
+		session.close();
+		
+		//값확인
+		System.out.println("서비스 : " + detailList);
+		
+		return detailList;
 	}
 
 }
