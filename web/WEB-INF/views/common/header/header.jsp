@@ -32,7 +32,7 @@
 									href="${ pageContext.servletContext.contextPath }/personal/bookmark/select"
 									class="gc_main_navigation" class="gc_main_navigation">봉석</a></li>
 								<li class="has-mega gc_main_navigation"><a
-									href="${ pageContext.servletContext.contextPath }/regist/member"
+									href="${ pageContext.servletContext.contextPath }/admin/product/insert"
 									class="gc_main_navigation" class="gc_main_navigation">승수</a></li>
 								<li class="has-mega gc_main_navigation"><a
 									href="${ pageContext.servletContext.contextPath }/productList/select"

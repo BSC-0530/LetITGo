@@ -17,6 +17,7 @@ public interface AdminPaymentMapper {
 
 	int updateRefundAppStatus2(int payNo);
 
+	
 	int updateRefundRejectStatus1(Map<String, Object> map);
 
 	int updateRefundRejectStatus2(Map<String, Object> map);

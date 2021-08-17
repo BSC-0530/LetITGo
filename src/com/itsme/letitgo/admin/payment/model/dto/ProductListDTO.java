@@ -13,6 +13,7 @@ public class ProductListDTO implements java.io.Serializable{
 	
 	public ProductListDTO() {}
 
+	
 	public ProductListDTO(int productNo, int productPrice, int productReadingTicket, String productKinds,
 			String productStatus, String productName, int productExposureTime) {
 		super();

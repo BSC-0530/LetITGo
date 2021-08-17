@@ -208,7 +208,7 @@
 					
             	<!-- end --> 
             		
-						 <button type="submit" class="btn btn-info" id="coInfoChange" style=" float: right; margin: 5px; border: 0px; background: red;" >거절</button>
+						 <button type="reset" class="btn btn-info" id="coInfoChange" style=" float: right; margin: 5px; border: 0px; background: red;" >거절</button>
 						 <button type="submit" class="btn btn-info" id="coInfoChange" style=" float: right; margin: 5px;" >수락</button>
 					</form>	 
             	</div>
