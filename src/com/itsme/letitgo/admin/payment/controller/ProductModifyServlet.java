@@ -1,4 +1,4 @@
-package com.itsme.letitgo.company.info.controller;
+package com.itsme.letitgo.admin.payment.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itsme.letitgo.company.info.model.dto.CompanyAddInfoDTO;
 
-
-@WebServlet("/company/modify/info")
-public class modifyComapnyInfo extends HttpServlet {
+@WebServlet("/admin/product/update")
+public class ProductModifyServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	
 	}
 
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
 		
 	}
 

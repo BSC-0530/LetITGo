@@ -22,6 +22,7 @@ import com.itsme.letitgo.admin.resume.model.mapper.SelfIntroductionItemMapper;
 import com.itsme.letitgo.admin.resume.model.mapper.SkillsCategoryMapper;
 import com.itsme.letitgo.admin.resume.model.mapper.SkillsMapper;
 import com.itsme.letitgo.company.info.model.mapper.CompanyInfoMapper;
+import com.itsme.letitgo.company.info.model.mapper.ModifyPassworMapper;
 import com.itsme.letitgo.company.payment.model.mapper.PaymentMapper;
 import com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper;
 import com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper;
@@ -83,6 +84,7 @@ public class Template {
 
 			configuration.addMapper(JoinMapper.class);
 			configuration.addMapper(InsertRequestMapper.class);
+			configuration.addMapper(ModifyPassworMapper.class);
 
 			
 			//태훈 시험용 넣었음 (콘솔에 출력됨, view만들고 보여지는지 확인해야함)

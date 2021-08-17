@@ -8,6 +8,18 @@
 		<result property="coMemNo" column="CO_MEM_NO"/>
 	</resultMap>
 	
+	<resultMap type="com.itsme.letitgo.personal.info.model.dto.ModifyMemberDTO" id="modifyPersonalResultMap">
+		<id property="memNo" column="MEM_NO"/>
+		<result property="memId" column="MEM_ID"/>
+		<result property="memPwd" column="MEM_PWD"/>
+		<result property="memName" column="MEM_NAME"/>
+		<result property="memKinds" column="MEM_KINDS"/>
+		<result property="email" column="MEM_EMAIL"/>
+		<result property="memEnrollDate" column="MEM_ENROLL_DATE"/>
+		<result property="memEntYn" column="MEM_ENT_YN"/>
+		<result property="memEntDate" column="MEM_ENT_DATE"/>
+	</resultMap>
+	
 
 	<select id="selectshallowBrowsingNum" resultType="_int">
 		SELECT /* com.itsme.letitgo.personal.info.model.mapper.PersonalInfoMapper#selectshallowBrowsingNum()  */
@@ -71,6 +83,16 @@
 		 WHERE IN_MEM_NO = #{ memNo }
 	</select>
 	
+	<!-- 개인정보 수정 -->
+	<update id="modifyPersonalInfo" parameterType="com.itsme.letitgo.personal.info.model.dto.ModifyMemberDTO">
+		UPDATE 
+			   TBL_MEMBER
+		   SET MEM_ID = #{ memId }
+		     , MEM_EMAIL = #{ email }
+		     , MEM_PHONE = #{ memPhone }
+			 , MEM_NAME	= #{ memName } 
+	    WHERE  MEM_NO = #{ memNo }
+	</update>
 	
 
 </mapper>

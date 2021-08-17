@@ -14,10 +14,10 @@
 		<result property="entYn" column="MEM_ENT_DATE"/>
 		<result property="memEntNo" column="MEM_ENT_NO"/>
 	</resultMap>
-		<update id="ModifyPassword">
+		<update id="resetPassword" parameterType="com.itsme.letitgo.company.info.model.dto.CompanyInfoDTO">
 			UPDATE
-			  	   UPDATE TBL_MEMBER
-			       MEMBER_PWD = ?
-			 WHERE MEMBER_PWD = ?
+			  	   TBL_MEMBER
+			   SET MEM_PWD = #{ memPwd }
+			 WHERE MEM_NO = #{ memNO }
 		</update>	
 </mapper>
