@@ -31,10 +31,18 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
 
 <!-- letitgo 제작 css -->
+<script type="text/javascript" src="/let/resources/js/bongean/button.js"></script>
 <link rel="stylesheet" type="text/css" href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css"/>
-
-
+<!-- 제이쿼리 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- 상세주소 -->
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
+<style>
+#noCheck{
+width: 100px; height: 50px; background-color:transparent; 
+}
+</style>
 <body>
   <!-- 상단 검은색 -->
    <div class="jp_tittle_main_wrapper">
@@ -121,7 +129,7 @@
             </div>
 <!-- 옆에 넣으려면 여기에 넣어야함 -->
 <!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
-<form action="${ pageContext.servletContext.contextPath }/company/info/change/servlet" method="get">
+<form action="${ pageContext.servletContext.contextPath }/company/modify/info" method="post" onsubmit="requestAdminChange();">
             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -137,42 +145,42 @@
                                     <!--Form Group-->
                                     
                                     <div class="form-group col-md-8 col-sm-6 col-xs-12">
-                                        <input type="text" name="field-name" placeholder="${ comDTO.coNo }" >
+                                        <input type=text  onkeypress="inNumber();"
+                                        id="coComNo" name="requestcoNo" value="${ comDTO.coNo }" placeholder="-를 포함해서 입력해주세요">
                                     </div>
-                                    <div class="col-lg-3 col-md-8 col-sm-12 col-xs-12">
-                                        <div class="jp_form_btn_wrapper" style="margin-left: 80px">
-                                            <ul>
-                                                <li><a href="#"></i><button class="fa fa-search" style="width: 100px; height: 50px; background-color:transparent; 
-                                                                            border:0px transparent solid;">중복검사</button></a></li>
-                                            </ul>
-                                        </div>
+                                    <div class="form-group col-md-2 col-sm-6 col-xs-12">
+                                         <i><button class="btn btn-info" type="button" onclick="noCheck();">중복검사</button></i>
                                     </div>
+								                                    
                                     <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" name="requestComName" placeholder="${ comDTO.coComName }" >
+                                        <input type="text" name="requestComName" value="${ comDTO.coComName }" >
                                     </div>
                                     
                                                                        <!--Form Group-->
                                     <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" name="requestcoCeoName" placeholder="${ comDTO.coCeoName }" >
+                                        <input type="text" name="requestcoCeoName" value="${ comDTO.coCeoName }"  >
                                     </div>
                                     <!--Form Group-->
                                     <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
-                                        <input type="password" name="requestcoSectors" placeholder="${comDTO.coSectors }">
+                                        <input type="text" name="requestcoSectors" value="${comDTO.coSectors }">
                                     </div>
                                     <!--Form Group-->
                                     <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <input type="password" name="requestcoStatus" placeholder="${comDTO.coStatus }">
+                                        <input type="text" name="requestcoStatus" value="${comDTO.coStatus }">
                                     </div>
                                     <!--Form Group-->
+                                    <div class="form-group col-md-8 col-sm-6 col-xs-12">
+                                        <input type="text" name="requestcoAddress" value="${ comDTO.coAddress }" readonly="readonly">
+                                   </div>
+                                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+										<a><input class="btn btn-info" type="button" value="검색" class="btn btn-yg" id="searchZipCode"></a>
+									</div>
                                     <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" name="requestcoAddress" placeholder="${ comDTO.coAddress }" >
+                                        <input type="text" name="request" value="상세주소" >
                                     </div>
                                     <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" name="request" placeholder="상세주소" >
-                                    </div>
-                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" name="requestWebSite" placeholder="${ comDTO.webSite }" >
+                                        <input type="text" name="requestWebSite" value="${ comDTO.webSite }" >
                                     </div>
                                 </div>
                             </div>
@@ -189,26 +197,74 @@
                          </div>
             <!-- end --> 
 	            </div>
-<!--                      <button type="submit" onclick="requestAdminChange();" class="btn btn-info" id="coInfoChange" style=" float: right;" >기업 정보 변경 요청 </button> -->
-                 </form>
+                     <button type="submit" class="btn btn-info" style="float: right;" >기업 정보 변경 요청 </button>
+      </form>
         </div>
     </div>
 </div>
 <script>
+// 변경 요청 버튼 
 function requestAdminChange(button){
-// 	var answer;
-// 	answer = confirm('변경 요청을 하시겠습니까?');
+	var answer;
+	answer = confirm('변경 요청을 하시겠습니까?');
 	
-// 	if(answer == true){
-// 		location.href="${ pageContext.servletContext.contextPath }/company/info/change/servlet"
-// 	}
-// 	else if(answer == false){
-		
-// 	}
+	if(answer == true){
+		location.href="${ pageContext.servletContext.contextPath }/company/modify/info"
+	}
+	else if(answer == false){
+		return false;
+	}
 	
 }
 </script>
+<script>
+function noCheck(button){
+// 	사업자 등록증 번호 유효한지 체크 
+	let coComNo = $("#coComNo").val();
+			
+// 	alert(coComNo);
+	if(!checkCorporateRegistrationNumber(coComNo.replaceAll("-",""))){
+		   alert("유효한 사업자번호를 입력하세요");
+		   $("#coComNo").focus();
+		   $("#coComNo").val("");
+		   return;
+		}
+	alert('중복확인되었습니다.')
+	
+	if()
+	
+}
+</script>
+<script>
+function checkCorporateRegistrationNumber(value) {
+    var valueMap = value.replace(/-/gi, '').split('').map(function(item) {
+        return parseInt(item, 10);
+    });
+
+    if (valueMap.length === 10) {
+        var multiply = new Array(1, 3, 7, 1, 3, 7, 1, 3, 5);
+        var checkSum = 0;
+
+        for (var i = 0; i < multiply.length; ++i) {
+            checkSum += multiply[i] * valueMap[i];
+        }
+
+        checkSum += parseInt((multiply[8] * valueMap[8]) / 10, 10);
+        return Math.floor(valueMap[9]) === (10 - (checkSum % 10));
+    }
+
+    return false;
+}
+</script>	
 
 
 </body>
 </html>
+
+
+
+
+
+
+
+

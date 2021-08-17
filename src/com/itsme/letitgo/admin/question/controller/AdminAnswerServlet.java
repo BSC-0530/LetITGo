@@ -37,7 +37,7 @@ public class AdminAnswerServlet extends HttpServlet {
 			request.setAttribute("answerInquiry", answerInquiry);
 			request.setAttribute("num", num);
 			request.getRequestDispatcher(path).forward(request, response);
-		
+			
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
