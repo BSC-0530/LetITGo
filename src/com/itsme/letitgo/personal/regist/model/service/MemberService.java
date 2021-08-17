@@ -27,22 +27,5 @@ public class MemberService {
 		return result;
 	}
 
-	/*
-	 * public int idCheck(String requestMember) {
-	 * 
-	 * SqlSession session = getSqlSession();
-	 * 
-	 * RegistMemberMapper mapper = session.getMapper(RegistMemberMapper.class);
-	 * 
-	 * int result = mapper.idCheck(id);
-	 * 
-	 * session.close();
-	 * 
-	 * return result; }
-	 */
-
-	/*회원 가입용 메소드*/
-	
-
 
 }

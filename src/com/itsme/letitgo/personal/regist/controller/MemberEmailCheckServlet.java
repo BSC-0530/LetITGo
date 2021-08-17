@@ -20,20 +20,18 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
-
-
-@WebServlet("/member/individual/email")
-public class InMemberEmailCheckServlet extends HttpServlet {
+@WebServlet("/member/whole/email")
+public class MemberEmailCheckServlet extends HttpServlet {
 
 	String AuthenticationKey = null;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String memEmail = request.getParameter("memEmail");
-		
+		System.out.println("memEmail : " + memEmail);
 		String host = "smtp.naver.com";
 		String user = "itsme-letitgo@naver.com";
-		String password = "letitgo-itsme";
+		String password = "letitgoitsme";
 		String name = "김태훈";
 		
 		Properties props = new Properties();
@@ -80,11 +78,11 @@ public class InMemberEmailCheckServlet extends HttpServlet {
             System.out.println("이메일 전송");
             
         } catch (Exception e) {
-            e.printStackTrace();// TODO: handle exception
+            e.printStackTrace();
         }
+        
         HttpSession saveKey = request.getSession();
         saveKey.setAttribute("AuthenticationKey", AuthenticationKey);
-
         String jsonString = new Gson().toJson(AuthenticationKey);
         
         response.setContentType("application/json; charset=UTF-8");

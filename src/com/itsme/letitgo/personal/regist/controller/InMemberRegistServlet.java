@@ -14,7 +14,7 @@ import com.itsme.letitgo.personal.regist.model.dto.InMemberDTO;
 import com.itsme.letitgo.personal.regist.model.service.MemberService;
 
 
-@WebServlet("/member/individual/regist")
+@WebServlet("/member/individualRegist")
 public class InMemberRegistServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -56,9 +56,9 @@ public class InMemberRegistServlet extends HttpServlet {
 		StringBuilder redirectText = new StringBuilder();
 		
 		if(result > 0) {
-			redirectText.append("<script>alert('회원가입이 완료되었습니다.'); location.href='../../loginPage';</script>");
+			redirectText.append("<script>alert('회원가입이 완료되었습니다.'); location.href='/let/loginPage';</script>");
 		} else {
-			redirectText.append("<script>alert('회원가입을 실패하였습니다.'); location.href='../../loginPage';</script>");
+			redirectText.append("<script>alert('회원가입을 실패하였습니다.'); location.href='/let/loginPage';</script>");
 		}
 								
 		response.setContentType("text/html; charset=UTF-8");
