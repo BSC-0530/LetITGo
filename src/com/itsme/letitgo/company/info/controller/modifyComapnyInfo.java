@@ -29,19 +29,7 @@ public class modifyComapnyInfo extends HttpServlet {
 		String address = request.getParameter("requestcoAddress");
 		String website = request.getParameter("requestWebSite");
 		
-		CompanyAddInfoDTO coAddInfo = new CompanyAddInfoDTO();
-		coAddInfo.setCoNo(coNo);
-		coAddInfo.setCoCeoName(name);
-		coAddInfo.setCoCeoName(ceo);
-		coAddInfo.setCoSectors(sectors);
-		coAddInfo.setCoStatus(status);
-		coAddInfo.setCoAddress(address);
-		coAddInfo.setWebSite(website);
-		
-		System.out.println("askjdasjkdasjdlads"+coAddInfo);
-		
-		
-		
+
 	}
 
 }

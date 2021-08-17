@@ -10,6 +10,7 @@
 		<result property="payPrice" column="PAY_PRICE"/>
 	</resultMap>
 	
+	
 	<resultMap type="com.itsme.letitgo.admin.payment.model.dto.AdminRefundHistoryDTO" id="adminRefundHistoryResultMap">
 		<id property="payChangeNo" column="PAY_CHANGE_NO"/>
 		<result property="payNo" column="PAY_NO"/>
@@ -22,6 +23,14 @@
 		<result property="payRejectReason" column="PAY_REJECT_REASON"/>
 	</resultMap>
 
+	<resultMap type="com.itsme.letitgo.admin.payment.model.dto.ProductListDTO" id="adminPaymentListResultMap">
+		<id property="productNo" column="PRODUCT_NO"/>
+		<result property="productReadingTicket" column="READING_NUM"/>
+		<result property="productStatus" column="PRODUCT_EXPOSURE_STATUS"/>
+		<result property="productName" column="PRODUCT_NAME"/>
+		<result property="productPrice" column="PRODUCT_PRICE"/>
+		<result property="productKinds" column="PRODUCT_KINDS"/>
+	</resultMap>
 	<select id="selectAdminPaymentHistory" resultMap="adminPaymentHistoryResultMap">
 	   SELECT /* com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper#selectAdminPaymentHistory() */
 	          A.PAY_NO
@@ -81,5 +90,32 @@
 		   SET PAY_KINDS = '환불거절'
 		 WHERE PAY_NO = #{ payNo }    
 	</update>
-	
+	<insert id="productInsert" parameterType="com.itsme.letitgo.admin.payment.model.dto.ProductListDTO">
+		INSERT
+		  INTO TBL_PRODUCT_LIST A
+		 (
+		   A.PRODUCT_NO
+		 , A.PRODUCT_NAME
+		 , A.PRODUCT_KINDS
+		 , A.PRODUCT_PRICE
+		 , A.PRODUCT_EXPOSURE_STATUS
+		 )
+		 VALUES
+		 (
+		   SEQ_PRODUCT_NO.NEXTVAL
+		 , #{ productName }
+		 , #{ productKinds }
+		 , #{ productPrice }
+		 , #{ productStatus }
+		 )
+	</insert>
+	<select id="productList" resultMap="adminPaymentListResultMap">
+		SELECT	
+	           A.PRODUCT_NO 
+	         , A.PRODUCT_NAME 
+	         , A.PRODUCT_PRICE
+	         , A.PRODUCT_KINDS
+	         , A.PRODUCT_EXPOSURE_STATUS
+		  FROM TBL_PRODUCT_LIST A 	
+	</select>
 </mapper>

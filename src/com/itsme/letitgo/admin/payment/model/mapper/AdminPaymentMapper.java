@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.itsme.letitgo.admin.payment.model.dto.AdminPaymentHistoryDTO;
 import com.itsme.letitgo.admin.payment.model.dto.AdminRefundHistoryDTO;
+import com.itsme.letitgo.admin.payment.model.dto.ProductListDTO;
 
 public interface AdminPaymentMapper {
 
@@ -16,7 +17,12 @@ public interface AdminPaymentMapper {
 
 	int updateRefundAppStatus2(int payNo);
 
+	
 	int updateRefundRejectStatus1(Map<String, Object> map);
 
 	int updateRefundRejectStatus2(Map<String, Object> map);
+
+	int productInsert(ProductListDTO productListDTO);
+
+	List<ProductListDTO> productList();
 }

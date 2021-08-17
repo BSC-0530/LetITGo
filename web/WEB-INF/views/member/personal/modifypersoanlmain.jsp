@@ -7,13 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="../../common/header/companyHeader.jsp"/>
+	<jsp:include page="../../common/header/personalHeader.jsp"/>
 	
-	
-	
-	<jsp:include page="companyresetpasswordbody.jsp"/> 
+	<jsp:include page="modifypersonalInfo.jsp"/>
 	
 	<jsp:include page="../../common/footer.jsp"/>
-	
 </body>
 </html>
