@@ -293,6 +293,10 @@
 		<result property="skills" column="SKILLS_NAME"/>
 	</resultMap>
 	
+	<resultMap type="com.itsme.letitgo.company.scout.model.dto.SkillsNameDTO" id="skillsNameResultMap">
+		<result property="skillsName" column="SKILLS_NAME"/>
+	</resultMap>
+	
 		
 		
 		<select id="companySelectAllScout" resultMap="mainScoutResultMap">
@@ -595,5 +599,11 @@
 		  FROM TBL_CANDIDATE_REGISTRATION
 		 WHERE RESUME_NO = #{ resumeNo }
 	</delete>
+	
+	<select id="selectSkillsName" resultMap="skillsNameResultMap">
+		SELECT
+		       SKILLS_NAME
+		  FROM TBL_SKILLS
+	</select>
 
 </mapper>

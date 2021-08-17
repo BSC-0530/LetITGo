@@ -33,6 +33,7 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
 </head>
 <body>
@@ -105,7 +106,9 @@
 								<div class="jp_recent_resume_img_wrapper" id="detailResume">
 									<img src="images/content/resume_img1.jpg" alt="resume_img" />
 								</div>
-								<div class="jp_recent_resume_cont_wrapper">
+								<div id="skills" class="jp_recent_resume_cont_wrapper">
+								<input type="hidden" id="skillss" value="${ holdingSkill.skillsAndCategory.skillsName }">
+								<input type="hidden" value="${  holdingSkill.resumeNo eq mainScout.resumeNo }">
 									<h3><c:out value="${ mainScout.memberDTO.memName }"></c:out>  </h3>
 									<p><i class="fa fa-folder-open-o"></i>
 									
@@ -129,6 +132,9 @@
 						</div>
 					</div>
 					</c:forEach>
+					<div class="ui-widget">
+						<label for="tags">Tags: </label> <input id="tags">
+					</div>
 				</div>
 			</div>
 			
@@ -136,6 +142,7 @@
 		
 		<!-- jp listing sidebar Wrapper End -->
 		</div><!-- -----------------------풋터------------------------------------- -->	
+		
 	<jsp:include page="../common/footer.jsp"/>
 	<!-- -----------------------풋터끝------------------------------------- -->
 	
@@ -150,50 +157,29 @@
 		location.href="${ pageContext.servletContext.contextPath }/simple/browse/select?num=" + num;
 				
 	}	
+	
+	$(document).ready(function () {
+		$("#tags").autocomplete({
+			source: function (request, response) {
+				$.ajax({
+					url: "/let/main/Scout/List",
+					type: "GET",
+					dataType: "json",
+					success: function(data) {
+						console.log(data);
+						response(
+							$.map(data, function(item) {
+								return { 
+									label: item.data, 
+									value: item.data 
+							}
+						}))
+					}
+				});
+			}
+		});
+	});
 </script>
-<script>
-// $(function() {
-//     $('#searchBox').autocomplete({
-//         source : function(reuqest, response) {
-//             $.ajax({
-//                 type : 'post',
-//                 url: '/LetITGo//main/Scout/List',
-//                 dataType : 'json',
-//                 success : function(data) {
-//                     // 서버에서 json 데이터 response 후 목록 추가
-//                     response(
-//                         $.map(data, function(item) {
-//                             return {
-//                                 label : item + 'label',
-//                                 value : item,
-//                                 test : item + 'test'
-//                             }
-//                         })
-//                     );
-//                 }
-//             });
-//         },
-//         select : function(event, ui) {
-//             console.log(ui);
-//             console.log(ui.item.label);
-//             console.log(ui.item.value);
-//             console.log(ui.item.test);
-//         },
-//         focus : function(event, ui) {
-//             return false;
-//         },
-//         minLength : 1,
-//         autoFocus : true,
-//         classes : {
-//             'ui-autocomplete': 'highlight'
-//         },
-//         delay : 500,
-//         position : { my : 'right top', at : 'right bottom' },
-//         close : function(event) {
-//             console.log(event);
-//         }
-//     });
-// });
- </script>
+
 </body>
 </html>

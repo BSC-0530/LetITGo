@@ -102,7 +102,7 @@
 												</p>
 												<br><br>
 												<p>
-													<a href="#">찜한 후보자</a>
+													<a href="${ pageContext.servletContext.contextPath }/company/scout/wish/select">찜한 후보자</a>
 												</p>
 												<br><br>
 												<p>
