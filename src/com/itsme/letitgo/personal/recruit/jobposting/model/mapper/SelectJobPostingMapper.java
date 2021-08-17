@@ -7,6 +7,7 @@ import com.itsme.letitgo.personal.recruit.jobposting.model.dto.BookmarkDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpResumeDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectApplyingYnDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectJobPostingDTO;
+import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectRequestJobPostingDTO;
 
 public interface SelectJobPostingMapper {
 
@@ -36,6 +37,8 @@ public interface SelectJobPostingMapper {
 	List<BookmarkDTO> selectBookmark(int inMemNo);
 
 	int deleteBookmark(BookmarkDTO deleteBm);
+
+	List<Object> selectOptionJobPosting(SelectRequestJobPostingDTO dto);
 
 
 

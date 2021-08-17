@@ -10,18 +10,18 @@ public class RequestJobPostingDTO {
 	private int jobPostNo; // 등록한 공고 번호를 조회해 다른 테이블에 동시에  insert해주기 위해 dto에 담아오기 위해 필드에 변수 선언
 	private String jobPostTitle;
 	private int jobNo;
-	private String jobPostMinExperience;
-	private String jobPostMaxExperience;
+	private int jobPostMinExperience;
+	private int jobPostMaxExperience;
 	private String jobPostContents;
-	private Date jobPostDeadLine;
+	private java.sql.Date jobPostDeadLine;
 	private List<Integer> skillsCodeList;
 	// 파일은 추가할 예정
 //	private String potFilePath;
 	
 	public RequestJobPostingDTO() {}
 
-	public RequestJobPostingDTO(int coMemNo, int jobPostNo, String jobPostTitle, int jobNo, String jobPostMinExperience,
-			String jobPostMaxExperience, String jobPostContents, Date jobPostDeadLine, List<Integer> skillsCodeList) {
+	public RequestJobPostingDTO(int coMemNo, int jobPostNo, String jobPostTitle, int jobNo, int jobPostMinExperience,
+			int jobPostMaxExperience, String jobPostContents, Date jobPostDeadLine, List<Integer> skillsCodeList) {
 		super();
 		this.coMemNo = coMemNo;
 		this.jobPostNo = jobPostNo;
@@ -66,19 +66,19 @@ public class RequestJobPostingDTO {
 		this.jobNo = jobNo;
 	}
 
-	public String getJobPostMinExperience() {
+	public int getJobPostMinExperience() {
 		return jobPostMinExperience;
 	}
 
-	public void setJobPostMinExperience(String jobPostMinExperience) {
+	public void setJobPostMinExperience(int jobPostMinExperience) {
 		this.jobPostMinExperience = jobPostMinExperience;
 	}
 
-	public String getJobPostMaxExperience() {
+	public int getJobPostMaxExperience() {
 		return jobPostMaxExperience;
 	}
 
-	public void setJobPostMaxExperience(String jobPostMaxExperience) {
+	public void setJobPostMaxExperience(int jobPostMaxExperience) {
 		this.jobPostMaxExperience = jobPostMaxExperience;
 	}
 
@@ -90,11 +90,11 @@ public class RequestJobPostingDTO {
 		this.jobPostContents = jobPostContents;
 	}
 
-	public Date getJobPostDeadLine() {
+	public java.sql.Date getJobPostDeadLine() {
 		return jobPostDeadLine;
 	}
 
-	public void setJobPostDeadLine(Date jobPostDeadLine) {
+	public void setJobPostDeadLine(java.sql.Date jobPostDeadLine) {
 		this.jobPostDeadLine = jobPostDeadLine;
 	}
 
@@ -113,6 +113,8 @@ public class RequestJobPostingDTO {
 				+ ", jobPostMaxExperience=" + jobPostMaxExperience + ", jobPostContents=" + jobPostContents
 				+ ", jobPostDeadLine=" + jobPostDeadLine + ", skillsCodeList=" + skillsCodeList + "]";
 	}
+
+	
 
 
 	
