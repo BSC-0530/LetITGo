@@ -34,6 +34,8 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
 	
 </head>
 <body>
@@ -76,8 +78,8 @@
 								</div>
 								<div style="height: 200px; background: white;"
 									class="jp_form_location_wrapper">
-									<label style="border: 1px solid;">
-										<input id="searchhBox">
+									<label for="searchCareer" style="border: 1px solid;">
+										<input type="text" id="searchCareer">
 									</label>
 								</div>
 							</div>
@@ -89,8 +91,8 @@
 								</div>
 								<div style="height: 200px; background: white;"
 									class="jp_form_location_wrapper">
-									<label style="border: 1px solid;">
-										<input id="searchhBox">
+									<label for="searchSkills" style="border: 1px solid;">
+										<input id="searchSkills">
 									</label>
 								</div>
 							</div>
@@ -157,28 +159,35 @@
 		location.href="${ pageContext.servletContext.contextPath }/simple/browse/select?num=" + num;
 				
 	}	
+	$.support.cors = true;
 	
-	$(document).ready(function () {
-		$("#tags").autocomplete({
-			source: function (request, response) {
+</script>
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+		$("#searchCareer").autocomplete({
+			source: function(request, response) {
 				$.ajax({
 					url: "/let/main/Scout/List",
-					type: "GET",
+					type: "POST",
 					dataType: "json",
+					data: { term: request.term },
 					success: function(data) {
-						console.log(data);
-						response(
-							$.map(data, function(item) {
-								return { 
-									label: item.data, 
-									value: item.data 
+						response($.map(data, function(item) {
+							return {
+								label: item.data,
+								value: item.data
 							}
-						}))
+						}));
+					},
+					error: function(data) {
+						alert('실패');
 					}
 				});
 			}
 		});
 	});
+		
 </script>
 
 </body>
