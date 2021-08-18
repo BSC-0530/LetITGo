@@ -19,8 +19,7 @@
         }
 
     </style>
-    <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
 	$(function() {
 		var select = "<option>선택좀해주세용</option>";
@@ -44,10 +43,8 @@
 				data: { categoryNo : categoryNo },
 				dataType : "json",
 				success: function(data) {
-					alert(data[1].skillsName)
-					alert(data.length)
 					
-					if(data.length >= 1) {
+					if(data != "") {
 						$("#skills").find("option").remove().end();
 						
 						for(var i = 0; i < data.length; i++) {
@@ -65,10 +62,79 @@
 			});
 			
 		}
+// 			<input type="checkBox" name="skills" id="s${ status.index }" value="${ skills.skillsNo }">
+// 			<label for="s${ status.index }"><c:out value="${ skills.skillsName }"></c:out></label>
+//         <input type="checkbox" value="" name="selectSkills" id="test" style="display:none;">
+//         <label for="test"><c:out value="dd"></c:out></label>
+        
+		$("#skills").change(function() {
+			var skillsNo = $("#skills option:selected").val();
+			var skillsName = $("#skills option:selected").text();
+			
+			alert(skillsNo);
+			
+			var appendSkills = "<div><input type='checkBox' value='" + skillsNo + "' name='selectSkills' id='s" + skillsNo + "' checked style='display:none;'>" +
+							   "<label id='skillsLabel' for='s" + skillsNo + "'>" + skillsName +skillsNo+ "</label></div> "
+			
+							   
+			var checked_length = document.getElementsByName("selectSkills").length;
+			
+			alert(checked_length)
+			
+			for(var j = 0; j < checked_length; j++) {
+				
+				if(document.getElementsByName("selectSkills")[j].value == skillsNo) {
+					
+					document.getElementsByName("selectSkills")[j].removeAll();
+					
+					
+					alert("삭제완료");
+				} else {
+					
+					
+				}
+			}
+		
+			// 선택한 기술을 selectSkills 에 append
+			
+			alert(appendSkills)
+			
+			$("#selectSkills").append(appendSkills);
+			
+	
+			
+			
+		});
 		
 	});
+    </script>
+    <script>
+		function btn_click(str) {
+			
+			if(str == "preview") {
+				window.open('', 'viewer', 'width=1400, height=2000');
+				document.insertForm.method = "post";
+				document.insertForm.action = "${ pageContext.servletContext.contextPath }/previewJobPosting"
+				document.insertForm.submit();
+				
+			} else if (str == "insert") {
+				
+				var skills_length = document.getElementsByName("selectSkills").length;
+				
+				if(skills_length == 0) {
+					
+					alert("기술을 한가지 이상 선택해주세요")
+				} else {
 
-
+					document.insertForm.method = "post";
+					document.insertForm.action = "${ pageContext.servletContext.contextPath }/recruit/insert"
+					document.insertForm.submit();
+				
+			}
+			
+		}
+		
+		}
     </script>
 </head>
 <body>
@@ -95,8 +161,7 @@
                 </div>
             </div>
         </div>
-
-        <form id="insertForm"action="${ pageContext.servletContext.contextPath }/recruit/insert" method="post">
+        <form id="insertForm" name="insertForm" method="post">
             <!-- jp ad post Wrapper Start -->
             <div class="jp_adp_main_section_wrapper">
                 <div class="container">
@@ -106,8 +171,7 @@
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">
                                 <div class="jp_adp_form_wrapper" >
                                     <label id="titleFont"> 공고 제목</label>
-                                    <input id="jobPostTitle" type="text" placeholder="채용공고 제목을 입력해주세요.*" name="jobPostTitle" required>
-                                    <span id="count">0</span><span id="max-count">0</span>
+                                    <input id="jobPostTitle" type="text" placeholder="채용공고 제목을 입력해주세요.*" name="jobPostTitle" maxlength="30" min="1" required>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" style="width: 100%;" >
@@ -124,18 +188,10 @@
                                     </c:forEach>
                                 </div>
                             </div>
-<!--                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%; margin-top: 30px;"> -->
-<!--                                 <div class="jp_adp_form_wrapper"> -->
-<!--                                 </div> -->
-<!--                                 <label id="titleFont">요구 기술</label><br> -->
-<%--                                 <c:forEach var="skills" items="${ requestScope.skillsList }" varStatus="status"> --%>
-<%-- 	                                <input type="checkBox" name="skills" id="s${ status.index }" value="${ skills.skillsNo }"> --%>
-<%-- 	                                <label for="s${ status.index }"><c:out value="${ skills.skillsName }"></c:out></label> --%>
-<%--                                 </c:forEach> --%>
-<!--                             </div> -->
+
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%; margin-top: 30px;">
                                 <div class="jp_adp_form_wrapper">
-                                </div>
+     <!--  기@@@술 -->                           </div>
                                 <label id="titleFont">기술</label><br>
                                 <label>카테고리</label>
                                 <select name="skillsCategory" id="skillsCategory">
@@ -146,8 +202,11 @@
                                 </select>
                                 <label>기술</label>
                                 <select name="skills" id="skills">
-                                <option>전체</option>
+                                <option>카테고리를 선택해주세요</option>
                                 </select>
+                                <br>         
+								<div id="selectSkills">
+                                </div>
                             </div>
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%; margin-top: 30px;">
                                 <div class="jp_adp_form_wrapper">
@@ -177,27 +236,24 @@
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">
                                 <div class="jp_adp_textarea_main_wrapper">
                                     <label id="titleFont"> 공고 내용</label>
-                                    <textarea rows="7" placeholder="공고 내용을 입력하세요*" name="jobPostContents" required></textarea>
+                                    <textarea rows="7" placeholder="공고 내용을 입력하세요*" name="jobPostContents" required maxlength="2000">/</textarea>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
                                 <div class="jp_adp_form_wrapper">
-                                    <label id="titleFont">마감일 *</label> <input type="date" name="jobPostDeadLine">
+                                    <label id="titleFont">마감일 *</label> <input type="date" name="jobPostDeadLine" required> 
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="jp_adp_choose_resume">
-                                    <label id="titleFont"></label>
-                                    <br> <label>자사 이력서 양식이 있는 경우 자사이력서 양식을 첨부해주세요</label>
-                                    <div class="custom-input">
-                                        <span><i class="fa fa-upload"></i>파일선택</span> <input type="file" name="potFilePath" id="potFilePath">
-                                    </div>
+                            <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">
+                                <div class="jp_adp_form_wrapper" >
+                                    <label id="titleFont">자사이력서</label>
+                                    <input id="resumeForm" type="text" placeholder="자사이력서 다운 가능 링크" name="jobPostTitle" maxlength="30" min="1">
                                 </div>
                             </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <button class="submit" id="requestJobPosting">채용공고 등록 요청</button>
-                                <button class="recruit" id="preview">미리보기</button>
-                                <button type="button" onClick="history.go(-1)">뒤로가기</button>
+                        	<input type="button" value="insert" onclick="btn_click('insert');">
+                        	<input type="button" value="preview" onclick="btn_click('preview');">
+                        
                         </div>
                         
                     </div>

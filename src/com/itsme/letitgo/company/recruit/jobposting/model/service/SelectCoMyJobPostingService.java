@@ -136,8 +136,6 @@ public class SelectCoMyJobPostingService {
 		
 		ArrayList<JpSkillsDTO> skills = mapper.selectSkillsFromCategory(categoryNo);
 		
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ : " + skills);
-		
 
 		return skills;
 	}

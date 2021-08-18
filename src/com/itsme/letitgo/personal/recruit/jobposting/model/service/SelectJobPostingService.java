@@ -58,11 +58,8 @@ public class SelectJobPostingService {
 		SelectJobPostingDTO detailedJobPosting = mapper.selectDetailedJobPosting(selectJobPostNo);
 		List<Object> deteildeJpSkills = mapper.selectDeteildeJpSkills(selectJobPostNo);
 		
-		System.out.println("selectDetailedJobPosting : " + detailedJobPosting);
-		System.out.println("deteildeJpSkills : " + deteildeJpSkills);
 		
 		// return값으로 넘겨주기 위해 map에 담기 
-		System.out.println("service detailedJobPosting : " + detailedJobPosting);
 		
 		jp.put("detailedJobPosting", detailedJobPosting);
 		jp.put("deteildeJpSkills", deteildeJpSkills);

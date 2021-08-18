@@ -84,12 +84,14 @@
 		  FROM TBL_JOB_FIELD JF
 	</select>
 	
+	<!-- 스킬 카테고리 하위에 스킬이 있는 경우에만 카테고리 조회 -->
 	<select id="selectSkillsCategory" resultMap="resultSkillsCategory">
 		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectSkillsCategory() */
-			   SC.CATEGORY_NO
+			   DISTINCT SC.CATEGORY_NO
 			 , SC.CATEGORY_NAME
 			 , SC.CATEGORY_UPPER_NO
 		  FROM TBL_SKILLS_CATEGORY SC
+		  JOIN TBL_SKILLS S ON(SC.CATEGORY_NO = S.CATEGORY_NO)
 	</select>
 	
 	<select id="selectSkills" resultMap="resultSkills">
