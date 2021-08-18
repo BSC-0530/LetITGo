@@ -75,6 +75,12 @@ public interface CompanyScoutMapper {
 
 	List<SkillsDTO> selectSkillsName(String term);
 
+	List<Object> selectedBySkillScoutListInName(String inputSkill);
+
+	List<Object> selectedBySkillScoutListInSkills(String inputSkill);
+
+	List<Object> selectedBySkillScoutListInCareer(String inputSkill);
+
 //	List<SkillsAndCategoryDTO> skillsSelect();
 
 
