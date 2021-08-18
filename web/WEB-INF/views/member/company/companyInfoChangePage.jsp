@@ -34,7 +34,7 @@
 <script type="text/javascript" src="/let/resources/js/bongean/button.js"></script>
 <link rel="stylesheet" type="text/css" href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css"/>
 <!-- 제이쿼리 -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- 상세주소 -->
 
 
@@ -131,7 +131,8 @@ width: 100px; height: 50px; background-color:transparent;
             </div>
 <!-- 옆에 넣으려면 여기에 넣어야함 -->
 <!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
-<form action="${ pageContext.servletContext.contextPath }/company/modify/info" method="post" onsubmit="requestAdminChange();">
+<%-- <form action="${ pageContext.servletContext.contextPath }/company/modify/info" method="post" onsubmit="requestAdminChange();"> --%>
+<form id="fileUpLoad" method="post" enctype="multipart/form-data" onsubmit="requestAdminChange();" action="${ pageContext.servletContext.contextPath }/member/personal/modifyinfo">
             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -179,7 +180,7 @@ width: 100px; height: 50px; background-color:transparent;
 										<a><input class="btn btn-info" type="button" value="검색" class="btn btn-yg" id="searchZipCode"></a>
 									</div>
                                     <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" name="request" value="상세주소" >
+                                        <input type="text" name="detailAddress" value="상세주소" >
                                     </div>
                                     <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" name="requestWebSite" value="${ comDTO.webSite }" >
@@ -193,9 +194,22 @@ width: 100px; height: 50px; background-color:transparent;
                 <div class="companyText">	
                               <label>회사소개</label><input id="textArea" name="requestcoIntro" type="text"  placeholder="${ comDTO.coIntro  }" >
                     </div>
+                    
             <!-- end --> 
-	            </div>
                      <button type="submit" class="btn btn-info" style="float: right;" >기업 정보 변경 요청 </button>
+	            </div>
+      	<div
+		class="form-group col-md-6 col-sm-6 col-xs-12 custom_input">
+		<input type="file" name="coLogo" id="coLogo" >
+		<p></p>
+		<p>회사 로고</p>
+		<input type="file" name="coRepresentativImage"id="coRepresentativImage" >
+		<p></p>
+		<p>회사 대표이미지</p>
+		<input type="file" name="businessRegistration"id="businessRegistration" >
+		<p></p>
+		<p>사업자 등록증</p>
+	</div>		
       </form>
  
 							<div>
@@ -207,52 +221,38 @@ width: 100px; height: 50px; background-color:transparent;
  							</div>
         </div>
     </div>
+
 <script>
-function savePDF(){
-    //저장 영역 div id
-    html2canvas($('#pdfArea')[0] ,{	
-      //logging : true,		// 디버그 목적 로그
-      proxy: "html2canvasproxy.php",
-      allowTaint : true,	// cross-origin allow 
-      useCORS: true,		// CORS 사용한 서버로부터 이미지 로드할 것인지 여부
-      scale : 2			// 기본 96dpi에서 해상도를 두 배로 증가
-      
-    }).then(function(canvas) {	
-      // 캔버스를 이미지로 변환
-      var imgData = canvas.toDataURL('image/png');
-
-      var imgWidth = 190; // 이미지 가로 길이(mm) / A4 기준 210mm
-      var pageHeight = imgWidth * 1.414;  // 출력 페이지 세로 길이 계산 A4 기준
-      var imgHeight = canvas.height * imgWidth / canvas.width;
-      var heightLeft = imgHeight;
-      var margin = 10; // 출력 페이지 여백설정
-      var doc = new jsPDF('p', 'mm');
-      var position = 0;
-
-      // 첫 페이지 출력
-      doc.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-
-      // 한 페이지 이상일 경우 루프 돌면서 출력
-      while (heightLeft >= 20) {			// 35
-      position = heightLeft - imgHeight;
-      position = position - 20 ;		// -25
-
-      doc.addPage();
-      doc.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-      }
-
-      // 파일 저장
-      doc.save('filename.pdf');
-    });
-  }
-
-
+// 		$("#send-file-1").click(function() {
+			
+// 			console.log($("#file")[0].files[0]);
+			
+// 			const formData = new FormData();
+			
+// 			formData.append("file", $("#coLogo")[0].files[0]);
+// 			formData.append("file2", $("#coRepresentativImage")[0].files[0]);
+// 			formData.append("file3", $("#businessRegistration")[0].files[0]);
+			
+// 			console.log(formData.get("coLogo"));
+// 			console.log(formData.get("coRepresentativImage"));
+// 			console.log(formData.get("businessRegistration"));
+			
+// 			$.ajax({
+// 				url: "/let/member/personal/modifyinfo",
+// 				type: "post",
+// 				data: formData,
+// 				contentType: false,
+// 				processData: false,
+// 				success: function(data) {
+// 					alert(data);
+// 				},
+// 				error: function(xhr, status, error) {
+// 					console.log(xhr);
+// 				} 
+// 			});
+			
+// 		});
 </script>
-
-
-
 <script>
 // 변경 요청 버튼 
 function requestAdminChange(button){

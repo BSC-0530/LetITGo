@@ -172,10 +172,8 @@
 					<br>
 					<div class="companyText">	
                               	<label>회사소개</label><input id="textArea" name="intro" value="${ comDTO.coIntro  }" readonly >
+                              	<img src="images/200x200.png" alt="My Image">
                     	</div>
-					<input type="file" id="file"><br>
-	<input type="text" id="description" placeholder="사진이름"><br>
-	<input type="button" value="전송" id="send-file-1">
             		
 						 <button type="submit" class="btn btn-info" id="coInfoChange" style=" float: right;" >기업 정보 변경</button>
 					</form>	 
@@ -190,35 +188,6 @@
 // }
 
 </script>
-<script>
-$("#send-file-1").click(function() {
-	
-	console.log($("#file")[0].files[0]);
-	
-	const formData = new FormData();
-	
-	formData.append("file", $("#file")[0].files[0]);
-	formData.append("description", $("#description").val());
-	
-	console.log(formData.get("file"));
-	console.log(formData.get("description"));
-	
-	$.ajax({
-		url: "/let/upload/formdata",
-		type: "post",
-		data: formData,
-		contentType: false,
-		processData: false,
-		success: function(data, textStatus, xhr) {
-			alert(data);
-		},
-		error: function(xhr, status, error) {
-			console.log(xhr);
-		} 
-	});
-	
-});
-	</script>	
 	
 </body>
 </html>
