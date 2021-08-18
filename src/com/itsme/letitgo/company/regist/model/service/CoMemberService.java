@@ -3,10 +3,12 @@ package com.itsme.letitgo.company.regist.model.service;
 import static com.itsme.letitgo.common.mybatis.Template.getSqlSession;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.itsme.letitgo.company.regist.model.dto.CoAttachmentDTO;
 import com.itsme.letitgo.company.regist.model.dto.CoMemberDTO;
 import com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper;
 
@@ -40,7 +42,80 @@ public class CoMemberService {
 		
 		return result;
 	}
-	
-	
+
+	public int selectMemNo(String memId) {
+		
+		SqlSession session = getSqlSession();
+		
+		RegistCoMemberMapper mapper = session.getMapper(RegistCoMemberMapper.class);
+		
+		int result = mapper.SelectCoMemberNo(memId);
+
+		session.close();
+		
+		return result;
+
 	
 }
+
+	public int insertCoLogoAttachment(CoAttachmentDTO coLogoAttachment) {
+		
+		SqlSession session = getSqlSession();
+		
+		RegistCoMemberMapper mapper = session.getMapper(RegistCoMemberMapper.class);
+		
+		int result = mapper.insertCoLogoAttachment(coLogoAttachment);
+		
+		if(result > 0 ) {
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+		
+	}
+
+	public int insertCoRepresentativImageAttachment(CoAttachmentDTO coRepresentativImageAttachment) {
+		
+		SqlSession session = getSqlSession();
+		
+		RegistCoMemberMapper mapper = session.getMapper(RegistCoMemberMapper.class);
+		
+		int result = mapper.insertCoRepresentativImageAttachment(coRepresentativImageAttachment);
+		
+		if(result > 0 ) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+		
+	}
+
+	public int insertBusinessRegistrationAttachment(CoAttachmentDTO businessRegistrationAttachment) {
+		
+		SqlSession session = getSqlSession();
+		
+		RegistCoMemberMapper mapper = session.getMapper(RegistCoMemberMapper.class);
+		
+		int result = mapper.insertBusinessRegistrationAttachment(businessRegistrationAttachment);
+		
+		if(result > 0 ) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+		
+	}
+	
+}	

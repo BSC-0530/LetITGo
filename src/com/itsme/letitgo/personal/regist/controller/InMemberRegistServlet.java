@@ -33,7 +33,7 @@ public class InMemberRegistServlet extends HttpServlet {
 		String memberPwd = request.getParameter("memPwd");
 		String memberEmail = request.getParameter("memEmail");
 		String memberName = request.getParameter("memName");
-		String memberPhone = request.getParameter("memPhone"); 
+		String memberPhone = request.getParameter("memPhone").replace("-", ""); 
 		
 		System.out.println("memberId : " + memberId);
 		System.out.println("memberPwd : " + memberPwd);
