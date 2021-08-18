@@ -3,18 +3,6 @@
 <mapper
 	namespace="com.itsme.letitgo.admin.board.notice.model.mapper.PersonalInfoPolicyMapper">
 	
-<!-- 	insert resultMap -->
-<!-- 	<resultMap type="com.itsme.letitgo.admin.board.notice.model.dto.PersonalInfoPolicyDTO" id="personalInfoPolicyInsertResultMap"> -->
-<!-- 		<id property="postNo" column="POST_NO"/> -->
-<!-- 		<result property="postTitle" column="POST_TITLE"/> -->
-<!-- 		<result property="postContent" column="POST_CONTENT"/> -->
-<!-- 		<result property="postRegistrationDate" column="POST_REGISTRATION_DATE"/> -->
-<!-- 		<result property="postKinds" column="POST_KINDS"/> -->
-<!-- 		<result property="postModifiedDate" column="POST_MODIFIED_DATE"/> -->
-<!-- 		<result property="postExposureStatus" column="POST_EXPOSURE_STATUS"/> -->
-<!-- 		<result property="managerMemberNo" column="MANAGER_MEMBER_NO"/> -->
-<!-- 	</resultMap> -->
-	
 	<!-- select resultMap -->
 	<resultMap type="com.itsme.letitgo.admin.board.notice.model.dto.PersonalInfoPolicyDTO" id="PersonalInfoPolicyResultMap">
 		<id property="postNo" column="POST_NO"/>
@@ -40,7 +28,6 @@
 	
 	<!-- 수정날짜빼고는 다 입력해야됨 -->
 	<insert id="personalInfoPolicyInsert" parameterType="com.itsme.letitgo.admin.board.notice.model.dto.PersonalInfoPolicyDTO">
-      
       INSERT
 		  INTO TBL_POST A
 		(
@@ -62,29 +49,7 @@
         , SYSDATE
         , 1
         )
-      
-       <!-- INSERT
-         INTO TBL_POST A
-       (
-         A.POST_NO
-       , A.POST_TITLE
-       , A.POST_CONTENT
-       , A.POST_REGISTRATION_DATE
-       , A.POST_KINDS
-       , A.POST_EXPOSURE_STATUS
-       , A.MANAGER_MEMBER_NO  
-       )
-       VALUES
-       (
-         SEQ_POST_NO.NEXTVAL
-       , #{ postTitle } 
-       , #{ postContent } 
-       , SYSDATE
-       , #{ postKinds } 
-       , 'Y' 
-       , #{ managerMemberNo }  
-       ) -->
-	</insert>
+    </insert>
 	
 	<select id="selectAllPersonalInfoPolicyList" resultMap="PersonalInfoPolicyResultMap">
 		SELECT
@@ -98,39 +63,10 @@
       		 , A.MANAGER_MEMBER_NO  
           FROM TBL_POST A 
          WHERE A.POST_KINDS='이용약관' OR A.POST_KINDS='개인정보처리방침'  
-          
-	</select>
+    </select>
 	
 	<!-- 공지 상세 보기 -->
-<!-- 	<select id="selectDetailPersonalInfoPolicy"> -->
-<!-- 		SELECT -->
-<!-- 		       A.POST_NO -->
-<!-- 		     , A.POST_TITLE -->
-<!-- 		     , A.POST_CONTENT -->
-<!-- 		     , A.POST_REGISTRATION_DATE -->
-<!-- 		     , A.POST_MODIFIED_DATE -->
-<!-- 		     , A.POST_EXPOSURE_STATUS -->
-<!-- 		     , A.MANAGER_MEMBER_NO -->
-<!-- 		  FROM TBL_POST A -->
-<!-- 		 WHERE A.POST_NO = #{ postNo } AND A.POST_KINDS='개인정보처리방침'       -->
-<!-- 	</select> -->
-		
-<!-- 	<select id="selectDetailList"  resultMap="detailviewResultMap"> -->
-<!-- 		SELECT -->
-<!-- 		       A.POST_NO -->
-<!-- 		     , A.POST_TITLE -->
-<!-- 		     , A.POST_KINDS -->
-<!-- 		     , A.POST_CONTENT -->
-<!-- 		     , A.POST_REGISTRATION_DATE -->
-<!-- 		     , A.POST_MODIFIED_DATE -->
-<!-- 		     , A.POST_EXPOSURE_STATUS -->
-<!-- 		     , A.MANAGER_MEMBER_NO -->
-<!-- 		  FROM TBL_POST A -->
-<!-- 		 WHERE A.POST_NO = #{ postNo } AND A.POST_KINDS='개인정보처리방침' OR A.POST_KINDS='이용약관' -->
-<!--  		  AND A.POST_KINDS='개인정보처리방침'       --> 
-<!-- 	</select> -->
-
-		<select id="selectDetailList"  resultMap="detailviewResultMap">
+	<select id="selectDetailList"  resultMap="detailviewResultMap">
 		SELECT
 		       A.POST_NO
 		     , A.POST_TITLE
@@ -142,44 +78,77 @@
 		     , A.MANAGER_MEMBER_NO
 		  FROM TBL_POST A
 		 WHERE A.POST_NO = #{ postNo }
-		</select>
+	</select>
 		
 		
 	<!-- 수정하기 등록 -->	
-	<insert id="personalInfoPolicyModifyInsert">
-		INSERT
-		  INTO TBL_POST A
-		(
-		  A.POST_NO
-		, A.POST_TITLE
-		, A.POST_CONTENT
-		, A.POST_REGISTRATION_DATE
-		, A.POST_MODIFIED_DATE
-		, A.POST_EXPOSURE_STATUS
-		, A.MANAGER_MEMBER_NO
-		, A.POST_KINDS  
-		)
-		VALUES
-		(
-		  SEQ_POST_NO.NEXTVAL
-		, #{ postTitle}  
-		, #{ postContent}  
-		, #{ postRegistrationDate}  
-		, SYSDATE  
-		, 'Y'  
-		, #{ managerMemberNo }  
-		, '개인정보처리방침'  
-		)
-	</insert>
+<!-- 	<insert id="policyModifyInsert"> -->
+<!-- 		INSERT -->
+<!-- 		  INTO TBL_POST A -->
+<!-- 		  ( -->
+<!-- 		    A.POST_NO -->
+<!-- 		  , A.POST_TITLE -->
+<!-- 		  , A.POST_CONTENT -->
+<!-- 		  , A.POST_REGISTRATION_DATE -->
+<!-- 	      , A.POST_MODIFIED_DATE -->
+<!-- 	      , A.MANAGER_MEMBER_NO -->
+<!-- 	      , A.POST_EXPOSURE_STATUS  -->
+<!-- 	      , A.POST_KINDS -->
+<!-- 		  ) -->
+<!-- 		  VALUES -->
+<!-- 		  ( -->
+<!-- 		  	SEQ_POST_NO.NEXTVAL -->
+<!-- 		  , #{ postTitle }	 -->
+<!-- 		  , #{ postContent } -->
+<!-- 		  , #{ postRegistrationDate } -->
+<!-- 		  , SYSDATE -->
+<!-- 		  , #{ managerMemberNo } -->
+<!-- 		  , #{ postExposureStatus } -->
+<!-- 		  , #{ postKinds } -->
+<!-- 		  ) -->
+<!-- 	</insert> -->
+	
+	<!-- insert로 할지, update로 할지 그것이 문제로다 -->
+	<update id="policyModifyInsert">
+		UPDATE
+		       TBL_POST A
+		   SET A.POST_NO = #{ postNo }
+		     , A.POST_TITLE = #{ postTitle }
+		     , A.POST_CONTENT = #{ postContent }
+		     , A.POST_REGISTRATION_DATE = #{ postRegistration }
+		     , A.POST_MODIFIED_DATE = SYSDATE
+		     , A.MANAGER_MEMBER_NO = 1
+		     , A.POST_EXPOSURE_STATUS = 'Y'
+		     , A.POST_KINDS = #{ postKinds }
+		 WHERE A.POST_NO = #{ postNo }      
+	</update>
+	
+	
+	
+<!-- 	<insert id="personalInfoPolicyModifyInsert"> -->
+<!-- 		INSERT -->
+<!-- 		  INTO TBL_POST A -->
+<!-- 		( -->
+<!-- 		  A.POST_NO -->
+<!-- 		, A.POST_TITLE -->
+<!-- 		, A.POST_CONTENT -->
+<!-- 		, A.POST_REGISTRATION_DATE -->
+<!-- 		, A.POST_MODIFIED_DATE -->
+<!-- 		, A.POST_EXPOSURE_STATUS -->
+<!-- 		, A.MANAGER_MEMBER_NO -->
+<!-- 		, A.POST_KINDS   -->
+<!-- 		) -->
+<!-- 		VALUES -->
+<!-- 		( -->
+<!-- 		  SEQ_POST_NO.NEXTVAL -->
+<!-- 		, #{ postTitle}   -->
+<!-- 		, #{ postContent}   -->
+<!-- 		, #{ postRegistrationDate}   -->
+<!-- 		, SYSDATE   -->
+<!-- 		, 'Y'   -->
+<!-- 		, #{ managerMemberNo }   -->
+<!-- 		, #{ postKinds }   -->
+<!-- 		) -->
+<!-- 	</insert> -->
 	
 </mapper>
-
-
-
-
-
-
-
-
-
-
