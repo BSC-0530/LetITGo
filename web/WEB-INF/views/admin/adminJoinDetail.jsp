@@ -160,9 +160,11 @@
 									id="contentOne-1">
 
 									<div class="jp_regiter_top_heading">
-										<p><h1>기업 상세 정보</h1></p>
+										
+										<h1>기업 상세 정보</h1>
+										
 									</div>
-									
+									<br><br>
 									<div class="row">
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
@@ -203,7 +205,7 @@
 					</div>
 					<br>
 					<div class="companyText">	
-                              	<label>회사소개</label><input id="textArea" type="text"  placeholder="${ intro  }" >
+                              	<label>회사소개</label><input id="textArea" type="text"  placeholder="${ intro  }" readonly>
                     	</div>
 					
             	<!-- end --> 

@@ -94,22 +94,39 @@
         </div>
     </div>
 	 <!-- jp listing sidebar Wrapper Start -->
+	 
     <div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
-				<div
-					class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
-					<div class="row">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<div class="jp_rightside_job_categories_wrapper">
-								<div class="jp_rightside_job_categories_heading">
-									<h4>경력</h4>
-								</div>
-								<div style="height: 200px; background: white;"
-									class="jp_form_location_wrapper">
-									<label for="searchCareerAuto" style="border: 1px solid;">
-										<input type="text" id="searchCareerAuto">
-									</label>
+				<form action="${ pageContext.servletContext.contextPath }/main/Scout/List"
+	 					method="post">
+					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="jp_rightside_job_categories_wrapper">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="jp_rightside_job_categories_wrapper">
+										<div class="jp_rightside_job_categories_heading">
+											<h4>경력</h4>
+										</div>
+										<div style="height: 200px; background: white;"
+											class="jp_form_location_wrapper">
+											<select style="border: 1px solid;" name="experience">
+												<option value="-1" selected>경력을 선택해주세요</option>
+												<option value="0">신입</option>
+												<option value="1">1년</option>
+												<option value="2">2년</option>
+												<option value="3">3년</option>
+												<option value="4">4년</option>
+												<option value="5">5년</option>
+												<option value="6">6년</option>
+												<option value="7">7년</option>
+												<option value="8">8년</option>
+												<option value="9">9년</option>
+												<option value="10">10년이상</option>
+											</select>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -121,13 +138,17 @@
 								<div style="height: 200px; background: white;"
 									class="jp_form_location_wrapper">
 									<label for="searchSkillsAuto" style="border: 1px solid;">
-										<input id="searchSkillsAuto">
+										<input id="searchSkillsAuto" name="inputSkill">
 									</label>
 								</div>
 							</div>
 						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<button type="submit" class="btn btn_info">조회하기</button>
+						</div>
 					</div>
 				</div>
+			 </form>
 				  
 				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 jp_cl_right_bar">
 					<c:forEach items="${ requestScope.mainScoutList }" var="mainScout">

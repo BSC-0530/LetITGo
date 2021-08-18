@@ -52,6 +52,7 @@ public class CoMemberRegistServlet extends HttpServlet {
 		
 		if(ServletFileUpload.isMultipartContent(request)) {
 
+
 		MultipartRequest multi = new MultipartRequest(request, rootLocation, maxFileSize, encodingType, new DefaultFileRenamePolicy());
 
 		String memId = multi.getParameter("cmemId");
@@ -166,6 +167,7 @@ public class CoMemberRegistServlet extends HttpServlet {
 			redirectText.append("<script>alert('회원가입요청을 하였습니다. 관리자 승인 후 이용가능합니다.'); location.href='/let/loginPage';</script>");
 		} else {
 			redirectText.append("<script>alert('회원가입을 실패하였습니다.'); location.href='/let/loginPage';</script>");
+
 		}
 								
 		response.setContentType("text/html; charset=UTF-8");
