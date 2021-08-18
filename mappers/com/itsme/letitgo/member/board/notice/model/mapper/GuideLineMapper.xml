@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.itsme.letitgo.member.board.notice.model.mapper.GuideLineMapper">
+	
+	 <!-- select resultMap -->
+	 <resultMap type="com.itsme.letitgo.member.board.notice.model.dto.GuideLineDTO" id="GuideLineResultMap">
+	 	<id property="postNo" column="POST_NO"/>
+		<result property="postTitle" column="POST_TITLE"/>
+		<result property="postContent" column="POST_CONTENT"/>
+		<result property="postRegistrationDate" column="POST_REGISTRATION_DATE"/>
+		<result property="postKinds" column="POST_KINDS"/>
+		<result property="postModifiedDate" column="POST_MODIFIED_DATE"/>
+		<result property="postExposureStatus" column="POST_EXPOSURE_STATUS"/>
+		<result property="managerMemberNo" column="MANAGER_MEMBER_NO"/>
+	 </resultMap>
+	 
+	 <!-- select resultMap detail -->
+	 <resultMap type="com.itsme.letitgo.member.board.notice.model.dto.GuideLineDTO" id="GuideLineDetailResultMap">
+	 	<id property="postNo" column="POST_NO"/>
+		<result property="postTitle" column="POST_TITLE"/>
+		<result property="postContent" column="POST_CONTENT"/>
+		<result property="postRegistrationDate" column="POST_REGISTRATION_DATE"/>
+		<result property="postKinds" column="POST_KINDS"/>
+		<result property="postModifiedDate" column="POST_MODIFIED_DATE"/>
+		<result property="postExposureStatus" column="POST_EXPOSURE_STATUS"/>
+		<result property="managerMemberNo" column="MANAGER_MEMBER_NO"/>
+	 </resultMap>
+	 
+	<!-- select resultMap의 전체조회 -->
+	<select id="selectAllGuideLineList" resultMap="GuideLineResultMap">
+		SELECT
+		       A.POST_NO
+      		 , A.POST_TITLE
+      		 , A.POST_CONTENT
+      		 , A.POST_REGISTRATION_DATE
+      		 , A.POST_KINDS
+      		 , A.POST_MODIFIED_DATE
+      		 , A.POST_EXPOSURE_STATUS
+      		 , A.MANAGER_MEMBER_NO  
+          FROM TBL_POST A 
+         WHERE A.POST_KINDS='이용약관' OR A.POST_KINDS='개인정보처리방침'
+	</select>
+	
+	<!-- select resultMap detail -->
+	<select id="selectDetail"  resultMap="GuideLineDetailResultMap">
+		SELECT
+		       A.POST_NO
+		     , A.POST_TITLE
+		     , A.POST_KINDS
+		     , A.POST_CONTENT
+		     , A.POST_REGISTRATION_DATE
+		     , A.POST_MODIFIED_DATE
+		     , A.POST_EXPOSURE_STATUS
+		     , A.MANAGER_MEMBER_NO
+		  FROM TBL_POST A
+		 WHERE A.POST_NO = #{ postNo }
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
