@@ -11,18 +11,20 @@ import static com.itsme.letitgo.common.mybatis.Template.getSqlSession;
 
 public class RequestService {
 
-	public List<InsertRequestDTO> selectedInfoJoin() {
+	public List<InsertRequestDTO> joinList() {
 		
 		SqlSession session = getSqlSession();
 		
 		InsertRequestMapper mapper = session.getMapper(InsertRequestMapper.class);
 		
-		List<InsertRequestDTO> insertInfo = mapper.selectedInsertRequest();
+		List<InsertRequestDTO> insertRequestList = mapper.insertRequestList();
 		
 		session.close();
 		
-		return insertInfo;
+		return insertRequestList;
 	}
+
+	
 
 
 

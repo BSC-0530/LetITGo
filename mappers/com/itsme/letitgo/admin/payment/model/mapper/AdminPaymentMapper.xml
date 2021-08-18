@@ -120,11 +120,16 @@
 	</select>
 	<update id="productModify" parameterType="com.itsme.letitgo.admin.payment.model.dto.ProductListDTO">
 		UPDATE
-			   TBL_PRODUCT_LIST
-		   SET PRODUCT_NAME = #{ productName }
-			 , PRODUCT_PRICE = #{ productPrice }	
-			 , PRODUCT_KINDS = #{ productKinds }
-			 , PRODUCT_EXPOSURE_STATUS = #{ productStatus }
-		 WHERE PRODUCT_NO = ?
+			   TBL_PRODUCT_LIST A
+		   SET A.PRODUCT_NAME = #{ productName }
+			 , A.PRODUCT_PRICE = #{ productPrice }	
+			 , A.PRODUCT_KINDS = #{ productKinds }
+			 , A.PRODUCT_EXPOSURE_STATUS = #{ productStatus }
+		 WHERE A.PRODUCT_NO = #{ productNo }
 	</update>
+	<delete id="productDelete" parameterType="com.itsme.letitgo.admin.payment.model.dto.ProductListDTO"> 
+		DELETE
+		  FROM TBL_PRODUCT_LIST A
+		 WHERE A.PRODUCT_NO = #{ PRODUCT_NO }
+	</delete>
 </mapper>

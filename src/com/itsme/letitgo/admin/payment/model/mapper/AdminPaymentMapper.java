@@ -27,4 +27,6 @@ public interface AdminPaymentMapper {
 	List<ProductListDTO> productList();
 
 	int productModify(ProductListDTO productListDTO);
+
+	int productDelete(int productNo);
 }
