@@ -17,7 +17,7 @@
 	</resultMap>
 	
 	<resultMap type="com.itsme.letitgo.company.info.model.dto.CompanyInfoDTO" id="coMemResultMap">
-		<id property="memNO" column="MEM_NO"/>
+		<result property="memNO" column="MEM_NO"/>
 		<result property="memId" column="MEM_ID"/>
 		<result property="memPwd" column="MEM_PWD"/>
 		<result property="memName" column="MEM_NAME"/>
@@ -99,7 +99,18 @@
           , MEM_PHONE
        FROM TBL_MEMBER
       WHERE MEM_NO= 2
-		
-	
 	</select>
+	<update id="modifyCoMemInfo">
+		UPDATE TBL_MEMBER A
+		   SET
+			   A.MEM_NAME = #{ memName }
+		     , A.MEM_EMAIL = #{ memEmail }
+			 , A.MEM_PHONE = #{ memPhone }
+		WHERE A.MEM_ID = #{ memId }	  	
+			 
+	</update>
+	
+	
+	
+	
 </mapper>

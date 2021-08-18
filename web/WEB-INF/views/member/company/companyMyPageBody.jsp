@@ -28,7 +28,7 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/style_II.css" />
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- letitgo 제작 css -->
 <link rel="stylesheet" type="text/css" href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css"/>
 </head>
@@ -126,7 +126,7 @@
 
 								<!--                             이거는 이제 정보뜨는 칸 -->
 								<input type="hidden" name="comDTO" value="${ comDTO }">
-								<input type="hidden" name="coMemNo" value="${ comDTO.coMemNo }">
+								<input type="hidden" name="coMemNo" value="${ comDTO.memNo }">
 								<div class="tab-pane fade in active register_left_form"
 									id="contentOne-1">
 
@@ -141,7 +141,7 @@
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="webSite" value="${ comDTO.webSite }" readonly>
+											<input type="text" name="webSite" value="${ comDTO.coWebsite }" readonly>
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
@@ -173,8 +173,9 @@
 					<div class="companyText">	
                               	<label>회사소개</label><input id="textArea" name="intro" value="${ comDTO.coIntro  }" readonly >
                     	</div>
-					
-            	<!-- end --> 
+					<input type="file" id="file"><br>
+	<input type="text" id="description" placeholder="사진이름"><br>
+	<input type="button" value="전송" id="send-file-1">
             		
 						 <button type="submit" class="btn btn-info" id="coInfoChange" style=" float: right;" >기업 정보 변경</button>
 					</form>	 
@@ -188,7 +189,36 @@
 // 	location.href="${ pageContext.servletContext.contextPath }/company/info/change/servlet"	
 // }
 
-</script>	
+</script>
+<script>
+$("#send-file-1").click(function() {
+	
+	console.log($("#file")[0].files[0]);
+	
+	const formData = new FormData();
+	
+	formData.append("file", $("#file")[0].files[0]);
+	formData.append("description", $("#description").val());
+	
+	console.log(formData.get("file"));
+	console.log(formData.get("description"));
+	
+	$.ajax({
+		url: "/let/upload/formdata",
+		type: "post",
+		data: formData,
+		contentType: false,
+		processData: false,
+		success: function(data, textStatus, xhr) {
+			alert(data);
+		},
+		error: function(xhr, status, error) {
+			console.log(xhr);
+		} 
+	});
+	
+});
+	</script>	
 	
 </body>
 </html>
