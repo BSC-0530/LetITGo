@@ -35,7 +35,7 @@
 	</insert>
 	
 	<select id="SelectCoMemberNo" resultType="_int">
-	   SELECT 
+	   SELECT /* com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper#SelectCoMemberNo() */
 	          MEM_NO
 	     FROM TBL_MEMBER
 	    WHERE MEM_ID = #{ memId }
@@ -74,11 +74,80 @@
 	</insert>
 	
 	<select id="duplicateIdCheck" resultType="_int">
-		SELECT
+		SELECT /* com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper#duplicateIdCheck() */
 	           COUNT(*)
 		  FROM TBL_MEMBER
 		 WHERE MEM_ID = #{ memId }
 	</select>
+	
+	<insert id="insertCoLogoAttachment">
+		INSERT /* com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper#insertCoLogoAttachment() */
+		  INTO TBL_ATTACHMENT
+		(
+		  MEM_FILE_NO
+		, MEM_NO
+		, MEM_FILE_NAME
+		, MEM_FILE_ORIGINAL_NAME
+		, MEM_FILE_PATH
+		, MEM_FILE_KINDS
+		)
+		VALUES
+		(
+		  SEQ_MEM_FILE_NO.NEXTVAL
+		, #{ memNo }
+		, #{ memFileName }
+		, #{ memFileOriginalName }
+		, #{ filePath }
+		, '프로필사진'		
+		)	
+	</insert>
+	
+	<insert id="insertCoRepresentativImageAttachment">
+		INSERT /* com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper#insertCoLogoAttachment() */
+		  INTO TBL_ATTACHMENT
+		(
+		  MEM_FILE_NO
+		, MEM_NO
+		, MEM_FILE_NAME
+		, MEM_FILE_ORIGINAL_NAME
+		, MEM_FILE_PATH
+		, MEM_FILE_KINDS
+		)
+		VALUES
+		(
+		  SEQ_MEM_FILE_NO.NEXTVAL
+		, #{ memNo }
+		, #{ memFileName }
+		, #{ memFileOriginalName }
+		, #{ filePath }
+		, '대표이미지'		
+		)	
+	</insert>
+	
+	<insert id="insertBusinessRegistrationAttachment">
+		INSERT /* com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper#insertBusinessRegistrationAttachment() */
+		  INTO TBL_ATTACHMENT
+		(
+		  MEM_FILE_NO
+		, MEM_NO
+		, MEM_FILE_NAME
+		, MEM_FILE_ORIGINAL_NAME
+		, MEM_FILE_PATH
+		, MEM_FILE_KINDS
+		)
+		VALUES
+		(
+		  SEQ_MEM_FILE_NO.NEXTVAL
+		, #{ memNo }
+		, #{ memFileName }
+		, #{ memFileOriginalName }
+		, #{ filePath }
+		, '사업자등록증'		
+		)	
+	</insert>
+	
+	
+	
 
 
 

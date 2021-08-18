@@ -1,5 +1,6 @@
 package com.itsme.letitgo.company.regist.model.mapper;
 
+import com.itsme.letitgo.company.regist.model.dto.CoAttachmentDTO;
 import com.itsme.letitgo.company.regist.model.dto.CoMemberDTO;
 
 public interface RegistCoMemberMapper {
@@ -11,5 +12,11 @@ public interface RegistCoMemberMapper {
 	int SelectCoMemberNo(String memId);
 
 	int duplicateIdCheck(String memId);
+
+	int insertCoLogoAttachment(CoAttachmentDTO coLogoAttachment);
+
+	int insertCoRepresentativImageAttachment(CoAttachmentDTO coRepresentativImageAttachment);
+
+	int insertBusinessRegistrationAttachment(CoAttachmentDTO businessRegistrationAttachment);
 
 }

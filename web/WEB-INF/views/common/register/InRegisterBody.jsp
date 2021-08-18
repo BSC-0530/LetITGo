@@ -211,7 +211,7 @@ function checkEmailCode() {
                                          </div>
                                          
                                           <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                          	<input style="width:430px; height:60px; border-radius: 5px;" type="text" name="memPhone" id="memPhone" placeholder="핸드폰 번호 Ex) 010-1234-5678 *" required>
+                                          	<input style="width:430px; height:60px; border-radius: 5px;" type="text" name="memPhone" id="memPhone" placeholder="핸드폰 번호 Ex) 01012345678 *" required>
                                           </div>
                                
 

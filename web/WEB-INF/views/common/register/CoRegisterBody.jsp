@@ -177,7 +177,7 @@
 	<form
 		action="${ pageContext.servletContext.contextPath }/member/coporateRegist"
 		id="coMemberRegist" name="coMemberRegist"
-		onSubmit="return checkValue2();" method="post">
+		onSubmit="return checkValue2();" method="post" enctype="multipart/form-data">
 		<div class="register_section">
 			<div class="register_tab_wrapper">
 				<div class="container">
@@ -331,7 +331,7 @@
 												<input
 													style="width: 430px; height: 60px; magin-left: 20px; border-radius: 5px;"
 													type="text" name="coPhone" id="coPhone"
-													placeholder="기업 전화번호 ex) 02-0000-0000">
+													placeholder="기업 전화번호 ex) 020000000">
 											</div>
 
 											<div style="width: 460px;"
@@ -339,7 +339,7 @@
 												<input
 													style="width: 430px; height: 60px; magin-left: 20px; border-radius: 5px;"
 													type="text" name="coPax" id="coPax"
-													placeholder="기업 팩스번호 ex) 02-0000-0000">
+													placeholder="기업 팩스번호 ex) 0200000000">
 											</div>
 
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
