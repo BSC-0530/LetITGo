@@ -10,6 +10,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.itsme.letitgo.company.info.model.dto.CompanyAddInfoDTO;
+import com.itsme.letitgo.company.info.model.dto.CompanyInfoDTO;
 import com.itsme.letitgo.company.info.model.mapper.CompanyInfoMapper;
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectJobPostingDTO;
 
@@ -52,5 +53,17 @@ public class CompanyInfoService {
 		
 		
 		return coAddInfoAndJobPosting;
+	}
+
+	public CompanyInfoDTO selectCoMemInfo() {
+		
+		SqlSession session = getSqlSession();
+		
+		CompanyInfoMapper mapper = session.getMapper(CompanyInfoMapper.class);
+		
+		CompanyInfoDTO coMemDTO = mapper.coMemInfoSelect();
+		
+		
+		return coMemDTO;
 	}
 }

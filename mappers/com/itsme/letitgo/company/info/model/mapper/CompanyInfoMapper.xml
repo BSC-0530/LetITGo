@@ -89,4 +89,17 @@
 	     WHERE JP.CO_MEM_NO = #{ coMemNo }
 	       AND JP.JOB_POST_KINDS = '승인된공고'
 	</select>
+	
+<!-- 	기업회원마이페이지 회원조회 -->
+	<select id="coMemInfoSelect" resultMap="coMemResultMap">
+		SELECT
+    		MEM_ID
+   		  , MEM_NAME
+    	  , MEM_EMAIL
+          , MEM_PHONE
+       FROM TBL_MEMBER
+      WHERE MEM_NO= 2
+		
+	
+	</select>
 </mapper>
