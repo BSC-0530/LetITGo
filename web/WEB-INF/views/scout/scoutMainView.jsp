@@ -29,12 +29,41 @@
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
 	
-	
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+		$("#searchSkillsAuto").autocomplete({
+			source: function(request, response) {
+				$.ajax({
+					url: "${ pageContext.servletContext.contextPath }/main/Scout/List",
+					type: "POST",
+					data: { term: request.term },
+					dataType: "json",
+					success: function(data, textStatus, xnr) {
+						response($.map(data, function(item) {
+							console.log(item);
+							return {
+								label: item.skillsName,
+								value: item.value
+							};
+						}));
+					},
+					error: function(xnr, status, error) {
+						console.log(xnr);
+					}
+				});
+			},
+		});
+	});
+		
+</script>
 
 	
 </head>
@@ -78,8 +107,8 @@
 								</div>
 								<div style="height: 200px; background: white;"
 									class="jp_form_location_wrapper">
-									<label for="searchCareer" style="border: 1px solid;">
-										<input type="text" id="searchCareer">
+									<label for="searchCareerAuto" style="border: 1px solid;">
+										<input type="text" id="searchCareerAuto">
 									</label>
 								</div>
 							</div>
@@ -91,8 +120,8 @@
 								</div>
 								<div style="height: 200px; background: white;"
 									class="jp_form_location_wrapper">
-									<label for="searchSkills" style="border: 1px solid;">
-										<input id="searchSkills">
+									<label for="searchSkillsAuto" style="border: 1px solid;">
+										<input id="searchSkillsAuto">
 									</label>
 								</div>
 							</div>
@@ -134,9 +163,6 @@
 						</div>
 					</div>
 					</c:forEach>
-					<div class="ui-widget">
-						<label for="tags">Tags: </label> <input id="tags">
-					</div>
 				</div>
 			</div>
 			
@@ -162,33 +188,7 @@
 	$.support.cors = true;
 	
 </script>
-<script type="text/javascript">
-	
-	$(document).ready(function() {
-		$("#searchCareer").autocomplete({
-			source: function(request, response) {
-				$.ajax({
-					url: "/let/main/Scout/List",
-					type: "POST",
-					dataType: "json",
-					data: { term: request.term },
-					success: function(data) {
-						response($.map(data, function(item) {
-							return {
-								label: item.data,
-								value: item.data
-							}
-						}));
-					},
-					error: function(data) {
-						alert('실패');
-					}
-				});
-			}
-		});
-	});
-		
-</script>
+
 
 </body>
 </html>
