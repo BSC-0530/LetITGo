@@ -46,7 +46,7 @@ public class RequestJoinService {
 		
 		return result2;
 	}
-
+	
 	
 
 }

@@ -170,29 +170,10 @@
 												<td><c:out value="${ insertRequestList.coMemNo }"/></td>								
 												<td><c:out value="${ insertRequestList.coReqDate }"/></td>								
 												<td><c:out value="${ insertRequestList.coAnsDate }"/></td>
-												
-												
-												<c:if test="${ adminInsertJoin.coAnsDate != null }">								
-												<td><c:out value="${ insertRequestList.coAnsDate }"/></td>		
-												</c:if>		
-												
-												<c:if test="${ insertRequestList.coAnsDate == null }">								
-												<td>-</td>		
-												</c:if>
-												
-												<td><c:out value="${ insertRequestList.coAnsKinds }"/></td>
-												
-												<c:if test="${ insertRequestList.coRejectReason != null }">								
-												<td><c:out value="${ insertRequestList.coRejectReason }"/></td>			
-												</c:if>		
-												
-												<c:if test="${ insertRequestList.coRejectReason == null }">								
-												<td>-</td>			
-												</c:if>
-				
+												<td><c:out value="${ insertRequestList. }"/></td>	
+												<td><c:out value="${ insertRequestList.coRejectReason }"/></td>
 												<td><button type="submit" onclick="post3(this);">상세 보기</button></td>
-												
-												<c:if test="${  insertRequestList.coAnsDate == null }">
+												<c:if test="${  insertRequestList.coAnsKinds == null }">
 												<td><button type="submit" onclick="jobPostApproval(this);">승인</button></td>
 												<td><button type="submit" onclick="jobPostReject(this);">거절</button></td>
 												</c:if>																			
@@ -218,8 +199,8 @@
 	
 function jobPostApproval(button) {
 		
-	var jobPostReqNo = button.parentNode.parentNode.children[0].innerText;
-	var jobPostNo = button.parentNode.parentNode.children[1].innerText;
+	var coReqNo = button.parentNode.parentNode.children[0].innerText;
+	var coMemNo = button.parentNode.parentNode.children[1].innerText;
 		
 	var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/info/accept").attr("method", "get");
 		
@@ -233,8 +214,8 @@ function jobPostApproval(button) {
 
 function jobPostReject(button) {
 		
-		var jobPostReqNo = button.parentNode.parentNode.children[0].innerText;
-		var jobPostNo = button.parentNode.parentNode.children[1].innerText;
+		var coReqNo = button.parentNode.parentNode.children[0].innerText;
+		var coMemNo = button.parentNode.parentNode.children[1].innerText;
 			
 		var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/admin/post/reject/InsertUpdate").attr("method", "get");
 			
@@ -249,9 +230,9 @@ function jobPostReject(button) {
 
 function post3(button) { 
 	
-	const selectJobPostNo = button.parentNode.parentNode.children[1].innerText;
+	const coReqNo = button.parentNode.parentNode.children[1].innerText;
 		
-	location.href = "${ pageContext.servletContext.contextPath }/info/detail?selectJobPostNo=" +selectJobPostNo;
+	location.href = "${ pageContext.servletContext.contextPath }/info/detail?coReqNo=" +coReqNo;
 				
 }	
 

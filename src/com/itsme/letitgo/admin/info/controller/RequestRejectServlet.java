@@ -41,10 +41,11 @@ public class RequestRejectServlet extends HttpServlet {
 		
 		RequestJoinRejectService rjrService = new RequestJoinRejectService();
 		
-		Map<String, Object> map = new HashMap<>();
-		map.put("rejectMessage", rejectMessage);
+		Map<String, Object> map = new HashMap<>();		//hash map 객체 생성 -> Map은 인터페이스이기 때문에 객체생성이 불가능하여 자식인 HashMap을 생성
+		map.put("rejectMessage", rejectMessage);		//map에 view에 썼던  키값과 value값을 가져온다.
 		map.put("coReqNo", coReqNo);
 		map.put("coMemNo", coMemNo);
+		
 		
 		int result1 = rjrService.joinRejectRequest1(map);
 		int result2 = rjrService.joinRejectRequest2(map);
@@ -63,6 +64,7 @@ public class RequestRejectServlet extends HttpServlet {
 		out.print(redirectText.toString());
 		out.flush();
 		out.close();
+		
 		
 		
 	}
