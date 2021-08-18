@@ -76,14 +76,13 @@
 										<div class="content">
 											<div class="box">
 												<p align="center">
-													<a href="#">회원정보</a>
+													<a href="${ pageContext.servletContext.contextPath }/coMem/infomationServlet">회원정보</a>
 												</p>
 												<br><br>
 												<p> 
 													<a href="${ pageContext.servletContext.contextPath }/companyTestServlet">기업정보</a>
 												</p>
 												<br><br>
-
 												<p>
 													<a href="${ pageContext.servletContext.contextPath }/company/paymentHistory/select">결제내역</a>
 												</p>

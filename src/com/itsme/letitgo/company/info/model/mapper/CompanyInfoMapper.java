@@ -19,5 +19,8 @@ public interface CompanyInfoMapper {
 	List<Object> myJobPosting(CompanyAddInfoDTO dto);
 
 
+	CompanyInfoDTO coMemInfoSelect();
+
+
 
 }

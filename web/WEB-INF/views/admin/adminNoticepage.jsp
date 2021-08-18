@@ -205,9 +205,6 @@
 				<br>
 			</div>
 		</div>
-	
-	
-	
 <script>
 // 데이터테이블
 		$(document).ready(function() {
