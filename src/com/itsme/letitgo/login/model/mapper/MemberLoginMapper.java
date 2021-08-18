@@ -8,5 +8,11 @@ public interface MemberLoginMapper {
 	
 	MemberLoginDTO selectLoginMember(MemberLoginDTO requestMember);
 
+	int selectAppHistory(int memNo);
+
+	int selectRejectHistory(int memNo);
+
+	int selectWaitHistory(int memNo);
+
 
 }

@@ -19,4 +19,8 @@ public interface RegistCoMemberMapper {
 
 	int insertBusinessRegistrationAttachment(CoAttachmentDTO businessRegistrationAttachment);
 
+	int insertRequestAppHistory(int memNo);
+
+	
+
 }

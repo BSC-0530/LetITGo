@@ -117,5 +117,25 @@ public class CoMemberService {
 		return result;
 		
 	}
+
+	public int insertRequestAppHistory(int memNo) {
+		
+		SqlSession session = getSqlSession();
+		
+		RegistCoMemberMapper mapper = session.getMapper(RegistCoMemberMapper.class);
+		
+		int result = mapper.insertRequestAppHistory(memNo);
+		
+		if(result > 0 ) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+
+	}
 	
 }	
