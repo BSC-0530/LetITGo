@@ -108,6 +108,7 @@
 <!-- 		  ) -->
 <!-- 	</insert> -->
 	
+	<!-- insert로 할지, update로 할지 그것이 문제로다 -->
 	<update id="policyModifyInsert">
 		UPDATE
 		       TBL_POST A
@@ -151,13 +152,3 @@
 <!-- 	</insert> -->
 	
 </mapper>
-
-
-
-
-
-
-
-
-
-
