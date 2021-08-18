@@ -41,17 +41,12 @@
 	
 function checkValue() {
 	
-
+	var form = document.inMemberRegist;
 	var re = /^[a-zA-Z0-9]{4,12}$/; // 아이디가 적합한지 검사할 정규식
 	var re2 =  /^(?=.*[a-zA-Z])(?=.*[!@#$%^*++-])(?=.*[0-9]).{8,18}$/; // 패스워드가 적합한지 검사할 정규식
-	var re3 = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/;  //핸드폰 번호가 적합한지
-	var re4 = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/; //이름 정규식
 
 	var memId = document.getElementById("memId");
     var memPwd = document.getElementById("memPwd");
-    var memPhone = document.getElementById("memPhone");
-    var memName = document.getElementById("memName");
-	var form = document.inMemberRegist;
 
     if(!check(re,memId, "아이디는 4~12자의 영문 대소문자와 숫자로 입력해주세요")){
     	return false;
@@ -62,7 +57,7 @@ function checkValue() {
 		return false;
 	}
 	
-	if(form.certificationYn.value != "false") {
+	if(form.certificationYn.value != "true") {
 		alert("이메일 인증확인을 해주세요.");
 		return false;
 	}
@@ -76,14 +71,6 @@ function checkValue() {
         return false;
     } 
 	
-	if(!check(re4, memName, "이름양식이 맞지 않습니다. 다시 입력해주세요.")){
-    	return false;
-    }
-
-    if(!check(re3, memPhone, "핸드폰 번호양식이 맞지 않습니다. 다시 입력해주세요.")){
-    	return false;
-    }
-    
 }	
 	
 function openIdChk() {
@@ -109,19 +96,19 @@ function inputIdChk(){
   
 function emailSend() {
 	
-	let memEmail = document.getElementById('memEmail').value;
-	
-	
-		$.ajax({
-			type:"get",
-			url:"email",
-			data:{memEmail:memEmail},
-			success : function(data) {			
-				alert('인증번호가 전송되었습니다.');
-				
-				
-			}
-		});
+	 memEmail = document.getElementById('memEmail').value;
+		
+	$.ajax({
+		type:"get",
+		url:"/let/member/whole/email",
+		data:{memEmail:memEmail},
+		success : function(data) {			
+			alert('인증번호가 전송되었습니다.');		
+		},
+		error:function(xhr) {
+			alert('jsp : 인증번호 전송을 실패하였습니다.')
+		}
+	});
 			
 }
 
@@ -133,15 +120,17 @@ function checkEmailCode() {
 	
 	$.ajax({
 		type:"post",
-		url:"email",
+		url:"/let/member/whole/email",
 		data:{certificationNumber: certificationNumber},
 		success : function(data) {
 			if(data == "true") {
 				alert('이메일 인증에 성공하였습니다.');
+				form.certificationYn.value = "true";
 			} else {
 				alert('이메일 인증에 실패하였습니다.');
 				 form.certificationNumber.value = "";
 				 form.certificationNumber.focus();
+				 form.certificationYn.value = "false";
 				 return false;
 			}
 		},
@@ -176,7 +165,7 @@ function checkEmailCode() {
         </div>
     </div>
 	  
-	<form action="${ pageContext.servletContext.contextPath }/member/individual/regist" onsubmit="return checkValue();" name="inMemberRegist" method="post">
+	<form action="${ pageContext.servletContext.contextPath }/member/individualRegist" onSubmit="return checkValue();" name="inMemberRegist" method="post">
     <div class="register_section">
         <div class="register_tab_wrapper">
             <div class="container">
@@ -204,7 +193,7 @@ function checkEmailCode() {
                                         <div style="width:460px;" class="form-group col-md-6 col-sm-6 col-xs-12">
                                             <input style="margin-top:30px; width:430px; height:60px; border-radius: 5px;" type="email" id="memEmail" name="memEmail"  placeholder="이메일*"  required>
                                             <button style="width:120px; height:50px; border-radius: 10px;" id="emailcheck" onclick="emailSend()" type="button">인증번호발송</button> 
-                                             <input  style="margin-top:30px; width:430px; height:60px; border-radius: 5px;" type="text" name="memEmailNum" id="certificationNumber"  placeholder="인증번호 *"  required>
+                                             <input  style="margin-top:30px; width:430px; height:60px; border-radius: 5px;" type="text" name="certificationNumber" id="certificationNumber"  placeholder="인증번호 *"  required>
                                              <button  style="width:120px; height:50px; border-radius: 10px;" id="certificationBtn" type="button" onclick="checkEmailCode();">인증하기</button>
                                              <input  type="hidden" id="certificationYn" value="false">
                                         </div>  

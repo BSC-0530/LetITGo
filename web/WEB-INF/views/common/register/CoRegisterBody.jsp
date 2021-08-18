@@ -34,8 +34,9 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
 <link rel="shortcut icon" type="image/png"
 	href="${ pageContext.servletContext.contextPath }/resources/image/header/favicon.ico" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
 	function checkValue2() {
 
 		var form = document.coMemberRegist;
@@ -48,10 +49,6 @@
 
 		var cmemId = document.getElementById("cmemId");
 		var cmemPwd = document.getElementById("cmemPwd");
-		var cmemPhone = document.getElementById("cmemPhone");
-		var cmemName = document.getElementById("cmemName");
-		var ccoPhone = document.getElementById("ccoPhone");
-		var ccoPax = document.getElementById("ccoPax");
 
 		if (!check2(re, cmemId, "아이디는 4~12자의 영문 대소문자와 숫자로 입력해주세요")) {
 			return false;
@@ -61,30 +58,18 @@
 			alert("아이디 중복체크를 해주세요.")
 			return false;
 		}
+		
+		if(form.certificationYn.value != "true") {
+			alert("이메일 인증확인을 해주세요.");
+			return false;
+		}
 
-		if (!check2(re2, cmemPwd,
-				"패스워드는 8~18자의 영문 대소문자, 숫자, 특수문자를 모두 포함시켜 입력해주세요")) {
+		if (!check2(re2, cmemPwd, "패스워드는 8~18자의 영문 대소문자, 숫자, 특수문자를 모두 포함시켜 입력해주세요")) {
 			return false;
 		}
 
 		if (form.cmemPwd.value != form.cmemPwd2.value) {
 			alert("비밀번호를 동일하게 입력하세요.");
-			return false;
-		}
-
-		if (!check2(re5, cmemName, "이름의 양식이 맞지 않습니다. 다시 입력해주세요.")) {
-			return false;
-		}
-
-		if (!check2(re3, cmemPhone, "핸드폰 번호양식이 맞지 않습니다. 다시 입력해주세요.")) {
-			return false;
-		}
-
-		if (!check2(re4, ccoPhone, "전화번호의 양식이 맞지 않습니다. 다시 입력해주세요.")) {
-			return false;
-		}
-
-		if (!check2(re4, ccoPax, "팩스 번호의 양식이 맞지 않습니다. 다시 입력해주세요.")) {
 			return false;
 		}
 
@@ -97,9 +82,10 @@
 		alert(message);
 		what.value = "";
 		what.focus();
-
+		return false;
 	}
-
+</script>
+<script>
 	function openIdChk2() {
 
 		window.name = "parentForm";
@@ -107,29 +93,35 @@
 				"width=500, height=300, resizable = no, scorllbars = no");
 
 	}
-
+</script>
+<script>
 	function inputIdChk2() {
 		document.coMemberRegist.idDuplication.value = "idUncheck";
 	}
-
+</script>
+<script>
 	function emailSend2() {
 
-		let cmemEmail = document.getElementById('cmemEmail').value;
+		let memEmail = document.getElementById('memEmail').value;
 		
 		$.ajax({
 			type : "get",
-			url : "${ pageContext.servletContext.contextPath }/member/coperate/email",
+			url : "/let/member/whole/email",
 			data : {
-				cmemEmail: cmemEmail
+				memEmail: memEmail
 			},
 			success : function(data) {
 				alert('인증번호가 전송되었습니다.');
 
+			},
+			error:function(xhr) {
+				alert('jsp : 인증번호 전송을 실패하였습니다.')
 			}
 		});
 
 	}
-
+</script>
+<script>
 	function checkEmailCode2() {
 
 		var certificationNumber = document
@@ -139,17 +131,19 @@
 
 		$.ajax({
 			type : "post",
-			url : "email",
+			url : "/let/member/whole/email",
 			data : {
 				certificationNumber : certificationNumber
 			},
 			success : function(data) {
 				if (data == "true") {
 					alert('이메일 인증에 성공하였습니다.');
+					form.certificationYn.value = "true";
 				} else {
 					alert('이메일 인증에 실패하였습니다.');
 					form.certificationNumber.value = "";
 					form.certificationNumber.focus();
+					form.certificationYn.value = "false";
 					return false;
 				}
 			},
@@ -181,7 +175,7 @@
 	</div>
 
 	<form
-		action="${ pageContext.servletContext.contextPath }/member/coporate/regist"
+		action="${ pageContext.servletContext.contextPath }/member/coporateRegist"
 		id="coMemberRegist" name="coMemberRegist"
 		onSubmit="return checkValue2();" method="post">
 		<div class="register_section">
@@ -215,15 +209,15 @@
 												<input type="hidden" name="idDuplication" value="idUncheck">
 												<input
 													style="width: 430px; height: 60px; border-radius: 5px; margin-top: 30px;"
-													type="email" name="cmemEmail" id="cmemEmail"
+													type="email" name="memEmail" id="memEmail"
 													placeholder="이메일*" required>
 												<button
 													style="width: 120px; height: 50px; border-radius: 10px;"
 													id="cemailcheck" onclick="emailSend2()" type="button">인증번호발송</button>
 												<input
 													style="margin-top: 30px; width: 430px; height: 60px; border-radius: 5px;"
-													type="text" name="certificationNumber" id="certificationNumber"
-													placeholder="인증번호 *" required>
+													type="text" name="certificationNumber"
+													id="certificationNumber" placeholder="인증번호 *" required>
 												<button
 													style="width: 120px; height: 50px; border-radius: 10px;"
 													id="certificationBtn" type="button"
@@ -265,6 +259,12 @@
 													style="width: 430px; height: 60px; border-radius: 5px;"
 													type="text" name="coNo" id="coNo" placeholder="사업자등록번호*"
 													required>
+
+												<button
+													style="width: 120px; height: 50px; border-radius: 10px;"
+													id="certificationBtn" type="button" onclick="noCheck();">양식확인</button>
+
+
 											</div>
 
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
@@ -428,6 +428,45 @@
 			}).open();
 		}
 	</script>
+	<script>
+function noCheck(button){
+// 	사업자 등록증 번호 유효한지 체크 
+	let coNo = $("#coNo").val();
+			
+// 	alert(coComNo);
+	if(!checkCorporateRegistrationNumber(coNo.replaceAll("-",""))){
+		   alert("유효한 사업자번호를 입력하세요");
+		   $("#coNo").focus();
+		   $("#coNo").val("");
+		   return;
+		}
+	alert('사용가능한 사업자 번호입니다.');
+	
+	
+	
+}
+</script>
+<script>
+function checkCorporateRegistrationNumber(value) {
+    var valueMap = value.replace(/-/gi, '').split('').map(function(item) {
+        return parseInt(item, 10);
+    });
+
+    if (valueMap.length === 10) {
+        var multiply = new Array(1, 3, 7, 1, 3, 7, 1, 3, 5);
+        var checkSum = 0;
+
+        for (var i = 0; i < multiply.length; ++i) {
+            checkSum += multiply[i] * valueMap[i];
+        }
+
+        checkSum += parseInt((multiply[8] * valueMap[8]) / 10, 10);
+        return Math.floor(valueMap[9]) === (10 - (checkSum % 10));
+    }
+
+    return false;
+}
+</script>
 
 </body>
 </html>

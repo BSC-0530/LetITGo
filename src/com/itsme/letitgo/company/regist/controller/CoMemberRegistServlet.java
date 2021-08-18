@@ -15,7 +15,7 @@ import com.itsme.letitgo.company.regist.model.dto.CoMemberDTO;
 import com.itsme.letitgo.company.regist.model.service.CoMemberService;
 
 
-@WebServlet("/member/coporate/regist")
+@WebServlet("/member/coporateRegist")
 public class CoMemberRegistServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,7 +31,7 @@ public class CoMemberRegistServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		String memId = request.getParameter("cmemId");
-		String memEmail = request.getParameter("cmemEmail");
+		String memEmail = request.getParameter("memEmail");
 		String memPwd = request.getParameter("cmemPwd");
 		String memName = request.getParameter("cmemName");
 		String memPhone = request.getParameter("cmemPhone");
@@ -86,9 +86,9 @@ public class CoMemberRegistServlet extends HttpServlet {
 		StringBuilder redirectText = new StringBuilder();
 		
 		if((int) result.get("result1") > 0 && (int) result.get("result1") > 0) {
-			redirectText.append("<script>alert('회원가입이 완료되었습니다.'); location.href='../../loginPage';</script>");
+			redirectText.append("<script>alert('회원가입이 완료되었습니다.'); location.href='/let/loginPage';</script>");
 		} else {
-			redirectText.append("<script>alert('회원가입을 실패하였습니다.'); location.href='../../loginPage';</script>");
+			redirectText.append("<script>alert('회원가입을 실패하였습니다.'); location.href='/let/loginPage';</script>");
 		}
 								
 		response.setContentType("text/html; charset=UTF-8");

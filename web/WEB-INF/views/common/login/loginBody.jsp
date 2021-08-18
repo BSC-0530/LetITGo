@@ -34,7 +34,7 @@
 <body>
 
     <!-- 로그인 폼 -->
-    <form id="memberLogin" action="${ pageContext.servletContext.contextPath }/member/login" method="post">
+    <form id="memberLogin" action="${ pageContext.servletContext.contextPath }/login" method="post">
 	<div class="login_section">
 		<div  class="login_form_wrapper">
 			<div  class="container">
@@ -67,8 +67,8 @@
 								<button class="btn btn-primary login_btn" style="width:100%" type="submit">Login</button>
 							</div>
 							<div align="center" class="login_message">
-								<p>아직 회원가입 안하셨나요?</p><p></p><p><br><a href="${ pageContext.servletContext.contextPath }/member/individual/regist">개인회원가입 </a> </p>
-								<br><p><a href="${ pageContext.servletContext.contextPath }/member/coporate/regist">기업회원가입 </a></p>
+								<p>아직 회원가입 안하셨나요?</p><p></p><p><br><a href="${ pageContext.servletContext.contextPath }/member/individualRegist">개인회원가입 </a> </p>
+								<br><p><a href="${ pageContext.servletContext.contextPath }/member/coporateRegist">기업회원가입 </a></p>
 							</div>
 						</div>
 					</div>
