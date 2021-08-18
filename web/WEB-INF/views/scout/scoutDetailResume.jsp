@@ -45,18 +45,18 @@
 						<div class="jp_cp_left_side_wrapper">
 							<div class="jp_cp_left_pro_wallpaper">
 								<img src="images/content/cp1.png" alt="profile_img">
-								<c:forEach items="${ detailList }" var="detail">
-									<h2>${ detail.memName }</h2>						
-								</c:forEach>
+									
+									<h2>${ detailList[0].memName }</h2>						
+								
 								
 
 							</div>
 							<div class="jp_cp_rd_wrapper">
-							<c:forEach items="${ detailList }" var="detail">
+							
 								<ul>
 									<li>
 										<a onclick="interview(this);">
-											<input id="interviewMemNo" type="hidden" value="${ detail.scoutResume[status.index].inMemNo }">
+											<input id="interviewMemNo" type="hidden" value="${ detailList[0].scoutResume[status.index].inMemNo }">
 											<i class="fa fa-download"></i>
 											&nbsp;면접 제안
 										</a>
@@ -64,12 +64,12 @@
 									
 									<li>
 										<a href="#">
-											<input id="addWishList" type="hidden" value="${ detail.scoutResume[status.index].resumeNo }"><i class="fa fa-phone"></i>
+											<input id="addWishList" type="hidden" value="${ detailList[0].scoutResume[status.index].resumeNo }"><i class="fa fa-phone"></i>
 											&nbsp;후보자 찜하기
 										</a>
 									</li>
 								</ul>
-								</c:forEach>
+								
 							</div>
 						</div>
 					</div>
@@ -82,9 +82,9 @@
 										<tr>
 											<td class="td-w25">이름</td>
 											<td class="td-w10">:</td>
-											<c:forEach items="${ detailList }" var="detail">
-											<td class="td-w65">${ detail.memName }</td>
-											</c:forEach>
+											
+											<td class="td-w65">${ detailList[0].memName }</td>
+											
 										</tr>
 										<tr>
 											<td class="td-w25">보유기술</td>
@@ -96,9 +96,9 @@
 										<tr>
 											<td class="td-w25">직무</td>
 											<td class="td-w10">:</td>
-											<c:forEach items="${ detailList }" var="detail" varStatus="status">
-											<td class="td-w65">${ detail.scoutResume[status.index].jobFieldList[status.index].jobName }</td>
-											</c:forEach>
+											
+											<td class="td-w65">${ detailList[0].scoutResume[0].jobFieldList[0].jobName }</td>
+											
 										</tr>
 										<tr>
 											<td class="td-w25">경력</td>

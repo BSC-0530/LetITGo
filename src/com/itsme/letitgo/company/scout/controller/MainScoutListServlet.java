@@ -53,6 +53,7 @@ public class MainScoutListServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+//		---------- 검색 자동완성 
 		String term = request.getParameter("term");
 		System.out.println("input term : " + term);
 		List<SkillsDTO> skillsList = new ArrayList<>();
@@ -61,10 +62,8 @@ public class MainScoutListServlet extends HttpServlet {
 			skillsList = new MainScoutListService().selectSkillsName(term);
 			
 		}
-		
    
 		Gson gson = new GsonBuilder().create();
-		
 		
 		String jsonList = gson.toJson(skillsList);
 		
@@ -72,13 +71,23 @@ public class MainScoutListServlet extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		
-		System.out.println(jsonList);
-		
 		out.print(jsonList);
 		out.flush();
 		out.close();
 		
-	
+//		------------ 정렬조회
+		
+		String inputSkill = request.getParameter("inputSkill");
+		System.out.println(inputSkill);
+		
+		MainScoutListService mainScoutListService = new MainScoutListService();
+		
+		Map<String, Object> selectedScoutList= mainScoutListService.selectBySkillScoutList(inputSkill);
+		
+		System.out.println("scoutListname : " + selectedScoutList.get("scoutListName"));
+		System.out.println("scoutListSkills : " + selectedScoutList.get("scoutListSkills"));
+		System.out.println("scoutCareea : " + selectedScoutList.get("scoutCareea"));
+		
 	}
 
 }

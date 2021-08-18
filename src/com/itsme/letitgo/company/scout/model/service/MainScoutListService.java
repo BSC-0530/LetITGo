@@ -198,6 +198,7 @@ public class MainScoutListService {
 		
 		return CountNum;
 	}
+	
 	//면접제안 카운트
 	public int selectAllScountNum() {
 		SqlSession session = getSqlSession();
@@ -360,6 +361,7 @@ public class MainScoutListService {
 		
 		return wishSkillList;
 	}
+	
 	public int deleteWishList(int resumeNo) {
 		
 		SqlSession session = getSqlSession();
@@ -377,19 +379,43 @@ public class MainScoutListService {
 		
 		return result;
 	}
+	
 	public List<SkillsDTO> selectSkillsName(String term) {
 		
 		SqlSession session = getSqlSession();
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
 		
-		System.out.println("serv term : " + term);
-		
 		List<SkillsDTO> skillsList = mapper.selectSkillsName(term);
-		
 		
 		session.close();
 		
 		return skillsList;
+	}
+	
+	public Map<String, Object> selectBySkillScoutList(String inputSkill) {
+		
+		SqlSession session = getSqlSession();
+		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
+		
+		List<Object> selectedScoutListInName = mapper.selectedBySkillScoutListInName(inputSkill);
+		List<Object> selectedScoutListInSkills = mapper.selectedBySkillScoutListInSkills(inputSkill);
+		List<Object> selectedScoutListInCareer = mapper.selectedBySkillScoutListInCareer(inputSkill);
+		
+		Map<String, Object> selectedBySkillScoutList = new HashMap<>();
+		
+		selectedBySkillScoutList.put("selectedScoutListInName",selectedScoutListInName);
+		selectedBySkillScoutList.put("selectedScoutListInSkills", selectedScoutListInSkills);
+		selectedBySkillScoutList.put("selectedScoutListInCareer", selectedScoutListInCareer );
+		
+		session.close();
+		
+		return selectedBySkillScoutList;
+		
+//		List<Object> scoutListName = mapper.companySelectAllScout();
+//		
+//		List<Object> scoutListSkills = mapper.companyScoutSkills();
+//		
+//		List<Object> scoutCareea = mapper.companyScoutCareea();
 	}
 	
 
