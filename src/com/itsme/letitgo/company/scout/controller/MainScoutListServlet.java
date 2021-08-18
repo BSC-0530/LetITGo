@@ -36,22 +36,14 @@ public class MainScoutListServlet extends HttpServlet {
 		System.out.println("scoutListSkills : " + scoutList.get("scoutListSkills"));
 		System.out.println("scoutCareea : " + scoutList.get("scoutCareea"));
 		
-		List<SkillsDTO> skillsList = new ArrayList<>();
 		
-		skillsList = mainScoutListService.selectSkillsName();
-		System.out.println("skillsList : " + skillsList);
-		
-		String jsonList = new Gson().toJson(skillsList);
-		System.out.println("jsonList : " + jsonList);
 		
 		request.setAttribute("mainScoutList", scoutList.get("scoutListName"));
 		request.setAttribute("scoutListSkills", scoutList.get("scoutListSkills"));
 		request.setAttribute("scoutCareea", scoutList.get("scoutCareea"));
 		
-		response.setContentType("application/json; charset=UTF-8");
 		
 		String path="/WEB-INF/views/scout/scoutMainView.jsp";
-		
 		request.getRequestDispatcher(path).forward(request, response);
 		
 	}
@@ -59,22 +51,31 @@ public class MainScoutListServlet extends HttpServlet {
 @Override
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	//자동완성검색기능
-		String value = request.getParameter("value");
-		MainScoutListService mainScoutListService = new MainScoutListService();
+//		String value = request.getParameter("value");
+//		MainScoutListService mainScoutListService = new MainScoutListService();
+//		
+////		List<SkillsAndCategoryDTO> skillsName = mainScoutListService.skillsSelect();
+//		
+//		
+//	    JSONArray list = new JSONArray();
+//	    
+//	    
+//	    JSONObject object = null;
 		
-//		List<SkillsAndCategoryDTO> skillsName = mainScoutListService.skillsSelect();
+//	
+//	
+//	super.doPost(request, response);
+		List<SkillsDTO> skillsList = new ArrayList<>();
 		
+		skillsList = new MainScoutListService().selectSkillsName();
+		System.out.println("skillsList : " + skillsList);
+	//	    
+		String jsonList = new Gson().toJson(skillsList);
+		System.out.println("jsonList : " + jsonList);
 		
-	    JSONArray list = new JSONArray();
-	    
-	    
-	    JSONObject object = null;
-	    
-
-
-	
-	
-	super.doPost(request, response);
+		response.setContentType("application/json; charset=UTF-8");
+		String path="/WEB-INF/views/scout/scoutMainView.jsp";
+		request.getRequestDispatcher(path).forward(request, response);
 	
 	}
 
