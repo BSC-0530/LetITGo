@@ -1,10 +1,11 @@
 package com.itsme.letitgo.company.recruit.jobposting.model.mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.itsme.letitgo.company.recruit.jobposting.model.dto.JpSkillsDTO;
 import com.itsme.letitgo.company.recruit.jobposting.model.dto.RequestJobPostingDTO;
 import com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO;
-import com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpSkillsDTO;
 
 public interface SelectCoMyJobPostingMapper {
 
@@ -29,6 +30,8 @@ public interface SelectCoMyJobPostingMapper {
 	int insertjobPostingAppHistory(int jobPostNo);
 
 	SelectCoMyJobPostingDTO updateRecruit(int jobPostNo);
+
+	ArrayList<JpSkillsDTO> selectSkillsFromCategory(int categoryNo);
 	
 
 

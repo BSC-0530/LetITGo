@@ -2,17 +2,17 @@ package com.itsme.letitgo.company.recruit.jobposting.model.service;
 
 import static com.itsme.letitgo.common.mybatis.Template.getSqlSession;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.catalina.ant.SessionsTask;
 import org.apache.ibatis.session.SqlSession;
 
+import com.itsme.letitgo.company.recruit.jobposting.model.dto.JpSkillsDTO;
 import com.itsme.letitgo.company.recruit.jobposting.model.dto.RequestJobPostingDTO;
 import com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO;
 import com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper;
-import com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpSkillsDTO;
 
 
 public class SelectCoMyJobPostingService {
@@ -51,6 +51,7 @@ public class SelectCoMyJobPostingService {
 		List<Object> jobNameList = mapper.selectJobName();
 		List<Object> skillsCategoryList = mapper.selectSkillsCategory();
 		List<Object> skillsList = mapper.selectSkills();
+
 		
 		recruitOption.put("jobNameList", jobNameList);
 		recruitOption.put("skillsCategoryList", skillsCategoryList);
@@ -127,4 +128,17 @@ public class SelectCoMyJobPostingService {
 		return dto;
 	}
 
+	public ArrayList<JpSkillsDTO> selectSkillsFromCategory(int categoryNo) {
+
+		SqlSession session = getSqlSession();
+		
+		SelectCoMyJobPostingMapper mapper = session.getMapper(SelectCoMyJobPostingMapper.class);
+		
+		ArrayList<JpSkillsDTO> skills = mapper.selectSkillsFromCategory(categoryNo);
+		
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ : " + skills);
+		
+
+		return skills;
+	}
 }
