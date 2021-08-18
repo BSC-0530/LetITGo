@@ -25,4 +25,6 @@ public interface AdminPaymentMapper {
 	int productInsert(ProductListDTO productListDTO);
 
 	List<ProductListDTO> productList();
+
+	int productModify(ProductListDTO productListDTO);
 }

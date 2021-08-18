@@ -118,4 +118,13 @@
 	         , A.PRODUCT_EXPOSURE_STATUS
 		  FROM TBL_PRODUCT_LIST A 	
 	</select>
+	<update id="productModify" parameterType="com.itsme.letitgo.admin.payment.model.dto.ProductListDTO">
+		UPDATE
+			   TBL_PRODUCT_LIST
+		   SET PRODUCT_NAME = #{ productName }
+			 , PRODUCT_PRICE = #{ productPrice }	
+			 , PRODUCT_KINDS = #{ productKinds }
+			 , PRODUCT_EXPOSURE_STATUS = #{ productStatus }
+		 WHERE PRODUCT_NO = ?
+	</update>
 </mapper>

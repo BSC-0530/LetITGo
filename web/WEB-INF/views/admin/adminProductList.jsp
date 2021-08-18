@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
@@ -189,6 +190,7 @@
 											<td align="center">상품 구분</td>
 											<td align="center">노출 여부</td>
 											<td align="center">수정 하기</td>
+											<td align="center">삭제 하기</td>
 										</tr>
 									</thead>
 									<c:forEach var="productList"
@@ -207,7 +209,8 @@
  														value="${ productList.productKinds }" /></td> 
 												<td id="productStatus"><c:out 
 														value="${ productList.productStatus }" /></td> 
-												<td><button type="button" onclick="post2(this)" style="background: skyblue; border-radius: 5px; color: white; font-weight: 900;">수정 하기</button></td>
+												<td><button type="button" onclick="modify()" style="background: skyblue; border-radius: 5px; color: white; font-weight: 900;">수정 하기</button></td>
+												<td><button style="background: red; border-radius: 5px; color: white; font-weight: 900;">삭제하기</button>
 											</tr>
 										</tbody>
 									</c:forEach>
@@ -247,17 +250,18 @@
 			 location.href = "${ pageContext.servletContext.contextPath }/admin/product/insert" 
 			
 		}
+		
+		function modify() {
+			
+			/* 
+			 == alert()로 이동되는지 확인 ==
+			 alert();  
+			*/
+			
+				location.href = "${ pageContext.servletContext.contextPath }/admin/product/update"
+		
+		}
 	</script>
-	<script>
-	function post2(div) {
-		
-		/* 
-		 == alert()로 이동되는지 확인 ==
-		 alert();  
-		*/
-		
-		 location.href = "${ pageContext.servletContext.contextPath }/admin/product/update" 
 	
-	</script>
 </body>
 </html>

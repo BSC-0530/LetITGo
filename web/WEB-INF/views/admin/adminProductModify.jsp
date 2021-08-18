@@ -175,7 +175,7 @@
 
 				<div class="outer outer-skills-category-insert">
 					<br>
-					<h2 align="center">상품 등록</h2>
+					<h2 align="center">상품 수정</h2>
 					<br>
 					<br>
 					<div class="table-area">
@@ -205,7 +205,7 @@
 								
 								<button type="button" onClick="history.go(-1)" >취소하기</button>
 								<button type="submit"
-									onclick="href='${ pageContext.servletContext.contextPath }/admin/product/list'">등록하기</button>
+									onclick="href='${ pageContext.servletContext.contextPath }/admin/product/list'">수정하기</button>
 								<!-- <button type="reset" id="cancleInsert">취소하기</button> -->
 							</div>
 
