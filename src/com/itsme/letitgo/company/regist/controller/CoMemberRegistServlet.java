@@ -126,7 +126,7 @@ public class CoMemberRegistServlet extends HttpServlet {
 			coMember.setCoSectors(coSectors);
 			coMember.setCoStatus(coStatus);
 			coMember.setCoWebsite(coWebsite);
-
+			
 			CoMemberService serivce = new CoMemberService();
 
 			Map<String, Object> result = serivce.registCoMember(coMember);

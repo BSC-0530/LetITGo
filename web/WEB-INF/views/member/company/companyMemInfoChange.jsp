@@ -183,16 +183,16 @@
 								</div>
 								</div>
 							</div>
-									</div>
+						</div>		
 						</div>
 						<br>
-							<img src="images/200x200.png" alt="My Image">
-					</div>
+				
+				</div>		
 							<button class="btn btn-info"style="margin-left: 80%" type="submit">변경하기</button>
 					<br>
 					</div>
-					</form>	 
-            	</div>
+					</form>	
+					</div>
             	</div>
 <script>
 function infoChange(){
@@ -271,6 +271,35 @@ function checkEmailCode() {
 	});
 }
 
+</script>
+<script>
+$("#send-file-1").click(function() {
+	
+	console.log($("#file")[0].files[0]);
+	
+	const formData = new FormData();
+	
+	formData.append("file", $("#file")[0].files[0]);
+	formData.append("description", $("#description").val());
+	
+	console.log(formData.get("file"));
+	console.log(formData.get("description"));
+	
+	$.ajax({
+		url: "/let/upload/formdata",
+		type: "post",
+		data: formData,
+		contentType: false,
+		processData: false,
+		success: function(data, textStatus, xhr) {
+			alert(data);
+		},
+		error: function(xhr, status, error) {
+			console.log(xhr);
+		} 
+	});
+	
+});
 </script>	
 	<jsp:include page="../../common/footer.jsp"/>
 </body>
