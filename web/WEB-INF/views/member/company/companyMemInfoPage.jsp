@@ -77,7 +77,7 @@
 										<div class="content">
 											<div class="box">
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/comem/infomation/servlet">회원정보</a>
+													<a href="${ pageContext.servletContext.contextPath }/coMem/infomationServlet">회원정보</a>
 												</p>
 												<br><br>
 												<p> 

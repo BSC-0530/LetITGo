@@ -31,6 +31,8 @@
 
 <!-- letitgo 제작 css -->
 <link rel="stylesheet" type="text/css" href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css"/>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -63,7 +65,7 @@
 <!-- 사이드바 -->
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
-				<form action="${ pageContext.servletContext.contextPath }/coMemInfo/change/servlet" method="post">
+				<form action="${ pageContext.servletContext.contextPath }/coMem/infomationServlet" method="post" onsubmit="infoChange();">
 			<div class="row">
 				<div
 					class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
@@ -78,7 +80,7 @@
 										<div class="content">
 											<div class="box">
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/comem/infomation/servlet">회원정보</a>
+													<a href="${ pageContext.servletContext.contextPath }/coMem/infomationServlet">회원정보</a>
 												</p>
 												<br><br>
 												<p> 
@@ -141,38 +143,42 @@
 											<h3>아이디  : </h3>
 										</div>
 										<div class="form-group col-md-6 col-sm-5 col-xs-12">
-											<input type="text" name="email" value="${ coMemDTO.memId }" readonly>
+											<input type="text" name="memId" value="${ coMemDTO.memId }" readonly>
 										</div>
 										<div class="form-group col-md-6 col-sm-3col-xs-12">
 										</div><div class="form-group col-md-8 col-sm-5col-xs-12">
 											<h3>이름  : </h3>
 										</div>
 										<div class="form-group col-md-6 col-sm-5 col-xs-12">
-											<input type="text" name="email" value="${ coMemDTO.memName }" >
+											<input type="text" id="memName" name="memName" value="${ coMemDTO.memName }" >
 										</div>
 										<div class="form-group col-md-6 col-sm-3col-xs-12">
 										</div><div class="form-group col-md-8 col-sm-5col-xs-12">
 											<h3>이메일  : </h3>
 										</div>
 										<div class="form-group col-md-6 col-sm-5 col-xs-12">
-											<input type="text" name="email" value="${ coMemDTO.memEmail }" >
+											<input  style="text-transform: lowercase;" id="memEmail" type="email" name="memEmail" value="${ coMemDTO.memEmail }" >
 										</div>
 										<div class="form-group col-md-6 col-sm-3col-xs-12">
-											<button class="btn btn-info"style="margin-left: 100px" type="button">인증 보내기</button>
-										</div><div class="form-group col-md-8 col-sm-5col-xs-12">
+											<button class="btn btn-info"style="margin-left: 100px"type="button" onclick="emailSend2();">인증번호 보내기</button>
+										</div>
+										<div class="form-group col-md-8 col-sm-5col-xs-12">
+										<div>
 											<h3>인증번호  : </h3>
 										</div>
-										<div class="form-group col-md-6 col-sm-5 col-xs-12">
-											<input type="text" name="email" id="emailCheck" placeholder="인증번호를 입력하세요" >
 										</div>
+										<input  style="margin-top:30px; width:430px; height:60px; border-radius: 5px;" type="text" name="certificationNumber" id="certificationNumber"  placeholder="인증번호 *"  required>
+                                             <button class="btn btn-info" style="width:120px; height:50px;" id="certificationBtn" type="button" onclick="checkEmailCode();">인증하기</button>
+                                             <input  type="hidden" id="certificationYn" value="false">
 										<div class="form-group col-md-6 col-sm-3col-xs-12">
-											<button class="btn btn-info"style="margin-left: 100px" type="button">인증 보내기</button>
+<!-- 											<button class="btn btn-info" style="margin-left: 100px;" type="button" id="certificationNumber" onclick="checkEmailCode2();">인증코드확인</button> -->
 										</div>
 										<div class="form-group col-md-8 col-sm-5col-xs-12">
 											<h3>연락처  : </h3>
 										</div>
 										<div class="form-group col-md-6 col-sm-5 col-xs-12">
-											<input type="text" name="email" value="${ coMemDTO.memPhone }" >
+											<input type="tel" id="me_phone" name="phone" value="${ coMemDTO.memPhone }"
+											title="연락처를 올바르게 입력하세요." placeholder="00*-000*-0000" pattern="[0-1]{2,3}-[0-9]{3,4}-[0-9]{3,4}" maxlength="13">
 										</div>
 								</div>
 								</div>
@@ -182,20 +188,90 @@
 						<br>
 							<img src="images/200x200.png" alt="My Image">
 					</div>
-							<button class="btn btn-info"style="margin-left: 80%" type="submit">변경요청보내기</button>
+							<button class="btn btn-info"style="margin-left: 80%" type="submit">변경하기</button>
 					<br>
 					</div>
 					</form>	 
             	</div>
             	</div>
 <script>
-// function infoChange(button){
+function infoChange(){
+	//변경버튼. 아래 함수를 실행하고 유효할때만 변경이됨.
+	//인증안하고 변경 누르는거 막기.
 	
-// 	location.href="${ pageContext.servletContext.contextPath }/company/info/change/servlet"	
-// }
+	if(isFunc == true){
+		checkEmailCode();
+	};
+	
+}
+
+</script>
+<script>
+//휴대폰 유효성검사
+var patt = new RegExp("[0-1]{2,3}-[0-9]{3,4}-[0-9]{3,4}");
+var res = patt.test( $("#me_phone").val());
+
+if( !patt.test( $("#me_phone").val()) ){
+    alert("전화번호를 정확히 입력하여 주십시오.");
+    
+    return false;
+}
+
+</script>
+<script>
+//이메일 보내기
+	function emailSend2() {
+
+		let memEmail = document.getElementById('memEmail').value;
+		
+		$.ajax({
+			type : "get",
+			url : "/let/member/whole/email",
+			data : {
+				memEmail: memEmail
+			},
+			success : function(data) {
+				alert('인증번호가 전송되었습니다.');
+
+			},
+			error:function(xhr) {
+				alert('jsp : 인증번호 전송을 실패하였습니다.')
+			}
+		});
+
+	}
+</script>	
+<script>
+//이메일 인증코드
+function checkEmailCode() {
+	
+	var certificationNumber = document.getElementById("certificationNumber").value;
+	
+// 	var form = document.inMemberRegist;
+	
+	$.ajax({
+		type:"post",
+		url:"/let/member/whole/email",
+		data:{certificationNumber: certificationNumber},
+		success : function(data) {
+			if(data == "true") {
+				alert('이메일 인증에 성공하였습니다.');
+				certificationYn.value = "true";
+			} else {
+				alert('이메일 인증에 실패하였습니다.');
+				 certificationNumber.value = "";
+				 certificationNumber.focus();
+				 certificationYn.value = "false";
+				 return false;
+			}
+		},
+		error: function(xhr) {
+			alert('jsp : 이메일 인증에 오류가 있습니다.')
+		}
+	});
+}
 
 </script>	
-	
 	<jsp:include page="../../common/footer.jsp"/>
 </body>
 </html>

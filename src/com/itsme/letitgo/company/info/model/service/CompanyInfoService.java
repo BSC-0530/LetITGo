@@ -7,11 +7,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.itsme.letitgo.company.info.model.dto.CompanyAddInfoDTO;
 import com.itsme.letitgo.company.info.model.dto.CompanyInfoDTO;
 import com.itsme.letitgo.company.info.model.mapper.CompanyInfoMapper;
+import com.itsme.letitgo.login.model.dto.MemberLoginDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectJobPostingDTO;
 
 public class CompanyInfoService {
@@ -51,6 +54,7 @@ public class CompanyInfoService {
 		coAddInfoAndJobPosting.put("companyAddInfo", companyAddInfo);
 		coAddInfoAndJobPosting.put("myJobPosting", myJobPosting);
 		
+		session.close();
 		
 		return coAddInfoAndJobPosting;
 	}
@@ -63,7 +67,28 @@ public class CompanyInfoService {
 		
 		CompanyInfoDTO coMemDTO = mapper.coMemInfoSelect();
 		
+		session.close();
 		
 		return coMemDTO;
 	}
+
+	public int modifyCoMemInfo(CompanyInfoDTO coMem) {
+		
+		SqlSession session = getSqlSession();
+		
+		CompanyInfoMapper mapper = session.getMapper(CompanyInfoMapper.class);
+		
+		int result = mapper.modifyCoMemInfo(coMem);
+		
+		if(result > 0) {
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
 }
