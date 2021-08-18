@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -198,7 +199,9 @@
 											<tr>
 												<td id="postNo"><c:out value="${ controllPersonalInfoPolicy.postNo }" /></td>
 												<td id="postTitle"><c:out value="${ controllPersonalInfoPolicy.postTitle }" /></td>
-	<!-- onClick 안에 상세보기 인터페이스 메소드명 넣어주기 -->	<td><button class="btn-info" onClick="detail(this);" value="${ controllPersonalInfoPolicy.postNo }">상세보기</button></td>
+ 	<!-- onClick 안에 상세보기 인터페이스 메소드명 넣어주기 -->	<td><button class="btn-info" onClick="detail(this);" value="${ controllPersonalInfoPolicy.postNo }">상세보기</button></td> 
+<!--  												<td><button type="submit"  -->
+<%--  		이건 값도 안넘어옴							onclick="href='${ pageContext.servletContext.contextPath }/personalinfo/policy/detailview'">등록하기</button></td>  --%>
 												<td id="postRegistrationDate"><c:out value="${ controllPersonalInfoPolicy.postRegistrationDate }" /></td>
 												<td id="postKinds"><c:out value="${ controllPersonalInfoPolicy.postKinds }" /></td>
 												<td id="postModifiedDate"><c:out value="${ controllPersonalInfoPolicy.postModifiedDate }" /></td>
@@ -281,7 +284,7 @@
 // 		const postNo = button.parentNode.parentNode.children[0].innerText 
 		const postNo = button.value; 
 					
-// 		alert(postNo);
+// 		alert(postNo); 이건 잘넘어감 -> adminPolicyAndGuideLineDetailView.jsp 여기 경로로 이동이 안됌
 					
 // 		location.href="${ pageContext.servletContext.contextPath }/personalinfopolicy/detailview?postNo="+postNo
 		location.href="${ pageContext.servletContext.contextPath }/personalinfo/policy/detailview?postNo="+postNo
