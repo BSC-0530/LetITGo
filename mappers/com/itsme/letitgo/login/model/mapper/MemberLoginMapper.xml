@@ -62,5 +62,32 @@
 		 WHERE A.MEM_ID = #{ memId }
 		   AND MEM_ENT_YN = 'N'
 	</select>
+	
+	<select id="selectAppHistory" resultType="_int">
+		SELECT /* com.itsme.letitgo.login.model.mapper.MemberLoginMapper#selectAppHistory() */
+	   	       COUNT(*)
+		  FROM TBL_CO_MEMBER_APP_HISTORY
+		 WHERE CO_MEM_NO = #{ memNo }
+		   AND CO_REQ_KINDS = '회원가입'
+		   AND CO_ANS_KINDS = '승인'
+	</select>
+	
+	<select id="selectRejectHistory" resultType="_int">
+		SELECT /* com.itsme.letitgo.login.model.mapper.MemberLoginMapper#selectAppHistory() */
+	   	       COUNT(*)
+		  FROM TBL_CO_MEMBER_APP_HISTORY
+		 WHERE CO_MEM_NO = #{ memNo }
+		   AND CO_REQ_KINDS = '회원가입'
+		   AND CO_ANS_KINDS = '거절'
+	</select>
+	
+	<select id="selectWaitHistory" resultType="_int">
+		SELECT /* com.itsme.letitgo.login.model.mapper.MemberLoginMapper#selectAppHistory() */
+	   	       COUNT(*)
+		  FROM TBL_CO_MEMBER_APP_HISTORY
+		 WHERE CO_MEM_NO = #{ memNo }
+		   AND CO_REQ_KINDS = '회원가입'
+		   AND CO_ANS_KINDS = '대기'
+	</select>
 
 </mapper>

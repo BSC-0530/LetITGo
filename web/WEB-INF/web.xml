@@ -12,7 +12,8 @@
 
    <context-param>
     <param-name>upload-location</param-name>
-    <param-value>c:\\semi3/LetITGo/web/resources/upload</param-value>
+
+    <param-value>C:\semi3\LetITGo\web\resources\upload</param-value>
 
   </context-param>
   <context-param>

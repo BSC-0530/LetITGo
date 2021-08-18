@@ -27,6 +27,47 @@ public class MemberLoginService {
 		
 		return loginMember;
 	}
+
+	public int selectAppHistory(int memNo) {
+		
+		SqlSession session = getSqlSession();
+		
+		MemberLoginMapper memberMapper = session.getMapper(MemberLoginMapper.class);
+		
+		int result = memberMapper.selectAppHistory(memNo);
+
+		session.close();
+		
+		return result;
+
+		
+	}
+
+	public int selectRejectHistory(int memNo) {
+		
+		SqlSession session = getSqlSession();
+		
+		MemberLoginMapper memberMapper = session.getMapper(MemberLoginMapper.class);
+		
+		int result = memberMapper.selectRejectHistory(memNo);
+
+		session.close();
+		
+		return result;
+	}
+
+	public int selectWaitHistory(int memNo) {
+		
+		SqlSession session = getSqlSession();
+		
+		MemberLoginMapper memberMapper = session.getMapper(MemberLoginMapper.class);
+		
+		int result = memberMapper.selectWaitHistory(memNo);
+
+		session.close();
+		
+		return result;
+	}
 		
 		
 }

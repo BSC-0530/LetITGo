@@ -80,6 +80,30 @@
 		 WHERE MEM_ID = #{ memId }
 	</select>
 	
+	<insert id="insertRequestAppHistory">
+		INSERT /* com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper#insertRequestAppHistory() */
+	      INTO TBL_CO_MEMBER_APP_HISTORY
+	    (
+	      CO_REQ_NO
+	    , CO_MEM_NO
+	    , CO_ANS_KINDS
+	    , CO_REQ_DATE
+	    , CO_ANS_DATE
+	    , CO_REQ_KINDS
+	    , CO_REJECT_REASON
+	    )
+	    VALUES
+	    (
+	      SEQ_CO_REQ_NO.NEXTVAL
+	    , #{ memNo }
+	    , '대기'
+	    , SYSDATE
+	    , NULL
+	    , '회원가입'
+	    , NULL
+	    )
+	</insert>
+	
 	<insert id="insertCoLogoAttachment">
 		INSERT /* com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper#insertCoLogoAttachment() */
 		  INTO TBL_ATTACHMENT
