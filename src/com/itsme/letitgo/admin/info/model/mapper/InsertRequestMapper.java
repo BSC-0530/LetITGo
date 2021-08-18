@@ -6,7 +6,7 @@ import com.itsme.letitgo.admin.info.model.dto.InsertRequestDTO;
 
 public interface InsertRequestMapper {
 
-	List<InsertRequestDTO> selectedInsertRequest();
+	List<InsertRequestDTO> insertRequestList();
 
 
 }

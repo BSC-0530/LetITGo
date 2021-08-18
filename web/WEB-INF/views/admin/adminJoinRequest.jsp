@@ -153,51 +153,46 @@
 								<table id="table_postUpdate" class="hover cell-border stripe">
 									<thead>
 										<tr>
-											<td align="center">요청번호</td>
-											<td align="center">회원번호</td>
+											<td align="center">번호</td>
 											<td align="center">기업명</td>
-											<td align="center">요청일자</td>
-											<td align="center">응답일자</td>
+											<td align="center">요청 일자</td>
+											<td align="center">응답 일자</td>
 											<td align="center">상태</td>
-											<td align="center">거절사유</td>
-											<td align="center">상세보기</td>
+											<td align="center">거절 사유</td>
+											<td align="center">상세 보기</td>
+											<td align="center">요청 응답</td>
 										</tr>
 									</thead>
-									<c:forEach var="adminInsertJoin" items="${ requestScope.insertRequestDTO }/info/requestList">							
+									<c:forEach var="insertRequestList" items="${ requestScope.insertRequestList }">							
 									<tbody align="center">
 											<tr>
-												<td><c:out value="${ adminInsertJoin.coReqNo }"/></td>								
-												<td><c:out value="${ adminInsertJoin.coMemNo }"/></td>								
-												<td><c:out value="${ adminInsertJoin.coComName }"/></td>								
-												<td><c:out value="${ adminInsertJoin.coReqDate }"/></td>
+												<td><c:out value="${ insertRequestList.coReqNo }"/></td>								
+												<td><c:out value="${ insertRequestList.coMemNo }"/></td>								
+												<td><c:out value="${ insertRequestList.coReqDate }"/></td>								
+												<td><c:out value="${ insertRequestList.coAnsDate }"/></td>
 												
 												
 												<c:if test="${ adminInsertJoin.coAnsDate != null }">								
-												<td><c:out value="${ adminInsertJoin.coAnsDate }"/></td>		
+												<td><c:out value="${ insertRequestList.coAnsDate }"/></td>		
 												</c:if>		
 												
-												<c:if test="${ adminInsertJoin.coAnsDate == null }">								
+												<c:if test="${ insertRequestList.coAnsDate == null }">								
 												<td>-</td>		
 												</c:if>
 												
-												<td><c:out value="${ adminInsertJoin.coAnsKinds }"/></td>
+												<td><c:out value="${ insertRequestList.coAnsKinds }"/></td>
 												
-												<c:if test="${ adminInsertJoin.coRejectReason != null }">								
-												<td><c:out value="${ adminInsertJoin.coRejectReason }"/></td>			
+												<c:if test="${ insertRequestList.coRejectReason != null }">								
+												<td><c:out value="${ insertRequestList.coRejectReason }"/></td>			
 												</c:if>		
 												
-												<c:if test="${ adminInsertJoin.coRejectReason == null }">								
+												<c:if test="${ insertRequestList.coRejectReason == null }">								
 												<td>-</td>			
 												</c:if>
 				
-												<td><button type="submit" onclick="post3(this);">미리보기</button></td>
+												<td><button type="submit" onclick="post3(this);">상세 보기</button></td>
 												
-												<c:if test="${  adminInsertJoin.coAnsDate != null }">
-												<td><button disabled>승인</button></td>
-												<td><button disabled>거절</button></td>
-												</c:if>
-												
-												<c:if test="${  adminInsertJoin.coAnsDate == null }">
+												<c:if test="${  insertRequestList.coAnsDate == null }">
 												<td><button type="submit" onclick="jobPostApproval(this);">승인</button></td>
 												<td><button type="submit" onclick="jobPostReject(this);">거절</button></td>
 												</c:if>																			

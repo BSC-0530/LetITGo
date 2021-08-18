@@ -21,29 +21,21 @@ public class SelectRequestListServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<InsertRequestDTO> insertRequestDTO = new RequestService().selectedInfoJoin();
 		
-		int coReqNo = insertRequestDTO.get(0).getCoReqNo();
-		int coMemNo = insertRequestDTO.get(0).getCoMemNo();
-		String coAnsKinds = insertRequestDTO.get(0).getCoAnsKinds();
-		Date coReqDate = insertRequestDTO.get(0).getCoReqDate();
-		Date coAnsDate = insertRequestDTO.get(0).getCoAnsDate();
-		String coReqKinds = insertRequestDTO.get(0).getCoReqKinds();
-		String coRejectReason = insertRequestDTO.get(0).getCoRejectReason();
+		RequestService requestService = new RequestService();
 		
-		request.setAttribute("CoReqNo", coReqNo);
-		request.setAttribute("coMemNo", coMemNo);
-		request.setAttribute("coAnsKinds", coAnsKinds);
-		request.setAttribute("coReqDate", coReqDate);
-		request.setAttribute("coAnsDate", coAnsDate);
-		request.setAttribute("coReqKinds", coReqKinds);
-		request.setAttribute("coRejectReason", coRejectReason);
+		List<InsertRequestDTO> insertRequestList = requestService.joinList();
 		
-		String path ="WEB-INF/views/admin/adminJoinRequest.jsp";
+		String path ="";
+		
+		if(insertRequestList != null) {
+			path = "/WEB-INF/views/admin/adminJoinRequest";
+			
+			request.setAttribute("insertRequestList", insertRequestList);
+		}
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 	
-
 
 }

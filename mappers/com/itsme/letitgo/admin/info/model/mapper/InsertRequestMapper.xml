@@ -11,7 +11,7 @@
 		<result property="coReqKinds" column="CO_REQ_KINDS"/>
 		<result property="coRejectReason" column="CO_REJECT_REASON"/>
 	</resultMap>
-	<select id="selectedInsertRequest" resultMap="requestInsert">
+	<select id="insertRequestList" resultMap="requestInsert">
 		SELECT
 			   CO_REQ_NO
 			 , CO_MEM_NO
