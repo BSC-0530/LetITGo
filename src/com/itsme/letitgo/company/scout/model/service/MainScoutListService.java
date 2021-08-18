@@ -377,12 +377,14 @@ public class MainScoutListService {
 		
 		return result;
 	}
-	public List<SkillsDTO> selectSkillsName() {
+	public List<SkillsDTO> selectSkillsName(String term) {
 		
 		SqlSession session = getSqlSession();
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
 		
-		List<SkillsDTO> skillsList = mapper.selectSkillsName();
+		System.out.println("serv term : " + term);
+		
+		List<SkillsDTO> skillsList = mapper.selectSkillsName(term);
 		
 		
 		session.close();

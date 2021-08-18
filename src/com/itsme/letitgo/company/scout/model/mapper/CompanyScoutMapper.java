@@ -73,7 +73,7 @@ public interface CompanyScoutMapper {
 //	찜하기 리스트 삭제
 	int deleteWishList(int resumeNo);
 
-	List<SkillsDTO> selectSkillsName();
+	List<SkillsDTO> selectSkillsName(String term);
 
 //	List<SkillsAndCategoryDTO> skillsSelect();
 

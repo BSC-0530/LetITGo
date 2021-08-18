@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.itsme.letitgo.company.info.model.dto.CompanyAddInfoDTO;
 import com.itsme.letitgo.company.info.model.dto.CompanyInfoDTO;
+import com.itsme.letitgo.login.model.dto.MemberLoginDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectJobPostingDTO;
 
 public interface CompanyInfoMapper {
@@ -20,6 +21,9 @@ public interface CompanyInfoMapper {
 
 
 	CompanyInfoDTO coMemInfoSelect();
+
+
+	int modifyCoMemInfo(CompanyInfoDTO coMem);
 
 
 

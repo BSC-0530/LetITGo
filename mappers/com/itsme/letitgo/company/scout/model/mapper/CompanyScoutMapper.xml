@@ -600,10 +600,11 @@
 		 WHERE RESUME_NO = #{ resumeNo }
 	</delete>
 	
-	<select id="selectSkillsName" resultMap="skillsNameResultMap">
+	<select id="selectSkillsName" parameterType="string" resultMap="skillsNameResultMap">
 		SELECT
 		       SKILLS_NAME
 		  FROM TBL_SKILLS
+		 WHERE UPPER(SKILLS_NAME) LIKE '%'||UPPER(#{ term, jdbcType=VARCHAR })||'%'
 	</select>
 
 </mapper>

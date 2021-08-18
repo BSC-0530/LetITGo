@@ -210,7 +210,7 @@
 												<td id="productStatus"><c:out 
 														value="${ productList.productStatus }" /></td> 
 												<td><button type="button" onclick="modify()" style="background: skyblue; border-radius: 5px; color: white; font-weight: 900;">수정 하기</button></td>
-												<td><button style="background: red; border-radius: 5px; color: white; font-weight: 900;">삭제하기</button>
+												<td><button type="button"style="background: red;  border-radius: 5px; color: white; font-weight: 900;" onclick="deletebutton(this)" value="${ productList.productNo }">삭제하기</button>
 											</tr>
 										</tbody>
 									</c:forEach>
@@ -261,6 +261,20 @@
 				location.href = "${ pageContext.servletContext.contextPath }/admin/product/update"
 		
 		}
+	</script>
+	<script>
+	
+		 function deletebutton(button) {
+			
+			 alert("삭제 되었습니다.");
+			 
+			 const productNo = button.value;
+			 location.href = "${ pageContext.servletContext.contextPath }/productList/delete?productNo=" + productNo;
+			 
+		}
+	
+		 $("input").filter("[value='null']").val("");
+		 
 	</script>
 	
 </body>
