@@ -200,8 +200,6 @@
 												<td id="postNo"><c:out value="${ controllPersonalInfoPolicy.postNo }" /></td>
 												<td id="postTitle"><c:out value="${ controllPersonalInfoPolicy.postTitle }" /></td>
  	<!-- onClick 안에 상세보기 인터페이스 메소드명 넣어주기 -->	<td><button class="btn-info" onClick="detail(this);" value="${ controllPersonalInfoPolicy.postNo }">상세보기</button></td> 
-<!--  												<td><button type="submit"  -->
-<%--  		이건 값도 안넘어옴							onclick="href='${ pageContext.servletContext.contextPath }/personalinfo/policy/detailview'">등록하기</button></td>  --%>
 												<td id="postRegistrationDate"><c:out value="${ controllPersonalInfoPolicy.postRegistrationDate }" /></td>
 												<td id="postKinds"><c:out value="${ controllPersonalInfoPolicy.postKinds }" /></td>
 												<td id="postModifiedDate"><c:out value="${ controllPersonalInfoPolicy.postModifiedDate }" /></td>
@@ -292,19 +290,19 @@
 	}	
 	</script>
 
-<!-- 	<script> -->
-<!-- // 	//수정 버튼 -->
-<!-- // 	function modify(button){ -->
+	<script> 
+  	//수정 버튼
+ 	function modify(button){ 
 		
-<!-- // 		const postNo = button.parentNode.parentNode.children[0].innerText -->
-<!-- // // 		const num = button.value;  -->
+// 		const postNo = button.parentNode.parentNode.children[0].innerText 
+ 		const postNo = button.value;  
 
-<!-- // 		alert(postNo); -->
+		alert(postNo); 
 		
-<%-- // 		location.href="${ pageContext.servletContext.contextPath }/personalinfopolicy/detail?postNo="+postNo --%>
-		
-<!-- // 	} -->
-<!-- </script>	 -->
+//  	location.href="${ pageContext.servletContext.contextPath }/personalinfopolicy/detail?postNo="+postNo 
+ 		location.href="${ pageContext.servletContext.contextPath }/personalinfo/policy/detailview?postNo="+postNo
+
+	 </script>	 
 	
 </body>
 </html>

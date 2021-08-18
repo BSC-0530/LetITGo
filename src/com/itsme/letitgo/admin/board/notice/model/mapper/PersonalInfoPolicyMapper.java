@@ -33,11 +33,11 @@ public interface PersonalInfoPolicyMapper {
 
 	List<PersonalInfoPolicyDTO> selectAllPersonalInfoPolicyList();
 
-//	PersonalInfoPolicyDTO selectDetailPersonalInfoPolicy(int postNo);	//나중에 지워야됌
-
-	int personalInfoPolicyModifyInsert(PersonalInfoPolicyDTO personalInfoPolicyModifyInsert);
+//	int personalInfoPolicyModifyInsert(PersonalInfoPolicyDTO personalInfoPolicyModifyInsert);
 
 	PersonalInfoPolicyDTO selectDetailList(int postNo);
+
+	int policyModifyInsert(PersonalInfoPolicyDTO policyModifyInsert);
 
 }
 
