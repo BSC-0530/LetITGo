@@ -28,6 +28,8 @@ public class SelectAllJobPostingServlet extends HttpServlet {
 		request.setAttribute("jpSkills", jp.get("jpSkills"));
 		request.setAttribute("jobNameList", jp.get("jobNameList"));
 		request.setAttribute("skillsList", jp.get("skillsList"));
+		
+		
 
 		String path = "/WEB-INF/views/recruit/jobPostingList.jsp";
 		request.getRequestDispatcher(path).forward(request, response);

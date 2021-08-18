@@ -104,14 +104,14 @@
 											<h5 class="con1">전체 공고</h5>
 										</div>
 									</div>
-									<div class="gc_counter_cont_wrapper2" style="cursor:pointer;" onclick="select('승인된공고')">
+									<div class="gc_counter_cont_wrapper2" style="cursor:pointer;" onclick="location.href= '${ pageContext.servletContext.contextPath }/company/jobPostingHistory/select?kinds=승인된공고'">
 										<div class="count-description">
 											<span class="timer"><c:out value="${ requestScope.recruitingJopPosting.size() }" /></span>
 											<i class="fa"></i>
 											<h5 class="con2">진행중 공고</h5>
 										</div>
 									</div>
-									<div class="gc_counter_cont_wrapper3" style="cursor:pointer;" onclick="select('승인대기중인공고')">
+									<div class="gc_counter_cont_wrapper3" style="cursor:pointer;" onclick="location.href= '${ pageContext.servletContext.contextPath }/company/jobPostingHistory/select?kinds=승인대기중인공고'">
 										<div class="count-description">
 											<span class="timer"><c:out value="${ requestScope.requestJobPosting.size() }" /></span>
 											<i class="fa"></i>
@@ -183,6 +183,73 @@
 								</tbody>
 								</c:forEach>
 							</c:if>
+							
+							<!-- request영역에 담긴 kinds가 '승인된공고'일때 승인된 공고 화면에 출력 -->
+							<c:if test="${ requestScope.kinds eq '승인된공고' }" >
+								<c:forEach var="jobPosting"  items="${ requestScope.recruitingJopPosting }">
+								
+								<tbody align="center">
+									<tr>
+										<td><c:out value="${ jobPosting.jobPostNo }"/></td>
+										<td><c:out value="${ jobPosting.jobPostTitle }"/></td>
+										
+										<!-- 공고 상태에 따라 view에 다르게 표기 -->
+										<td>
+										<c:if test="${ jobPosting.jobPostKinds eq '승인된공고' }"><c:out value="채용중"/></c:if>
+										<c:if test="${ jobPosting.jobPostKinds eq '승인대기중인공고' }"><c:out value="수정/등록 요청"/></c:if>
+										<c:if test="${ jobPosting.jobPostKinds eq '마감된공고' }"><c:out value="마감"/></c:if>
+										<c:if test="${ jobPosting.jobPostKinds eq '거절된공고' }"><c:out value="등록 거절"/></c:if>
+										</td>
+										<td><c:out value="${ jobPosting.jobPostMinExperience }" />년 ~ <c:out value="${ jobPosting.jobPostMaxExperience }" />년</td>								
+										<td><c:out value="${ jobPosting.jobPostEnrollDate }" /></td>								
+										<td><c:out value="${ jobPosting.jobPostDeadline }" /></td>			
+										<td><button onclick="updateJobPosting(this);">수정</button></td>			
+										<td><button>지원자</button></td>
+										<c:if test="${ jobPosting.exposureUseCheck eq 'N' }">
+										<td><button type="submit" onclick="req(this);">사용하기</button></td>
+										</c:if>
+										<c:if test="${ jobPosting.exposureUseCheck eq 'Y' }">
+										<!-- 노출권 마감일자가 나와주면 좋을듯  -->
+										<td>사용중</td>
+										</c:if>
+									</tr>
+								</tbody>
+								</c:forEach>
+							</c:if>
+							
+							<!-- request영역에 담긴 kinds가 '승인대기중인공고'일때 승인된 공고 화면에 출력 -->
+							<c:if test="${ requestScope.kinds eq '승인대기중인공고' }" >
+								<c:forEach var="jobPosting"  items="${ requestScope.requestJobPosting }">
+								
+								<tbody align="center">
+									<tr>
+										<td><c:out value="${ jobPosting.jobPostNo }"/></td>
+										<td><c:out value="${ jobPosting.jobPostTitle }"/></td>
+										
+										<!-- 공고 상태에 따라 view에 다르게 표기 -->
+										<td>
+										<c:if test="${ jobPosting.jobPostKinds eq '승인된공고' }"><c:out value="채용중"/></c:if>
+										<c:if test="${ jobPosting.jobPostKinds eq '승인대기중인공고' }"><c:out value="수정/등록 요청"/></c:if>
+										<c:if test="${ jobPosting.jobPostKinds eq '마감된공고' }"><c:out value="마감"/></c:if>
+										<c:if test="${ jobPosting.jobPostKinds eq '거절된공고' }"><c:out value="등록 거절"/></c:if>
+										</td>
+										<td><c:out value="${ jobPosting.jobPostMinExperience }" />년 ~ <c:out value="${ jobPosting.jobPostMaxExperience }" />년</td>								
+										<td><c:out value="${ jobPosting.jobPostEnrollDate }" /></td>								
+										<td><c:out value="${ jobPosting.jobPostDeadline }" /></td>			
+										<td><button onclick="updateJobPosting(this);">수정</button></td>			
+										<td><button>지원자</button></td>
+										<c:if test="${ jobPosting.exposureUseCheck eq 'N' }">
+										<td><button type="submit" onclick="req(this);">사용하기</button></td>
+										</c:if>
+										<c:if test="${ jobPosting.exposureUseCheck eq 'Y' }">
+										<!-- 노출권 마감일자가 나와주면 좋을듯  -->
+										<td>사용중</td>
+										</c:if>
+									</tr>
+								</tbody>
+								</c:forEach>
+							</c:if>
+							
 						</table>
 						<br>
 						<button onclick="insertJobPosting();" class="btn btn-info" style=" float: right;" >공고 등록</button>

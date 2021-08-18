@@ -16,75 +16,7 @@
 </head>
 <body>
 
-	<!--    <div class="jp_bottom_footer_Wrapper_header_img_wrapper">
-        <div class="jp_slide_img_overlay"></div>
-        <div class="jp_banner_heading_cont_wrapper">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="jp_job_heading_wrapper">
-                            <div class="jp_job_heading">
-                                <h1><span>30 </span>개의 진행 중 공고</h1>
-                                <p style="margin-left: 30px;">채용 공고를 검색해보세요 </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="jp_header_form_wrapper">
-                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                <input type="text" placeholder="Keyword e.g. (Job Title, Description, Tags)">
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                <div class="jp_form_location_wrapper">
-                                    <select>
-                                        <option>Select Location</option>
-                                        <option>Select Location</option>
-                                        <option>Select Location</option>
-                                        <option>Select Location</option>
-                                        <option>Select Location</option>
-                                    </select><i class="fa fa-angle-down second_icon"></i>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                <div class="jp_form_exper_wrapper">
-                                    <select>
-                                        <option>Experience</option>
-                                        <option>Experience</option>
-                                        <option>Experience</option>
-                                        <option>Experience</option>
-                                        <option>Experience</option>
-                                    </select><i class="fa fa-angle-down second_icon"></i>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                <div class="jp_form_btn_wrapper">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-search"></i> Search</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="jp_banner_main_jobs_wrapper">
-                            <div class="jp_banner_main_jobs">
-                                <ul>
-                                    <li>여기에 키워드 불러와서 넣어주면 될듯?</li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>-->
-	<!-- Header W rapper End -->
+	
 	<!-- jp listing sidebar Wrapper Start -->
 	<!-- 상단 검은색 -->
 	<form  id="insertJobPostingForm" action="${ pageContext.servletContext.contextPath }/member/allJobPosting/select"
@@ -231,8 +163,6 @@
 											<div class="gc_causes_select_box">
 												<select name="sort">
 													<option>최신순</option>
-													<option>Sort Default</option>
-													<option>Sort Default</option>
 												</select><i class="fa fa-angle-down"></i>
 											</div>
 										</div>
@@ -271,37 +201,64 @@
 	
 																	<!-- 이미지 경로  -->
 																	<div class="jp_job_post_side_img">
-																		<img
+	<!--  이미지 경로 -->																	<img
 																			src="${ pageContext.servletContext.contextPath }/resources/image/bmw.png"
 																			style="width: 120px; height: 120px;" alt="post_img" />
 																	</div>
 																	<div></div>
-																	<div
-																		class="jp_job_post_right_cont jp_job_post_grid_right_cont">
+																	<div class="jp_job_post_right_cont jp_job_post_grid_right_cont">
 																		<!-- 제목 -->
-																		<a id="detailedJobPost"
-																			style="font-weight: bold; font-size: 20px; color: black;"><c:out
-																				value="${ jobPosting.jobPostTitle }" /></a><br>
-																		<br> <a><c:out
-																				value="${ jobPosting.coMemberAddInfoDTO.coComName }" />
-																		</a><a>(서울)</a><br> <a> <!-- 경력 --> <c:if
-																				test="${ jobPosting.jobPostMinExperience != jobPosting.jobPostMaxExperience }">
-																				<c:out value="${ jobPosting.jobPostMinExperience }" /> ~ <c:out
-																					value="${ jobPosting.jobPostMaxExperience }" /> 년
-																			</c:if> <c:if
-																				test="${ jobPosting.jobPostMinExperience eq jobPosting.jobPostMaxExperience }">
-																				<c:if
-																					test="${ jobPosting.jobPostMinExperience eq 0 }">
-																					<c:out value="신입개발자"></c:out>
-																				</c:if>
-																			</c:if>
-																		</a><br>
+																		<div>
+																			<label id="detailedJobPost" style="font-weight: bold; font-size: 20px; color: black;">
+																				<c:out value="${ jobPosting.jobPostTitle }" />
+																			</label>
+																		</div>
+<!-- 																		<div> -->
+																		<label><c:out value="${ jobPosting.coMemberAddInfoDTO.coComName }" /></label>
+<!-- 지역 처리 필요 -->	<%-- 																			<c:set var="coAddress" value="${ jobPosting.coMemberAddInfo.coAddress }"></c:set> --%>
+<%-- 																			<c:set var="area" value=""/> --%>
+<%-- 																			<label><c:out value=""></c:out></label> --%>
+<!-- 																		</div> -->
+																		<div>
+																		<label>
+																		<c:set var="minExp" value="${ jobPosting.jobPostMinExperience }"></c:set>
+																		<c:set var="maxExp" value="${ jobPosting.jobPostMaxExperience }"></c:set>
+																			<c:choose>
+																				<c:when test="${ minExp ne maxExp }">
+																					<c:out value="${ minExp } ~ ${ maxEmp }"/>
+																				<</c:when>
+																				<c:when test="${ (minExp eq maxExp) &&  (minExp eq 0)}">
+																					<c:out value="신입"></c:out>
+																				</c:when>
+																				<c:when test="${( minExp eq maxExp) && (minExp ne 0)}">
+																					<c:out value="${ maxExp }년 이상"/>
+																				</c:when>
+																				<c:when test="${ (minExp eq 0)  && (maxExp eq 10)}">
+																					<c:out value="경력 무관"></c:out>
+																				</c:when>
+																			</c:choose>
+																		</label>
+																		</div>
+																		
+<%-- 																		<a><c:if test="${ jobPosting.jobPostMinExperience ne jobPosting.jobPostMaxExperience }"> --%>
+<%-- 																			<c:out value="${ jobPosting.jobPostMinExperience }" /> ~ <c:out --%>
+<%-- 																					value="${ jobPosting.jobPostMaxExperience }" /> 년 --%>
+<%-- 																			</c:if> <c:if --%>
+<%-- 																				test="${ jobPosting.jobPostMinExperience eq jobPosting.jobPostMaxExperience }"> --%>
+<%-- 																				<c:if --%>
+<%-- 																					test="${ jobPosting.jobPostMinExperience eq 0 }"> --%>
+<%-- 																					<c:out value="신입개발자"></c:out> --%>
+<%-- 																				</c:if> --%>
+<%-- 																			</c:if> --%>
+<!-- 																		</a><br> -->
 																		<!-- 직무 -->
-																		<a><c:out
-																				value="${ jobPosting.jobFieldDTO.jobName }"></c:out></a><br>
+																		<div>
+																		<label><c:out value="${ jobPosting.jobFieldDTO.jobName }"></c:out></label>
+																		</div>
 																		<!-- 채용공고 마감일 -->
-																		<a><c:out value="${ jobPosting.jobPostEnrollDate }" />
-																			~ <c:out value="${ jobPosting.jobPostDeadline }" /></a>
+																		<div>
+																		<label><c:out value="${ jobPosting.jobPostEnrollDate }" /> ~ <c:out value="${ jobPosting.jobPostDeadline }" /></label>
+																		</div>
 	
 																	</div>
 																</div>
@@ -310,17 +267,13 @@
 														<div class="jp_job_post_keyword_wrapper">
 															<ul>
 																<li>요구 기술 :</li>
-																<c:forEach var="jpSkills"
-																	items="${ requestScope.jpSkills }">
-																	<c:if
-																		test="${ jpSkills.jobPostNo eq jobPosting.jobPostNo}">
-																		<li><a href="#"><c:out
-																					value="${ jpSkills.skillsName }"></c:out></a></li>
+																<c:forEach var="jpSkills" items="${ requestScope.jpSkills }">
+																	<c:if test="${ jpSkills.jobPostNo eq jobPosting.jobPostNo}">
+																		<li><a href="#"><c:out value="${ jpSkills.skillsName }"/></a></li>
 																	</c:if>
 																</c:forEach>
 															</ul>
 														</div>
-	
 													</div>
 												</div>
 											</c:forEach>
