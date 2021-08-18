@@ -15,13 +15,14 @@ public class RequestJobPostingDTO {
 	private String jobPostContents;
 	private java.sql.Date jobPostDeadLine;
 	private List<Integer> skillsCodeList;
+	private int updateJobPostNo;
 	// 파일은 추가할 예정
 //	private String potFilePath;
 	
 	public RequestJobPostingDTO() {}
-
 	public RequestJobPostingDTO(int coMemNo, int jobPostNo, String jobPostTitle, int jobNo, int jobPostMinExperience,
-			int jobPostMaxExperience, String jobPostContents, Date jobPostDeadLine, List<Integer> skillsCodeList) {
+			int jobPostMaxExperience, String jobPostContents, Date jobPostDeadLine, List<Integer> skillsCodeList,
+			int updateJobPostNo) {
 		super();
 		this.coMemNo = coMemNo;
 		this.jobPostNo = jobPostNo;
@@ -32,88 +33,78 @@ public class RequestJobPostingDTO {
 		this.jobPostContents = jobPostContents;
 		this.jobPostDeadLine = jobPostDeadLine;
 		this.skillsCodeList = skillsCodeList;
+		this.updateJobPostNo = updateJobPostNo;
 	}
-
 	public int getCoMemNo() {
 		return coMemNo;
 	}
-
 	public void setCoMemNo(int coMemNo) {
 		this.coMemNo = coMemNo;
 	}
-
 	public int getJobPostNo() {
 		return jobPostNo;
 	}
-
 	public void setJobPostNo(int jobPostNo) {
 		this.jobPostNo = jobPostNo;
 	}
-
 	public String getJobPostTitle() {
 		return jobPostTitle;
 	}
-
 	public void setJobPostTitle(String jobPostTitle) {
 		this.jobPostTitle = jobPostTitle;
 	}
-
 	public int getJobNo() {
 		return jobNo;
 	}
-
 	public void setJobNo(int jobNo) {
 		this.jobNo = jobNo;
 	}
-
 	public int getJobPostMinExperience() {
 		return jobPostMinExperience;
 	}
-
 	public void setJobPostMinExperience(int jobPostMinExperience) {
 		this.jobPostMinExperience = jobPostMinExperience;
 	}
-
 	public int getJobPostMaxExperience() {
 		return jobPostMaxExperience;
 	}
-
 	public void setJobPostMaxExperience(int jobPostMaxExperience) {
 		this.jobPostMaxExperience = jobPostMaxExperience;
 	}
-
 	public String getJobPostContents() {
 		return jobPostContents;
 	}
-
 	public void setJobPostContents(String jobPostContents) {
 		this.jobPostContents = jobPostContents;
 	}
-
 	public java.sql.Date getJobPostDeadLine() {
 		return jobPostDeadLine;
 	}
-
 	public void setJobPostDeadLine(java.sql.Date jobPostDeadLine) {
 		this.jobPostDeadLine = jobPostDeadLine;
 	}
-
 	public List<Integer> getSkillsCodeList() {
 		return skillsCodeList;
 	}
-
 	public void setSkillsCodeList(List<Integer> skillsCodeList) {
 		this.skillsCodeList = skillsCodeList;
 	}
-
+	public int getUpdateJobPostNo() {
+		return updateJobPostNo;
+	}
+	public void setUpdateJobPostNo(int updateJobPostNo) {
+		this.updateJobPostNo = updateJobPostNo;
+	}
 	@Override
 	public String toString() {
 		return "RequestJobPostingDTO [coMemNo=" + coMemNo + ", jobPostNo=" + jobPostNo + ", jobPostTitle="
 				+ jobPostTitle + ", jobNo=" + jobNo + ", jobPostMinExperience=" + jobPostMinExperience
 				+ ", jobPostMaxExperience=" + jobPostMaxExperience + ", jobPostContents=" + jobPostContents
-				+ ", jobPostDeadLine=" + jobPostDeadLine + ", skillsCodeList=" + skillsCodeList + "]";
+				+ ", jobPostDeadLine=" + jobPostDeadLine + ", skillsCodeList=" + skillsCodeList + ", updateJobPostNo="
+				+ updateJobPostNo + "]";
 	}
 
+	
 	
 
 

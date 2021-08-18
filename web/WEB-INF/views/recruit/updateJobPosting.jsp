@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -37,10 +36,10 @@
 	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 </head>
 <body>
-
-<%-- 	<jsp:include page="../common/header/companyHeader.jsp"/> --%>
 	
-	<jsp:include page="jobPostingHistoryBody.jsp"/>
+<%-- 	<jsp:include page="../common/header/personalHeader.jsp"/> --%>
+	
+	<jsp:include page="updateJobPostingBody.jsp"/>
 
 	<jsp:include page="../common/footer.jsp"/>
 

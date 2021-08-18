@@ -27,11 +27,13 @@ public interface SelectCoMyJobPostingMapper {
 
 	int insertSkills(RequestJobPostingDTO dto);
 
-	int insertjobPostingAppHistory(int jobPostNo);
+	int insertJobPostingAppHistory(int jobPostNo);
 
 	SelectCoMyJobPostingDTO updateRecruit(int jobPostNo);
 
 	ArrayList<JpSkillsDTO> selectSkillsFromCategory(int categoryNo);
+
+	int updateJobPostingAppHistory(int jobPostNo);
 	
 
 

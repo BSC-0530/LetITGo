@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper">
-	<resultMap type="com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectJobPostingDTO" id="resultMyJobPosting">	
+	<resultMap type="com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO" id="resultMyJobPosting">	
 		<id property="jobPostNo" column="JOB_POST_NO"/>
 		<result property="jobPostTitle" column="JOB_POST_TITLE" javaType="string"/>
 		<result property="jobPostMinExperience" column="JOB_POST_MIN_EXPERIENCE"/>
@@ -34,7 +34,7 @@
 	
 	
 	<select id="selectCoMyJobPosting" parameterType="com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO" resultMap="resultMyJobPosting">
-		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#updateRecruit() */
+		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectCoMyJobPosting() */
 	    	   JP.JOB_POST_NO
 	    	 , JP.JOB_POST_TITLE
 	    	 , JP.JOB_POST_MIN_EXPERIENCE
@@ -102,7 +102,18 @@
 		  FROM TBL_SKILLS S
 	</select>
 	
-	<!-- 공고 등록 입력한 값 insert 후 seq로 입력한 jobPostNo dto에 저장 -->
+	<!-- 채용공고에서 category선택시 skills 출력 -->
+	<select id="selectSkillsFromCategory" parameterType="_int" resultMap="resultSkills">
+		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectSkillsFromCategory() */
+		  	   S.SKILLS_NO
+		  	 , S.SKILLS_NAME
+		  	 , S.CATEGORY_NO
+		  FROM TBL_SKILLS S
+		 WHERE S.CATEGORY_NO = #{ categoryNo }
+	</select>
+	
+	
+	<!-- 공고 등록/수정 입력한 값 insert 후 seq로 입력한 jobPostNo dto에 저장 -->
 	<insert id="insertJobPosting" parameterType="com.itsme.letitgo.company.recruit.jobposting.model.dto.RequestJobPostingDTO">
 		INSERT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#insertJobPosting() */
 		  INTO TBL_JOB_POSTING JP
@@ -134,7 +145,8 @@
 	          FROM DUAL
         </selectKey>
 	</insert>
-	<!-- 공고 등록 선택한 skills insert -->
+	
+	<!-- 공고 등록/수정 선택한 skills insert -->
 	<insert id="insertSkills" parameterType="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpSkillsDTO">
 		INSERT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#insertSkills() */
 		  INTO TBL_JOB_POSTING_REQ_SKILLS RS
@@ -148,8 +160,9 @@
 		, #{ skillsNo }
 		)
 	</insert>
+	
 	<!-- 공고 등록 history에 insert -->
-	<insert id="insertjobPostingAppHistory" parameterType="_int">
+	<insert id="insertJobPostingAppHistory" parameterType="_int">
 		INSERT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#insertjobPostingAppHistory() */
 		  INTO TBL_JOB_POSTING_APP_HISTORY AH
 		(
@@ -166,7 +179,8 @@
 		, #{ jobPostNo }
 		)
 	</insert>
-	<!-- 공고 수정 -->
+	
+	<!-- 공고 수정시 정보 조회-->
 	<select id="updateRecruit" parameterType="_int" resultMap="resultMyJobPosting">
 		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#updateRecruit() */
 		  	   JP.JOB_POST_NO
@@ -181,16 +195,32 @@
 		  FROM TBL_JOB_POSTING JP
 		 WHERE JP.JOB_POST_NO = #{ jobPostNo }
 	</select>
+
 	
-	<!-- 채용공고에서 category선택시 skills 출력 -->
-	<select id="selectSkillsFromCategory" parameterType="_int" resultMap="resultSkills">
-		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectSkillsFromCategory() */
-		  	   S.SKILLS_NO
-		  	 , S.SKILLS_NAME
-		  	 , S.CATEGORY_NO
-		  FROM TBL_SKILLS S
-		 WHERE S.CATEGORY_NO = #{ categoryNo }
-	</select>
+	<!-- 공고 수정 history에 insert -->
+	<insert id="updateJobPostingAppHistory" parameterType="_int">
+		INSERT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#insertjobPostingAppHistory() */
+		  INTO TBL_JOB_POSTING_APP_HISTORY AH
+		(
+		  AH.JOB_POST_REQ_NO
+		, AH.JOB_POST_REQ_DATE
+		, AH.JOB_POST_REQ_KINDS
+		, AH.JOB_POST_NO
+		, AH.CHANGE_REQ_JOB_POST_NO
+		)
+		VALUES
+		(
+		  SEQ_JOB_POST_REQ_NO.NEXTVAL
+		, SYSDATE
+		, '공고수정'
+		, #{ jobPostNo }
+		, #{ updateJobPostNo }
+		)
+	</insert>
+	
+
+
+
 
 
 	

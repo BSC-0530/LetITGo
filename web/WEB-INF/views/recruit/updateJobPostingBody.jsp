@@ -111,6 +111,9 @@
     <script>
 		function btn_click(str) {
 			
+			var jobPostNo = document.insertForm.jobPostNo.value;
+			
+			
 			if(str == "preview") {
 				window.open('', 'viewer', 'width=1400, height=2000');
 				document.insertForm.method = "post";
@@ -125,9 +128,11 @@
 					
 					alert("기술을 한가지 이상 선택해주세요")
 				} else {
+					
 
+					
 					document.insertForm.method = "post";
-					document.insertForm.action = "${ pageContext.servletContext.contextPath }/recruit/insert"
+					document.insertForm.action = "${ pageContext.servletContext.contextPath }/recruit/update?jobPostNo=" + jobPostNo;
 					document.insertForm.submit();
 				
 			}
@@ -145,7 +150,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="jp_tittle_heading_wrapper">
                             <div class="jp_tittle_heading">
-                                <h2>공고 등록</h2>
+                                <h2>공고 수정</h2>
                             </div>
                             <div class="jp_tittle_breadcrumb_main_wrapper">
                                 <div class="jp_tittle_breadcrumb_wrapper">
@@ -162,6 +167,7 @@
             </div>
         </div>
         <form id="insertForm" name="insertForm" method="post">
+        <input type="text" name="jobPostNo" value="${ requestScope.jobPostNo }" readonly>
             <!-- jp ad post Wrapper Start -->
             <div class="jp_adp_main_section_wrapper">
                 <div class="container">
@@ -171,7 +177,8 @@
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">
                                 <div class="jp_adp_form_wrapper" >
                                     <label id="titleFont"> 공고 제목</label>
-                                    <input id="jobPostTitle" type="text" placeholder="채용공고 제목을 입력해주세요.*" name="jobPostTitle" maxlength="30" min="1" required>
+                                    <input id="jobPostTitle" type="text" placeholder="채용공고 제목을 입력해주세요.*" name="jobPostTitle" maxlength="30" min="1" required value="${ requestScope.jobPostInfo.jobPostTitle }">
+                                    
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" style="width: 100%;" >
@@ -230,19 +237,18 @@
                                 <br><br>
                                 <label style="font-size: 10px">
                                 	1) 최소경력과 최대 경력이 같은 경우 n년 이상 경력자를 구하는 글로 게시됩니다. <br>
-                                	2) 신입만 구하는 경우 최소와 최대 모우 신입으로 표기해주세요<br>
-                                	3) 신입 ~ 10년차 이상 경력무관으로 게시됩니다.
+                                	2) 신입 ~ 10년차 이상 경력무관으로 게시됩니다.
                                 </label>
                             </div>
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">
                                 <div class="jp_adp_textarea_main_wrapper">
                                     <label id="titleFont"> 공고 내용</label>
-                                    <textarea rows="7" placeholder="공고 내용을 입력하세요*" name="jobPostContents" required maxlength="2000">/</textarea>
+                                    <textarea rows="7" placeholder="공고 내용을 입력하세요*" name="jobPostContents" required maxlength="2000" ><c:out value="${ requestScope.jobPostInfo.jobPostContents }"></c:out></textarea>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
                                 <div class="jp_adp_form_wrapper">
-                                    <label id="titleFont">마감일 *</label> <input type="date" name="jobPostDeadLine" required> 
+                                    <label id="titleFont">마감일 *</label> <input type="date" name="jobPostDeadLine" required value="${ requestScope.jobPostInfo.jobPostDeadline }"> 
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">

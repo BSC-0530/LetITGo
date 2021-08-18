@@ -98,22 +98,23 @@
 										</div>
 									</div>
 								</div>
-							<div class="jp_listing_tabs_wrapper">
-								<label style="font-size:30px;">열람제한기업</label><br>
-								<c:if test="${requestScope.restrictedCompany eq null }">
-								<label>등록된 열람제한 기업이 없습니다. 회원 정보 변경을 통해서 등록이 가능합니다.</label>
-								</c:if>
-								<c:if test="${requestScope.restrictedCompany ne null }">
-								<c:forEach var="restricedComapny" items="${ requestScope.restricedCompany }">
-								<c:out value="d${ restricedComapny.coComName }"></c:out>
-								</c:forEach>
-								</c:if>
+								<div class="jp_listing_tabs_wrapper">
+									<label style="font-size:30px;">열람제한기업</label><br>
+									<c:if test="${requestScope.restrictedCompany eq null }">
+									<label>등록된 열람제한 기업이 없습니다. 회원 정보 변경을 통해서 등록이 가능합니다.</label>
+									</c:if>
+									<c:if test="${requestScope.restrictedCompany ne null }">
+									<c:forEach var="restricedComapny" items="${ requestScope.restricedCompany }">
+									<c:out value="d${ restricedComapny.coComName }"></c:out>
+									</c:forEach>
+									</c:if>
+								</div>
 							</div>
 						</div>
+						<br>
+						
+						<button onclick="infoChange();" class="btn btn-info" id="coInfoChange" style="float: right;">회원 정보 변경</button>
 					</div>
-					<br>
-					
-					<button onclick="infoChange();" class="btn btn-info" id="coInfoChange" style="float: right;">회원 정보 변경</button>
 				</div>
 			</div>
 		</div>

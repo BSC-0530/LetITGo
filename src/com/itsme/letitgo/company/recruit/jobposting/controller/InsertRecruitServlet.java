@@ -1,6 +1,7 @@
 package com.itsme.letitgo.company.recruit.jobposting.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -43,12 +44,11 @@ public class InsertRecruitServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 세션에서 기업회원 정보를 받아와서 값에 담아준다.
-//		HttpSession session = request.getSession();
-//
-//        MemberLoginDTO memberLoginDTO = (MemberLoginDTO) session.getAttribute("loginMember");
-//
-//        int memNo = memberLoginDTO.getMemNo();
+		HttpSession session = request.getSession();
+
+        MemberLoginDTO memberLoginDTO = (MemberLoginDTO) session.getAttribute("loginMember");
+
+        int memNo = memberLoginDTO.getMemNo();
         
 		RequestJobPostingDTO dto = new RequestJobPostingDTO();
 		
@@ -64,7 +64,6 @@ public class InsertRecruitServlet extends HttpServlet {
 			System.out.println("i" + Integer.parseInt(i));
 		}
 		System.out.println("skillsList : " + skillsList);
-		int memNo = 3;
 		dto.setCoMemNo(memNo);
 		dto.setJobPostTitle(request.getParameter("jobPostTitle"));
 		dto.setJobNo(Integer.parseInt(request.getParameter("jobNo")));
@@ -93,15 +92,26 @@ public class InsertRecruitServlet extends HttpServlet {
 		
 		
 		boolean result = service.RequestInsertJobPosting(dto);
-		String path = "";
+		
+		
+		StringBuilder redirectText = new StringBuilder();
+		
 		if(result) {
-			path = "/let/company/jobPostingHistory/select";
+			redirectText.append("<script>alert('공고 등록 요청이 정상적으로 처리되었습니다.'); location.href='/let/company/jobPostingHistory/select';</script>");
+			
+//			redirectText.append("<script>alert('이력서 수정을 완료했습니다.'); location.href='/let/resume/list';</script>");
+
+		
 		} else {
-			path = "/let/recruit/insert";
+			redirectText.append("<script>alert('공고 등록 요청에 실패하였습니다.'); location.href='/let/recruit/insert';</script>");
 		}
+									
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		
-		response.sendRedirect(path);
-		
+		out.print(redirectText.toString());
+		out.flush();
+		out.close();
 		
 		
 	}

@@ -38,7 +38,7 @@
 </head>
 <body>
 
-	<jsp:include page="../common/header/companyHeader.jsp"/>
+<%-- 	<jsp:include page="../common/header/companyHeader.jsp"/> --%>
 	
 	<jsp:include page="insertJobPostingBody.jsp"/>
 
