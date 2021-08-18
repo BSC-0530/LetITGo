@@ -1,6 +1,7 @@
 package com.itsme.letitgo.company.scout.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.itsme.letitgo.company.recruit.applicant.model.dto.SkillsDTO;
 import com.itsme.letitgo.company.scout.model.service.MainScoutListService;
 
@@ -48,34 +50,34 @@ public class MainScoutListServlet extends HttpServlet {
 		
 	}
 
-@Override
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	//자동완성검색기능
-//		String value = request.getParameter("value");
-//		MainScoutListService mainScoutListService = new MainScoutListService();
-//		
-////		List<SkillsAndCategoryDTO> skillsName = mainScoutListService.skillsSelect();
-//		
-//		
-//	    JSONArray list = new JSONArray();
-//	    
-//	    
-//	    JSONObject object = null;
-		
-//	
-//	
-//	super.doPost(request, response);
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String term = request.getParameter("term");
+		System.out.println("input term : " + term);
 		List<SkillsDTO> skillsList = new ArrayList<>();
 		
-		skillsList = new MainScoutListService().selectSkillsName();
-		System.out.println("skillsList : " + skillsList);
-	//	    
-		String jsonList = new Gson().toJson(skillsList);
-		System.out.println("jsonList : " + jsonList);
+		if(term != null) {
+			skillsList = new MainScoutListService().selectSkillsName(term);
+			
+		}
+		
+   
+		Gson gson = new GsonBuilder().create();
+		
+		
+		String jsonList = gson.toJson(skillsList);
 		
 		response.setContentType("application/json; charset=UTF-8");
-		String path="/WEB-INF/views/scout/scoutMainView.jsp";
-		request.getRequestDispatcher(path).forward(request, response);
+		
+		PrintWriter out = response.getWriter();
+		
+		System.out.println(jsonList);
+		
+		out.print(jsonList);
+		out.flush();
+		out.close();
+		
 	
 	}
 
