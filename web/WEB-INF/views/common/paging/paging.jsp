@@ -10,14 +10,14 @@
 <body>
 	<div class="pagingArea" align="center">
 		<!-- 맨 앞으로 이동 버튼 -->
-	    <button id="startPage"><<</button>
+	    <button id="startPage">맨앞</button>
 		
 		<!-- 이전 페이지 버튼 -->
 		<c:if test="${ requestScope.selectCriteria.pageNo <= 1 }">
-			<button disabled><</button>
+			<button disabled>이전</button>
 		</c:if>
 		<c:if test="${ requestScope.selectCriteria.pageNo > 1 }">
-			<button id="prevPage"><</button>
+			<button id="prevPage">이전</button>
 		</c:if>
 		
 		<!-- 숫자 버튼 -->
@@ -32,60 +32,52 @@
 		
 		<!-- 다음 페이지 버튼 -->
 		<c:if test="${ requestScope.selectCriteria.pageNo >= requestScope.selectCriteria.maxPage }">
-			<button disabled>></button>
+			<button disabled>다음</button>
 		</c:if>
 		<c:if test="${ requestScope.selectCriteria.pageNo < requestScope.selectCriteria.maxPage }">
-			<button id="nextPage">></button>
+			<button id="nextPage">다음</button>
 		</c:if>
 		
 		<!-- 마지막 페이지로 이동 버튼 -->
-		<button id="maxPage">>></button> 
+		<button id="maxPage">맨뒤</button> 
 	</div>
 	
 	<script>
 	
-		const link = "${ pageContext.servletContext.contextPath }/board/list";
-		let searchText = "";
-		
-		if(${ !empty requestScope.selectCriteria.searchCondition? true: false }) {
-			searchText += "&searchCondition=${ requestScope.selectCriteria.searchCondition }";
-		}
-		
-		if(${ !empty requestScope.selectCriteria.searchValue? true: false }) {
-			searchText += "&searchValue=${ requestScope.selectCriteria.searchValue }";
-		}
-			
+		const link = "${ pageContext.servletContext.contextPath }/member/allJobPosting/select";
+
 		if(document.getElementById("startPage")) {
 			const $startPage = document.getElementById("startPage");
 			$startPage.onclick = function() {
-				location.href = link + "?currentPage=1" + searchText;
+				location.href = link + "?currentPage=1";
 			}
 		}
 		
 		if(document.getElementById("prevPage")) {
 			const $prevPage = document.getElementById("prevPage");
 			$prevPage.onclick = function() {
-				location.href = link + "?currentPage=${ requestScope.selectCriteria.pageNo - 1 }" + searchText;
+				location.href = link + "?currentPage=${ requestScope.selectCriteria.pageNo - 1 }";
 			}
 		}
 		
 		if(document.getElementById("nextPage")) {
 			const $nextPage = document.getElementById("nextPage");
 			$nextPage.onclick = function() {
-				location.href = link + "?currentPage=${ requestScope.selectCriteria.pageNo + 1 }" + searchText;
+				location.href = link + "?currentPage=${ requestScope.selectCriteria.pageNo + 1 }";
 			}
 		}
 		
 		if(document.getElementById("maxPage")) {
 			const $maxPage = document.getElementById("maxPage");
 			$maxPage.onclick = function() {
-				location.href = link + "?currentPage=${ requestScope.selectCriteria.maxPage }" + searchText;
+				location.href = link + "?currentPage=${ requestScope.selectCriteria.maxPage }";
 			}
 		}
 		
 		function pageButtonAction(text) {
-			location.href = link + "?currentPage=" + text + searchText;
+			location.href = link + "?currentPage=" + text;
 		}
+		
 	</script>
 </body>
 </html>

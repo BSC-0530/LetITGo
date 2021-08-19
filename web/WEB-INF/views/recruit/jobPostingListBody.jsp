@@ -58,7 +58,7 @@
 						<div class="jp_listing_heading_wrapper">
 							<h2>
 								We found <span><c:out
-										value="${ requestScope.jobPostingList.size() }"></c:out></span>
+										value="${ requestScope.totalCount }"></c:out></span>
 								Matches for you.
 							</h2>
 						</div>
@@ -234,15 +234,15 @@
 																		<c:set var="maxExp" value="${ jobPosting.jobPostMaxExperience }"></c:set>
 																			<c:choose>
 																				<c:when test="${ minExp ne maxExp }">
-																					<c:out value="${ minExp } ~ ${ maxEmp }"/>
+																					<c:out value="${ minExp }"/><c:out value="~${ maxEmp }"></c:out>
 																				<</c:when>
-																				<c:when test="${ (minExp eq maxExp) &&  (minExp eq 0)}">
+																				<c:when test="${ (minExp eq maxExp) && (minExp eq 0)}">
 																					<c:out value="신입"></c:out>
 																				</c:when>
 																				<c:when test="${( minExp eq maxExp) && (minExp ne 0)}">
 																					<c:out value="${ maxExp }년 이상"/>
 																				</c:when>
-																				<c:when test="${ (minExp eq 0)  && (maxExp eq 10)}">
+																				<c:when test="${ (minExp eq 0) && (maxExp eq 10)}">
 																					<c:out value="경력 무관"></c:out>
 																				</c:when>
 																			</c:choose>
