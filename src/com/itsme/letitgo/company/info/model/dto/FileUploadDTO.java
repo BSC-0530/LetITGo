@@ -2,32 +2,32 @@ package com.itsme.letitgo.company.info.model.dto;
 
 public class FileUploadDTO implements java.io.Serializable {
 
-	private int fileNo;
+	private int memFileNo;
 	private int memNo;
-	private String fileName;
-	private String fileOrignName;
+	private String memFileName;
+	private String memFileOriginalName;
 	private String filePath;
 	private String fileKinds;
 	
 	public FileUploadDTO() {}
 
-	public FileUploadDTO(int fileNo, int memNo, String fileName, String fileOrignName, String filePath,
+	public FileUploadDTO(int memFileNo, int memNo, String memFileName, String memFileOriginalName, String filePath,
 			String fileKinds) {
 		super();
-		this.fileNo = fileNo;
+		this.memFileNo = memFileNo;
 		this.memNo = memNo;
-		this.fileName = fileName;
-		this.fileOrignName = fileOrignName;
+		this.memFileName = memFileName;
+		this.memFileOriginalName = memFileOriginalName;
 		this.filePath = filePath;
 		this.fileKinds = fileKinds;
 	}
 
-	public int getFileNo() {
-		return fileNo;
+	public int getMemFileNo() {
+		return memFileNo;
 	}
 
-	public void setFileNo(int fileNo) {
-		this.fileNo = fileNo;
+	public void setMemFileNo(int memFileNo) {
+		this.memFileNo = memFileNo;
 	}
 
 	public int getMemNo() {
@@ -38,20 +38,20 @@ public class FileUploadDTO implements java.io.Serializable {
 		this.memNo = memNo;
 	}
 
-	public String getFileName() {
-		return fileName;
+	public String getMemFileName() {
+		return memFileName;
 	}
 
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
+	public void setMemFileName(String memFileName) {
+		this.memFileName = memFileName;
 	}
 
-	public String getFileOrignName() {
-		return fileOrignName;
+	public String getMemFileOriginalName() {
+		return memFileOriginalName;
 	}
 
-	public void setFileOrignName(String fileOrignName) {
-		this.fileOrignName = fileOrignName;
+	public void setMemFileOriginalName(String memFileOriginalName) {
+		this.memFileOriginalName = memFileOriginalName;
 	}
 
 	public String getFilePath() {
@@ -72,8 +72,10 @@ public class FileUploadDTO implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "FileUploadDTO [fileNo=" + fileNo + ", memNo=" + memNo + ", fileName=" + fileName + ", fileOrignName="
-				+ fileOrignName + ", filePath=" + filePath + ", fileKinds=" + fileKinds + "]";
-	};
+		return "FileUploadDTO [memFileNo=" + memFileNo + ", memNo=" + memNo + ", memFileName=" + memFileName
+				+ ", memFileOriginalName=" + memFileOriginalName + ", filePath=" + filePath + ", fileKinds=" + fileKinds
+				+ "]";
+	}
+
 	
 }

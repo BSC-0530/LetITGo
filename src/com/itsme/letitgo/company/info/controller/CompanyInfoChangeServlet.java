@@ -40,6 +40,8 @@ public class CompanyInfoChangeServlet extends HttpServlet {
 		String coStatus = request.getParameter("coStatus");
 		String address = request.getParameter("address");
 		String intro = request.getParameter("intro");
+		String coPhone = request.getParameter("coPhone");
+		String coPax = request.getParameter("coPax");
 		
 		comDTO.setCoMemNo(coMemNo);
 		comDTO.setCoNo(coNo);
@@ -50,6 +52,9 @@ public class CompanyInfoChangeServlet extends HttpServlet {
 		comDTO.setCoStatus(coStatus);
 		comDTO.setCoAddress(address);
 		comDTO.setCoIntro(intro);
+		comDTO.setCoPhone(coPhone);
+		comDTO.setCoPax(coPax);
+		
 		
 		String path="";
 		path="/WEB-INF/views/member/company/companyInfoChangePage.jsp";

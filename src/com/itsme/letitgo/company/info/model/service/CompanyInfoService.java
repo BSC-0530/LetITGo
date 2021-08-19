@@ -7,18 +7,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.itsme.letitgo.company.info.model.dto.CompanyAddInfoDTO;
 import com.itsme.letitgo.company.info.model.dto.CompanyInfoDTO;
+import com.itsme.letitgo.company.info.model.dto.FileUploadDTO;
 import com.itsme.letitgo.company.info.model.mapper.CompanyInfoMapper;
-import com.itsme.letitgo.login.model.dto.MemberLoginDTO;
-import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectJobPostingDTO;
 
 public class CompanyInfoService {
-
+	//마이페이지 기업추가정보조회
 	public CompanyAddInfoDTO selectedInfoCompany() {
 		
 		SqlSession session = getSqlSession();
@@ -58,7 +56,7 @@ public class CompanyInfoService {
 		
 		return coAddInfoAndJobPosting;
 	}
-
+	//마이페이지 기업당장자 조회
 	public CompanyInfoDTO selectCoMemInfo() {
 		
 		SqlSession session = getSqlSession();
@@ -71,7 +69,7 @@ public class CompanyInfoService {
 		
 		return coMemDTO;
 	}
-
+	//기업 담당자 정보 수정
 	public int modifyCoMemInfo(CompanyInfoDTO coMem) {
 		
 		SqlSession session = getSqlSession();
@@ -90,5 +88,75 @@ public class CompanyInfoService {
 		
 		return result;
 	}
+	//기업정보 수정 요청 종류 대기로 인서트하기
+	public int updateRequestAddInfo(CompanyAddInfoDTO comAd) {
+		
+		SqlSession session = getSqlSession();
+		
+		CompanyInfoMapper mapper = session.getMapper(CompanyInfoMapper.class);
+		
+		int result = mapper.updateRequestAddInfo(comAd);
+		
+		if(result > 0) {
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		session.close();
+		
+		return result;
+	}
+	public int insertCoLogoAttachment(FileUploadDTO logoFile) {
+		
+		SqlSession session = getSqlSession();
+		
+		CompanyInfoMapper mapper = session.getMapper(CompanyInfoMapper.class);
+		
+		int result2 = mapper.insertCoLogoAttachment(logoFile);
+		
+		if(result2 > 0) {
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		session.close();
+		
+		return result2;
+	}
+	public int insertCoRepresentativImageAttachment(FileUploadDTO representativImage) {
+		
+		SqlSession session = getSqlSession();
+		
+		CompanyInfoMapper mapper = session.getMapper(CompanyInfoMapper.class);
+		
+		int result3 = mapper.insertCoRepresentativImageAttachment(representativImage);
+		
+		if(result3 > 0) {
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		session.close();
+		
+		return result3;
+	}
+	public int insertBusinessRegistrationAttachment(FileUploadDTO businessNO) {
+		
+		SqlSession session = getSqlSession();
+		
+		CompanyInfoMapper mapper = session.getMapper(CompanyInfoMapper.class);
+		
+		int result4 = mapper.insertBusinessRegistrationAttachment(businessNO);
+		
+		if(result4 > 0) {
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		session.close();
+		
+		return result4;
+	}
+
 
 }

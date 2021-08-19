@@ -42,6 +42,18 @@
 		<result property="jobPostKinds" column="JOB_POST_KINDS"/>
 		<result property="exposureUseCheck" column="EXPOSURE_USE_CHECK"/>
 	</resultMap>
+	
+<!-- 	파일업로드 -->
+<!-- 	<resultMap type="com.itsme.letitgo.company.info.model.dto.FileUploadDTO" id="fileUp]load"> -->
+<!-- 		<id property="memFileNo" column="MEM_FILE_NO"/> -->
+<!-- 		<result property="memNo" column="MEM_NO" /> -->
+<!-- 		<result property="memFileName" column="MEM_FILE_NAME" /> -->
+<!-- 		<result property="memFileOriginalName" column="MEM_FILE_PATH" /> -->
+<!-- 		<result property="filePath" column="MEM_FILE_PATH" /> -->
+<!-- 		<result property="fileKinds" column="MEM_FILE_KINDS" /> -->
+<!-- 	</resultMap> -->
+	
+	
 	<select id="selectedInfoCompany" resultMap="comAddInfoResultMap">
 		SELECT
 			  CM.CO_MEM_NO
@@ -110,7 +122,74 @@
 			 
 	</update>
 	
+	<!-- 	<update id="updateRequestAddInfo"> -->
 	
+<!-- 	</update> -->
+	
+	<insert id="insertCoLogoAttachment" >
+<!-- 	로고이미지 -->
+	INSERT 
+		  INTO TBL_CO_MEMBER_APP_HISTORY
+		(
+<!-- 		  MEM_FILE_NO -->
+		, MEM_NO
+		, MEM_FILE_NAME
+		, MEM_FILE_ORIGINAL_NAME
+		, MEM_FILE_PATH
+		, MEM_FILE_KINDS
+		)
+		VALUES
+		(
+<!-- 		  SEQ_MEM_FILE_NO.NEXTVAL -->
+		, #{ memNo }
+		, #{ memFileName }
+		, #{ memFileOriginalName }
+		, #{ filePath }
+		, '대표이미지'		
+		)	
+	</insert>
+	<insert id="insertCoRepresentativImageAttachment" >
+	INSERT
+		  INTO TBL_CO_MEMBER_APP_HISTORY
+		(
+		  MEM_FILE_NO
+		, MEM_NO
+		, MEM_FILE_NAME
+		, MEM_FILE_ORIGINAL_NAME
+		, MEM_FILE_PATH
+		, MEM_FILE_KINDS
+		)
+		VALUES
+		(
+		  SEQ_MEM_FILE_NO.NEXTVAL
+		, #{ memNo }
+		, #{ memFileName }
+		, #{ memFileOriginalName }
+		, #{ filePath }
+		, '프로필사진'		
+		)
+	</insert>
+	<insert id="insertBusinessRegistrationAttachment">
+	INSERT
+		  INTO TBL_CO_MEMBER_APP_HISTORY
+		(
+		  MEM_FILE_NO
+		, MEM_NO
+		, MEM_FILE_NAME
+		, MEM_FILE_ORIGINAL_NAME
+		, MEM_FILE_PATH
+		, MEM_FILE_KINDS
+		)
+		VALUES
+		(
+		  SEQ_MEM_FILE_NO.NEXTVAL
+		, #{ memNo }
+		, #{ memFileName }
+		, #{ memFileOriginalName }
+		, #{ filePath }
+		, '사업자등록증'		
+		)	
+	</insert>
 	
 	
 </mapper>
