@@ -51,9 +51,7 @@ public class SelectAllJobPostingServlet extends HttpServlet {
 		 * 검색조건이 있는 경우 검색 조건에 맞는 전체 게시물 수를 조회한다.
 		 * */
 		int totalCount = service.selectJpTotalCount(searchMap);
-		
-		System.out.println("@@@@@@@totalBoardCount : " + totalCount);
-		
+				
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;		//얘도 파라미터로 전달받아도 된다.
 		/* 한 번에 보여질 페이징 버튼의 갯수 */
@@ -67,32 +65,9 @@ public class SelectAllJobPostingServlet extends HttpServlet {
 		} else {
 			selectCriteria = Pagenation.getSelectCriteria(pageNo, totalCount, limit, buttonAmount);
 		}
-		
-		if(request.getParameter("skills") != null) {
-			String skillsName = request.getParameter("skills");
-			dto.setSkills(skillsName.toLowerCase());
-			
-		} else if(request.getParameter("experience") != null) {
-			int experience = Integer.parseInt(request.getParameter("experience"));
-			dto.setExperience(experience);
-			
-		} else if (request.getParameter("jobNo") != null) {
-			int jobNo = Integer.parseInt(request.getParameter("jobNo"));
-			dto.setJobNo(jobNo);
-			
-		} else if(request.getParameterValues("area") != null) {
-		// 이때 지역은 복수 선택이 가능하기 때문에 배열로 꺼내와서 List로 담아준다 
-			String[] areas = request.getParameterValues("area");
-			List<String> areaList = new ArrayList<>();
-			for(String a : areas) {
-				String area[] = a.split("/");
-				for(String b : area) {
-					areaList.add(b);
-				}
-			}
-			dto.setAreaList(areaList);
-		}
-		
+
+		dto.setSelectCriteria(selectCriteria);
+
 
 		Map<String, List<Object>> jp = service.selectJobPosting(dto);
 		
@@ -104,6 +79,8 @@ public class SelectAllJobPostingServlet extends HttpServlet {
 			request.setAttribute("jpSkills", jp.get("jpSkills"));
 			request.setAttribute("jobNameList", jp.get("jobNameList"));
 			request.setAttribute("skillsList", jp.get("skillsList"));
+			request.setAttribute("totalCount", totalCount);
+			request.setAttribute("selectCriteria", selectCriteria);
 			
 		} else {
 			path = "/WEB-INF/views/common/main/main.jsp";
@@ -115,7 +92,6 @@ public class SelectAllJobPostingServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
-		
 		
 
 		SelectRequestJobPostingDTO dto = new SelectRequestJobPostingDTO();
@@ -147,9 +123,7 @@ public class SelectAllJobPostingServlet extends HttpServlet {
 		 * 검색조건이 있는 경우 검색 조건에 맞는 전체 게시물 수를 조회한다.
 		 * */
 		int totalCount = service.selectJpTotalCount(searchMap);
-		
-		System.out.println("@@@@@@@totalBoardCount : " + totalCount);
-		
+				
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;		//얘도 파라미터로 전달받아도 된다.
 		/* 한 번에 보여질 페이징 버튼의 갯수 */
@@ -165,21 +139,22 @@ public class SelectAllJobPostingServlet extends HttpServlet {
 		}
 		// 페이징 끝
 		
-		
-		
 		if(request.getParameter("skills") != null) {
 			String skillsName = request.getParameter("skills");
 			dto.setSkills(skillsName.toLowerCase());
 			
-		} else if(request.getParameter("experience") != null) {
+		}
+		if(request.getParameter("experience") != null) {
 			int experience = Integer.parseInt(request.getParameter("experience"));
 			dto.setExperience(experience);
 			
-		} else if (request.getParameter("jobNo") != null) {
+		}
+		if (request.getParameter("jobNo") != null) {
 			int jobNo = Integer.parseInt(request.getParameter("jobNo"));
 			dto.setJobNo(jobNo);
 			
-		} else if(request.getParameterValues("area") != null) {
+		}
+		if(request.getParameterValues("area") != null) {
 		// 이때 지역은 복수 선택이 가능하기 때문에 배열로 꺼내와서 List로 담아준다 
 			String[] areas = request.getParameterValues("area");
 			List<String> areaList = new ArrayList<>();
@@ -187,21 +162,30 @@ public class SelectAllJobPostingServlet extends HttpServlet {
 				String area[] = a.split("/");
 				for(String b : area) {
 					areaList.add(b);
+					
 				}
 			}
 			dto.setAreaList(areaList);
-		} else if(selectCriteria != null) {
-			dto.setSelectCriteria(selectCriteria);
 		}
+		
+		dto.setSelectCriteria(selectCriteria);
 		
 		Map<String, List<Object>> jp = service.selectJobPosting(dto);
 
-		request.setAttribute("jobPostingList", jp.get("jpAndInfo"));
-		request.setAttribute("jpSkills", jp.get("jpSkills"));
-		request.setAttribute("jobNameList", jp.get("jobNameList"));
-		request.setAttribute("skillsList", jp.get("skillsList"));
-
-		String path = "/WEB-INF/views/recruit/jobPostingList.jsp";
+		String path = "";
+		if(jp != null) {
+			path = "/WEB-INF/views/recruit/jobPostingList.jsp";
+			request.setAttribute("jobPostingList", jp.get("jpAndInfo"));
+			request.setAttribute("jpSkills", jp.get("jpSkills"));
+			request.setAttribute("jobNameList", jp.get("jobNameList"));
+			request.setAttribute("skillsList", jp.get("skillsList"));
+			request.setAttribute("totalCount", totalCount);
+			request.setAttribute("selectCriteria", selectCriteria);
+			
+		} else {
+			path = "/WEB-INF/views/common/main/main.jsp";
+		}
+		
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 }

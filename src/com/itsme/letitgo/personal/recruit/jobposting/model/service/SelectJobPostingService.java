@@ -161,6 +161,7 @@ public class SelectJobPostingService {
 		
 		SelectJobPostingMapper mapper = session.getMapper(SelectJobPostingMapper.class);
 		
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@service dto확인" + dto);
 		List<Object> jpAndInfo = mapper.selectJobPosting(dto);
 		
 		List<Object> jpSkills = mapper.selectJpSkills();
