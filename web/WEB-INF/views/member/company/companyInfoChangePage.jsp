@@ -36,12 +36,16 @@
 <!-- 제이쿼리 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- 상세주소 -->
-
+<script
+		src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 </head>
 <style>
 #noCheck{
 width: 100px; height: 50px; background-color:transparent; 
+}
+.searchZipCode{
+width: 100px; height: 50px; background-color:transparent;
 }
 </style>
 
@@ -88,7 +92,7 @@ width: 100px; height: 50px; background-color:transparent;
                                     <div class="content">
                                         <div class="box">
                                             <p align="center">
-                                                <a href="${ pageContext.servletContext.contextPath }/coMem/infomationServlet"">회원정보</a>
+                                                <a href="${ pageContext.servletContext.contextPath }/coMem/infomationServlet">회원정보</a>
                                             </p>
                                             <br><br>
                                             <p>
@@ -132,7 +136,7 @@ width: 100px; height: 50px; background-color:transparent;
 <!-- 옆에 넣으려면 여기에 넣어야함 -->
 <!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
 <%-- <form action="${ pageContext.servletContext.contextPath }/company/modify/info" method="post" onsubmit="requestAdminChange();"> --%>
-<form id="fileUpLoad" method="post" enctype="multipart/form-data" onsubmit="requestAdminChange();" action="${ pageContext.servletContext.contextPath }/member/personal/modifyinfo">
+<form id="fileUpLoad" method="post" enctype="multipart/form-data" onsubmit="requestAdminChange();" action="${ pageContext.servletContext.contextPath }/company/modify/info">
             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -174,22 +178,34 @@ width: 100px; height: 50px; background-color:transparent;
                                     </div>
                                     <!--Form Group-->
                                     <div class="form-group col-md-8 col-sm-6 col-xs-12">
-                                        <input type="text" name="requestcoAddress" value="${ comDTO.coAddress }" readonly="readonly">
-                                   </div>
+										<input type="text" name="zipCode" id="zipCode" id="zipCode"readonly placeholder="우편번호 *">
+									</div> 
                                     <div class="form-group col-md-4 col-sm-6 col-xs-12">
-										<a><input class="btn btn-info" type="button" value="검색" class="btn btn-yg" id="searchZipCode"></a>
-									</div>
+                                         <i><button style="width: 50px; height: 30px; magin-left: 20px; border-radius: 5px;"
+                                          class="btn btn-info" type="button"id="searchZipCode" value="검색">검색</button></i>
+                                    </div>
                                     <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" name="detailAddress" value="상세주소" >
+                                        <input type="text" name="requestcoAddress" id="requestcoAddress" value="${ comDTO.coAddress }">
+                                   </div>
+                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                      <input type="text" name="detailAddress" id="detailAddress" value="상세주소" placeholder="상세주소">
                                     </div>
                                     <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" name="requestWebSite" value="${ comDTO.webSite }" >
                                     </div>
-                                </div>
+                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" name="coPhone" id="coPhone" value="${ comDTO.coPhone }"  >
+                                    </div>
+                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" name="coPax" id="coPax" value="${ comDTO.coPax }"
+													 >
+                                    </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                </div>
+                
                 <br>
                 <div class="companyText">	
                               <label>회사소개</label><input id="textArea" name="requestcoIntro" type="text"  placeholder="${ comDTO.coIntro  }" >
@@ -260,7 +276,7 @@ function requestAdminChange(button){
 	answer = confirm('변경 요청을 하시겠습니까?');
 	
 	if(answer == true){
-		location.href="${ pageContext.servletContext.contextPath }/company/modify/info"
+		alert('관리자에게 요청이 전송되었습니다.')
 	}
 	else if(answer == false){
 		return false;
@@ -307,6 +323,20 @@ function checkCorporateRegistrationNumber(value) {
 }
 </script>	
 
+	<script>
+		const $searchZipCode = document.getElementById("searchZipCode");
+
+		$searchZipCode.onclick = function() {
+
+			new daum.Postcode({
+				oncomplete : function(data) {
+					document.getElementById("zipCode").value = data.zonecode;
+					document.getElementById("requestcoAddress").value = data.address;
+					document.getElementById("detailAddress").focus();
+				}
+			}).open();
+		}
+	</script>
 </body>
 </html>
 

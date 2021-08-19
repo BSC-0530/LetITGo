@@ -137,32 +137,38 @@
 									<div class="row">
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="coNo" value="${ comDTO.coNo }" readonly>
+											<label>사업자등록번호:</label><input type="text" name="coNo" value="${ comDTO.coNo }" readonly>
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="webSite" value="${ comDTO.coWebsite }" readonly>
+											<label>웹사이트:</label><input type="text" name="webSite" value="${ comDTO.coWebsite }" readonly>
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
 
 
-											<input type="text" name="coComName" value="${comDTO.coComName }" readonly>
+											<label>회사이름:</label><input type="text" name="coComName" value="${comDTO.coComName }" readonly>
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="coCeoName" value="${comDTO.coCeoName }" readonly>
+											<label>대표자이름:</label><input type="text" name="coCeoName" value="${comDTO.coCeoName }" readonly>
 										
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="secTors" value="${ comDTO.coSectors }" readonly>
+											<label>업종:</label><input type="text" name="secTors" value="${ comDTO.coSectors }" readonly>
 										</div>
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="coStatus" value="${ comDTO.coStatus }" readonly>
+											<label>업태:</label><input type="text" name="coStatus" value="${ comDTO.coStatus }" readonly>
 										</div>
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="address" value="${ comDTO.coAddress }" readonly>
+											<label>주소:</label><input type="text" name="address" value="${ comDTO.coAddress }" readonly>
+										</div>
+										<div class="form-group col-md-4 col-sm-6 col-xs-12">
+											<label>회사전화번호:</label><input type="text" name="coPhone" value="${ comDTO.coPhone }" readonly>
+										</div>
+										<div class="form-group col-md-6 col-sm-6 col-xs-12">
+											<label>팩스번호:</label><input type="text" name="coPax" value="${ comDTO.coPax }" readonly>
 										</div>
 									</div>
 								</div>
