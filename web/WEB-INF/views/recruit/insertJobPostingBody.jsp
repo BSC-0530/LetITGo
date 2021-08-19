@@ -112,9 +112,11 @@
 		function btn_click(str) {
 			
 			if(str == "preview") {
-				window.open('', 'viewer', 'width=1400, height=2000');
-				document.insertForm.method = "post";
+
+				var previewWid = window.open('about:blank','preview','width=1920,height=1000')
 				document.insertForm.action = "${ pageContext.servletContext.contextPath }/previewJobPosting"
+				document.insertForm.target = "preview";
+				document.insertForm.method = "post";
 				document.insertForm.submit();
 				
 			} else if (str == "insert") {
@@ -179,6 +181,7 @@
                                     <label id="titleFont">직무</label><br>
                                     <c:forEach var="jobNameList" items="${ requestScope.jobNameList }" varStatus="status" >
                                     	<input style="width: 20px; height: 20px; border: 1px;" type="radio" id="${ jobNameList.jobNo }" value="${ jobNameList.jobNo }" name="jobNo">
+                                    	
                                     	<label for=${ jobNameList.jobNo }><c:out value="${ jobNameList.jobName  }"/></label>
                                     	<!-- 한줄에 8개씩 출력하기 위해서) <br>태그를 통해 줄바꿈 -->
 	                                    	<c:choose>

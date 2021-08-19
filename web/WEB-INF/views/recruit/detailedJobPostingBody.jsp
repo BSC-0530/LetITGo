@@ -2,11 +2,14 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=97941150b25f0a25943e14669f10478b"></script>
 
 </head>
 <body>
@@ -88,7 +91,7 @@
                                         <br>
                                         <p  style="cursor:pointer; font-size: 20px;" onclick="aboutCompany(this);"><c:out value="${ requestScope.detailedJobPosting.coMemberAddInfoDTO.coComName }"/></p>
  										<br>
- 										<input type="text" id="coMemNo" value="${ requestScope.detailedJobPosting.coMemNo }" style="visibility: hidden;">
+ 										<input type="hidden" name=""id="coMemNo" value="${ requestScope.detailedJobPosting.coMemNo }">
                                     </div>
                                 </div>
                                 <div class="jp_job_post_right_overview_btn_wrapper">
@@ -111,7 +114,13 @@
                                         <div class="jp_listing_list_icon_cont_wrapper">
                                             <ul>
                                                 <li>위치:</li>
-                                                <li><c:out value="${ requestScope.detailedJobPosting.coMemberAddInfoDTO.coAddress }"></c:out></li>
+												<c:set var="coAddress" value="${ requestScope.detailedJobPosting.coMemberAddInfoDTO.coAddress }"/>
+												<c:set var="area" value="${fn:split(pageScope.coAddress,'$')[0]} ${fn:split(pageScope.coAddress,'$')[1]}"/>
+												<c:set var="postCode" value="${fn:split(pageScope.coAddress,'$')[2]}"/>
+												<li>
+													<c:out value="${ pageScope.area }"></c:out>
+													<c:out value="우)${ pageScope.postCode }"></c:out>
+												</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -146,7 +155,33 @@
                                         <div class="jp_listing_list_icon_cont_wrapper">
                                             <ul>
                                                 <li>Experience:</li>
-                                                <li><c:out value="${ requestScope.detailedJobPosting.jobPostMinExperience }"></c:out> ~ <c:out value="${ requestScope.detailedJobPosting.jobPostMaxExperience }"></c:out>년</li>
+												<c:set var="minExp" value="${ requestScope.detailedJobPosting.jobPostMinExperience }"></c:set>
+												<c:set var="maxExp" value="${ requestScope.detailedJobPosting.jobPostMaxExperience }"></c:set>
+												<c:choose>
+													<c:when test="${ minExp ne maxExp }">
+														<li><c:out value="${ minExp } ~ ${ maxEmp }"/></li>
+													</c:when>
+													<c:when test="${ (minExp eq maxExp) &&  (minExp eq 0)}">
+														<li><c:out value="신입"></c:out></li>
+													</c:when>
+													<c:when test="${( minExp eq maxExp) && (minExp ne 0)}">
+														<li><c:out value="${ maxExp }년 이상"/></li>
+													</c:when>
+													<c:when test="${ (minExp eq 0)  && (maxExp eq 10)}">
+														<li><c:out value="경력 무관"></c:out></li>
+													</c:when>
+												</c:choose>                                          
+											</ul>
+                                        </div>
+                                    </div>
+                                    <div class="jp_listing_overview_list_main_wrapper jp_listing_overview_list_main_wrapper2">
+                                        <div class="jp_listing_list_icon">
+                                            <i class="fa fa-th-large"></i>
+                                        </div>
+                                        <div class="jp_listing_list_icon_cont_wrapper">
+                                            <ul>
+                                                <li>공고 마감일: </li>
+                                                <li><c:out value="${ requestScope.detailedJobPosting.jobPostDeadline }"/></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -167,6 +202,7 @@
 	                                            <li><input type="text" id="resumeNo" value="${ requestScope.applyingResult.resumeNo }" readonly></li>
                                             </ul>
                                         </c:if>
+                                        
                                         </div>
                                     </div>
                                 </div>
@@ -177,23 +213,8 @@
             </div>
         </div>
     </div>
-
-
-   
-<!--     main js file start -->
-<!--     <script src="js/jquery_min.js"></script> -->
-<!--     <script src="js/bootstrap.js"></script> -->
-<!--     <script src="js/jquery.menu-aim.js"></script> -->
-<!--     <script src="js/jquery.countTo.js"></script> -->
-<!--     <script src="js/jquery.inview.min.js"></script> -->
-<!--     <script src="js/owl.carousel.js"></script> -->
-<!--     <script src="js/modernizr.js"></script> -->
-<!--     <script src="js/jquery.magnific-popup.js"></script> -->
-<!--     <script src="js/custom_II.js"></script> -->
-<!--     main js file end -->
     
 
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=97941150b25f0a25943e14669f10478b"></script>
 	<script>
 		var container = document.getElementById('map');
 		var options = {
@@ -209,6 +230,8 @@
 		function aboutCompany(label) {
 			
 			const coMemNo = label.parentNode.children[4].value;
+			
+			const coMemNo1 = 
 			
 			location.href = "${ pageContext.servletContext.contextPath }/aboutCompany/select?coMemNo="+ coMemNo;
 	

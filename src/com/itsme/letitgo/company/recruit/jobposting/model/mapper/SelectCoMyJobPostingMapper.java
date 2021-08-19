@@ -34,6 +34,8 @@ public interface SelectCoMyJobPostingMapper {
 	ArrayList<JpSkillsDTO> selectSkillsFromCategory(int categoryNo);
 
 	int updateJobPostingAppHistory(int jobPostNo);
+
+	String selectJobNameFromJobNo(int jobNo);
 	
 
 
