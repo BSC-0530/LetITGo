@@ -187,5 +187,16 @@ public class SelectCoMyJobPostingService {
 
 		return skills;
 	}
+
+	public String selectJobName(int jobNo) {
+		
+		SqlSession session = getSqlSession();
+		
+		SelectCoMyJobPostingMapper mapper = session.getMapper(SelectCoMyJobPostingMapper.class);
+		
+		String jobName = mapper.selectJobNameFromJobNo(jobNo);
+		 
+		return null;
+	}
 	
 }

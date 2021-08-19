@@ -10,8 +10,10 @@ import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectJobPostingD
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectRequestJobPostingDTO;
 
 public interface SelectJobPostingMapper {
+	
+	List<Object> selectJobPosting(SelectRequestJobPostingDTO dto);
 
-	List<Object> selectAllJobPosting();
+//	List<Object> selectAllJobPosting();
 
 	List<Object> selectJpSkills();
 
@@ -38,7 +40,8 @@ public interface SelectJobPostingMapper {
 
 	int deleteBookmark(BookmarkDTO deleteBm);
 
-	List<Object> selectOptionJobPosting(SelectRequestJobPostingDTO dto);
+
+	int selectJpTotalCount(Map<String, String> searchMap);
 
 
 

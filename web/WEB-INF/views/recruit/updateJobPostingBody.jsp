@@ -109,37 +109,34 @@
 	});
     </script>
     <script>
-		function btn_click(str) {
-			
-			var jobPostNo = document.insertForm.jobPostNo.value;
-			
-			
-			if(str == "preview") {
-				window.open('', 'viewer', 'width=1400, height=2000');
-				document.insertForm.method = "post";
-				document.insertForm.action = "${ pageContext.servletContext.contextPath }/previewJobPosting"
-				document.insertForm.submit();
-				
-			} else if (str == "insert") {
-				
-				var skills_length = document.getElementsByName("selectSkills").length;
-				
-				if(skills_length == 0) {
-					
-					alert("기술을 한가지 이상 선택해주세요")
-				} else {
-					
+    function btn_click(str) {
+		
+		if(str == "preview") {
 
-					
-					document.insertForm.method = "post";
-					document.insertForm.action = "${ pageContext.servletContext.contextPath }/recruit/update?jobPostNo=" + jobPostNo;
-					document.insertForm.submit();
+			var previewWid = window.open('about:blank','preview','width=1920,height=1000')
+			document.insertForm.action = "${ pageContext.servletContext.contextPath }/previewJobPosting"
+			document.insertForm.target = "preview";
+			document.insertForm.method = "post";
+			document.insertForm.submit();
+			
+		} else if (str == "insert") {
+			
+			var skills_length = document.getElementsByName("selectSkills").length;
+			
+			if(skills_length == 0) {
 				
-			}
+				alert("기술을 한가지 이상 선택해주세요")
+			} else {
+
+				document.insertForm.method = "post";
+				document.insertForm.action = "${ pageContext.servletContext.contextPath }/recruit/insert"
+				document.insertForm.submit();
 			
 		}
 		
-		}
+	}
+	
+	}
     </script>
 </head>
 <body>

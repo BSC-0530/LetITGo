@@ -1,13 +1,45 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/animate.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/font-awesome.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/fonts.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/reset.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/owl.carousel.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/owl.theme.default.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/flaticon.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/style.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/style_II.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+	
+	
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=97941150b25f0a25943e14669f10478b"></script>
 </head>
 <body>
 
@@ -18,16 +50,7 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="jp_tittle_heading_wrapper">
 						<div class="jp_tittle_heading">
-							<h2>상세 공고</h2>
-						</div>
-						<div class="jp_tittle_breadcrumb_main_wrapper">
-							<div class="jp_tittle_breadcrumb_wrapper">
-								<ul>
-									<li><a href="#">Home</a> <i class="fa fa-angle-right"></i></li>
-									<li><a href="#">채용공고</a> <i class="fa fa-angle-right"></i></li>
-									<li>상세공고</li>
-								</ul>
-							</div>
+							<h2>공고 미리보기</h2>
 						</div>
 					</div>
 				</div>
@@ -35,7 +58,6 @@
 		</div>
 	</div>
 	
-
 	<!-- jp listing Single cont Wrapper Start -->
 	<div class="jp_listing_single_main_wrapper">
         <div class="container">
@@ -50,14 +72,15 @@
                         
                         <div class="jp_job_des">
                             <h2><c:out value="The content of Job Posting"/></h2>
-                            <p><c:out value="${ requestScope.detailedJobPosting.jobPostContents }"/></p>
+                            <p><c:out value="${ requestScope.jobPostContents }"/></p>
                             <ul>
-                            	<c:if test="${ requestScope.detailedJobPosting.coMemberAddInfoDTO.coWebsite ne null }">
-                                <li><i class="fa fa-globe"></i>&nbsp;&nbsp; <a href="#"><c:out value="${ requestScope.detailedJobPosting.coMemberAddInfoDTO.coWebsite }"></c:out></a></li>
+                            	<c:if test="${ requestScope.memberloginDTO.coWebsite ne null }">
+                                <li><i class="fa fa-globe"></i>&nbsp;&nbsp; <a href="#"><c:out value="${ requestScope.memberloginDTO.coWebsite }"></c:out></a></li>
                                 </c:if>
-                                <c:if test="${ requestScope.detailedJobPosting.coMemberAddInfoDTO.coWebsite eq null }">
+                                <c:if test="${ requestScope.memberloginDTO.coWebsite eq null }">
                                 <li><i class="fa fa-globe"></i>&nbsp;&nbsp; <c:out value="등록된 웹사이트 주소가 없습니다."></c:out></li>
                                 </c:if>
+                                <!--  자사이력서 있을 경우에 그 경로 넣어주기 -->
                                 <li><i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp; <a href="#">Download Info</a></li>
 
                             </ul>
@@ -82,11 +105,11 @@
                                 </div>
                                 <div class="jp_job_listing_single_post_right_cont">
                                     <div class="jp_job_listing_single_post_right_cont_wrapper">
-                                        <label style="font-size:20px;"><c:out value="${ requestScope.detailedJobPosting.jobPostTitle }"/></label>
+                                        <label style="font-size:20px;"><c:out value="${ requestScope.jobPostTitle }"/></label>
                                         <br>
-                                        <p  style="cursor:pointer; font-size: 20px;" onclick="aboutCompany(this);"><c:out value="${ requestScope.detailedJobPosting.coMemberAddInfoDTO.coComName }"/></p>
+                                        <p  style="cursor:pointer; font-size: 20px;"><c:out value="${ requestScope.memberloginDTO.coComName }"/></p>
  										<br>
- 										<input type="text" id="coMemNo" value="${ requestScope.detailedJobPosting.coMemNo }" style="visibility: hidden;">
+ 										<input type="hidden" name=""id="coMemNo" value="${ requestScope.memberloginDTO.memNo }">
                                     </div>
                                 </div>
                                 <div class="jp_job_post_right_overview_btn_wrapper">
@@ -97,7 +120,7 @@
                                     </div>
                                     <div class="jp_job_post_right_overview_btn">
                                         <ul>
-                                        	<li><a id="bookmarkLink" onClick="addBookmark(this);">북마크</a></li>
+                                        	<li><a id="bookmarkLink">북마크</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -109,7 +132,14 @@
                                         <div class="jp_listing_list_icon_cont_wrapper">
                                             <ul>
                                                 <li>위치:</li>
-                                                <li><c:out value="${ requestScope.detailedJobPosting.coMemberAddInfoDTO.coAddress }"></c:out></li>
+												<c:set var="coAddress" value="${ requestScope.memberloginDTO.coAddress }"/>
+												
+												<c:set var="area" value="${fn:split(pageScope.coAddress,'$')[0]} ${fn:split(pageScope.coAddress,'$')[1]}"/>
+												<c:set var="postCode" value="${fn:split(pageScope.coAddress,'$')[2]}"/>
+												<li>
+													<c:out value="${ pageScope.area }"></c:out>
+													<c:out value="우)${ pageScope.postCode }"></c:out>
+												</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -120,8 +150,8 @@
                                         <div class="jp_listing_list_icon_cont_wrapper">
                                             <ul>
                                                 <li>요구 기술</li>
-                                                <c:forEach var="deteildeJpSkills" items="${ requestScope.deteildeJpSkills }">
-                                                <li><c:out value="${ deteildeJpSkills.skillsName }"/></li>
+                                                <c:forEach var="skillsList" items="${ requestScope.skillsList }">
+                                                <li><c:out value="${ skliisList }"/></li>
                                             	</c:forEach>
                                             </ul>
                                         </div>
@@ -133,7 +163,7 @@
                                         <div class="jp_listing_list_icon_cont_wrapper">
                                             <ul>
                                                 <li>직무: </li>
-                                                <li><c:out value="${ requestScope.detailedJobPosting.jobFieldDTO.jobName }"/></li>
+                                                <li><c:out value="${ requestScope.jobName }"/></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -144,18 +174,41 @@
                                         <div class="jp_listing_list_icon_cont_wrapper">
                                             <ul>
                                                 <li>Experience:</li>
-                                                <li><c:out value="${ requestScope.detailedJobPosting.jobPostMinExperience }"></c:out> ~ <c:out value="${ requestScope.detailedJobPosting.jobPostMaxExperience }"></c:out>년</li>
+												<c:set var="minExp" value="${ requestScope.jobPostMinExperience }"></c:set>
+												<c:set var="maxExp" value="${ requestScope.jobPostMaxExperience }"></c:set>
+												<c:choose>
+													<c:when test="${ minExp ne maxExp }">
+														<li><c:out value="${ minExp } ~ ${ maxEmp }"/></li>
+													</c:when>
+													<c:when test="${ (minExp eq maxExp) &&  (minExp eq 0)}">
+														<li><c:out value="신입"></c:out></li>
+													</c:when>
+													<c:when test="${ (minExp eq maxExp) && (minExp ne 0)}">
+														<li><c:out value="${ maxExp }년 이상"/></li>
+													</c:when>
+													<c:when test="${ (minExp eq 0)  && (maxExp eq 10)}">
+														<li><c:out value="경력 무관"></c:out></li>
+													</c:when>
+												</c:choose>                                          
+											</ul>
+                                        </div>
+                                    </div>
+                                     <div class="jp_listing_overview_list_main_wrapper jp_listing_overview_list_main_wrapper2">
+                                        <div class="jp_listing_list_icon">
+                                            <i class="fa fa-th-large"></i>
+                                        </div>
+                                        <div class="jp_listing_list_icon_cont_wrapper">
+                                            <ul>
+                                                <li>공고 마감일: </li>
+                                                <li><c:out value="${ requestScope.jobPostDeadLine }"/></li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="jp_listing_right_bar_btn_wrapper">
                                         <div class="jp_listing_right_bar_btn">
-                                        
-                                        <!--  requestScope에 담긴 applyingResult 가 != null 인경우 지원완료, null인경우 지원하지 않았음 -->
-										<ul>
-	                                        <li><a onclick="apply();" style="width:200px"><i class="fa fa-plus-circle"></i> &nbsp; 닫기</a></li>
-                                        </ul>
-	                                
+											<ul>
+                                                <li><a onclick="closeWin();" style="width:200px"><i class="fa fa-plus-circle"></i> &nbsp; 닫기</a></li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -166,6 +219,26 @@
             </div>
         </div>
     </div>
+    
+
+	<script>
+		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(33.450701, 126.570667),
+			level: 3
+		};
+
+		var map = new kakao.maps.Map(container, options);
+		
+		
+		function closeWin() {
+			
+			window.close();
+		}
+	</script>
+	
+
+
  
 </body>
 </html>

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -13,6 +16,11 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<style type="text/css">
+	label {
+		cursor:pointer
+	}
+</style>
 </head>
 <body>
 
@@ -191,10 +199,11 @@
 														<div
 															class="jp_job_post_main_wrapper jp_job_post_grid_main_wrapper"
 															style="cursor: pointer; height: 250px"
-															onclick="post(this);">
+															onclick="selectJobPosting(this);">
 	
-															<input type="text" id="postNo"
+															<input type="hidden" id="postNo"
 																value="${ jobPosting.jobPostNo }">
+															<input type="hidden" id="coMemNo" value="${ jobPosting.coMemberAddInfoDTO.coMemNo }">
 	
 															<div class="row">
 																<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -208,17 +217,17 @@
 																	<div></div>
 																	<div class="jp_job_post_right_cont jp_job_post_grid_right_cont">
 																		<!-- 제목 -->
-																		<div>
-																			<label id="detailedJobPost" style="font-weight: bold; font-size: 20px; color: black;">
+																		<div style="height: 80px;">
+																			<label id="detailedJobPost" style="cursor:pointer; font-weight: bold; font-size: 20px; color: black;">
 																				<c:out value="${ jobPosting.jobPostTitle }" />
 																			</label>
 																		</div>
-<!-- 																		<div> -->
-																		<label><c:out value="${ jobPosting.coMemberAddInfoDTO.coComName }" /></label>
-<!-- 지역 처리 필요 -->	<%-- 																			<c:set var="coAddress" value="${ jobPosting.coMemberAddInfo.coAddress }"></c:set> --%>
-<%-- 																			<c:set var="area" value=""/> --%>
-<%-- 																			<label><c:out value=""></c:out></label> --%>
-<!-- 																		</div> -->
+																		<div>
+																		<label><c:out value="${ jobPosting.coMemberAddInfoDTO.coComName }"/></label>
+<!-- 지역 처리 필요 -->														<c:set var="coAddress" value="${ jobPosting.coMemberAddInfoDTO.coAddress }"/>
+																		<c:set var="area" value="(${fn:split(pageScope.coAddress,'$')[0]})"/>
+																			<label><c:out value="${ pageScope.area }"></c:out></label>
+																		</div>
 																		<div>
 																		<label>
 																		<c:set var="minExp" value="${ jobPosting.jobPostMinExperience }"></c:set>
@@ -239,18 +248,6 @@
 																			</c:choose>
 																		</label>
 																		</div>
-																		
-<%-- 																		<a><c:if test="${ jobPosting.jobPostMinExperience ne jobPosting.jobPostMaxExperience }"> --%>
-<%-- 																			<c:out value="${ jobPosting.jobPostMinExperience }" /> ~ <c:out --%>
-<%-- 																					value="${ jobPosting.jobPostMaxExperience }" /> 년 --%>
-<%-- 																			</c:if> <c:if --%>
-<%-- 																				test="${ jobPosting.jobPostMinExperience eq jobPosting.jobPostMaxExperience }"> --%>
-<%-- 																				<c:if --%>
-<%-- 																					test="${ jobPosting.jobPostMinExperience eq 0 }"> --%>
-<%-- 																					<c:out value="신입개발자"></c:out> --%>
-<%-- 																				</c:if> --%>
-<%-- 																			</c:if> --%>
-<!-- 																		</a><br> -->
 																		<!-- 직무 -->
 																		<div>
 																		<label><c:out value="${ jobPosting.jobFieldDTO.jobName }"></c:out></label>
@@ -284,6 +281,7 @@
 						</div>
 					</div>
 				</div>
+				<jsp:include page="../common/paging/paging.jsp"></jsp:include>
 			</div>
 		</div>
 	</form>
@@ -291,12 +289,13 @@
 	<script>
 
 
-		function post(div) {
+		function selectJobPosting(div) {
 
 			const jobPostNo = div.children[0].value;
+			const coMemNo = div.children[1].value;
 
 			location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?jobPostNo="
-					+ jobPostNo;
+					+ jobPostNo + "&coMemNo=" + coMemNo;
 
 		}
 	</script>

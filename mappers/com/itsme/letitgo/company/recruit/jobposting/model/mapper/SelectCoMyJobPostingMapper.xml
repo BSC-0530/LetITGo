@@ -32,7 +32,7 @@
 	</resultMap>
 	
 	
-	
+	<!-- 기업 마이페이지 등록한 모든공고 -->
 	<select id="selectCoMyJobPosting" parameterType="com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO" resultMap="resultMyJobPosting">
 		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectCoMyJobPosting() */
 	    	   JP.JOB_POST_NO
@@ -47,6 +47,7 @@
 	     WHERE JP.CO_MEM_NO = #{ coMemNo }
 	</select>
 	
+	<!-- 기업 마이페이지 채용공고 진행중인 공고 -->
 	<select id="selectRecruitingMyJobPosting" parameterType="com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO" resultMap="resultMyJobPosting">
 		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectRecruitingMyJobPosting() */
 	    	   JP.JOB_POST_NO
@@ -62,6 +63,7 @@
 	       AND JP.JOB_POST_KINDS = '승인된공고'
 	</select>
 	
+	<!-- 기업 마이페이지 요청중인 공고 -->
 	<select id="selectRequestMyJobPosting" parameterType="com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO" resultMap="resultMyJobPosting">
 		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectRequestMyJobPosting() */
 	    	   JP.JOB_POST_NO
@@ -81,6 +83,12 @@
 		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectJobName() */
 			   JF.JOB_NO
 			 , JF.JOB_NAME
+		  FROM TBL_JOB_FIELD JF
+	</select>
+	
+	<select id="selectJobNameFromJobNo" resultType="string">
+		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectJobNameFromJobNo() */
+			   JF.JOB_NAME
 		  FROM TBL_JOB_FIELD JF
 	</select>
 	
