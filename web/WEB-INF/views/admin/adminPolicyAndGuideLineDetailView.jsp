@@ -188,14 +188,24 @@ td {
 							<form
 								action="${ pageContext.servletContext.contextPath }/personalinfo/policy/detailview" 
 								method="post">
+<%-- 								<input type="hidden" name="registrationDate" value="${ detailList.postRegistrationDate}"> --%>
+<%-- 								<input type="hidden" name="modifiedDate" value="${ detailList.postModifiedDate}"> --%>
+<%-- 								<input type="hidden" name="managerMemberNo" value="${ detailList.managerMemberNo}"> --%>
+<%-- 								<input type="hidden" name="exposureStatus" value="${ detailList.postExposureStatus}"> --%>
 								<div class="jp_contact_form_box">
 									<br><br>
 									
 									<div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+									
+<!-- 									<select name="postKinds"> -->
+<!-- 												<option value="" selected>분류</option> -->
+<!-- 												<option value="개인정보처리방침">개인정보처리방침</option> -->
+<!-- 												<option value="이용약관">이용약관</option> -->
+<!-- 									</select> -->
 										<div
 											class="jp_contact_inputs_wrapper jp_contact_inputs2_wrapper">
 											<label>구분</label><input name="postKinds"
-												value="${ detailList.postKinds }" readonly="readonly">
+												value="${ detailList.postKinds }">
 										</div>
 									</div>
 									
@@ -203,22 +213,56 @@ td {
 			<!-- 제목  -->					<div
 											class="jp_contact_inputs_wrapper jp_contact_inputs2_wrapper">
 											<label>제목</label><input name="postTitle"
-												value="${ detailList.postTitle }" readonly="readonly">
+												value="${ detailList.postTitle }">
 										</div>
 									</div>				
+									
+					<!-- ------------------------------------------- -->	
+								
+									<!-- 폼 나오게 -->
+									<div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+										<div
+											class="jp_contact_inputs_wrapper jp_contact_inputs2_wrapper">
+											<label>관리자 번호</label><input name="managerMemberNo"
+												value="${ detailList.managerMemberNo }">
+										</div>
+									</div>
+									<div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+										<div
+											class="jp_contact_inputs_wrapper jp_contact_inputs2_wrapper">
+											<label>노출여부</label><input name="postExposureStatus"
+												value="${ detailList.postExposureStatus }">
+										</div>
+									</div>
+									<div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+										<div
+											class="jp_contact_inputs_wrapper jp_contact_inputs2_wrapper">
+											<label>등록일자</label><input name="postRegistrationDate"
+												value="${ detailList.postRegistrationDate }">
+										</div>
+									</div>
+									<div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+										<div
+											class="jp_contact_inputs_wrapper jp_contact_inputs2_wrapper">
+											<label>수정일자</label><input name="postModifiedDate"
+												value="${ detailList.postModifiedDate }">
+										</div>
+									</div>
+								
+					<!-- -------------------------------------------------- -->			
 									
 			<!-- 내용 -->				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<div
 											class="jp_contact_inputs_wrapper jp_contact_inputs4_wrapper">
 											<label>내용</label><textarea style="overflow-x: hidden; overflow-y: auto;"
-												rows="16" placeholder="${ detailList.postContent }" name="postContent" readonly="readonly"></textarea>
+												rows="16" placeholder="${ detailList.postContent }" name="postContent"></textarea>
 										</div>
 									</div>
 
 									<button type="button" onClick="history.go(-1)">뒤로가기</button>
 									<!-- 경로 지정해주기 (list로 받아오게)-->
-<!-- 									<button type="submit" -->
-<%-- 										onclick="href='${ pageContext.servletContext.contextPath }/personalinfopolicy/list'">등록하기</button> --%>
+									<button type="submit"
+										onclick="href='${ pageContext.servletContext.contextPath }/personalinfopolicy/list'">수정하기</button>
 
 								</div>
 							</form>

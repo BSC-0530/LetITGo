@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -174,36 +173,37 @@
 				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<h1>개인정보 처리 방침 및 이용약관</h1>
+							<h1>회원 탈퇴 사유</h1>
 							<div class="jp_listing_tabs_wrapper">
 
 								<!-- 이거는 이제 정보뜨는 칸 -->
 								<!-- 데이터 테이블 내역모음 -->
-								<table id="personal_info_policy" class="hover cell-border stripe">
+								<table id="member_withdrawal" class="hover cell-border stripe">
 									<thead>
 										<tr>
-											<td align="center">번호</td>
-											<td align="center">제목</td>
-				<!-- 상세보기 버튼 만들기 -->		<td align="center">상세보기</td>
-											<td align="center">등록일자</td>
-											<td align="center">분류</td>
-											<td align="center">수정일자</td>
-				<!-- 수정 버튼 만들기 -->			<td align="center">수정</td>
+<!-- 											<td align="center">번호</td> -->
+											<td align="center">회원번호</td>
+											<td align="center">회원구분</td>
+											<td align="center">이름</td>
+											<td align="center">탈퇴일자</td>
+											<td align="center">회원탈퇴사유</td>
 										</tr>
 									</thead>
-									<c:forEach var="controllPersonalInfoPolicy"
-										items="${ requestScope.personalInfoPolicyList }">
+									<c:forEach var="controllMemberWithdrawal"
+										items="${ requestScope.memberWithdrawal }">
 
 										<tbody align="center">
 
 											<tr>
-												<td id="postNo"><c:out value="${ controllPersonalInfoPolicy.postNo }" /></td>
-												<td id="postTitle"><c:out value="${ controllPersonalInfoPolicy.postTitle }" /></td>
- 	<!-- onClick 안에 상세보기 인터페이스 메소드명 넣어주기 -->	<td><button class="btn-info" onClick="detail(this);" value="${ controllPersonalInfoPolicy.postNo }">상세보기</button></td> 
-												<td id="postRegistrationDate"><c:out value="${ controllPersonalInfoPolicy.postRegistrationDate }" /></td>
-												<td id="postKinds"><c:out value="${ controllPersonalInfoPolicy.postKinds }" /></td>
-												<td id="postModifiedDate"><c:out value="${ controllPersonalInfoPolicy.postModifiedDate }" /></td>
-	<!-- onClick 안에 수정 인터페이스 메소드명 넣어주기 -->	<td><button class="btn-info" onClick="modify(this);" value="${ controllPersonalInfoPolicy.postNo }">수정</button></td>
+<%-- 												<td id="memNo"><c:out value="${ controllMemberWithdrawal.no }" /></td> --%>
+												<td id="memNo"><c:out value="${ controllMemberWithdrawal.memNo }" /></td>
+												<td id="memKinds"><c:out value="${ controllMemberWithdrawal.memKinds }" /></td>
+												<td id="memName"><c:out value="${ controllMemberWithdrawal.memName }" /></td>
+												<td id="memEntDate"><c:out value="${ controllMemberWithdrawal.memEntDate }" /></td>
+												<td id="memEntNo"><c:out value="${ controllMemberWithdrawal.memEntNo }" /></td>
+												<!-- <td><button type="button" disabled>삭제</button></td>  -->
+<%-- 												<td><button class="btn-info" onClick="jobFieldDelete(this);" value="${ controllJobField.no }">삭제</button></td> --%>
+												<!-- 위의 것을 실행하려면 div 안에 담아야 하는? --> 
 											</tr>
 										</tbody>
 									</c:forEach>
@@ -212,9 +212,9 @@
 								<br>
 								<br>
 
-								<div class="personal-info-policy-insert-wrapper" onclick="post(this);">
-									<button type="submit">등록</button>
-								</div>
+<!-- 								<div class="job-field-insert-wrapper" onclick="post(this);"> -->
+<!-- 									<button type="submit">등록하기</button> -->
+<!-- 								</div> -->
 
 							</div>
 						</div>
@@ -228,73 +228,11 @@
 
 	<script>
 		$(document).ready(function() {
-			$('#personal_info_policy').DataTable();
+			$('#member_withdrawal').DataTable();
 		});
 	</script>
 	
-	<script>
-		function post(div) {
-			
-			/* 
-			 == alert()로 이동되는지 확인 ==
-			 alert();  
-			*/
-			
-			 location.href = "${ pageContext.servletContext.contextPath }/personalinfopolicy/insert" 
-			
-		}
-	</script>
-	
-<!-- 	 <script type="text/javascript"> -->
-		
-<%-- // 		function detail(this)(button) {
-			
-// 			const no = button.value;
-// 			location.href = "${ pageContext.servletContext.contextPath }/personalinfopolicy/detailview?postNo=" + postNo;
-			
-// 		}
-		
-// 		$("input").filter("[value='null']").val("");
-		
-// 		/* location.reload();  무한로딩; 함수 안에서도 안먹힘  */ --%>
-	
-<!-- 	</script>  -->
-	
-	<!-- <script type="text/javascript">
-		
-		function 수정(this)(button) {
-			
-			const no = button.value;
-			location.href = "${ pageContext.servletContext.contextPath }/jobfield/delete?no=" + no;
-			
-		}
-		
-		$("input").filter("[value='null']").val("");
-		
-		/* location.reload();  무한로딩; 함수 안에서도 안먹힘  */
-	
-	</script> -->
-	
-	<script>
-	//상세보기 버튼
-	function detail(button){
-		 
- 		const postNo = button.value; 
 
- 		location.href="${ pageContext.servletContext.contextPath }/personalinfo/policy/detailview?postNo="+postNo
-			
-	}	
-	</script>
-
-	<script> 
-  	//수정 버튼
- 	function modify(button){ 
-		
- 		const postNo = button.value;  
- 
-  		location.href="${ pageContext.servletContext.contextPath }/personalinfo/policy/detailview?postNo="+postNo
-  	}
-	 </script>	 
 	
 </body>
 </html>

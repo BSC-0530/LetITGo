@@ -82,46 +82,49 @@
 		
 		
 	<!-- 수정하기 등록 -->	
-<!-- 	<insert id="policyModifyInsert"> -->
-<!-- 		INSERT -->
-<!-- 		  INTO TBL_POST A -->
-<!-- 		  ( -->
-<!-- 		    A.POST_NO -->
-<!-- 		  , A.POST_TITLE -->
-<!-- 		  , A.POST_CONTENT -->
-<!-- 		  , A.POST_REGISTRATION_DATE -->
-<!-- 	      , A.POST_MODIFIED_DATE -->
-<!-- 	      , A.MANAGER_MEMBER_NO -->
-<!-- 	      , A.POST_EXPOSURE_STATUS  -->
-<!-- 	      , A.POST_KINDS -->
-<!-- 		  ) -->
-<!-- 		  VALUES -->
-<!-- 		  ( -->
-<!-- 		  	SEQ_POST_NO.NEXTVAL -->
-<!-- 		  , #{ postTitle }	 -->
-<!-- 		  , #{ postContent } -->
-<!-- 		  , #{ postRegistrationDate } -->
-<!-- 		  , SYSDATE -->
-<!-- 		  , #{ managerMemberNo } -->
-<!-- 		  , #{ postExposureStatus } -->
-<!-- 		  , #{ postKinds } -->
-<!-- 		  ) -->
-<!-- 	</insert> -->
+	<insert id="policyModifyInsert">
+		INSERT
+		  INTO TBL_POST A
+		  (
+		    A.POST_NO
+		  , A.POST_TITLE
+		  , A.POST_CONTENT
+		  , A.POST_REGISTRATION_DATE
+	      , A.POST_MODIFIED_DATE
+	      , A.MANAGER_MEMBER_NO
+	      , A.POST_EXPOSURE_STATUS 
+	      , A.POST_KINDS
+		  )
+		  VALUES
+		  (
+		  	SEQ_POST_NO.NEXTVAL
+		  , #{ postTitle }	
+		  , #{ postContent }
+		  , #{ postRegistrationDate }
+		  , SYSDATE
+		  , 1
+		  , 'Y'
+		  , #{ postKinds }
+		  )
+	</insert>
+		
+
+	
 	
 	<!-- insert로 할지, update로 할지 그것이 문제로다 -->
-	<update id="policyModifyInsert">
-		UPDATE
-		       TBL_POST A
-		   SET A.POST_NO = #{ postNo }
-		     , A.POST_TITLE = #{ postTitle }
-		     , A.POST_CONTENT = #{ postContent }
-		     , A.POST_REGISTRATION_DATE = #{ postRegistration }
-		     , A.POST_MODIFIED_DATE = SYSDATE
-		     , A.MANAGER_MEMBER_NO = 1
-		     , A.POST_EXPOSURE_STATUS = 'Y'
-		     , A.POST_KINDS = #{ postKinds }
-		 WHERE A.POST_NO = #{ postNo }      
-	</update>
+<!-- 	<update id="policyModifyInsert"> -->
+<!-- 		UPDATE -->
+<!-- 		       TBL_POST A -->
+<!-- 		   SET A.POST_NO = #{ postNo } -->
+<!-- 		     , A.POST_TITLE = #{ postTitle } -->
+<!-- 		     , A.POST_CONTENT = #{ postContent } -->
+<!-- 		     , A.POST_REGISTRATION_DATE = #{ postRegistration } -->
+<!-- 		     , A.POST_MODIFIED_DATE = SYSDATE -->
+<!-- 		     , A.MANAGER_MEMBER_NO = 1 -->
+<!-- 		     , A.POST_EXPOSURE_STATUS = 'Y' -->
+<!-- 		     , A.POST_KINDS = #{ postKinds } -->
+<!-- 		 WHERE A.POST_NO = #{ postNo }       -->
+<!-- 	</update> -->
 	
 	
 	

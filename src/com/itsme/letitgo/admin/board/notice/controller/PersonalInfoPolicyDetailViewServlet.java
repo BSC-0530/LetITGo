@@ -94,15 +94,21 @@ public class PersonalInfoPolicyDetailViewServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8");
+		
 		PersonalInfoPolicyDTO policyModifyInsert = new PersonalInfoPolicyDTO();
 		PersonalInfoPolicyService PersonalInfoPolicyService = new PersonalInfoPolicyService();
 		
 		int managerMemberNo = Integer.parseInt(request.getParameter("managerMemberNo"));
-		
-		// 확인
-		System.out.println("관리자 번호 : " + request.getParameter("managerMemberNo"));
+//		
+//		// 확인
+//		System.out.println("관리자 번호 : " + request.getParameter("managerMemberNo"));
 		
 		String postTitle = request.getParameter("postTitle");
+		
+		String postKinds = request.getParameter("postKinds");
+		//확인
+		System.out.println("확인 : " + postKinds);
 		
 		java.sql.Date postRegistDate = java.sql.Date.valueOf(request.getParameter("postRegistrationDate"));
 		
@@ -110,17 +116,18 @@ public class PersonalInfoPolicyDetailViewServlet extends HttpServlet {
 		String postContent = request.getParameter("postContent");
 		
 		//확인
-		System.out.println("노출여부 : " + upper);
+//		System.out.println("노출여부 : " + upper);
 		
 		String postExposureStatus = upper.trim();
 		//노출여부 나옴?
-		System.out.println(postExposureStatus);
+//		System.out.println(postExposureStatus);
 		
 		policyModifyInsert.setManagerMemberNo(managerMemberNo);
 		policyModifyInsert.setPostTitle(postTitle);
 		policyModifyInsert.setPostRegistrationDate(postRegistDate);
 		policyModifyInsert.setPostExposureStatus(postExposureStatus);
 		policyModifyInsert.setPostContent(postContent);
+		policyModifyInsert.setPostKinds(postKinds);
 		
 		String path = "";
 		
