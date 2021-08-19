@@ -425,7 +425,6 @@
                 , 2
                 , #{ onClickResumeNo }
                 , SYSDATE
-               
                 , '얕은열람'
 				)
 		</insert>
@@ -606,5 +605,46 @@
 		  FROM TBL_SKILLS
 		 WHERE UPPER(SKILLS_NAME) LIKE '%'||UPPER(#{ term, jdbcType=VARCHAR })||'%'
 	</select>
+	
+	<select id="selectedBySkillScoutListInName" parameterType="string"
+		resultMap="mainScoutResultMap">
+		SELECT
+      		   M.MEM_NAME
+     		 , R.RESUME_NO
+		  FROM TBL_MEMBER M
+		  JOIN TBL_RESUME R ON (M.MEM_NO = R.IN_MEM_NO)
+		  JOIN TBL_RESUME_HOLDING_SKILLS HS ON (R.RESUME_NO = HS.RESUME_NO)
+		  JOIN TBL_SKILLS S ON (HS.SKILLS_NO = S.SKILLS_NO)
+		 WHERE S.SKILLS_NAME LIKE '%'||#{ inputSkill }||'%'
+	</select>
+	
+	<select id="selectedBySkillScoutListInSkills" parameterType="string"
+		resultMap="mainScoutHoldingSkillsDTO">
+		SELECT
+		       S.SKILLS_NAME
+		     , R.RESUME_NO
+		  FROM TBL_RESUME R
+		  JOIN TBL_RESUME_HOLDING_SKILLS HS ON (R.RESUME_NO = HS.RESUME_NO)
+		  JOIN TBL_SKILLS S ON (HS.SKILLS_NO = S.SKILLS_NO)
+		 WHERE S.SKILLS_NAME LIKE '%'||#{ inputSkill }||'%'
+	</select>
+	
+	<select id="selectedBySkillScoutListInCareer" parameterType="string"
+		resultType="HashMap">
+		SELECT DISTINCT
+		       CH.CAR_HIRE_DATE
+		     , CH.CAR_ENT_DATE
+		  FROM TBL_RESUME R
+		  JOIN TBL_CAREER_HISTORY CH ON (R.RESUME_NO = CH.RESUME_NO)
+		  JOIN TBL_RESUME_HOLDING_SKILLS HS ON (R.RESUME_NO = HS.RESUME_NO)
+		  JOIN TBL_SKILLS S ON (HS.SKILLS_NO = S.SKILLS_NO)
+		 WHERE S.SKILLS_NAME LIKE '%'||#{ inputSkill }||'%'
+	</select>
+	
+<!-- 	<select id="selectedByCarScoutListInName" parameterType="com.itsme.letitgo.company.scout.model.dto.DeliverCareerAndSkillDTO" -->
+<!-- 		resultMap="mainScoutResultMap"> -->
+<!-- 		SELECT -->
+		       
+<!-- 	</select> -->
 
 </mapper>

@@ -111,6 +111,7 @@
 										</div>
 										<div style="height: 200px; background: white;"
 											class="jp_form_location_wrapper">
+											
 											<select style="border: 1px solid;" name="experience">
 												<option value="-1" selected>경력을 선택해주세요</option>
 												<option value="0">신입</option>

@@ -7,6 +7,7 @@ import com.itsme.letitgo.company.scout.model.dto.BrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.BrosweSimplelDTO;
 import com.itsme.letitgo.company.scout.model.dto.CandidateRegisterSkillsDTO;
 import com.itsme.letitgo.company.scout.model.dto.CandidateRegistrationDTO;
+import com.itsme.letitgo.company.scout.model.dto.DeliverResumeNoAndSelectedSkillDTO;
 import com.itsme.letitgo.company.scout.model.dto.InterviewProposalDTO;
 import com.itsme.letitgo.company.scout.model.dto.PersonalBrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.ResumeReadingHistoryDTO;
@@ -80,6 +81,12 @@ public interface CompanyScoutMapper {
 	List<Object> selectedBySkillScoutListInSkills(String inputSkill);
 
 	List<Object> selectedBySkillScoutListInCareer(String inputSkill);
+
+	List<Object> selectedByCarScoutListInName(int inputCareer);
+
+	List<Object> selectedByCarScoutListInSkills(int inputCareer);
+
+	List<Object> selectedByCarScoutListInCareer(int inputCareer);
 
 //	List<SkillsAndCategoryDTO> skillsSelect();
 

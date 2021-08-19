@@ -5,6 +5,7 @@ import java.sql.Date;
 import com.itsme.letitgo.personal.resume.model.dto.ResumeDTO;
 
 public class CompanyCareerHistoryDTO implements java.io.Serializable{
+	
 	private String carComName;
 	private java.sql.Date carHireDate;
 	private java.sql.Date carEntDate;
