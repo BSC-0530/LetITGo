@@ -181,7 +181,11 @@
 					<div class="table-area">
 						<form
 							action="${ pageContext.servletContext.contextPath }/admin/product/update"
-							method="post">
+							method="post" onsubmit="check();">
+							<div align="center">
+								<input type="hidden" name="productNo" value="${ requestScope.productNo }">
+							</div>
+							<br>
 							<div align="center">
 								<input type="text" placeholder="상품이름" name="productName">
 							</div>
@@ -193,19 +197,36 @@
 							<br>
 							
 							<div align="center">
-								<input type="text" placeholder="상품구분" name="productKinds">
+<!-- 								<input type="text" placeholder="상품구분" name="productKinds"> -->
+									<select name="productKinds" id="productKinds" style="width: 15.3%;">
+										<option value="" selected>상품구분</option>
+										<option value="열람권">열람권</option>
+										<option value="노출권">노출권</option>
+									</select>
 							</div>
 							<br>
 							<div align="center">
-								<input type="text" placeholder="노출여부" name="productStatus">
+<!-- 								<input type="search" placeholder="노출여부" name="productStatus"> -->
+									<select name="productStatus" id="productStatus" style="width: 15.3%;">
+										<option value="" selected>노출 여부</option>
+										<option value="Y">Y</option>
+										<option value="N">N</option>
+									</select>
 							</div>
 							<br>
-							
+							<div align="center">
+								<input type="number" placeholder="열람권 갯수" name="productReadingTicket">
+							</div>
+							<br>
+							<div align="center">
+								<input type="number" placeholder="상단 노출 시간" name="productExposureTime">
+							</div>
+							<br>
 							<div align="center">
 								
 								<button type="button" onClick="history.go(-1)" >취소하기</button>
 								<button type="submit"
-									onclick="href='${ pageContext.servletContext.contextPath }/admin/product/list'">수정하기</button>
+									>수정하기</button>
 								<!-- <button type="reset" id="cancleInsert">취소하기</button> -->
 							</div>
 
@@ -215,6 +236,20 @@
 			</div>
 		</div>
 	</div>
+<script>
+function check(){
+	
+	var answer;
+	answer = confirm('수정하시겠습니까?');
+	
+	if(answer == true){
+		return true;
+	}
+	else if(answer == false){
+		return false;
+	}
+}	
+</script>  
 
 </body>
 </html>

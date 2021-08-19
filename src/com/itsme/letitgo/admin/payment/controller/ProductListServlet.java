@@ -21,7 +21,9 @@ public class ProductListServlet extends HttpServlet {
 		
 		ProductListService productService = new ProductListService();
 		//서비스 생성
+		
 		List<ProductListDTO> productList = productService.productList();
+	
 		//리스트 생성
 		String path = "";	//path 변수 선언
 		if(productList != null) {
@@ -32,6 +34,7 @@ public class ProductListServlet extends HttpServlet {
 			
 			
 		}
+		
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 

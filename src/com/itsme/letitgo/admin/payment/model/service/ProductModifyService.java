@@ -47,4 +47,9 @@ public class ProductModifyService {
 		return result;
 	}
 
+	public int productGo() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

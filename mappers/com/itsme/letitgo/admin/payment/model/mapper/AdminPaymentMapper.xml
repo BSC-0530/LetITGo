@@ -30,6 +30,7 @@
 		<result property="productName" column="PRODUCT_NAME"/>
 		<result property="productPrice" column="PRODUCT_PRICE"/>
 		<result property="productKinds" column="PRODUCT_KINDS"/>
+		<result property="productExposureTime" column="UPPER_EXPOSURE_TIME"/>
 	</resultMap>
 	<select id="selectAdminPaymentHistory" resultMap="adminPaymentHistoryResultMap">
 	   SELECT /* com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper#selectAdminPaymentHistory() */
@@ -99,6 +100,8 @@
 		 , A.PRODUCT_KINDS
 		 , A.PRODUCT_PRICE
 		 , A.PRODUCT_EXPOSURE_STATUS
+		 , A.UPPER_EXPOSURE_TIME
+		 , A.READING_NUM
 		 )
 		 VALUES
 		 (
@@ -107,6 +110,8 @@
 		 , #{ productKinds }
 		 , #{ productPrice }
 		 , #{ productStatus }
+		 , #{ productReadingTicket }
+		 , #{ productExposureTime }
 		 )
 	</insert>
 	<select id="productList" resultMap="adminPaymentListResultMap">
@@ -116,6 +121,8 @@
 	         , A.PRODUCT_PRICE
 	         , A.PRODUCT_KINDS
 	         , A.PRODUCT_EXPOSURE_STATUS
+	         , A.UPPER_EXPOSURE_TIME
+	         , A.READING_NUM
 		  FROM TBL_PRODUCT_LIST A 	
 	</select>
 	<update id="productModify" parameterType="com.itsme.letitgo.admin.payment.model.dto.ProductListDTO">
@@ -125,6 +132,8 @@
 			 , A.PRODUCT_PRICE = #{ productPrice }	
 			 , A.PRODUCT_KINDS = #{ productKinds }
 			 , A.PRODUCT_EXPOSURE_STATUS = #{ productStatus }
+			 , A.UPPER_EXPOSURE_TIME = #{ productExposureTime, jdbcType=VARCHAR }
+			 , A.READING_NUM = #{ productReadingTicket, jdbcType=INTEGER }
 		 WHERE A.PRODUCT_NO = #{ productNo }
 	</update>
 	<delete id="productDelete" parameterType="com.itsme.letitgo.admin.payment.model.dto.ProductListDTO"> 

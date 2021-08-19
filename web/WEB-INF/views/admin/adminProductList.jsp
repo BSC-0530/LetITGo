@@ -1,7 +1,8 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 
 <html>
@@ -31,31 +32,38 @@
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
-  
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 
 <!-- letitgo 제작 css -->
-<link rel="stylesheet" type="text/css" href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css"/>
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css" />
 
 <style>
-	.h4 {
-		font-weight: bold;
-	}
-	td {
-		width: 400px;
-	}
+.h4 {
+	font-weight: bold;
+}
+
+td {
+	width: 400px;
+}
 </style>
 
 </head>
 
 <body>
 
-<!-- 사이드바 -->
+	<!-- 사이드바 -->
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
@@ -97,8 +105,7 @@
 														href="${ pageContext.servletContext.contextPath }/skillscategory/list">기술
 														카테고리 관리</a>
 												</p>
-												<br>
-												<br>
+												<br> <br>
 												<h3 style="font-weight: bold">결제 관리</h3>
 												<p>
 												<p align="center">
@@ -112,8 +119,7 @@
 												<p align="center">
 													<a href="#">환불 요청 관리</a>
 												</p>
-												<br>
-												<br>
+												<br> <br>
 												<h3 style="font-weight: bold">기업 요청 관리</h3>
 												<p>
 												<p align="center">
@@ -130,25 +136,24 @@
 												<p align="center">
 													<a href="#">기업 정보 변경 요청</a>
 												</p>
-												<br>
-												<br>
+												<br> <br>
 												<h3 style="font-weight: bold">회원 탈퇴</h3>
 												<p>
 												<p align="center">
 													<a href="#">회원 탈퇴 사유 조회</a>
 												</p>
-												<br>
-												<br>
+												<br> <br>
 												<h3 style="font-weight: bold">게시물 관리</h3>
 												<p>
 												<p align="center">
 													<a href="#">공지사항 관리</a>
 												</p>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/personalinfopolicy/list">개인정보 처리 방침, 이용약관 관리</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/personalinfopolicy/list">개인정보
+														처리 방침, 이용약관 관리</a>
 												</p>
-												<br>
-												<br>
+												<br> <br>
 												<h3 style="font-weight: bold">1:1 문의</h3>
 												<p>
 												<p align="center">
@@ -157,8 +162,7 @@
 												<p align="center">
 													<a href="#">1:1 문의 카테고리 관리</a>
 												</p>
-												<br>
-												<br>
+												<br> <br>
 											</div>
 										</div>
 									</div>
@@ -170,9 +174,7 @@
 
 				<!-- 옆에 넣으려면 여기에 넣어야함 -->
 				<!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
-				<br>
-				<br>
-				<br>
+				<br> <br> <br>
 				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -189,6 +191,8 @@
 											<td align="center">상품 가격</td>
 											<td align="center">상품 구분</td>
 											<td align="center">노출 여부</td>
+											<td align="center">열람권 갯수</td>
+											<td align="center">상단노출시간</td>
 											<td align="center">수정 하기</td>
 											<td align="center">삭제 하기</td>
 										</tr>
@@ -199,24 +203,32 @@
 										<tbody align="center">
 
 											<tr>
-												<td id="no"><c:out
+												<td id="productNo"><c:out
 														value="${ productList.productNo }" /></td>
 												<td id="productName"><c:out
-														value="${ productList.productName }" /></td> 
-												<td id="productPrice"><c:out 
-														value="${ productList.productPrice }" /></td> 
- 												<td id="productKinds"><c:out
- 														value="${ productList.productKinds }" /></td> 
-												<td id="productStatus"><c:out 
-														value="${ productList.productStatus }" /></td> 
-												<td><button type="button" onclick="modify()" style="background: skyblue; border-radius: 5px; color: white; font-weight: 900;">수정 하기</button></td>
-												<td><button type="button"style="background: red;  border-radius: 5px; color: white; font-weight: 900;" onclick="deletebutton(this)" value="${ productList.productNo }">삭제하기</button>
+														value="${ productList.productName }" /></td>
+												<td id="productPrice"><fmt:formatNumber
+														value="${ productList.productPrice }" pattern="###,###"/></td>
+												<td id="productKinds"><c:out
+														value="${ productList.productKinds }" /></td>
+												<td id="productStatus"><c:out
+														value="${ productList.productStatus }" /></td>
+												<td id="productStatus"><c:out
+														value="${ productList.productReadingTicket }" /></td>
+												<td id="productStatus"><fmt:formatNumber
+														value="${ productList.productExposureTime/24/60/60/1000 }" /></td>
+												<td><button type="button" onclick="modify(this)"
+														style="background: skyblue; border-radius: 5px; color: white; font-weight: 900;"
+														value="${ productList.productNo }">수정</button></td>
+												<td><button type="button"
+														style="background: red; border-radius: 5px; color: white; font-weight: 900;"
+														onclick="deletebutton(this)"
+														value="${ productList.productNo }">삭제</button>
 											</tr>
 										</tbody>
 									</c:forEach>
 								</table>
-								<br>
-								<br>
+								<br> <br>
 
 								<div class="skills-category-insert-wrapper"
 									onclick="post(this);">
@@ -251,16 +263,16 @@
 			
 		}
 		
-		function modify() {
+		function modify(button) {
 			
 			/* 
 			 == alert()로 이동되는지 확인 ==
-			 alert();  
 			*/
-			
-				location.href = "${ pageContext.servletContext.contextPath }/admin/product/update"
+				const productNo = button.value;
+				location.href = "${ pageContext.servletContext.contextPath }/admin/product/update?productNo=" + productNo; 
 		
 		}
+		 $("input").filter("[value='null']").val("");
 	</script>
 	<script>
 	
@@ -276,6 +288,6 @@
 		 $("input").filter("[value='null']").val("");
 		 
 	</script>
-	
+
 </body>
 </html>
