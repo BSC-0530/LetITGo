@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import com.itsme.letitgo.admin.info.model.dto.CoMemberAppHistoryDTO;
 import com.itsme.letitgo.admin.info.model.service.RequestService;
 import com.itsme.letitgo.company.info.model.dto.CompanyAddInfoDTO;
 import com.itsme.letitgo.company.info.model.dto.FileUploadDTO;
@@ -67,6 +68,9 @@ public class modifyComapnyInfo extends HttpServlet {
 			String coAddress =mr.getParameter("requestcoAddress") + "$" + mr.getParameter("detailAddress") + "$" + mr.getParameter("zipCode");
 			String webStie = mr.getParameter("requestWebSite");
 			String contents = mr.getParameter("requestcoIntro");
+			String coPhone = mr.getParameter("coPhone");
+			String coPax = mr.getParameter("coPax");
+			
 			
 			System.out.println("coNo " + coNo);
 			System.out.println("comName " +comName );
@@ -76,6 +80,8 @@ public class modifyComapnyInfo extends HttpServlet {
 			System.out.println("coAddress " + coAddress);
 			System.out.println("webStie " + webStie);
 			System.out.println(" contents : 나오냐?" + contents);
+			System.out.println(" coPhone : 나오냐?" + coPhone);
+			System.out.println(" coPax : 나오냐?" + coPax);
 			
 			//변경 요청한 회사추가  정보
 			
@@ -112,17 +118,18 @@ public class modifyComapnyInfo extends HttpServlet {
 			System.out.println("businessRegistrationOrginal : " + businessRegistrationOrginal);
 			System.out.println("businessRegistrationFullPath : " + businessRegistrationFullPath);
 			
-			CompanyInfoService service = new CompanyInfoService();
-			CompanyAddInfoDTO comAd = new CompanyAddInfoDTO();
-			FileUploadDTO logoFile = new FileUploadDTO();
-			FileUploadDTO representativImage = new FileUploadDTO();
-			FileUploadDTO businessNO = new FileUploadDTO();
+			RequestService service = new RequestService();
+			CoMemberAppHistoryDTO comAd = new CoMemberAppHistoryDTO();
+			CoMemberAppHistoryDTO logoFile = new CoMemberAppHistoryDTO();
+			CoMemberAppHistoryDTO representativImage = new CoMemberAppHistoryDTO();
+			CoMemberAppHistoryDTO businessNO = new CoMemberAppHistoryDTO();
 			//로고
 			int result2 = 0;
 			int result3 = 0;
 			int result4 = 0;
 			
 			
+			comAd.setCoMemNo(memNo);
 			comAd.setCoNo(coNo);
 			comAd.setCoComName(comName);
 			comAd.setCoCeoName(ceoName);
@@ -131,38 +138,38 @@ public class modifyComapnyInfo extends HttpServlet {
 			comAd.setCoAddress(coAddress);
 			comAd.setWebSite(webStie);
 			comAd.setCoIntro(contents);
+			comAd.setCoPhone(coPhone);
+			comAd.setCoPax(coPax);
 			
 			int result = service.updateRequestAddInfo(comAd);
 			
 			if(coLogo != null) {
 				
-				logoFile.setMemNo(memNo);
+				logoFile.setCoMemNo(memNo);
 				logoFile.setMemFileName(coLogo);
-				logoFile.setMemFileOriginalName(coLogoOrginal);
-				logoFile.setFilePath(coLogoFullPath);
+				logoFile.setMemFileOrignalName(coLogoOrginal);
+				logoFile.setMemFilePath(coLogoFullPath);
 				result2 = service.insertCoLogoAttachment(logoFile);
 				
-			}else if(coRepresentativImage != null) {
+			} 
+			if(coRepresentativImage != null) {
 				
-				representativImage.setMemNo(memNo);
+				representativImage.setCoMemNo(memNo);
 				representativImage.setMemFileName(coRepresentativImage);
-				representativImage.setMemFileOriginalName(coRepresentativImageOrginal);
-				representativImage.setFilePath(coRepresentativImageFullPath);
+				representativImage.setMemFileOrignalName(coRepresentativImageOrginal);
+				representativImage.setMemFilePath(coRepresentativImageFullPath);
 				result3 = service.insertCoRepresentativImageAttachment(representativImage);
 				
-			}else if(businessRegistration != null) {
+			} 
+			if(businessRegistration != null) {
 				
-				businessNO.setMemNo(memNo);
+				businessNO.setCoMemNo(memNo);
 				businessNO.setMemFileName(businessRegistration);
-				businessNO.setMemFileOriginalName(businessRegistrationOrginal);
-				businessNO.setFilePath(businessRegistrationFullPath);
+				businessNO.setMemFileOrignalName(businessRegistrationOrginal);
+				businessNO.setMemFilePath(businessRegistrationFullPath);
 				result4 = service.insertBusinessRegistrationAttachment(businessNO);
-				
 			}
-//			//대표이미ㅣㅈ
-//			//사업자등록증
 //			
-			
 			
 			response.setCharacterEncoding("UTF-8");
 			if(result > 0 || result2 > 0 || result3 > 0 || result4 > 0) {

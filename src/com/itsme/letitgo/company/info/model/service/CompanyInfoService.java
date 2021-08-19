@@ -88,75 +88,46 @@ public class CompanyInfoService {
 		
 		return result;
 	}
-	//기업정보 수정 요청 종류 대기로 인서트하기
-	public int updateRequestAddInfo(CompanyAddInfoDTO comAd) {
+
+	public FileUploadDTO selectLogoFile(int memNo) {
 		
 		SqlSession session = getSqlSession();
 		
 		CompanyInfoMapper mapper = session.getMapper(CompanyInfoMapper.class);
 		
-		int result = mapper.updateRequestAddInfo(comAd);
+		FileUploadDTO logoImage = mapper.selectLogoFile(memNo);
 		
-		if(result > 0) {
-			session.commit();
-		}else {
-			session.rollback();
-		}
 		session.close();
 		
-		return result;
+		return logoImage;
 	}
-	public int insertCoLogoAttachment(FileUploadDTO logoFile) {
+
+	public FileUploadDTO selectRepresentFile(int memNo) {
 		
 		SqlSession session = getSqlSession();
 		
 		CompanyInfoMapper mapper = session.getMapper(CompanyInfoMapper.class);
 		
-		int result2 = mapper.insertCoLogoAttachment(logoFile);
+		FileUploadDTO representativeImage = mapper.selectRepresentFile(memNo);
 		
-		if(result2 > 0) {
-			session.commit();
-		}else {
-			session.rollback();
-		}
 		session.close();
 		
-		return result2;
+		return representativeImage;
 	}
-	public int insertCoRepresentativImageAttachment(FileUploadDTO representativImage) {
+
+	public FileUploadDTO selectBusinessFile(int memNo) {
 		
 		SqlSession session = getSqlSession();
 		
 		CompanyInfoMapper mapper = session.getMapper(CompanyInfoMapper.class);
 		
-		int result3 = mapper.insertCoRepresentativImageAttachment(representativImage);
+		FileUploadDTO businessRegistration = mapper.selectBusinessFile(memNo);
 		
-		if(result3 > 0) {
-			session.commit();
-		}else {
-			session.rollback();
-		}
 		session.close();
 		
-		return result3;
+		return businessRegistration;
 	}
-	public int insertBusinessRegistrationAttachment(FileUploadDTO businessNO) {
-		
-		SqlSession session = getSqlSession();
-		
-		CompanyInfoMapper mapper = session.getMapper(CompanyInfoMapper.class);
-		
-		int result4 = mapper.insertBusinessRegistrationAttachment(businessNO);
-		
-		if(result4 > 0) {
-			session.commit();
-		}else {
-			session.rollback();
-		}
-		session.close();
-		
-		return result4;
-	}
+
 
 
 }

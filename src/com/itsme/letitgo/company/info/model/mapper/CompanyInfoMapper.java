@@ -23,20 +23,19 @@ public interface CompanyInfoMapper {
 
 	CompanyInfoDTO coMemInfoSelect();
 
-
+//기업담당자 수정
 	int modifyCoMemInfo(CompanyInfoDTO coMem);
 
-	//기업정보변경 요청보낸거 요청테이블에 인서트
-	int updateRequestAddInfo(CompanyAddInfoDTO comAd);
-//
-////기업정보변경 요청보낸거 요청테이블에 인서트
-	int insertCoLogoAttachment(FileUploadDTO logoFile);
+//로고이미지불러오기
+	FileUploadDTO selectLogoFile(int memNo);
 
-	//기업정보변경 요청보낸거 요청테이블에 인서트
-	int insertCoRepresentativImageAttachment(FileUploadDTO representativImage);
+//대표이미지불러오기
+	FileUploadDTO selectRepresentFile(int memNo);
 
-	//기업정보변경 요청보낸거 요청테이블에 인서트
-	int insertBusinessRegistrationAttachment(FileUploadDTO businessNO);
+//사업자등록증불러오기
+	FileUploadDTO selectBusinessFile(int memNo);
+
+
 
 
 

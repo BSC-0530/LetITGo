@@ -11,6 +11,34 @@
 		<result property="coReqKinds" column="CO_REQ_KINDS"/>
 		<result property="coRejectReason" column="CO_REJECT_REASON"/>
 	</resultMap>
+	
+<!-- 	기업정보변경요청 담기는 테이블  -->
+ 	<resultMap type="com.itsme.letitgo.admin.info.model.dto.CoMemberAppHistoryDTO" id="coAppHistory">
+ 		<id property="coReqNo" column="CO_REQ_NO"/>
+ 		<result property="coMemNo" column="CO_MEM_NO"/>
+ 		<result property="coAnsKinds" column="CO_ANS_KINDS"/>
+ 		<result property="coReqDate" column="CO_REQ_DATE"/>
+ 		<result property="coAnsDate" column="CO_ANS_DATE"/>
+ 		<result property="coReqKinds" column="CO_REQ_KINDS"/>
+ 		<result property="coRejectReason" column="CO_REJECT_REASON"/>
+ 		<result property="coIntro" column="CO_INTRO"/>
+ 		<result property="coNo" column="CO_NO"/>
+ 		<result property="coComName" column="CO_COM-NAME"/>
+ 		<result property="coCeoName" column="CO_CEO_NAME"/>
+ 		<result property="coAddress" column="CO_ADDRESS"/>
+ 		<result property="coPhone" column="CO_PHONE"/>
+ 		<result property="coPax" column="CO_PAX"/>
+ 		<result property="coSectors" column="CO_SECTORS"/>
+ 		<result property="coStatus" column="CO_STATUS"/>
+ 		<result property="webSite" column="CO_WEBSITE"/>
+ 		<result property="memFileName" column="MEM_FILE_NAME"/>
+ 		<result property="memFileOrignalName" column="MEM_FILE_ORIGINAL_NAME"/>
+ 		<result property="memFilePath" column="MEM_FILE_PATH"/>
+ 		<result property="memFileKinds" column="MEM_FILE_KINDS"/>
+ 	
+ 	</resultMap>
+	
+	
 	<select id="insertRequestList" resultMap="requestInsert">
 		SELECT
 			   CO_REQ_NO
@@ -22,4 +50,132 @@
 			 , CO_REJECT_REASON
 	    FROM TBL_CO_MEMBER_APP_HISTORY
 	</select>
+	
+	
+	<insert id="updateRequestAddInfo">
+		INSERT
+			 INTO TBL_CO_MEMBER_APP_HISTORY
+			 (
+			   CO_REQ_NO
+			 , CO_MEM_NO
+			 , CO_ANS_KINDS
+			 , CO_REQ_DATE
+			 , CO_REQ_KINDS
+			 , CO_INTRO
+			 , CO_NO
+			 , CO_COM_NAME
+			 , CO_CEO_NAME
+			 , CO_ADDRESS
+		 	 , CO_PHONE
+			 , CO_PAX
+			 , CO_SECTORS
+			 ,CO_STATUS
+			 ,CO_WEBSITE
+			 )
+			 VALUES
+			 (
+			   SEQ_CO_REQ_NO.NEXTVAL
+			 , #{ coMemNo }
+			 , '대기'
+			 , SYSDATE
+			 , '회원정보수정'
+			 , #{ coIntro }
+			 , #{ coNo }
+			 , #{ coComName }
+			 , #{ coCeoName }
+			 , #{ coAddress }
+			 , #{ coPhone }
+			 , #{ coPax }
+			 , #{ coSectors }
+			 , #{ coStatus }
+			 , #{ webSite }
+			 )
+	
+	</insert>
+	
+	
+		<insert id="insertCoLogoAttachment" >
+<!-- 	로고이미지 -->
+	INSERT 
+		  INTO TBL_CO_MEMBER_APP_HISTORY
+		(
+<!-- 		  MEM_FILE_NO -->
+		  CO_REQ_NO
+		, CO_MEM_NO
+		, CO_ANS_KINDS
+		, MEM_FILE_NAME
+		, MEM_FILE_ORIGINAL_NAME
+		, MEM_FILE_PATH
+		, MEM_FILE_KINDS
+		, CO_REQ_DATE
+		, CO_REQ_KINDS
+		)
+		VALUES
+		(
+		  SEQ_CO_REQ_NO.NEXTVAL
+		, #{ coMemNo }
+		, '대기'
+		, #{ memFileName }
+		, #{ memFileOrignalName }
+		, #{ memFilePath }
+		, '로고이미지'
+		, SYSDATE
+		, '회원정보수정'		
+		)	
+	</insert>
+	<insert id="insertCoRepresentativImageAttachment" >
+	INSERT
+		  INTO TBL_CO_MEMBER_APP_HISTORY
+		(
+		  CO_REQ_NO
+		, CO_MEM_NO
+		, CO_ANS_KINDS
+		, MEM_FILE_NAME
+		, MEM_FILE_ORIGINAL_NAME
+		, MEM_FILE_PATH
+		, MEM_FILE_KINDS
+		, CO_REQ_DATE
+		, CO_REQ_KINDS
+		)
+		VALUES
+		(
+		  SEQ_CO_REQ_NO.NEXTVAL
+		, #{ coMemNo }
+		, '대기'
+		, #{ memFileName }
+		, #{ memFileOrignalName }
+		, #{ memFilePath }
+		, '대표이미지'
+		, SYSDATE
+		, '회원정보수정'		
+		)
+	</insert>
+	<insert id="insertBusinessRegistrationAttachment">
+	INSERT
+		  INTO TBL_CO_MEMBER_APP_HISTORY
+		(
+		  CO_REQ_NO
+		, CO_MEM_NO
+		, CO_ANS_KINDS
+		, MEM_FILE_NAME
+		, MEM_FILE_ORIGINAL_NAME
+		, MEM_FILE_PATH
+		, MEM_FILE_KINDS
+		, CO_REQ_DATE
+		, CO_REQ_KINDS
+		)
+		VALUES
+		(
+		  SEQ_CO_REQ_NO.NEXTVAL
+		, #{ coMemNo }
+		, '대기'
+		, #{ memFileName }
+		, #{ memFileOrignalName }
+		, #{ memFilePath }
+		, '사업자등록증'
+		, SYSDATE
+		, '회원정보수정'		
+		)	
+	</insert>
+	
 </mapper>
