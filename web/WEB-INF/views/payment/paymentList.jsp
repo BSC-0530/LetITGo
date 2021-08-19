@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.util.List,javax.servlet.http.HttpSession, javax.servlet.http.HttpServlet, com.itsme.letitgo.login.model.dto.MemberLoginDTO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,7 +98,7 @@
 								</div>
 								<div class="pricing_btn_wrapper">
 									<div class="pricing_btn1">
-										<button type="button" onclick="payReading(this);">결제하기</button>
+										<button type="button" class="btn btn-info"  onclick="payReadingRight(this);">결제하기</button>
 									</div>
 								</div>
 								<div class="jp_pricing_label_wrapper">
@@ -144,9 +145,7 @@
 								</div>
 								<div class="pricing_btn_wrapper">
 									<div class="pricing_btn1">
-										<ul>
-											<li><a href="#">결제하기</a></li>
-										</ul>
+										<button type="button" class="btn btn-info" onclick="payExposureRight(this);">결제하기</button>
 									</div>
 								</div>
 								<div class="jp_pricing_label_wrapper">
@@ -160,10 +159,18 @@
 		</div>
 	</div>
 
+<%
 
+MemberLoginDTO dto = (MemberLoginDTO) session.getAttribute("loginMember");
+
+String memEmail = dto.getMemEmail();
+String memName = dto.getMemName();
+String memPhone = dto.getMemPhone();
+
+%>
 
 	<script>
-		function payReading(button) {
+		function payReadingRight(button) {
 			productName = button.parentNode.parentNode.parentNode.children[0].children[0].innerText; 
 			productPrice = button.parentNode.parentNode.parentNode.children[1].children[0].children[0].innerText; 
 			alert(productPrice);
@@ -176,46 +183,84 @@
 		    pay_method : 'card',
 		    merchant_uid : 'merchant_' + new Date().getTime(),
 		    name : productName,
-		    amount : 100,
-		    buyer_email : 'iamport@siot.do',
-		    buyer_name : '구매자이름',
-		    buyer_tel : '010-1234-5678',
-		    buyer_addr : '서울특별시 강남구 삼성동',
-		    buyer_postcode : '123-456'
+		    amount : productPrice,
+		    buyer_email : '<%= memEmail %>',
+		    buyer_name : '<%= memName %>',
+		    buyer_tel : '<%= memPhone %>',
+		    buyer_addr : '',
+		    buyer_postcode : ''
 		}, function(rsp) {
 		    if ( rsp.success ) {
 		    	alert('성공');
 		    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
 		    	$.ajax({
 		    		type: "post",
-		    		url:  "/let/payments/complete",
+		    		url:  "/let/payments/reading/complete",
 		    		data: {
 		    		
 			    		productName : productName
+
 			    		//기타 필요한 데이터가 있으면 추가 전달
 		    		},
 					success : function(data) {
-						alert('데이터 전송성공');
+						alert('결제가 성공적으로 완료되었습니다.');
 
 					},
 					error:function(xhr) {
-						alert('데이터 전송실패')
+						alert('결제를 실패하였습니다.');
 					}
-		    	}).done(function(data) {
-		    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-		    		if ( everythings_fine ) {
-		    			var msg = '결제가 완료되었습니다.';
-		    			msg += '\n고유ID : ' + rsp.imp_uid;
-		    			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-		    			msg += '\결제 금액 : ' + rsp.paid_amount;
-		    			msg += '카드 승인번호 : ' + rsp.apply_num;
-		    			
-		    			alert(msg);
-		    		} else {
-		    			//[3] 아직 제대로 결제가 되지 않았습니다.
-		    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
-		    		}
-		    	});
+		    	})
+		    } else {
+		        var msg = '결제에 실패하였습니다.';
+		        msg += '에러내용 : ' + rsp.error_msg;
+		        
+		        alert(msg);
+		    }
+		});
+		} 
+	</script>
+	
+	<script>
+		function payExposureRight(button) {
+			productName = button.parentNode.parentNode.parentNode.children[0].children[0].innerText; 
+			productPrice = button.parentNode.parentNode.parentNode.children[1].children[0].children[0].innerText; 
+			alert(productPrice);
+			
+			var IMP = window.IMP; // 생략가능
+			IMP.init('imp86126357'); // 가맹점 식별 코드
+		
+		IMP.request_pay({
+		    pg : 'kakaopay',
+		    pay_method : 'card',
+		    merchant_uid : 'merchant_' + new Date().getTime(),
+		    name : productName,
+		    amount : productPrice,
+		    buyer_email : '<%= memEmail %>',
+		    buyer_name : '<%= memName %>',
+		    buyer_tel : '<%= memPhone %>',
+		    buyer_addr : '',
+		    buyer_postcode : ''
+		}, function(rsp) {
+		    if ( rsp.success ) {
+		    	alert('성공');
+		    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+		    	$.ajax({
+		    		type: "post",
+		    		url:  "/let/payments/exposure/complete",
+		    		data: {
+		    		
+			    		productName : productName
+
+			    		//기타 필요한 데이터가 있으면 추가 전달
+		    		},
+					success : function(data) {
+						alert('결제가 성공적으로 완료되었습니다.');
+
+					},
+					error:function(xhr) {
+						alert('결제를 실패하였습니다.');
+					}
+		    	})
 		    } else {
 		        var msg = '결제에 실패하였습니다.';
 		        msg += '에러내용 : ' + rsp.error_msg;
