@@ -55,7 +55,7 @@ public class loginServlet extends HttpServlet {
 			
 		} else if((loginMember != null) && (loginMember.getMemKinds().equals("기업회원")) && (rejectResult > 0) && (loginMember.getMemEntYn().equals("N"))) {
 			
-			redirectText.append("<script>alert('회원가입승인이 거절되었습니다. 이메일을 확인해주세요.'); location.href='/let/loginPage';</script>");
+			redirectText.append("<script>alert('회원가입승인이 거절되었습니다. 거절된 이유를 확인하고 싶으시다면 1:1 문의 또는 고객센터에 문의하시길 바랍니다.'); location.href='/let/loginPage';</script>");
 			
 		} else if((loginMember != null) && (loginMember.getMemKinds().equals("기업회원")) && (waitResult > 0) && (loginMember.getMemEntYn().equals("N"))) {
 			
