@@ -14,6 +14,8 @@ import com.itsme.letitgo.company.scout.model.dto.BrosweSimplelDTO;
 import com.itsme.letitgo.company.scout.model.dto.CandidateRegisterSkillsDTO;
 import com.itsme.letitgo.company.scout.model.dto.CandidateRegistrationDTO;
 import com.itsme.letitgo.company.scout.model.dto.CountReadingNumDTO;
+import com.itsme.letitgo.company.scout.model.dto.DeliverCareerAndSkillDTO;
+import com.itsme.letitgo.company.scout.model.dto.DeliverResumeNoAndSelectedSkillDTO;
 import com.itsme.letitgo.company.scout.model.dto.InterviewProposalDTO;
 import com.itsme.letitgo.company.scout.model.dto.PersonalBrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.ResumeReadingHistoryDTO;
@@ -392,6 +394,7 @@ public class MainScoutListService {
 		return skillsList;
 	}
 	
+	// 정렬조회(스킬만)
 	public Map<String, Object> selectBySkillScoutList(String inputSkill) {
 		
 		SqlSession session = getSqlSession();
@@ -400,6 +403,10 @@ public class MainScoutListService {
 		List<Object> selectedScoutListInName = mapper.selectedBySkillScoutListInName(inputSkill);
 		List<Object> selectedScoutListInSkills = mapper.selectedBySkillScoutListInSkills(inputSkill);
 		List<Object> selectedScoutListInCareer = mapper.selectedBySkillScoutListInCareer(inputSkill);
+		
+		System.out.println("service sort name : " + selectedScoutListInName);
+		System.out.println("service sort skill : " + selectedScoutListInSkills);
+		System.out.println("service sort career : " + selectedScoutListInCareer);
 		
 		Map<String, Object> selectedBySkillScoutList = new HashMap<>();
 		
@@ -416,6 +423,33 @@ public class MainScoutListService {
 //		List<Object> scoutListSkills = mapper.companyScoutSkills();
 //		
 //		List<Object> scoutCareea = mapper.companyScoutCareea();
+	}
+	
+	// 정렬조회(경력만)
+	public Map<String, Object> selectedByCareerScoutList(int inputCareer) {
+		
+		SqlSession session = getSqlSession();
+		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
+		
+		List<Object> selectedByCarScoutListInName = mapper.selectedByCarScoutListInName(inputCareer);
+		List<Object> selectedByCarScoutListInSkills = mapper.selectedByCarScoutListInSkills(inputCareer);
+		List<Object> selectedByCarScoutListInCareer = mapper.selectedByCarScoutListInCareer(inputCareer);
+		
+		Map<String, Object> selectedByCarScoutList = new HashMap<>();
+		
+		selectedByCarScoutList.put("selectedByTwoScoutListInName", selectedByCarScoutListInName);
+		selectedByCarScoutList.put("selectedByTwoScoutListInSkills", selectedByCarScoutListInSkills);
+		selectedByCarScoutList.put("selectedByTwoScoutListInCareer", selectedByCarScoutListInCareer);
+		
+		session.close();
+		
+		return selectedByCarScoutList;
+	}
+	
+	// 정렬조회(스킬/경력)
+	public Map<String, Object> selectedByTwoScoutList(DeliverCareerAndSkillDTO selectedCareerAndSkill) {
+		
+		return null;
 	}
 	
 
