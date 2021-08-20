@@ -20,6 +20,10 @@ public class ResetPassword extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
+		  int memNO = Integer.parseInt(request.getParameter("memNO"));
+		  
+		  request.setAttribute("memNO",memNO);
+		
 		  String path = "/WEB-INF/views/member/company/companyresetpassword.jsp";
 	      
 	      request.getRequestDispatcher(path).forward(request, response);

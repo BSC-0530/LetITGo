@@ -193,11 +193,29 @@
 							<br>
 							
 							<div align="center">
-								<input type="text" placeholder="상품구분" name="productKinds">
+<!-- 								<input type="text" placeholder="상품구분" name="productKinds"> -->
+									<select name="productKinds"  style="width: 15.3%;">
+										<option value="" selected>상품구분</option>
+										<option value="열람권">열람권</option>
+										<option value="노출권">노출권</option>
+									</select>
 							</div>
 							<br>
 							<div align="center">
-								<input type="text" placeholder="노출여부" name="productStatus">
+<!-- 								<input type="search" placeholder="노출여부" name="productStatus"> -->
+									<select name="productStatus" id="productStatus" style="width: 15.3%;">
+										<option value="" selected>노출 여부</option>
+										<option value="Y">Y</option>
+										<option value="N">N</option>
+									</select>
+							</div>
+							<br>
+							<div align="center">
+								<input type="number" placeholder="열람권 갯수" name="productReadingTicket">
+							</div>
+							<br>
+							<div align="center">
+								<input type="number" placeholder="상단 노출 시간" name="productExposureTime">
 							</div>
 							<br>
 							
