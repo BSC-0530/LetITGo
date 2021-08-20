@@ -72,13 +72,13 @@ public class MemberLoginService {
 		return result;
 	}
 
-	// test용
-	public List<MemberLoginDTO> selectAllPwdList() {
-		
-		
-		
-		return null;
-	}
-		
+//	// test용
+//	public List<MemberLoginDTO> selectAllPwdList() {
+//		
+//		
+//		
+//		return null;
+//	}
+//		
 		
 }
