@@ -13,9 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.itsme.letitgo.company.scout.model.dto.BrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.service.MainScoutListService;
 
-/**
- * Servlet implementation class CompanyScoutListSelect
- */
+
 @WebServlet("/Company/Scout/List/Select")
 public class CompanyScoutListSelectServlet extends HttpServlet {
        

@@ -27,8 +27,6 @@
 	
 	<!-- jp listing sidebar Wrapper Start -->
 	<!-- 상단 검은색 -->
-	<form  id="insertJobPostingForm" action="${ pageContext.servletContext.contextPath }/member/allJobPosting/select"
-		method="post">
 	<div class="jp_tittle_main_wrapper">
 		<div class="jp_tittle_img_overlay"></div>
 		<div class="container">
@@ -51,20 +49,18 @@
 			</div>
 		</div>
 	</div>
-		<div class="jp_listing_sidebar_main_wrapper">
-			<div class="container">
+	<div class="jp_listing_sidebar_main_wrapper">
+		<div class="container">
+			<form  id="insertJobPostingForm" action="${ pageContext.servletContext.contextPath }/member/allJobPosting/select" method="post">
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="jp_listing_heading_wrapper">
 							<h2>
-								We found <span><c:out
-										value="${ requestScope.totalCount }"></c:out></span>
-								Matches for you.
+								We found <span><c:out value="${ requestScope.totalCount }"></c:out></span> Matches for you.
 							</h2>
 						</div>
 					</div>
-					<div
-						class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
+					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
 						<div class="row">
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<div class="jp_rightside_job_categories_wrapper">
@@ -192,15 +188,11 @@
 											<c:forEach var="jobPosting"
 												items="${ requestScope.jobPostingList }">
 												<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-													<div
-														class="jp_job_post_main_wra[]pper_cont jp_job_post_grid_main_wrapper_cont">
+													<div class="jp_job_post_main_wra[]pper_cont jp_job_post_grid_main_wrapper_cont">
 	
 														<!-- div 영역 클릭 시 상세 공고 페이지로 이동 -->
-														<div
-															class="jp_job_post_main_wrapper jp_job_post_grid_main_wrapper"
-															style="cursor: pointer; height: 250px"
-															onclick="selectJobPosting(this);">
-	
+														<div class="jp_job_post_main_wrapper jp_job_post_grid_main_wrapper" style="cursor: pointer; height: 250px"
+															onclick="selectJobPosting(this);"> 
 															<input type="hidden" id="postNo"
 																value="${ jobPosting.jobPostNo }">
 															<input type="hidden" id="coMemNo" value="${ jobPosting.coMemberAddInfoDTO.coMemNo }">
@@ -224,9 +216,10 @@
 																		</div>
 																		<div>
 																		<label><c:out value="${ jobPosting.coMemberAddInfoDTO.coComName }"/></label>
-<!-- 지역 처리 필요 -->														<c:set var="coAddress" value="${ jobPosting.coMemberAddInfoDTO.coAddress }"/>
-																		<c:set var="area" value="(${fn:split(pageScope.coAddress,'$')[0]})"/>
-																			<label><c:out value="${ pageScope.area }"></c:out></label>
+	<!-- 지역 처리 필요 -->														<c:set var="coAddress" value="${ jobPosting.coMemberAddInfoDTO.coAddress }"/>
+																		<c:set var="address" value="${ fn:split(coAddress,'$')[0]}"/>
+																		<c:set var="area" value="${ fn:split(address, ' ')[0] }"></c:set>
+																			<label><c:out value="(${ area })"></c:out></label>
 																		</div>
 																		<div>
 																		<label>
@@ -256,17 +249,16 @@
 																		<div>
 																		<label><c:out value="${ jobPosting.jobPostEnrollDate }" /> ~ <c:out value="${ jobPosting.jobPostDeadline }" /></label>
 																		</div>
-	
 																	</div>
 																</div>
 															</div>
 														</div>
 														<div class="jp_job_post_keyword_wrapper">
 															<ul>
-																<li>요구 기술 :</li>
+																<li><i class="fa fa-tags">요구 기술 :</i></li>
 																<c:forEach var="jpSkills" items="${ requestScope.jpSkills }">
 																	<c:if test="${ jpSkills.jobPostNo eq jobPosting.jobPostNo}">
-																		<li><a href="#"><c:out value="${ jpSkills.skillsName }"/></a></li>
+																		<li><a><c:out value="${ jpSkills.skillsName }"/></a></li>
 																	</c:if>
 																</c:forEach>
 															</ul>
@@ -274,21 +266,54 @@
 													</div>
 												</div>
 											</c:forEach>
-										</div>
+										</div><!--  -->
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<jsp:include page="../common/paging/paging.jsp"></jsp:include>
+			</form>
+			<div class="pagingForm" align="center">
+				<form id="pagingForm"method="post">
+					<input type="hidden" name="skills" value="${ requestScope.skillsName }" readonly> 
+					<input type="hidden" name="experience" value="${ requestScope.experience }" readonly> 
+					<input type="hidden" name="jobNo" value="${ requestScope.jobNo }" readonly> 
+					<c:forEach var="area" items="${ requestScope.areaList }">
+					<input type="hidden" name="area" value="${ area }" readonly> 
+					</c:forEach>
+					
+					<!-- 이전 페이지 버튼 -->
+					<c:if test="${ requestScope.selectCriteria.pageNo <= 1 }">
+						<button type="button" disabled>PRIV</button>
+					</c:if>
+					<c:if test="${ requestScope.selectCriteria.pageNo > 1 }">
+						<button type="button" id="prevPage">PRIV</button>
+					</c:if>
+					
+					<!-- 숫자 버튼 -->
+					<c:forEach var="p" begin="${ requestScope.selectCriteria.startPage }" end="${ requestScope.selectCriteria.endPage }" step="1">
+						<c:if test="${ requestScope.selectCriteria.pageNo eq p }">
+							<button type="button" disabled><c:out value="${ p }"/></button>
+						</c:if>
+						<c:if test="${ requestScope.selectCriteria.pageNo ne p }">
+							<button type="button" onclick="pageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
+						</c:if>
+					</c:forEach>
+					
+					<!-- 다음 페이지 버튼 -->
+					<c:if test="${ requestScope.selectCriteria.pageNo >= requestScope.selectCriteria.maxPage }">
+						<button type="button" disabled>NEXT</button>
+					</c:if>
+					<c:if test="${ requestScope.selectCriteria.pageNo < requestScope.selectCriteria.maxPage }">
+						<button type="button" id="nextPage">NEXT</button>
+					</c:if>
+				</form>
 			</div>
 		</div>
-	</form>
+	</div>
 	
 	<script>
-
-
 		function selectJobPosting(div) {
 
 			const jobPostNo = div.children[0].value;
@@ -296,8 +321,43 @@
 
 			location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?jobPostNo="
 					+ jobPostNo + "&coMemNo=" + coMemNo;
-
 		}
+	</script>
+	<script>
+	
+		const link = "${ pageContext.servletContext.contextPath }/member/allJobPosting/select";
+
+		
+		if(document.getElementById("prevPage")) {
+			const $prevPage = document.getElementById("prevPage");
+			$prevPage.onclick = function() {
+				$("#pagingForm").append("<input type='hidden' name='currentPage' value='${ requestScope.selectCriteria.pageNo - 1 }'>");
+				$("#pagingForm").method = "post";
+				$("#pagingForm").action =  link;
+				$("#pagingForm").submit();
+			}
+		}
+		
+		if(document.getElementById("nextPage")) {
+			const $nextPage = document.getElementById("nextPage");
+			$nextPage.onclick = function() {
+				$("#pagingForm").append("<input type='hidden' name='currentPage' value='${ requestScope.selectCriteria.pageNo + 1 }'>");
+				$("#pagingForm").method = "post";
+				$("#pagingForm").action = link;
+				$("#pagingForm").submit();			
+			}
+		}
+
+		
+		function pageButtonAction(text) {
+			
+			alert("");
+			$("#pagingForm").append("<input type='hidden' name='currentPage' value='" + text + "'>");
+			$("#pagingForm").method = "post";
+			$("#pagingForm").action = link;
+			$("#pagingForm").submit();
+		}
+		
 	</script>
 
 </body>

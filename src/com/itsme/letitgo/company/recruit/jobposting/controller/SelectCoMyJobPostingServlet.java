@@ -21,12 +21,12 @@ public class SelectCoMyJobPostingServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
-
-        MemberLoginDTO memberLoginDTO = (MemberLoginDTO) session.getAttribute("loginMember");
-
-        int memNo = memberLoginDTO.getMemNo();
-		
+//		HttpSession session = request.getSession();
+//
+//        MemberLoginDTO memberLoginDTO = (MemberLoginDTO) session.getAttribute("loginMember");
+//
+//        int memNo = memberLoginDTO.getMemNo();
+		int memNo = 2;
 		SelectCoMyJobPostingService selectCoMyJobPostingService = new SelectCoMyJobPostingService();
 
 		// getSession에서 comMemNo 값 가져와서 이용 DTO에 담아서 전달해 coMemNo에 맞는 공고 조회
@@ -44,8 +44,6 @@ public class SelectCoMyJobPostingServlet extends HttpServlet {
 		request.setAttribute("allJobPosting", jp.get("allJobPosting"));
 		request.setAttribute("recruitingJopPosting", jp.get("recruitingJopPosting"));
 		request.setAttribute("requestJobPosting", jp.get("requestJobPosting"));
-		
-		System.out.println(jp.get("allJobPosting"));
 
 
 		String path = "/WEB-INF/views/recruit/jobPostingHistory.jsp";

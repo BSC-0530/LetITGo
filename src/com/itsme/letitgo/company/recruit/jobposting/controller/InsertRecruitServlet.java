@@ -44,11 +44,11 @@ public class InsertRecruitServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-
-        MemberLoginDTO memberLoginDTO = (MemberLoginDTO) session.getAttribute("loginMember");
-
-        int memNo = memberLoginDTO.getMemNo();
+//		HttpSession session = request.getSession();
+//
+//        MemberLoginDTO memberLoginDTO = (MemberLoginDTO) session.getAttribute("loginMember");
+//
+//        int memNo = memberLoginDTO.getMemNo();
         
 		RequestJobPostingDTO dto = new RequestJobPostingDTO();
 		
@@ -61,15 +61,18 @@ public class InsertRecruitServlet extends HttpServlet {
 		
 		for(String i: getSkills) {
 			skillsList.add(Integer.parseInt(i));
-			System.out.println("i" + Integer.parseInt(i));
 		}
-		System.out.println("skillsList : " + skillsList);
-		dto.setCoMemNo(memNo);
+		dto.setCoMemNo(3);
 		dto.setJobPostTitle(request.getParameter("jobPostTitle"));
 		dto.setJobNo(Integer.parseInt(request.getParameter("jobNo")));
-		dto.setJobPostContents(request.getParameter("jobPostContents"));
 		dto.setJobPostDeadLine(java.sql.Date.valueOf(request.getParameter("jobPostDeadLine")));
 		dto.setSkillsCodeList(skillsList);
+		
+		
+		dto.setJobPostContents(request.getParameter("jobPostContents"));
+		dto.setQualificationRequirements(request.getParameter("qualificationRequirements"));
+		dto.setPreferentialMatters(request.getParameter("preferentialMatters"));
+		dto.setBenefitAndWelfare(request.getParameter("benefitAndWelfare"));
 		
 		
 		// 전달받은 경력에 입력된 value에 따라 db에 다르게 저장해주기 위해 예외처리
@@ -99,7 +102,6 @@ public class InsertRecruitServlet extends HttpServlet {
 		if(result) {
 			redirectText.append("<script>alert('공고 등록 요청이 정상적으로 처리되었습니다.'); location.href='/let/company/jobPostingHistory/select';</script>");
 			
-//			redirectText.append("<script>alert('이력서 수정을 완료했습니다.'); location.href='/let/resume/list';</script>");
 
 		
 		} else {

@@ -3,39 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8" />
-<title>Job Pro Responsive HTML Template</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<meta name="description" content="Job Pro" />
-<meta name="keywords" content="Job Pro" />
-<meta name="author" content="" />
-<meta name="MobileOptimized" content="320" />
-<!--srart theme style -->
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/animate.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/font-awesome.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/fonts.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/reset.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/owl.carousel.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/owl.theme.default.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/flaticon.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/style.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/style_II.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
-<!-- favicon links -->
-<link rel="shortcut icon" type="image/png"
-	href="${ pageContext.servletContext.contextPath }/resources/image/header/favicon.ico" />
+
+
+<script>
+	function test() {
+		
+		alert("");
+	}
+</script>
 </head>
 <body>
 
@@ -78,8 +53,8 @@
 																<div class="jp_job_post_right_btn_wrapper">
 																	<ul>
 																		<li></li>
-																		<li><a href="#">Part Time</a></li>
-																		<li><a href="#">Apply</a></li>
+																		<li style="cursor: pointer"onclick="test();"><a>공고 상세보기</a></li>
+																		<li></li>
 																	</ul>
 																</div>
 															</div>
@@ -102,16 +77,13 @@
 									</div>
 								</div>
 							</div>
-							
 						</div>
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="jp_register_section_main_wrapper">
 							<div class="jp_regis_left_side_box_wrapper">
 								<div class="jp_regis_left_side_box">
-									<img
-										src="${ pageContext.servletContext.contextPath }/resources/image/content/regis_icon.png"
-										alt="icon" />
+									<img src="${ pageContext.servletContext.contextPath }/resources/image/content/regis_icon.png" alt="icon" />
 									<h4>좋은 직장을 찾고 싶어요</h4>
 									<p>
 										LetITGo의 회원이 되시면 <br>원하는 직장을 입맛대로 찾으실 수 있어요!

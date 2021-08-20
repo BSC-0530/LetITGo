@@ -34,6 +34,76 @@
 	<resultMap type="com.itsme.letitgo.company.recruit.applicant.model.dto.ItemAndContentDTO" id="itemAndContentResultMap">
 	
 	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.company.recruit.applicant.model.dto.ApplicantDTO" id="applicantList">
+		<result property="jobPostNo" column="JOB_POST_NO"/>
+		<result property="resumeNo" column="RESUME_NO"/>
+		<result property="resumeTitle" column="RESUME_TITLE"/>
+		<result property="memName" column="MEM_NAME"/>
+		<result property="jobPostBrowesStatus" column="JOB_POST_BROWES_STATUS"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.company.recruit.applicant.model.dto.ResumeSkillsAndNameDTO" id="skillsAndNameResultMap">
+		<result property="resumeNo" column="RESUME_NO"/>
+		<result property="skillsNo" column="SKILLS_NO"/>
+		<result property="skillsName" column="SKILLS_NAME"/>
+	</resultMap>
+	
+	<select id="selectTotalCount" resultType="_int">
+		SELECT /* com.itsme.letitgo.company.recruit.applicant.model.mapper.RecruitApplicantMapper#selectTotalCount() */	
+			   COUNT(R.RESUME_NO)
+		  FROM TBL_APPLYING_HISTORY AH
+		  JOIN TBL_RESUME R ON (AH.RESUME_NO = R.RESUME_NO)
+    	  JOIN TBL_MEMBER M ON (R.IN_MEM_NO = M.MEM_NO)
+  	     WHERE AH.JOB_POST_APPLYING_STATUS = '지원완료'
+  	       AND AH.JOB_POST_NO = #{ jobPostNo }
+	</select>
+	
+	<!-- 지원자별 공고 리스트 조회
+		  여기에 검색 조건 추가해야됨 -->
+	<select id="selectApplicant" resultMap="applicantList">
+		SELECT 	/* com.itsme.letitgo.company.recruit.applicant.model.mapper.RecruitApplicantMapper#selectApplicant() */	
+			   A.RNUM
+			 , A.RESUME_NO
+			 , A.RESUME_TITLE
+			 , A.MEM_NAME
+			 , A.JOB_POST_BROWES_STATUS
+			 
+		  FROM (SELECT
+		  	   		   ROWNUM RNUM
+		  	   		 , B.RESUME_NO
+		  	   		 , B.RESUME_TITLE
+		  	   		 , B.MEM_NAME
+		  	   		 , B.JOB_POST_BROWES_STATUS
+		  	   	  FROM (SELECT 
+		  	   	  	   		   R.RESUME_NO
+		  	   	  	   		 , R.RESUME_TITLE
+		  	   	  	   		 , M.MEM_NAME
+		  	   	  	   		 , AH.JOB_POST_BROWES_STATUS
+		  	   	  	      FROM TBL_APPLYING_HISTORY AH
+		  	   	  	      JOIN TBL_RESUME R ON (AH.RESUME_NO = R.RESUME_NO)
+		  	   	  	      JOIN TBL_MEMBER M ON (R.IN_MEM_NO = M.MEM_NO)
+		  	   	  	     WHERE AH.JOB_POST_APPLYING_STATUS = '지원완료'
+		  	   	  	       AND AH.JOB_POST_NO = #{ jobPostNo }
+		  	   	  	     ORDER BY AH.JOB_POST_APPLYING_DATE DESC
+		  	   	       )B
+		  	   	 <![CDATA[
+                 WHERE ROWNUM <= #{ selectCriteria.endRow } 
+                 ]]> 
+		  	   ) A
+		 <![CDATA[
+		 WHERE A.RNUM >= #{ selectCriteria.startRow }
+		 ]]> 
+	</select>
+	<!-- 이력서 별 스킬들 조회 -->
+	<select id="selectSkills" resultMap="skillsAndNameResultMap">
+		SELECT 	/* com.itsme.letitgo.company.recruit.applicant.model.mapper.RecruitApplicantMapper#selectSkills() */	
+			   HS.RESUME_NO
+			 , S.SKILLS_NAME
+		  FROM TBL_RESUME_HOLDING_SKILLS HS
+		  JOIN TBL_SKILLS S ON (HS.SKILLS_NO = S.SKILLS_NO)
+	</select>
+	
 
 
 </mapper>
