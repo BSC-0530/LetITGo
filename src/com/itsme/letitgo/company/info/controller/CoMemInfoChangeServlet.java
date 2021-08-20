@@ -24,6 +24,10 @@ public class CoMemInfoChangeServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String coMemName = request.getParameter("coMemName");
 		String coMemPhone = request.getParameter("coMemPhone");
+		String logoFile = request.getParameter("logoFile");
+		String repreFile = request.getParameter("repreFile");
+		String businFile = request.getParameter("businFile");
+		
 		
 		CompanyInfoDTO coMemDTO = new CompanyInfoDTO();
 		coMemDTO.setMemId(coMemId);
@@ -38,6 +42,9 @@ public class CoMemInfoChangeServlet extends HttpServlet {
 		
 		
 		String path="";
+		request.setAttribute("logoFile", logoFile);
+		request.setAttribute("repreFile", repreFile);
+		request.setAttribute("businFile", businFile);
 		request.setAttribute("coMemDTO", coMemDTO);
 		path="/WEB-INF/views/member/company/companyMemInfoChange.jsp";
 		request.getRequestDispatcher(path).forward(request, response);

@@ -145,7 +145,7 @@
 							</div>
 						</div>
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<button type="submit" class="btn btn_info">조회하기</button>
+							<button type="submit" class="btn btn-info">조회하기</button>
 						</div>
 					</div>
 				</div>

@@ -4,8 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/animate.css" />
 <link rel="stylesheet" type="text/css"
@@ -126,12 +129,13 @@
 
 								<!--                             이거는 이제 정보뜨는 칸 -->
 								<input type="hidden" name="comDTO" value="${ comDTO }">
-								<input type="hidden" name="coMemNo" value="${ comDTO.memNo }">
+								<input type="hidden" name="coMemNo" value="${ comDTO.coMemNo }">
 								<div class="tab-pane fade in active register_left_form"
 									id="contentOne-1">
 
 									<div class="jp_regiter_top_heading">
 										<p><h1>기업정보</h1></p>
+										<img name=logoFile src="${ pageContext.servletContext.contextPath }${ logoFile }" width="150" height="150">
 									</div>
 									
 									<div class="row">
@@ -141,7 +145,7 @@
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<label>웹사이트:</label><input type="text" name="webSite" value="${ comDTO.coWebsite }" readonly>
+											<label>웹사이트:</label><input type="text" name="webSite" value="${ comDTO.webSite }" readonly>
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
@@ -178,8 +182,9 @@
 					<br>
 					<div class="companyText">	
                               	<label>회사소개</label><input id="textArea" name="intro" value="${ comDTO.coIntro  }" readonly >
-                              	<img src="${ pageContext.servletContext.contextPath }${ logo.memFileOriginalName }" width="100" height="50">
                     	</div>
+                              	<img name="repreFile" src="${ pageContext.servletContext.contextPath }${ repreFile }" width="150" height="150">
+                              	<img name="businFile" src="${ pageContext.servletContext.contextPath }${ businFile }" width="150" height="150">
             		
 						 <button type="submit" class="btn btn-info" id="coInfoChange" style=" float: right;" >기업 정보 변경</button>
 					</form>	 

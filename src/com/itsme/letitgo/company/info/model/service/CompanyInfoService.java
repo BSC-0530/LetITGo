@@ -17,13 +17,13 @@ import com.itsme.letitgo.company.info.model.mapper.CompanyInfoMapper;
 
 public class CompanyInfoService {
 	//마이페이지 기업추가정보조회
-	public CompanyAddInfoDTO selectedInfoCompany() {
+	public CompanyAddInfoDTO selectedInfoCompany(int memberNo) {
 		
 		SqlSession session = getSqlSession();
 		
 		CompanyInfoMapper mapper = session.getMapper(CompanyInfoMapper.class);
 		
-		CompanyAddInfoDTO infoList = mapper.selectedInfoCompany();
+		CompanyAddInfoDTO infoList = mapper.selectedInfoCompany(memberNo);
 		
 		session.close();
 		
@@ -88,7 +88,7 @@ public class CompanyInfoService {
 		
 		return result;
 	}
-
+//마이페이지 사진조회
 	public FileUploadDTO selectLogoFile(int memNo) {
 		
 		SqlSession session = getSqlSession();

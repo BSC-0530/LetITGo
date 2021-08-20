@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.itsme.letitgo.admin.info.model.mapper.RequestComInfoMapper">
+	
+	<resultMap type="com.itsme.letitgo.company.info.model.dto.CompanyAddInfoDTO" id="companyinfo">
+		<id property="coMemNo" column="CO_MEM_NO"/>
+		<result property="coIntro" column="CO_INTRO"/>
+		<result property="coNo" column="CO_NO"/>
+		<result property="coComName" column="CO_COM_NAME"/>
+		<result property="coCeoName" column="CO_CEO_NAME"/>
+		<result property="coAddress" column="CO_ADDRESS"/>
+		<result property="coPhone" column="CO_PHONE"/>
+		<result property="coPax" column="CO_PAX"/>
+		<result property="coSectors" column="CO_SECTORS"/>
+		<result property="coStatus" column="CO_STATUS"/>
+		<result property="webSite" column="CO_WEBSITE"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.admin.info.model.dto.CoMemberAppHistoryDTO" id="requestInfo">
+		<id property="coReqNo" column="CO_REQ_NO"/>
+ 		<result property="coMemNo" column="CO_MEM_NO"/>
+ 		<result property="coAnsKinds" column="CO_ANS_KINDS"/>
+ 		<result property="coReqDate" column="CO_REQ_DATE"/>
+ 		<result property="coAnsDate" column="CO_ANS_DATE"/>
+ 		<result property="coReqKinds" column="CO_REQ_KINDS"/>
+ 		<result property="coRejectReason" column="CO_REJECT_REASON"/>
+ 		<result property="coIntro" column="CO_INTRO"/>
+ 		<result property="coNo" column="CO_NO"/>
+ 		<result property="coComName" column="CO_COM_NAME"/>
+ 		<result property="coCeoName" column="CO_CEO_NAME"/>
+ 		<result property="coAddress" column="CO_ADDRESS"/>
+ 		<result property="coPhone" column="CO_PHONE"/>
+ 		<result property="coPax" column="CO_PAX"/>
+ 		<result property="coSectors" column="CO_SECTORS"/>
+ 		<result property="coStatus" column="CO_STATUS"/>
+ 		<result property="webSite" column="CO_WEBSITE"/>
+ 		<result property="memFileName" column="MEM_FILE_NAME"/>
+ 		<result property="memFileOrignalName" column="MEM_FILE_ORIGINAL_NAME"/>
+ 		<result property="memFilePath" column="MEM_FILE_PATH"/>
+ 		<result property="memFileKinds" column="MEM_FILE_KINDS"/>
+	</resultMap>
+	
+<!-- 	기업정보요청조회리스트화면 -->
+	<select id="selectedReqList" resultMap="requestInfo" >
+		SELECT
+		       RQ.CO_MEM_NO
+		     , RQ.CO_REQ_NO  
+		     , RQ.CO_REQ_DATE
+		     , RQ.CO_ANS_DATE
+		     , RQ.CO_ANS_KINDS
+		     , RQ.CO_REJECT_REASON
+		     , RQ.MEM_FILE_KINDS
+    FROM TBL_CO_MEMBER_APP_HISTORY RQ
+    WHERE RQ.CO_REQ_KINDS = '회원정보수정'
+	
+	</select>
+	
+	<select id="selectedOrign" resultMap="companyinfo" >
+		SELECT
+			  CM.CO_MEM_NO
+			, CM.CO_NO
+		    , CM.CO_COM_NAME
+		    , CM.CO_CEO_NAME
+		    , CM.CO_SECTORS
+		    , CM.CO_STATUS
+		    , CM.CO_INTRO
+		    , REGEXP_SUBSTR(CM.CO_ADDRESS, '[^$]+',1,2) as CO_ADDRESS
+		    , CM.CO_WEBSITE
+		FROM TBL_CO_MEMBER_ADD_INFO CM
+	</select>
+<!-- 	상세조회 -->
+	<select id="adminDetailPageOrigin" resultMap="companyinfo">
+		SELECT
+			  CM.CO_MEM_NO
+			, CM.CO_NO
+		    , CM.CO_COM_NAME
+		    , CM.CO_CEO_NAME
+		    , CM.CO_SECTORS
+		    , CM.CO_STATUS
+		    , CM.CO_INTRO
+		    , CM.CO_PHONE
+		    , CM.CO_PAX
+		    , REGEXP_SUBSTR(CM.CO_ADDRESS, '[^$]+',1,2) as CO_ADDRESS
+		    , CM.CO_WEBSITE
+		FROM TBL_CO_MEMBER_ADD_INFO CM
+		WHERE CM.CO_MEM_NO = #{ memNo }
+	</select>
+	
+	<select id="adminDetailPageRequest" resultMap="requestInfo">
+		SELECT
+			   CO_INTRO
+			 , CO_REQ_NO  
+			 , CO_MEM_NO  
+			 , CO_NO
+			 , CO_COM_NAME
+			 , CO_CEO_NAME
+			 , CO_ADDRESS
+			 , CO_PHONE
+			 , CO_PAX
+			 , CO_SECTORS
+			 , CO_STATUS
+			 , CO_WEBSITE
+			 , MEM_FILE_NAME
+			 , MEM_FILE_ORIGINAL_NAME
+			 , MEM_FILE_PATH
+			 , MEM_FILE_KINDS
+		FROM TBL_CO_MEMBER_APP_HISTORY
+	   WHERE CO_REQ_NO = #{ reqNo }
+	 </select>
+	 
+	 <update id="adminAcceptRequestInfo">
+	 	UPDATE TBL_CO_MEMBER_ADD_INFO
+	 	   SET
+		 	    CO_NO = #{ coNo } 
+			  , CO_INTRO = #{ coIntro }
+			  , CO_COM_NAME = #{ coComName }
+			  , CO_CEO_NAME = #{ coCeoName }
+			  , CO_ADDRESS = #{ coAddress }
+			  , CO_PHONE = #{ coPhone }
+			  , CO_PAX = #{ coPax }
+			  , CO_SECTORS = #{ coSectors }
+			  , CO_STATUS = #{ coStatus }
+			  , CO_WEBSITE = #{ webSite }
+		  WHERE CO_MEM_NO = #{ coMemNo }	
+		    
+	 </update>
+	 <update id="adminAcceptRequestInfoKinds">
+	 	UPDATE TBL_CO_MEMBER_APP_HISTORY
+	 	   SET
+	 	        CO_ANS_DATE = SYSDATE
+	 	      , CO_ANS_KINDS = '승인'
+	 	       
+	 	  WHERE CO_REQ_NO = #{ coReqNo }    
+	 
+	 </update>
+<!-- 	 //선택상자거절사유 -->
+	 <update id="rejectReasonInsert">
+	 	UPDATE TBL_CO_MEMBER_APP_HISTORY
+	 	   SET
+	 	       CO_REJECT_REASON = #{ coRejectReason }
+	 	     , CO_ANS_KINDS = '거절'
+	 	     , CO_ANS_DATE = SYSDATE
+	 	 WHERE CO_REQ_NO = #{ coReqNo }  
+	 </update>
+<!-- 	 //텍스트로거절 -->
+	 <update id="rejectReasonTextInsert">
+	 	UPDATE TBL_CO_MEMBER_APP_HISTORY
+	 	   SET
+	 	       CO_REJECT_REASON = #{ coRejectReason }
+	 	     , CO_ANS_KINDS = '거절'
+	 	     , CO_ANS_DATE = SYSDATE
+	 	 WHERE CO_REQ_NO = #{ coReqNo } 
+	 </update>
+	
+	
+</mapper>

@@ -12,7 +12,7 @@ import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectJobPostingD
 
 public interface CompanyInfoMapper {
 
-	CompanyAddInfoDTO selectedInfoCompany();
+	CompanyAddInfoDTO selectedInfoCompany(int memberNo);
 
 
 	List<Object> companyAddInfo(CompanyAddInfoDTO dto);
@@ -34,6 +34,10 @@ public interface CompanyInfoMapper {
 
 //사업자등록증불러오기
 	FileUploadDTO selectBusinessFile(int memNo);
+
+
+
+
 
 
 
