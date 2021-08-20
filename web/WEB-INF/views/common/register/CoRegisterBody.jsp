@@ -148,7 +148,7 @@
 				}
 			},
 			error : function(xhr) {
-				alert('jsp : 이메일 인증에 오류가 있습니다.')
+				alert('jsp : 이메일 인증에 오류가 있습니다.');
 			}
 		});
 	}
