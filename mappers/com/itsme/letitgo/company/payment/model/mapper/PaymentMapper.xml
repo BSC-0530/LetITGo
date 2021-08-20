@@ -232,10 +232,108 @@
 	</select>
 	
 	<update id="updatePaymentStatus">
-		UPDATE
+		UPDATE /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#updatePaymentStatus() */
 		       TBL_PAYMENT_HISTORY
 		   SET PAY_KINDS = '환불요청'
 		 WHERE PAY_NO = #{ payNo }
 	</update>
+	
+	<select id="SelectProduct" resultMap="productResultMap">
+		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#updatePaymentStatus() */
+			   PRODUCT_NO
+			 , PRODUCT_PRICE
+			 , READING_NUM
+			 , UPPER_EXPOSURE_TIME
+		  FROM TBL_PRODUCT_LIST
+		 WHERE PRODUCT_NAME = #{ productName }			   
+	</select>
+	
+	<insert id="insertPaymentReadingRightHistory" parameterType="HashMap">
+		INSERT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#insertPaymentHistory() */
+		  INTO TBL_PAYMENT_HISTORY
+		(
+		  PAY_NO
+		, PAY_DATE
+		, PRODUCT_NO
+		, PAY_PRICE
+		, PAY_KINDS
+		, CO_MEM_NO
+		)
+		VALUES
+		(
+		  SEQ_PAY_NO.NEXTVAL
+		, SYSDATE
+		, #{ product.productNo }
+		, #{ product.productPrice }
+		, '결제완료'
+		, #{ memNo }
+		)	
+	</insert>
+	
+	<insert id="insertHoldingReadingRightProduct" parameterType="HashMap">
+		INSERT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#insertHoldingProduct() */
+		  INTO TBL_MEMBER_HOLDING_PRODUCT
+		(
+		  RETAINED_PRODUCT_CODE
+        , PRODUCT_NO
+		, CO_MEM_NO
+	    , PRODUCT_STATUS
+	    , READING_LEFT_NUM
+	    , EXPOSURE_TIME
+		)
+		VALUES
+		(
+		  SEQ_RETAINED_PRODUCT_CODE.NEXTVAL
+        , #{ product.productNo }
+		, #{ memNo }
+		, '사용가능'
+		, #{ product.readingNum }
+		, null
+		)
+	</insert>
+	
+	<insert id="insertPaymentExposureRightHistory" parameterType="HashMap">
+		INSERT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#insertPaymentExposureRightHistory() */
+		  INTO TBL_PAYMENT_HISTORY
+		(
+		  PAY_NO
+		, PAY_DATE
+		, PRODUCT_NO
+		, PAY_PRICE
+		, PAY_KINDS
+		, CO_MEM_NO
+		)
+		VALUES
+		(
+		  SEQ_PAY_NO.NEXTVAL
+		, SYSDATE
+		, #{ product.productNo }
+		, #{ product.productPrice }
+		, '결제완료'
+		, #{ memNo }
+		)	
+	</insert>
+	
+	<insert id="insertHoldingExposureRightProduct" parameterType="HashMap">
+		INSERT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#insertHoldingExposureRightProduct() */
+		  INTO TBL_MEMBER_HOLDING_PRODUCT
+		(
+		  RETAINED_PRODUCT_CODE
+        , PRODUCT_NO
+		, CO_MEM_NO
+	    , PRODUCT_STATUS
+	    , READING_LEFT_NUM
+	    , EXPOSURE_TIME
+		)
+		VALUES
+		(
+		  SEQ_RETAINED_PRODUCT_CODE.NEXTVAL
+        , #{ product.productNo }
+		, #{ memNo }
+		, '사용가능'
+		, null
+		, #{ product.upperExposureTime }
+		)
+	</insert>
 	
 </mapper>

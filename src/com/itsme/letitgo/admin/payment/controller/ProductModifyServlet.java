@@ -16,6 +16,10 @@ public class ProductModifyServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int productNo = Integer.parseInt(request.getParameter("productNo"));
+		
+		request.setAttribute("productNo", productNo);
+		
 		String path = "/WEB-INF/views/admin/adminProductModify.jsp";
 		
 		request.getRequestDispatcher(path).forward(request, response);
@@ -26,12 +30,14 @@ public class ProductModifyServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
+		int productNo = Integer.parseInt(request.getParameter("productNo"));
 		String productName = request.getParameter("productName");
 		int productPrice = Integer.parseInt(request.getParameter("productPrice"));
 		String productKinds = request.getParameter("productKinds");
 		String productStatus = request.getParameter("productStatus");
 		
 		ProductListDTO productListDTO = new ProductListDTO();
+		productListDTO.setProductNo(productNo);
 		productListDTO.setProductName(productName);
 		productListDTO.setProductPrice(productPrice);
 		productListDTO.setProductKinds(productKinds);
@@ -42,9 +48,8 @@ public class ProductModifyServlet extends HttpServlet {
 		int result = new ProductModifyService().productModify(productListDTO);
 		
 		if(result > 0){
-			path = "/WEB-INF/views/admin/adminProductModify.jsp";
-		}else {
 			
+			response.sendRedirect("/let/admin/product/list");
 		}
 	}
 

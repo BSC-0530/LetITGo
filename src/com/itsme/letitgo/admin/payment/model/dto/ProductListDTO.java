@@ -5,17 +5,16 @@ public class ProductListDTO implements java.io.Serializable{
 
 	private int productNo;
 	private int productPrice;
-	private int productReadingTicket;
+	private Integer productReadingTicket;
 	private String productKinds;
 	private String productStatus;
 	private String productName;
-	private int productExposureTime;
+	private String productExposureTime;
 	
 	public ProductListDTO() {}
 
-	
-	public ProductListDTO(int productNo, int productPrice, int productReadingTicket, String productKinds,
-			String productStatus, String productName, int productExposureTime) {
+	public ProductListDTO(int productNo, int productPrice, Integer productReadingTicket, String productKinds,
+			String productStatus, String productName, String productExposureTime) {
 		super();
 		this.productNo = productNo;
 		this.productPrice = productPrice;
@@ -42,11 +41,11 @@ public class ProductListDTO implements java.io.Serializable{
 		this.productPrice = productPrice;
 	}
 
-	public int getProductReadingTicket() {
+	public Integer getProductReadingTicket() {
 		return productReadingTicket;
 	}
 
-	public void setProductReadingTicket(int productReadingTicket) {
+	public void setProductReadingTicket(Integer productReadingTicket) {
 		this.productReadingTicket = productReadingTicket;
 	}
 
@@ -74,11 +73,11 @@ public class ProductListDTO implements java.io.Serializable{
 		this.productName = productName;
 	}
 
-	public int getProductExposureTime() {
+	public String getProductExposureTime() {
 		return productExposureTime;
 	}
 
-	public void setProductExposureTime(int productExposureTime) {
+	public void setProductExposureTime(String productExposureTime) {
 		this.productExposureTime = productExposureTime;
 	}
 
@@ -88,6 +87,7 @@ public class ProductListDTO implements java.io.Serializable{
 				+ productReadingTicket + ", productKinds=" + productKinds + ", productStatus=" + productStatus
 				+ ", productName=" + productName + ", productExposureTime=" + productExposureTime + "]";
 	}
+
 	
 	
 }

@@ -45,6 +45,17 @@ public interface PaymentMapper {
 
 	int updatePaymentStatus(Map<String, Object> map);
 
+	ProductDTO SelectProduct(String productName);
+
+	int insertPaymentReadingRightHistory(Map<String, Object> map);
+	
+	int insertHoldingReadingRightProduct(Map<String, Object> map);
+
+	int insertPaymentExposureRightHistory(Map<String, Object> map);
+
+	int insertHoldingExposureRightProduct(Map<String, Object> map);
+
+
 
 
 

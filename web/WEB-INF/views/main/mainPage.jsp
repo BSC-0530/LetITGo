@@ -52,7 +52,7 @@
 							<div class="cc_featured_product_main_wrapper">
 								<div
 									class="jp_hiring_heading_wrapper jp_job_post_heading_wrapper">
-									<h2>지금 당장 보세요! </h2>
+									<h2> LetITGo 엄선 추천 공고 </h2>
 								</div>
 							</div>
 							<div class="tab-content">
@@ -70,18 +70,14 @@
 																<div class="jp_job_post_right_cont">
 																	<h4>HTML Developer (1 - 2 Yrs Exp.)</h4>
 																	<p>Webstrot Technology Pvt. Ltd.</p>
-																	<ul>
-																		<li><i class="fa fa-cc-paypal"></i>&nbsp; $12K -
-																			15k P.A.</li>
-																		<li><i class="fa fa-map-marker"></i>&nbsp;
-																	</ul>
+																	
 																			Caliphonia, PO 455001</li>
 																</div>
 															</div>
 															<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 																<div class="jp_job_post_right_btn_wrapper">
 																	<ul>
-																		<li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+																		<li></li>
 																		<li><a href="#">Part Time</a></li>
 																		<li><a href="#">Apply</a></li>
 																	</ul>
@@ -91,7 +87,7 @@
 													</div>
 													<div class="jp_job_post_keyword_wrapper">
 														<ul>
-															<li><i class="fa fa-tags"></i>Keywords :</li>
+															<li><i class="fa fa-tags"></i>요구 기술 : </li>
 															<li><a href="#">ui designer,</a></li>
 															<li><a href="#">developer,</a></li>
 															<li><a href="#">senior</a></li>
@@ -106,6 +102,7 @@
 									</div>
 								</div>
 							</div>
+							
 						</div>
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -115,14 +112,13 @@
 									<img
 										src="${ pageContext.servletContext.contextPath }/resources/image/content/regis_icon.png"
 										alt="icon" />
-									<h4>I’m an EMPLOYER</h4>
+									<h4>좋은 직장을 찾고 싶어요</h4>
 									<p>
-										Signed in companies are able to post new<br> job offers,
-										searching for candidate...
+										LetITGo의 회원이 되시면 <br>원하는 직장을 입맛대로 찾으실 수 있어요!
 									</p>
 									<ul>
 										<li><a href="#"><i class="fa fa-plus-circle"></i>
-												&nbsp;REGISTER AS COMPANY</a></li>
+												&nbsp;개인회원가입</a></li>
 									</ul>
 								</div>
 							</div>
@@ -132,14 +128,13 @@
 									<img
 										src="${ pageContext.servletContext.contextPath }/resources/image/content/regis_icon2.png"
 										alt="icon" />
-									<h4>I’m an candidate</h4>
+									<h4>꼭 필요한 가족을 찾고 싶어요</h4>
 									<p>
-										Signed in companies are able to post new<br> job offers,
-										searching for candidate...
+										LetITGo의 회원이 되시면<br>회사에 꼭 맞는 일원을 찾으실 수 있어요!
 									</p>
 									<ul>
 										<li><a href="#"><i class="fa fa-plus-circle"></i>
-												&nbsp;REGISTER AS COMPANY</a></li>
+												&nbsp;기업회원가입</a></li>
 									</ul>
 								</div>
 								<div class="jp_regis_center_tag_wrapper">

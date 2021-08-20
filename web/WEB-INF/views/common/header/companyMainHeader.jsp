@@ -62,7 +62,7 @@
 									<li class="parent gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }/mainPage/CoMember" class="gc_main_navigation">마이페이지</a></li>
 									<li class="has-mega gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }/productList/select" id="paymentMainPage" class="gc_main_navigation">채용공고</a></li>
 									<li class="has-mega gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }/main/Scout/List" class="gc_main_navigation">스카우트</a> </li>
-									<li class="has-mega gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }/personal/memberInfo/select" id="personalMyPage" class="gc_main_navigation" >결제페이지</a></li>
+									<li class="has-mega gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }/productList/select" id="personalMyPage" class="gc_main_navigation" >결제페이지</a></li>
 									<li class="gc_main_navigation parent"><a href="${ pageContext.servletContext.contextPath }/companyTestServlet" class="gc_main_navigation">1:1 문의</a></li>
 								</ul>
 							</div>
@@ -75,7 +75,7 @@
 										href="${ pageContext.servletContext.contextPath }/member/logout"
 										align="center"
 										style="background: rgb(226, 113, 109); margin-right: 30px; border-radius: 10px; width: 130px">Log
-											Out</a></li>
+											In</a></li>
 							</ul>
 						</div>
 					</div>

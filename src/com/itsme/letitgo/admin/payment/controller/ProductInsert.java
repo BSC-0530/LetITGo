@@ -31,14 +31,20 @@ public class ProductInsert extends HttpServlet {
 		int productPrice = Integer.parseInt(request.getParameter("productPrice"));
 		String productKinds = request.getParameter("productKinds");
 		String productStatus = request.getParameter("productStatus");
+		Integer productReadingTicket = Integer.parseInt(request.getParameter("productReadingTicket"));
+		String productExposureTime = request.getParameter("productExposureTime");
 		//view에 있는 text, nubmer name을 담는다
 		
 		
 		ProductListDTO productListDTO = new ProductListDTO();
 		productListDTO.setProductName(productName);
 		productListDTO.setProductPrice(productPrice);
+		productListDTO.setProductReadingTicket(productReadingTicket);
 		productListDTO.setProductKinds(productKinds);
 		productListDTO.setProductStatus(productStatus);
+		productListDTO.setProductExposureTime(productExposureTime);
+		
+		
 		//view에서 담은 값들을 service로 가기위해 담는다.
 		
 		String path = ""; //주소 담기위해 변수 선언
@@ -46,8 +52,9 @@ public class ProductInsert extends HttpServlet {
 		int result = new ProductInsertService().productInsert(productListDTO);
 		
 		if(result > 0) {
-			path = "/WEB-INF/views/admin/adminProductList.jsp";
-			request.getRequestDispatcher(path).forward(request, response);
+//			path = "/WEB-INF/views/admin/adminProductList.jsp";
+//			request.getRequestDispatcher(path).forward(request, response);
+			response.sendRedirect("/let/admin/product/list");
 		}
 		
 	}
