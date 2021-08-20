@@ -430,16 +430,18 @@ public class MainScoutListService {
 		
 		SqlSession session = getSqlSession();
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
+		Map<String, Object> selectedByCarScoutList = new HashMap<>();
 		
 		List<Object> selectedByCarScoutListInName = mapper.selectedByCarScoutListInName(inputCareer);
 		List<Object> selectedByCarScoutListInSkills = mapper.selectedByCarScoutListInSkills(inputCareer);
-		List<Object> selectedByCarScoutListInCareer = mapper.selectedByCarScoutListInCareer(inputCareer);
 		
-		Map<String, Object> selectedByCarScoutList = new HashMap<>();
+		if(inputCareer == 1) {
+			List<Object> selectedByCarScoutListInCareer = mapper.selectedByCarScoutListInCareer(inputCareer);			
+			selectedByCarScoutList.put("selectedByTwoScoutListInCareer", selectedByCarScoutListInCareer);
+		}
 		
 		selectedByCarScoutList.put("selectedByTwoScoutListInName", selectedByCarScoutListInName);
 		selectedByCarScoutList.put("selectedByTwoScoutListInSkills", selectedByCarScoutListInSkills);
-		selectedByCarScoutList.put("selectedByTwoScoutListInCareer", selectedByCarScoutListInCareer);
 		
 		session.close();
 		
@@ -449,7 +451,22 @@ public class MainScoutListService {
 	// 정렬조회(스킬/경력)
 	public Map<String, Object> selectedByTwoScoutList(DeliverCareerAndSkillDTO selectedCareerAndSkill) {
 		
-		return null;
+		SqlSession session = getSqlSession();
+		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
+		
+		Map<String, Object> selectedByTwoScoutList = new HashMap<>();
+		
+		List<Object> selectedByTwoScoutListInName = mapper.selectedByTwoScoutListInName(selectedCareerAndSkill);
+		List<Object> selectedByTwoScoutListInSkills = mapper.selectedByTwoScoutListInSkills(selectedCareerAndSkill);
+		List<Object> selectedByTwoScoutListInCareer = mapper.selectedByTwoScoutListInCareer(selectedCareerAndSkill);
+		
+		selectedByTwoScoutList.put("selectedByTwoScoutListInName", selectedByTwoScoutListInName);
+		selectedByTwoScoutList.put("selectedByTwoScoutListInSkills", selectedByTwoScoutListInSkills);
+		selectedByTwoScoutList.put("selectedByTwoScoutListInCareer", selectedByTwoScoutListInCareer);
+		
+		session.close();
+		
+		return selectedByTwoScoutList;
 	}
 	
 
