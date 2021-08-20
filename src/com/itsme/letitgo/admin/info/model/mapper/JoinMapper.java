@@ -17,9 +17,12 @@ public interface JoinMapper {
 
 	int selectedDetail(CompanyJoinDTO companyJoinDTO);
 
-	int detailInfo1(Map<String, Object> map);
+	int joinDetail(CompanyJoinDTO companyJoinDTO);
 
-	int detailInfo2(Map<String, Object> map);
+
+
+
+
 
 
 

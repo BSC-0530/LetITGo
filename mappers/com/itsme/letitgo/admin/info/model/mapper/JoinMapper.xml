@@ -16,7 +16,8 @@
 		<result property="email" column="MEM_EMAIL"/>
 	</resultMap>
 	<resultMap type="com.itsme.letitgo.admin.info.model.dto.CompanyJoinDTO" id="SelectJoinInfo2">
-		<id property="memNo" column="CO_MEM_NO"/>
+		<id property="coReqNo" column="CO_REQ_NO"/>
+		<result property="memNo" column="CO_MEM_NO"/>
 		<result property="id" column="MEM_ID"/>
 		<result property="pwd" column="MEM_PWD"/>
 		<result property="name" column="MEM_NAME"/>
@@ -69,26 +70,24 @@
 		 WHERE CO_REQ_NO = #{ coReqNo }
 	</update>
 	
-	<select id="detailInfo1" resultMap="SelectJoinInfo1">
+	<select id="joinDetail" resultMap="SelectJoinInfo1">
 		SELECT	/*com.itsme.letitgo.admin.info.model.dto.CompanyJoinDTO#SelectJoinInfo2()*/
 		       A.MEM_ID
 		     , A.MEM_EMAIL
-		FROM  TBL_MEMBER A
+		     , A.CO_REQ_NO
+			 , A.CO_MEM_NO
+			 , A.CO_INTRO
+			 , A.CO_NO
+			 , A.CO_COM_NAME
+			 , A.CO_CEO_NAME
+			 , A.CO_ADDRESS
+			 , A.CO_PHONE
+			 , A.CO_PAX
+			 , A.CO_SECTORS
+			 , A.CO_STATUS
+			 , A.CO_WEBSITE
+		FROM  TBL_CO_MEMBER_APP_HISTORY
 	</select>
 	
-	<select id="detailInfo2" resultMap="SelectJoinInfo2">
-		SELECT	/*com.itsme.letitgo.admin.info.model.dto.CompanyJoinDTO#SelectJoinInfo2()*/
-			   CO_MEM_NO
-			 , CO_INTRO
-			 , CO_NO
-			 , CO_COM_NAME
-			 , CO_CEO_NAME
-			 , CO_ADDRESS
-			 , CO_PHONE
-			 , CO_PAX
-			 , CO_SECTORS
-			 , CO_STATUS
-			 , CO_WEBSITE
-		 FROM TBL_CO_MEMBER_ADD_INFO
-	</select>
+	
 </mapper>

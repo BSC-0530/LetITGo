@@ -187,12 +187,12 @@
 							</div>
 							<br>
 							<div align="center">
-								<input type="text" placeholder="상품이름" name="productName">
+								<input type="text" placeholder="상품이름" name="productName" value="${ requestScope.productName }">
 							</div>
 							<br>
 
 							<div align="center">
-								<input type="number" placeholder="상품가격" name="productPrice">
+								<input type="number" placeholder="상품가격" name="productPrice" value="${ requestScope.productPrice }">
 							</div>
 							<br>
 							
@@ -215,11 +215,11 @@
 							</div>
 							<br>
 							<div align="center">
-								<input type="number" placeholder="열람권 갯수" name="productReadingTicket">
+								<input type="number" placeholder="열람권 갯수" name="productReadingTicket" value="${ requestScope.productReadingTicket }">
 							</div>
 							<br>
 							<div align="center">
-								<input type="number" placeholder="상단 노출 시간" name="productExposureTime">
+								<input type="number" placeholder="상단 노출 시간" name="productExposureTime" value="${ requestScope.productExposureTime }">
 							</div>
 							<br>
 							<div align="center">
