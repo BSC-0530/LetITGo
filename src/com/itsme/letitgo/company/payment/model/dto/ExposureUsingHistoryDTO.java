@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class ExposureUsingHistoryDTO implements java.io.Serializable{
 	
+	private int jobPostNo;
 	private String jobPostTitle;
 	private String jobName;
 	private java.sql.Date jobPostDeadline;
@@ -12,14 +13,23 @@ public class ExposureUsingHistoryDTO implements java.io.Serializable{
 	
 	public ExposureUsingHistoryDTO() {}
 
-	public ExposureUsingHistoryDTO(String jobPostTitle, String jobName, Date jobPostDeadline, Date exposureUseDate,
-			Date exposureEndDate) {
+	public ExposureUsingHistoryDTO(int jobPostNo, String jobPostTitle, String jobName, Date jobPostDeadline,
+			Date exposureUseDate, Date exposureEndDate) {
 		super();
+		this.jobPostNo = jobPostNo;
 		this.jobPostTitle = jobPostTitle;
 		this.jobName = jobName;
 		this.jobPostDeadline = jobPostDeadline;
 		this.exposureUseDate = exposureUseDate;
 		this.exposureEndDate = exposureEndDate;
+	}
+
+	public int getJobPostNo() {
+		return jobPostNo;
+	}
+
+	public void setJobPostNo(int jobPostNo) {
+		this.jobPostNo = jobPostNo;
 	}
 
 	public String getJobPostTitle() {
@@ -64,10 +74,12 @@ public class ExposureUsingHistoryDTO implements java.io.Serializable{
 
 	@Override
 	public String toString() {
-		return "ExposureUsingHistoryDTO [jobPostTitle=" + jobPostTitle + ", jobName=" + jobName + ", jobPostDeadline="
-				+ jobPostDeadline + ", exposureUseDate=" + exposureUseDate + ", exposureEndDate=" + exposureEndDate
-				+ "]";
+		return "ExposureUsingHistoryDTO [jobPostNo=" + jobPostNo + ", jobPostTitle=" + jobPostTitle + ", jobName="
+				+ jobName + ", jobPostDeadline=" + jobPostDeadline + ", exposureUseDate=" + exposureUseDate
+				+ ", exposureEndDate=" + exposureEndDate + "]";
 	}
+
+	
 	
 	
 }

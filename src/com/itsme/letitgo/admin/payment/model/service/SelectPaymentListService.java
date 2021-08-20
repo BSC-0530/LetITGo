@@ -11,6 +11,7 @@ import com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper;
 
 public class SelectPaymentListService {
 
+	/* 모든 결제내역조회 */
 	public List<AdminPaymentHistoryDTO> selectPaymentList() {
 		
 		SqlSession session = getSqlSession();

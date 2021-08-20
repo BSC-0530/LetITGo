@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.itsme.letitgo.admin.payment.model.service.UpdateRefundStatusService;
 
+/* 관리자 -> 환불 요청 관리 -> 환불 승인 */
 @WebServlet("/admin/refund/app/update")
 public class UpdateAppRefundStatusServlet extends HttpServlet {
 	
@@ -21,7 +22,10 @@ public class UpdateAppRefundStatusServlet extends HttpServlet {
 		
 		UpdateRefundStatusService service = new UpdateRefundStatusService();
 		
+		/* 결제상태변경이력 환불완료로 변경  */
 		int result1 = service.updateRefundAppStatus(payChangeNo);
+		
+		/* 결제내역 환불완료로 변경 */
 		int result2 = service.updateRefundAppStatus2(payNo);
 		
 		System.out.println(payChangeNo);
@@ -42,10 +46,7 @@ public class UpdateAppRefundStatusServlet extends HttpServlet {
 		out.print(redirectText.toString());
 		out.flush();
 		out.close();
-		
-		/* response.sendRedirect("/let/admin/refund/select"); */
-		
-		
+
 	}
 
 
