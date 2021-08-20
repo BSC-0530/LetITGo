@@ -119,113 +119,84 @@
 		 WHERE JP.JOB_POST_KINDS = '승인된공고'
 	     ORDER BY JP.JOB_POST_NO 
 	</select>
-	<!-- 전체 조회 -->
-	<select id="selectAllJobPosting" resultMap="resultJobPosting">
-		SELECT /* com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper#selectAllJobPosting()*/
-			   JP.JOB_POST_NO
-		     , JP.JOB_POST_TITLE
-		     , AI.CO_COM_NAME
-		     , AI.CO_MEM_NO
-		     , JP.JOB_POST_MIN_EXPERIENCE
-		     , JP.JOB_POST_MAX_EXPERIENCE
-		     , JF.JOB_NAME
-		     , JP.JOB_POST_ENROLL_DATE
-		     , JP.JOB_POST_DEADLINE
-		     , JP.JOB_POST_APPLYING_KINDS
-		     , AI.CO_ADDRESS
-		     , JP.JOB_POST_CONTENTS
-		     , JP.JOB_POST_KINDS
-<!-- 		     , A.MEM_FILE_PATH -->
-<!-- 		     , MEM_FILE_KINDS -->
-		  FROM TBL_JOB_POSTING JP
-	      JOIN TBL_CO_MEMBER_ADD_INFO AI ON (JP.CO_MEM_NO = AI.CO_MEM_NO)
-	      JOIN TBL_JOB_FIELD JF ON (JP.JOB_NO = JF.JOB_NO)
-<!-- 	      JOIN TBL_ATTACHMENT A ON (JP.CO_MEM_NO = A.MEM_NO) -->
-		 WHERE JP.JOB_POST_KINDS = '승인된공고'
-		 ORDER BY JP.JOB_POST_NO 
-	</select>
 	
 	<!-- 공고 전체 조회/ 조건조회 -->
-<!-- 	<select id="selectJobPosting" resultMap="resultJobPosting" parameterType="com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectRequestJobPostingDTO"> -->
-<!-- 		SELECT -->
-<!-- 	     	   A.RNUM -->
-<!--   	   		 , A.JOB_POST_NO -->
-<!--   	   		 , A.JOB_POST_TITLE -->
-<!--   	   		 , A.CO_COM_NAME -->
-<!--   	   		 , A.JOB_POST_MIN_EXPERIENCE -->
-<!--   	   		 , A.JOB_POST_MAX_EXPERIENCE -->
-<!--   	   		 , A.JOB_NAME -->
-<!--   	   		 , A.JOB_NO -->
-<!--   	   		 , A.JOB_POST_ENROLL_DATE -->
-<!--   	   		 , A.JOB_POST_DEADLINE -->
-<!--   	   		 , A.JOB_POST_APPLYING_KINDS -->
-<!--   	   		 , A.CO_ADDRESS -->
-<!--   	   		 , A.JOB_POST_CONTENTS -->
-<!--   	   		 , A.JOB_POST_KINDS -->
-<!-- 	      FROM (SELECT  -->
-<!--                        B.ROWNUM RNUM -->
-<!--                      , B.JOB_POST_NO -->
-<!--                      , B.JOB_POST_TITLE -->
-<!--                      , B.CO_COM_NAME -->
-<!--                      , B.JOB_POST_MIN_EXPERIENCE -->
-<!--                      , B.JOB_POST_MAX_EXPERIENCE -->
-<!--                      , B.JOB_NAME -->
-<!--                      , B.JOB_NO -->
-<!--                      , B.JOB_POST_ENROLL_DATE -->
-<!--                      , B.JOB_POST_DEADLINE -->
-<!--                      , B.JOB_POST_APPLYING_KINDS -->
-<!--                      , B.CO_ADDRESS -->
-<!--                      , B.JOB_POST_CONTENTS -->
-<!--                      , B.JOB_POST_KINDS -->
-<!--                   FROM (SELECT -->
-<!-- 	  						   DISTINCT JP.JOB_POST_NO -->
-<!-- 		                     , JP.JOB_POST_TITLE -->
-<!-- 		                     , AI.CO_COM_NAME -->
-<!-- 		                     , JP.JOB_POST_MIN_EXPERIENCE -->
-<!-- 		                     , JP.JOB_POST_MAX_EXPERIENCE -->
-<!-- 		                     , JF.JOB_NAME -->
-<!-- 		                     , JP.JOB_NO -->
-<!-- 		                     , JP.JOB_POST_ENROLL_DATE -->
-<!-- 		                     , JP.JOB_POST_DEADLINE -->
-<!-- 		                     , JP.JOB_POST_APPLYING_KINDS -->
-<!-- 		                     , AI.CO_ADDRESS -->
-<!-- 		                     , JP.JOB_POST_CONTENTS -->
-<!-- 		                     , JP.JOB_POST_KINDS -->
-<!-- 		                  FROM TBL_JOB_POSTING JP -->
-<!-- 		                  JOIN TBL_CO_MEMBER_ADD_INFO AI ON (JP.CO_MEM_NO = AI.CO_MEM_NO) -->
-<!-- 		                  JOIN TBL_JOB_FIELD JF ON (JP.JOB_NO = JF.JOB_NO) -->
-<!-- 		                  JOIN TBL_JOB_POSTING_REQ_SKILLS RS ON (JP.JOB_POST_NO = RS.JOB_POST_NO) -->
-<!-- 		                  JOIN TBL_SKILLS S ON (S.SKILLS_NO = RS.SKILLS_NO) -->
-<!-- 		                 <if test="skills != null"> -->
-<!-- 		                 WHERE LOWER(S.SKILLS_NAME) LIKE '%' || #{ skills } || '%' -->
-<!-- 		                 </if> -->
-<!-- 		                 ORDER BY JP.JOB_POST_NO DESC -->
-<!--                   	   ) B -->
-<!--                   <if test="selectCriteria != null"> -->
-<!--                   <![CDATA[ -->
-<!--                   WHERE ROWNUM <= #{ selectCriteria.endRow } -->
-<!--                   ]]> -->
-<!--                   </if> -->
-<!-- 		  	   ) A -->
-<!-- 		WHERE A.JOB_POST_KINDS = '승인된공고' -->
-<!-- 		<if test="selectCriteria != null"> -->
-<!-- 		<![CDATA[ -->
-<!-- 		  AND A.RNUM >= #{ selectCriteria.startRow } -->
-<!-- 		]]> -->
-<!-- 		</if> -->
-<!-- 		<if test="jobNo > 0"> -->
-<!-- 	      AND A.JOB_NO = #{ jobNo } -->
-<!-- 	    </if> -->
-<!-- 	    <if test="experience > 0"> -->
-<!-- 	      AND #{ experience } BETWEEN A.JOB_POST_MIN_EXPERIENCE AND A.JOB_POST_MAX_EXPERIENCE -->
-<!-- 	    </if> -->
-<!-- 	    <if test="areaList != null and areaList.size() != 0"> -->
-<!--  	    반복문 시작 시 AND( 로 시작 반복문 중간에 OR 추가 닫을떄 ) 추가 -->
-<!-- 	    <foreach collection="areaList" item="areaList" open="AND(" separator="OR " close=")"> -->
-<!-- 	         A.CO_ADDRESS LIKE '%' || #{ areaList } || '%' -->
-<!-- 	    </foreach> -->
-<!-- 	    </if> -->
-<!-- 	</select> -->
+	<select id="selectJobPosting" resultMap="resultJobPosting" parameterType="com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectRequestJobPostingDTO">
+		SELECT
+	     	   A.RNUM
+  	   		 , A.JOB_POST_NO
+  	   		 , A.JOB_POST_TITLE
+  	   		 , A.CO_COM_NAME
+  	   		 , A.JOB_POST_MIN_EXPERIENCE
+  	   		 , A.JOB_POST_MAX_EXPERIENCE
+  	   		 , A.JOB_NAME
+  	   		 , A.JOB_NO
+  	   		 , A.JOB_POST_ENROLL_DATE
+  	   		 , A.JOB_POST_DEADLINE
+  	   		 , A.JOB_POST_APPLYING_KINDS
+  	   		 , A.CO_ADDRESS
+  	   		 , A.JOB_POST_CONTENTS
+  	   		 , A.JOB_POST_KINDS
+	      FROM (SELECT 
+                       ROWNUM RNUM
+                     , B.JOB_POST_NO
+                     , B.JOB_POST_TITLE
+                     , B.CO_COM_NAME
+                     , B.JOB_POST_MIN_EXPERIENCE
+                     , B.JOB_POST_MAX_EXPERIENCE
+                     , B.JOB_NAME
+                     , B.JOB_NO
+                     , B.JOB_POST_ENROLL_DATE
+                     , B.JOB_POST_DEADLINE
+                     , B.JOB_POST_APPLYING_KINDS
+                     , B.CO_ADDRESS
+                     , B.JOB_POST_CONTENTS
+                     , B.JOB_POST_KINDS
+                  FROM (SELECT
+	  						   DISTINCT JP.JOB_POST_NO
+		                     , JP.JOB_POST_TITLE
+		                     , AI.CO_COM_NAME
+		                     , JP.JOB_POST_MIN_EXPERIENCE
+		                     , JP.JOB_POST_MAX_EXPERIENCE
+		                     , JF.JOB_NAME
+		                     , JP.JOB_NO
+		                     , JP.JOB_POST_ENROLL_DATE
+		                     , JP.JOB_POST_DEADLINE
+		                     , JP.JOB_POST_APPLYING_KINDS
+		                     , AI.CO_ADDRESS
+		                     , JP.JOB_POST_CONTENTS
+		                     , JP.JOB_POST_KINDS
+		                  FROM TBL_JOB_POSTING JP
+		                  JOIN TBL_CO_MEMBER_ADD_INFO AI ON (JP.CO_MEM_NO = AI.CO_MEM_NO)
+		                  JOIN TBL_JOB_FIELD JF ON (JP.JOB_NO = JF.JOB_NO)
+		                  JOIN TBL_JOB_POSTING_REQ_SKILLS RS ON (JP.JOB_POST_NO = RS.JOB_POST_NO)
+		                  JOIN TBL_SKILLS S ON (S.SKILLS_NO = RS.SKILLS_NO)
+						 WHERE JP.JOB_POST_KINDS = '승인된공고'
+		                <if test="skills != null">
+		                   AND LOWER(S.SKILLS_NAME) LIKE '%' || #{ skills } || '%'
+		                </if>
+		                <if test="jobNo > 0">
+					       AND JP.JOB_NO = #{ jobNo }
+					    </if>
+					    <if test="experience > 0">
+					       AND #{ experience } BETWEEN JP.JOB_POST_MIN_EXPERIENCE AND JP.JOB_POST_MAX_EXPERIENCE
+					    </if>
+					    <if test="areaList != null and areaList.size() != 0">
+					    <foreach collection="areaList" item="areaList" open="AND(" separator="OR " close=")">
+					           AI.CO_ADDRESS LIKE '%' || #{ areaList } || '%'
+					    </foreach>
+					    </if>
+		                 ORDER BY JP.JOB_POST_NO DESC
+                  	   ) B
+                  <![CDATA[
+                  WHERE ROWNUM <= #{ selectCriteria.endRow } 
+                  ]]> 
+		  	   ) A
+		<![CDATA[
+ 		  WHERE A.RNUM >= #{ selectCriteria.startRow }
+ 		]]>
+		
+	</select>
 	
 	<select id="selectJpSkills" resultMap="resultJpSkills">
 		SELECT
