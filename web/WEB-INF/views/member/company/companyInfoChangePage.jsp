@@ -276,7 +276,7 @@ function requestAdminChange(button){
 	answer = confirm('변경 요청을 하시겠습니까?');
 	
 	if(answer == true){
-		alert('관리자에게 요청이 전송되었습니다.')
+		alert('정보수정 요청되었습니다.')
 	}
 	else if(answer == false){
 		return false;

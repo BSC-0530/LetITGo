@@ -178,7 +178,7 @@
 					<br>
 					<div class="companyText">	
                               	<label>회사소개</label><input id="textArea" name="intro" value="${ comDTO.coIntro  }" readonly >
-                              	<img src="images/200x200.png" alt="My Image">
+                              	<img src="${ pageContext.servletContext.contextPath }${ logo.memFileOriginalName }" width="100" height="50">
                     	</div>
             		
 						 <button type="submit" class="btn btn-info" id="coInfoChange" style=" float: right;" >기업 정보 변경</button>
@@ -188,10 +188,6 @@
 		</div>
 	</div>
 <script>
-// function infoChange(button){
-	
-// 	location.href="${ pageContext.servletContext.contextPath }/company/info/change/servlet"	
-// }
 
 </script>
 	
