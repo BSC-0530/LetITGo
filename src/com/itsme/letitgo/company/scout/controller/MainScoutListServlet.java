@@ -31,22 +31,13 @@ public class MainScoutListServlet extends HttpServlet {
 	//상단바누르면 나오는 스카우트임
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		
 		MainScoutListService mainScoutListService = new MainScoutListService();
 		
 		Map<String, Object> scoutList= mainScoutListService.selectAllScoutList();
 		
-		System.out.println("scoutListname : " + scoutList.get("scoutListName"));
-		System.out.println("scoutListSkills : " + scoutList.get("scoutListSkills"));
-		System.out.println("scoutCareea : " + scoutList.get("scoutCareea"));
-		
-		
-		
 		request.setAttribute("mainScoutList", scoutList.get("scoutListName"));
 		request.setAttribute("scoutListSkills", scoutList.get("scoutListSkills"));
 		request.setAttribute("scoutCareea", scoutList.get("scoutCareea"));
-		
 		
 		String path="/WEB-INF/views/scout/scoutMainView.jsp";
 		request.getRequestDispatcher(path).forward(request, response);
@@ -142,16 +133,9 @@ public class MainScoutListServlet extends HttpServlet {
 				request.getRequestDispatcher(path).include(request, response);
 				
 			}
-			
-			
-			
+
 		}
-			
-			
-   
-		
-		
-		
+
 	}
 
 }
