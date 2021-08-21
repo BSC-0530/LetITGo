@@ -8,9 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.itsme.letitgo.company.scout.model.dto.PersonalBrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.service.MainScoutListService;
+import com.itsme.letitgo.login.model.dto.MemberLoginDTO;
 import com.itsme.letitgo.personal.scout.model.dto.ReadingResumeListOfPersonalDTO;
 import com.itsme.letitgo.personal.scout.model.service.PersonalScoutService;
 
@@ -20,16 +22,17 @@ public class ScoutMyPageListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession();
+        MemberLoginDTO dto = (MemberLoginDTO) session.getAttribute("loginMember");
+        int memNo = dto.getMemNo();
+        System.out.println("번호함보자" + memNo);
+		
 		List<ReadingResumeListOfPersonalDTO> readList = new PersonalScoutService().selectReadingResumeListOfPersonal();
 		
 		
-		
-		
-//		int simpleCount = mainScoutListService.selectSimpleCount();
-		
-		
-		
-		
+		int simpleOpen = new PersonalScoutService().selectAllCountSimpeOpen(memNo);
+		int deepOpen = new PersonalScoutService().selectAllCountDeepOpen(memNo);
+		int scoutNum = new PersonalScoutService().selectAllScountNum(memNo);
 		
 		
 		String path="";
@@ -38,6 +41,9 @@ public class ScoutMyPageListServlet extends HttpServlet {
 		
 		
 		
+		request.setAttribute("simpleOpen", simpleOpen);
+		request.setAttribute("deepOpen", deepOpen);
+		request.setAttribute("scoutNum", scoutNum);
 		request.setAttribute("readList", readList);
 		
 		request.getRequestDispatcher(path).forward(request, response);

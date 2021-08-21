@@ -31,12 +31,12 @@
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
 <link rel="stylesheet" type="text/css" href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css" />
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript" charset="utf8"
-	src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
+<script type="text/javascript" src="/let/resources/js/datatables.js"></script>
+<link rel="stylesheet" type="text/css" href="/let/resources/css/datatables.css" />
 
 </head>
 <body>
@@ -167,9 +167,9 @@
 											<td align="center">상세 보기</td>
 										</tr>
 									</thead>
+										<tbody align="center">
 								<c:forEach var="reqlist" items="${ requestScope.reqlist }"><c:forEach var="orgin" items="${ requestScope.orgin }">
 								<c:if test="${ reqlist.coMemNo eq orgin.coMemNo }">
-										<tbody align="center">
 											<tr id="postNo">
 												<td id="memNO"><input type="hidden" value= "${ reqlist.coMemNo }" ></td>
 												<td><c:out value="${ reqlist.coReqNo }"/></td>
@@ -181,9 +181,9 @@
 												<td><button type=button onclick="reason(this);" >거절사유</button></td>
 												<td><button type=button onclick="detail(this);" >상세보기</button></td>
 											</tr>
-										</tbody>	
 										</c:if>
 								</c:forEach></c:forEach>						
+										</tbody>	
 								<c:forEach var="orgin" items="${ requestScope.orgin }">
 								<input type="hidden" value="${orgin.coMemNo }"/>
 								</c:forEach>					
