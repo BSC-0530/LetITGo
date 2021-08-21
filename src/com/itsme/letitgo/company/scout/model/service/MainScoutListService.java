@@ -13,18 +13,19 @@ import com.itsme.letitgo.company.scout.model.dto.BrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.BrosweSimplelDTO;
 import com.itsme.letitgo.company.scout.model.dto.CandidateRegisterSkillsDTO;
 import com.itsme.letitgo.company.scout.model.dto.CandidateRegistrationDTO;
-import com.itsme.letitgo.company.scout.model.dto.CountReadingNumDTO;
 import com.itsme.letitgo.company.scout.model.dto.DeliverCareerAndSkillDTO;
-import com.itsme.letitgo.company.scout.model.dto.DeliverResumeNoAndSelectedSkillDTO;
 import com.itsme.letitgo.company.scout.model.dto.InterviewProposalDTO;
 import com.itsme.letitgo.company.scout.model.dto.PersonalBrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.ResumeReadingHistoryDTO;
 import com.itsme.letitgo.company.scout.model.mapper.CompanyScoutMapper;
-
+import com.itsme.letitgo.personal.resume.model.dto.AwardHistoryDTO;
+import com.itsme.letitgo.personal.resume.model.dto.CareerHistoryDTO;
+import com.itsme.letitgo.personal.resume.model.dto.EducationHistoryDTO;
+import com.itsme.letitgo.personal.resume.model.dto.ItemAndContentDTO;
+import com.itsme.letitgo.personal.resume.model.dto.LicenseHistoryDTO;
+import com.itsme.letitgo.personal.resume.model.dto.SelfIntroductionContentDTO;
 import com.itsme.letitgo.personal.scout.model.dto.ScoutDetailResumeDTO;
 import com.itsme.letitgo.personal.scout.model.mapper.PersonalScoutMapper;
-
-import com.itsme.letitgo.personal.resume.model.dto.SkillsAndCategoryDTO;
 
 
 public class MainScoutListService {
@@ -236,16 +237,34 @@ public class MainScoutListService {
 	}
 
 	// 상세이력서 열람(깊은열람)
-	public List<ScoutDetailResumeDTO> selectDetailResume(int resumeNo) {
+	public Map<String, Object> selectDetailResume(int resumeNo) {
 		
 		SqlSession session = getSqlSession();
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
 		
+		Map<String, Object> detailMap = new HashMap<>();
+		
 		List<ScoutDetailResumeDTO> detailResume = mapper.selectDetailResume(resumeNo);
+		List<CareerHistoryDTO> detailCareer = mapper.selectDetailCareer(resumeNo);
+		List<SkillsDTO> detailSkills = mapper.selectDetailSkills(resumeNo);
+		List<ItemAndContentDTO> detailIntroContent = mapper.selectDetailContent(resumeNo);
+		List<AwardHistoryDTO> detailAward = mapper.selectDetailAward(resumeNo);
+		List<EducationHistoryDTO> detailEdu = mapper.selectDetailEdu(resumeNo);
+		List<LicenseHistoryDTO> detailLicense = mapper.selectDetailLicense(resumeNo);
+		
+		detailMap.put("detailResume", detailResume);
+		detailMap.put("detailCareer", detailCareer);
+		detailMap.put("detailSkills", detailSkills);
+		detailMap.put("detailIntroContent", detailIntroContent);
+		detailMap.put("detailAward", detailAward);
+		detailMap.put("detailEdu", detailEdu);
+		detailMap.put("detailLicense", detailLicense);
+		
+		
 		
 		session.close();
 		
-		return detailResume;
+		return detailMap;
 	}
 	
 	// 면접 제안
