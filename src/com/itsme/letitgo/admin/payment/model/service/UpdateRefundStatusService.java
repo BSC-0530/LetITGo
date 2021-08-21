@@ -10,6 +10,7 @@ import com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper;
 
 public class UpdateRefundStatusService {
 
+	/* 결제상태변경이력 환불완료로 변경  */
 	public int updateRefundAppStatus(int payChangeNo) {
 		
 		SqlSession session = getSqlSession();
@@ -30,6 +31,7 @@ public class UpdateRefundStatusService {
 
 	}
 
+	/* 결제내역 환불완료로 변경 */
 	public int updateRefundAppStatus2(int payNo) {
 
 		SqlSession session = getSqlSession();
@@ -49,7 +51,8 @@ public class UpdateRefundStatusService {
 		return result;
 		
 	}
-
+	
+	/* 결제변경이력에 거절사유를 입력하고 상태를 환불거절로 변경 */
 	public int updateRefundRejectStatus1(Map<String, Object> map) {
 		
 		SqlSession session = getSqlSession();
@@ -69,7 +72,8 @@ public class UpdateRefundStatusService {
 		return result;
 		
 	}
-
+	
+	/* 결제의 상태를 환불거절로 변경 */
 	public int updateRefundRejectStatus2(Map<String, Object> map) {
 		
 		SqlSession session = getSqlSession();

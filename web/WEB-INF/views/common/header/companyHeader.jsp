@@ -39,7 +39,7 @@
 						class="col-lg-2 col-md-2 col-sm-12 col-xs-12 hidden-xs hidden-sm full_width">
 						<div class="gc_header_wrapper">
 							<div class="gc_logo">
-								<a href="index.jsp"><img  src="${ pageContext.servletContext.contextPath }/resources/image/로고.PNG" alt="Logo" title="Job Pro" class="img-responsive"></a>
+								<a href="${ pageContext.servletContext.contextPath }/mainPage/CoMember"><img  src="${ pageContext.servletContext.contextPath }/resources/image/로고.PNG" alt="Logo" title="Job Pro" class="img-responsive"></a>
 							</div>
 						</div>
 					</div>
@@ -62,8 +62,8 @@
 					<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 hidden-sm hidden-xs">
 						<div class="jp_navi_right_btn_wrapper">
 							<ul>
-								<li><a href="register.html">회원가입</a></li>
-								<li><a href="login.html">로그인</a></li>
+							
+								<li><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</a></li>
 							</ul>
 						</div>
 					</div>

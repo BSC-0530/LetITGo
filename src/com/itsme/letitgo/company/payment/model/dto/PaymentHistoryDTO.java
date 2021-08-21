@@ -4,11 +4,11 @@ import java.sql.Date;
 
 public class PaymentHistoryDTO implements java.io.Serializable {
 	
-	private int payNo;					//결제번호
-	private String productName;			//상품명
-	private int	payPrice;				//결제금액
-	private java.sql.Date payDate;		//결제일
-	private String payKinds;			//결제상태
+	private int payNo;					
+	private String productName;			
+	private int	payPrice;				
+	private java.sql.Date payDate;		
+	private String payKinds;			
 	
 	public PaymentHistoryDTO() {}
 

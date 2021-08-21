@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import com.itsme.letitgo.personal.regist.model.dto.InMemberDTO;
 import com.itsme.letitgo.personal.regist.model.service.MemberService;
 
@@ -30,10 +32,12 @@ public class InMemberRegistServlet extends HttpServlet {
 		request.setCharacterEncoding("euc-kr");
 
 		String memberId = request.getParameter("memId");		
-		String memberPwd = request.getParameter("memPwd");
+		String memberRawPwd= request.getParameter("memPwd");
+		String memberPwd = new BCryptPasswordEncoder().encode(memberRawPwd);
 		String memberEmail = request.getParameter("memEmail");
 		String memberName = request.getParameter("memName");
 		String memberPhone = request.getParameter("memPhone").replace("-", ""); 
+		
 		
 		System.out.println("memberId : " + memberId);
 		System.out.println("memberPwd : " + memberPwd);

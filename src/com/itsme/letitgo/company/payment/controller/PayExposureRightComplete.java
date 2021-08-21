@@ -15,9 +15,7 @@ import com.itsme.letitgo.company.payment.model.dto.ProductDTO;
 import com.itsme.letitgo.company.payment.model.service.PayCompleteService;
 import com.itsme.letitgo.login.model.dto.MemberLoginDTO;
 
-/**
- * Servlet implementation class PayExposureRightComplete
- */
+/* home -> 결제페이지 -> 노출권상품 결제*/
 @WebServlet("/payments/exposure/complete")
 public class PayExposureRightComplete extends HttpServlet {
 	
@@ -29,19 +27,21 @@ public class PayExposureRightComplete extends HttpServlet {
 		
 		ProductDTO product = service.SelectProduct(productName);
 		
+		/* 세션에서 값 꺼내오기 */
 		HttpSession session = request.getSession();
         MemberLoginDTO dto = (MemberLoginDTO) session.getAttribute("loginMember");
         int memNo = dto.getMemNo();
 
+        /* 결제상품이름과 회원번호 담기 */
         Map<String, Object> map = new HashMap<>();
         map.put("product", product);
         map.put("memNo", memNo);
 		
-        int paymentHistoryResult = service.insertPaymentExposureRightHistory(map);     
-        int holdingProductResult = service.insertHoldingExposureRightProduct(map);
+        /* 노출권 결제내역 추가*/
+        int paymentHistoryResult = service.insertPaymentExposureRightHistory(map); 
         
-		System.out.println("paymentHistoryResult : " + paymentHistoryResult);
-		System.out.println("holdingProductResult : " + holdingProductResult);
+        /* 노출권 회원보유상품 추가 */
+        int holdingProductResult = service.insertHoldingExposureRightProduct(map);
 		
 	}
 

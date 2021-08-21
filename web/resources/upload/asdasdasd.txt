@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>introduce JHS</title>
+    <style>
+     .whole {
+    	positon: relative;
+    	0
+    	width : 1920px;
+    	/* background: url("image/background.jpeg"); */
+ 
+    	/* background-size: cover; */
+    	/* margin-left: auto; */
+        /* margin-right: auto; */
+        background:yellow;
+      
+    }
+    
+    /* .header {
+    	height: 10%;
+    	width:100%;
+    	border: 1px solid black;  
+    } */
+    
+ 	.whole .section {
+ 		
+ 		width : 2000px;
+ 		height : 67px;
+ 		positon: absolute;
+ 		
+ 		top: 50%;
+ 		left: 1000px;
+ 		background: red;
+ 		display : flex;
+ 		justify-content: space-between;
+ 	}
+
+    
+    </style>
+</head>
+	<div class="whole">
+		<!-- <div class="header" align="center"><h1>introduce JHS</h1> -->
+			<div class="log" ><img src="image/introduceMyself.png" alt=""></div>
+			<div class="member" ><img src="image/introduceMyself.png" alt=""></div>
+		</div>
+		<div class="section">						
+			<div class="introduce"><img src="image/introduceMyself.png" alt=""></div>
+			<div class="load"><img src="image/loadMap.png" alt=""></div>
+			<div class="trip"><img src="image/trip.png" alt=""></div>
+			<div class="mini"><img src="image/miniProject.png" alt=""></div>								
+		</div>
+	</div>
+	
+
+	
+</body>
+</html>

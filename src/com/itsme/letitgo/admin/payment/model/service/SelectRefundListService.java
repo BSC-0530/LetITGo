@@ -11,6 +11,7 @@ import com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper;
 
 public class SelectRefundListService {
 
+	/* 모든 환불내역조회 */
 	public List<AdminRefundHistoryDTO> selectRefundList() {
 	
 		SqlSession session = getSqlSession();

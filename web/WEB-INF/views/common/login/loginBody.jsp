@@ -58,8 +58,11 @@
 									<input type="checkbox">
 									<span class="control__indicator"></span>
 								</label>
-								<a href="#" class="forget_password">
-									아이디 또는 비밀번호를 잊어버리셨나요?
+								<a href="${ pageContext.servletContext.contextPath }/member/forgetId" class="forget_password">
+									아이디를 잊어버리셨나요?
+								</a><br>
+								<a href="${ pageContext.servletContext.contextPath }/member/forgetPwd" class="forget_password">
+									비밀번호를 잊어버리셨나요?
 								</a>
 							</div>
 							<div class="login_btn_wrapper">
