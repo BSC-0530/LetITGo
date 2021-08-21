@@ -83,30 +83,30 @@
 											<td class="td-w25">이름</td>
 											<td class="td-w10">:</td>
 											
-											<td class="td-w65">${ detailList[0].memName }</td>
+											<td class="td-w65">${ requestScope.detailResume[0].memName }</td>
 											
 										</tr>
 										<tr>
 											<td class="td-w25">보유기술</td>
 											<td class="td-w10">:</td>
-											<c:forEach items="${ detailList }" var="detail" varStatus="status">
-												<td class="td-w65">${ detail.scoutResume[status.index].holdingAndSkillsList[status.index].skillsAndCategory.skillsName }</td>
+											<c:forEach items="${ requestScope.detailSkills }" var="detailSkills" varStatus="status">
+												<td class="td-w65">${ detailSkills.skillsName }<br></td>
 											</c:forEach>
 										</tr>
 										<tr>
 											<td class="td-w25">직무</td>
 											<td class="td-w10">:</td>
 											
-											<td class="td-w65">${ detailList[0].scoutResume[0].jobFieldList[0].jobName }</td>
+											<td class="td-w65">${ requestScope.detailJobField[0].jobName }</td>
 											
 										</tr>
 										<tr>
 											<td class="td-w25">경력</td>
 											<td class="td-w10">:</td>
-											<c:forEach items="${ detailList }" var="detail" varStatus="status">
+											<c:forEach items="${ requestScope.detailCareer }" var="detail" varStatus="status">
 												<td class="td-w65">
-													${ detail.scoutResume[status.index].careerHistoryList[status.index].projectStartDate }
-													~ ${ detail.scoutResume[status.index].careerHistoryList[status.index].projectEndDate }
+													${ detail.carHireDate }
+													~ ${ detail.carEntDate }
 												</td>
 											</c:forEach>
 										</tr>
@@ -142,15 +142,8 @@
 												class="panel-collapse collapse" aria-expanded="false"
 												role="tablist">
 												<div class="panel-body">	
-													<c:forEach items="${ detailList }" var="detail" varStatus="status">													
-														<c:choose>
-															<c:when test="${ detail.scoutResume[status.index].portFolioList[status.index].potKinds eq '링크' }">
-																${ detail.scoutResume[status.index].portFolioList[status.index].potLinkAddress }															
-															</c:when>
-															<c:otherwise>
-																${ detail.scoutResume[status.index].portFolioList[status.index].potOriginalName }
-															</c:otherwise>
-														</c:choose>
+													<c:forEach items="${ requestScope.detailPot }" var="detail" varStatus="status">
+																${ detail.potLinkAddress }
 													</c:forEach>
 												</div>
 											</div>
@@ -169,8 +162,9 @@
 												class="panel-collapse collapse" aria-expanded="false"
 												role="tablist">
 												<div class="panel-body">
-													<c:forEach items="${ detailList }" var="detail" varStatus="status">
-													${ detail.scoutResume[status.index].itemAndContentList[status.index].selfIntroContent.selfIntroItemContent }
+													<c:forEach items="${ requestScope.detailIntroContent }" var="detail" varStatus="status">
+													${ detail.selfIntroItemName }<br>
+													${ detail.selfIntroContent.selfIntroItemContent }<br><br>
 													</c:forEach>
 												</div>
 											</div>
@@ -256,7 +250,7 @@
 			}
 		}
 		
-		function 
+		
 		
 		
 	</script>
@@ -271,6 +265,6 @@
     <script type="text/javascript" src="/let/resources/js/jquery.magnific-popup.js"></script>
     <script type="text/javascript" src="/let/resources/js/custom_II.js"></script>
 
-</body>
+
 </body>
 </html>

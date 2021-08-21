@@ -14,6 +14,7 @@ import com.itsme.letitgo.company.scout.model.dto.CandidateRegisterSkillsDTO;
 import com.itsme.letitgo.company.scout.model.dto.CandidateRegistrationDTO;
 import com.itsme.letitgo.company.scout.model.dto.DeliverCareerAndSkillDTO;
 import com.itsme.letitgo.company.scout.model.dto.InterviewProposalDTO;
+import com.itsme.letitgo.company.scout.model.dto.NameAndResumeDTO;
 import com.itsme.letitgo.company.scout.model.dto.PersonalBrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.ResumeReadingHistoryDTO;
 import com.itsme.letitgo.company.scout.model.mapper.CompanyScoutMapper;
@@ -21,7 +22,9 @@ import com.itsme.letitgo.personal.resume.model.dto.AwardHistoryDTO;
 import com.itsme.letitgo.personal.resume.model.dto.CareerHistoryDTO;
 import com.itsme.letitgo.personal.resume.model.dto.EducationHistoryDTO;
 import com.itsme.letitgo.personal.resume.model.dto.ItemAndContentDTO;
+import com.itsme.letitgo.personal.resume.model.dto.JobFieldDTO;
 import com.itsme.letitgo.personal.resume.model.dto.LicenseHistoryDTO;
+import com.itsme.letitgo.personal.resume.model.dto.PortfolioDTO;
 import com.itsme.letitgo.personal.resume.model.dto.SkillsDTO;
 import com.itsme.letitgo.personal.scout.model.dto.ScoutDetailResumeDTO;
 import com.itsme.letitgo.personal.scout.model.mapper.PersonalScoutMapper;
@@ -243,13 +246,25 @@ public class MainScoutListService {
 		
 		Map<String, Object> detailMap = new HashMap<>();
 		
-		List<ScoutDetailResumeDTO> detailResume = mapper.selectDetailResume(resumeNo);
+		List<NameAndResumeDTO> detailResume = mapper.selectDetailResume(resumeNo);
+		List<JobFieldDTO> detailJobField = mapper.selectDetailJobField(resumeNo);
 		List<CareerHistoryDTO> detailCareer = mapper.selectDetailCareer(resumeNo);
 		List<SkillsDTO> detailSkills = mapper.selectDetailSkills(resumeNo);
 		List<ItemAndContentDTO> detailIntroContent = mapper.selectDetailContent(resumeNo);
 		List<AwardHistoryDTO> detailAward = mapper.selectDetailAward(resumeNo);
 		List<EducationHistoryDTO> detailEdu = mapper.selectDetailEdu(resumeNo);
 		List<LicenseHistoryDTO> detailLicense = mapper.selectDetailLicense(resumeNo);
+		List<PortfolioDTO> detailPot = mapper.selectDetailPot(resumeNo);
+		
+		System.out.println("service detailResume : " + detailResume);
+		System.out.println("service detailCareer : " + detailCareer);
+		System.out.println("service detailSkills : " + detailSkills);
+		System.out.println("service detailIntroContent : " + detailIntroContent);
+		System.out.println("service detailAward : " + detailAward);
+		System.out.println("service detailEdu : " + detailEdu);
+		System.out.println("service detailLicense : " + detailLicense);
+		System.out.println("service detailJobField : " + detailJobField);
+		System.out.println("service detailPot : " + detailPot);
 		
 		detailMap.put("detailResume", detailResume);
 		detailMap.put("detailCareer", detailCareer);
@@ -258,6 +273,8 @@ public class MainScoutListService {
 		detailMap.put("detailAward", detailAward);
 		detailMap.put("detailEdu", detailEdu);
 		detailMap.put("detailLicense", detailLicense);
+		detailMap.put("detailJobField", detailJobField);
+		detailMap.put("detailPot", detailPot);
 		
 		
 		

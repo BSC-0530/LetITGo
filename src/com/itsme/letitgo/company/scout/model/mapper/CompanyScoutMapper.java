@@ -8,13 +8,16 @@ import com.itsme.letitgo.company.scout.model.dto.CandidateRegisterSkillsDTO;
 import com.itsme.letitgo.company.scout.model.dto.CandidateRegistrationDTO;
 import com.itsme.letitgo.company.scout.model.dto.DeliverCareerAndSkillDTO;
 import com.itsme.letitgo.company.scout.model.dto.InterviewProposalDTO;
+import com.itsme.letitgo.company.scout.model.dto.NameAndResumeDTO;
 import com.itsme.letitgo.company.scout.model.dto.PersonalBrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.ResumeReadingHistoryDTO;
 import com.itsme.letitgo.personal.resume.model.dto.AwardHistoryDTO;
 import com.itsme.letitgo.personal.resume.model.dto.CareerHistoryDTO;
 import com.itsme.letitgo.personal.resume.model.dto.EducationHistoryDTO;
 import com.itsme.letitgo.personal.resume.model.dto.ItemAndContentDTO;
+import com.itsme.letitgo.personal.resume.model.dto.JobFieldDTO;
 import com.itsme.letitgo.personal.resume.model.dto.LicenseHistoryDTO;
+import com.itsme.letitgo.personal.resume.model.dto.PortfolioDTO;
 import com.itsme.letitgo.personal.resume.model.dto.SkillsDTO;
 import com.itsme.letitgo.personal.scout.model.dto.ScoutDetailResumeDTO;
 
@@ -52,7 +55,7 @@ public interface CompanyScoutMapper {
 
 
 //	깊은 열람
-	List<ScoutDetailResumeDTO> selectDetailResume(int resumeNo);
+	List<NameAndResumeDTO> selectDetailResume(int resumeNo);
 
 //	면접 제안
 	int insertInterview(InterviewProposalDTO memNos);
@@ -108,6 +111,10 @@ public interface CompanyScoutMapper {
 	List<EducationHistoryDTO> selectDetailEdu(int resumeNo);
 
 	List<LicenseHistoryDTO> selectDetailLicense(int resumeNo);
+
+	List<JobFieldDTO> selectDetailJobField(int resumeNo);
+
+	List<PortfolioDTO> selectDetailPot(int resumeNo);
 
 //	List<SkillsAndCategoryDTO> skillsSelect();
 

@@ -1,15 +1,14 @@
 package com.itsme.letitgo.personal.scout.model.service;
 
+import static com.itsme.letitgo.common.mybatis.Template.getSqlSession;
+
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.itsme.letitgo.personal.scout.model.dto.ReadingResumeListOfPersonalDTO;
 import com.itsme.letitgo.personal.scout.model.dto.ResumeDTO;
-import com.itsme.letitgo.personal.scout.model.dto.ScoutDetailResumeDTO;
 import com.itsme.letitgo.personal.scout.model.mapper.PersonalScoutMapper;
-
-import static com.itsme.letitgo.common.mybatis.Template.getSqlSession;
-
-import java.util.List;
 
 public class PersonalScoutService {
 
