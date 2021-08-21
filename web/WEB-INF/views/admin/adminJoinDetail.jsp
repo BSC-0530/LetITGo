@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,22 +79,30 @@
 												</p>
 												<br>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/payment/select">결제 내역 조회</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/admin/payment/select">결제
+														내역 조회</a>
 												</p>
 												<br>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/refund/select">환불 요청 관리</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/admin/refund/select">환불
+														요청 관리</a>
 												</p>
 												<br> <br>
 												<h3 style="font-weight: bold">기업 요청 관리</h3>
 												<br>
 												<p>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/post/insertRequest/select">공고 등록 요청</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/admin/post/insertRequest/select">공고
+														등록 요청</a>
 												</p>
 												<br>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/post/updateRequest/select">공고 수정 요청</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/admin/post/updateRequest/select">공고
+														수정 요청</a>
 												</p>
 												<br>
 												<p align="center">
@@ -143,84 +151,88 @@
 						</div>
 					</div>
 				</div>
-							<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-							<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-								<br>
-							</div>
-							<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-								<br>
-							</div>
-<form action="${ pageContext.servletContext.contextPath }/info/detail" method="get">
-					<div class="row">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<div class="jp_listing_tabs_wrapper">
+				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+					<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+						<br>
+					</div>
+					<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+						<br>
+					</div>
+					<form
+						action="${ pageContext.servletContext.contextPath }/info/detail"
+						method="post">
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="jp_listing_tabs_wrapper">
+									<!--                             이거는 이제 정보뜨는 칸 -->
+									<div class="tab-pane fade in active register_left_form"
+										id="contentOne-1">
 
-								<!--                             이거는 이제 정보뜨는 칸 -->
-								<div class="tab-pane fade in active register_left_form"
-									id="contentOne-1">
-
-									<div class="jp_regiter_top_heading">
-										
-										<h1>기업 상세 정보</h1>
-										
-									</div>
-									<br><br>
-									<div class="row">
-										<!--Form Group-->
-										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="coNo" value=""placeholder="${ memberId }" readonly>
+										<div class="jp_regiter_top_heading">
+											<h1>기업 가입 상세 정보</h1>
 										</div>
-										<!--Form Group-->
-										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="webSite" value="" placeholder="${ email }" readonly>
-										</div>
-										<!--Form Group-->
-										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="field-name" value=""placeholder="${ comName }" readonly>
-										</div>
-										<!--Form Group-->
-										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="field-name" value=""placeholder="${ ceoName }" readonly>
-										</div>
-										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="field-name" value=""placeholder="${ fax }" readonly>
-										</div>
-										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="field-name" value=""placeholder="${ sectors }" readonly>
-										</div>
-										<!--Form Group-->
-										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="secTors" value=""placeholder="${ status }" readonly>
-										</div>
-										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="coStatus" value=""placeholder="${ website }" readonly>
-										</div>
-										<div class="form-group col-md-12 col-sm-12 col-xs-12">
-											<input type="text" name="address" value=""placeholder="${ coAddress }" readonly>
+										<br> <br>
+										<div class="row">
+											<!--Form Group-->
+											<div><input type="hidden" name="memNo"
+													value="${ requestScope.memNo }" ></div>
+											
+											<div class="form-group col-md-6 col-sm-6 col-xs-12">
+												<input type="text" name="userId" readonly>
+											</div>
+											<div class="form-group col-md-6 col-sm-6 col-xs-12">
+												<input type="text" name="coNo" readonly>
+											</div>
+											<!--Form Group-->
+											<div class="form-group col-md-6 col-sm-6 col-xs-12">
+												<input type="text" name="email" readonly>
+											</div>
+											<!--Form Group-->
+											<div class="form-group col-md-6 col-sm-6 col-xs-12">
+												<input type="text" name="comName" readonly>
+											</div>
+											<!--Form Group-->
+											<div class="form-group col-md-6 col-sm-6 col-xs-12">
+												<input type="text" name="ceoName" readonly>
+											</div>
+											<div class="form-group col-md-6 col-sm-6 col-xs-12">
+												<input type="text" name="fax" readonly>
+											</div>
+											<div class="form-group col-md-6 col-sm-6 col-xs-12">
+												<input type="text" name="sectors" readonly>
+											</div>
+											<!--Form Group-->
+											<div class="form-group col-md-6 col-sm-6 col-xs-12">
+												<input type="text" name="status" readonly>
+											</div>
+											<div class="form-group col-md-6 col-sm-6 col-xs-12">
+												<input type="text" name="website" readonly>
+											</div>
+											<div class="form-group col-md-12 col-sm-12 col-xs-12">
+												<input type="text" name=" coAddress" readonly>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<br>
-					<div class="companyText">	
-                              	<label>회사소개</label><input id="textArea" type="text"  placeholder="${ intro  }" readonly>
-                    	</div>
-					
-            	<!-- end --> 
-            		
-						 <button type="reset" class="btn btn-info" id="coInfoChange" style=" float: right; margin: 5px; border: 0px; background: red;" >거절</button>
-						 <button type="submit" class="btn btn-info" id="coInfoChange" style=" float: right; margin: 5px;" >수락</button>
-					</form>	 
-            	</div>
+						<br>
+						<div class="companyText">
+							<label>회사소개</label><input id="textArea" type="text"
+								value="${ intro  }" readonly>
+						</div>
+
+						<!-- end -->
+
+						<button type="reset" class="btn btn-info" id="coInfoChange"
+							style="float: right; margin: 5px; border: 0px; background: red;" onclick="JoinReject(this)">거절</button>
+						<button type="submit" class="btn btn-info" id="coInfoChange"
+							style="float: right; margin: 5px;" onclick="JoinApproval(this)">수락</button>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
-<script>
-
-
-</script>	
 
 </body>
 </html>

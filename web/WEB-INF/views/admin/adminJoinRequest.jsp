@@ -148,7 +148,7 @@
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<br><br><br>
-							<h1>기업회원 가입 요청</h1>
+							<h1>기업회원 가입요청 관리</h1>
 							<div class="jp_listing_tabs_wrapper">
 								<table id="table_postUpdate" class="hover cell-border stripe">
 									<thead>
@@ -163,20 +163,21 @@
 											<td align="center">요청 응답</td>
 										</tr>
 									</thead>
-									<c:forEach var="insertRequestList" items="${ requestScope.insertRequestList }">							
+									<c:forEach var="insertRequestList" 
+										items="${ requestScope.insertRequestList }">							
 									<tbody align="center">
 											<tr>
-												<td><c:out value="${ insertRequestList.coReqNo }"/></td>								
-												<td><c:out value="${ insertRequestList.coMemNo }"/></td>								
+												<td><c:out value="${ insertRequestList.coReqNo }"/></td>
+												<td><c:out value="${ insertRequestList.coComName }"/></td>
 												<td><c:out value="${ insertRequestList.coReqDate }"/></td>								
-												<td><c:out value="${ insertRequestList.coAnsDate }"/></td>
-												<td><c:out value="${ insertRequestList. }"/></td>	
-												<td><c:out value="${ insertRequestList.coRejectReason }"/></td>
+												<td><c:out value="${ insertRequestList.coAnsDate }"/></td>								
+												<td><c:out value="${ insertRequestList.coAnsKinds }"/></td>
+												<td><c:out value="${ insertRequestList.coRejectReason }"/></td>	
 												<td><button type="submit" onclick="post3(this);">상세 보기</button></td>
-												<c:if test="${  insertRequestList.coAnsKinds == null }">
-												<td><button type="submit" onclick="jobPostApproval(this);">승인</button></td>
-												<td><button type="submit" onclick="jobPostReject(this);">거절</button></td>
-												</c:if>																			
+<%-- 												<td><c:out value="${ insertRequestList.coReqKinds }"/></td>																		 --%>
+												<td><button type="submit" onclick="JoinApproval(this)">수락</button>
+													<button type="submit" onclick="JoinReject(this)">거절</button>
+												</td>
 											</tr>
 									</tbody>
 									</c:forEach>															
@@ -197,44 +198,45 @@
 		$('#table_postUpdate').DataTable();
 	});
 	
-function jobPostApproval(button) {
+
+
+function post3(button) { 
+	
+	const memNo = button.parentNode.parentNode.children[1].innerText;
 		
+	location.href = "${ pageContext.servletContext.contextPath }/info/detail?memNo=" +memNo;
+				
+}	
+function JoinApproval(button) {
+	
 	var coReqNo = button.parentNode.parentNode.children[0].innerText;
 	var coMemNo = button.parentNode.parentNode.children[1].innerText;
 		
 	var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/info/accept").attr("method", "get");
 		
-	$form.append($("<input>").attr("name", "coReqNo").attr("type", "hidden").val(jobPostReqNo));
-	$form.append($("<input>").attr("name", "coMemNo").attr("type", "hidden").val(jobPostNo));
+	$form.append($("<input>").attr("name", "coReqNo").attr("type", "hidden").val(coReqNo));
+	$form.append($("<input>").attr("name", "coMemNo").attr("type", "hidden").val(coMemNo));
 		
 	$("body").append($form);
 		
 	$form.submit();
 }
 
-function jobPostReject(button) {
+function JoinReject(button) {
 		
 		var coReqNo = button.parentNode.parentNode.children[0].innerText;
 		var coMemNo = button.parentNode.parentNode.children[1].innerText;
 			
 		var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/admin/post/reject/InsertUpdate").attr("method", "get");
 			
-		$form.append($("<input>").attr("name", "coReqNo").attr("type", "hidden").val(jobPostReqNo));
-		$form.append($("<input>").attr("name", "coMemNo").attr("type", "hidden").val(jobPostNo));
+		$form.append($("<input>").attr("name", "coReqNo").attr("type", "hidden").val(coReqNo));
+		$form.append($("<input>").attr("name", "coMemNo").attr("type", "hidden").val(coMemNo));
 			
 		$("body").append($form);
 			
 		$form.submit();	
 		
 }
-
-function post3(button) { 
-	
-	const coReqNo = button.parentNode.parentNode.children[1].innerText;
-		
-	location.href = "${ pageContext.servletContext.contextPath }/info/detail?coReqNo=" +coReqNo;
-				
-}	
 
 </script>
 </body>

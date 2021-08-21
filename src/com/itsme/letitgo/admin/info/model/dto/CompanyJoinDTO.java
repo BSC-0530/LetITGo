@@ -5,6 +5,8 @@ import java.sql.Date;
 
 public class CompanyJoinDTO implements Serializable{
 
+	private int coReqNo;
+	private int memNo;			//기업회원번호
 	private String id;
 	private String email;
 	private String pwd;
@@ -16,7 +18,7 @@ public class CompanyJoinDTO implements Serializable{
 	private java.sql.Date entDate;
 
 
-	private int memNo;			//기업회원번호
+
 	private String intro;		//회사 소개글
 	private String coNo;		//사업자 등록 번호
 	private String comName;		//기업 이름
@@ -30,10 +32,12 @@ public class CompanyJoinDTO implements Serializable{
 
 	public CompanyJoinDTO() {}
 
-	public CompanyJoinDTO(String id, String email, String pwd, String name, String phone, String kinds,
-			Date enrollDate, String entYn, Date entDate, int memNo, String intro, String coNo, String comName,
+	public CompanyJoinDTO(int coReqNo, int memNo, String id, String email, String pwd, String name, String phone,
+			String kinds, Date enrollDate, String entYn, Date entDate, String intro, String coNo, String comName,
 			String ceoName, String address, String comPhone, String fax, String sectors, String status,
 			String website) {
+		this.coReqNo = coReqNo;
+		this.memNo = memNo;
 		this.id = id;
 		this.email = email;
 		this.pwd = pwd;
@@ -43,7 +47,6 @@ public class CompanyJoinDTO implements Serializable{
 		this.enrollDate = enrollDate;
 		this.entYn = entYn;
 		this.entDate = entDate;
-		this.memNo = memNo;
 		this.intro = intro;
 		this.coNo = coNo;
 		this.comName = comName;
@@ -54,6 +57,22 @@ public class CompanyJoinDTO implements Serializable{
 		this.sectors = sectors;
 		this.status = status;
 		this.website = website;
+	}
+
+	public int getCoReqNo() {
+		return coReqNo;
+	}
+
+	public void setCoReqNo(int coReqNo) {
+		this.coReqNo = coReqNo;
+	}
+
+	public int getMemNo() {
+		return memNo;
+	}
+
+	public void setMemNo(int memNo) {
+		this.memNo = memNo;
 	}
 
 	public String getId() {
@@ -126,14 +145,6 @@ public class CompanyJoinDTO implements Serializable{
 
 	public void setEntDate(java.sql.Date entDate) {
 		this.entDate = entDate;
-	}
-
-	public int getMemNo() {
-		return memNo;
-	}
-
-	public void setMemNo(int memNo) {
-		this.memNo = memNo;
 	}
 
 	public String getIntro() {
@@ -218,12 +229,13 @@ public class CompanyJoinDTO implements Serializable{
 
 	@Override
 	public String toString() {
-		return "CompanyJoinDTO [id=" + id + ", email=" + email + ", pwd=" + pwd + ", name=" + name + ", phone="
-				+ phone + ", kinds=" + kinds + ", enrollDate=" + enrollDate + ", entYn=" + entYn + ", entDate="
-				+ entDate + ", memNo=" + memNo + ", intro=" + intro + ", coNo=" + coNo + ", comName=" + comName
-				+ ", ceoName=" + ceoName + ", address=" + address + ", comPhone=" + comPhone + ", fax=" + fax
+		return "CompanyJoinDTO [coReqNo=" + coReqNo + ", memNo=" + memNo + ", id=" + id + ", email=" + email + ", pwd="
+				+ pwd + ", name=" + name + ", phone=" + phone + ", kinds=" + kinds + ", enrollDate=" + enrollDate
+				+ ", entYn=" + entYn + ", entDate=" + entDate + ", intro=" + intro + ", coNo=" + coNo + ", comName="
+				+ comName + ", ceoName=" + ceoName + ", address=" + address + ", comPhone=" + comPhone + ", fax=" + fax
 				+ ", sectors=" + sectors + ", status=" + status + ", website=" + website + "]";
 	}
 
+	
 
 }

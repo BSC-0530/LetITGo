@@ -1,5 +1,6 @@
 package com.itsme.letitgo.admin.info.model.service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -10,41 +11,21 @@ import com.itsme.letitgo.admin.info.model.dto.CompanyJoinDTO;
 import com.itsme.letitgo.admin.info.model.mapper.JoinMapper;
 
 public class CompanyDetailService {
+	//가입 요청 상세보기
 
-
-	public static int detailInfo1(Map<String, Object> map) {
+	public int joinDetail(CompanyJoinDTO companyJoinDTO) {
 		
 		SqlSession session = getSqlSession();
 		
 		JoinMapper mapper = session.getMapper(JoinMapper.class);
 		
-		int result = mapper.detailInfo1(map);
+		int result = mapper.joinDetail(companyJoinDTO);
 		
 		if(result > 0) {
 			session.commit();
-		} else {
+		}else {
 			session.rollback();
 		}
-		
-		session.close();
-		
-		return result;
-	}
-
-	public static int detailInfo2(Map<String, Object> map) {
-		
-		SqlSession session = getSqlSession();
-		
-		JoinMapper mapper = session.getMapper(JoinMapper.class);
-		
-		int result = mapper.detailInfo2(map);
-		
-		if(result > 0) {
-			session.commit();
-		} else {
-			session.rollback();
-		}
-		
 		session.close();
 		
 		return result;
@@ -53,5 +34,6 @@ public class CompanyDetailService {
 
 
 	
+
 
 }

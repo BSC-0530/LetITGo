@@ -15,6 +15,7 @@ import static com.itsme.letitgo.common.mybatis.Template.getSqlSession;
 
 public class RequestService {
 
+	//요청 리스트
 	public List<InsertRequestDTO> joinList() {
 		
 		SqlSession session = getSqlSession();
