@@ -55,13 +55,14 @@
 		 WHERE A.MEM_NO = #{ memNo }
 		   
 	</select>
-	<update id="memEntYnStatus">
-		UPDATE
-	           TBL_MEMBER A
-	       SET A.MEM_ENT_YN = 'Y'
-	           , A.MEM_ENT_DATE = SYSDATE
-	     WHERE A.MEM_NO = #{ memNo }
-	</update>
+	
+<!-- 	<update id="memEntYnStatus"> -->
+<!-- 		UPDATE -->
+<!-- 	           TBL_MEMBER A -->
+<!-- 	       SET A.MEM_ENT_YN = 'Y' -->
+<!-- 	           , A.MEM_ENT_DATE = SYSDATE -->
+<!-- 	     WHERE A.MEM_NO = #{ memNo } -->
+<!-- 	</update> -->
 	
 	
 </mapper>
