@@ -27,7 +27,7 @@ public class ScoutDetailResumeServlet extends HttpServlet {
 		
 		if(detailMap != null) {
 			path = "/WEB-INF/views/scout/scoutDetailResume.jsp";
-			request.setAttribute("detailList", detailResume);
+			request.setAttribute("detailList", detailMap);
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);

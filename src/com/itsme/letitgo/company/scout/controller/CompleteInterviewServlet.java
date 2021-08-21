@@ -3,6 +3,7 @@ package com.itsme.letitgo.company.scout.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,7 +32,7 @@ public class CompleteInterviewServlet extends HttpServlet {
 		
 		int resumeNo = Integer.parseInt(request.getParameter("resumeNo"));
 		System.out.println("comp resumeNo : " + resumeNo);
-		List<ScoutDetailResumeDTO> detailResume = new MainScoutListService().selectDetailResume(resumeNo);
+		Map<String, Object> detailResume = new MainScoutListService().selectDetailResume(resumeNo);
 		
 		request.setAttribute("detailList", detailResume);
 		

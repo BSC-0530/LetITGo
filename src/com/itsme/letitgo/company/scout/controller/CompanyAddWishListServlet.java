@@ -41,7 +41,7 @@ public class CompanyAddWishListServlet extends HttpServlet {
 		
 //		-------- 깊은열람용
 		int result = new MainScoutListService().insertWishList(resumeNo);
-		List<ScoutDetailResumeDTO> detailResume = new MainScoutListService().selectDetailResume(resumeNo);
+		Map<String, Object> detailResume = new MainScoutListService().selectDetailResume(resumeNo);
 		System.out.println(detailResume);
 		
 		request.setAttribute("number", resumeNo);

@@ -18,9 +18,7 @@ import com.itsme.letitgo.company.recruit.jobposting.model.service.SelectCoMyJobP
 import com.itsme.letitgo.company.scout.model.service.MainScoutListService;
 import com.itsme.letitgo.login.model.dto.MemberLoginDTO;
 
-/**
- * Servlet implementation class CompanyMyPageMain
- */
+
 @WebServlet("/company/myPage/main")
 public class CompanyMyPageMain extends HttpServlet {
        
@@ -45,9 +43,9 @@ public class CompanyMyPageMain extends HttpServlet {
 		int exposureUsingPostNum = selectPaymentHistoryService.selectExposureUsingPostNum(memNo);	
 		
 		/* 노출권 잔여시간 조회 */
-		long exposureRestTime = selectPaymentHistoryService.selectExposureRestTime(memNo);	
-		long exposureRestHour = exposureRestTime / 1000 / 60 / 60;
-		long exposureRestMinute = exposureRestHour % 60;
+//		long exposureRestTime = selectPaymentHistoryService.selectExposureRestTime(memNo);	
+//		long exposureRestHour = exposureRestTime / 1000 / 60 / 60;
+//		long exposureRestMinute = exposureRestHour % 60;
 
 		int simpleOpen = mainScoutListService.selectAllCountSimpeOpen(memNo);
 		int deepOpen = mainScoutListService.selectAllCountDeepOpen(memNo);
@@ -76,8 +74,8 @@ public class CompanyMyPageMain extends HttpServlet {
 		
 		request.setAttribute("resumeBrowsingNum", resumeBrowsingNum);
 		request.setAttribute("exposureUsingPostNum", exposureUsingPostNum);
-		request.setAttribute("exposureRestHour", exposureRestHour);
-		request.setAttribute("exposureRestMinute", exposureRestMinute);
+//		request.setAttribute("exposureRestHour", exposureRestHour);
+//		request.setAttribute("exposureRestMinute", exposureRestMinute);
 		
 		String path = "";
 		path = "/WEB-INF/views/member/company/companyMyPageMain.jsp";
