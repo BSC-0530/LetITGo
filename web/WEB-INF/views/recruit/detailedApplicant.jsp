@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
 <head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/animate.css" />
+<script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/animate.css" />
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/font-awesome.css" />
 <link rel="stylesheet" type="text/css"
@@ -27,19 +28,16 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/style_II.css" />
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="/let/resources/js/datatables.js"></script>
 <link rel="stylesheet" type="text/css" href="/let/resources/css/datatables.css" />
+
 </head>
 <body>
 
-<%-- 	<jsp:include page="../common/header/companyHeader.jsp"/> --%>
-	
-	<jsp:include page="jobPostingHistoryBody.jsp"/>
+	<jsp:include page="detailedApplicantBody.jsp"/>
 
 	<jsp:include page="../common/footer.jsp"/>
 

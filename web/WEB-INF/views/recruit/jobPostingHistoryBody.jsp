@@ -139,23 +139,23 @@
 						<table id="table_myPosting" class="hover cell-border stripe">
 							<thead>
 								<tr align="center">
-									<td>공고 번호</td>
-									<td>공고 제목</td>
-									<td>공고 상태</td>
-									<td style="width:70px;">요구 경력</td>
-									<td style="width:70px;">등록일자</td>
-									<td style="width:50px;">마감일자</td>
-									<td style="width:50px;">공고 수정 </td>
-									<td style="width:50px;">지원자 확인</td>
-									<td style="width:90px;">공고 노출권</td>
+									<th>공고 번호</th>
+									<th>공고 제목</th>
+									<th>공고 상태</th>
+									<th style="width:70px;">요구 경력</th>
+									<th style="width:70px;">등록일자</th>
+									<th style="width:50px;">마감일자</th>
+									<th style="width:50px;">공고 수정 </th>
+									<th style="width:50px;">지원자 확인</th>
+									<th style="width:90px;">공고 노출권</th>
 								</tr>
 							</thead>
 							
 							<!-- requestScope에 담긴 kinds가 null일때 전체 조회된 공고를 보여줌 -->
 							<c:if test="${ requestScope.kinds eq null }" >
-								<c:forEach var="jobPosting"  items="${ requestScope.allJobPosting }">
 								
 								<tbody align="center">
+								<c:forEach var="jobPosting"  items="${ requestScope.allJobPosting }">
 									<tr>
 										<td><c:out value="${ jobPosting.jobPostNo }"/></td>
 										<td><c:out value="${ jobPosting.jobPostTitle }"/></td>
@@ -180,15 +180,15 @@
 										<td>사용중</td>
 										</c:if>
 									</tr>
-								</tbody>
 								</c:forEach>
+								</tbody>
 							</c:if>
 							
 							<!-- request영역에 담긴 kinds가 '승인된공고'일때 승인된 공고 화면에 출력 -->
 							<c:if test="${ requestScope.kinds eq '승인된공고' }" >
-								<c:forEach var="jobPosting"  items="${ requestScope.recruitingJopPosting }">
 								
 								<tbody align="center">
+								<c:forEach var="jobPosting"  items="${ requestScope.recruitingJopPosting }">
 									<tr>
 										<td><c:out value="${ jobPosting.jobPostNo }"/></td>
 										<td><c:out value="${ jobPosting.jobPostTitle }"/></td>
@@ -213,15 +213,15 @@
 										<td>사용중</td>
 										</c:if>
 									</tr>
-								</tbody>
 								</c:forEach>
+								</tbody>
 							</c:if>
 							
 							<!-- request영역에 담긴 kinds가 '승인대기중인공고'일때 승인된 공고 화면에 출력 -->
 							<c:if test="${ requestScope.kinds eq '승인대기중인공고' }" >
-								<c:forEach var="jobPosting"  items="${ requestScope.requestJobPosting }">
 								
 								<tbody align="center">
+								<c:forEach var="jobPosting"  items="${ requestScope.requestJobPosting }">
 									<tr>
 										<td><c:out value="${ jobPosting.jobPostNo }"/></td>
 										<td><c:out value="${ jobPosting.jobPostTitle }"/></td>
@@ -246,8 +246,8 @@
 										<td>사용중</td>
 										</c:if>
 									</tr>
-								</tbody>
 								</c:forEach>
+								</tbody>
 							</c:if>
 							
 						</table>

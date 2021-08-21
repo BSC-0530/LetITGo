@@ -2,7 +2,7 @@ package com.itsme.letitgo.company.recruit.applicant.model.dto;
 
 import java.sql.Date;
 
-public class LicenseHistoryDTO {
+public class LicenseHistoryDTO implements java.io.Serializable {
 	
 	private String licenseName;
 	private String licenseAgency;

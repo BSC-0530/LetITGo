@@ -8,7 +8,6 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.itsme.letitgo.company.recruit.applicant.model.dto.SkillsDTO;
 import com.itsme.letitgo.company.scout.model.dto.BrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.BrosweSimplelDTO;
 import com.itsme.letitgo.company.scout.model.dto.CandidateRegisterSkillsDTO;
@@ -18,12 +17,7 @@ import com.itsme.letitgo.company.scout.model.dto.InterviewProposalDTO;
 import com.itsme.letitgo.company.scout.model.dto.PersonalBrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.ResumeReadingHistoryDTO;
 import com.itsme.letitgo.company.scout.model.mapper.CompanyScoutMapper;
-import com.itsme.letitgo.personal.resume.model.dto.AwardHistoryDTO;
-import com.itsme.letitgo.personal.resume.model.dto.CareerHistoryDTO;
-import com.itsme.letitgo.personal.resume.model.dto.EducationHistoryDTO;
-import com.itsme.letitgo.personal.resume.model.dto.ItemAndContentDTO;
-import com.itsme.letitgo.personal.resume.model.dto.LicenseHistoryDTO;
-import com.itsme.letitgo.personal.resume.model.dto.SelfIntroductionContentDTO;
+
 import com.itsme.letitgo.personal.scout.model.dto.ScoutDetailResumeDTO;
 import com.itsme.letitgo.personal.scout.model.mapper.PersonalScoutMapper;
 

@@ -36,12 +36,19 @@
 		
 		function pageButtonAction(text) {
 			
-			alert("");
 			$("#pagingForm").append("<input type='hidden' name='currentPage' value='" + text + "'>");
 			$("#pagingForm").method = "post";
 			$("#pagingForm").action = link;
 			$("#pagingForm").submit();
 		}
+</script>
+<script>
+	function viewProfile() {
+		
+		const resumeNo = document.getElementById("resumeNo").value;
+		
+		location.href = "/let/applicantResume/select?resumeNo=" + resumeNo;
+	}
 </script>
 </head>
 <body>
@@ -83,8 +90,7 @@
                             </div>
                         </div>
                         
-                        <div style="width: 150px; float: left;"
-                            class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                        <div style="width: 150px; float: left;" class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                             <div class="jp_form_btn_wrapper">
                                 <button type="submit" id="btn btn-info"><i class="fa fa-search"></i>Search</button>
                             </div>
@@ -97,7 +103,6 @@
 								<div class="jp_recent_resume_img_wrapper">
 									<img src="images/content/resume_img1.jpg" alt="resume_img" />
 								</div>
-								<c:out value="${ applicant.resumeNo }"></c:out>
 								<div class="jp_recent_resume_cont_wrapper">
 									<h3><c:out value="${ applicant.resumeTitle }"/></h3>
                                     <p><a><c:out value="${ applicant.memName }"/></a></p>
@@ -113,45 +118,58 @@
 								<div class="jp_recent_resume_btn_wrapper">
 									<ul>
                                         <li><p align="center"><c:out value="${ applicant.jobPostBrowesStatus }"/></p></li>
-										<li><a href="#">View Profile</a></li>
+										<li><input id="resumeNo" type="text" value="${ applicant.resumeNo }">
+										<li><a onclick="viewProfile();">View Profile</a></li>
 									</ul>
 								</div>
 							</div>
 						</div>
                     </div>
                     </c:forEach>
-                    
-                    <form id="pagingForm"method="post" align="center">
-                        <input type="hidden" name="skills" value="${ requestScope.skillsName }" readonly> 
-                        <!-- 이전 페이지 버튼 -->
-                        <c:if test="${ requestScope.selectCriteria.pageNo <= 1 }">
-                            <button type="button" disabled>PRIV</button>
-                        </c:if>
-                        <c:if test="${ requestScope.selectCriteria.pageNo > 1 }">
-                            <button type="button" id="prevPage">PRIV</button>
-                        </c:if>
-                        
-                        <!-- 숫자 버튼 -->
-                        <c:forEach var="p" begin="${ requestScope.selectCriteria.startPage }" end="${ requestScope.selectCriteria.endPage }" step="1">
-                            <c:if test="${ requestScope.selectCriteria.pageNo eq p }">
-                                <button type="button" disabled><c:out value="${ p }"/></button>
-                            </c:if>
-                            <c:if test="${ requestScope.selectCriteria.pageNo ne p }">
-                                <button type="button" onclick="pageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
-                            </c:if>
-                        </c:forEach>
-                        
-                        <!-- 다음 페이지 버튼 -->
-                        <c:if test="${ requestScope.selectCriteria.pageNo >= requestScope.applicant.selectCriteria.maxPage }">
-                            <button type="button" disabled>NEXT</button>
-                        </c:if>
-                        <c:if test="${ requestScope.selectCriteria.pageNo < requestScope.applicant.selectCriteria.maxPage }">
-                            <button type="button" id="nextPage">NEXT</button>
-                        </c:if>
-                    </form>
+<!--                     <div align="center"> -->
+<!-- 	                    <form id="pagingForm"method="post"> -->
+<%-- 	                        <input type="hidden" name="skills" value="${ requestScope.skillsName }" readonly>  --%>
+<!-- 	                        이전 페이지 버튼 -->
+<%-- 	                        <c:if test="${ selectCriteria.pageNo <= 1 }"> --%>
+<!-- 	                            <button type="button" disabled>PRIV</button> -->
+<%-- 	                        </c:if> --%>
+<%-- 	                        <c:if test="${ selectCriteria.pageNo > 1 }"> --%>
+<!-- 	                            <button type="button" id="prevPage">PRIV</button> -->
+<%-- 	                        </c:if> --%>
+	                        
+<!-- 	                        숫자 버튼 -->
+<%-- 	                        <c:forEach var="p" begin="${ selectCriteria.startPage }" end="${ selectCriteria.endPage }" step="1"> --%>
+<%-- 	                            <c:if test="${ selectCriteria.pageNo eq p }"> --%>
+<%-- 	                                <button type="button" disabled><c:out value="${ p }"/></button> --%>
+<%-- 	                            </c:if> --%>
+<%-- 	                            <c:if test="${ selectCriteria.pageNo ne p }"> --%>
+<%-- 	                                <button type="button" onclick="pageButtonAction(this.innerText);"><c:out value="${ p }"/></button> --%>
+<%-- 	                            </c:if> --%>
+<%-- 	                        </c:forEach> --%>
+	                        
+<!-- 	                        다음 페이지 버튼 -->
+<%-- 	                        <c:if test="${ selectCriteria.pageNo >= selectCriteria.maxPage }"> --%>
+<!-- 	                            <button type="button" disabled>NEXT</button> -->
+<%-- 	                        </c:if> --%>
+<%-- 	                        <c:if test="${ selectCriteria.pageNo < selectCriteria.maxPage }"> --%>
+<!-- 	                            <button type="button" id="nextPage">NEXT</button> -->
+<%-- 	                        </c:if> --%>
+<!--                     	</form> -->
+<!--                     </div> -->
                 </div>
             </div>
         </div>
     </div>
+    <script>
+		function selectJobPosting(div) {
+
+			const jobPostNo = div.children[0].value;
+			const coMemNo = div.children[1].value;
+
+			location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?jobPostNo="
+					+ jobPostNo + "&coMemNo=" + coMemNo;
+		}
+	</script>
+
 </body>
 </html>

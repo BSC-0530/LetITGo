@@ -63,6 +63,7 @@ public class SelectApplicantServlet extends HttpServlet {
 		
 		if(applicantResult != null) {
 			request.setAttribute("applicantResult", applicantResult);
+			request.setAttribute("selectCriteria", selectCriteria);
 			
 		}
 		path = "/WEB-INF/views/recruit/selectApplicantList.jsp";
