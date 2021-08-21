@@ -15,7 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.itsme.letitgo.personal.regist.model.dto.InMemberDTO;
 import com.itsme.letitgo.personal.regist.model.service.MemberService;
 
-
+/* home -> 로그인 -> 개인회원가입  */
 @WebServlet("/member/individualRegist")
 public class InMemberRegistServlet extends HttpServlet {
 
@@ -37,14 +37,8 @@ public class InMemberRegistServlet extends HttpServlet {
 		String memberEmail = request.getParameter("memEmail");
 		String memberName = request.getParameter("memName");
 		String memberPhone = request.getParameter("memPhone").replace("-", ""); 
-		
-		
-		System.out.println("memberId : " + memberId);
-		System.out.println("memberPwd : " + memberPwd);
-		System.out.println("memberEmail : " + memberEmail);
-		System.out.println("memberName : " + memberName);
-		System.out.println("memberPhone : " + memberPhone);	
-				
+
+		/* 입력받은 정보를 DTO에 담아서 전달 */
 		InMemberDTO requestMember = new InMemberDTO();
 		requestMember.setMemId(memberId);
 		requestMember.setMemPwd(memberPwd);
@@ -54,8 +48,8 @@ public class InMemberRegistServlet extends HttpServlet {
 		
 		MemberService memberService = new MemberService();
 		
+		/* 개인회원가입 등록 */
 		int result = memberService.registInMember(requestMember);
-		System.out.println("result : " + result);
 		
 		StringBuilder redirectText = new StringBuilder();
 		

@@ -150,14 +150,13 @@
 									<td>환불취소</td>
 								</tr>
 							</thead>
-							<c:forEach var="refund"
-								items="${ requestScope.refundHistoryList }">
-								<input type="hidden" name="payChangeNo"
-									value="${ refund.payChangeNo }">
-								<input type="hidden" name="payNo" value="${ refund.payNo }">
+							<c:forEach var="refund" items="${ requestScope.refundHistoryList }">
 								<tbody align="center">
 									<tr>
-										<td><c:out value="${ refund.productName }" /></td>
+										<td>
+										<input type="hidden" name="payChangeNo" value="${ refund.payChangeNo }">
+										<input type="hidden" name="payNo" value="${ refund.payNo }">
+										<c:out value="${ refund.productName }" /></td>
 										<td><c:out value="${ refund.payChangeReason }" /></td>
 										<td><c:out value="${ refund.payChangeStatus }" /></td>
 										<td><c:out value="${ refund.payReqDate }" /></td>
@@ -169,6 +168,10 @@
 
 										<c:if test="${refund.payAnsDate != null }">
 											<td><c:out value="${ refund.payAnsDate }" /></td>
+										</c:if>
+										
+										<c:if test="${refund.payAnsDate == null && refund.payChangeStatus eq '환불요청취소' }">
+											<td>-</td>
 										</c:if>
 
 										<c:if test="${ refund.payChangeStatus eq '환불요청' }">
@@ -184,7 +187,7 @@
 										</c:if>
 
 										<c:if test="${ refund.payChangeStatus eq '환불요청취소'  }">
-											<td><button type="submit" disabled>환불요청취소완료</button></td>
+											<td><button type="submit" disabled>요청취소완료</button></td>
 										</c:if>
 
 									</tr>
@@ -208,8 +211,8 @@
 		// 환불요청취소시 
 		function req(button) {
 
-			var refundNo = button.parentNode.parentNode.parentNode.parentNode.children[1].value;
-
+			var refundNo = button.parentNode.parentNode.children[0].children[0].value;
+			
 			var $form = $("<form>")
 					.attr("action",
 							"${ pageContext.servletContext.contextPath }/company/refundHistory/select")

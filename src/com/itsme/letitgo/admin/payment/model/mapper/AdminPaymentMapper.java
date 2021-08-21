@@ -27,6 +27,9 @@ public interface AdminPaymentMapper {
 	/* 결제의 상태를 환불거절로 변경 */
 	int updateRefundRejectStatus2(Map<String, Object> map);
 
+	/* 보유상품의 상태를 환불로 변경 */
+	int updateHoldingProductStatus(int payNo);
+	
 	int productInsert(ProductListDTO productListDTO);
 
 	List<ProductListDTO> productList();
@@ -34,4 +37,5 @@ public interface AdminPaymentMapper {
 	int productModify(ProductListDTO productListDTO);
 
 	int productDelete(int productNo);
+
 }

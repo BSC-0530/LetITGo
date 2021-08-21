@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.itsme.letitgo.company.payment.model.dto.BrowseUsingHistoryDTO;
+import com.itsme.letitgo.company.payment.model.dto.ExposureLeftTimeDTO;
 import com.itsme.letitgo.company.payment.model.dto.ExposureUsingHistoryDTO;
 import com.itsme.letitgo.company.payment.model.dto.HoldingRequestingSkillsDTO;
 import com.itsme.letitgo.company.payment.model.dto.PaymentHistoryDTO;
@@ -60,13 +61,13 @@ public class SelectPaymentHistoryService {
 	}
 	
 	/* 노출권 잔여시간 조회 */
-	public long selectExposureRestTime(int memNo) {
+	public List<ExposureLeftTimeDTO> selectExposureRestTime(int memNo) {
 		
 		SqlSession session = getSqlSession();
 		
 		PaymentMapper paymentExposureRestTime = session.getMapper(PaymentMapper.class);
 		
-		long exposureUsingPostNum = paymentExposureRestTime.selectExposureRestTime(memNo);
+		List<ExposureLeftTimeDTO> exposureUsingPostNum = paymentExposureRestTime.selectExposureRestTime(memNo);
 		
 		session.close();
 		

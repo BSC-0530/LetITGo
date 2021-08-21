@@ -157,10 +157,26 @@
 									</div>
 									<div class="gc_counter_cont_wrapper3">
 										<div class="count-description">
-											<span class="timer"><c:out
-													value="${ requestScope.exposureRestHour }" /></span> <span>:</span>
-											<span class="timer"><fmt:formatNumber
-													value="${ requestScope.exposureRestMinute}" pattern="#00" /></span>
+											<c:if test="${ requestScope.exposureRestHour != null && requestScope.exposureRestMinute != null  }">
+											<span class="timer"><c:out value="${ requestScope.exposureRestHour }" /></span> <span>:</span>
+											<span class="timer"><fmt:formatNumber value="${ requestScope.exposureRestMinute}" pattern="#00" /></span>
+											</c:if>
+											
+											<c:if test="${ requestScope.exposureRestHour == null && requestScope.exposureRestMinute != null  }">
+											<span class="timer">00</span> <span>:</span>
+											<span class="timer"><fmt:formatNumber value="${ requestScope.exposureRestMinute}" pattern="#00" /></span>
+											</c:if>
+											
+											<c:if test="${ requestScope.exposureRestHour != null && requestScope.exposureRestMinute == null  }">
+											<span class="timer"><c:out value="${ requestScope.exposureRestHour }" /></span> <span>:</span>
+											<span class="timer">00</span>
+											</c:if>
+											
+											
+											<c:if test="${ requestScope.exposureRestHour == null && requestScope.exposureRestMinute == null }">
+											<span class="timer">00</span> <span>:</span>
+											<span class="timer">00</span>
+											</c:if>
 											<i class="fa"></i>
 											<h5 class="con3">노출권 잔여 시간</h5>
 										</div>
@@ -185,8 +201,7 @@
 									<td>환불신청</td>
 								</tr>
 							</thead>
-							<c:forEach var="payment"
-								items="${ requestScope.paymentHistoryList }">
+							<c:forEach var="payment" items="${ requestScope.paymentHistoryList }">
 
 								<tbody align="center">
 									<tr>
@@ -242,7 +257,9 @@
 								items="${ requestScope.paymentBrowseUsingHistroyList }">
 								<tbody align="center">
 									<tr>
-										<td><c:out value="${ browseUsingHistroy.resumeTitle }" /></td>
+										<td onclick="openResume(this);">
+										<input type="hidden" name="resumeNo" value="${ browseUsingHistroy.resumeNo }">
+										<c:out value="${ browseUsingHistroy.resumeTitle }" /></td>
 										<td><c:out value="${ browseUsingHistroy.memName }" /></td>
 										<td><c:out value="${ browseUsingHistroy.jobName }" /></td>
 										<td><c:forEach var="holdingSkillsList"
@@ -279,8 +296,10 @@
 								items="${ requestScope.paymentExposureUsingHistoryList }">
 								<tbody align="center">
 									<tr>
-										<td><c:out
-												value="${ exposureUsingPostHistroy.jobPostTitle }" /></td>
+										<td onclick="openPost(this);">
+										<input type="hidden" name="resumeNo" value="${ exposureUsingPostHistroy.jobPostNo }">
+										<c:out value="${ exposureUsingPostHistroy.jobPostTitle }" />
+										</td>
 										<td><c:out value="${ exposureUsingPostHistroy.jobName }" /></td>
 										<td><c:forEach var="requestingSkillsList"
 												items="${ requestScope.paymentrequestingSkillsList }">
@@ -341,6 +360,27 @@
 			$("body").append($form);
 
 			$form.submit();
+		}
+		
+		//이력서 눌렀을 시 이력서 화면으로 이동
+		function openResume(td) {
+			
+			const resumeNo = td.children[0].value;
+			alert(resumeNo);
+			
+			location.href = "${ pageContext.servletContext.contextPath }/resume/detail?selectedDetailResumeNo=" + resumeNo
+
+		}
+		
+		//공고제목 눌렀을 시 공고화면으로 이동
+		function openPost(td) {
+			
+			const jobPostNo = td.children[0].value;
+			alert(jobPostNo);
+			
+			location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?jobPostNo="
+				+ jobPostNo
+
 		}
 	</script>
 </body>

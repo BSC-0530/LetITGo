@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.itsme.letitgo.company.payment.model.dto.BrowseUsingHistoryDTO;
+import com.itsme.letitgo.company.payment.model.dto.ExposureLeftTimeDTO;
 import com.itsme.letitgo.company.payment.model.dto.ExposureUsingHistoryDTO;
 import com.itsme.letitgo.company.payment.model.dto.HoldingRequestingSkillsDTO;
 import com.itsme.letitgo.company.payment.model.dto.PaymentHistoryDTO;
@@ -43,12 +44,34 @@ public class SelectPaymentHistoryServlet extends HttpServlet {
 		
 		/* 노출권 사용중인 공고 조회 */
 		int exposureUsingPostNum = selectPaymentHistoryService.selectExposureUsingPostNum(memNo);	
-		
+	
 		/* 노출권 잔여시간 조회 */
-		long exposureRestTime = selectPaymentHistoryService.selectExposureRestTime(memNo);	
-		long exposureRestHour = exposureRestTime / 1000 / 60 / 60;
-		long exposureRestMinute = exposureRestHour % 60;
+		List<ExposureLeftTimeDTO> exposureRestTime = selectPaymentHistoryService.selectExposureRestTime(memNo);	
 		
+		int exposureLeftTime = 0;
+		for(int i = 0; i < exposureRestTime.size(); i++) {
+			exposureLeftTime += exposureRestTime.get(i).getExposureTime();
+		}
+		
+		Integer exposureRestHour = null;
+		Integer exposureRestMinute = null;
+		
+		if(exposureLeftTime != 0) {
+			
+			exposureRestHour = exposureLeftTime / 60 / 60;
+			exposureRestMinute = (exposureRestHour % 100) / 100 * 60;
+			request.setAttribute("exposureRestHour", exposureRestHour);
+			request.setAttribute("exposureRestMinute", exposureRestMinute);
+			
+		} else {
+			
+			exposureRestHour = 0;
+			exposureRestMinute = 0;
+			request.setAttribute("exposureRestHour", exposureRestHour);
+			request.setAttribute("exposureRestMinute", exposureRestMinute);			
+			
+		}
+			
 		/* 열람권 사용내역 조회 */
 		List<BrowseUsingHistoryDTO> paymentBrowseUsingHistroyList = selectPaymentHistoryService.selectBrowseUsingHistroy(memNo);
 		
@@ -66,8 +89,6 @@ public class SelectPaymentHistoryServlet extends HttpServlet {
 		request.setAttribute("paymentHistoryList", paymentHistoryList);
 		request.setAttribute("resumeBrowsingNum", resumeBrowsingNum);
 		request.setAttribute("exposureUsingPostNum", exposureUsingPostNum);
-		request.setAttribute("exposureRestHour", exposureRestHour);
-		request.setAttribute("exposureRestMinute", exposureRestMinute);
 		request.setAttribute("paymentBrowseUsingHistroyList", paymentBrowseUsingHistroyList);
 		request.setAttribute("paymentHoldingSkillsList", paymentHoldingSkillsList);
 		request.setAttribute("paymentExposureUsingHistoryList", paymentExposureUsingHistoryList);
