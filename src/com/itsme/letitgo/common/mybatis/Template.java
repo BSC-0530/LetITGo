@@ -15,6 +15,7 @@ import com.itsme.letitgo.admin.board.notice.model.mapper.PersonalInfoPolicyMappe
 import com.itsme.letitgo.admin.info.model.mapper.InsertRequestMapper;
 import com.itsme.letitgo.admin.info.model.mapper.JoinMapper;
 import com.itsme.letitgo.admin.info.model.mapper.MemberWithdrawalMapper;
+import com.itsme.letitgo.admin.info.model.mapper.RequestComInfoMapper;
 import com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper;
 import com.itsme.letitgo.admin.question.model.mapper.AdminInquiryMapper;
 import com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper;
@@ -61,6 +62,7 @@ public class Template {
 			configuration.addMapper(CompanyScoutMapper.class);
 			configuration.addMapper(AdminInquiryMapper.class);
 			configuration.addMapper(NoticeMapper.class);
+			configuration.addMapper(RequestComInfoMapper.class);
 			//configuration.addMapper(PersonalMemberMapper.class);
 			
 

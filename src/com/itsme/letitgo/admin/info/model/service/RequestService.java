@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.itsme.letitgo.admin.info.model.dto.CoMemberAppHistoryDTO;
 import com.itsme.letitgo.admin.info.model.dto.InsertRequestDTO;
 import com.itsme.letitgo.admin.info.model.mapper.InsertRequestMapper;
+import com.itsme.letitgo.admin.info.model.mapper.RequestComInfoMapper;
 import com.itsme.letitgo.company.info.model.dto.CompanyAddInfoDTO;
 import com.itsme.letitgo.company.info.model.dto.FileUploadDTO;
 import com.itsme.letitgo.company.info.model.mapper.CompanyInfoMapper;
@@ -30,7 +31,9 @@ public class RequestService {
 		
 	}
 
-	//기업정보 수정 요청 종류 대기로 인서트하기
+	
+	
+	//기업정보 수정 요청 보냄
 		public int updateRequestAddInfo(CoMemberAppHistoryDTO comAd) {
 			
 			SqlSession session = getSqlSession();
@@ -105,8 +108,150 @@ public class RequestService {
 		}
 
 
+		public List<CoMemberAppHistoryDTO> selectedlist() {
+			
+			SqlSession session = getSqlSession();
+			
+			RequestComInfoMapper mapper = session.getMapper(RequestComInfoMapper.class);
+			
+			List<CoMemberAppHistoryDTO> comList = mapper.selectedReqList();
+			
+			session.close();
+			
+			return comList;
+		}
+
+		public List<CompanyAddInfoDTO> selectedOrgin() {
+			
+			
+			SqlSession session = getSqlSession();
+			
+			RequestComInfoMapper mapper = session.getMapper(RequestComInfoMapper.class);
+			
+			List<CompanyAddInfoDTO> origin = mapper.selectedOrign();
+			
+			session.close();
+			
+			return origin;
+			
+		}
 
 
-	
+
+//원본 조회해 
+		public CompanyAddInfoDTO adminDetailPageOrigin(int memNo) {
+			
+			SqlSession session = getSqlSession();
+			
+			RequestComInfoMapper mapper = session.getMapper(RequestComInfoMapper.class);
+			
+			CompanyAddInfoDTO orginInfo = mapper.adminDetailPageOrigin(memNo);
+			
+			session.close();
+			
+			return orginInfo;
+			
+		}
+
+
+//수정정보조회
+		public CoMemberAppHistoryDTO adminDetailPageRequest(int reqNo) {
+			
+			SqlSession session = getSqlSession();
+			
+			RequestComInfoMapper mapper = session.getMapper(RequestComInfoMapper.class);
+			
+			CoMemberAppHistoryDTO reqInfo = mapper.adminDetailPageRequest(reqNo);
+			
+			session.close();
+			
+			return reqInfo;
+			
+		}
+
+
+//회원정보업데이트
+		public int adminAcceptRequestInfo(CompanyAddInfoDTO info) {
+			
+			SqlSession session = getSqlSession();
+			
+			RequestComInfoMapper mapper = session.getMapper(RequestComInfoMapper.class);
+			
+			int result = mapper.adminAcceptRequestInfo(info);
+			
+			if(result > 0) {
+				session.commit();
+			}else {
+				session.rollback();
+			}
+			
+			session.close();
+			
+			return result;
+		}
+
+
+//회원정보수정 테이블 구분 시간 업데이트
+		public int adminAcceptRequestInfoKinds(int coReqNo) {
+			
+			SqlSession session = getSqlSession();
+			
+			RequestComInfoMapper mapper =session.getMapper(RequestComInfoMapper.class);
+			
+			int result = mapper.adminAcceptRequestInfoKinds(coReqNo);
+			
+			if(result > 0) {
+				session.commit();
+			}else {
+				session.rollback();
+			}
+			session.close();
+			
+			return result;
+		}
+
+
+
+		public int rejectReasonInsert(CoMemberAppHistoryDTO info) {
+			
+			SqlSession session = getSqlSession();
+			
+			RequestComInfoMapper mapper =session.getMapper(RequestComInfoMapper.class);
+			
+			int result = mapper.rejectReasonInsert(info);
+			
+			if(result > 0) {
+				session.commit();
+			}else {
+				session.rollback();
+			}
+			session.close();
+			
+			return result;
+			
+		}
+		
+		public int rejectReasonTextInsert(CoMemberAppHistoryDTO info) {
+			
+			SqlSession session = getSqlSession();
+			
+			RequestComInfoMapper mapper =session.getMapper(RequestComInfoMapper.class);
+			
+			int result = mapper.rejectReasonTextInsert(info);
+			
+			if(result > 0) {
+				session.commit();
+			}else {
+				session.rollback();
+			}
+			session.close();
+			
+			return result;		
+			
+		}
+
+
+
+
 
 }

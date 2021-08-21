@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/animate.css" />
@@ -39,6 +40,9 @@
 
 </head>
 <body>
+<%
+    request.setCharacterEncoding("UTF-8");
+%>
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
@@ -53,7 +57,6 @@
 								<div class="jp_rightside_job_categories_content">
 									<div class="handyman_sec1_wrapper">
 										<div class="content">
-
 											<div class="box">
 												<h3 style="font-weight: bold">회원정보</h3>
 												<br>
@@ -153,36 +156,36 @@
 								<table id="table_payment" class="hover cell-border stripe">
 									<thead>
 										<tr>
-											<td align="center">번호</td>
-											<td align="center">제목</td>
-											<td align="center">등록일자</td>
-											<td align="center">상세보기</td>
-											<td align="center">수정일자</td>
-											<td align="center">노출여부</td>
-											<td align="center">노출수정</td>
+											<td></td>
+											<td align="center">요청번호</td>
+											<td align="center">기업명</td>
+											<td align="center">구분</td>
+											<td align="center">요청 일자</td>
+											<td align="center">응답 일자</td>
+											<td align="center">상태</td>
+											<td align="center">거절 사유</td>
+											<td align="center">상세 보기</td>
 										</tr>
 									</thead>
-								<c:forEach var="notice" items="${ requestScope.notice }">
+								<c:forEach var="reqlist" items="${ requestScope.reqlist }"><c:forEach var="orgin" items="${ requestScope.orgin }">
+								<c:if test="${ reqlist.coMemNo eq orgin.coMemNo }">
 										<tbody align="center">
 											<tr id="postNo">
-												<td><c:out value="${ notice.postNo }"/></td>									
-												<td><c:out value="${ notice.postTitle }"/></td>
-												<td><c:out value="${ notice.postRegistrationDate }"/></td>
-												<td><button type=button onclick="browse(this);" >상세보기</button></td>
-												<c:choose>
-												<c:when test="${empty notice.postModifiedDate }">
-												<td><c:out value="수정사항 없음 "/></td>
-												</c:when>
-												<c:otherwise>
-												<td><c:out value="${ notice.postModifiedDate }"/></td>
-												</c:otherwise>
-												</c:choose>
-												<td><c:out value="${ notice.postExposureStatus }"/></td>
-												<td><button type=button onclick="modify(this);" >Y/N수정</button></td>
-<%-- 												<td><input name="no" value="${ notice.postNo }"> --%>
-<!-- 												<td><button class="fa fa-plus-circle" type="submit" ></button></td> -->
+												<td id="memNO"><input type="hidden" value= "${ reqlist.coMemNo }" ></td>
+												<td><c:out value="${ reqlist.coReqNo }"/></td>
+												<td><c:out value="${ orgin.coComName }"/></td>
+												<td><c:out value="${ reqlist.memFileKinds }"/></td>
+												<td><c:out value="${ reqlist.coReqDate }"/></td>
+												<td><c:out value="${ reqlist.coAnsDate }"/> </td>
+												<td><c:out value="${ reqlist.coAnsKinds }"/></td>
+												<td><button type=button onclick="reason(this);" >거절사유</button></td>
+												<td><button type=button onclick="detail(this);" >상세보기</button></td>
 											</tr>
 										</tbody>	
+										</c:if>
+								</c:forEach></c:forEach>						
+								<c:forEach var="orgin" items="${ requestScope.orgin }">
+								<input type="hidden" value="${orgin.coMemNo }"/>
 								</c:forEach>					
 								</table>
 								</div>
@@ -213,59 +216,30 @@
 </script>
 
 <script>
-//등록버튼
-		function insert(button) {
+//상세보기 버튼
+		function detail(button) {
 			
-	 location.href = "${ pageContext.servletContext.contextPath }/notice/insert/servlet" 
+			const memNo = document.getElementById("memNO").children[0].value;
+			const reqNo = button.parentNode.parentNode.children[1].innerText
+			
+			
+			console.log(memNo);
+			console.log(reqNo);
+			location.href="${ pageContext.servletContext.contextPath }/request/detailComInfo/servlet?memNo="+memNo+"&reqNo="+reqNo
 			
 		}
 </script>
 <script>
-//노출이력수정
-function modify(button){
-	
-		const no = button.parentNode.parentNode.children[0].innerText
-		const yn = button.parentNode.parentNode.children[5].innerText
+// 거절하기버튼
+	function reason(button){
 		
-// 		console.log(no);
-// 		console.log(yn);
+		const memNo = document.getElementById("memNO").children[0].value;
+		const reqNo = button.parentNode.parentNode.children[1].innerText
 		
-		let postNo = no;
-		let postExposureStatus = yn;
-		
-		console.log(postNo);
-		console.log(postExposureStatus);
-		
-// 		let date = { "postNo":postNo, "postExposureStatus":postExposureStatus};
-		
-		$.ajax({
-			url:"${ pageContext.servletContext.contextPath }/notice/check/ynupdate",
-			type:'post',
-			data: {postNo:postNo,
-				   postExposureStatus:postExposureStatus
-			},
-			success: function(date) {
-				alert('노출사항을 변경하였습니다.');
-				window.location.reload();
-			},
-			error: function(xhr, error){
-				console.log(xhr);
-			}
-			
-		});
-}
+		alert(memNo)
+	}
 </script>
-<script>
-// 상세보기 버튼
-	function browse(button){
 		
-		const postNo = button.parentNode.parentNode.children[0].innerText
-		
-		
-		location.href="${ pageContext.servletContext.contextPath }/notice/details/servlet?postNo="+postNo
-				
-	}	
-</script>
 
 </body>
 </html>

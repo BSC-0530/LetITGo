@@ -47,7 +47,6 @@ public class NoticeInsertServlet extends HttpServlet {
 		}
 		
 		
-		
 		String path="";
 		if(result > 0) {
 			path="/WEB-INF/views/admin/adminNoticepage.jsp";
