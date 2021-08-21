@@ -185,7 +185,7 @@
 										<td id="kindsName"><c:out value="${ broswe.resumeBrowseKinds }"></c:out> </td>
 										<td><button type="button"  onclick="browse(this);">상세보기</button>
 										<input type="text" id="hiddenResumeNo" value="${ broswe.resumeNo }">
-										<input type="hidden" id="hiddenResumeNo" value="${ broswe.resumeBrowseKinds }">
+										<input type="hidden" id="hiddenkinds" value="${ broswe.resumeBrowseKinds }">
 										
 										</td>
 									</tr>
@@ -206,19 +206,19 @@ $(document).ready(function() {
 function browse(button){
 	
 	const num = button.parentNode.children[1].value;
-	const kinds = document.getElementById("hiddenResumeNo").innerText;
+	const kinds = button.parentNode.children[2].value;
 	
 	console.log(num);
-	console.log(kinds);
+	alert(kinds);
 	
 	
-// 	if(kinds == '얕은열람') {
-// 		location.href = "${ pageContext.servletContext.contextPath }/simple/browse/select?num=" + num;
-// 	} else if(kinds == '깊은열람') {
-// 		location.href = "${ pageContext.servletContext.contextPath }/detail/browse/select?num=" + num;
-// 	} else {
-// 		location.href = "${ pageContext.servletContext.contextPath }/detail/browse/select?num=" + num;
-// 	}
+	if(kinds == '얕은열람') {
+		location.href = "${ pageContext.servletContext.contextPath }/simple/browse/select?num=" + num;
+	} else if(kinds == '깊은열람') {
+		location.href = "${ pageContext.servletContext.contextPath }/detail/browse/select?num=" + num;
+	} else {
+		location.href = "${ pageContext.servletContext.contextPath }/detail/browse/select?num=" + num;
+	}
 	
 			
 }
