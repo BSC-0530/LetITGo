@@ -616,6 +616,7 @@
 		  JOIN TBL_RESUME_HOLDING_SKILLS HS ON (R.RESUME_NO = HS.RESUME_NO)
 		  JOIN TBL_SKILLS S ON (HS.SKILLS_NO = S.SKILLS_NO)
 		 WHERE S.SKILLS_NAME LIKE '%'||#{ inputSkill }||'%'
+		   AND R.RESUME_SCOUT_STATUS = 'Y'
 	</select>
 	
 	<select id="selectedBySkillScoutListInSkills" parameterType="string"
@@ -627,6 +628,7 @@
 		  JOIN TBL_RESUME_HOLDING_SKILLS HS ON (R.RESUME_NO = HS.RESUME_NO)
 		  JOIN TBL_SKILLS S ON (HS.SKILLS_NO = S.SKILLS_NO)
 		 WHERE S.SKILLS_NAME LIKE '%'||#{ inputSkill }||'%'
+		   AND R.RESUME_SCOUT_STATUS = 'Y'
 	</select>
 	
 	<select id="selectedBySkillScoutListInCareer" parameterType="string"
@@ -639,12 +641,101 @@
 		  JOIN TBL_RESUME_HOLDING_SKILLS HS ON (R.RESUME_NO = HS.RESUME_NO)
 		  JOIN TBL_SKILLS S ON (HS.SKILLS_NO = S.SKILLS_NO)
 		 WHERE S.SKILLS_NAME LIKE '%'||#{ inputSkill }||'%'
+		   AND R.RESUME_SCOUT_STATUS = 'Y'
 	</select>
 	
-<!-- 	<select id="selectedByCarScoutListInName" parameterType="com.itsme.letitgo.company.scout.model.dto.DeliverCareerAndSkillDTO" -->
-<!-- 		resultMap="mainScoutResultMap"> -->
-<!-- 		SELECT -->
+	<select id="selectedByCarScoutListInName" parameterType="_int"
+		resultMap="mainScoutResultMap">
+		SELECT DISTINCT
+		       M.MEM_NO
+		     , R.RESUME_NO
+		  FROM TBL_MEMBER M
+		  JOIN TBL_RESUME R ON (M.MEM_NO = R.IN_MEM_NO)
+		  JOIN TBL_CAREER_HISTORY CH ON (R.RESUME_NO = CH.RESUME_NO)
+		 WHERE R.RESUME_SCOUT_STATUS = 'Y'
+	    <choose>
+	  		<when test="inputCareer == 1">
+	  			AND CH.CAR_NO IS NULL
+	  		</when>
+	  		<when test="inputCareer == 2">
+	  			AND CH.CAR_NO IS NOT NULL
+	  		</when>
+	    </choose>
 		       
-<!-- 	</select> -->
+	</select>
+	
+	<select id="selectedByCarScoutListInSkills" parameterType="_int"
+		resultMap="mainScoutHoldingSkillsDTO">
+		SELECT DISTINCT
+		       S.SKILLS_NAME
+		     , R.RESUME_NO
+		  FROM TBL_RESUME R
+		  JOIN TBL_RESUME_HOLDING_SKILLS HS ON (R.RESUME_NO = HS.RESUME_NO)
+		  JOIN TBL_SKILLS S ON (HS.SKILLS_NO = S.SKILLS_NO)
+		  JOIN TBL_CAREER_HISTORY CH ON (R.RESUME_NO = CH.RESUME_NO)
+		 WHERE R.RESUME_SCOUT_STATUS = 'Y'
+		<choose>
+			<when test="inputCareer == 1">
+	  			AND CH.CAR_NO IS NULL
+	  		</when>
+	  		<when test="inputCareer == 2">
+	  			AND CH.CAR_NO IS NOT NULL
+	  		</when>
+		</choose>
+	</select>
+	
+	<select id="selectedByCarScoutListInCareer" parameterType="_int"
+		resultType="HashMap">
+		SELECT DISTINCT
+		       CH.CAR_HIRE_DATE
+		     , CH.CAR_ENT_DATE
+		  FROM TBL_RESUME R
+		  JOIN TBL_CAREER_HISTORY CH ON (R.RESUME_NO = CH.RESUME_NO)
+		 WHERE R.RESUME_SCOUT_STATUS = 'Y'
+	</select>
+	
+	<select id="selectedByTwoScoutListInName" parameterType="com.itsme.letitgo.company.scout.model.dto.DeliverCareerAndSkillDTO"
+		resultMap="mainScoutResultMap">
+		SELECT DISTINCT
+		       M.MEM_NAME
+		     , R.RESUME_NO
+		  FROM TBL_MEMBER M
+		  JOIN TBL_RESUME R ON (M.MEM_NO = R.IN_MEM_NO)
+		  JOIN TBL_RESUME_HOLDING_SKILLS HS ON (R.RESUME_NO = HS.RESUME_NO)
+		  JOIN TBL_SKILLS S ON (HS.SKILLS_NO = S.SKILLS_NO)
+		  JOIN TBL_CAREER_HISTORY CH ON (R.RESUME_NO = HS.RESUME_NO)
+		 WHERE S.SKILLS_NAME LIKE '%'||#{ skill }||'%'
+		   AND R.RESUME_SCOUT_STATUS = 'Y'
+		   AND CH.CAR_NO IS NOT NULL
+		
+	</select>
+	
+	<select id="selectedByTwoScoutListInSkills" parameterType="com.itsme.letitgo.company.scout.model.dto.DeliverCareerAndSkillDTO"
+		resultMap="mainScoutHoldingSkillsDTO">
+		SELECT DISTINCT
+		       S.SKILLS_NAME
+		     , R.RESUME_NO
+		  FROM TBL_RESUME R
+		  JOIN TBL_RESUME_HOLDING_SKILLS HS ON (R.RESUME_NO = HS.RESUME_NO)
+		  JOIN TBL_SKILLS S ON (HS.SKILLS_NO = S.SKILLS_NO)
+		  JOIN TBL_CAREER_HISTORY CH ON (R.RESUME_NO = CH.RESUME_NO)
+		 WHERE R.RESUME_SCOUT_STATUS = 'Y'	
+		   AND S.SKILLS_NAME LIKE '%'||#{ skill }||'%'
+		   AND CH.CAR_NO IS NOT NULL
+	</select>
+	
+	<select id="selectedByTwoScoutListInCareer" parameterType="com.itsme.letitgo.company.scout.model.dto.DeliverCareerAndSkillDTO"
+		resultType="HashMap">
+		SELECT DISTINCT
+		       CH.CAR_HIRE_DATE
+		     , CH.CAR_ENT_DATE
+		  FROM TBL_RESUME R
+		  JOIN TBL_RESUME_HOLDING_SKILLS HS ON (R.RESUME_NO = HS.RESUME_NO)
+		  JOIN TBL_SKILLS S ON (HS.SKILLS_NO = S.SKILLS_NO)
+		  JOIN TBL_CAREER_HISTORY CH ON (R.RESUME_NO = CH.RESUME_NO)
+		 WHERE R.RESUME_SCOUT_STATUS = 'Y'
+		   AND S.SKILLS_NAME LIKE '%'||#{ skill }||'%'
+		   AND CH.CAR_NO IS NOT NULL
+	</select>
 
 </mapper>

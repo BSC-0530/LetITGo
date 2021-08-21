@@ -10,4 +10,6 @@ public interface GuideLineMapper {
 
 	GuideLineDTO selectDetail(int postNo);
 
+	List<GuideLineDTO> selectNoticeList();
+
 }

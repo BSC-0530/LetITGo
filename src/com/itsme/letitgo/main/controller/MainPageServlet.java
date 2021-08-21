@@ -12,7 +12,7 @@ public class MainPageServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		List<PremiumRecruitDTO> prList = new 
+//		List<PremiumRecruitDTO> prList = new 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

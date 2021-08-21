@@ -41,6 +41,19 @@ public class GuideLineService {
 		
 	}
 
+	public List<GuideLineDTO> selectNoticeList() {
+
+		SqlSession session = getSqlSession();
+		
+		GuideLineMapper mapper = session.getMapper(GuideLineMapper.class);
+		
+		List<GuideLineDTO> noticeList = mapper.selectNoticeList();
+		
+		session.close();
+		
+		return noticeList;
+	}
+
 }
 
 
