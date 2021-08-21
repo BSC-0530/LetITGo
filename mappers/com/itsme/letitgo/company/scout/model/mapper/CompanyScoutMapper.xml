@@ -297,6 +297,38 @@
 		<result property="skillsName" column="SKILLS_NAME"/>
 	</resultMap>
 	
+	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.CareerHistoryDTO" id="detailCareerHistoryResultMap">
+		<id property="carNo" column="CAR_NO"/>
+		<result property="carComName" column="CAR_COM_NAME"/>
+		<result property="carHireDate" column="CAR_HIRE_DATE"/>
+		<result property="carEntDate" column="CAR_ENT_DATE"/>
+		<result property="carStatus" column="CAR_STATUS"/>
+		<result property="carDeptName" column="CAR_DEPT_NAME"/>
+		<result property="carJobName" column="CAR_JOB_NAME"/>
+		<result property="projectName" column="PROJECT_NAME"/>
+		<result property="projectStartDate" column="PROJECT_START_DATE"/>
+		<result property="projectEndDate" column="PROJECT_END_DATE"/>
+		<result property="projectContent" column="PROJECT_CONTENT"/>
+		<result property="carWorkField" column="CAR_WORK_FIELD"/>
+		<result property="jobNo" column="JOB_NO"/>
+		<result property="resumeNo" column="RESUME_NO"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.SkillsDTO" id="detailSkillsResultMap">
+		<id property="skillsNo" column="SKILLS_NO"/>
+		<result property="skillsName" column="SKILLS_NAME"/>
+		<result property="categoryNo" column="CATEGORY_NO"/>
+	</resultMap>
+	
+<!-- 	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.ItemAndContentDTO" id="detailContentResultMap"> -->
+<!-- 		<id property="selfIntroItemNo" column="SELF_INTRO_ITEM_NO"/> -->
+<!-- 		<result property="selfIntroItemName" column="SELF_INTRO_ITEM_NAME"/> -->
+<!-- 		<association property="selfIntroContent"> -->
+		
+<!-- 		</association> -->
+<!-- 	</resultMap> -->
+	
+	
 		
 		
 		<select id="companySelectAllScout" resultMap="mainScoutResultMap">
@@ -395,6 +427,7 @@
 		    JOIN TBL_JOB_FIELD J ON (R.JOB_NO = J.JOB_NO)
 		    JOIN TBL_MEMBER M ON (R.IN_MEM_NO = M.MEM_NO)
 		    JOIN TBL_RESUME_READING_HISTORY RH ON (RH.RESUME_NO = R.RESUME_NO)
+		    WHERE CO_MEM_NO = #{ memNo }
 		</select>
 		
 		<select id="brosweHistoryKindsSelect" resultMap="readingHistoryResultMap">
@@ -442,21 +475,21 @@
 			SELECT
 					COUNT(1) 
 			   FROM TBL_RESUME_READING_HISTORY
-			  WHERE RESUME_BROWSE_KINDS ='깊은열람'
+			  WHERE RESUME_BROWSE_KINDS ='깊은열람' AND CO_MEM_NO = #{ memNo }
 		</select>
 		
 		<select id="selectAllCountSimpleOpen" resultType="_int">
 			SELECT
 					COUNT(1) 
 			   FROM TBL_RESUME_READING_HISTORY
-			  WHERE RESUME_BROWSE_KINDS ='얕은열람'
+			  WHERE RESUME_BROWSE_KINDS ='얕은열람' AND CO_MEM_NO = #{ memNo }
 		</select>
 		
 		<select id="selectAllScountNum" resultType="_int">
 			SELECT
 					COUNT(1) 
 			   FROM TBL_RESUME_READING_HISTORY
-			  WHERE RESUME_BROWSE_KINDS ='면접제안'
+			  WHERE RESUME_BROWSE_KINDS ='면접제안' AND CO_MEM_NO = #{ memNo }
 		</select>
 		
 		<select id="personalBrosweHistorySelect" resultMap="personalMypageScoutMap">
@@ -520,6 +553,40 @@
 		   AND R.RESUME_SCOUT_STATUS = 'Y'
 		   AND R.RESUME_NO = #{ resumeNo }
 	</select>
+	
+	<select id="selectDetailCareer" parameterType="_int"
+		resultMap="detailCareerHistoryResultMap">
+		SELECT
+		       CH.CAR_COM_NAME
+		     , CH.CAR_HIRE_DATE
+		     , CH.CAR_ENT_DATE
+		     , CH.CAR_STATUS
+		     , CH.CAR_DEPT_NAME
+		     , CH.CAR_JOB_NAME
+		     , CH.PROJECT_NAME
+		     , CH.PROJECT_START_DATE
+		     , CH.PROJECT_END_DATE
+		     , CH.PROJECT_CONTENT
+		     , CH.CAR_WORK_FIELD
+		  FROM TBL_CAREER_HISTORY CH
+		 WHERE CH.RESUME_NO = #{ resumeNo }
+	</select>
+	
+	<select id="selectDetailSkills" parameterType="_int"
+		resultMap="detailSkillsResultMap">
+		SELECT
+		       S.SKILLS_NO
+		     , S.SKILLS_NAME
+		  FROM TBL_SKILLS S
+		  JOIN TBL_TBL_RESUME_HOLDING_SKILLS HS ON (S.SKILLS_NO = HS.SKILLS_NO)	
+		 WHERE HS.RESUME_NO = #{ resumeNo }
+	</select>
+	
+<!-- 	<select id="selectDetailContent" parameterType="_int" -->
+<!-- 		resultMap="detailContentResultMap"> -->
+<!-- 		SELECT -->
+<!-- 		       SIC.	 -->
+<!-- 	</select> -->
 
 <!-- 		<select id="skillsSelect" resultType="java.lang.String"> -->
 <!-- 			SELECT -->

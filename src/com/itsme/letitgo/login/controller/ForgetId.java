@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.itsme.letitgo.login.model.service.ForgetService;
 
-
+/* home -> 로그인 -> 아이디찾기 */
 @WebServlet("/member/forgetId")
 public class ForgetId extends HttpServlet {
 	
@@ -26,14 +26,11 @@ public class ForgetId extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		String memEmail = request.getParameter("memEmail");
-		
-		System.out.println("memEmail : " + memEmail);
-		
+
 		ForgetService service = new ForgetService();
 		
+		/* 이메일을 통해서 아이디를 조회 */
 		String memId = service.selectFogetId(memEmail);
-		
-		System.out.println("memId : " + memId);
 		
 		StringBuilder redirectText = new StringBuilder();
 		

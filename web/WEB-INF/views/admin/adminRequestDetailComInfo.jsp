@@ -63,6 +63,7 @@
 
 									<div class="jp_regiter_top_heading">
 										<p><h1>기업정보</h1></p>
+										<img name=logoImage src="${ pageContext.servletContext.contextPath }${ logoImage }" width="150" height="150">
 									</div>
 									
 									<div class="row">
@@ -109,6 +110,9 @@
 					<br>
 					<div class="companyText">	
                               	<label>회사소개</label><input id="textArea" name="intro" value="${ orginInfo.coIntro  }" readonly >
+                              	<img name=representativeImage src="${ pageContext.servletContext.contextPath }${ representativeImage }" width="150" height="150">
+                              	<img name=businessRegistration src="${ pageContext.servletContext.contextPath }${ businessRegistration }" width="150" height="150">
+                              	
                               	<input id="popNo" type="hidden" name="popNo" value="${ reqInfo.coReqNo }">
                               	<button  value="${ reqInfo.coReqNo }" type="button" style="margin-left:80%;"
                               	class="btn btn-info" onclick="negative();">거절</button>
@@ -186,6 +190,7 @@
 					<br>
 					<div class="companyText">	
                            	<label>회사소개</label><input id="textArea" name="reqIntro" value="${ reqInfo.coIntro  }" readonly >
+                           	
 						<button type="submit" style="margin-left:80%;"class="btn btn-info">수락</button>
                    	</div>
 									</div>
@@ -243,7 +248,7 @@ function positive(){
 		const coReqNo = document.getElementById("popNo").value;
 		
 // 		alert(coReqNo);
-		window.open("/let/selected/box/pop?coReqNo="+coReqNo, "width=300, height=200, resizable = no, scorllbars = no")
+		window.open("/let/selected/box/pop?coReqNo="+coReqNo, "width=150, height=150, resizable = no, scorllbars = no")
 		
 	}	
 </script>

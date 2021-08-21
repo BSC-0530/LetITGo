@@ -14,7 +14,12 @@ import com.itsme.letitgo.company.scout.model.dto.PersonalBrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.ResumeReadingHistoryDTO;
 
 import com.itsme.letitgo.personal.scout.model.dto.ScoutDetailResumeDTO;
-
+import com.itsme.letitgo.personal.resume.model.dto.AwardHistoryDTO;
+import com.itsme.letitgo.personal.resume.model.dto.CareerHistoryDTO;
+import com.itsme.letitgo.personal.resume.model.dto.EducationHistoryDTO;
+import com.itsme.letitgo.personal.resume.model.dto.ItemAndContentDTO;
+import com.itsme.letitgo.personal.resume.model.dto.LicenseHistoryDTO;
+import com.itsme.letitgo.personal.resume.model.dto.SelfIntroductionContentDTO;
 import com.itsme.letitgo.personal.resume.model.dto.SkillsAndCategoryDTO;
 
 
@@ -34,17 +39,17 @@ public interface CompanyScoutMapper {
 
 	int readingKindsInsert(int onClickResumeNo);
 
-	List<BrosweHistoryDTO> selectBrowseUsingHistroy();
+	List<BrosweHistoryDTO> selectBrowseUsingHistroy(int memNo);
 
 	List<ResumeReadingHistoryDTO> brosweHistoryKindsSelect(int onClickResumeNo);
-
+//얕은연ㄹ람카운트
 	int updateTime(int onClickResumeNo);
+//깊은열람카운트
+	int selectAllCountDeepOpen(int memNo);
+//면접제안카운트
+	int selectAllCountSimpleOpen(int memNo);
 
-	int selectAllCountDeepOpen();
-
-	int selectAllCountSimpleOpen();
-
-	int selectAllScountNum();
+	int selectAllScountNum(int memNo);
 //개인 마이페이지 쪽 스카우트 현황
 	List<PersonalBrosweHistoryDTO> personalBrosweHistorySelect();
 
@@ -94,6 +99,18 @@ public interface CompanyScoutMapper {
 	List<Object> selectedByTwoScoutListInSkills(DeliverCareerAndSkillDTO selectedCareerAndSkill);
 
 	List<Object> selectedByTwoScoutListInCareer(DeliverCareerAndSkillDTO selectedCareerAndSkill);
+
+	List<CareerHistoryDTO> selectDetailCareer(int resumeNo);
+
+	List<SkillsDTO> selectDetailSkills(int resumeNo);
+
+	List<ItemAndContentDTO> selectDetailContent(int resumeNo);
+
+	List<AwardHistoryDTO> selectDetailAward(int resumeNo);
+
+	List<EducationHistoryDTO> selectDetailEdu(int resumeNo);
+
+	List<LicenseHistoryDTO> selectDetailLicense(int resumeNo);
 
 //	List<SkillsAndCategoryDTO> skillsSelect();
 

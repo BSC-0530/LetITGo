@@ -50,7 +50,7 @@
 							<div class="mainmenu">
 
 								<ul class="float_left">
-									<li class="parent gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation">마이페이지 </a></li>
+									<li class="parent gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }/personal/myPage/select" class="gc_main_navigation" class="gc_main_navigation">마이페이지</a>
 									<li class="has-mega gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation">채용공고</a></li>
 									<li class="has-mega gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }" class="gc_main_navigation">스카우트</a> </li>
 									<li class="has-mega gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }/resume/list" class="gc_main_navigation" >이력서</a></li>

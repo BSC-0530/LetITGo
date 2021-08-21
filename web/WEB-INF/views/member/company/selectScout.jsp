@@ -169,8 +169,8 @@
 										<td>상세보기</td>
 									</tr>
 								</thead>
-								<c:forEach var="broswe" items="${ paymentBrowseUsingHistroyList }">
 								<tbody align="center">
+								<c:forEach var="broswe" items="${ browselist }">
 									<tr>
 										<td><c:out value="${ broswe.resumeTitle }"></c:out></td>
 										<td><c:out value="${ broswe.memName }"></c:out> </td>
@@ -182,13 +182,15 @@
 										</c:forEach>
 										</td>
 										<td><c:out value="${broswe.jobName }"></c:out> </td>
-										<td id="kindsName"><c:out value="${broswe.resumeBrowseKinds }"></c:out> </td>
+										<td id="kindsName"><c:out value="${ broswe.resumeBrowseKinds }"></c:out> </td>
 										<td><button type="button"  onclick="browse(this);">상세보기</button>
 										<input type="text" id="hiddenResumeNo" value="${ broswe.resumeNo }">
+										<input type="hidden" id="hiddenkinds" value="${ broswe.resumeBrowseKinds }">
+										
 										</td>
 									</tr>
-								</tbody>
 								</c:forEach>
+								</tbody>
 							</table>
 					</div>
 				</div>
@@ -204,7 +206,11 @@ $(document).ready(function() {
 function browse(button){
 	
 	const num = button.parentNode.children[1].value;
-	const kinds = document.getElementById("kindsName").children[0].value;
+	const kinds = button.parentNode.children[2].value;
+	
+	console.log(num);
+	alert(kinds);
+	
 	
 	if(kinds == '얕은열람') {
 		location.href = "${ pageContext.servletContext.contextPath }/simple/browse/select?num=" + num;

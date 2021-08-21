@@ -233,10 +233,11 @@
 // 거절하기버튼
 	function reason(button){
 		
-		const memNo = document.getElementById("memNO").children[0].value;
+// 		const memNo = document.getElementById("memNO").children[0].value;
 		const reqNo = button.parentNode.parentNode.children[1].innerText
 		
-		alert(memNo)
+		window.open("/let/reject/reason/pop?reqNo="+reqNo, "width=300, height=200, resizable = no, scorllbars = no")
+		
 	}
 </script>
 		

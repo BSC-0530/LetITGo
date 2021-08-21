@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.itsme.letitgo.personal.regist.model.service.duplicateIdCheckService;
 
+/* home -> 로그인 -> 개인회원가입 -> 중복확인 */
 @WebServlet("/member/individual/idCheck")
 public class MemberIdCheckServlet extends HttpServlet {
 	
@@ -27,6 +28,7 @@ public class MemberIdCheckServlet extends HttpServlet {
 		
 		duplicateIdCheckService service = new duplicateIdCheckService();
 		
+		/* 중복된 아이디가 있는지 확인 */
 		int result = service.duplicateIdCheck(memId); 
 		
 		response.setContentType("text/html; charset=euc-kr");

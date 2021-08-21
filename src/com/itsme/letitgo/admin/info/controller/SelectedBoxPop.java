@@ -1,6 +1,8 @@
 package com.itsme.letitgo.admin.info.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,5 +52,13 @@ public class SelectedBoxPop extends HttpServlet {
 			int result = new RequestService().rejectReasonTextInsert(info);
 		}
 		
+		  response.setContentType("text/html; charset=euc-kr"); //한글이 인코딩
+		   PrintWriter out = response.getWriter();
+		   String str="";
+		   str = "<script language='javascript'>";
+		   str += "opener.window.location.reload();";  //오프너 새로고침
+		   str += "self.close();";   // 창닫기
+	       str += "</script>";
+		   out.print(str);
 	}
 }

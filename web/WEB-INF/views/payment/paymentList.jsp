@@ -144,7 +144,7 @@
 									<div class="pricing_cont">
 										<ul>
 											<li>메인 공고 노출 <span><fmt:formatNumber
-														value="${ product.upperExposureTime/24/1000/60/60 }"
+														value="${ product.upperExposureTime/24/60/60 }"
 														groupingUsed="true" /></span><span>일권</span></li>
 										</ul>
 										<br>
@@ -243,10 +243,9 @@
 		    amount : productPrice,
 		    buyer_email : '<%=memEmail%>',
 		    buyer_name : '<%=memName%>',
-		    buyer_tel : '<%=memPhone%>
-		',
-				buyer_addr : '',
-				buyer_postcode : ''
+		    buyer_tel : '<%=memPhone%>',
+		    buyer_addr : '',
+	        buyer_postcode : ''
 			}, function(rsp) {
 				if (rsp.success) {
 

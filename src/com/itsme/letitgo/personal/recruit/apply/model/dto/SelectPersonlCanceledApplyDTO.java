@@ -4,6 +4,8 @@ import java.sql.Date;
 
 public class SelectPersonlCanceledApplyDTO {
 	
+	private int jobPostNo;
+	private int resumeNo;
 	private String jobPostTitle;
 	private String coComName;
 	private java.sql.Date jobPostEnrollDate;
@@ -16,10 +18,12 @@ public class SelectPersonlCanceledApplyDTO {
 	
 	public SelectPersonlCanceledApplyDTO() {}
 
-	public SelectPersonlCanceledApplyDTO(String jobPostTitle, String coComName, Date jobPostEnrollDate,
-			Date jobPostDeadLine, Date jobPostApplyingDate, Date jobPostApplyingCancelDate,
+	public SelectPersonlCanceledApplyDTO(int jobPostNo, int resumeNo, String jobPostTitle, String coComName,
+			Date jobPostEnrollDate, Date jobPostDeadLine, Date jobPostApplyingDate, Date jobPostApplyingCancelDate,
 			String jobPostApplyingStatus, String jobPostBrowesStatus, String jobPostApplyingKinds) {
 		super();
+		this.jobPostNo = jobPostNo;
+		this.resumeNo = resumeNo;
 		this.jobPostTitle = jobPostTitle;
 		this.coComName = coComName;
 		this.jobPostEnrollDate = jobPostEnrollDate;
@@ -29,6 +33,22 @@ public class SelectPersonlCanceledApplyDTO {
 		this.jobPostApplyingStatus = jobPostApplyingStatus;
 		this.jobPostBrowesStatus = jobPostBrowesStatus;
 		this.jobPostApplyingKinds = jobPostApplyingKinds;
+	}
+
+	public int getJobPostNo() {
+		return jobPostNo;
+	}
+
+	public void setJobPostNo(int jobPostNo) {
+		this.jobPostNo = jobPostNo;
+	}
+
+	public int getResumeNo() {
+		return resumeNo;
+	}
+
+	public void setResumeNo(int resumeNo) {
+		this.resumeNo = resumeNo;
 	}
 
 	public String getJobPostTitle() {
@@ -105,13 +125,15 @@ public class SelectPersonlCanceledApplyDTO {
 
 	@Override
 	public String toString() {
-		return "SelectPersonlCanceledApplyDTO [jobPostTitle=" + jobPostTitle + ", coComName=" + coComName
-				+ ", jobPostEnrollDate=" + jobPostEnrollDate + ", jobPostDeadLine=" + jobPostDeadLine
-				+ ", jobPostApplyingDate=" + jobPostApplyingDate + ", jobPostApplyingCancelDate="
-				+ jobPostApplyingCancelDate + ", jobPostApplyingStatus=" + jobPostApplyingStatus
-				+ ", jobPostBrowesStatus=" + jobPostBrowesStatus + ", jobPostApplyingKinds=" + jobPostApplyingKinds
-				+ "]";
+		return "SelectPersonlCanceledApplyDTO [jobPostNo=" + jobPostNo + ", resumeNo=" + resumeNo + ", jobPostTitle="
+				+ jobPostTitle + ", coComName=" + coComName + ", jobPostEnrollDate=" + jobPostEnrollDate
+				+ ", jobPostDeadLine=" + jobPostDeadLine + ", jobPostApplyingDate=" + jobPostApplyingDate
+				+ ", jobPostApplyingCancelDate=" + jobPostApplyingCancelDate + ", jobPostApplyingStatus="
+				+ jobPostApplyingStatus + ", jobPostBrowesStatus=" + jobPostBrowesStatus + ", jobPostApplyingKinds="
+				+ jobPostApplyingKinds + "]";
 	}
+
+	
 
 	
 	

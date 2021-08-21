@@ -251,7 +251,153 @@ public class RequestService {
 		}
 
 
+//사진조회
+		public FileUploadDTO selectLogoFile(int memNo) {
+			
+			SqlSession session = getSqlSession();
+			
+			RequestComInfoMapper mapper= session.getMapper(RequestComInfoMapper.class);
+			
+			FileUploadDTO logo = mapper.selectLogoFile(memNo);
+			
+			return logo;
+		}
 
+
+
+		public FileUploadDTO selectRepresentFile(int memNo) {
+			
+			SqlSession session = getSqlSession();
+			
+			RequestComInfoMapper mapper= session.getMapper(RequestComInfoMapper.class);
+			
+			FileUploadDTO representFile = mapper.selectRepresentFile(memNo);
+			
+			return representFile;
+			
+		}
+
+
+		public FileUploadDTO selectBusinessFile(int memNo) {
+			
+			SqlSession session = getSqlSession();
+			
+			RequestComInfoMapper mapper= session.getMapper(RequestComInfoMapper.class);
+			
+			FileUploadDTO businessFile = mapper.selectBusinessFile(memNo);
+			
+			return businessFile;
+		}
+//요청한 사진 조회
+		public CoMemberAppHistoryDTO reqSelectLogoFile(int reqNo) {
+			
+			SqlSession session = getSqlSession();
+			
+			RequestComInfoMapper mapper = session.getMapper(RequestComInfoMapper.class);
+			
+			CoMemberAppHistoryDTO reqLogo = mapper.reqSelectLogoFile(reqNo);
+			
+			session.close();
+			
+			return reqLogo;
+			
+		}
+
+		public CoMemberAppHistoryDTO reqSelectRepresentFile(int reqNo) {
+			
+			SqlSession session = getSqlSession();
+			
+			RequestComInfoMapper mapper = session.getMapper(RequestComInfoMapper.class);
+			
+			CoMemberAppHistoryDTO reqRepresentativeImage = mapper.reqSelectRepresentFile(reqNo);
+			
+			session.close();
+			
+			return reqRepresentativeImage;
+		}
+
+		public CoMemberAppHistoryDTO eeqSelectBusinessFile(int reqNo) {
+			
+			SqlSession session = getSqlSession();
+			
+			RequestComInfoMapper mapper = session.getMapper(RequestComInfoMapper.class);
+			
+			CoMemberAppHistoryDTO reqBusinessRegistration = mapper.eeqSelectBusinessFile(reqNo);
+			
+			session.close();
+			
+			return reqBusinessRegistration;
+		}
+//이미지 수락하면 업데이트 해주기 
+		public int updateLogoFile(FileUploadDTO file) {
+			
+			SqlSession session = getSqlSession();
+			
+			RequestComInfoMapper mapper =session.getMapper(RequestComInfoMapper.class);
+			
+			int result = mapper.updateLogoFile(file);
+			
+			if(result > 0) {
+				session.commit();
+			}else {
+				session.rollback();
+			}
+			session.close();
+			
+			return result;	
+			
+		}
+
+		public int updateRepreFile(FileUploadDTO file2) {
+			
+			SqlSession session = getSqlSession();
+			
+			RequestComInfoMapper mapper =session.getMapper(RequestComInfoMapper.class);
+			
+			int result = mapper.updateRepreFile(file2);
+			
+			if(result > 0) {
+				session.commit();
+			}else {
+				session.rollback();
+			}
+			session.close();
+			
+			return result;	
+		}
+
+		public int updateBusinFile(FileUploadDTO file3) {
+			
+			SqlSession session = getSqlSession();
+			
+			RequestComInfoMapper mapper =session.getMapper(RequestComInfoMapper.class);
+			
+			int result = mapper.updateBusinFile(file3);
+			
+			if(result > 0) {
+				session.commit();
+			}else {
+				session.rollback();
+			}
+			session.close();
+			
+			return result;	
+			
+		}
+
+
+		public CoMemberAppHistoryDTO ReasionSelected(int reqNo) {
+			
+			SqlSession session = getSqlSession();
+			
+			RequestComInfoMapper mapper = session.getMapper(RequestComInfoMapper.class);
+			
+			CoMemberAppHistoryDTO result = mapper.ReasionSelected(reqNo);
+			
+			session.close();
+			
+			return result;
+		}
 
 
 }

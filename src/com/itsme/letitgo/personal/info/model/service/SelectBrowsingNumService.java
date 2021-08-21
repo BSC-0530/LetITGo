@@ -8,13 +8,55 @@ import com.itsme.letitgo.personal.info.model.mapper.PersonalInfoMapper;
 
 public class SelectBrowsingNumService {
 
-	public int selectShallowBrowsingNum() {
+	/* 스카우트 얕은열람 당한 횟수 조회 */
+	public int selectShallowBrowsingNum(int memNo) {
 			
 		SqlSession session = getSqlSession();
 		
 		PersonalInfoMapper mapper = session.getMapper(PersonalInfoMapper.class);
 		
-		int result = mapper.selectshallowBrowsingNum();
+		int result = mapper.selectshallowBrowsingNum(memNo);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+	
+	/* 스카우트 깊은열람 당한 횟수 조회 */
+	public int selectDeepBrowsingNum(int memNo) {
+		
+		SqlSession session = getSqlSession();
+		
+		PersonalInfoMapper mapper = session.getMapper(PersonalInfoMapper.class);
+		
+		int result = mapper.selectDeepBrowsingNum(memNo);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+		
+	}
+
+	/* 스카우트 면접제안 당한 횟수 조회 */
+	public int selectInterviewProposalNum(int memNo) {
+		
+		SqlSession session = getSqlSession();
+		
+		PersonalInfoMapper mapper = session.getMapper(PersonalInfoMapper.class);
+		
+		int result = mapper.selectinterviewProposalNum(memNo);
 		
 		if(result > 0) {
 			session.commit();
@@ -27,33 +69,14 @@ public class SelectBrowsingNumService {
 		return result;
 	}
 
-	public int selectDeepBrowsingNum() {
+	/* 지원완료한 횐수 */
+	public int selectApplicationCompletedNum(int memNo) {
 		
 		SqlSession session = getSqlSession();
 		
 		PersonalInfoMapper mapper = session.getMapper(PersonalInfoMapper.class);
 		
-		int result = mapper.selectDeepBrowsingNum();
-		
-		if(result > 0) {
-			session.commit();
-		} else {
-			session.rollback();
-		}
-		
-		session.close();
-		
-		return result;
-		
-	}
-
-	public int selectInterviewProposalNum() {
-		
-		SqlSession session = getSqlSession();
-		
-		PersonalInfoMapper mapper = session.getMapper(PersonalInfoMapper.class);
-		
-		int result = mapper.selectinterviewProposalNum();
+		int result = mapper.selectApplicationCompletedNum(memNo);
 		
 		if(result > 0) {
 			session.commit();
@@ -65,14 +88,15 @@ public class SelectBrowsingNumService {
 		
 		return result;
 	}
-
-	public int selectApplicationCompletedNum() {
+	
+	/* 지원취소한 횟수 */
+	public int selectApplicationCanceledNum(int memNo) {
 		
 		SqlSession session = getSqlSession();
 		
 		PersonalInfoMapper mapper = session.getMapper(PersonalInfoMapper.class);
 		
-		int result = mapper.selectApplicationCompletedNum();
+		int result = mapper.selectApplicationCanceledNum(memNo);
 		
 		if(result > 0) {
 			session.commit();
@@ -85,32 +109,14 @@ public class SelectBrowsingNumService {
 		return result;
 	}
 
-	public int selectApplicationCanceledNum() {
+	/* 북마크한 횟수 */
+	public int selectBookmarkNum(int memNo) {
 		
 		SqlSession session = getSqlSession();
 		
 		PersonalInfoMapper mapper = session.getMapper(PersonalInfoMapper.class);
 		
-		int result = mapper.selectApplicationCanceledNum();
-		
-		if(result > 0) {
-			session.commit();
-		} else {
-			session.rollback();
-		}
-		
-		session.close();
-		
-		return result;
-	}
-
-	public int selectBookmarkNum() {
-		
-		SqlSession session = getSqlSession();
-		
-		PersonalInfoMapper mapper = session.getMapper(PersonalInfoMapper.class);
-		
-		int result = mapper.selectBookmarkNum();
+		int result = mapper.selectBookmarkNum(memNo);
 		
 		if(result > 0) {
 			session.commit();
