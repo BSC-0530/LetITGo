@@ -19,15 +19,12 @@ import com.itsme.letitgo.admin.info.model.service.RequestJoinRejectService;
 public class RequestRejectServlet extends HttpServlet {
 
 	private int coReqNo;
-	private int coMemNo;
-	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		coReqNo = Integer.parseInt(request.getParameter("coReqNo"));
-		coMemNo = Integer.parseInt(request.getParameter("coMemNo"));
 		
-		String path = "/WEB-INF/views/admin/adminInsertReject.jsp";
+		String path = "/WEB-INF/views/admin/adminJoinReject.jsp";
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	}
@@ -44,7 +41,6 @@ public class RequestRejectServlet extends HttpServlet {
 		Map<String, Object> map = new HashMap<>();		//hash map 객체 생성 -> Map은 인터페이스이기 때문에 객체생성이 불가능하여 자식인 HashMap을 생성
 		map.put("rejectMessage", rejectMessage);		//map에 view에 썼던  키값과 value값을 가져온다.
 		map.put("coReqNo", coReqNo);
-		map.put("coMemNo", coMemNo);
 		
 		
 		int result1 = rjrService.joinRejectRequest1(map);

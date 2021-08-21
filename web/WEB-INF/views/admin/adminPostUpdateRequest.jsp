@@ -163,8 +163,8 @@
 											<td align="center">상세보기</td>
 										</tr>
 									</thead>
-									<c:forEach var="adminPostUpdate" items="${ requestScope.postInsertUpdateList }">							
 									<tbody align="center">
+									<c:forEach var="adminPostUpdate" items="${ requestScope.postInsertUpdateList }">							
 											<tr>
 												<td><c:out value="${ adminPostUpdate.jobPostReqNo }"/></td>								
 												<td><c:out value="${ adminPostUpdate.jobPostNo }"/></td>								
@@ -201,8 +201,8 @@
 												<td><button type="submit" onclick="jobPostReject(this);">거절</button></td>
 												</c:if>																			
 											</tr>
-									</tbody>
 									</c:forEach>															
+									</tbody>
 								</table>
 								<br>
 								<br>

@@ -37,6 +37,8 @@
 	src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+<script type="text/javascript" src="/let/resources/js/datatables.js"></script>
+<link rel="stylesheet" type="text/css" href="/let/resources/css/datatables.css" />
 
 </head>
 <body>
@@ -174,10 +176,16 @@
 												<td><c:out value="${ insertRequestList.coAnsKinds }"/></td>
 												<td><c:out value="${ insertRequestList.coRejectReason }"/></td>	
 												<td><button type="submit" onclick="post3(this);">상세 보기</button></td>
-<%-- 												<td><c:out value="${ insertRequestList.coReqKinds }"/></td>																		 --%>
-												<td><button type="submit" onclick="JoinApproval(this)">수락</button>
-													<button type="submit" onclick="JoinReject(this)">거절</button>
-												</td>
+												
+												<c:if test="${  insertRequestList.coAnsDate != null }">
+												<td><button disabled>승인</button></td>
+												<td><button disabled>거절</button></td>
+												</c:if>
+												
+												<c:if test="${  insertRequestList.coAnsDate == null }">
+												<td><button type="submit" onclick="jobPostApproval(this);">승인</button></td>
+												<td><button type="submit" onclick="jobPostReject(this);">거절</button></td>
+												</c:if>	
 											</tr>
 									</tbody>
 									</c:forEach>															
@@ -202,20 +210,19 @@
 
 function post3(button) { 
 	
-	const memNo = button.parentNode.parentNode.children[1].innerText;
+	const coReqNo = button.parentNode.parentNode.children[0].innerText;
 		
-	location.href = "${ pageContext.servletContext.contextPath }/info/detail?memNo=" +memNo;
+	location.href = "${ pageContext.servletContext.contextPath }/info/detail?coReqNo=" +coReqNo;
 				
 }	
 function JoinApproval(button) {
 	
 	var coReqNo = button.parentNode.parentNode.children[0].innerText;
-	var coMemNo = button.parentNode.parentNode.children[1].innerText;
+	
 		
 	var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/info/accept").attr("method", "get");
 		
 	$form.append($("<input>").attr("name", "coReqNo").attr("type", "hidden").val(coReqNo));
-	$form.append($("<input>").attr("name", "coMemNo").attr("type", "hidden").val(coMemNo));
 		
 	$("body").append($form);
 		
@@ -225,16 +232,9 @@ function JoinApproval(button) {
 function JoinReject(button) {
 		
 		var coReqNo = button.parentNode.parentNode.children[0].innerText;
-		var coMemNo = button.parentNode.parentNode.children[1].innerText;
 			
-		var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/admin/post/reject/InsertUpdate").attr("method", "get");
-			
-		$form.append($("<input>").attr("name", "coReqNo").attr("type", "hidden").val(coReqNo));
-		$form.append($("<input>").attr("name", "coMemNo").attr("type", "hidden").val(coMemNo));
-			
-		$("body").append($form);
-			
-		$form.submit();	
+		location.href = "${ pageContext.servletContext.contextPath }/admin/post/reject/InsertUpdate?coReqNo=" + coReqNo;
+
 		
 }
 
