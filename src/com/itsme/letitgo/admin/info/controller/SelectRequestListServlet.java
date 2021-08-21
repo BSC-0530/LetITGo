@@ -16,7 +16,6 @@ import com.itsme.letitgo.admin.info.model.service.RequestService;
 
 @WebServlet("/info/requestList")
 public class SelectRequestListServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,8 +28,8 @@ public class SelectRequestListServlet extends HttpServlet {
 		String path ="";
 		
 		if(insertRequestList != null) {
-			path = "/WEB-INF/views/admin/adminJoinRequest";
 			
+			path = "/WEB-INF/views/admin/adminJoinRequest.jsp";
 			request.setAttribute("insertRequestList", insertRequestList);
 		}
 		request.getRequestDispatcher(path).forward(request, response);

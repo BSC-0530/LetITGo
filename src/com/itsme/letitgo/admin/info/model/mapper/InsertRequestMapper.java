@@ -8,7 +8,7 @@ import com.itsme.letitgo.admin.info.model.dto.InsertRequestDTO;
 public interface InsertRequestMapper {
 
 	List<InsertRequestDTO> insertRequestList();
-//기업정보변경 요청
+//기업정보변경 요청 보내기
 	int updateRequestAddInfo(CoMemberAppHistoryDTO comAd);
 //로고
 	int insertCoLogoAttachment(CoMemberAppHistoryDTO logoFile);

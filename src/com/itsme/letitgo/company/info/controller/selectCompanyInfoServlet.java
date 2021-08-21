@@ -23,26 +23,40 @@ public class selectCompanyInfoServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		 MemberLoginDTO comDTO = (MemberLoginDTO) session.getAttribute("loginMember");
-		 System.out.println("번호" + comDTO.getMemNo());
+		 MemberLoginDTO comDTO1 = (MemberLoginDTO) session.getAttribute("loginMember");
+		 System.out.println("번호" + comDTO1.getMemNo());
 		 //로그인된 멤버 번호
-		 int memberNo = comDTO.getMemNo();
+		 int memberNo = comDTO1.getMemNo();
 		 
-//		CompanyAddInfoDTO comDTO = new CompanyInfoService().selectedInfoCompany();
+		CompanyAddInfoDTO comDTO = new CompanyInfoService().selectedInfoCompany(memberNo);
 //		System.out.println("ASKDJAKSDAJSDH" + comDTO);
 		 
 		 FileUploadDTO logoImage = new CompanyInfoService().selectLogoFile(memberNo);
 		 FileUploadDTO representativeImage = new CompanyInfoService().selectRepresentFile(memberNo);
 		 FileUploadDTO businessRegistration = new CompanyInfoService().selectBusinessFile(memberNo);
 		 
-		 System.out.println(logoImage);
-		 System.out.println(representativeImage);
-		 System.out.println(businessRegistration);
-		
+//		 System.out.println(logoImage);
+//		 System.out.println(representativeImage);
+//		 System.out.println(businessRegistration);
+		 
+		 String file1 =logoImage.getFilePath();
+		 System.out.println(file1.substring(20));
+		 String logoFile = file1.substring(20);
+		 
+		 String file2 =representativeImage.getFilePath();
+		 System.out.println(file2.substring(20));
+		 String repreFile = file2.substring(20);
+		 
+		 String file3 =businessRegistration.getFilePath();
+		 System.out.println(file3.substring(20));
+		 String businFile = file3.substring(20);
+		 
 		String address = comDTO.getCoAddress();
 		
 		
-		request.setAttribute("logoImage", logoImage);
+		request.setAttribute("logoFile", logoFile);
+		request.setAttribute("repreFile", repreFile);
+		request.setAttribute("businFile", businFile);
 		request.setAttribute("representativeImage", representativeImage);
 		request.setAttribute("businessRegistration", businessRegistration);
 		request.setAttribute("comDTO", comDTO);

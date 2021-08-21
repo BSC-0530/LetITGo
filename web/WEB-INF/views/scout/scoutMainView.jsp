@@ -42,7 +42,7 @@
 		$("#searchSkillsAuto").autocomplete({
 			source: function(request, response) {
 				$.ajax({
-					url: "${ pageContext.servletContext.contextPath }/main/Scout/List",
+					url: "${ pageContext.servletContext.contextPath }/search/auto/skills",
 					type: "POST",
 					data: { term: request.term },
 					dataType: "json",
@@ -113,18 +113,9 @@
 											class="jp_form_location_wrapper">
 											
 											<select style="border: 1px solid;" name="experience">
-												<option value="-1" selected>경력을 선택해주세요</option>
-												<option value="0">신입</option>
-												<option value="1">1년</option>
-												<option value="2">2년</option>
-												<option value="3">3년</option>
-												<option value="4">4년</option>
-												<option value="5">5년</option>
-												<option value="6">6년</option>
-												<option value="7">7년</option>
-												<option value="8">8년</option>
-												<option value="9">9년</option>
-												<option value="10">10년이상</option>
+												<option value="0" selected>경력을 선택해주세요</option>
+												<option value="1">신입</option>
+												<option value="2">경력직</option>
 											</select>
 										</div>
 									</div>
@@ -145,7 +136,7 @@
 							</div>
 						</div>
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<button type="submit" class="btn btn_info">조회하기</button>
+							<button type="submit" class="btn btn-info">조회하기</button>
 						</div>
 					</div>
 				</div>

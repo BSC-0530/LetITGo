@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,6 +43,9 @@
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
+
+				<!-- 왼쪽 사이드바 -->
+
 				<div
 					class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
 					<div class="row">
@@ -60,15 +63,27 @@
 												<br>
 												<p>
 												<p align="center">
-													<a href="#">자기소개서 항목 관리</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/selfintroductionitem/list">자기소개서
+														항목 관리</a>
 												</p>
 												<br>
 												<p align="center">
-													<a href="#">직무분야 관리</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/jobfield/list">직무분야
+														관리</a>
 												</p>
 												<br>
 												<p align="center">
-													<a href="#">기술 및 카테고리 관리</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/skills/list">기술
+														관리</a>
+												</p>
+												<br>
+												<p align="center">
+													<a
+														href="${ pageContext.servletContext.contextPath }/skillscategory/list">기술
+														카테고리 관리</a>
 												</p>
 												<br> <br>
 												<h3 style="font-weight: bold">결제 관리</h3>
@@ -79,22 +94,30 @@
 												</p>
 												<br>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/payment/select">결제 내역 조회</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/admin/payment/select">결제
+														내역 조회</a>
 												</p>
 												<br>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/refund/select">환불 요청 관리</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/admin/refund/select">환불
+														요청 관리</a>
 												</p>
 												<br> <br>
 												<h3 style="font-weight: bold">기업 요청 관리</h3>
 												<br>
 												<p>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/post/insertRequest/select">공고 등록 요청</a>											
+													<a
+														href="${ pageContext.servletContext.contextPath }/admin/post/insertRequest/select">공고
+														등록 요청</a>
 												</p>
 												<br>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/post/updateRequest/select">공고 수정 요청</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/admin/post/updateRequest/select">공고
+														수정 요청</a>
 												</p>
 												<br>
 												<p align="center">
@@ -126,11 +149,13 @@
 												</p>
 												<br> <br>
 												<h3 style="font-weight: bold">1:1 문의</h3>
-												
+
 												<br>
 												<p>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/inquiry/select">1:1 문의 조회</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/admin/inquiry/select">1:1
+														문의 조회</a>
 												</p>
 												<br>
 												<p align="center">
@@ -145,10 +170,14 @@
 					</div>
 				</div>
 
+				<!-- 결제내역조회 데이터테이블 -->
+
 				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<br><br><br>
+							<br>
+							<br>
+							<br>
 							<h1>결제 내역 조회</h1>
 							<div class="jp_listing_tabs_wrapper">
 								<table id="table_payment" class="hover cell-border stripe">
@@ -159,23 +188,24 @@
 											<td align="center">결제일자</td>
 											<td align="center">상품이름</td>
 											<td align="center">결제금액</td>
-											
+
 										</tr>
 									</thead>
-									<c:forEach var="adminPayment" items="${ requestScope.adminPaymentHistory }">
-									<tbody align="center">
+									<c:forEach var="adminPayment"
+										items="${ requestScope.adminPaymentHistory }">
+										<tbody align="center">
 											<tr>
-												<td><c:out value="${ adminPayment.payNo }"/></td>
-												<td><c:out value="${ adminPayment.coComName }"/></td>									
-												<td><c:out value="${ adminPayment.payDate }"/></td>
-												<td><c:out value="${ adminPayment.productName }"/></td>
-												<td><fmt:formatNumber value="${ adminPayment.payPrice }" pattern="###,###"/></td>
+												<td><c:out value="${ adminPayment.payNo }" /></td>
+												<td><c:out value="${ adminPayment.coComName }" /></td>
+												<td><c:out value="${ adminPayment.payDate }" /></td>
+												<td><c:out value="${ adminPayment.productName }" /></td>
+												<td><fmt:formatNumber
+														value="${ adminPayment.payPrice }" pattern="###,###" /></td>
 											</tr>
-									</tbody>				
-									</c:forEach>				
+										</tbody>
+									</c:forEach>
 								</table>
-								<br>
-								<br>
+								<br> <br>
 							</div>
 						</div>
 					</div>
@@ -185,7 +215,8 @@
 			</div>
 		</div>
 	</div>
-<script>
+	<!-- 데이터테이블 사용 -->
+	<script>
 		$(document).ready(function() {
 			$('#table_payment').DataTable();
 		});

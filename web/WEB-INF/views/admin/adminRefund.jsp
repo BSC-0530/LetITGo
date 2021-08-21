@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,23 +79,30 @@
 												</p>
 												<br>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/payment/select">결제
+													<a
+														href="${ pageContext.servletContext.contextPath }/admin/payment/select">결제
 														내역 조회</a>
 												</p>
 												<br>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/refund/select">환불 요청 관리</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/admin/refund/select">환불
+														요청 관리</a>
 												</p>
 												<br> <br>
 												<h3 style="font-weight: bold">기업 요청 관리</h3>
 												<br>
 												<p>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/post/insertRequest/select">공고 등록 요청</a>												
+													<a
+														href="${ pageContext.servletContext.contextPath }/admin/post/insertRequest/select">공고
+														등록 요청</a>
 												</p>
 												<br>
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/admin/post/updateRequest/select">공고 수정 요청</a>
+													<a
+														href="${ pageContext.servletContext.contextPath }/admin/post/updateRequest/select">공고
+														수정 요청</a>
 												</p>
 												<br>
 												<p align="center">
@@ -145,107 +152,125 @@
 					</div>
 				</div>
 
+				<!-- 환불내역조회 데이터테이블 -->
+
 				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<br><br><br>
+							<br> <br> <br>
 							<h1>환불 요청 관리</h1>
 							<div class="jp_listing_tabs_wrapper">
 								<table id="table_refund" class="hover cell-border stripe">
 									<thead>
-										<tr>
-											<td align="center">환불요청번호</td>
-											<td align="center">결제번호</td>
-											<td align="center">결제일자</td>
-											<td align="center">환불요청일자</td>
-											<td align="center">요청응답일자</td>
-											<td align="center">결제금액</td>
-											<td align="center">환불상태</td>
-											<td align="center">환불사유</td>
-											<td align="center">환불거절사유</td>
+										<tr align="center">
+											<td>결제번호</td>
+											<td>요청일</td>
+											<td>응답일</td>
+											<td>상태</td>
+											<td>환불사유</td>
+											<td>거절사유</td>
+											<td></td>
+											<td></td>
 										</tr>
 									</thead>
-									<c:forEach var="adminRefund" items="${ requestScope.refundHistoryList }">
-									<tbody align="center">
+									<c:forEach var="adminRefund"
+										items="${ requestScope.refundHistoryList }">
+										<input type="hidden" name="payChangeNo"
+											value="${ adminRefund.payChangeNo }">
+										<tbody align="center">
 											<tr>
-												<td><c:out value="${ adminRefund.payChangeNo }"/></td>
-												<td><c:out value="${ adminRefund.payNo }"/></td>									
-												<td><c:out value="${ adminRefund.payDate }"/></td>												
-												<td><c:out value="${ adminRefund.payReqDate }"/></td>
-												
+												<td><c:out value="${ adminRefund.payNo }" /></td>
+												<td><c:out value="${ adminRefund.payReqDate }" /></td>
+
 												<c:if test="${ adminRefund.payAnsDate != null }">
-												<td><c:out value="${ adminRefund.payAnsDate }"/></td>
+													<td><c:out value="${ adminRefund.payAnsDate }" /></td>
 												</c:if>
-												
+
 												<c:if test="${ adminRefund.payAnsDate eq null }">
-												<td>-</td>
+													<td>-</td>
 												</c:if>
-												
-												<td><fmt:formatNumber value="${ adminRefund.payPrice }" pattern="###,###"/></td>
-												<td><c:out value="${ adminRefund.payChangeStatus }"/></td>
-												<td><c:out value="${ adminRefund.payChangeReason }"/></td>
-												<td><c:out value="${ adminRefund.payRejectReason }"/></td>
-											
+
+												<td><c:out value="${ adminRefund.payChangeStatus }" /></td>
+												<td><c:out value="${ adminRefund.payChangeReason }" /></td>
+												<td><c:out value="${ adminRefund.payRejectReason }" /></td>
+
 												<c:if test="${ adminRefund.payChangeStatus eq '환불요청'  }">
-												<td><button type="submit" onclick="approval(this);">승인</button></td>
-												<td><button type="submit" onclick="reject(this);">거절</button></td>
-												</c:if>	
-												
+													<td><button type="submit" onclick="approval(this);">승인</button></td>
+													<td><button type="submit" onclick="reject(this);">거절</button></td>
+												</c:if>
+
 												<c:if test="${ adminRefund.payChangeStatus != '환불요청'  }">
-												<td><button disabled >응답</button></td>
-												<td><button disabled >완료</button></td>
-												</c:if> 
+													<td><button disabled>승인</button></td>
+													<td><button disabled>거절</button></td>
+												</c:if>
 											</tr>
-									</tbody>				
-									</c:forEach>				
+										</tbody>
+									</c:forEach>
 								</table>
-								<br>
-								<br>
+								<br> <br>
 							</div>
 						</div>
 					</div>
 					<br>
 				</div>
-				
+
 				<br>
 			</div>
 		</div>
 	</div>
-<script>
-	$(document).ready(function() {
-		$('#table_refund').DataTable();
-	});
-	
-	function approval(button) {
-		
-		var payChangeNo = button.parentNode.parentNode.children[0].innerText;
-		var payNo = button.parentNode.parentNode.children[1].innerText;
-		
-		var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/admin/refund/app/update").attr("method", "get");
-		
-		$form.append($("<input>").attr("name", "payChangeNo").attr("type", "hidden").val(payChangeNo));
-		$form.append($("<input>").attr("name", "payNo").attr("type", "hidden").val(payNo));
-		
-		$("body").append($form);
-		
-		$form.submit();
-	}	
-</script>
-<script>	
-	function reject(button) {
-		
-		var payChangeNo = button.parentNode.parentNode.children[0].innerText;
-		var payNo = button.parentNode.parentNode.children[1].innerText;
-		
-		var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/admin/refund/reject/update").attr("method", "get");
-		
-		$form.append($("<input>").attr("name", "payChangeNo").attr("type", "hidden").val(payChangeNo));
-		$form.append($("<input>").attr("name", "payNo").attr("type", "hidden").val(payNo));
-		
-		$("body").append($form);
-		
-		$form.submit();
-	}	
-</script>
+
+	<!-- 데이터테이블 사용 -->
+	<script>
+		$(document).ready(function() {
+			$('#table_refund').DataTable();
+		});
+	</script>
+
+	<!-- 환불 승인시 -->
+	<script>
+		function approval(button) {
+
+			var payChangeNo = button.parentNode.parentNode.parentNode.parentNode.children[1].value;
+			var payNo = button.parentNode.parentNode.children[0].innerText;
+
+			var $form = $("<form>")
+					.attr("action",
+							"${ pageContext.servletContext.contextPath }/admin/refund/app/update")
+					.attr("method", "get");
+
+			$form.append($("<input>").attr("name", "payChangeNo").attr("type",
+					"hidden").val(payChangeNo));
+			$form.append($("<input>").attr("name", "payNo").attr("type",
+					"hidden").val(payNo));
+
+			$("body").append($form);
+
+			$form.submit();
+		}
+	</script>
+
+	<!-- 환불 거절시 -->
+	<script>
+		function reject(button) {
+
+			var payChangeNo = button.parentNode.parentNode.parentNode.parentNode.children[1].value;
+			var payNo = button.parentNode.parentNode.children[0].innerText;
+			
+			
+			var $form = $("<form>")
+					.attr("action",
+							"${ pageContext.servletContext.contextPath }/admin/refund/reject/update")
+					.attr("method", "get");
+
+			$form.append($("<input>").attr("name", "payChangeNo").attr("type",
+					"hidden").val(payChangeNo));
+			$form.append($("<input>").attr("name", "payNo").attr("type",
+					"hidden").val(payNo));
+
+			$("body").append($form);
+
+			$form.submit();
+		}
+	</script>
 </body>
 </html>

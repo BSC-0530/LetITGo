@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.itsme.letitgo.company.payment.model.dto.ProductDTO;
 import com.itsme.letitgo.company.payment.model.service.SelectProductListService;
 
+/* home -> 결제페이지 */
 @WebServlet("/productList/select")
 public class SelectProductListServlet extends HttpServlet {
 	
@@ -19,11 +20,8 @@ public class SelectProductListServlet extends HttpServlet {
 		
 		SelectProductListService selectProductListService = new SelectProductListService();
 		
+		/* 상품목록 조회 */
 		List<ProductDTO> productList = selectProductListService.SelectProductList();
-		
-		for(ProductDTO product : productList) {
-			System.out.println(product);
-		}
 
 		String path = "/WEB-INF/views/payment/paymentList.jsp";
 		

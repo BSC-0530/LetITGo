@@ -139,7 +139,7 @@
 												</p>
 												<br>
 												<p align="center">
-													<a href="#">기업 정보 변경 요청</a>
+													<a href="${ pageContext.servletContext.contextPath }/admin/request/comInfo">기업 정보 변경 요청</a>
 												</p>
 
 												<br>

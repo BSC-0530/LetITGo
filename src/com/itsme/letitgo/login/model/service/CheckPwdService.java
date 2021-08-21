@@ -11,4 +11,9 @@ public class CheckPwdService {
 		return null;
 	}
 
+//	public List<MemberLoginDTO> selectAllPwdList() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
 }

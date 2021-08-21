@@ -4,21 +4,22 @@ import java.sql.Date;
 
 public class InsertRequestDTO {
 
-	private int coReqNo;
-	private int coMemNo;
+	private int coReqNo;		//pk
+	private int coMemNo;		//사업 번호
+	private String coComName;
 	private String coAnsKinds;
-	private Date coReqDate;
-	private Date coAnsDate;
+	private java.sql.Date coReqDate;
+	private java.sql.Date coAnsDate;
 	private String coReqKinds;
 	private String coRejectReason;
 	
 	public InsertRequestDTO () {}
-	
-	public InsertRequestDTO(int coReqNo, int coMemNo, String coAnsKinds, Date coReqDate, Date coAnsDate,
-			String coReqKinds, String coRejectReason) {
-		super();
+
+	public InsertRequestDTO(int coReqNo, int coMemNo, String coComName, String coAnsKinds, Date coReqDate,
+			Date coAnsDate, String coReqKinds, String coRejectReason) {
 		this.coReqNo = coReqNo;
 		this.coMemNo = coMemNo;
+		this.coComName = coComName;
 		this.coAnsKinds = coAnsKinds;
 		this.coReqDate = coReqDate;
 		this.coAnsDate = coAnsDate;
@@ -42,6 +43,14 @@ public class InsertRequestDTO {
 		this.coMemNo = coMemNo;
 	}
 
+	public String getCoComName() {
+		return coComName;
+	}
+
+	public void setCoComName(String coComName) {
+		this.coComName = coComName;
+	}
+
 	public String getCoAnsKinds() {
 		return coAnsKinds;
 	}
@@ -50,19 +59,19 @@ public class InsertRequestDTO {
 		this.coAnsKinds = coAnsKinds;
 	}
 
-	public Date getCoReqDate() {
+	public java.sql.Date getCoReqDate() {
 		return coReqDate;
 	}
 
-	public void setCoReqDate(Date coReqDate) {
+	public void setCoReqDate(java.sql.Date coReqDate) {
 		this.coReqDate = coReqDate;
 	}
 
-	public Date getCoAnsDate() {
+	public java.sql.Date getCoAnsDate() {
 		return coAnsDate;
 	}
 
-	public void setCoAnsDate(Date coAnsDate) {
+	public void setCoAnsDate(java.sql.Date coAnsDate) {
 		this.coAnsDate = coAnsDate;
 	}
 
@@ -84,11 +93,11 @@ public class InsertRequestDTO {
 
 	@Override
 	public String toString() {
-		return "InsertRequestDTO [coReqNo=" + coReqNo + ", coMemNo=" + coMemNo + ", coAnsKinds=" + coAnsKinds
-				+ ", coReqDate=" + coReqDate + ", coAnsDate=" + coAnsDate + ", coReqKinds=" + coReqKinds
-				+ ", coRejectReason=" + coRejectReason + "]";
+		return "InsertRequestDTO [coReqNo=" + coReqNo + ", coMemNo=" + coMemNo + ", coComName=" + coComName
+				+ ", coAnsKinds=" + coAnsKinds + ", coReqDate=" + coReqDate + ", coAnsDate=" + coAnsDate
+				+ ", coReqKinds=" + coReqKinds + ", coRejectReason=" + coRejectReason + "]";
 	}
-	
+
 	
 	
 }

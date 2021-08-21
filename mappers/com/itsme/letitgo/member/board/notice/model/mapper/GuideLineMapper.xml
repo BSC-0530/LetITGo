@@ -57,6 +57,20 @@
 		 WHERE A.POST_NO = #{ postNo }
 	</select>
 	
+	<select id="selectNoticeList" resultMap="GuideLineResultMap">
+		SELECT
+		       A.POST_NO
+		     , A.POST_TITLE
+		     , A.POST_KINDS
+		     , A.POST_CONTENT
+		     , A.POST_REGISTRATION_DATE
+		     , A.POST_MODIFIED_DATE
+		     , A.POST_EXPOSURE_STATUS
+		     , A.MANAGER_MEMBER_NO
+		  FROM TBL_POST A
+		 WHERE A.POST_KINDS = '공지사항'
+	</select>
+	
 </mapper>
 
 

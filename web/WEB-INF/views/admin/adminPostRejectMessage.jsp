@@ -149,6 +149,8 @@
 						</div>
 					</div>
 				</div>
+				
+									
 
 				<form id="postInsertRejectMessage" action="${ pageContext.servletContext.contextPath }/admin/post/reject/update" method="post">
 					<div style="width: 500px;" class="jp_contact_form_main_wrapper">
@@ -159,13 +161,17 @@
 								</div>
 								<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
 									<div class="jp_contact_form_box">
-										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">									
+										
 											<h3>거절 사유</h3>
+										<input type="text" name="payChangeNo" value="${ requestScope.payChangeNo  }">
+										<input type="text" name="payNo" value="${ requestScope.payNo  }">
 										</div>
 										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 											<div
 												class="jp_contact_inputs_wrapper jp_contact_inputs4_wrapper">
 												<i class="fa fa-text-height"></i>
+
 												<textarea name="rejectMessage" rows="6"
 													placeholder="Type Your Message *"></textarea>
 											</div>

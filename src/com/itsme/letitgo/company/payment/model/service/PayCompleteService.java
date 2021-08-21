@@ -11,6 +11,7 @@ import com.itsme.letitgo.company.payment.model.mapper.PaymentMapper;
 
 public class PayCompleteService {
 
+	/* 상품이름으로 상품정보 가져오기 */
 	public ProductDTO SelectProduct(String productName) {
 		
 		SqlSession session = getSqlSession();
@@ -26,6 +27,7 @@ public class PayCompleteService {
 				
 	}
 
+	 /* 열람권 결제내역 추가*/
 	public int insertPaymentReadingRightHistory(Map<String, Object> map) {
 		
 		SqlSession session = getSqlSession();
@@ -45,6 +47,7 @@ public class PayCompleteService {
 		return result;
 	}
 	
+	/* 열람권  회원보유상품 추가 */
 	public int insertHoldingReadingRightProduct(Map<String, Object> map) {
 		
 		SqlSession session = getSqlSession();
@@ -63,7 +66,8 @@ public class PayCompleteService {
 		
 		return result;
 	}
-
+	
+	/* 노출권 결제내역 추가*/
 	public int insertPaymentExposureRightHistory(Map<String, Object> map) {
 		
 		SqlSession session = getSqlSession();
@@ -84,6 +88,7 @@ public class PayCompleteService {
 		
 	}
 
+	/* 노출권 회원보유상품 추가 */
 	public int insertHoldingExposureRightProduct(Map<String, Object> map) {
 		
 		SqlSession session = getSqlSession();

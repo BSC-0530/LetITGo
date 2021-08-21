@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.itsme.letitgo.admin.payment.model.dto.AdminPaymentHistoryDTO;
 import com.itsme.letitgo.admin.payment.model.service.SelectPaymentListService;
 
-
+/* 관리자 -> 결제 내역 조회 */
 @WebServlet("/admin/payment/select")
 public class SelectPaymentListServlet extends HttpServlet {
 	
@@ -20,12 +20,9 @@ public class SelectPaymentListServlet extends HttpServlet {
 		
 		SelectPaymentListService service = new SelectPaymentListService();
 		
+		/* 모든 결제내역조회 */
 		List<AdminPaymentHistoryDTO> adminPaymentHistory = service.selectPaymentList();
-		
-		for(AdminPaymentHistoryDTO aph : adminPaymentHistory) {
-			System.out.println(aph);
-		}
-	
+
 		String path = "/WEB-INF/views/admin/adminPayment.jsp";
 		request.setAttribute("adminPaymentHistory", adminPaymentHistory);
 		request.getRequestDispatcher(path).forward(request, response);

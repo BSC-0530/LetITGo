@@ -46,38 +46,18 @@ public class MainScoutListServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-//		---------- 검색 자동완성 
 		
-		String term = request.getParameter("term");
 		String inputSkill = request.getParameter("inputSkill");
 		int inputCareer = Integer.parseInt(request.getParameter("experience"));
 		
-		System.out.println(inputSkill);
-		System.out.println("input term : " + term);
-		
-		List<SkillsDTO> skillsList = new ArrayList<>();
-		
-		if(term != null) {
-			
-			skillsList = new MainScoutListService().selectSkillsName(term);
-			
-			Gson gson = new GsonBuilder().create();
-			
-			String jsonList = gson.toJson(skillsList);
-			
-			response.setContentType("application/json; charset=UTF-8");
-			
-			PrintWriter out = response.getWriter();
-			
-			out.print(jsonList);
-			out.flush();
-			
-		} else {
-			
-			if(inputSkill != null && inputCareer > -1) {
+		System.out.println("inputSkill : " + inputSkill);
+		System.out.println("inputCareer : " + inputCareer);
+
+			if(inputSkill != null && inputCareer > 0) {
 				
-				DeliverCareerAndSkillDTO selectedCareerAndSkill = new DeliverCareerAndSkillDTO(inputCareer, inputSkill);
+				DeliverCareerAndSkillDTO selectedCareerAndSkill = new DeliverCareerAndSkillDTO();
+				selectedCareerAndSkill.setCareerValue(inputCareer);
+				selectedCareerAndSkill.setSkill(inputSkill);
 				
 				// 정렬조회(스킬&경력)
 				MainScoutListService mainScoutListService = new MainScoutListService();
@@ -94,7 +74,9 @@ public class MainScoutListServlet extends HttpServlet {
 				String path="/WEB-INF/views/scout/scoutMainView.jsp";
 				request.getRequestDispatcher(path).include(request, response);
 				
-			} else if(inputSkill != null) {
+			} 
+			
+			if(inputSkill != null && inputCareer == 0) {
 				
 				// 정렬조회(스킬만)
 				MainScoutListService mainScoutListService = new MainScoutListService();
@@ -115,7 +97,9 @@ public class MainScoutListServlet extends HttpServlet {
 				String path="/WEB-INF/views/scout/scoutMainView.jsp";
 				request.getRequestDispatcher(path).include(request, response);
 				
-			} else if(inputCareer > -1) {
+			} 
+			
+			if(inputCareer > 0 && inputSkill == null) {
 				
 				// 정렬조회(경력만)
 				MainScoutListService mainScoutListService = new MainScoutListService();
@@ -138,4 +122,4 @@ public class MainScoutListServlet extends HttpServlet {
 
 	}
 
-}
+

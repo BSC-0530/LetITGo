@@ -89,5 +89,27 @@
 		   AND CO_REQ_KINDS = '회원가입'
 		   AND CO_ANS_KINDS = '대기'
 	</select>
+	
+	<select id="selectFogetId" resultType="string">
+		SELECT /* com.itsme.letitgo.login.model.mapper.MemberLoginMapper#selectAppHistory() */
+		       MEM_ID
+		  FROM TBL_MEMBER
+		 WHERE MEM_EMAIL = #{ memEmail }
+	</select>
+	
+	<select id="checkIdEmail" resultType="_int">
+		SELECT
+		       COUNT(*)
+		  FROM TBL_MEMBER
+		 WHERE MEM_ID = #{ memId }
+		   AND MEM_EMAIL = #{ memEmail }       
+	</select>
+	
+	<update id="updateMemPwd">
+		UPDATE 
+		       TBL_MEMBER
+		   SET MEM_PWD = #{ memPwd }
+		 WHERE MEM_ID = #{ memId }
+	</update>
 
 </mapper>

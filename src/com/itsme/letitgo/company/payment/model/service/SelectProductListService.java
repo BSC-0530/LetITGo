@@ -11,6 +11,7 @@ import static com.itsme.letitgo.common.mybatis.Template.getSqlSession;
 
 public class SelectProductListService {
 	
+	/* 상품목록 조회 */
 	public List<ProductDTO> SelectProductList() {
 		
 		SqlSession session = getSqlSession();

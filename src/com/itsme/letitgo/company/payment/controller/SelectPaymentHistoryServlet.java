@@ -8,14 +8,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.itsme.letitgo.company.payment.model.dto.BrowseUsingHistoryDTO;
 import com.itsme.letitgo.company.payment.model.dto.ExposureUsingHistoryDTO;
 import com.itsme.letitgo.company.payment.model.dto.HoldingRequestingSkillsDTO;
 import com.itsme.letitgo.company.payment.model.dto.PaymentHistoryDTO;
+import com.itsme.letitgo.company.payment.model.dto.ReadingLeftNumDTO;
 import com.itsme.letitgo.company.payment.model.service.SelectPaymentHistoryService;
+import com.itsme.letitgo.login.model.dto.MemberLoginDTO;
 
-
+/* Home -> 기업 마이페이지 -> 결제내역 */
 @WebServlet("/company/paymentHistory/select")
 public class SelectPaymentHistoryServlet extends HttpServlet {
 	
@@ -23,63 +26,47 @@ public class SelectPaymentHistoryServlet extends HttpServlet {
 		
 		SelectPaymentHistoryService selectPaymentHistoryService = new SelectPaymentHistoryService();
 		
-		/* 결제내역 */
-		List<PaymentHistoryDTO> paymentHistoryList = selectPaymentHistoryService.selectPaymentHistory();		
+		/* 세션에서 로그인된 회원의 번호 꺼내오기 */
+		HttpSession session = request.getSession();
+        MemberLoginDTO dto = (MemberLoginDTO) session.getAttribute("loginMember");
+        int memNo = dto.getMemNo();
+        
+        /* 결제내역 조회 */
+		List<PaymentHistoryDTO> paymentHistoryList = selectPaymentHistoryService.selectPaymentHistory(memNo);		
 		
-		/* 열람권 남은 갯수 */
-		int resumeBrowsingNum = selectPaymentHistoryService.selectResumeBrowsingNum();		
+		/* 보유중인 이력서열람권 조회 */
+		List<ReadingLeftNumDTO> BrowsingNum = selectPaymentHistoryService.selectResumeBrowsingNum(memNo);					
+		int resumeBrowsingNum = 0;		
+		for(int i = 0; i < BrowsingNum.size(); i++) {
+			resumeBrowsingNum += BrowsingNum.get(i).getReadingLeftNum();
+		}
 		
-		/* 노출중인 공고갯수 */
-		int exposureUsingPostNum = selectPaymentHistoryService.selectExposureUsingPostNum();	
+		/* 노출권 사용중인 공고 조회 */
+		int exposureUsingPostNum = selectPaymentHistoryService.selectExposureUsingPostNum(memNo);	
 		
-		/* 노출권 남은 시간 */
-		long exposureRestTime = selectPaymentHistoryService.selectExposureRestTime();	
+		/* 노출권 잔여시간 조회 */
+		long exposureRestTime = selectPaymentHistoryService.selectExposureRestTime(memNo);	
 		long exposureRestHour = exposureRestTime / 1000 / 60 / 60;
 		long exposureRestMinute = exposureRestHour % 60;
 		
-		/* 열람권 사용이력 */
-		List<BrowseUsingHistoryDTO> paymentBrowseUsingHistroyList = selectPaymentHistoryService.selectBrowseUsingHistroy();
+		/* 열람권 사용내역 조회 */
+		List<BrowseUsingHistoryDTO> paymentBrowseUsingHistroyList = selectPaymentHistoryService.selectBrowseUsingHistroy(memNo);
 		
-		/* 이력서 내 보유기술*/
+		/* 이력서 내 모든 보유기술 조회*/
 		List<HoldingRequestingSkillsDTO> paymentHoldingSkillsList = selectPaymentHistoryService.selectHoldingSkills();
 		
 		/* 노출권 사용이력 */
-		List<ExposureUsingHistoryDTO> paymentExposureUsingHistoryList = selectPaymentHistoryService.selectExposureUsingHistory();
+		List<ExposureUsingHistoryDTO> paymentExposureUsingHistoryList = selectPaymentHistoryService.selectExposureUsingHistory(memNo);
 		
 		/* 노촐권 사용중인 공고의 요구기술 */
 		List<HoldingRequestingSkillsDTO> paymentrequestingSkillsList = selectPaymentHistoryService.selectRequestingSkills();
-		
-		for(PaymentHistoryDTO paymentHistory : paymentHistoryList) {
-			System.out.println(paymentHistory);
-		}
-		System.out.println(resumeBrowsingNum);
-		System.out.println(exposureUsingPostNum);
-		System.out.println(exposureRestTime);
-		System.out.println(exposureRestHour);
-		System.out.println(exposureRestMinute);
-		
-		for(BrowseUsingHistoryDTO BrowseUsingHistroy : paymentBrowseUsingHistroyList) {
-			System.out.println(BrowseUsingHistroy);
-		}
-		
-		for(HoldingRequestingSkillsDTO HoldingRequestingSkills : paymentHoldingSkillsList) {
-			System.out.println(HoldingRequestingSkills);
-		}
-		
-		for(ExposureUsingHistoryDTO paymentExposureUsingHistory : paymentExposureUsingHistoryList) {
-			System.out.println(paymentExposureUsingHistory);
-		}
-		
-		for(HoldingRequestingSkillsDTO paymentrequestingSkills : paymentrequestingSkillsList) {
-			System.out.println(paymentrequestingSkills);
-		}
-		
+			
 		String path = "/WEB-INF/views/payment/paymentHistory.jsp";
 		
 		request.setAttribute("paymentHistoryList", paymentHistoryList);
 		request.setAttribute("resumeBrowsingNum", resumeBrowsingNum);
 		request.setAttribute("exposureUsingPostNum", exposureUsingPostNum);
-		request.setAttribute("exposureRestHour", exposureRestMinute);
+		request.setAttribute("exposureRestHour", exposureRestHour);
 		request.setAttribute("exposureRestMinute", exposureRestMinute);
 		request.setAttribute("paymentBrowseUsingHistroyList", paymentBrowseUsingHistroyList);
 		request.setAttribute("paymentHoldingSkillsList", paymentHoldingSkillsList);

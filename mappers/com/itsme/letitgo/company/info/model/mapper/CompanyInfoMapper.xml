@@ -65,8 +65,10 @@
 		    , CM.CO_INTRO
 		    , REGEXP_SUBSTR(CM.CO_ADDRESS, '[^$]+',1,2) as CO_ADDRESS
 		    , CM.CO_WEBSITE
+		    , CM.CO_PHONE
+		    , CM.CO_PAX
 		FROM TBL_CO_MEMBER_ADD_INFO CM
-		WHERE CM.CO_MEM_NO = #{ coMemNo }
+		WHERE CM.CO_MEM_NO = #{ memberNo }
 	
 	</select>
 	

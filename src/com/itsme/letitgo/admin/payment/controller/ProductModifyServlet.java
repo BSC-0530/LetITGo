@@ -35,6 +35,8 @@ public class ProductModifyServlet extends HttpServlet {
 		int productPrice = Integer.parseInt(request.getParameter("productPrice"));
 		String productKinds = request.getParameter("productKinds");
 		String productStatus = request.getParameter("productStatus");
+		Integer productReadingTicket = Integer.parseInt(request.getParameter("productReadingTicket"));
+		String productExposureTime = request.getParameter("productExposureTime");
 		
 		ProductListDTO productListDTO = new ProductListDTO();
 		productListDTO.setProductNo(productNo);
@@ -42,6 +44,8 @@ public class ProductModifyServlet extends HttpServlet {
 		productListDTO.setProductPrice(productPrice);
 		productListDTO.setProductKinds(productKinds);
 		productListDTO.setProductStatus(productStatus);
+		productListDTO.setProductExposureTime(productExposureTime);
+		productListDTO.setProductReadingTicket(productReadingTicket);
 		
 		String path = "";
 		

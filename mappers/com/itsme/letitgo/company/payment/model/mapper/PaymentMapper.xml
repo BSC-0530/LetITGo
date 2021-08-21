@@ -30,6 +30,7 @@
 	</resultMap>
 	
 	<resultMap type="com.itsme.letitgo.company.payment.model.dto.BrowseUsingHistoryDTO" id="browseUsingHistroyResultMap">
+		<result property="resumeNo" column="RESUME_NO"/>
 		<result property="resumeTitle" column="RESUME_TITLE"/>
 		<result property="memName" column="MEM_NAME"/>
 		<result property="jobName" column="JOB_NAME"/>
@@ -37,10 +38,13 @@
 	</resultMap>
 	
 	<resultMap type="com.itsme.letitgo.company.payment.model.dto.HoldingRequestingSkillsDTO" id="holdingRequestingSkillsResultMap">
+		<result property="jobPostNo" column="JOB_POST_NO"/>
+		<result property="resumeNo" column="RESUME_NO"/>
 		<result property="skillsName" column="SKILLS_NAME"/>
 	</resultMap>
 	
 	<resultMap type="com.itsme.letitgo.company.payment.model.dto.ExposureUsingHistoryDTO" id="exposureUsingHistoryResultMap">
+	    <result property="jobPostNo" column="JOB_POST_NO"/>
 		<result property="jobPostTitle" column="JOB_POST_TITLE"/>
 		<result property="jobName" column="JOB_NAME"/>
 		<result property="jobPostDeadline" column="JOB_POST_DEADLINE"/>
@@ -57,6 +61,10 @@
 		<result property="payChangeStatus" column="PAY_CHANGE_STATUS"/>
 		<result property="payReqDate" column="PAY_REQ_DATE"/>
 		<result property="payAnsDate" column="PAY_ANS_DATE"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.company.payment.model.dto.ReadingLeftNumDTO" id="readingLeftNumResultMap">
+		<result property="readingLeftNum" column="READING_LEFT_NUM"/>
 	</resultMap>
 
 	<select id="selectProductList" resultMap="productResultMap">
@@ -81,18 +89,18 @@
              , A.PAY_KINDS
           FROM TBL_PAYMENT_HISTORY A
           LEFT JOIN TBL_PRODUCT_LIST B ON (A.PRODUCT_NO = B.PRODUCT_NO)
-         WHERE A.CO_MEM_NO = '2'
+         WHERE A.CO_MEM_NO = #{ memNo }
          ORDER BY A.PAY_NO
 	</select>
 
-	<select id="selectResumeBrowsingNum" resultType="_int">
+	<select id="selectResumeBrowsingNum" resultMap="readingLeftNumResultMap">
 	   SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#SelectResumeBrowsingNum() */
               A.READING_LEFT_NUM
          FROM TBL_MEMBER_HOLDING_PRODUCT A
          JOIN TBL_PRODUCT_LIST B ON (A.PRODUCT_NO = B.PRODUCT_NO)
         WHERE PRODUCT_STATUS = '사용가능'
           AND PRODUCT_KINDS = '열람권'
-          AND A.CO_MEM_NO = '2'
+          AND A.CO_MEM_NO = #{ memNo }
 	</select>
 	
 	<select id="selectExposureUsingPostNum" resultType="_int">
@@ -100,7 +108,7 @@
 	           COUNT(*)
           FROM TBL_JOB_POSTING
          WHERE EXPOSURE_USE_CHECK = 'Y'
-           AND CO_MEM_NO = '2'
+           AND CO_MEM_NO = #{ memNo }
 	</select>
 	
 	<select id="selectExposureRestTime" resultType="_long">
@@ -110,12 +118,13 @@
           JOIN TBL_PRODUCT_LIST B ON (A.PRODUCT_NO = B.PRODUCT_NO)
          WHERE A.PRODUCT_STATUS = '사용가능'
            AND B.PRODUCT_KINDS = '노출권'
-           AND A.CO_MEM_NO = '2'
+           AND A.CO_MEM_NO = #{ memNo }
 	</select>
 	
 	<select id="selectBrowseUsingHistroyList" resultMap="browseUsingHistroyResultMap">
 		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#BrowseUsingHistroyList() */
 		       A.PRODUCT_USE_DATE
+		     , A.RESUME_NO 
              , B.RESUME_TITLE
              , C.JOB_NAME
              , D.MEM_NAME
@@ -123,20 +132,22 @@
           LEFT JOIN TBL_RESUME B ON (A.RESUME_NO = B.RESUME_NO)
           LEFT JOIN TBL_JOB_FIELD C ON (B.JOB_NO = C.JOB_NO)
           LEFT JOIN TBL_MEMBER D ON (B.IN_MEM_NO = D.MEM_NO)
+         WHERE A.CO_MEM_NO = #{ memNo }
 	</select>
 	
 	<select id="selectHoldingSkillsList" resultMap="holdingRequestingSkillsResultMap">
 		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectHoldingSkillsList() */
-               C.SKILLS_NAME
+		       A.RESUME_NO
+             , C.SKILLS_NAME
           FROM TBL_RESUME A
           JOIN TBL_RESUME_HOLDING_SKILLS B ON(A.RESUME_NO = B.RESUME_NO)
-          JOIN TBL_SKILLS C ON(B.SKILLS_NO = C.SKILLS_NO)
-         WHERE A.RESUME_NO = '1'
+          JOIN TBL_SKILLS C ON(B.SKILLS_NO = C.SKILLS_NO)              
 	</select>
 	
 	<select id="selectExposureUsingHistoryList" resultMap="exposureUsingHistoryResultMap">
 		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectExposureUsingHistoryList() */
-               B.JOB_POST_TITLE
+		       A.JOB_POST_NO
+             , B.JOB_POST_TITLE
              , C.JOB_NAME
              , B.JOB_POST_DEADLINE
              , A.EXPOSURE_USE_DATE
@@ -144,12 +155,13 @@
           FROM TBL_EXPOSURE_USAGE_HISTORY A
           JOIN TBL_JOB_POSTING B ON (A.JOB_POST_NO = B.JOB_POST_NO)
           JOIN TBL_JOB_FIELD C ON (B.JOB_NO = C.JOB_NO)
-         WHERE A.CO_MEM_NO = '2'
+         WHERE A.CO_MEM_NO = #{ memNo }
 	</select>
 	
 	<select id="selectRequestingSkillsList" resultMap="holdingRequestingSkillsResultMap">
 		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectRequestingSkillsList() */
-               C.SKILLS_NAME
+		       A.JOB_POST_NO
+             , C.SKILLS_NAME
           FROM TBL_JOB_POSTING A
           JOIN TBL_JOB_POSTING_REQ_SKILLS B ON (A.JOB_POST_NO = B.JOB_POST_NO)
           JOIN TBL_SKILLS C ON (B.SKILLS_NO = C.SKILLS_NO)
@@ -161,12 +173,9 @@
      		 , B.PRODUCT_NAME
              , A.PAY_PRICE
              , A.PAY_DATE
-             , A.PAY_KINDS
-             , C.PAY_CHANGE_STATUS
           FROM TBL_PAYMENT_HISTORY A
           LEFT JOIN TBL_PRODUCT_LIST B ON (A.PRODUCT_NO = B.PRODUCT_NO)
-          LEFT JOIN TBL_PAYMENT_CHANGE_HISTORY C ON (A.PAY_NO = C.PAY_NO)
-         WHERE A.CO_MEM_NO = '2'
+         WHERE A.CO_MEM_NO = #{ memNo }
            AND A.PAY_NO = #{ payNo }
 	</select>
 	
@@ -206,7 +215,7 @@
          JOIN TBL_PAYMENT_CHANGE_HISTORY B ON (A.PAY_NO = B. PAY_NO)
          JOIN TBL_PRODUCT_LIST C ON (A.PRODUCT_NO = C.PRODUCT_NO)
          JOIN TBL_MEMBER D ON (A.CO_MEM_NO = D.MEM_NO)
-        WHERE A.CO_MEM_NO = '2'
+        WHERE A.CO_MEM_NO = #{ memNo }
         ORDER BY B.PAY_CHANGE_NO
 	</select>
 	

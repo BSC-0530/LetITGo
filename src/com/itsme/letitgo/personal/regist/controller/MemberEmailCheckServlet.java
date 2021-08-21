@@ -23,7 +23,7 @@ import com.google.gson.Gson;
 @WebServlet("/member/whole/email")
 public class MemberEmailCheckServlet extends HttpServlet {
 
-	String AuthenticationKey = null;
+	private String AuthenticationKey = null;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
