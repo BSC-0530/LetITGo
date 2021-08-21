@@ -35,11 +35,11 @@ public class MainScoutListService {
 		SqlSession session = getSqlSession();
 		
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
-		
+		//이름
 		List<Object> scoutListName = mapper.companySelectAllScout();
-		
+		//기술
 		List<Object> scoutListSkills = mapper.companyScoutSkills();
-		
+		//경력
 		List<Object> scoutCareea = mapper.companyScoutCareea();
 	
 		System.out.println("sadasdasdaskjdhasdka : " + scoutCareea);
@@ -120,16 +120,16 @@ public class MainScoutListService {
 	
 	
 //	스카우트 현황 데이터테이블조회
-	public static List<BrosweHistoryDTO> selectBrowseUsingHistroy() {
+	public List<BrosweHistoryDTO> selectBrowseUsingHistroy(int memNo) {
 		
 		SqlSession session = getSqlSession();
 		
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
 		
-		 List<BrosweHistoryDTO>  selectBrowseUsingHistroy = mapper.selectBrowseUsingHistroy();
+		 List<BrosweHistoryDTO>  selectBrowseUsingHistroy = mapper.selectBrowseUsingHistroy(memNo);
 		 
 		 
-		 System.out.println("ASDKJAHSDKJ" + selectBrowseUsingHistroy);
+//		 System.out.println("ASDKJAHSDKJ" + selectBrowseUsingHistroy);
 		 session.close();
 		
 		return selectBrowseUsingHistroy;
@@ -171,13 +171,13 @@ public class MainScoutListService {
 	}
 	
 	//얕은열람카운트
-	public int selectAllCountDeepOpen() {
+	public int selectAllCountDeepOpen(int memNo) {
 		
 		SqlSession session = getSqlSession();
 		
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
 		
-		int CountNum = mapper.selectAllCountDeepOpen();
+		int CountNum = mapper.selectAllCountDeepOpen(memNo);
 		
 
 		session.close();
@@ -186,14 +186,14 @@ public class MainScoutListService {
 		return CountNum;
 	}
 	//깊은열람카운트
-	public int selectAllCountSimpeOpen() {
+	public int selectAllCountSimpeOpen(int memNo) {
 		
 		
 		SqlSession session = getSqlSession();
 		
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
 		
-		int CountNum = mapper.selectAllCountSimpleOpen();
+		int CountNum = mapper.selectAllCountSimpleOpen(memNo);
 		
 
 		session.close();
@@ -203,12 +203,12 @@ public class MainScoutListService {
 	}
 	
 	//면접제안 카운트
-	public int selectAllScountNum() {
+	public int selectAllScountNum(int memNo) {
 		SqlSession session = getSqlSession();
 		
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
 		
-		int CountNum = mapper.selectAllScountNum();
+		int CountNum = mapper.selectAllScountNum(memNo);
 		
 
 		session.close();

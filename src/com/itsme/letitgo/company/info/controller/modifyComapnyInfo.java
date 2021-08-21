@@ -72,20 +72,18 @@ public class modifyComapnyInfo extends HttpServlet {
 			String coPax = mr.getParameter("coPax");
 			
 			
-			System.out.println("coNo " + coNo);
-			System.out.println("comName " +comName );
-			System.out.println(" ceoName" + ceoName);
-			System.out.println(" coSectors" + coSectors);
-			System.out.println(" coStatus" + coStatus);
-			System.out.println("coAddress " + coAddress);
-			System.out.println("webStie " + webStie);
-			System.out.println(" contents : 나오냐?" + contents);
-			System.out.println(" coPhone : 나오냐?" + coPhone);
-			System.out.println(" coPax : 나오냐?" + coPax);
+//			System.out.println("coNo " + coNo);
+//			System.out.println("comName " +comName );
+//			System.out.println(" ceoName" + ceoName);
+//			System.out.println(" coSectors" + coSectors);
+//			System.out.println(" coStatus" + coStatus);
+//			System.out.println("coAddress " + coAddress);
+//			System.out.println("webStie " + webStie);
+//			System.out.println(" contents : 나오냐?" + contents);
+//			System.out.println(" coPhone : 나오냐?" + coPhone);
+//			System.out.println(" coPax : 나오냐?" + coPax);
 			
 			//변경 요청한 회사추가  정보
-			
-			
 			
 			
 			
@@ -120,16 +118,16 @@ public class modifyComapnyInfo extends HttpServlet {
 			
 			RequestService service = new RequestService();
 			CoMemberAppHistoryDTO comAd = new CoMemberAppHistoryDTO();
-			CoMemberAppHistoryDTO logoFile = new CoMemberAppHistoryDTO();
-			CoMemberAppHistoryDTO representativImage = new CoMemberAppHistoryDTO();
-			CoMemberAppHistoryDTO businessNO = new CoMemberAppHistoryDTO();
+//			CoMemberAppHistoryDTO logoFile = new CoMemberAppHistoryDTO();
+//			CoMemberAppHistoryDTO representativImage = new CoMemberAppHistoryDTO();
+//			CoMemberAppHistoryDTO businessNO = new CoMemberAppHistoryDTO();
 			//로고
-			int result2 = 0;
-			int result3 = 0;
-			int result4 = 0;
-			int resultinfo = 0;
-			int resultinfo2 = 0;
-			int resultinfo3 = 0;
+//			int result2 = 0;
+//			int result3 = 0;
+//			int result4 = 0;
+//			int resultinfo = 0;
+//			int resultinfo2 = 0;
+//			int resultinfo3 = 0;
 			
 			
 			comAd.setCoMemNo(memNo);
@@ -145,39 +143,39 @@ public class modifyComapnyInfo extends HttpServlet {
 			comAd.setCoPax(coPax);
 			
 			int result = service.updateRequestAddInfo(comAd);
-			
-			if(coLogo != null) {
-				
-				logoFile.setCoMemNo(memNo);
-				logoFile.setMemFileName(coLogo);
-				logoFile.setMemFileOrignalName(coLogoOrginal);
-				logoFile.setMemFilePath(coLogoFullPath);
-				
-				result2 = service.insertCoLogoAttachment(logoFile);
-				resultinfo = service.updateRequestAddInfo(comAd);
-			} 
-			if(coRepresentativImage != null) {
-				
-				representativImage.setCoMemNo(memNo);
-				representativImage.setMemFileName(coRepresentativImage);
-				representativImage.setMemFileOrignalName(coRepresentativImageOrginal);
-				representativImage.setMemFilePath(coRepresentativImageFullPath);
-				result3 = service.insertCoRepresentativImageAttachment(representativImage);
-				resultinfo2 = service.updateRequestAddInfo(comAd);
-			} 
-			if(businessRegistration != null) {
-				
-				businessNO.setCoMemNo(memNo);
-				businessNO.setMemFileName(businessRegistration);
-				businessNO.setMemFileOrignalName(businessRegistrationOrginal);
-				businessNO.setMemFilePath(businessRegistrationFullPath);
-				result4 = service.insertBusinessRegistrationAttachment(businessNO);
-				resultinfo3 = service.updateRequestAddInfo(comAd);
-			}
+//이미지 바꾸는거 나중에  안된다..ㅜㅜ	
+//			if(coLogo != null) {
+//				
+//				logoFile.setCoMemNo(memNo);
+//				logoFile.setMemFileName(coLogo);
+//				logoFile.setMemFileOrignalName(coLogoOrginal);
+//				logoFile.setMemFilePath(coLogoFullPath);
+//				
+//				result2 = service.insertCoLogoAttachment(logoFile);
+////				resultinfo = service.updateRequestAddInfo(comAd);
+//			} 
+//			if(coRepresentativImage != null) {
+//				
+//				representativImage.setCoMemNo(memNo);
+//				representativImage.setMemFileName(coRepresentativImage);
+//				representativImage.setMemFileOrignalName(coRepresentativImageOrginal);
+//				representativImage.setMemFilePath(coRepresentativImageFullPath);
+//				result3 = service.insertCoRepresentativImageAttachment(representativImage);
+////				resultinfo2 = service.updateRequestAddInfo(comAd);
+//			} 
+//			if(businessRegistration != null) {
+//				
+//				businessNO.setCoMemNo(memNo);
+//				businessNO.setMemFileName(businessRegistration);
+//				businessNO.setMemFileOrignalName(businessRegistrationOrginal);
+//				businessNO.setMemFilePath(businessRegistrationFullPath);
+//				result4 = service.insertBusinessRegistrationAttachment(businessNO);
+////				resultinfo3 = service.updateRequestAddInfo(comAd);
+//			}
 //			
 			
 			response.setCharacterEncoding("UTF-8");
-			if(result2 > 0 && resultinfo > 0 || result3 > 0 && resultinfo2 > 0 || result4 > 0 && resultinfo3 > 0) {
+			if(result > 0 ) {
 				System.out.println("성공");
 				response.sendRedirect("/let/companyTestServlet");
 			}

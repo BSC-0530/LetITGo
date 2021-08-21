@@ -214,30 +214,21 @@ width: 100px; height: 50px; background-color:transparent;
             <!-- end --> 
                      <button type="submit" class="btn btn-info" style="float: right;" >기업 정보 변경 요청 </button>
 	            </div>
-      	<div
-		class="form-group col-md-6 col-sm-6 col-xs-12 custom_input">
-		<input type="file" name="coLogo" id="coLogo" >
-		<p></p>
-		<p>회사 로고</p>
-		<input type="file" name="coRepresentativImage"id="coRepresentativImage" >
-		<p></p>
-		<p>회사 대표이미지</p>
-		<input type="file" name="businessRegistration"id="businessRegistration" >
-		<p></p>
-		<p>사업자 등록증</p>
-	</div>		
+<!--       	<div -->
+<!-- 		class="form-group col-md-6 col-sm-6 col-xs-12 custom_input"> -->
+<!-- 		<input type="file" name="coLogo" id="coLogo" > -->
+<!-- 		<p></p> -->
+<!-- 		<p>회사 로고</p> -->
+<!-- 		<input type="file" name="coRepresentativImage"id="coRepresentativImage" > -->
+<!-- 		<p></p> -->
+<!-- 		<p>회사 대표이미지</p> -->
+<!-- 		<input type="file" name="businessRegistration"id="businessRegistration" > -->
+<!-- 		<p></p> -->
+<!-- 		<p>사업자 등록증</p> -->
       </form>
- 
-							<div>
-     					  <div class="img_wrap">
-         				  <img id="img" />
-      					 </div>
-							</div>
-
- 							</div>
+	</div>		
+	
         </div>
-    </div>
-
 <script>
 // 		$("#send-file-1").click(function() {
 			
