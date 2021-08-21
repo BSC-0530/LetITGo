@@ -8,6 +8,7 @@ import com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMappe
 
 public class UpdatePostRequestAppService {
 
+	/* 채용공고의 분류를 승인된 공고로 변경 */
 	public int updatePostRequestApp1(int jobPostNo) {
 		
 		SqlSession session = getSqlSession();
@@ -28,7 +29,8 @@ public class UpdatePostRequestAppService {
 		
 		
 	}
-
+	
+	/* 채용공고 승인여부이력 응답구분을 승인으로 변경 */
 	public int updatePostRequestApp2(int jobPostReqNo) {
 		
 		SqlSession session = getSqlSession();

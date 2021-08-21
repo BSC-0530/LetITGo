@@ -191,9 +191,8 @@
 
 										</tr>
 									</thead>
-									<c:forEach var="adminPayment"
-										items="${ requestScope.adminPaymentHistory }">
 										<tbody align="center">
+									<c:forEach var="adminPayment" items="${ requestScope.adminPaymentHistory }">
 											<tr>
 												<td><c:out value="${ adminPayment.payNo }" /></td>
 												<td><c:out value="${ adminPayment.coComName }" /></td>
@@ -202,8 +201,8 @@
 												<td><fmt:formatNumber
 														value="${ adminPayment.payPrice }" pattern="###,###" /></td>
 											</tr>
-										</tbody>
 									</c:forEach>
+										</tbody>
 								</table>
 								<br> <br>
 							</div>

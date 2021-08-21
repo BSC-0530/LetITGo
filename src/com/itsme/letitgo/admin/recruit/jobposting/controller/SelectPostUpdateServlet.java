@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.itsme.letitgo.admin.recruit.jobposting.model.dto.PostInsertRuqeustDTO;
 import com.itsme.letitgo.admin.recruit.jobposting.model.service.SelectPostRequestService;
 
-
+/* 관리자 -> 공고수정요청 */
 @WebServlet("/admin/post/updateRequest/select")
 public class SelectPostUpdateServlet extends HttpServlet {
 	
@@ -20,11 +20,8 @@ public class SelectPostUpdateServlet extends HttpServlet {
 		
 		SelectPostRequestService service = new SelectPostRequestService();
 
+		/* 공고수정요청 리스트 조회 */
 		List<PostInsertRuqeustDTO> postInsertUpdateList = service.selectPostInsertUpdate();
-		
-		for(PostInsertRuqeustDTO pird : postInsertUpdateList) {
-			System.out.println(pird);
-		}
 		
 		String path = "/WEB-INF/views/admin/adminPostUpdateRequest.jsp";
 			
