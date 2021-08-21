@@ -170,73 +170,30 @@
 				<br>
 				<br>
 				<br>
-				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-					<div class="row">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<h1>직무 분야 관리</h1>
-							<div class="jp_listing_tabs_wrapper">
+				
+				<!-- 탈퇴 Y or N 받는 창 -->
+				<form action="${ pageContext.servletContext.contextPath }" 
+								method="post">
+					<label>탈퇴하시겠습니까?</label>
+					<!-- 취소하면 마이페이지로 -->
+					<button type="submit" onclick="href='${ pageContext.servletContext.contextPath }'">취소</button>
+					<!-- 탈퇴하면 로그인 화면으로 -->
+					<button type="submit" onclick="href='${ pageContext.servletContext.contextPath }'">탈퇴</button>
+<!-- 					<input type="submit" name="memPwd" -->
+<%-- 							value="${ testCheckPwd.memPwd }"> <!-- value 안에 받아오는 변수명 --> --%>
+				</form>
+				
+				
+				
+				
 
-								<!-- 이거는 이제 정보뜨는 칸 -->
-								<!-- 데이터 테이블 내역모음 -->
-								<table id="test_check_pwd" class="hover cell-border stripe">
-									<thead>
-										<tr>
-											<td align="center">회원번호</td>
-											<td align="center">회원 아이디</td>
-											<td align="center">탈퇴여부</td>
-										</tr>
-									</thead>
-									<c:forEach var="testCheckPwd"
-										items="${ requestScope.testCheckPwd }">
-
-										<tbody align="center">
-
-											<tr>
-												<td id="memNo"><c:out value="${ testCheckPwd.memNo }" /></td>
-												<td id="memId"><c:out value="${ testCheckPwd.memId }" /></td>
-												<!-- <td><button type="button" disabled>삭제</button></td>  -->
-												<td><button class="btn-info" onClick="memberWithdrawal(this);" value="${ testCheckPwd.memNo }">삭제</button></td>
-												<!-- 위의 것을 실행하려면 div 안에 담아야 하는? --> 
-											</tr>
-										</tbody>
-									</c:forEach>
-
-								</table>
-								<br>
-								<br>
-
-								<div class="job-field-insert-wrapper" onclick="post(this);">
-									<button type="submit">등록하기</button>
-								</div>
-
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- end -->
-				</div>
 			</div>
 		</div>
 	</div>
 
-	<script>
-		$(document).ready(function() {
-			$('#testCheckPwd').DataTable();
-		});
-	</script>
+
 	
-	<script>
-		function post(div) {
-			
-			/* 
-			 == alert()로 이동되는지 확인 ==
-			 alert();  
-			*/
-			
-			 location.href = "${ pageContext.servletContext.contextPath }/jobfield/insert" 
-			
-		}
-	</script>
+	
 	
 	<script type="text/javascript">
 		
@@ -253,30 +210,6 @@
 	
 	</script>
 	
-
-
-
-
-
-
-
-
-
-
-				
-<%-- 				<form action="${ pageContext.servletContext.contextPath }/login/test/check/pwd"  --%>
-<!-- 								method="post"> -->
-<!-- 					<label>비밀번호 입력</label> -->
-<!-- 					<input id='pwd' type='text'> -->
-<!-- 					<button type="submit">전송</button> -->
-<!-- 					<input type="submit" name="memPwd" -->
-<%-- 							value="${ testCheckPwd.memPwd }"> <!-- value 안에 받아오는 변수명 --> --%>
-<!-- 				</form> -->
-				
-				
-<!-- 				<form> -->
-<!--  					 비밀번호 : <input id='pwd' type='password'/> -->
-<!-- 				</form> -->
 				
 </body>
 </html>
