@@ -171,7 +171,7 @@
 										<td><c:out value="${ jobPosting.jobPostEnrollDate }" /></td>								
 										<td><c:out value="${ jobPosting.jobPostDeadline }" /></td>			
 										<td><button onclick="updateJobPosting(this);">수정</button></td>			
-										<td><button>지원자</button></td>
+										<td><button onclick="selectApplicant(this);">지원자</button></td>
 										<c:if test="${ jobPosting.exposureUseCheck eq 'N' }">
 										<td><button type="submit" onclick="req(this);">사용하기</button></td>
 										</c:if>
@@ -204,7 +204,7 @@
 										<td><c:out value="${ jobPosting.jobPostEnrollDate }" /></td>								
 										<td><c:out value="${ jobPosting.jobPostDeadline }" /></td>			
 										<td><button onclick="updateJobPosting(this);">수정</button></td>			
-										<td><button>지원자</button></td>
+										<td><button onclick="selectApplicant(this);">지원자</button></td>
 										<c:if test="${ jobPosting.exposureUseCheck eq 'N' }">
 										<td><button type="submit" onclick="req(this);">사용하기</button></td>
 										</c:if>
@@ -237,7 +237,7 @@
 										<td><c:out value="${ jobPosting.jobPostEnrollDate }" /></td>								
 										<td><c:out value="${ jobPosting.jobPostDeadline }" /></td>			
 										<td><button onclick="updateJobPosting(this);">수정</button></td>			
-										<td><button>지원자</button></td>
+										<td><button onclick="selectApplicant(this);">지원자</button></td>
 										<c:if test="${ jobPosting.exposureUseCheck eq 'N' }">
 										<td><button type="submit" onclick="req(this);">사용하기</button></td>
 										</c:if>
@@ -253,7 +253,6 @@
 						</table>
 						<br>
 						<button onclick="insertJobPosting();" class="btn btn-info" style=" float: right;" >공고 등록</button>
-						
 					</div>
 				</div>
 			</div>
@@ -269,7 +268,6 @@
 	
 	
 	function insertJobPosting() {
-		alert("");
 		
 		location.href = "${ pageContext.servletContext.contextPath }/recruit/insert"
 		
@@ -284,6 +282,16 @@
 		
 		location.href = "${ pageContext.servletContext.contextPath }/recruit/update?jobPostNo=" + jobPostNo
 		
+	}
+	
+	function selectApplicant(button) {
+		
+		let jobPostNo = button.parentNode.parentNode.children[0].innerText;
+		
+		alert(jobPostNo);
+		
+		location.href = "${ pageContext.servletContext.contextPath }/applicant/select?jobPostNo=" + jobPostNo
+
 	}
 	
 	

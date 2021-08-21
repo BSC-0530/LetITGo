@@ -15,12 +15,15 @@
 		<result property="jobNo" column="JOB_NO"/>
 		<result property="exposureUseCheck" column="EXPOSURE_USE_CHECK"/>
 		<result property="jobPostApplying_kinds" column="JOB_POST_APPLYING_KINDS"/>
+		<result property="qualificationRequirements" column="QUALIFICATION_REQUIREMENTS"/>
+		<result property="preferentialMatters" column="PREFERENTIAL_MATTERS"/>
+		<result property="benefitAndWelfare" column="BENEFIT_AND_WELFARE"/>
+		<result property="companyResumeLink" column="COMPANY_RESUME_FORM_LINK"/>
 		
 		<association property="coMemberAddInfoDTO" resultMap="resultCoMemberAddInfo"/>
 		<association property="jobFieldDTO" resultMap="resultJobField"/>
 		<association property="attachmentDTO" resultMap="resultAttachment"/>
 		<association property="jobPostingAppHistoryDTO" resultMap="resultAppHistoty"/>
-<!-- 		<association property="ownFormResumeAttachmentDTO" resultMap="resultAttachment"/> -->
 	</resultMap>
 	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.JpCoMemberAddInfoDTO" id="resultCoMemberAddInfo">
 		<id property="coMemNo" column="CO_MEM_NO"/>
@@ -104,25 +107,36 @@
 		<result property="coComName" column="CO_COM_NAME"/>
 	</resultMap>
 	
-<!-- 	<resultMap type="com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectRequestJobPostingDTO" id="searchJobPostingResultMap"> -->
-<!-- 		<result property="jobNo" column="JOB_NO"/> -->
-<!-- 		<result property="skills" column="SKILLS_NAME"/> -->
-<!-- 		<result property="experience" column="JOB_POST_MIN_EXPERIENCE"/> -->
-<!-- 		<result property="areaList" column="CO_ADDRESS"/> -->
-<!-- 	</resultMap> -->
-	
 	<!-- 페이징을 위한 count -->
-	<select id="selectJpTotalCount" resultType="_int">
-		SELECT /* com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper#selectJpTotalCount()*/
-			   COUNT(*)
-		  FROM TBL_JOB_POSTING JP
+	<select id="selectJpTotalCount" parameterType="com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectRequestJobPostingDTO" resultType="_int">
+		SELECT /* com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper#selectJpTotalCount() */
+  			   COUNT(DISTINCT JP.JOB_POST_NO)
+               FROM TBL_JOB_POSTING JP
+               JOIN TBL_CO_MEMBER_ADD_INFO AI ON (JP.CO_MEM_NO = AI.CO_MEM_NO)
+               JOIN TBL_JOB_FIELD JF ON (JP.JOB_NO = JF.JOB_NO)
+               JOIN TBL_JOB_POSTING_REQ_SKILLS RS ON (JP.JOB_POST_NO = RS.JOB_POST_NO)
+               JOIN TBL_SKILLS S ON (S.SKILLS_NO = RS.SKILLS_NO)
 		 WHERE JP.JOB_POST_KINDS = '승인된공고'
-	     ORDER BY JP.JOB_POST_NO 
+	     <if test="skills != null">
+		       AND LOWER(S.SKILLS_NAME) LIKE '%' || #{ skills } || '%'
+		 </if>
+	 	 <if test="jobNo > 0">
+	 	   AND JP.JOB_NO = #{ jobNo }
+		 </if>
+		 <if test="experience > 0">
+		   AND #{ experience } BETWEEN JP.JOB_POST_MIN_EXPERIENCE AND JP.JOB_POST_MAX_EXPERIENCE
+		 </if>
+		 <if test="areaList != null and areaList.size() != 0">
+		 <foreach collection="areaList" item="areaList" open="AND(" separator="OR " close=")">
+		       AI.CO_ADDRESS LIKE '%' || #{ areaList } || '%'
+		 </foreach>
+		 </if>
+	     ORDER BY JP.JOB_POST_NO
 	</select>
 	
 	<!-- 공고 전체 조회/ 조건조회 -->
 	<select id="selectJobPosting" resultMap="resultJobPosting" parameterType="com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectRequestJobPostingDTO">
-		SELECT
+		SELECT /* com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper#selectJobPosting() */
 	     	   A.RNUM
   	   		 , A.JOB_POST_NO
   	   		 , A.JOB_POST_TITLE
@@ -188,9 +202,9 @@
 					    </if>
 		                 ORDER BY JP.JOB_POST_NO DESC
                   	   ) B
-                  <![CDATA[
-                  WHERE ROWNUM <= #{ selectCriteria.endRow } 
-                  ]]> 
+                   <![CDATA[
+                   WHERE ROWNUM <= #{ selectCriteria.endRow } 
+                   ]]> 
 		  	   ) A
 		<![CDATA[
  		  WHERE A.RNUM >= #{ selectCriteria.startRow }
@@ -199,7 +213,7 @@
 	</select>
 	
 	<select id="selectJpSkills" resultMap="resultJpSkills">
-		SELECT
+		SELECT /* com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper#selectJpSkills() */
 			   RS.JOB_POST_NO
 			 , S.SKILLS_NAME
 		  FROM TBL_JOB_POSTING_REQ_SKILLS RS
@@ -207,21 +221,22 @@
 	</select>
 	<!-- 공고 조회시 직무 선택을 위해 조회 -->
 	<select id="selectJobNames" resultMap="resultJobField">
-		SELECT
+		SELECT /* com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper#selectJobNames() */
 			   JF.JOB_NO
 			 , JF.JOB_NAME
 		  FROM TBL_JOB_FIELD JF
 	</select>
 	<!-- 공고 조회 시 스킬 선택을 위해 조회 -->
 	<select id="selectSkills" resultMap="resultJpSkills">
-		SELECT
+		SELECT /* com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper#selectSkills(); */
 			   S.SKILLS_NO
 			 , S.SKILLS_NAME
 		  FROM TBL_SKILLS S
 	</select>
 	
+	<!-- 공고 상세조회 -->
 	<select id="selectDetailedJobPosting" parameterType="_int" resultMap="resultJobPosting">
-		SELECT
+		SELECT /* com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper#selectDetailedJobPosting(); */
 		       JP.CO_MEM_NO
 		     , JP.JOB_POST_NO
 		     , JP.JOB_POST_TITLE
@@ -230,6 +245,9 @@
 		     , JP.JOB_POST_CONTENTS
 		     , JP.JOB_POST_ENROLL_DATE
 		     , JP.JOB_POST_DEADLINE
+		     , JP.QUALIFICATION_REQUIREMENTS
+		     , JP.PREFERENTIAL_MATTERS
+		     , JP.BENEFIT_AND_WELFARE
 		     , AI.CO_ADDRESS
 		     , AI.CO_COM_NAME
 		     , AI.CO_WEBSITE
@@ -241,7 +259,7 @@
 	</select>
 	
 	<select id="selectDeteildeJpSkills" parameterType="_int" resultMap="resultJpSkills">
-		SELECT
+		SELECT /* com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper#selectDeteildeJpSkills(); */
 			   RS.JOB_POST_NO
 			 , S.SKILLS_NAME
 		  FROM TBL_JOB_POSTING_REQ_SKILLS RS
@@ -251,7 +269,7 @@
 	
 	<!-- 공고 상세보기 들어갈때 지원완료했는지 여부를 확인하기 위한 mapper, 지원완료로 바꿔야한다. -->
 	<select id="selectApplyingHistory" parameterType="com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectApplyingYnDTO" resultMap="resultApplyngYn">
-		SELECT
+		SELECT /* com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper#selectApplyingHistory(); */
 		       AH.RESUME_NO
 		     , AH.JOB_POST_NO
 		     , AH.JOB_POST_APPLYING_STATUS
@@ -265,7 +283,7 @@
 	
 	<!-- 공고 지원 선택 시 회원이 보유한 이력서를 보여주기 위한 mapper -->
 	<select id="selectResumeForApplying" parameterType="_int" resultMap="resultResumeForApplying">
-		SELECT
+		SELECT /* com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper#selectResumeForApplying(); */
 			   R.IN_MEM_NO
 			 , R.RESUME_NO
 			 , R.RESUME_WRITE_DATE
@@ -277,7 +295,7 @@
 	
 	<!-- 북마크 등록 mapper -->
 	<insert id="insertBookmark" parameterType="_int">
-		INSERT
+		INSERT /* com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper#insertBookmark(); */
 		  INTO TBL_BOOKMARK B
 		(
 		  B.IN_MEM_NO, B.JOB_POST_NO
@@ -290,7 +308,7 @@
 	
 	<!-- 북마크 리스트 조회 -->
 	<select id="selectBookmark" parameterType="_int" resultMap="bookmarkResultMap">
-		SELECT
+		SELECT /* com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper#selectBookmark(); */
 		       B.IN_MEM_NO
 		     , B.JOB_POST_NO
              , C.CO_COM_NAME
@@ -303,7 +321,7 @@
 	
 	<!-- 북마크 삭제 -->
 	<delete id="deleteBookmark" parameterType="com.itsme.letitgo.personal.recruit.jobposting.model.dto.BookmarkDTO">
-		DELETE
+		DELETE /* com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper#deleteBookmark(); */
 		  FROM TBL_BOOKMARK
 		 WHERE IN_MEM_NO = #{ inMemNo }
 		   AND JOB_POST_NO = #{ jobPostNo }

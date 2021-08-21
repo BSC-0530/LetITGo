@@ -140,6 +140,8 @@
     </script>
 </head>
 <body>
+
+	<c:set var="jobPostInfo" value="${ requestScope.jobPostInfo }"/>
 	<div class="jp_tittle_main_wrapper">
             <div class="jp_tittle_img_overlay"></div>
             <div class="container">
@@ -174,7 +176,7 @@
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">
                                 <div class="jp_adp_form_wrapper" >
                                     <label id="titleFont"> 공고 제목</label>
-                                    <input id="jobPostTitle" type="text" placeholder="채용공고 제목을 입력해주세요.*" name="jobPostTitle" maxlength="30" min="1" required value="${ requestScope.jobPostInfo.jobPostTitle }">
+                                    <input id="jobPostTitle" type="text" placeholder="채용공고 제목을 입력해주세요.*" name="jobPostTitle" maxlength="30" min="1" required value="${ jobPostInfo.jobPostTitle }">
                                     
                                 </div>
                             </div>
@@ -239,19 +241,54 @@
                             </div>
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">
                                 <div class="jp_adp_textarea_main_wrapper">
-                                    <label id="titleFont"> 공고 내용</label>
-                                    <textarea rows="7" placeholder="공고 내용을 입력하세요*" name="jobPostContents" required maxlength="2000" ><c:out value="${ requestScope.jobPostInfo.jobPostContents }"></c:out></textarea>
+                                    <label id="titleFont">주요 업무</label>
+                                    <textarea rows="7" placeholder="주요 업무를 입력하세요*" name="jobPostContents" required maxlength=300><c:out value="value=${ jobPostInfo.jobPostContents }"/></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">
+                                <div class="jp_adp_textarea_main_wrapper">
+                                    <label id="titleFont">자격 요건</label>
+                                    <textarea rows="7" placeholder="자격 요건를 입력하세요*" name="qualificationRequirements" required maxlength=300>
+                                    <c:if test="${ jobPostInfo.qualificationRequirements ne null}">
+                                    <c:out value="${ jobPostInfo.qualificationRequirements }"/>
+                                    </c:if>
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">
+                                <div class="jp_adp_textarea_main_wrapper">
+                                    <label id="titleFont">우대사항</label>
+                                    <textarea rows="7" placeholder="우대사항을 입력하세요*" name="preferentialMatters" required maxlength=300>
+                                    <c:if test="${ jobPostInfo.preferentialMatters ne null }">
+                                    <c:out value="${ jobPostInfo.preferentialMatters }"/>
+                                    </c:if>
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">
+                                <div class="jp_adp_textarea_main_wrapper">
+                                    <label id="titleFont">혜택 및 복지</label>
+                                    <textarea rows="7" placeholder="혜택 및 복지를 입력하세요*" name="benefitAndWelfare" required maxlength=300>
+                                    <c:if test="${ jobPostInfo.benefitAndWelfare ne null}">
+                                    <c:out value="${ jobPostInfo.benefitAndWelfare }"/>
+                                    </c:if>
+                                    </textarea>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
                                 <div class="jp_adp_form_wrapper">
-                                    <label id="titleFont">마감일 *</label> <input type="date" name="jobPostDeadLine" required value="${ requestScope.jobPostInfo.jobPostDeadline }"> 
+                                    <label id="titleFont">마감일 *</label> <input type="date" name="jobPostDeadLine" value="${ jobPostInfo.jobPostDeadline }" required> 
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">
                                 <div class="jp_adp_form_wrapper" >
                                     <label id="titleFont">자사이력서</label>
-                                    <input id="resumeForm" type="text" placeholder="자사이력서 다운 가능 링크" name="jobPostTitle" maxlength="30" min="1">
+                                    <c:if test="${ jobPostInfo.companyResumeLink ne null }">
+                                    <input id="resumeForm" type="text" placeholder="자사이력서 다운 가능 링크" name="jobPostTitle" value="${ jobPostInfo.companyResumeLink }" maxlength="30" min="1">
+                                    </c:if>
+                                    <c:if test="${ jobPostInfo.companyResumeLink eq null }">
+                                    <input id="resumeForm" type="text" placeholder="자사이력서 다운 가능 링크" name="jobPostTitle" value="" maxlength="30" min="1">
+                                    </c:if>
                                 </div>
                             </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

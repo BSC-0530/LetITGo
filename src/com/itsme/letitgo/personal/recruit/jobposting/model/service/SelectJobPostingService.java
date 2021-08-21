@@ -184,13 +184,13 @@ public class SelectJobPostingService {
 		
 	}
 	// 페이징을 위해 게시글 카운트
-	public int selectJpTotalCount(Map<String, String> searchMap) {
+	public int selectJpTotalCount(SelectRequestJobPostingDTO dto) {
 		
 		SqlSession session = getSqlSession();
 		
 		SelectJobPostingMapper mapper = session.getMapper(SelectJobPostingMapper.class);
 		
-		int totlaCount = mapper.selectJpTotalCount(searchMap);
+		int totlaCount = mapper.selectJpTotalCount(dto);
 		
 		session.close();
 		return totlaCount;

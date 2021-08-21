@@ -12,11 +12,15 @@ public class SelectJobPostingDTO implements java.io.Serializable {
 	private String jobPostMaxExperience;
 	private Date jobPostEnrollDate;
 	private Date jobPostDeadline;
-	private String jobPostContents;
 	private String jobPostKinds;
 	private int jobNo;
 	private String exposureUseCheck;
 	private String jobPostApplying_kinds;
+	private String jobPostContents;				// 주요업무
+	private String qualificationRequirements; 	// 자격요건
+	private String preferentialMatters; 		// 우대사항
+	private String benefitAndWelfare;			// 혜택 및 복지
+	private String companyResumeLink;			// 자사 이력서 양식 링크
 	private JpCoMemberAddInfoDTO coMemberAddInfoDTO;
 	private JpJobFieldDTO jobFieldDTO;
 	private JpAttachmentDTO attachmentDTO;
@@ -27,11 +31,12 @@ public class SelectJobPostingDTO implements java.io.Serializable {
 	public SelectJobPostingDTO() {}
 
 	public SelectJobPostingDTO(int jobPostNo, int coMemNo, String jobPostTitle, String jobPostMinExperience,
-			String jobPostMaxExperience, Date jobPostEnrollDate, Date jobPostDeadline, String jobPostContents,
-			String jobPostKinds, int jobNo, String exposureUseCheck, String jobPostApplying_kinds,
-			JpCoMemberAddInfoDTO coMemberAddInfoDTO, JpJobFieldDTO jobFieldDTO, JpAttachmentDTO attachmentDTO,
-			JpJobPostingAppHistoryDTO jobPostingAppHistoryDTO, List<JpSkillsDTO> reqSkillsList,
-			JpOwnFormResumeAttachmentDTO ownFormResumeAttachmentDTO) {
+			String jobPostMaxExperience, Date jobPostEnrollDate, Date jobPostDeadline, String jobPostKinds, int jobNo,
+			String exposureUseCheck, String jobPostApplying_kinds, String jobPostContents,
+			String qualificationRequirements, String preferentialMatters, String benefitAndWelfare,
+			String companyResumeLink, JpCoMemberAddInfoDTO coMemberAddInfoDTO, JpJobFieldDTO jobFieldDTO,
+			JpAttachmentDTO attachmentDTO, JpJobPostingAppHistoryDTO jobPostingAppHistoryDTO,
+			List<JpSkillsDTO> reqSkillsList, JpOwnFormResumeAttachmentDTO ownFormResumeAttachmentDTO) {
 		super();
 		this.jobPostNo = jobPostNo;
 		this.coMemNo = coMemNo;
@@ -40,11 +45,15 @@ public class SelectJobPostingDTO implements java.io.Serializable {
 		this.jobPostMaxExperience = jobPostMaxExperience;
 		this.jobPostEnrollDate = jobPostEnrollDate;
 		this.jobPostDeadline = jobPostDeadline;
-		this.jobPostContents = jobPostContents;
 		this.jobPostKinds = jobPostKinds;
 		this.jobNo = jobNo;
 		this.exposureUseCheck = exposureUseCheck;
 		this.jobPostApplying_kinds = jobPostApplying_kinds;
+		this.jobPostContents = jobPostContents;
+		this.qualificationRequirements = qualificationRequirements;
+		this.preferentialMatters = preferentialMatters;
+		this.benefitAndWelfare = benefitAndWelfare;
+		this.companyResumeLink = companyResumeLink;
 		this.coMemberAddInfoDTO = coMemberAddInfoDTO;
 		this.jobFieldDTO = jobFieldDTO;
 		this.attachmentDTO = attachmentDTO;
@@ -109,14 +118,6 @@ public class SelectJobPostingDTO implements java.io.Serializable {
 		this.jobPostDeadline = jobPostDeadline;
 	}
 
-	public String getJobPostContents() {
-		return jobPostContents;
-	}
-
-	public void setJobPostContents(String jobPostContents) {
-		this.jobPostContents = jobPostContents;
-	}
-
 	public String getJobPostKinds() {
 		return jobPostKinds;
 	}
@@ -147,6 +148,46 @@ public class SelectJobPostingDTO implements java.io.Serializable {
 
 	public void setJobPostApplying_kinds(String jobPostApplying_kinds) {
 		this.jobPostApplying_kinds = jobPostApplying_kinds;
+	}
+
+	public String getJobPostContents() {
+		return jobPostContents;
+	}
+
+	public void setJobPostContents(String jobPostContents) {
+		this.jobPostContents = jobPostContents;
+	}
+
+	public String getQualificationRequirements() {
+		return qualificationRequirements;
+	}
+
+	public void setQualificationRequirements(String qualificationRequirements) {
+		this.qualificationRequirements = qualificationRequirements;
+	}
+
+	public String getPreferentialMatters() {
+		return preferentialMatters;
+	}
+
+	public void setPreferentialMatters(String preferentialMatters) {
+		this.preferentialMatters = preferentialMatters;
+	}
+
+	public String getBenefitAndWelfare() {
+		return benefitAndWelfare;
+	}
+
+	public void setBenefitAndWelfare(String benefitAndWelfare) {
+		this.benefitAndWelfare = benefitAndWelfare;
+	}
+
+	public String getCompanyResumeLink() {
+		return companyResumeLink;
+	}
+
+	public void setCompanyResumeLink(String companyResumeLink) {
+		this.companyResumeLink = companyResumeLink;
 	}
 
 	public JpCoMemberAddInfoDTO getCoMemberAddInfoDTO() {
@@ -202,13 +243,16 @@ public class SelectJobPostingDTO implements java.io.Serializable {
 		return "SelectJobPostingDTO [jobPostNo=" + jobPostNo + ", coMemNo=" + coMemNo + ", jobPostTitle=" + jobPostTitle
 				+ ", jobPostMinExperience=" + jobPostMinExperience + ", jobPostMaxExperience=" + jobPostMaxExperience
 				+ ", jobPostEnrollDate=" + jobPostEnrollDate + ", jobPostDeadline=" + jobPostDeadline
-				+ ", jobPostContents=" + jobPostContents + ", jobPostKinds=" + jobPostKinds + ", jobNo=" + jobNo
-				+ ", exposureUseCheck=" + exposureUseCheck + ", jobPostApplying_kinds=" + jobPostApplying_kinds
-				+ ", coMemberAddInfoDTO=" + coMemberAddInfoDTO + ", jobFieldDTO=" + jobFieldDTO + ", attachmentDTO="
-				+ attachmentDTO + ", jobPostingAppHistoryDTO=" + jobPostingAppHistoryDTO + ", reqSkillsList="
-				+ reqSkillsList + ", ownFormResumeAttachmentDTO=" + ownFormResumeAttachmentDTO + "]";
+				+ ", jobPostKinds=" + jobPostKinds + ", jobNo=" + jobNo + ", exposureUseCheck=" + exposureUseCheck
+				+ ", jobPostApplying_kinds=" + jobPostApplying_kinds + ", jobPostContents=" + jobPostContents
+				+ ", qualificationRequirements=" + qualificationRequirements + ", preferentialMatters="
+				+ preferentialMatters + ", benefitAndWelfare=" + benefitAndWelfare + ", companyResumeLink="
+				+ companyResumeLink + ", coMemberAddInfoDTO=" + coMemberAddInfoDTO + ", jobFieldDTO=" + jobFieldDTO
+				+ ", attachmentDTO=" + attachmentDTO + ", jobPostingAppHistoryDTO=" + jobPostingAppHistoryDTO
+				+ ", reqSkillsList=" + reqSkillsList + ", ownFormResumeAttachmentDTO=" + ownFormResumeAttachmentDTO
+				+ "]";
 	}
-	
+
 
 
 	

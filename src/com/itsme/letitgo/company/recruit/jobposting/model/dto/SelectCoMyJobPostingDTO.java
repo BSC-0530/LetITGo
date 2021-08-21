@@ -7,30 +7,39 @@ public class SelectCoMyJobPostingDTO {
 	private int coMemNo;
 	private int jobPostNo;
 	private String jobPostTitle;
-	private String jobPostContents;
 	private String jobPostMinExperience;
 	private String jobPostMaxExperience;
 	private java.sql.Date jobPostEnrollDate;
 	private java.sql.Date jobPostDeadline;
 	private String jobPostKinds;
 	private String exposureUseCheck;
+	private String jobPostContents;				// 주요업무
+	private String qualificationRequirements; 	// 자격요건
+	private String preferentialMatters; 		// 우대사항
+	private String benefitAndWelfare;			// 혜택 및 복지
+	private String companyResumeLink;			// 자사 이력서 양식 링크
 	
 	public SelectCoMyJobPostingDTO() {}
 
-	public SelectCoMyJobPostingDTO(int coMemNo, int jobPostNo, String jobPostTitle, String jobPostContents,
-			String jobPostMinExperience, String jobPostMaxExperience, Date jobPostEnrollDate, Date jobPostDeadline,
-			String jobPostKinds, String exposureUseCheck) {
+	public SelectCoMyJobPostingDTO(int coMemNo, int jobPostNo, String jobPostTitle, String jobPostMinExperience,
+			String jobPostMaxExperience, Date jobPostEnrollDate, Date jobPostDeadline, String jobPostKinds,
+			String exposureUseCheck, String jobPostContents, String qualificationRequirements,
+			String preferentialMatters, String benefitAndWelfare, String companyResumeLink) {
 		super();
 		this.coMemNo = coMemNo;
 		this.jobPostNo = jobPostNo;
 		this.jobPostTitle = jobPostTitle;
-		this.jobPostContents = jobPostContents;
 		this.jobPostMinExperience = jobPostMinExperience;
 		this.jobPostMaxExperience = jobPostMaxExperience;
 		this.jobPostEnrollDate = jobPostEnrollDate;
 		this.jobPostDeadline = jobPostDeadline;
 		this.jobPostKinds = jobPostKinds;
 		this.exposureUseCheck = exposureUseCheck;
+		this.jobPostContents = jobPostContents;
+		this.qualificationRequirements = qualificationRequirements;
+		this.preferentialMatters = preferentialMatters;
+		this.benefitAndWelfare = benefitAndWelfare;
+		this.companyResumeLink = companyResumeLink;
 	}
 
 	public int getCoMemNo() {
@@ -55,14 +64,6 @@ public class SelectCoMyJobPostingDTO {
 
 	public void setJobPostTitle(String jobPostTitle) {
 		this.jobPostTitle = jobPostTitle;
-	}
-
-	public String getJobPostContents() {
-		return jobPostContents;
-	}
-
-	public void setJobPostContents(String jobPostContents) {
-		this.jobPostContents = jobPostContents;
 	}
 
 	public String getJobPostMinExperience() {
@@ -113,16 +114,57 @@ public class SelectCoMyJobPostingDTO {
 		this.exposureUseCheck = exposureUseCheck;
 	}
 
+	public String getJobPostContents() {
+		return jobPostContents;
+	}
+
+	public void setJobPostContents(String jobPostContents) {
+		this.jobPostContents = jobPostContents;
+	}
+
+	public String getQualificationRequirements() {
+		return qualificationRequirements;
+	}
+
+	public void setQualificationRequirements(String qualificationRequirements) {
+		this.qualificationRequirements = qualificationRequirements;
+	}
+
+	public String getPreferentialMatters() {
+		return preferentialMatters;
+	}
+
+	public void setPreferentialMatters(String preferentialMatters) {
+		this.preferentialMatters = preferentialMatters;
+	}
+
+	public String getBenefitAndWelfare() {
+		return benefitAndWelfare;
+	}
+
+	public void setBenefitAndWelfare(String benefitAndWelfare) {
+		this.benefitAndWelfare = benefitAndWelfare;
+	}
+
+	public String getCompanyResumeLink() {
+		return companyResumeLink;
+	}
+
+	public void setCompanyResumeLink(String companyResumeLink) {
+		this.companyResumeLink = companyResumeLink;
+	}
+
 	@Override
 	public String toString() {
 		return "SelectCoMyJobPostingDTO [coMemNo=" + coMemNo + ", jobPostNo=" + jobPostNo + ", jobPostTitle="
-				+ jobPostTitle + ", jobPostContents=" + jobPostContents + ", jobPostMinExperience="
-				+ jobPostMinExperience + ", jobPostMaxExperience=" + jobPostMaxExperience + ", jobPostEnrollDate="
-				+ jobPostEnrollDate + ", jobPostDeadline=" + jobPostDeadline + ", jobPostKinds=" + jobPostKinds
-				+ ", exposureUseCheck=" + exposureUseCheck + "]";
+				+ jobPostTitle + ", jobPostMinExperience=" + jobPostMinExperience + ", jobPostMaxExperience="
+				+ jobPostMaxExperience + ", jobPostEnrollDate=" + jobPostEnrollDate + ", jobPostDeadline="
+				+ jobPostDeadline + ", jobPostKinds=" + jobPostKinds + ", exposureUseCheck=" + exposureUseCheck
+				+ ", jobPostContents=" + jobPostContents + ", qualificationRequirements=" + qualificationRequirements
+				+ ", preferentialMatters=" + preferentialMatters + ", benefitAndWelfare=" + benefitAndWelfare
+				+ ", companyResumeLink=" + companyResumeLink + "]";
 	}
 
 
-	
 	
 }

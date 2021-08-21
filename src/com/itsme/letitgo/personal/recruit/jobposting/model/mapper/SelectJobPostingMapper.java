@@ -41,7 +41,7 @@ public interface SelectJobPostingMapper {
 	int deleteBookmark(BookmarkDTO deleteBm);
 
 
-	int selectJpTotalCount(Map<String, String> searchMap);
+	int selectJpTotalCount(SelectRequestJobPostingDTO dto);
 
 
 

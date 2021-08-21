@@ -11,6 +11,11 @@
 		<result property="jobPostKinds" column="JOB_POST_KINDS"/>
 		<result property="exposureUseCheck" column="EXPOSURE_USE_CHECK"/>
 		<result property="jobPostContents" column="JOB_POST_CONTENTS"/>
+		<result property="qualificationRequirements" column="QUALIFICATION_REQUIREMENTS"/>
+		<result property="preferentialMatters" column="PREFERENTIAL_MATTERS"/>
+		<result property="benefitAndWelfare" column="BENEFIT_AND_WELFARE"/>
+		<result property="companyResumeLink" column="COMPANY_RESUME_FORM_LINK"/>
+		
 	</resultMap>
 	
 	<resultMap type="com.itsme.letitgo.company.recruit.jobposting.model.dto.JpJobFieldDTO" id="resultJobField">
@@ -134,6 +139,20 @@
 		, JP.JOB_POST_CONTENTS
 		, JP.JOB_POST_MIN_EXPERIENCE
 		, JP.JOB_POST_MAX_EXPERIENCE
+		<if test="qualificationRequirements != null">
+		, JP.QUALIFICATION_REQUIREMENTS
+		</if>
+		<if test="preferentialMatters != null">
+		, JP.PREFERENTIAL_MATTERS
+		</if>
+		<if test="benefitAndWelfare != null">
+		, JP.BENEFIT_AND_WELFARE
+		</if>
+		<if test="companyResumeLink != null">
+		, JP.COMPANY_RESUME_FORM_LINK
+		</if>
+		
+		
 		)
 		VALUES
 		(
@@ -145,6 +164,18 @@
 		, #{ jobPostContents }
 		, #{ jobPostMinExperience }
 		, #{ jobPostMaxExperience }
+		<if test="qualificationRequirements != null">
+		, #{ qualificationRequirements }
+		</if>
+		<if test="preferentialMatters != null">
+		, #{ preferentialMatters }
+		</if>
+		<if test="benefitAndWelfare != null">
+		, #{ benefitAndWelfare }
+		</if>
+		<if test="companyResumeLink != null">
+		, #{ companyResumeLink }
+		</if>
 		
 		)
 		<selectKey keyColumn="JOB_POST_NO" keyProperty="jobPostNo" resultType="_int" order="AFTER">
@@ -199,7 +230,11 @@
 		  	 , JP.JOB_POST_CONTENTS
 		  	 , JP.JOB_POST_KINDS
 		  	 , JP.JOB_NO
-		  	 , JOB_POST_ENROLL_DATE
+		  	 , JP.JOB_POST_ENROLL_DATE
+		  	 , JP.QUALIFICATION_REQUIREMENTS
+		  	 , JP.PREFERENTIAL_MATTERS
+		  	 , JP.BENEFIT_AND_WELFARE
+		  	 , JP.COMPANY_RESUME_FORM_LINK
 		  FROM TBL_JOB_POSTING JP
 		 WHERE JP.JOB_POST_NO = #{ jobPostNo }
 	</select>

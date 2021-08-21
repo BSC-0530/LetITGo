@@ -7,13 +7,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=78b48235e398b3e2421dd3b9095893d6&libraries=services"></script>
-
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=78b48235e398b3e2421dd3b9095893d6&libraries=services"></script>
 </head>
 <body>
 
+	<c:set var="jobPosting" value="${ requestScope.detailedJobPosting }"></c:set>
 	<div class="jp_tittle_main_wrapper">
 		<div class="jp_tittle_img_overlay"></div>
 		<div class="container">
@@ -27,7 +27,7 @@
 							<div class="jp_tittle_breadcrumb_wrapper">
 								<ul>
 									<li><a href="#">Home</a> <i class="fa fa-angle-right"></i></li>
-									<li><a href="#">채용공고</a> <i class="fa fa-angle-right"></i></li>
+									<li><a href="${ pageContext.servletContext.contextPath }/member/allJobPosting/select">채용공고</a> <i class="fa fa-angle-right"></i></li>
 									<li>상세공고</li>
 								</ul>
 							</div>
@@ -37,11 +37,6 @@
 			</div>
 		</div>
 	</div>
-	
-	
-
-
-	<!-- jp listing Single cont Wrapper Start -->
 	<div class="jp_listing_single_main_wrapper">
         <div class="container">
             <div class="row">
@@ -54,17 +49,48 @@
                         </div>
                         
                         <div class="jp_job_des">
-                            <h2><c:out value="The content of Job Posting"/></h2>
-                            <p><c:out value="${ requestScope.detailedJobPosting.jobPostContents }"/></p>
-                            <ul>
-                            	<c:if test="${ requestScope.detailedJobPosting.coMemberAddInfoDTO.coWebsite ne null }">
-                                <li><i class="fa fa-globe"></i>&nbsp;&nbsp; <a href="#"><c:out value="${ requestScope.detailedJobPosting.coMemberAddInfoDTO.coWebsite }"></c:out></a></li>
+                            <h2><c:out value="주요업무"/></h2>
+                            <p>
+                            <c:if test="${ jobPosting.jobPostContents ne null}">
+                            <c:out value="${ jobPosting.jobPostContents }"/>
+                            </c:if>
+                            </p>
+                        </div>
+                        <div class="jp_job_des">
+                        <h2><c:out value="자격요건"/></h2>
+                            <p>
+                            <c:if test="${ jobPosting.qualificationRequirements }">
+                            <c:out value="${ jobPosting.qualificationRequirements }"/>
+                            </c:if>
+                            </p>
+                        </div>
+                        <div class="jp_job_des">
+                            <h2><c:out value="우대사항"/></h2>
+                            <p>
+                            <c:if test="${ jobPosting.preferentialMatters }">
+                            <c:out value="${ jobPosting.preferentialMatters }"/>
+                            </c:if>
+                            </p>
+                        </div>
+                        <div class="jp_job_des">
+                            <h2><c:out value="혜택 및 복지"/></h2>
+                            <p>
+                            <c:if test="${ jobPosting.benefitAndWelfare }">
+                            <c:out value="${ jobPosting.benefitAndWelfare }"/>
+                            </c:if>
+                            </p>
+                        </div>
+                        <div class="jp_job_des">
+                            <ul><li>website</li>
+                            	<c:if test="${ jobPosting.coMemberAddInfoDTO.coWebsite ne null }">
+                                <li><i class="fa fa-globe"></i>&nbsp;&nbsp; <a href="${ jobPosting.coMemberAddInfoDTO.coWebsite }"><c:out value="${ jobPosting.coMemberAddInfoDTO.coWebsite }"></c:out></a></li>
                                 </c:if>
-                                <c:if test="${ requestScope.detailedJobPosting.coMemberAddInfoDTO.coWebsite eq null }">
+                                <c:if test="${ jobPosting.coMemberAddInfoDTO.coWebsite eq null }">
                                 <li><i class="fa fa-globe"></i>&nbsp;&nbsp; <c:out value="등록된 웹사이트 주소가 없습니다."></c:out></li>
                                 </c:if>
-                                <li><i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp; <a href="#">Download Info</a></li>
-
+                                <c:if test="${ jobPosting.companyResumeLink ne null }">
+                                <li><i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp; <a href="${ jobPosting.companyResumeLink }">자사이력서 다운로드 링크</a></li>
+                                </c:if>
                             </ul>
                         </div>
                         <div class="jp_job_map">
@@ -87,11 +113,11 @@
                                 </div>
                                 <div class="jp_job_listing_single_post_right_cont">
                                     <div class="jp_job_listing_single_post_right_cont_wrapper">
-                                        <label style="font-size:20px;"><c:out value="${ requestScope.detailedJobPosting.jobPostTitle }"/></label>
+                                        <label style="font-size:20px;"><c:out value="${ jobPosting.jobPostTitle }"/></label>
                                         <br>
                                         <p  style="cursor:pointer; font-size: 20px;" onclick="aboutCompany(this);"><c:out value="${ requestScope.detailedJobPosting.coMemberAddInfoDTO.coComName }"/></p>
  										<br>
- 										<input type="hidden" name=""id="coMemNo" value="${ requestScope.detailedJobPosting.coMemNo }">
+ 										<input type="hidden" name=""id="coMemNo" value="${ jobPosting.coMemNo }">
                                     </div>
                                 </div>
                                 <div class="jp_job_post_right_overview_btn_wrapper">
@@ -141,7 +167,7 @@
                                         <div class="jp_listing_list_icon_cont_wrapper">
                                             <ul>
                                                 <li>직무: </li>
-                                                <li><c:out value="${ requestScope.detailedJobPosting.jobFieldDTO.jobName }"/></li>
+                                                <li><c:out value="${ jobPosting.jobFieldDTO.jobName }"/></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -152,8 +178,8 @@
                                         <div class="jp_listing_list_icon_cont_wrapper">
                                             <ul>
                                                 <li>Experience:</li>
-												<c:set var="minExp" value="${ requestScope.detailedJobPosting.jobPostMinExperience }"></c:set>
-												<c:set var="maxExp" value="${ requestScope.detailedJobPosting.jobPostMaxExperience }"></c:set>
+												<c:set var="minExp" value="${ jobPosting.jobPostMinExperience }"></c:set>
+												<c:set var="maxExp" value="${ jobPosting.jobPostMaxExperience }"></c:set>
 												<c:choose>
 													<c:when test="${ minExp ne maxExp }">
 														<li><c:out value="${ minExp } ~ ${ maxEmp }"/></li>
@@ -178,7 +204,7 @@
                                         <div class="jp_listing_list_icon_cont_wrapper">
                                             <ul>
                                                 <li>공고 마감일: </li>
-                                                <li><c:out value="${ requestScope.detailedJobPosting.jobPostDeadline }"/></li>
+                                                <li><c:out value="${ jobPosting.jobPostDeadline }"/></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -199,7 +225,6 @@
 	                                            <li><input type="text" id="resumeNo" value="${ requestScope.applyingResult.resumeNo }" readonly></li>
                                             </ul>
                                         </c:if>
-                                        
                                         </div>
                                     </div>
                                 </div>
@@ -272,7 +297,7 @@
 			var answer;
 
 			// confirm창으로 확인 후  확인시에 경로 이동
-			answer = confirm('공고에 취소 하시겠습니까? \n (공고에 지원 후 개별적으로 기업에서 개별적으로 연락이 갑니다.)');
+			answer = confirm('공고에 취소 하시겠습니까? \n (지원 취소 후 같은 이력서로 재 지원이 불가능합니다.)');
 
 			if (answer == true) {
 				

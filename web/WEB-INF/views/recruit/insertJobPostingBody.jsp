@@ -239,8 +239,26 @@
                             </div>
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">
                                 <div class="jp_adp_textarea_main_wrapper">
-                                    <label id="titleFont"> 공고 내용</label>
-                                    <textarea rows="7" placeholder="공고 내용을 입력하세요*" name="jobPostContents" required maxlength="2000">/</textarea>
+                                    <label id="titleFont">주요 업무</label>
+                                    <textarea rows="7" placeholder="주요 업무를 입력하세요*" name="jobPostContents" required maxlength=300></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">
+                                <div class="jp_adp_textarea_main_wrapper">
+                                    <label id="titleFont">자격 요건</label>
+                                    <textarea rows="7" placeholder="자격 요건를 입력하세요*" name="qualificationRequirements" required maxlength=300></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">
+                                <div class="jp_adp_textarea_main_wrapper">
+                                    <label id="titleFont">우대사항</label>
+                                    <textarea rows="7" placeholder="우대사항을 입력하세요*" name="preferentialMatters" required maxlength=300></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">
+                                <div class="jp_adp_textarea_main_wrapper">
+                                    <label id="titleFont">혜택 및 복지</label>
+                                    <textarea rows="7" placeholder="혜택 및 복지를 입력하세요*" name="benefitAndWelfare" required maxlength=3q00></textarea>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
@@ -251,15 +269,13 @@
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">
                                 <div class="jp_adp_form_wrapper" >
                                     <label id="titleFont">자사이력서</label>
-                                    <input id="resumeForm" type="text" placeholder="자사이력서 다운 가능 링크" name="jobPostTitle" maxlength="30" min="1">
+                                    <input id="companyResumeLink" type="text" placeholder="자사이력서 다운 가능 링크" name="jobPostTitle" maxlength="30" min="1">
                                 </div>
                             </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         	<input type="button" value="insert" onclick="btn_click('insert');">
                         	<input type="button" value="preview" onclick="btn_click('preview');">
-                        
                         </div>
-                        
                     </div>
                 </div>
             </div>

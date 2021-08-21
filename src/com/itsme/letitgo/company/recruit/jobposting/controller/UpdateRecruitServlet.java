@@ -81,11 +81,14 @@ public class UpdateRecruitServlet extends HttpServlet {
 		dto.setCoMemNo(memNo);
 		dto.setJobPostTitle(request.getParameter("jobPostTitle"));
 		dto.setJobNo(Integer.parseInt(request.getParameter("jobNo")));
-		dto.setJobPostContents(request.getParameter("jobPostContents"));
 		dto.setJobPostDeadLine(java.sql.Date.valueOf(request.getParameter("jobPostDeadLine")));
 		dto.setSkillsCodeList(skillsList);
 		dto.setUpdateJobPostNo(updateJobPostNo);
 		
+		dto.setJobPostContents(request.getParameter("jobPostContents"));
+		dto.setQualificationRequirements(request.getParameter("qualificationRequirements"));
+		dto.setPreferentialMatters(request.getParameter("preferentialMatters"));
+		dto.setBenefitAndWelfare(request.getParameter("benefitAndWelfare"));		
 		
 		// 전달받은 경력에 입력된 value에 따라 db에 다르게 저장해주기 위해 예외처리
 		
@@ -100,6 +103,7 @@ public class UpdateRecruitServlet extends HttpServlet {
 			minExperience = maxExperience;
 			maxExperience = temp;
 		} 
+		
 		dto.setJobPostMinExperience(minExperience);
 		dto.setJobPostMaxExperience(maxExperience);
 	
@@ -114,7 +118,6 @@ public class UpdateRecruitServlet extends HttpServlet {
 		if(result) {
 			redirectText.append("<script>alert('공고 수정 요청이 정상적으로 처리되었습니다.'); location.href='/let/company/jobPostingHistory/select';</script>");
 			
-//			redirectText.append("<script>alert('이력서 수정을 완료했습니다.'); location.href='/let/resume/list';</script>");
 
 		
 		} else {
