@@ -94,4 +94,24 @@ public class UpdateRefundStatusService {
 		
 	}
 
+	/* 보유상품의 상태를 환불로 변경 */
+	public int updateHoldingProductStatus(int payNo) {
+		
+		SqlSession session = getSqlSession();
+		
+		AdminPaymentMapper mapper = session.getMapper(AdminPaymentMapper.class);
+		
+		int result = mapper.updateHoldingProductStatus(payNo);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
 }

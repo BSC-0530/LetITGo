@@ -43,6 +43,9 @@
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
+			
+				<!-- 사이드바 -->
+			
 				<div
 					class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
 					<div class="row">
@@ -149,6 +152,8 @@
 						</div>
 					</div>
 				</div>
+				
+				<!-- 거절사유 작성란 -->
 
 				<form id="postUpdateRejectMessage" action="${ pageContext.servletContext.contextPath }/admin/refund/reject/update" method="post">
 					<div style="width: 500px;" class="jp_contact_form_main_wrapper">
@@ -161,6 +166,8 @@
 									<div class="jp_contact_form_box">
 										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 											<h3>거절 사유</h3>
+											<input type="hidden" name="payChangeNo" value="${ requestScope.payChangeNo  }">
+										<input type="hidden" name="payNo" value="${ requestScope.payNo  }">
 										</div>
 										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 											<div

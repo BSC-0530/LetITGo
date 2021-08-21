@@ -28,6 +28,8 @@
 	</resultMap>
 	
 	<resultMap type="com.itsme.letitgo.personal.recruit.apply.model.dto.SelectPersonlCanceledApplyDTO" id="selectPersonlCanceledApplyResultMap">
+		<id property="jobPostNo" column="JOB_POST_NO"/>
+		<result property="resumeNo" column="RESUME_NO"/>
 		<result property="jobPostTitle" column="JOB_POST_TITLE"/>
 		<result property="coComName" column="CO_COM_NAME"/>
 		<result property="jobPostEnrollDate" column="JOB_POST_ENROLL_DATE"/>
@@ -62,6 +64,7 @@
 		UPDATE /* com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper#updateApplyStatus() */
 		       TBL_APPLYING_HISTORY
 		   SET JOB_POST_APPLYING_STATUS = '지원취소'
+		     , JOB_POST_APPLYING_CANCEL_DATE = SYSDATE
 		 WHERE RESUME_NO = #{ resumeNo }
 		   AND JOB_POST_NO = #{ jobPostNo }
 	</update>
@@ -109,7 +112,9 @@
 	
 	<select id="selectPersonalCanceledApply" resultMap="selectPersonlCanceledApplyResultMap">
 		SELECT /* com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper#selectPersonalCanceledApply() */
-		       A.JOB_POST_TITLE
+			   A.JOB_POST_NO
+			 , D.RESUME_NO
+		     , A.JOB_POST_TITLE
 		     , C.CO_COM_NAME
 		     , A.JOB_POST_ENROLL_DATE
 		     , A.JOB_POST_DEADLINE

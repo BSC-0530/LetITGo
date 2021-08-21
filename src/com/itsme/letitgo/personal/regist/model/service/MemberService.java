@@ -9,6 +9,7 @@ import static com.itsme.letitgo.common.mybatis.Template.getSqlSession;
 
 public class MemberService {
 	
+	/* 개인회원가입 등록 */
 	public int registInMember(InMemberDTO requestMember) {
 
 		SqlSession session = getSqlSession();

@@ -28,12 +28,12 @@ public class UpdateAppRefundStatusServlet extends HttpServlet {
 		/* 결제내역 환불완료로 변경 */
 		int result2 = service.updateRefundAppStatus2(payNo);
 		
-		System.out.println(payChangeNo);
-		System.out.println(payNo);
+		/* 보유상품의 상태를 환불로 변경 */
+		int result3 = service.updateHoldingProductStatus(payNo);
 		
 		StringBuilder redirectText = new StringBuilder();
 		
-		if(result1 > 0 && result2 > 0) {
+		if(result1 > 0 && result2 > 0 && result3 > 0) {
 			redirectText.append("<script>alert('환불요청을 승인하셨습니다.'); location.href='../../refund/select';</script>");
 		} else {
 			redirectText.append("<script>alert('환불요청승인에 실패하셨습니다.'); location.href='../../refund/select';</script>");
