@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.itsme.letitgo.admin.info.model.dto.CoMemberAppHistoryDTO;
 import com.itsme.letitgo.admin.info.model.service.RequestService;
 import com.itsme.letitgo.company.info.model.dto.CompanyAddInfoDTO;
+import com.itsme.letitgo.company.info.model.dto.FileUploadDTO;
+import com.itsme.letitgo.company.info.model.service.CompanyInfoService;
 
 @WebServlet("/admin/request/comInfo")
 public class requestComInfoServlet extends HttpServlet {
@@ -31,6 +33,8 @@ public class requestComInfoServlet extends HttpServlet {
 		for(CoMemberAppHistoryDTO ads :  reqlist) {
 			System.out.println(ads);
 		}
+		
+//		
 		
 		String path="";
 		

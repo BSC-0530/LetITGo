@@ -194,7 +194,6 @@
 		
 // 		location.href="${ pageContext.servletContext.contextPath }/Company/Scout/List/Select?num="+num
 		
-		
 		location.href="${ pageContext.servletContext.contextPath }/simple/browse/select?num=" + num;
 				
 	}	

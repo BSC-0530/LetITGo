@@ -395,6 +395,7 @@
 		    JOIN TBL_JOB_FIELD J ON (R.JOB_NO = J.JOB_NO)
 		    JOIN TBL_MEMBER M ON (R.IN_MEM_NO = M.MEM_NO)
 		    JOIN TBL_RESUME_READING_HISTORY RH ON (RH.RESUME_NO = R.RESUME_NO)
+		    WHERE CO_MEM_NO = #{ memNo }
 		</select>
 		
 		<select id="brosweHistoryKindsSelect" resultMap="readingHistoryResultMap">
@@ -442,21 +443,21 @@
 			SELECT
 					COUNT(1) 
 			   FROM TBL_RESUME_READING_HISTORY
-			  WHERE RESUME_BROWSE_KINDS ='깊은열람'
+			  WHERE RESUME_BROWSE_KINDS ='깊은열람' AND CO_MEM_NO = #{ memNo }
 		</select>
 		
 		<select id="selectAllCountSimpleOpen" resultType="_int">
 			SELECT
 					COUNT(1) 
 			   FROM TBL_RESUME_READING_HISTORY
-			  WHERE RESUME_BROWSE_KINDS ='얕은열람'
+			  WHERE RESUME_BROWSE_KINDS ='얕은열람' AND CO_MEM_NO = #{ memNo }
 		</select>
 		
 		<select id="selectAllScountNum" resultType="_int">
 			SELECT
 					COUNT(1) 
 			   FROM TBL_RESUME_READING_HISTORY
-			  WHERE RESUME_BROWSE_KINDS ='면접제안'
+			  WHERE RESUME_BROWSE_KINDS ='면접제안' AND CO_MEM_NO = #{ memNo }
 		</select>
 		
 		<select id="personalBrosweHistorySelect" resultMap="personalMypageScoutMap">

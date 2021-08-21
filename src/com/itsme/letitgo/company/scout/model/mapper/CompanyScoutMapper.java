@@ -34,17 +34,17 @@ public interface CompanyScoutMapper {
 
 	int readingKindsInsert(int onClickResumeNo);
 
-	List<BrosweHistoryDTO> selectBrowseUsingHistroy();
+	List<BrosweHistoryDTO> selectBrowseUsingHistroy(int memNo);
 
 	List<ResumeReadingHistoryDTO> brosweHistoryKindsSelect(int onClickResumeNo);
-
+//얕은연ㄹ람카운트
 	int updateTime(int onClickResumeNo);
+//깊은열람카운트
+	int selectAllCountDeepOpen(int memNo);
+//면접제안카운트
+	int selectAllCountSimpleOpen(int memNo);
 
-	int selectAllCountDeepOpen();
-
-	int selectAllCountSimpleOpen();
-
-	int selectAllScountNum();
+	int selectAllScountNum(int memNo);
 //개인 마이페이지 쪽 스카우트 현황
 	List<PersonalBrosweHistoryDTO> personalBrosweHistorySelect();
 
