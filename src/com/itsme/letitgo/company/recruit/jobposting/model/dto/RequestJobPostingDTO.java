@@ -8,6 +8,7 @@ public class RequestJobPostingDTO {
 
 	private int coMemNo;
 	private int jobPostNo; // 등록한 공고 번호를 조회해 다른 테이블에 동시에  insert해주기 위해 dto에 담아오기 위해 필드에 변수 선언
+
 	private String jobPostTitle;
 	private int jobNo;
 	private int jobPostMinExperience;

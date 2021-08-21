@@ -36,6 +36,12 @@
 		<result property="categoryUpperNo" column="CATEGORY_UPPER_NO"/>
 	</resultMap>
 	
+	<resultMap type="com.itsme.letitgo.company.recruit.jobposting.model.dto.ExposureProductDTO" id="exposureProductResultMap">
+		<result property="exposureTime" column="EXPOSURE_TIME"/>
+		<result property="productNo" column="PRODUCT_NO"/>
+		<result property="productName" column="PRODUCT_NAME"/>
+	</resultMap>
+	
 	
 	<!-- 기업 마이페이지 등록한 모든공고 -->
 	<select id="selectCoMyJobPosting" parameterType="com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO" resultMap="resultMyJobPosting">
@@ -151,8 +157,6 @@
 		<if test="companyResumeLink != null">
 		, JP.COMPANY_RESUME_FORM_LINK
 		</if>
-		
-		
 		)
 		VALUES
 		(
@@ -260,6 +264,19 @@
 		, #{ updateJobPostNo }
 		)
 	</insert>
+	
+	<!-- 공고 메인페이지 노출권 사용을 위해서 사용가능한 노출권 조회  -->
+	<select id="selectExposureProduct" resultMap="exposureProductResultMap">
+		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectExposureProduct() */
+			   A.EXPOSURE_TIME
+			 , A.PRODUCT_NO
+			 , B.PRODUCT_NAME
+		  FROM TBL_MEMBER_HOLDING_PRODUCT A
+		  JOIN TBL_PRODUCT_LIST B ON (A.PRODUCT_NO = B.PRODUCT_NO)
+		 WHERE A.EXPOSURE_TIME > 0
+		   AND PRODUCT_STATUS = '사용가능'	
+		   AND A.CO_MEM_NO = #{ memNo }
+	</select>
 	
 
 
