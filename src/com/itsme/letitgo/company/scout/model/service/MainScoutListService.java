@@ -8,23 +8,18 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.itsme.letitgo.company.recruit.applicant.model.dto.SkillsDTO;
 import com.itsme.letitgo.company.scout.model.dto.BrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.BrosweSimplelDTO;
 import com.itsme.letitgo.company.scout.model.dto.CandidateRegisterSkillsDTO;
 import com.itsme.letitgo.company.scout.model.dto.CandidateRegistrationDTO;
-import com.itsme.letitgo.company.scout.model.dto.CountReadingNumDTO;
 import com.itsme.letitgo.company.scout.model.dto.DeliverCareerAndSkillDTO;
-import com.itsme.letitgo.company.scout.model.dto.DeliverResumeNoAndSelectedSkillDTO;
 import com.itsme.letitgo.company.scout.model.dto.InterviewProposalDTO;
 import com.itsme.letitgo.company.scout.model.dto.PersonalBrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.ResumeReadingHistoryDTO;
 import com.itsme.letitgo.company.scout.model.mapper.CompanyScoutMapper;
-
+import com.itsme.letitgo.personal.resume.model.dto.SkillsDTO;
 import com.itsme.letitgo.personal.scout.model.dto.ScoutDetailResumeDTO;
 import com.itsme.letitgo.personal.scout.model.mapper.PersonalScoutMapper;
-
-import com.itsme.letitgo.personal.resume.model.dto.SkillsAndCategoryDTO;
 
 
 public class MainScoutListService {

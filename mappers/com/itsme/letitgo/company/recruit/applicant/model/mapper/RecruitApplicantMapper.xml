@@ -3,25 +3,75 @@
 <mapper
 	namespace="com.itsme.letitgo.company.recruit.applicant.model.mapper.RecruitApplicantMapper">
 
-	<resultMap type="com.itsme.letitgo.company.recruit.applicant.model.dto.ResumeDTO" id="resumeResultMap">
-		<id property="resumeNo" column="RESUME_NO"/>
-		<result property="inMemNo" column="IN_MEM_NO"/>
+	<resultMap type="com.itsme.letitgo.company.recruit.applicant.model.dto.ApplicantDTO" id="applicantList">
+		<result property="jobPostNo" column="JOB_POST_NO"/>
+		<result property="resumeNo" column="RESUME_NO"/>
 		<result property="resumeTitle" column="RESUME_TITLE"/>
-		<result property="resumeWriteDate" column="RESUME_WRITE_DATE"/>
-		<result property="resumeScoutStatus" column="RESUME_SCOUT_STATUS"/>
-		<result property="jobNo" column="JOB_NO"/>
+		<result property="memName" column="MEM_NAME"/>
+		<result property="jobPostBrowesStatus" column="JOB_POST_BROWES_STATUS"/>
 	</resultMap>
 	
 	<resultMap type="com.itsme.letitgo.company.recruit.applicant.model.dto.DetailResumeDTO" id="detailResumeResultMap">
 		<id property="resumeNo" column="RESUME_NO"/>
-		<result property="inMemNo" column="IN_MEM_NO"/>
 		<result property="resumeTitle" column="RESUME_TITLE"/>
-		<result property="resumeWriteDate" column="RESUME_WRITE_DATE"/>
-		<result property="resumeScoutStatus" column="RESUME_SCOUT_STATUS"/>
 		<result property="jobNo" column="JOB_NO"/>
+		<result property="jobName" column="JOB_NAME"/>
+		<result property="memName" column="MEM_NAME"/>
+		<result property="memPhone" column="MEM_PHONE"/>
+		<result property="memEmail" column="MEM_EMAIL"/>
 	</resultMap>
 	
-	<resultMap type="com.itsme.letitgo.company.recruit.applicant.model.dto.PortfolioDTO" id="portfolioResultMap">
+	<resultMap type="com.itsme.letitgo.company.recruit.applicant.model.dto.AwardHistoryDTO" id="awardHistoryResultMap">
+			<id property="awdNo" column="AWD_NO"/>
+			<result property="awdName" column="AWD_NAME"/>
+			<result property="awdAgency" column="AWD_AGENCY"/>
+			<result property="awdDate" column="AWD_DATE"/>
+			<result property="awdContent" column="AWD_CONTENT"/>
+			<result property="resumeNo" column="RESUME_NO"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.company.recruit.applicant.model.dto.CareerHistoryDTO" id="careerHistoryResultMap">
+			<id property="carNo" column="CAR_NO"/>
+			<result property="carComName" column="CAR_COM_NAME"/>
+			<result property="carHireDate" column="CAR_HIRE_DATE"/>
+			<result property="carEntDate" column="CAR_ENT_DATE"/>
+			<result property="carStatus" column="CAR_STATUS"/>
+			<result property="carDeptName" column="CAR_DEPT_NAME"/>
+			<result property="carJobName" column="CAR_JOB_NAME"/>
+			<result property="projectName" column="PROJECT_NAME"/>
+			<result property="projectStartDate" column="PROJECT_START_DATE"/>
+			<result property="projectEndDate" column="PROJECT_END_DATE"/>
+			<result property="projectContent" column="PROJECT_CONTENT"/>
+			<result property="carWorkField" column="CAR_WORK_FIELD"/>
+			<result property="jobNo" column="JOB_NO"/>
+			<result property="resumeNo" column="RESUME_NO"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.company.recruit.applicant.model.dto.EducationHistoryDTO" id="educationHistoryResultMap">
+	 	<id property="eduNo" column="EDU_NO"/>
+		<result property="eduName" column="EDU_NAME"/>
+		<result property="eduAgency" column="EDU_AGENCY"/>
+		<result property="eduStartDate" column="EDU_START_DATE"/>
+		<result property="eduEndDate" column="EDU_END_DATE"/>
+		<result property="eduContent" column="EDU_CONTENT"/>
+		<result property="resumeNo" column="RESUME_NO"/>
+	</resultMap>
+	<resultMap type="com.itsme.letitgo.company.recruit.applicant.model.dto.SelfIntroductionDTO" id="selfIntroductionResultMap">
+		<result property="selfIntroItemNo" column="SELF_INTRO_ITEM_NO"/>
+		<result property="selfIntroItemContent" column="SELF_INTRO_ITEM_CONTENT"/>
+		<result property="selfIntroItemName" column="SELF_INTRO_ITEM_nAME"/>
+		
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.company.recruit.applicant.model.dto.LicenseHistoryDTO" id="licenseHistoryResultMap">
+			<id property="licenseNo" column="LICENSE_NO"/>
+			<result property="licenseName" column="LICENSE_NAME"/>
+			<result property="licenseAgency" column="LICENSE_AGENCY"/>
+			<result property="licenseDate" column="LICENSE_DATE"/>
+			<result property="resumeNo" column="RESUME_NO"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.company.recruit.applicant.model.dto.PortfolioDTO" id="portFolioResultMap">
 		<id property="potNo" column="POT_NO"/>
 		<result property="resumeNo" column="RESUME_NO"/>
 		<result property="potKinds" column="POT_KINDS"/>
@@ -30,18 +80,7 @@
 		<result property="potFileOriginalName" column="POT_FILE_ORIGINAL_NAME"/>
 		<result property="potFileName" column="POT_FILE_NAME"/>
 	</resultMap>
-	
-	<resultMap type="com.itsme.letitgo.company.recruit.applicant.model.dto.ItemAndContentDTO" id="itemAndContentResultMap">
-	
-	</resultMap>
-	
-	<resultMap type="com.itsme.letitgo.company.recruit.applicant.model.dto.ApplicantDTO" id="applicantList">
-		<result property="jobPostNo" column="JOB_POST_NO"/>
-		<result property="resumeNo" column="RESUME_NO"/>
-		<result property="resumeTitle" column="RESUME_TITLE"/>
-		<result property="memName" column="MEM_NAME"/>
-		<result property="jobPostBrowesStatus" column="JOB_POST_BROWES_STATUS"/>
-	</resultMap>
+
 	
 	<resultMap type="com.itsme.letitgo.company.recruit.applicant.model.dto.ResumeSkillsAndNameDTO" id="skillsAndNameResultMap">
 		<result property="resumeNo" column="RESUME_NO"/>
@@ -95,13 +134,106 @@
 		 WHERE A.RNUM >= #{ selectCriteria.startRow }
 		 ]]> 
 	</select>
-	<!-- 이력서 별 스킬들 조회 -->
+	
+	<!-- 이력서 별 스킬전체 조회 -->
 	<select id="selectSkills" resultMap="skillsAndNameResultMap">
 		SELECT 	/* com.itsme.letitgo.company.recruit.applicant.model.mapper.RecruitApplicantMapper#selectSkills() */	
 			   HS.RESUME_NO
 			 , S.SKILLS_NAME
 		  FROM TBL_RESUME_HOLDING_SKILLS HS
 		  JOIN TBL_SKILLS S ON (HS.SKILLS_NO = S.SKILLS_NO)
+	</select>
+	
+	<!-- 지원자 이력서 선택시 이력서의 내용을 조회하기 위한 쿼리문 시작 -->
+	<select id="selectResume" resultMap="detailResumeResultMap">
+		SELECT /* com.itsme.letitgo.company.recruit.applicant.model.mapper.RecruitApplicantMapper#selectResume() */
+			   R.RESUME_NO
+			 , R.RESUME_TITLE
+			 , JF.JOB_NAME
+			 , M.MEM_NAME
+			 , M.MEM_PHONE
+			 , M.MEM_EMAIL
+		  FROM TBL_RESUME R	   
+		  JOIN TBL_JOB_FIELD JF ON(R.JOB_NO = JF.JOB_NO)
+		  JOIN TBL_MEMBER M ON(R.IN_MEM_NO = M.MEM_NO)
+		 WHERE R.RESUME_NO = #{ resumeNo }
+	</select>
+	
+	<select id="selectAwardHistory" resultMap="awardHistoryResultMap">
+		SELECT /* com.itsme.letitgo.company.recruit.applicant.model.mapper.RecruitApplicantMapper#selectAwardHistory() */
+			   A.AWD_NAME
+			 , A.AWD_AGENCY
+			 , A.AWD_DATE
+			 , A.AWD_CONTENT
+  		  FROM TBL_AWARD_HISTORY A
+  		 WHERE A.RESUME_NO = #{ resumeNo }
+  		  
+	</select>
+	
+	<select id="selectCareerHistory" resultMap="careerHistoryResultMap">
+		SELECT /* com.itsme.letitgo.company.recruit.applicant.model.mapper.RecruitApplicantMapper#selectCareerHistory() */
+			   A.CAR_COM_NAME
+			 , A.CAR_HIRE_DATE
+			 , A.CAR_ENT_DATE
+			 , A.CAR_STATUS
+			 , A.CAR_DEPT_NAME
+			 , A.CAR_JOB_NAME
+			 , A.CAR_WORK_FIELD
+			 , A.PROJECT_NAME
+			 , A.PROJECT_START_DATE
+			 , A.PROJECT_END_DATE
+			 , A.PROJECT_CONTENT
+			 , A.JOB_NO
+			 , A.RESUME_NO
+		  FROM TBL_CAREER_HISTORY A
+  		 WHERE A.RESUME_NO = #{ resumeNo }
+	</select>
+	
+	<select id="selectEducationHistory" resultMap="educationHistoryResultMap">
+		SELECT /* com.itsme.letitgo.company.recruit.applicant.model.mapper.RecruitApplicantMapper#selectEducationHistory() */
+			   A.EDU_NAME
+			 , A.EDU_AGENCY
+			 , A.EDU_START_DATE
+			 , A.EDU_END_DATE
+			 , A.EDU_CONTENT
+		  FROM TBL_EDUCATION_HISTORY A
+		 WHERE A.RESUME_NO = #{ resumeNo }
+	</select>
+	
+	<select id="selectSelfIntroduction" resultMap="selfIntroductionResultMap">
+		SELECT /* com.itsme.letitgo.company.recruit.applicant.model.mapper.RecruitApplicantMapper#selectSelfIntroduction() */
+			   A.SELF_INTRO_ITEM_CONTENT
+			 , B.SELF_INTRO_ITEM_NAME
+		  FROM TBL_SELF_INTRODUCTION_CONTENT A
+ 	      JOIN TBL_SELF_INTRODUCTION_ITEM B ON (A.SELF_INTRO_ITEM_NO = B.SELF_INTRO_ITEM_NO)
+ 	     WHERE A.RESUME_NO = #{ resumeNo }
+	</select>
+	
+	<select id="selectLicenseHistory" resultMap="licenseHistoryResultMap">
+		SELECT /* com.itsme.letitgo.company.recruit.applicant.model.mapper.RecruitApplicantMapper#selectLicenseHistory() */
+			   A.LICENSE_NAME
+			 , A.LICENSE_AGENCY
+			 , A.LICENSE_DATE
+		  FROM TBL_LICENSE_HISTORY A
+		 WHERE A.RESUME_NO = #{ resumeNo }
+		
+	</select>
+	
+	<select id="selectPortFolio" resultMap="portFolioResultMap">
+		SELECT /* com.itsme.letitgo.company.recruit.applicant.model.mapper.RecruitApplicantMapper#selectPortFolio() */
+		  	   A.POT_LINK_ADDRESS
+		  FROM TBL_PORTFOLIO A
+		 WHERE A.RESUME_NO = #{ resumeNo }
+		
+	</select>
+	
+	<select id="selectSkillsAndName" resultMap="skillsAndNameResultMap">
+		SELECT /* com.itsme.letitgo.company.recruit.applicant.model.mapper.RecruitApplicantMapper#selectSkillsAndName() */
+			   A.RESUME_NO
+			 , B.SKILLS_NAME
+		  FROM TBL_RESUME_HOLDING_SKILLS A
+		  JOIN TBL_SKILLS B ON (A.SKILLS_NO = B.SKILLS_NO)
+	     WHERE A.RESUME_NO = #{ resumeNo }
 	</select>
 	
 

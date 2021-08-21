@@ -29,13 +29,11 @@
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
-  
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-
+<!--  이거 보고 하세용 ~  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+<script type="text/javascript" src="/let/resources/js/datatables.js"></script>
+<link rel="stylesheet" type="text/css" href="/let/resources/css/datatables.css" />
+
 
 <!-- letitgo 제작 css -->
 <link rel="stylesheet" type="text/css" href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css"/>
@@ -186,11 +184,8 @@
 											<td align="center">삭제여부</td>
 										</tr>
 									</thead>
-									<c:forEach var="controllJobField"
-										items="${ requestScope.jobFieldList }">
-
-										<tbody align="center">
-
+									<tbody align="center">
+										<c:forEach var="controllJobField" items="${ requestScope.jobFieldList }">
 											<tr>
 												<td id="no"><c:out value="${ controllJobField.no }" /></td>
 												<td id="name"><c:out value="${ controllJobField.name }" /></td>
@@ -198,8 +193,8 @@
 												<td><button class="btn-info" onClick="jobFieldDelete(this);" value="${ controllJobField.no }">삭제</button></td>
 												<!-- 위의 것을 실행하려면 div 안에 담아야 하는? --> 
 											</tr>
-										</tbody>
-									</c:forEach>
+										</c:forEach>
+									</tbody>
 
 								</table>
 								<br>

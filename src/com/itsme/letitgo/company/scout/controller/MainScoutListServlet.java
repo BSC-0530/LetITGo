@@ -1,9 +1,6 @@
 package com.itsme.letitgo.company.scout.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -12,14 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.itsme.letitgo.company.recruit.applicant.model.dto.SkillsDTO;
 import com.itsme.letitgo.company.scout.model.dto.DeliverCareerAndSkillDTO;
-import com.itsme.letitgo.company.scout.model.dto.DeliverResumeNoAndSelectedSkillDTO;
 import com.itsme.letitgo.company.scout.model.service.MainScoutListService;
 
 /**

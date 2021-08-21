@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.itsme.letitgo.company.recruit.applicant.model.dto.SkillsDTO;
 import com.itsme.letitgo.company.scout.model.service.MainScoutListService;
+import com.itsme.letitgo.personal.resume.model.dto.SkillsDTO;
 
 @WebServlet("/search/auto/skills")
 public class AutoSearchForSkillsServlet extends HttpServlet {
