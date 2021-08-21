@@ -34,6 +34,8 @@
 
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+<script type="text/javascript" src="/let/resources/js/datatables.js"></script>
+<link rel="stylesheet" type="text/css" href="/let/resources/css/datatables.css" />
 
 <script type="text/javascript" charset="utf8"
 	src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
@@ -197,11 +199,9 @@ td {
 											<td align="center">삭제 하기</td>
 										</tr>
 									</thead>
+										<tbody align="center">
 									<c:forEach var="productList"
 										items="${ requestScope.productList }">
-
-										<tbody align="center">
-
 											<tr>
 												<td id="productNo"><c:out
 														value="${ productList.productNo }" /></td>
@@ -216,7 +216,7 @@ td {
 												<td id="productStatus"><c:out
 														value="${ productList.productReadingTicket }" /></td>
 												<td id="productStatus"><fmt:formatNumber
-														value="${ productList.productExposureTime/24/60/60/1000 }" /></td>
+														value="${ productList.productExposureTime/24/60/60 }" /></td>
 												<td><button type="button" onclick="modify(this)"
 														style="background: skyblue; border-radius: 5px; color: white; font-weight: 900;"
 														value="${ productList.productNo }">수정</button></td>
@@ -225,8 +225,8 @@ td {
 														onclick="deletebutton(this)"
 														value="${ productList.productNo }">삭제</button>
 											</tr>
-										</tbody>
 									</c:forEach>
+									</tbody>
 								</table>
 								<br> <br>
 

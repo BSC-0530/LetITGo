@@ -38,6 +38,7 @@
 </head>
 
 <body>
+
 	<!-- 상단 검은색 -->
 	<div class="jp_tittle_main_wrapper">
 		<div class="jp_tittle_img_overlay"></div>
@@ -51,7 +52,7 @@
 						<div class="jp_tittle_breadcrumb_main_wrapper">
 							<div class="jp_tittle_breadcrumb_wrapper">
 								<ul>
-									<li><a href="#">Home</a></li>
+									<li><a href="${ pageContext.servletContext.contextPath }/mainPage/CoMember">Home</a></li>
 									<li>></li>
 									<li>개인 마이페이지</li>
 								</ul>
@@ -64,7 +65,7 @@
 	</div>
 
 	<!-- 사이드바 -->
-	
+
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
@@ -80,13 +81,25 @@
 									<div class="handyman_sec1_wrapper">
 										<div class="content">
 											<div class="box">
-												<p><a href="${ pageContext.servletContext.contextPath }/personalMyInfo">회원정보</a></p>
+												<p>
+													<a
+														href="${ pageContext.servletContext.contextPath }/personalMyInfo">회원정보</a>
+												</p>
 												<br> <br>
-												<p><a href="${ pageContext.servletContext.contextPath }/personal/apply/select">지원 현황</a></p>
+												<p>
+													<a
+														href="${ pageContext.servletContext.contextPath }/personal/apply/select">지원
+														현황</a>
+												</p>
 												<br> <br>
-												<p><a href="${ pageContext.servletContext.contextPath }/scout/myPageList/servlet">스카우트현황</a></p>
+												<p>
+													<a
+														href="${ pageContext.servletContext.contextPath }/scout/myPageList/servlet">스카우트현황</a>
+												</p>
 												<br> <br>
-												<p><a href="${ pageContext.servletContext.contextPath }">회원탈퇴</a></p>
+												<p>
+													<a href="${ pageContext.servletContext.contextPath }">회원탈퇴</a>
+												</p>
 												<br> <br>
 											</div>
 										</div>
@@ -103,72 +116,81 @@
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_counter_main_wrapper">
-								<br>
-								<br>
+								<br> <br>
 								<h1 align="left">스카우트 현황</h1>
 								<br>
 								<div class="container">
 									<div class="gc_counter_cont_wrapper">
 										<div class="count-description">
-											<span class="timer"><c:out value="${ requestScope.shallowBrowsingNum }" /></span> <i class="fa"></i>
+											<span class="timer"><c:out
+													value="${ requestScope.shallowBrowsingNum }" /></span> <i
+												class="fa"></i>
 											<h5 class="con1">얕은 열람</h5>
 										</div>
 									</div>
 									<div class="gc_counter_cont_wrapper2">
 										<div class="count-description">
-											<span><c:out value="${ requestScope.deepBrowsingNum }" /></span> <i class="fa"></i>
+											<span><c:out value="${ requestScope.deepBrowsingNum }" /></span>
+											<i class="fa"></i>
 											<h5 class="con2">깊은 열람</h5>
 										</div>
 									</div>
 									<div class="gc_counter_cont_wrapper3">
 										<div class="count-description">
-											<span><c:out value="${ requestScope.interviewProposalNum }" /></span> <i class="fa"></i>
+											<span><c:out
+													value="${ requestScope.interviewProposalNum }" /></span> <i
+												class="fa"></i>
 											<h5 class="con3">면접 제안</h5>
 										</div>
 									</div>
-								</div>								
+								</div>
 							</div>
 						</div>
 						<br>
 					</div>
 				</div>
-				
+
 				<!-- 지원현황 / 북마크 파란색상자 3개 -->
-				
+
 				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_counter_main_wrapper">
-								<br>
-								<br>
+								<br> <br>
 								<h1 align="left">지원현황 / 북마크</h1>
 								<br>
 								<div class="container">
 									<div class="gc_counter_cont_wrapper">
 										<div class="count-description">
-											<span><c:out value="${ requestScope.applicationCompletedNum }" /></span><i class="fa"></i>
+											<span><c:out
+													value="${ requestScope.applicationCompletedNum }" /></span><i
+												class="fa"></i>
 											<h5 class="con1">지원 완료</h5>
 										</div>
 									</div>
 									<div class="gc_counter_cont_wrapper2">
 										<div class="count-description">
-											<span><c:out value="${ requestScope.applicationCanceledNum }" /></span> <i class="fa"></i>
+											<span><c:out
+													value="${ requestScope.applicationCanceledNum }" /></span> <i
+												class="fa"></i>
 											<h5 class="con2">지원 취소</h5>
 										</div>
 									</div>
 									<div class="gc_counter_cont_wrapper3">
-										<div class="count-description">									
-											<span><c:out value="${ requestScope.bookmarkNum }" /></span> <i class="fa"></i>
+										<div class="count-description">
+											<span><c:out value="${ requestScope.bookmarkNum }" /></span>
+											<i class="fa"></i>
 											<h5 class="con3">북마크</h5>
 										</div>
 									</div>
 								</div>
-								<br><br>
+								<br>
+								<br>
 							</div>
 						</div>
 						<br>
 					</div>
-				</div>				
+				</div>
 			</div>
 		</div>
 	</div>

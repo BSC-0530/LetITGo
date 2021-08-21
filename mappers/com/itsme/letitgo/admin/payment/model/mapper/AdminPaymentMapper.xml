@@ -141,4 +141,45 @@
 		  FROM TBL_PRODUCT_LIST A
 		 WHERE A.PRODUCT_NO = #{ PRODUCT_NO }
 	</delete>
+	
+	<update id="updateHoldingProductStatus">
+		UPDATE 
+		       TBL_MEMBER_HOLDING_PRODUCT
+		   SET PRODUCT_STATUS = '환불'
+		 WHERE RETAINED_PRODUCT_CODE = #{ payNo }
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

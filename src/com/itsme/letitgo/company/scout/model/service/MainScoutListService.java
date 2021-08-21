@@ -17,7 +17,7 @@ import com.itsme.letitgo.company.scout.model.dto.InterviewProposalDTO;
 import com.itsme.letitgo.company.scout.model.dto.PersonalBrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.ResumeReadingHistoryDTO;
 import com.itsme.letitgo.company.scout.model.mapper.CompanyScoutMapper;
-import com.itsme.letitgo.personal.resume.model.dto.SkillsDTO;
+
 import com.itsme.letitgo.personal.scout.model.dto.ScoutDetailResumeDTO;
 import com.itsme.letitgo.personal.scout.model.mapper.PersonalScoutMapper;
 
@@ -29,11 +29,11 @@ public class MainScoutListService {
 		SqlSession session = getSqlSession();
 		
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
-		
+		//이름
 		List<Object> scoutListName = mapper.companySelectAllScout();
-		
+		//기술
 		List<Object> scoutListSkills = mapper.companyScoutSkills();
-		
+		//경력
 		List<Object> scoutCareea = mapper.companyScoutCareea();
 	
 		System.out.println("sadasdasdaskjdhasdka : " + scoutCareea);
@@ -114,16 +114,16 @@ public class MainScoutListService {
 	
 	
 //	스카우트 현황 데이터테이블조회
-	public static List<BrosweHistoryDTO> selectBrowseUsingHistroy() {
+	public List<BrosweHistoryDTO> selectBrowseUsingHistroy(int memNo) {
 		
 		SqlSession session = getSqlSession();
 		
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
 		
-		 List<BrosweHistoryDTO>  selectBrowseUsingHistroy = mapper.selectBrowseUsingHistroy();
+		 List<BrosweHistoryDTO>  selectBrowseUsingHistroy = mapper.selectBrowseUsingHistroy(memNo);
 		 
 		 
-		 System.out.println("ASDKJAHSDKJ" + selectBrowseUsingHistroy);
+//		 System.out.println("ASDKJAHSDKJ" + selectBrowseUsingHistroy);
 		 session.close();
 		
 		return selectBrowseUsingHistroy;
@@ -165,13 +165,13 @@ public class MainScoutListService {
 	}
 	
 	//얕은열람카운트
-	public int selectAllCountDeepOpen() {
+	public int selectAllCountDeepOpen(int memNo) {
 		
 		SqlSession session = getSqlSession();
 		
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
 		
-		int CountNum = mapper.selectAllCountDeepOpen();
+		int CountNum = mapper.selectAllCountDeepOpen(memNo);
 		
 
 		session.close();
@@ -180,14 +180,14 @@ public class MainScoutListService {
 		return CountNum;
 	}
 	//깊은열람카운트
-	public int selectAllCountSimpeOpen() {
+	public int selectAllCountSimpeOpen(int memNo) {
 		
 		
 		SqlSession session = getSqlSession();
 		
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
 		
-		int CountNum = mapper.selectAllCountSimpleOpen();
+		int CountNum = mapper.selectAllCountSimpleOpen(memNo);
 		
 
 		session.close();
@@ -197,12 +197,12 @@ public class MainScoutListService {
 	}
 	
 	//면접제안 카운트
-	public int selectAllScountNum() {
+	public int selectAllScountNum(int memNo) {
 		SqlSession session = getSqlSession();
 		
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
 		
-		int CountNum = mapper.selectAllScountNum();
+		int CountNum = mapper.selectAllScountNum(memNo);
 		
 
 		session.close();
@@ -231,16 +231,34 @@ public class MainScoutListService {
 	}
 
 	// 상세이력서 열람(깊은열람)
-	public List<ScoutDetailResumeDTO> selectDetailResume(int resumeNo) {
+	public Map<String, Object> selectDetailResume(int resumeNo) {
 		
 		SqlSession session = getSqlSession();
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
 		
+		Map<String, Object> detailMap = new HashMap<>();
+		
 		List<ScoutDetailResumeDTO> detailResume = mapper.selectDetailResume(resumeNo);
+		List<CareerHistoryDTO> detailCareer = mapper.selectDetailCareer(resumeNo);
+		List<SkillsDTO> detailSkills = mapper.selectDetailSkills(resumeNo);
+		List<ItemAndContentDTO> detailIntroContent = mapper.selectDetailContent(resumeNo);
+		List<AwardHistoryDTO> detailAward = mapper.selectDetailAward(resumeNo);
+		List<EducationHistoryDTO> detailEdu = mapper.selectDetailEdu(resumeNo);
+		List<LicenseHistoryDTO> detailLicense = mapper.selectDetailLicense(resumeNo);
+		
+		detailMap.put("detailResume", detailResume);
+		detailMap.put("detailCareer", detailCareer);
+		detailMap.put("detailSkills", detailSkills);
+		detailMap.put("detailIntroContent", detailIntroContent);
+		detailMap.put("detailAward", detailAward);
+		detailMap.put("detailEdu", detailEdu);
+		detailMap.put("detailLicense", detailLicense);
+		
+		
 		
 		session.close();
 		
-		return detailResume;
+		return detailMap;
 	}
 	
 	// 면접 제안

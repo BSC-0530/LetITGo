@@ -9,15 +9,20 @@ import com.itsme.letitgo.personal.recruit.apply.model.dto.SelectPersonlCompleted
 
 public interface PersonalApplyMapper {
 
-	List<SelectPersonalApplyDTO> selectPersonalApply(/* 개인회원번호 */);
+	/* 전체지원조회 */
+	List<SelectPersonalApplyDTO> selectPersonalApply(int memNo);
 
+	/* 채용공고별지원내역의 지원상태를 지원취소로 변경 */
 	int updateApplyStatus(Map<String, Object> map);
 
+	/* 지원내역상태변경이력을 추가 */
 	int insertApplyStatus(Map<String, Object> map);
 	
-	List<SelectPersonlCompletedApplyDTO> selectPersonalCompletedApply(/* 개인회원번호 */);
+	/* 지원완료조회 */
+	List<SelectPersonlCompletedApplyDTO> selectPersonalCompletedApply(int memNo);
 
-	List<SelectPersonlCanceledApplyDTO> selectPersonalCanceledApply(/* 개인회원번호 */);
+	/* 지원취소조회 */
+	List<SelectPersonlCanceledApplyDTO> selectPersonalCanceledApply(int memNo);
 
 	// 동기 지원하기 시 insert
 	int insertApplyngHistory(Map<String, Integer> applyMap);

@@ -20,13 +20,13 @@ import com.itsme.letitgo.login.model.dto.MemberLoginDTO;
 @WebServlet("/refund/request/insert")
 public class InsertRefundReqServlet extends HttpServlet {
 
-	private int payNo;
+	int payNo;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
 		payNo = Integer.parseInt(request.getParameter("payNo"));
-
+		
 		InsertRefundRequestProductService product = new InsertRefundRequestProductService();
 		
 		/* 세션에서 값 꺼내오기 */

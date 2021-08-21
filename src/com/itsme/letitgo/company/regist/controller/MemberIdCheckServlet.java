@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.itsme.letitgo.company.regist.model.service.duplicateIdCheckService;
 
+/* home -> 로그인 -> 기업회원가입 -> 아이디 중복확인 */
 @WebServlet("/member/coporate/idCheck2")
 public class MemberIdCheckServlet extends HttpServlet {
 	
@@ -25,9 +26,10 @@ public class MemberIdCheckServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String memId = request.getParameter("cmemId");
-		System.out.println("memId : " + memId);
+
 		duplicateIdCheckService service = new duplicateIdCheckService();
 		
+		/* 중복된 아이디가 있는지 확인 */
 		int result = service.duplicateIdCheck(memId); 
 
 		response.setContentType("text/html; charset=euc-kr");

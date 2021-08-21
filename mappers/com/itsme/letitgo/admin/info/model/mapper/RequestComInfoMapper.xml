@@ -40,6 +40,15 @@
  		<result property="memFilePath" column="MEM_FILE_PATH"/>
  		<result property="memFileKinds" column="MEM_FILE_KINDS"/>
 	</resultMap>
+<!-- 	원본파일조회 -->
+		<resultMap type="com.itsme.letitgo.company.info.model.dto.FileUploadDTO" id="fileUpload">
+		<result property="memFileNo" column="MEM_FILE_NO"/>
+		<result property="memNo" column="MEM_NO" />
+		<result property="memFileName" column="MEM_FILE_NAME" />
+		<result property="memFileOriginalName" column="MEM_FILE_PATH" />
+		<result property="filePath" column="MEM_FILE_PATH" />
+		<result property="fileKinds" column="MEM_FILE_KINDS" />
+	</resultMap>
 	
 <!-- 	기업정보요청조회리스트화면 -->
 	<select id="selectedReqList" resultMap="requestInfo" >
@@ -108,7 +117,7 @@
 		FROM TBL_CO_MEMBER_APP_HISTORY
 	   WHERE CO_REQ_NO = #{ reqNo }
 	 </select>
-	 
+<!-- 	 수락버튼누르면 업데이트 -->
 	 <update id="adminAcceptRequestInfo">
 	 	UPDATE TBL_CO_MEMBER_ADD_INFO
 	 	   SET
@@ -125,6 +134,7 @@
 		  WHERE CO_MEM_NO = #{ coMemNo }	
 		    
 	 </update>
+<!-- 	 수라버튼누름 동시에 구분도 업데이트 -->
 	 <update id="adminAcceptRequestInfoKinds">
 	 	UPDATE TBL_CO_MEMBER_APP_HISTORY
 	 	   SET
@@ -152,6 +162,102 @@
 	 	     , CO_ANS_DATE = SYSDATE
 	 	 WHERE CO_REQ_NO = #{ coReqNo } 
 	 </update>
+	 
+	 <select id="selectLogoFile" resultMap="fileUpload">
+	 	SELECT
+			   MEM_FILE_NO
+			 , MEM_FILE_NAME
+			 , MEM_FILE_ORIGINAL_NAME
+			 , MEM_FILE_PATH
+			 , MEM_FILE_KINDS
+		  FROM TBL_ATTACHMENT
+		 WHERE MEM_FILE_KINDS = '프로필사진' AND MEM_NO = #{ memNo }
+	 </select>
+	 <select id="selectRepresentFile" resultMap="fileUpload">
+		SELECT
+			   MEM_FILE_NO
+			 , MEM_FILE_NAME
+			 , MEM_FILE_ORIGINAL_NAME
+			 , MEM_FILE_PATH
+			 , MEM_FILE_KINDS
+		  FROM TBL_ATTACHMENT
+		 WHERE MEM_FILE_KINDS = '대표이미지' AND MEM_NO = #{ memNo }
+	</select>
+	<select id="selectBusinessFile" resultMap="fileUpload">
+		SELECT
+			   MEM_FILE_NO
+			 , MEM_FILE_NAME
+			 , MEM_FILE_ORIGINAL_NAME
+			 , MEM_FILE_PATH
+			 , MEM_FILE_KINDS
+		  FROM TBL_ATTACHMENT
+		 WHERE MEM_FILE_KINDS = '사업자등록증' AND MEM_NO = #{ memNo }
+	</select>
+	
+<!-- 	수정요청한 파일 -->
+	<select id="reqSelectLogoFile" resultMap="requestInfo">
+		SELECT
+			   CO_MEM_NO	
+			 , MEM_FILE_NAME
+			 , MEM_FILE_ORIGINAL_NAME
+			 , MEM_FILE_PATH
+			 , MEM_FILE_KINDS
+		  FROM TBL_CO_MEMBER_APP_HISTORY
+		 WHERE MEM_FILE_KINDS = '로고이미지' AND CO_ANS_KINDS ='대기' AND CO_REQ_NO = #{ reqNo }
+	</select>
+	
+	<select id="reqSelectRepresentFile" resultMap="requestInfo">
+		SELECT
+		       CO_MEM_NO
+			 , MEM_FILE_NAME
+			 , MEM_FILE_ORIGINAL_NAME
+			 , MEM_FILE_PATH
+			 , MEM_FILE_KINDS
+		  FROM TBL_CO_MEMBER_APP_HISTORY
+		 WHERE MEM_FILE_KINDS = '대표이미지' AND CO_ANS_KINDS ='대기' AND CO_REQ_NO = #{ reqNo }
+	</select>
+	
+	<select id="eeqSelectBusinessFile" resultMap="requestInfo">
+		SELECT
+		       CO_MEM_NO
+			 , MEM_FILE_NAME
+			 , MEM_FILE_ORIGINAL_NAME
+			 , MEM_FILE_PATH
+			 , MEM_FILE_KINDS
+		  FROM TBL_CO_MEMBER_APP_HISTORY
+		 WHERE MEM_FILE_KINDS = '사업자등록증' AND CO_ANS_KINDS ='대기' AND CO_REQ_NO = #{ memNo }
+	</select>
+<!-- 	이미지 업데ㅣ트 -->
+	<update id="updateLogoFile">
+		UPDATE TBL_ATTACHMENT
+		   SET
+		       MEM_FILE_PATH
+		 WHERE MEM_NO = #{ memNO } AND MEM_FILE_KINDS = '프로필사진'
+	</update>
+	
+	<update id="updateRepreFile">
+		UPDATE TBL_ATTACHMENT
+		   SET
+		       MEM_FILE_PATH
+		 WHERE MEM_NO = #{ memNO } AND MEM_FILE_KINDS = '대표이미지'
+	</update>
+	
+	<update id="updateBusinFile">
+		UPDATE TBL_ATTACHMENT
+		   SET
+		       MEM_FILE_PATH
+		 WHERE MEM_NO = #{ memNO } AND MEM_FILE_KINDS = '사업자등록증'
+	</update>
+	
+<!-- 	거절사유조회 -->
+	<select id="ReasionSelected" resultMap="requestInfo">
+		SELECT
+			  CO_REJECT_REASON
+		 FROM TBL_CO_MEMBER_APP_HISTORY
+		WHERE CO_REQ_NO = #{ reqNo } 		  
+	</select>
+	
+	
 	
 	
 </mapper>

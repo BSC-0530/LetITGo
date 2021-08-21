@@ -37,15 +37,17 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
+
+	//유효성 검사
 	function checkValue2() {
 
 		var form = document.coMemberRegist;
 
-		var re = /^[a-zA-Z0-9]{4,12}$/; // 아이디가 적합한지 검사할 정규식
-		var re2 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*++-])(?=.*[0-9]).{8,18}$/; // 패스워드가 적합한지 검사할 정규식
-		var re3 = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/; //핸드폰 번호 정규식
-		var re4 = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/; // 전화번호/팩스번호 입력하는 정규식
-		var re5 = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/; //이름 정규식
+		var re = /^[a-zA-Z0-9]{4,12}$/; 									// 아이디가 적합한지 검사할 정규식
+		var re2 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*++-])(?=.*[0-9]).{8,18}$/;   // 패스워드가 적합한지 검사할 정규식
+		var re3 = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/; 					//핸드폰 번호 정규식
+		var re4 = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/;						// 전화번호/팩스번호 입력하는 정규식
+		var re5 = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/; 			//이름 정규식
 
 		var cmemId = document.getElementById("cmemId");
 		var cmemPwd = document.getElementById("cmemPwd");
@@ -58,13 +60,14 @@
 			alert("아이디 중복체크를 해주세요.")
 			return false;
 		}
-		
-		if(form.certificationYn.value != "true") {
+
+		if (form.certificationYn.value != "true") {
 			alert("이메일 인증확인을 해주세요.");
 			return false;
 		}
 
-		if (!check2(re2, cmemPwd, "패스워드는 8~18자의 영문 대소문자, 숫자, 특수문자를 모두 포함시켜 입력해주세요")) {
+		if (!check2(re2, cmemPwd,
+				"패스워드는 8~18자의 영문 대소문자, 숫자, 특수문자를 모두 포함시켜 입력해주세요")) {
 			return false;
 		}
 
@@ -74,7 +77,8 @@
 		}
 
 	}
-
+	
+	//유효성 검사에 따른 팝업창 띄움
 	function check2(re, what, message) {
 		if (re.test(what.value)) {
 			return true;
@@ -85,6 +89,8 @@
 		return false;
 	}
 </script>
+
+<!-- 중복확인시 화면을 띄움 -->
 <script>
 	function openIdChk2() {
 
@@ -94,33 +100,39 @@
 
 	}
 </script>
+
+<!--중복확인 후 다시 아이디를 입력했을 때, 다시 중복체크할 수 있도록 함 -->
 <script>
 	function inputIdChk2() {
 		document.coMemberRegist.idDuplication.value = "idUncheck";
 	}
 </script>
+
+<!-- 이메일 인증을 위해 이메일을 보냄 -->
 <script>
 	function emailSend2() {
 
 		let memEmail = document.getElementById('memEmail').value;
-		
+
 		$.ajax({
 			type : "get",
 			url : "/let/member/whole/email",
 			data : {
-				memEmail: memEmail
+				memEmail : memEmail
 			},
 			success : function(data) {
 				alert('인증번호가 전송되었습니다.');
 
 			},
-			error:function(xhr) {
+			error : function(xhr) {
 				alert('jsp : 인증번호 전송을 실패하였습니다.')
 			}
 		});
 
 	}
 </script>
+
+<!-- 보낸 인증번호와 작성한 인증번호 일치여부 확인 -->
 <script>
 	function checkEmailCode2() {
 
@@ -156,6 +168,8 @@
 </head>
 <body>
 
+	<!-- 상단 검은색 바탕 -->
+
 	<div class="jp_tittle_main_wrapper">
 		<div class="jp_tittle_img_overlay"></div>
 		<div class="container">
@@ -173,11 +187,14 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- 회원가입 작성란 -->
 
 	<form
 		action="${ pageContext.servletContext.contextPath }/member/coporateRegist"
 		id="coMemberRegist" name="coMemberRegist"
-		onSubmit="return checkValue2();" method="post" enctype="multipart/form-data">
+		onSubmit="return checkValue2();" method="post"
+		enctype="multipart/form-data">
 		<div class="register_section">
 			<div class="register_tab_wrapper">
 				<div class="container">
@@ -408,7 +425,8 @@
 			</div>
 		</div>
 	</form>
-
+	
+	<!-- 주소 검색 -->
 	<script
 		src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js">
 		
@@ -428,45 +446,47 @@
 			}).open();
 		}
 	</script>
+	
+	<!-- 사업자 등록증 번호 유효한지 체크 -->
 	<script>
-function noCheck(button){
-// 	사업자 등록증 번호 유효한지 체크 
-	let coNo = $("#coNo").val();
-			
-// 	alert(coComNo);
-	if(!checkCorporateRegistrationNumber(coNo.replaceAll("-",""))){
-		   alert("유효한 사업자번호를 입력하세요");
-		   $("#coNo").focus();
-		   $("#coNo").val("");
-		   return;
+		function noCheck(button) {
+
+			let coNo = $("#coNo").val();
+
+			if (!checkCorporateRegistrationNumber(coNo.replaceAll("-", ""))) {
+				alert("유효한 사업자번호를 입력하세요");
+				$("#coNo").focus();
+				$("#coNo").val("");
+				return;
+			}
+			alert('사용가능한 사업자 번호입니다.');
+
 		}
-	alert('사용가능한 사업자 번호입니다.');
+	</script>
 	
-	
-	
-}
-</script>
-<script>
-function checkCorporateRegistrationNumber(value) {
-    var valueMap = value.replace(/-/gi, '').split('').map(function(item) {
-        return parseInt(item, 10);
-    });
+	<!-- 사업자 등록증 번호 유효한지 체크 -->
+	<script>
+		function checkCorporateRegistrationNumber(value) {
+			var valueMap = value.replace(/-/gi, '').split('').map(
+					function(item) {
+						return parseInt(item, 10);
+					});
 
-    if (valueMap.length === 10) {
-        var multiply = new Array(1, 3, 7, 1, 3, 7, 1, 3, 5);
-        var checkSum = 0;
+			if (valueMap.length === 10) {
+				var multiply = new Array(1, 3, 7, 1, 3, 7, 1, 3, 5);
+				var checkSum = 0;
 
-        for (var i = 0; i < multiply.length; ++i) {
-            checkSum += multiply[i] * valueMap[i];
-        }
+				for (var i = 0; i < multiply.length; ++i) {
+					checkSum += multiply[i] * valueMap[i];
+				}
 
-        checkSum += parseInt((multiply[8] * valueMap[8]) / 10, 10);
-        return Math.floor(valueMap[9]) === (10 - (checkSum % 10));
-    }
+				checkSum += parseInt((multiply[8] * valueMap[8]) / 10, 10);
+				return Math.floor(valueMap[9]) === (10 - (checkSum % 10));
+			}
 
-    return false;
-}
-</script>
+			return false;
+		}
+	</script>
 
 </body>
 </html>

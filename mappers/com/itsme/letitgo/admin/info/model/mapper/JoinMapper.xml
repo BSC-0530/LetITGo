@@ -43,7 +43,7 @@
 				TBL_CO_MEMBER_APP_HISTORY
 		   SET CO_ANS_KINDS = '승인된 기업회원 아이디'
 			 , CO_ANS_DATE = SYSDATE
-		   WHERE CO_MEM_NO = #{ coMemNo }
+		   WHERE CO_REQ_NO = #{ coReqNo }
 	</update>
 	
 	<update id="RequestJoin2">
@@ -58,7 +58,7 @@
 		UPDATE
 			   TBL_CO_MEMBER_APP_HISTORY
 			SET CO_ANS_KINDS = '거절된 기업회원 아이디'
-		  WHERE CO_MEM_NO = #{ coMemNo }
+		  WHERE CO_REQ_NO = #{ coReqNo }
 	</update>
 	
 	<update id="RequestJoinReject2">
@@ -86,7 +86,7 @@
 			 , A.CO_SECTORS
 			 , A.CO_STATUS
 			 , A.CO_WEBSITE
-		FROM  TBL_CO_MEMBER_APP_HISTORY
+		FROM  TBL_CO_MEMBER_ADD_INFO
 	</select>
 	
 	

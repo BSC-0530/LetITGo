@@ -23,14 +23,15 @@ import com.itsme.letitgo.company.regist.model.service.CoMemberService;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-
+/* home -> 로그인 -> 기업회원가입 */
 @WebServlet("/member/coporateRegist")
 public class CoMemberRegistServlet extends HttpServlet {
 
 	private String rootLocation;
 	private int maxFileSize;
 	private String encodingType;
-
+	
+	/* web.xml에 있는 정보 가져옴 */
 	@Override
 	public void init() throws ServletException {
 
@@ -52,8 +53,10 @@ public class CoMemberRegistServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		/* 인코딩처리 해줌 */
 		if(ServletFileUpload.isMultipartContent(request)) {
-
+			
+			/* 파일첨부와 동시에 정보를 받을때 사용 */
 			MultipartRequest multi = new MultipartRequest(request, rootLocation, maxFileSize, encodingType, new DefaultFileRenamePolicy());
 
 			String memId = multi.getParameter("cmemId");
@@ -72,9 +75,14 @@ public class CoMemberRegistServlet extends HttpServlet {
 			String coSectors = multi.getParameter("coSectors");
 			String coStatus = multi.getParameter("coStatus");
 			String coWebsite = multi.getParameter("coWebsite");
-
+			
+			/* 파밀명을 저장하면서, 이미 저장된 이름이 있을경우 뒤에 숫자를 붙여서 파일명을 바꾼다. */
 			String coLogo = multi.getFilesystemName("coLogo");
+			
+			/* 실제파일명 */
 			String coLogoOrginal = multi.getOriginalFileName("coLogo");
+			
+			/* 저장경로 설정*/
 			String coLogoFullPath = rootLocation + "/" + coLogo;
 
 			String coRepresentativImage = multi.getFilesystemName("coRepresentativImage");
@@ -85,30 +93,7 @@ public class CoMemberRegistServlet extends HttpServlet {
 			String businessRegistrationOrginal = multi.getOriginalFileName("businessRegistration");
 			String businessRegistrationFullPath = rootLocation + "/" + businessRegistration;
 
-			System.out.println("memId : " + memId);
-			System.out.println("memEmail : " + memEmail);
-			System.out.println("memPwd : " + memPwd);
-			System.out.println("memName : " + memName);
-			System.out.println("memPhone : " + memPhone);
-			System.out.println("coIntro : " + coIntro);
-			System.out.println("coNo : " + coNo);
-			System.out.println("coComName : " + coComName);
-			System.out.println("coCeoName : " + coCeoName);
-			System.out.println("coAddress : " + coAddress);
-			System.out.println("coPhone : " + coPhone);
-			System.out.println("coPax : " + coPax);
-			System.out.println("coSectors : " + coSectors);
-			System.out.println("coStatus : " + coStatus);
-			System.out.println("coLogo : " + coLogo);
-			System.out.println("coLogoOrginal : " + coLogoOrginal);
-			System.out.println("coLogoFullPath : " + coLogoFullPath);
-			System.out.println("coRepresentativImage : " + coRepresentativImage);
-			System.out.println("coRepresentativImageOrginal : " + coRepresentativImageOrginal);
-			System.out.println("coRepresentativImageFullPath : " + coRepresentativImageFullPath);
-			System.out.println("businessRegistration : " + businessRegistration);
-			System.out.println("businessRegistrationOrginal : " + businessRegistrationOrginal);
-			System.out.println("businessRegistrationFullPath : " + businessRegistrationFullPath);
-
+			/* 회원정보를 DTO에 담는다. */
 			CoMemberDTO coMember = new CoMemberDTO();
 			coMember.setMemId(memId);
 			coMember.setMemEmail(memEmail);
@@ -127,40 +112,52 @@ public class CoMemberRegistServlet extends HttpServlet {
 			coMember.setCoWebsite(coWebsite);
 
 			CoMemberService serivce = new CoMemberService();
-
+			
+			/* 입력된 정보로 기업회원가입 등록 */
 			Map<String, Object> result = serivce.registCoMember(coMember);
-
+			
+			/* 회원가입된 아이디를 통해 회원번호 조회 */
 			int memNo = serivce.selectMemNo(coMember.getMemId());
-
+						
+			/* 기업회원가입 승인여부이력 생성 */
+			int result1 = serivce.insertRequestAppHistory(memNo);
+			
+			/* 파일을 저장할 곳을 지정, 없을 경우 생성 */	
 			String fileUploadDirectory = rootLocation;
-
 			File directory = new File(fileUploadDirectory);
 
 			if(!directory.exists()) {
-				System.out.println("폴더 생성 : " + directory.mkdirs());
+				directory.mkdirs();
 			}
-
+			
+			/* 로고이미지 저장을 위해 DTO에 저장 */
 			CoAttachmentDTO coLogoAttachment = new CoAttachmentDTO();
 			coLogoAttachment.setMemNo(memNo);
 			coLogoAttachment.setMemFileName(coLogo);
 			coLogoAttachment.setMemFileOriginalName(coLogoOrginal);
 			coLogoAttachment.setFilePath(coLogoFullPath);
 
+			/* 대표이미지 저장을 위해 DTO에 저장 */
 			CoAttachmentDTO coRepresentativImageAttachment = new CoAttachmentDTO();
 			coRepresentativImageAttachment.setMemNo(memNo);
 			coRepresentativImageAttachment.setMemFileName(coRepresentativImage);
 			coRepresentativImageAttachment.setMemFileOriginalName(coRepresentativImageOrginal);
 			coRepresentativImageAttachment.setFilePath(coRepresentativImageFullPath);
 
+			/* 사업자등록증 저장을 위해 DTO에 저장 */
 			CoAttachmentDTO businessRegistrationAttachment = new CoAttachmentDTO();		
 			businessRegistrationAttachment.setMemNo(memNo);
 			businessRegistrationAttachment.setMemFileName(businessRegistration);
 			businessRegistrationAttachment.setMemFileOriginalName(businessRegistrationOrginal);
 			businessRegistrationAttachment.setFilePath(businessRegistrationFullPath);
 
-			int result1 = serivce.insertRequestAppHistory(memNo);
+			/* 로고이미지 저장 */
 			int result2 = serivce.insertCoLogoAttachment(coLogoAttachment);
+			
+			/* 대표이미지 저장 */
 			int result3 = serivce.insertCoRepresentativImageAttachment(coRepresentativImageAttachment);
+			
+			/* 사업자등록증 저장 */
 			int result4 = serivce.insertBusinessRegistrationAttachment(businessRegistrationAttachment);
 
 			StringBuilder redirectText = new StringBuilder();

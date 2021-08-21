@@ -43,6 +43,9 @@
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
+			
+				<!-- 사이드바 -->
+			
 				<div
 					class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
 					<div class="row">
@@ -173,13 +176,14 @@
 											<td></td>
 										</tr>
 									</thead>
-									<c:forEach var="adminRefund"
-										items="${ requestScope.refundHistoryList }">
-										<input type="hidden" name="payChangeNo"
-											value="${ adminRefund.payChangeNo }">
+									<c:forEach var="adminRefund" items="${ requestScope.refundHistoryList }">
+										
 										<tbody align="center">
 											<tr>
-												<td><c:out value="${ adminRefund.payNo }" /></td>
+												<td>
+												<input type="hidden" name="payChangeNo"value="${ adminRefund.payChangeNo }">
+												<c:out value="${ adminRefund.payNo }" />
+												</td>											
 												<td><c:out value="${ adminRefund.payReqDate }" /></td>
 
 												<c:if test="${ adminRefund.payAnsDate != null }">
@@ -229,8 +233,7 @@
 	<!-- 환불 승인시 -->
 	<script>
 		function approval(button) {
-
-			var payChangeNo = button.parentNode.parentNode.parentNode.parentNode.children[1].value;
+			var payChangeNo = button.parentNode.parentNode.children[0].children[0].value;
 			var payNo = button.parentNode.parentNode.children[0].innerText;
 
 			var $form = $("<form>")
@@ -253,9 +256,11 @@
 	<script>
 		function reject(button) {
 
-			var payChangeNo = button.parentNode.parentNode.parentNode.parentNode.children[1].value;
+			var payChangeNo = button.parentNode.parentNode.children[0].children[0].value;
 			var payNo = button.parentNode.parentNode.children[0].innerText;
 			
+			alert(payChangeNo);
+			alert(payNo);
 			
 			var $form = $("<form>")
 					.attr("action",

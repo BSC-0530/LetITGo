@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.itsme.letitgo.company.payment.model.dto.BrowseUsingHistoryDTO;
+import com.itsme.letitgo.company.payment.model.dto.ExposureLeftTimeDTO;
 import com.itsme.letitgo.company.payment.model.dto.ExposureUsingHistoryDTO;
 import com.itsme.letitgo.company.payment.model.dto.HoldingRequestingSkillsDTO;
 import com.itsme.letitgo.company.payment.model.dto.PaymentHistoryDTO;
@@ -27,7 +28,7 @@ public interface PaymentMapper {
 	int selectExposureUsingPostNum(int memNo);
 
 	/* 노출권 잔여시간 조회 */
-	long selectExposureRestTime(int memNo);
+	List<ExposureLeftTimeDTO> selectExposureRestTime(int memNo);
 
 	/* 열람권 사용내역 조회 */
 	List<BrowseUsingHistoryDTO> selectBrowseUsingHistroyList(int memNo);

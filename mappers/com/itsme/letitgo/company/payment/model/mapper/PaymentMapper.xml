@@ -66,6 +66,10 @@
 	<resultMap type="com.itsme.letitgo.company.payment.model.dto.ReadingLeftNumDTO" id="readingLeftNumResultMap">
 		<result property="readingLeftNum" column="READING_LEFT_NUM"/>
 	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.company.payment.model.dto.ExposureLeftTimeDTO" id="exposureLeftTimeResultMap">
+		<result property="exposureTime" column="EXPOSURE_TIME"/>
+	</resultMap>
 
 	<select id="selectProductList" resultMap="productResultMap">
 	   SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectProductList() */
@@ -111,7 +115,7 @@
            AND CO_MEM_NO = #{ memNo }
 	</select>
 	
-	<select id="selectExposureRestTime" resultType="_long">
+	<select id="selectExposureRestTime" resultMap="exposureLeftTimeResultMap">
 		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#SelectExposureRestTime() */
        		   A.EXPOSURE_TIME
           FROM TBL_MEMBER_HOLDING_PRODUCT A

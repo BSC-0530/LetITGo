@@ -151,6 +151,7 @@
 				</div>
 
 				<form id="postInsertRejectMessage" action="${ pageContext.servletContext.contextPath }/admin/post/reject/InsertUpdate" method="post">
+					<input type="hidden" name="coReqNo" value="${ requestScope.coReqNo }">
 					<div style="width: 500px;" class="jp_contact_form_main_wrapper">
 						<div class="container">
 							<div class="row">
@@ -174,7 +175,7 @@
 											<div class="jp_contact_form_btn_wrapper">
 
 												<input type="submit" value="거절 사유 등록">
-
+												<button type="reset">취소</button>
 											</div>
 										</div>
 									</div>

@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.itsme.letitgo.login.model.service.ForgetService;
 
+/* home -> 로그인 -> 비밀번호 찾기 */
 @WebServlet("/member/forgetPwd")
 public class ForgetPwd extends HttpServlet {
 	
@@ -32,20 +33,19 @@ public class ForgetPwd extends HttpServlet {
 	
 		String memId = request.getParameter("memId");
 		String memEmail = request.getParameter("memEmail");
-		
-		System.out.println("memId : " + memId);
-		System.out.println("memEmail : " + memEmail);
-		
+
 		Map<String, String> map = new HashMap<>();
 		map.put("memId", memId);
 		map.put("memEmail", memEmail);
 		
 		ForgetService service = new ForgetService();
 		
+		/* 아이디와 이메일을 통해 존재하는 회원이 있는지 확인  */
 		int checkIdEmail = service.checkIdEmail(map);
 		
 		StringBuilder redirectText = new StringBuilder();
 		
+		/* 존재하는 회원일 경우  */
 		if(checkIdEmail > 0) {
 			
 			String rawMemPwd = null;
@@ -53,6 +53,7 @@ public class ForgetPwd extends HttpServlet {
 			StringBuffer temp = new StringBuffer();
 			Random rnd = new Random();
 			
+			/* 비밀번호에 새로 넣을 난수를 만듬 */
 			for(int i = 0; i < 10; i++) {
 				
 				int rIndex = rnd.nextInt(3);
@@ -64,18 +65,17 @@ public class ForgetPwd extends HttpServlet {
 				
 			}
 			
+			/* 난수만든 것을 암호화함 */
 			rawMemPwd = temp.toString();
 			memPwd = new BCryptPasswordEncoder().encode(rawMemPwd);
-	        System.out.println("rawMemPwd : " + rawMemPwd );
-	        System.out.println("memPwd : " + memPwd);
-	        
+	    
+			/* 아이디에 암호회된 비밀번호를 넣어주기위해 map 담아서 이동 */
 	        Map<String, String> updateMap = new HashMap<>();
 	        updateMap.put("memId", memId);
 	        updateMap.put("memPwd", memPwd);
 	        
+	        /* 아이디에 암호회된 비밀번호를 넣어줌 */
 	        int result = service.updateMemPwd(updateMap);
-			System.out.println("result : " + result);
-	
 			redirectText.append("<script>\n")
 			            .append("alert('당신의 임시비밀번호는 ")
 			            .append(rawMemPwd)
@@ -84,7 +84,7 @@ public class ForgetPwd extends HttpServlet {
 			          
 			
 	       
-	        
+	    /* 아이디와 이메일이 일치하는 것이 없는 경우 */
 		} else {
 			
 			redirectText.append("<script>alert('아이디 또는 이메일이 일치하지 않습니다.' ); location.href='/let/loginPage';</script>");

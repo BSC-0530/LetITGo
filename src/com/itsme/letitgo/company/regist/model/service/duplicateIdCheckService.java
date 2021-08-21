@@ -8,6 +8,7 @@ import com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper;
 
 public class duplicateIdCheckService {
 
+	/* 중복된 아이디가 있는지 확인 */
 	public int duplicateIdCheck(String memId) {
 		
 		SqlSession session = getSqlSession();

@@ -174,8 +174,8 @@
 										<br> <br>
 										<div class="row">
 											<!--Form Group-->
-											<div><input type="hidden" name="memNo"
-													value="${ requestScope.memNo }" ></div>
+											<div><input type="hidden" name="coReqNo"
+													value="${ requestScope.coReqNo }" ></div>
 											
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
 												<input type="text" name="userId" readonly>
@@ -224,15 +224,30 @@
 
 						<!-- end -->
 
-						<button type="reset" class="btn btn-info" id="coInfoChange"
+						<button type="submit" class="btn btn-info" 
 							style="float: right; margin: 5px; border: 0px; background: red;" onclick="JoinReject(this)">거절</button>
-						<button type="submit" class="btn btn-info" id="coInfoChange"
+						<button type="submit" class="btn btn-info"
 							style="float: right; margin: 5px;" onclick="JoinApproval(this)">수락</button>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-
+<script>
+function JoinApproval(button) {
+	
+	var coReqNo = button.parentNode.parentNode.children[0].innerText;
+	
+	location.href = "${ pageContext.servletContext.contextPath }/info/accept?coReqNo=" + coReqNo;
+	
+}
+function JoinReject(button) {
+	
+	const coReqNo = button.value;
+		
+	location.href = "${ pageContext.servletContext.contextPath }/admin/post/reject/InsertUpdate?coReqNo=" + coReqNo;
+	
+}
+</script>
 </body>
 </html>

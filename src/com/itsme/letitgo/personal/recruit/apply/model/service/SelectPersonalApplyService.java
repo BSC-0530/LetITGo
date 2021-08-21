@@ -13,39 +13,42 @@ import com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper
 
 public class SelectPersonalApplyService {
 
-	public List<SelectPersonalApplyDTO> selectPersonalApply() {
+	/* 전체지원조회 */
+	public List<SelectPersonalApplyDTO> selectPersonalApply(int memNo) {
 		
 		SqlSession session = getSqlSession();
 		
 		PersonalApplyMapper mapper = session.getMapper(PersonalApplyMapper.class);
 		
-		List<SelectPersonalApplyDTO> PersonalApplyList = mapper.selectPersonalApply();
+		List<SelectPersonalApplyDTO> PersonalApplyList = mapper.selectPersonalApply(memNo);
 		
 		session.close();
 		
 		return PersonalApplyList;
 	}
 
-	public List<SelectPersonlCompletedApplyDTO> selectPersonalCompletedApply() {
+	/* 지원완료조회 */
+	public List<SelectPersonlCompletedApplyDTO> selectPersonalCompletedApply(int memNo) {
 
 		SqlSession session = getSqlSession();
 		
 		PersonalApplyMapper mapper = session.getMapper(PersonalApplyMapper.class);
 		
-		List<SelectPersonlCompletedApplyDTO> PersonalApplyCompletedList = mapper.selectPersonalCompletedApply();
+		List<SelectPersonlCompletedApplyDTO> PersonalApplyCompletedList = mapper.selectPersonalCompletedApply(memNo);
 		
 		session.close();
 		
 		return PersonalApplyCompletedList;
 	}
 	
-	public List<SelectPersonlCanceledApplyDTO> selectPersonalCanceledApply() {
+	/* 지원취소조회 */
+	public List<SelectPersonlCanceledApplyDTO> selectPersonalCanceledApply(int memNo) {
 		
 		SqlSession session = getSqlSession();
 		
 		PersonalApplyMapper mapper = session.getMapper(PersonalApplyMapper.class);
 		
-		List<SelectPersonlCanceledApplyDTO> PersonalApplyCanceledList = mapper.selectPersonalCanceledApply();
+		List<SelectPersonlCanceledApplyDTO> PersonalApplyCanceledList = mapper.selectPersonalCanceledApply(memNo);
 		
 		session.close();
 		

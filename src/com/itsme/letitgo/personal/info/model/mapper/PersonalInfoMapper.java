@@ -7,18 +7,23 @@ import com.itsme.letitgo.personal.info.model.dto.RestrictedCompanyDTO;
 
 public interface PersonalInfoMapper {
 
-	int selectshallowBrowsingNum(/* 개인회원번호 */);
+	/* 스카우트 얕은열람 당한 횟수 조회 */
+	int selectshallowBrowsingNum(int memNo);
 
-	int selectDeepBrowsingNum(/* 개인회원번호 */);
+	/* 스카우트 깊은열람 당한 횟수 조회 */
+	int selectDeepBrowsingNum(int memNo);
 
-	int selectinterviewProposalNum(/* 개인회원번호 */);
+	/* 스카우트 면접제안 당한 횟수 조회 */
+	int selectinterviewProposalNum(int memNo);
 
-	
-	int selectApplicationCompletedNum(/* 개인회원번호 */);
+	/* 지원완료한 횐수 */
+	int selectApplicationCompletedNum(int memNo);
 
-	int selectApplicationCanceledNum(/* 개인회원번호 */);
+	/* 지원취소한 횟수 */
+	int selectApplicationCanceledNum(int memNo);
 
-	int selectBookmarkNum(/* 개인회원번호 */);
+	/* 북마크한 횟수 */
+	int selectBookmarkNum(int memNo);
 
 	List<RestrictedCompanyDTO> selectRectrictedCompany(int memNo);
 
