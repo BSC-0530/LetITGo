@@ -368,6 +368,7 @@
 		<result property="memName" column="MEM_NAME"/>
 		<result property="memEmail" column="MEM_EMAIL"/>
 		<result property="memPhone" column="MEM_PHONE"/>
+		<result property="path" column="MEM_FILE_PATH"/>
 		
 		<collection property="resume" ofType="com.itsme.letitgo.personal.scout.model.dto.ResumeDTO">
 		
@@ -592,8 +593,10 @@
 		       R.RESUME_NO
 		     , M.MEM_NAME
 		     , R.IN_MEM_NO
+		     , SUBSTR(A.MEM_FILE_PATH,21) AS MEM_FILE_PATH 
 		  FROM TBL_MEMBER M
 		  JOIN TBL_RESUME R ON (M.MEM_NO = R.IN_MEM_NO)
+		  JOIN TBL_ATTACHMENT A ON (M.MEM_NO = A.MEM_NO)
 		 WHERE R.RESUME_NO = #{ resumeNo }
 	</select>
 	

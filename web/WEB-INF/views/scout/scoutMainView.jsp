@@ -150,8 +150,12 @@
 								<input type="hidden" id="skillss" value="${ mainScout }">
 							<div class="jp_recent_resume_box_wrapper">
 								<div class="jp_recent_resume_img_wrapper" id="detailResume">
-<%-- 								<input type="text" id="skillss" value="${ mainScout.memNo }"> --%>
+								   <c:if test="${ mainScout.path  ne null }">
 									<img src="${ pageContext.servletContext.contextPath }${ mainScout.path }" style="width:80px; height:80px;" alt="resume_img" />
+									</c:if>
+									  <c:if test="${ mainScout.path eq null }">
+                             		   <img src="${ pageContext.servletContext.contextPath }/resources/image/basic.png" alt="profile_img" style="width:80px; height: 80px;">
+                            			</c:if>
 								</div>
 								<div id="skills" class="jp_recent_resume_cont_wrapper">
 								<input type="hidden" id="skillss" value="${ holdingSkill.skillsAndCategory.skillsName }">

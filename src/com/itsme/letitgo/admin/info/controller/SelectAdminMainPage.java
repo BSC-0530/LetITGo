@@ -33,7 +33,6 @@ public class SelectAdminMainPage extends HttpServlet {
 		//1대1문의 카운트InquiryDTO
 		int inquiry = new CountMainService().selectInquiryNum();
 		
-		
 		String path="/WEB-INF/views/admin/adminMain.jsp";
 		
 		

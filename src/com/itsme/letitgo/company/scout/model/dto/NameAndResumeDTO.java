@@ -12,13 +12,14 @@ public class NameAndResumeDTO {
 	private String memName;
 	private String memEmail;
 	private String memPhone;
+	private String path; //사진경로
 	
 	private List<ResumeDTO> resume;
 	
 	public NameAndResumeDTO() {}
 
 	public NameAndResumeDTO(int memNo, String memId, String memPwd, String memName, String memEmail, String memPhone,
-			List<ResumeDTO> resume) {
+			String path, List<ResumeDTO> resume) {
 		super();
 		this.memNo = memNo;
 		this.memId = memId;
@@ -26,6 +27,7 @@ public class NameAndResumeDTO {
 		this.memName = memName;
 		this.memEmail = memEmail;
 		this.memPhone = memPhone;
+		this.path = path;
 		this.resume = resume;
 	}
 
@@ -77,6 +79,14 @@ public class NameAndResumeDTO {
 		this.memPhone = memPhone;
 	}
 
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
 	public List<ResumeDTO> getResume() {
 		return resume;
 	}
@@ -88,9 +98,13 @@ public class NameAndResumeDTO {
 	@Override
 	public String toString() {
 		return "NameAndResumeDTO [memNo=" + memNo + ", memId=" + memId + ", memPwd=" + memPwd + ", memName=" + memName
-				+ ", memEmail=" + memEmail + ", memPhone=" + memPhone + ", resume=" + resume + "]";
+				+ ", memEmail=" + memEmail + ", memPhone=" + memPhone + ", path=" + path + ", resume=" + resume
+				+ ", getMemNo()=" + getMemNo() + ", getMemId()=" + getMemId() + ", getMemPwd()=" + getMemPwd()
+				+ ", getMemName()=" + getMemName() + ", getMemEmail()=" + getMemEmail() + ", getMemPhone()="
+				+ getMemPhone() + ", getPath()=" + getPath() + ", getResume()=" + getResume() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
-	
+
 	
 
 }

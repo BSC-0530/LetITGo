@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Let IT Go</title>
+<title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/animate.css" />
 <link rel="stylesheet" type="text/css"
@@ -63,10 +63,14 @@
 				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 					<div class="jp_cp_left_side_wrapper">
 						<div class="jp_cp_left_pro_wallpaper">
-<%-- 						<input type="text" value="${ path }" > --%>
-							<img
-								src="${ pageContext.servletContext.contextPath }${ path }"
-								style="width: 300px; height: 300px;" alt="post_img" />
+						<c:if test="${  path ne null}">
+							<img src="${ pageContext.servletContext.contextPath }${ path }" 
+							style="width: 300px; height: 300px;" alt="post_img" />
+						</c:if>
+						 <c:if test="${ path eq null }">
+                                <img src="${ pageContext.servletContext.contextPath }/resources/image/basic.png" alt="profile_img" style="width:350px; height: 400px;">
+                         </c:if>
+							
 							<h2><c:out value="${ requestScope.browseName }"></c:out> </h2>
 							<p>
 								<br>

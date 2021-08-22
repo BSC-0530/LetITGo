@@ -12,7 +12,7 @@ public class AdminMainPage extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String path = "/WEB-INF/views/admin/adminMain.jsp";
+		String path = "/WEB-INF/views/admin/mainPage.jsp";
 		
 		request.getRequestDispatcher(path).forward(request, response);
 		
