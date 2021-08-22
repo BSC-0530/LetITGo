@@ -38,6 +38,9 @@
 </head>
 
 <body>
+
+	<jsp:include page="../../common/header/companyHeader.jsp" />
+
 	<!-- 상단 검은색 -->
 	<div class="jp_tittle_main_wrapper">
 		<div class="jp_tittle_img_overlay"></div>
@@ -46,14 +49,14 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="jp_tittle_heading_wrapper">
 						<div class="jp_tittle_heading">
-							<h2>개인 마이페이지</h2>
+							<h2>기업 마이페이지</h2>
 						</div>
 						<div class="jp_tittle_breadcrumb_main_wrapper">
 							<div class="jp_tittle_breadcrumb_wrapper">
 								<ul>
-									<li><a href="#">Home</a></li>
+									<li><a href="${ pageContext.servletContext.contextPath }/mainPage/CoMember">Home</a></li>
 									<li>></li>
-									<li>개인 마이페이지</li>
+									<li>기업 마이페이지</li>
 								</ul>
 							</div>
 						</div>
@@ -80,7 +83,7 @@
 									<div class="handyman_sec1_wrapper">
 										<div class="content">
 											<div class="box">
-												<p align="center">
+												<p>
 													<a href="${ pageContext.servletContext.contextPath }/coMem/infomationServlet">회원정보</a>
 												</p>
 												<br><br>
@@ -102,15 +105,15 @@
 												</p>
 												<br><br>
 												<p>
-													<a href="${ pageContext.servletContext.contextPath }/Company/Scout/List/Select">스카우트 현황</a>
+													<a href="${ pageContext.servletContext.contextPath }/Company/Scout/List/Select">스카우트현황</a>
 												</p>
 												<br><br>
 												<p>
-													<a href="${ pageContext.servletContext.contextPath }/company/scout/wish/select">찜한 후보자</a>
+													<a href="${ pageContext.servletContext.contextPath }/company/scout/wish/select">찜한후보자</a>
 												</p>
 												<br><br>
 												<p>
-													<a href="#">회원 탈퇴</a>
+													<a href="#">회원탈퇴</a>
 												</p>
 												<br><br>
 											</div>

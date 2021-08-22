@@ -16,14 +16,17 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="jp_tittle_heading_wrapper">
 						<div class="jp_tittle_heading">
-							<h2>상세 공고</h2>
+							<h2>공고관리</h2>
 						</div>
 						<div class="jp_tittle_breadcrumb_main_wrapper">
 							<div class="jp_tittle_breadcrumb_wrapper">
 								<ul>
-									<li><a href="#">Home</a> <i class="fa fa-angle-right"></i></li>
-									<li><a href="#">기업 마이페이지</a> <i class="fa fa-angle-right"></i></li>
-									<li>채용공고</li>
+									<li><a
+										href="${ pageContext.servletContext.contextPath }/mainPage/CoMember">Home</a></li>
+									<li>></li>
+									<li><a href="${ pageContext.servletContext.contextPath }/company/myPage/main">기업 마이페이지</a></li>
+									<li>></li>
+									<li>공고관리</li>
 								</ul>
 							</div>
 						</div>
@@ -48,36 +51,41 @@
 									<div class="handyman_sec1_wrapper">
 										<div class="content">
 											<div class="box">
-												<p align="center">
-													<a href="#">회원정보</a>
+												<p>
+													<a href="${ pageContext.servletContext.contextPath }/coMem/infomationServlet">회원정보</a>
 												</p>
 												<br> <br>
-												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/companyTestServlet">기업정보</a>
+												<p>
+													<a
+														href="${ pageContext.servletContext.contextPath }/companyTestServlet">기업정보</a>
 												</p>
 												<br> <br>
-												<p align="center">
-													<a href="#">결제내역</a>
+												<p>
+													<a
+														href="${ pageContext.servletContext.contextPath }/company/paymentHistory/select">결제내역</a>
 												</p>
 												<br> <br>
-												<p align="center">
-													<a href="#">환불내역</a>
+												<p>
+													<a
+														href="${ pageContext.servletContext.contextPath }/company/refundHistory/select">환불내역</a>
 												</p>
 												<br> <br>
-												<p align="center">
-													<a href="#">공고관리</a>
+												<p>
+													<a
+														href="${ pageContext.servletContext.contextPath }/company/jobPostingHistory/select">공고관리</a>
 												</p>
 												<br> <br>
-												<p align="center">
-													<a href="#">스카우트 현황</a>
+												<p>
+													<a
+														href="${ pageContext.servletContext.contextPath }/Company/Scout/List/Select">스카우트현황</a>
 												</p>
 												<br> <br>
-												<p align="center">
-													<a href="#">찜한 후보자</a>
+												<p>
+													<a href="${ pageContext.servletContext.contextPath }/company/scout/wish/select">찜한후보자</a>
 												</p>
 												<br> <br>
-												<p align="center">
-													<a href="#">회원 탈퇴</a>
+												<p>
+													<a href="#">회원탈퇴</a>
 												</p>
 											</div>
 										</div>
@@ -120,7 +128,6 @@
 								<br> <br>
 							</div>
 						</div><br>
-						
 						<!-- 데이터 테이블 내역모음 -->
 						<div>
 						<c:if test="${ requestScope.kinds eq null }" >
@@ -139,20 +146,19 @@
 								<tr align="center">
 									<th>공고 제목</th>
 									<th>공고 상태</th>
-									<th style="width:70px;">요구 경력</th>
-									<th style="width:70px;">등록일자</th>
+									<th style="width:50px;">요구 경력</th>
+									<th style="width:50px;">등록일자</th>
 									<th style="width:50px;">마감일자</th>
 									<th style="width:50px;">공고 수정 </th>
 									<th style="width:50px;">지원자 확인</th>
-									<th style="width:90px;">공고 노출권</th>
+									<th style="width:50px;">공고 노출권</th>
 								</tr>
 							</thead>
-							
 							<!-- requestScope에 담긴 kinds가 null일때 전체 조회된 공고를 보여줌 -->
 							<c:if test="${ requestScope.kinds eq null }" >
 								
 								<tbody align="center">
-								<c:forEach var="jobPosting"  items="${ requestScope.allJobPosting }">
+								<c:forEach var="jobPosting" items="${ requestScope.allJobPosting }">
 									<tr>
 										<td>
 											<input type="hidden" value="${ jobPosting.jobPostNo }">
@@ -170,12 +176,25 @@
 										<td><c:out value="${ jobPosting.jobPostDeadline }" /></td>			
 										<td><button onclick="updateJobPosting(this);">수정</button></td>			
 										<td><button onclick="selectApplicant(this);">지원자</button></td>
-										<c:if test="${ jobPosting.exposureUseCheck eq 'N' }">
-										<td><button type="submit" onclick="useExposure(this);">사용하기</button></td>
+										<c:if test="${ jobPosting.exposureEndDate eq null }">
+											<c:choose>
+												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }">
+													<td>마감된공고</td>
+												</c:when>
+												<c:otherwise>
+													<td><button type="submit" onclick="useExposure(this);">사용</button></td>	
+												</c:otherwise>
+											</c:choose>
 										</c:if>
-										<c:if test="${ jobPosting.exposureUseCheck eq 'Y' }">
-										<!-- 노출권 마감일자가 나와주면 좋을듯  -->
-										<td>사용중</td>
+										<c:if test="${ jobPosting.exposureEndDate ne null }">
+											<c:choose>
+												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }">
+													<td>마감된공고</td>
+												</c:when>
+												<c:otherwise>
+													<td><c:out value="~${ jobPosting.exposureEndDate }"/>
+												</c:otherwise>
+											</c:choose>
 										</c:if>
 									</tr>
 								</c:forEach>
@@ -192,7 +211,6 @@
 											<input type="hidden" value="${ jobPosting.jobPostNo }">
 											<c:out value="${ jobPosting.jobPostTitle }"/>
 										</td>
-										<td>
 										<!-- 공고 상태에 따라 view에 다르게 표기 -->
 										<td>
 										<c:if test="${ jobPosting.jobPostKinds eq '승인된공고' }"><c:out value="채용중"/></c:if>
@@ -205,18 +223,30 @@
 										<td><c:out value="${ jobPosting.jobPostDeadline }" /></td>			
 										<td><button onclick="updateJobPosting(this);">수정</button></td>			
 										<td><button onclick="selectApplicant(this);">지원자</button></td>
-										<c:if test="${ jobPosting.exposureUseCheck eq 'N' }">
-										<td><button type="submit" onclick="useExposure(this);">사용하기</button></td>
+										<c:if test="${ jobPosting.exposureEndDate eq null }">
+											<c:choose>
+												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }">
+													<td>마감된공고</td>
+												</c:when>
+												<c:otherwise>
+													<td><button type="submit" onclick="useExposure(this);">사용</button></td>	
+												</c:otherwise>
+											</c:choose>
 										</c:if>
-										<c:if test="${ jobPosting.exposureUseCheck eq 'Y' }">
-										<!-- 노출권 마감일자가 나와주면 좋을듯  -->
-										<td>사용중</td>
+										<c:if test="${ jobPosting.exposureEndDate ne null }">
+											<c:choose>
+												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }">
+													<td>마감된공고</td>
+												</c:when>
+												<c:otherwise>
+													<td><c:out value="~${ jobPosting.exposureEndDate }"/>
+												</c:otherwise>
+											</c:choose>
 										</c:if>
 									</tr>
 								</c:forEach>
 								</tbody>
 							</c:if>
-							
 							<!-- request영역에 담긴 kinds가 '승인대기중인공고'일때 승인된 공고 화면에 출력 -->
 							<c:if test="${ requestScope.kinds eq '승인대기중인공고' }" >
 								
@@ -239,12 +269,25 @@
 										<td><c:out value="${ jobPosting.jobPostDeadline }" /></td>			
 										<td><button onclick="updateJobPosting(this);">수정</button></td>			
 										<td><button onclick="selectApplicant(this);">지원자</button></td>
-										<c:if test="${ jobPosting.exposureUseCheck eq 'N' }">
-										<td><button type="submit" onclick="useExposure(this);">사용하기</button></td>
+										<c:if test="${ jobPosting.exposureEndDate eq null }">
+											<c:choose>
+												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }">
+													<td>마감된공고</td>
+												</c:when>
+												<c:otherwise>
+													<td><button type="submit" onclick="useExposure(this);">사용</button></td>	
+												</c:otherwise>
+											</c:choose>
 										</c:if>
-										<c:if test="${ jobPosting.exposureUseCheck eq 'Y' }">
-										<!-- 노출권 마감일자가 나와주면 좋을듯  -->
-										<td>사용중</td>
+										<c:if test="${ jobPosting.exposureEndDate ne null }">
+											<c:choose>
+												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }">
+													<td>마감된공고</td>
+												</c:when>
+												<c:otherwise>
+													<td><c:out value="~${ jobPosting.exposureEndDate }"/>
+												</c:otherwise>
+											</c:choose>
 										</c:if>
 									</tr>
 								</c:forEach>
@@ -297,7 +340,7 @@
 		 
 		var path = "${ pageContext.servletContext.contextPath }/exposureForuse/select?jobPostNo="+ jobPostNo;
 		 
-		window.open( path , "이력서 선택", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+		window.open( path , "이력서 선택", "width=400, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 
 	}
 	

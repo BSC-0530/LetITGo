@@ -49,9 +49,9 @@ public class RequestRejectServlet extends HttpServlet {
 		StringBuilder redirectText = new StringBuilder();
 		
 		if(result1 > 0 && result2 > 0) {
-			redirectText.append("<script>alert('기업회원 가입 거절하였습니다.'); location.href='../../updateRequest/select';</script>\"");
+			redirectText.append("<script>alert('기업회원 가입 거절하였습니다.'); location.href='../../info/requestList';</script>\"");
 		}else {
-			redirectText.append("<script>alert('기업회원 가입 거절을 실패하셨습니다.');location.href='../../updateRequest/select';</script>\"");
+			redirectText.append("<script>alert('기업회원 가입 거절을 실패하셨습니다.');location.href='../../info/requestList';</script>\"");
 		}
 		
 		response.setContentType("/WEB-INF/views/admin/adminJoinDetail.jsp");

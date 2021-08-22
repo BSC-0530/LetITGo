@@ -117,6 +117,7 @@
                JOIN TBL_JOB_POSTING_REQ_SKILLS RS ON (JP.JOB_POST_NO = RS.JOB_POST_NO)
                JOIN TBL_SKILLS S ON (S.SKILLS_NO = RS.SKILLS_NO)
 		 WHERE JP.JOB_POST_KINDS = '승인된공고'
+		   AND JP.JOB_POST_DEADLINE > SYSDATE
 	     <if test="skills != null">
 		       AND LOWER(S.SKILLS_NAME) LIKE '%' || #{ skills } || '%'
 		 </if>
@@ -186,6 +187,7 @@
 		                  JOIN TBL_JOB_POSTING_REQ_SKILLS RS ON (JP.JOB_POST_NO = RS.JOB_POST_NO)
 		                  JOIN TBL_SKILLS S ON (S.SKILLS_NO = RS.SKILLS_NO)
 						 WHERE JP.JOB_POST_KINDS = '승인된공고'
+						   AND JP.JOB_POST_DEADLINE > SYSDATE
 		                <if test="skills != null">
 		                   AND LOWER(S.SKILLS_NAME) LIKE '%' || #{ skills } || '%'
 		                </if>

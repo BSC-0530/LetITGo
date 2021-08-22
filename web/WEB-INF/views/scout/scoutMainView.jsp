@@ -83,8 +83,9 @@
                         <div class="jp_tittle_breadcrumb_main_wrapper">
                             <div class="jp_tittle_breadcrumb_wrapper">
                                 <ul>
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="#">스카우트</a></li>
+                                    <li><a href="${ pageContext.servletContext.contextPath }/mainPage/CoMember">Home</a></li>
+                                    <li>></li>
+                                    <li>스카우트</li>
                                 </ul>
                             </div>
                         </div>

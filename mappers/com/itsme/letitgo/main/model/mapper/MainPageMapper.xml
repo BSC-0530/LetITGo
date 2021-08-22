@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.itsme.letitgo.main.model.mapper.MainPageMapper">
+	
+	<resultMap type="com.itsme.letitgo.main.model.dto.PremiumRecruitDTO" id="plRecruitResultMap">
+		<result property="jobPostNo" column="JOB_POST_NO"/>
+		<result property="jobPostTitle" column="JOB_POST_TITLE"/>
+		<result property="coComName" column="CO_COM_NAME"/>
+		<result property="coMemNo" column="CO_MEM_NO"/>
+		<result property="jobPostMinExperience" column="JOB_POST_MIN_EXPERIENCE"/>
+		<result property="jobPostMaxExperience" column="JOB_POST_MAX_EXPERIENCE"/>
+		<result property="jobPostEnrollDate" column="JOB_POST_ENROLL_DATE"/>
+		<result property="jobPostDeadline" column="JOB_POST_DEADLINE"/>
+		<result property="jobName" column="JOB_NAME"/>
+		<result property="coAddress" column="CO_ADDRESS"/>
+	</resultMap>
+	
+		<resultMap type="com.itsme.letitgo.main.model.dto.JpSkillsDTO" id="resultJpSkills" >
+		<result property="skillsNo" column="SKILLS_NO"/>
+		<result property="jobPostNo" column="JOB_POST_NO"/>
+		<result property="skillsName" column="SKILLS_NAME"/>
+	</resultMap>
+	
+	<select id="selectPremiumRecruit" resultMap="plRecruitResultMap">
+		SELECT /* com.itsme.letitgo.main.model.mapper.MainPageMapper#selectPremiumRecruit() */
+		       A.RNUM
+		     , A.JOB_POST_NO
+		     , A.JOB_POST_TITLE
+		     , A.CO_COM_NAME
+		     , A.CO_MEM_NO
+		     , A.JOB_POST_MIN_EXPERIENCE
+		     , A.JOB_POST_MAX_EXPERIENCE
+		     , A.JOB_NAME
+		     , A.JOB_POST_ENROLL_DATE
+		     , A.JOB_POST_DEADLINE
+		     , A.CO_ADDRESS
+		  FROM (SELECT 
+		               ROWNUM RNUM
+		             , B.JOB_POST_NO
+		             , B.JOB_POST_TITLE
+		             , B.CO_COM_NAME
+		             , B.CO_MEM_NO
+		             , B.JOB_POST_MIN_EXPERIENCE
+		             , B.JOB_POST_MAX_EXPERIENCE
+		             , B.JOB_NAME
+		             , B.JOB_NO
+		             , B.JOB_POST_ENROLL_DATE
+		             , B.JOB_POST_DEADLINE
+		             , B.JOB_POST_APPLYING_KINDS
+		             , B.CO_ADDRESS
+		             , B.JOB_POST_CONTENTS
+		             , B.JOB_POST_KINDS
+		             , B.EXPOSURE_USE_DATE
+		             , B.EXPOSURE_END_DATE
+		          FROM (SELECT
+		                       DISTINCT JP.JOB_POST_NO
+		                     , JP.JOB_POST_TITLE
+		                     , AI.CO_COM_NAME
+		                     , AI.CO_MEM_NO
+		                     , JP.JOB_POST_MIN_EXPERIENCE
+		                     , JP.JOB_POST_MAX_EXPERIENCE
+		                     , JF.JOB_NAME
+		                     , JP.JOB_NO
+		                     , JP.JOB_POST_ENROLL_DATE
+		                     , JP.JOB_POST_DEADLINE
+		                     , JP.JOB_POST_APPLYING_KINDS
+		                     , AI.CO_ADDRESS
+		                     , JP.JOB_POST_CONTENTS
+		                     , JP.JOB_POST_KINDS
+		                     , UH.EXPOSURE_USE_DATE
+		                     , UH.EXPOSURE_END_DATE
+		                  FROM TBL_JOB_POSTING JP
+		                  JOIN TBL_CO_MEMBER_ADD_INFO AI ON (JP.CO_MEM_NO = AI.CO_MEM_NO)
+		                  JOIN TBL_JOB_FIELD JF ON (JP.JOB_NO = JF.JOB_NO)
+		                  JOIN TBL_JOB_POSTING_REQ_SKILLS RS ON (JP.JOB_POST_NO = RS.JOB_POST_NO)
+		                  JOIN TBL_SKILLS S ON (S.SKILLS_NO = RS.SKILLS_NO)
+		                  LEFT JOIN TBL_EXPOSURE_USAGE_HISTORY UH ON (JP.JOB_POST_NO = UH.JOB_POST_NO)
+		                 WHERE JP.JOB_POST_KINDS = '승인된공고'
+		                   AND SYSDATE BETWEEN UH.EXPOSURE_USE_DATE AND UH.EXPOSURE_END_DATE
+		                   AND JP.JOB_POST_DEADLINE > SYSDATE
+		                 ORDER BY UH.EXPOSURE_USE_DATE DESC
+		               ) B
+<!--                    <![CDATA[ -->
+<!--                    WHERE ROWNUM <= #{ selectCriteria.endRow }  -->
+<!--                    ]]> 		        -->
+              ) A
+<!-- 		<![CDATA[ -->
+<!--  		  WHERE A.RNUM >= #{ selectCriteria.startRow } -->
+<!--  		]]>	 -->
+	</select>
+	
+		
+	<select id="selectSkillsList" resultMap="resultJpSkills">
+		SELECT /* com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper#selectJpSkills() */
+			   RS.JOB_POST_NO
+			 , S.SKILLS_NAME
+		  FROM TBL_JOB_POSTING_REQ_SKILLS RS
+		  JOIN TBL_SKILLS S ON(RS.SKILLS_NO = S.SKILLS_NO)
+	</select>
+</mapper>

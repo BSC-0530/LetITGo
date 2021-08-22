@@ -47,15 +47,14 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="jp_tittle_heading_wrapper">
 						<div class="jp_tittle_heading">
-							<h2>결제 내역</h2>
+							<h2>결제내역</h2>
 						</div>
 						<div class="jp_tittle_breadcrumb_main_wrapper">
 							<div class="jp_tittle_breadcrumb_wrapper">
 								<ul>
-									<li><a
-										href="${ pageContext.servletContext.contextPath }/mainPage/CoMember">Home</a></li>
+									<li><a href="${ pageContext.servletContext.contextPath }/mainPage/CoMember">Home</a></li>
 									<li>></li>
-									<li><a href="#">기업 마이페이지</a></li>
+									<li><a href="${ pageContext.servletContext.contextPath }/company/myPage/main">기업 마이페이지</a></li>
 									<li>></li>
 									<li>결제내역</li>
 								</ul>
@@ -84,42 +83,41 @@
 									<div class="handyman_sec1_wrapper">
 										<div class="content">
 											<div class="box">
-												<p align="center">
-													<a href="#">회원정보</a>
+												<p>
+													<a href="${ pageContext.servletContext.contextPath }/coMem/infomationServlet">회원정보</a>
 												</p>
 												<br> <br>
-												<p align="center">
+												<p>
 													<a
 														href="${ pageContext.servletContext.contextPath }/companyTestServlet">기업정보</a>
 												</p>
 												<br> <br>
-												<p align="center">
+												<p>
 													<a
 														href="${ pageContext.servletContext.contextPath }/company/paymentHistory/select">결제내역</a>
 												</p>
 												<br> <br>
-												<p align="center">
+												<p>
 													<a
 														href="${ pageContext.servletContext.contextPath }/company/refundHistory/select">환불내역</a>
 												</p>
 												<br> <br>
-												<p align="center">
+												<p>
 													<a
 														href="${ pageContext.servletContext.contextPath }/company/jobPostingHistory/select">공고관리</a>
 												</p>
 												<br> <br>
-												<p align="center">
+												<p>
 													<a
-														href="${ pageContext.servletContext.contextPath }/Company/Scout/List/Select">스카우트
-														현황</a>
+														href="${ pageContext.servletContext.contextPath }/Company/Scout/List/Select">스카우트현황</a>
 												</p>
 												<br> <br>
-												<p align="center">
-													<a href="#">찜한 후보자</a>
+												<p>
+													<a href="${ pageContext.servletContext.contextPath }/company/scout/wish/select">찜한후보자</a>
 												</p>
 												<br> <br>
-												<p align="center">
-													<a href="#">회원 탈퇴</a>
+												<p>
+													<a href="#">회원탈퇴</a>
 												</p>
 											</div>
 										</div>
@@ -201,14 +199,13 @@
 									<td>환불신청</td>
 								</tr>
 							</thead>
-							<c:forEach var="payment" items="${ requestScope.paymentHistoryList }">
 
 								<tbody align="center">
+							<c:forEach var="payment" items="${ requestScope.paymentHistoryList }">
 									<tr>
 										<td><c:out value="${ payment.payNo }" /></td>
 										<td><c:out value="${ payment.productName }" /></td>
-										<td><fmt:formatNumber value="${ payment.payPrice }"
-												pattern="###,###" /></td>
+										<td><fmt:formatNumber value="${ payment.payPrice }" pattern="###,###" /></td>
 										<td><c:out value="${ payment.payDate }" /></td>
 										<td><c:out value="${ payment.payKinds }" /></td>
 
@@ -233,9 +230,9 @@
 											<td><button type="submit" onclick="req(this);">환불요청</button></td>
 										</c:if>
 									</tr>
+							</c:forEach>
 								</tbody>
 
-							</c:forEach>
 						</table>
 						<br> <br>
 
@@ -253,9 +250,8 @@
 									<td>열람 일시</td>
 								</tr>
 							</thead>
-							<c:forEach var="browseUsingHistroy"
-								items="${ requestScope.paymentBrowseUsingHistroyList }">
 								<tbody align="center">
+							<c:forEach var="browseUsingHistroy" items="${ requestScope.paymentBrowseUsingHistroyList }">
 									<tr>
 										<td onclick="openResume(this);">
 										<input type="hidden" name="resumeNo" value="${ browseUsingHistroy.resumeNo }">
@@ -272,8 +268,8 @@
 											</c:forEach></td>
 										<td><c:out value="${ browseUsingHistroy.productUseDate }" /></td>
 									</tr>
-								</tbody>
 							</c:forEach>
+								</tbody>
 						</table>
 						<br> <br>
 
@@ -292,9 +288,8 @@
 									<td>종료일시</td>
 								</tr>
 							</thead>
-							<c:forEach var="exposureUsingPostHistroy"
-								items="${ requestScope.paymentExposureUsingHistoryList }">
 								<tbody align="center">
+							<c:forEach var="exposureUsingPostHistroy" items="${ requestScope.paymentExposureUsingHistoryList }">
 									<tr>
 										<td onclick="openPost(this);">
 										<input type="hidden" name="resumeNo" value="${ exposureUsingPostHistroy.jobPostNo }">
@@ -303,8 +298,7 @@
 										<td><c:out value="${ exposureUsingPostHistroy.jobName }" /></td>
 										<td><c:forEach var="requestingSkillsList"
 												items="${ requestScope.paymentrequestingSkillsList }">
-												<c:if
-													test="${ exposureUsingPostHistroy.jobPostNo eq requestingSkillsList.jobPostNo }">
+												<c:if test="${ exposureUsingPostHistroy.jobPostNo eq requestingSkillsList.jobPostNo }">
 													<c:out value="${ requestingSkillsList.skillsName }" />
 													<span> </span>
 												</c:if>
@@ -316,8 +310,8 @@
 										<td><c:out
 												value="${ exposureUsingPostHistroy.exposureEndDate }" /></td>
 									</tr>
-								</tbody>
 							</c:forEach>
+								</tbody>
 						</table>
 					</div>
 				</div>

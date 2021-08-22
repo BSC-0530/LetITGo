@@ -7,6 +7,7 @@ import com.itsme.letitgo.company.recruit.jobposting.model.dto.ExposureProductDTO
 import com.itsme.letitgo.company.recruit.jobposting.model.dto.JpSkillsDTO;
 import com.itsme.letitgo.company.recruit.jobposting.model.dto.RequestJobPostingDTO;
 import com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO;
+import com.itsme.letitgo.company.recruit.jobposting.model.dto.UseExposureProductDTO;
 
 public interface SelectCoMyJobPostingMapper {
 
@@ -39,6 +40,17 @@ public interface SelectCoMyJobPostingMapper {
 	String selectJobNameFromJobNo(int jobNo);
 
 	List<ExposureProductDTO> selectExposureProduct(int memNo);
+
+	int selectExposureHistory(UseExposureProductDTO dto);
+
+	int updateExposureUsageHistory(UseExposureProductDTO dto);
+
+	int insertExposureUsageHistory(UseExposureProductDTO dto);
+
+	Integer selectExposureRestTime(UseExposureProductDTO dto);
+
+	int updateMemberHoldingProduct(UseExposureProductDTO dto);
+
 	
 
 

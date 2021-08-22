@@ -32,7 +32,11 @@ import com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper;
 import com.itsme.letitgo.company.scout.model.mapper.CompanyScoutMapper;
 import com.itsme.letitgo.login.model.mapper.CoMemberWithdrawalYnMapper;
 import com.itsme.letitgo.login.model.mapper.MemberLoginMapper;
+
 import com.itsme.letitgo.login.model.mapper.MemberWithdrawalYnMapper;
+
+import com.itsme.letitgo.main.model.mapper.MainPageMapper;
+
 import com.itsme.letitgo.member.board.notice.model.mapper.GuideLineMapper;
 import com.itsme.letitgo.personal.info.model.mapper.PersonalInfoMapper;
 import com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper;
@@ -87,6 +91,7 @@ public class Template {
 			configuration.addMapper(SelectJobPostingMapper.class);
 			configuration.addMapper(SelectCoMyJobPostingMapper.class);
 			configuration.addMapper(RecruitApplicantMapper.class);
+			configuration.addMapper(MainPageMapper.class);
 
 			//승수
 

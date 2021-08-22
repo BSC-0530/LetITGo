@@ -13,6 +13,7 @@ import com.itsme.letitgo.company.recruit.jobposting.model.dto.ExposureProductDTO
 import com.itsme.letitgo.company.recruit.jobposting.model.dto.JpSkillsDTO;
 import com.itsme.letitgo.company.recruit.jobposting.model.dto.RequestJobPostingDTO;
 import com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO;
+import com.itsme.letitgo.company.recruit.jobposting.model.dto.UseExposureProductDTO;
 import com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper;
 
 
@@ -212,5 +213,85 @@ public class SelectCoMyJobPostingService {
 		
 		return exposureProduct;
 	}
+
+	public boolean selectExposureHistory(UseExposureProductDTO dto) {
+		
+		SqlSession session = getSqlSession();
+		
+		SelectCoMyJobPostingMapper mapper = session.getMapper(SelectCoMyJobPostingMapper.class);
+		
+		int result = mapper.selectExposureHistory(dto);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		session.close();
+		
+		return result > 0? true : false;
+	}
+
+	public int updateExposureUsageHistory(UseExposureProductDTO dto) {
+		SqlSession session = getSqlSession();
+		
+		SelectCoMyJobPostingMapper mapper = session.getMapper(SelectCoMyJobPostingMapper.class);
+		
+		int result = mapper.updateExposureUsageHistory(dto);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		return result;
+	}
+
+	public int insertExposureUsageHistory(UseExposureProductDTO dto) {
+		SqlSession session = getSqlSession();
+		
+		SelectCoMyJobPostingMapper mapper = session.getMapper(SelectCoMyJobPostingMapper.class);
+		
+		int result = mapper.insertExposureUsageHistory(dto);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		return result;
+	}
+
+	public Integer selectExposureRestTime(UseExposureProductDTO dto) {
+		SqlSession session = getSqlSession();
+		
+		SelectCoMyJobPostingMapper mapper = session.getMapper(SelectCoMyJobPostingMapper.class);
+		
+		Integer restTime = mapper.selectExposureRestTime(dto);
+		
+		session.close();
+		
+		return restTime;
+	}
+
+	public boolean updateMemberHoldingProduct(UseExposureProductDTO dto) {
+		SqlSession session = getSqlSession();
+		
+		SelectCoMyJobPostingMapper mapper = session.getMapper(SelectCoMyJobPostingMapper.class);
+		
+		int result = mapper.updateMemberHoldingProduct(dto);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		session.close();
+	
+		return result > 0? true : false;
+		
+	}
+
+
 	
 }

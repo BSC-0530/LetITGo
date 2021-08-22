@@ -58,8 +58,8 @@ public class SelectPaymentHistoryServlet extends HttpServlet {
 		
 		if(exposureLeftTime != 0) {
 			
-			exposureRestHour = exposureLeftTime / 60 / 60;
-			exposureRestMinute = (exposureRestHour % 100) / 100 * 60;
+			exposureRestHour = exposureLeftTime / 3600;
+			exposureRestMinute = (exposureRestHour % 1) * 100 / 100 * 60;
 			request.setAttribute("exposureRestHour", exposureRestHour);
 			request.setAttribute("exposureRestMinute", exposureRestMinute);
 			
