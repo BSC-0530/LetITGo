@@ -91,13 +91,13 @@ public class SelectAllJobPostingServlet extends HttpServlet {
 			
 		}
 		if(request.getParameter("experience") != "") {
-			int experience = Integer.parseInt(request.getParameter("experience"));
+			Integer experience = Integer.parseInt(request.getParameter("experience"));
 			dto.setExperience(experience);
 			request.setAttribute("experience", experience);
 			
 		}
 		if (request.getParameter("jobNo") != "") {
-			int jobNo = Integer.parseInt(request.getParameter("jobNo"));
+			Integer jobNo = Integer.parseInt(request.getParameter("jobNo"));
 			dto.setJobNo(jobNo);
 			request.setAttribute("jobNo", jobNo);
 			
@@ -117,7 +117,6 @@ public class SelectAllJobPostingServlet extends HttpServlet {
 		}
 		// 페이징 시작
 		String currentPage = request.getParameter("currentPage");
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@ currentPageyo : " + currentPage);
 		int pageNo = 1;
 		
 		if(currentPage != null && !"".equals(currentPage)) {
@@ -148,8 +147,6 @@ public class SelectAllJobPostingServlet extends HttpServlet {
 		dto.setSelectCriteria(selectCriteria);
 		
 		Map<String, List<Object>> jp = service.selectJobPosting(dto);
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@selectCriteria" + selectCriteria);
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ servlet dto : " + dto);
 		// 페이징 끝
 		
 		

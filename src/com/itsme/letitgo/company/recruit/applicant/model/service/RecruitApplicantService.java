@@ -4,6 +4,7 @@ import static com.itsme.letitgo.common.mybatis.Template.getSqlSession;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -95,11 +96,30 @@ public class RecruitApplicantService {
 		
 		// 세션 닫기
 		
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@service : " + resultResume);
 		session.close();
 		
 		
 		return resultResume;
+	}
+
+	public int updateBrowesStatus(ApplicantDTO updateDTO) {
+		
+		// 세션열기
+		SqlSession session = getSqlSession();
+		
+		// 매퍼 가져오기
+		RecruitApplicantMapper mapper = session.getMapper(RecruitApplicantMapper.class);
+		
+		int result = mapper.updateBrowesStatus(updateDTO);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		return result;
 	}
 
 

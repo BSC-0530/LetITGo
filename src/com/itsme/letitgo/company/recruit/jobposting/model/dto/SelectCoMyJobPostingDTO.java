@@ -18,13 +18,14 @@ public class SelectCoMyJobPostingDTO {
 	private String preferentialMatters; 		// 우대사항
 	private String benefitAndWelfare;			// 혜택 및 복지
 	private String companyResumeLink;			// 자사 이력서 양식 링크
+	private java.sql.Date exposureEndDate;
 	
 	public SelectCoMyJobPostingDTO() {}
 
 	public SelectCoMyJobPostingDTO(int coMemNo, int jobPostNo, String jobPostTitle, String jobPostMinExperience,
 			String jobPostMaxExperience, Date jobPostEnrollDate, Date jobPostDeadline, String jobPostKinds,
 			String exposureUseCheck, String jobPostContents, String qualificationRequirements,
-			String preferentialMatters, String benefitAndWelfare, String companyResumeLink) {
+			String preferentialMatters, String benefitAndWelfare, String companyResumeLink, Date exposureEndDate) {
 		super();
 		this.coMemNo = coMemNo;
 		this.jobPostNo = jobPostNo;
@@ -40,6 +41,7 @@ public class SelectCoMyJobPostingDTO {
 		this.preferentialMatters = preferentialMatters;
 		this.benefitAndWelfare = benefitAndWelfare;
 		this.companyResumeLink = companyResumeLink;
+		this.exposureEndDate = exposureEndDate;
 	}
 
 	public int getCoMemNo() {
@@ -154,6 +156,14 @@ public class SelectCoMyJobPostingDTO {
 		this.companyResumeLink = companyResumeLink;
 	}
 
+	public java.sql.Date getExposureEndDate() {
+		return exposureEndDate;
+	}
+
+	public void setExposureEndDate(java.sql.Date exposureEndDate) {
+		this.exposureEndDate = exposureEndDate;
+	}
+
 	@Override
 	public String toString() {
 		return "SelectCoMyJobPostingDTO [coMemNo=" + coMemNo + ", jobPostNo=" + jobPostNo + ", jobPostTitle="
@@ -162,9 +172,8 @@ public class SelectCoMyJobPostingDTO {
 				+ jobPostDeadline + ", jobPostKinds=" + jobPostKinds + ", exposureUseCheck=" + exposureUseCheck
 				+ ", jobPostContents=" + jobPostContents + ", qualificationRequirements=" + qualificationRequirements
 				+ ", preferentialMatters=" + preferentialMatters + ", benefitAndWelfare=" + benefitAndWelfare
-				+ ", companyResumeLink=" + companyResumeLink + "]";
+				+ ", companyResumeLink=" + companyResumeLink + ", exposureEndDate=" + exposureEndDate + "]";
 	}
-
-
+	
 	
 }

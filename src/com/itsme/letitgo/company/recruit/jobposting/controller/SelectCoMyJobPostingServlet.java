@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO;
+import com.itsme.letitgo.company.recruit.jobposting.model.dto.UseExposureProductDTO;
 import com.itsme.letitgo.company.recruit.jobposting.model.service.SelectCoMyJobPostingService;
 import com.itsme.letitgo.login.model.dto.MemberLoginDTO;
 
@@ -21,13 +22,13 @@ public class SelectCoMyJobPostingServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-//		HttpSession session = request.getSession();
-//
-//        MemberLoginDTO memberLoginDTO = (MemberLoginDTO) session.getAttribute("loginMember");
-//
-//        int memNo = memberLoginDTO.getMemNo();
-		int memNo = 2;
-		SelectCoMyJobPostingService selectCoMyJobPostingService = new SelectCoMyJobPostingService();
+		HttpSession session = request.getSession();
+
+        MemberLoginDTO memberLoginDTO = (MemberLoginDTO) session.getAttribute("loginMember");
+
+        int memNo = memberLoginDTO.getMemNo();
+        
+		SelectCoMyJobPostingService service = new SelectCoMyJobPostingService();
 
 		// getSession에서 comMemNo 값 가져와서 이용 DTO에 담아서 전달해 coMemNo에 맞는 공고 조회
 		SelectCoMyJobPostingDTO selectCoMyJobPostingDTO = new SelectCoMyJobPostingDTO();
@@ -38,13 +39,14 @@ public class SelectCoMyJobPostingServlet extends HttpServlet {
 			request.setAttribute("kinds", request.getParameter("kinds"));
 		}
 		
-		Map<String, List<Object>> jp = selectCoMyJobPostingService.selectMyJobPosting(selectCoMyJobPostingDTO);
+		
+		Map<String, List<Object>> jp = service.selectMyJobPosting(selectCoMyJobPostingDTO);
 		
 		
 		request.setAttribute("allJobPosting", jp.get("allJobPosting"));
 		request.setAttribute("recruitingJopPosting", jp.get("recruitingJopPosting"));
 		request.setAttribute("requestJobPosting", jp.get("requestJobPosting"));
-
+		request.setAttribute("memNo", memNo);
 
 		String path = "/WEB-INF/views/recruit/jobPostingHistory.jsp";
 		request.getRequestDispatcher(path).forward(request, response);

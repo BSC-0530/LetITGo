@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page import="java.util.List,javax.servlet.http.HttpSession, javax.servlet.http.HttpServlet, com.itsme.letitgo.login.model.dto.MemberLoginDTO"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -233,22 +233,40 @@
                                     </div>
                                     <div class="jp_listing_right_bar_btn_wrapper">
                                         <div class="jp_listing_right_bar_btn">
-                                        
-                                        <!--  requestScope에 담긴 applyingResult 가 != null 인경우 지원완료, null인경우 지원하지 않았음 -->
-                                        <c:if test="${ requestScope.applyingResult eq null }">
-											<ul>
-                                                <li><a onclick="apply();" style="width:200px"><i class="fa fa-plus-circle"></i> &nbsp; 지원 하기</a></li>
-                                                <li><a onclick="selectResume();" style="width:200px"><i class="fa fa-plus-circle"></i> &nbsp; 이력서 선택</a></li>
-                                            </ul>
-	                                            <input type="text" id="resumeNo" readonly>
-                                        </c:if>
-                                        <c:if test="${ requestScope.applyingResult ne null }">
-                                            <ul>
-                                                <li><a onclick="cancel();" style="width:200px"><i class="fa fa-plus-circle"></i> &nbsp; 지원 취소</a></li>
-	                                            <li><input type="text" id="resumeNo" value="${ requestScope.applyingResult.resumeNo }" readonly></li>
-                                            </ul>
-                                        </c:if>
-                                        </div>
+	                                        
+	                                        <%
+											    MemberLoginDTO dto = (MemberLoginDTO) session.getAttribute("loginMember");
+											    String memKinds = dto.getMemKinds();
+											%>
+											<%
+											    if(memKinds.equals("개인회원")) {
+											%>
+										    <!--  requestScope에 담긴 applyingResult 가 != null 인경우 지원완료, null인경우 지원하지 않았음 -->
+	                                        <c:if test="${ requestScope.applyingResult eq null }">
+												<ul>
+	                                                <li><a onclick="apply();" style="width:200px"><i class="fa fa-plus-circle"></i> &nbsp; 지원 하기</a></li>
+	                                                <li><a onclick="selectResume();" style="width:200px"><i class="fa fa-plus-circle"></i> &nbsp; 이력서 선택</a></li>
+	                                            </ul>
+		                                            <input type="text" id="resumeNo" readonly>
+	                                        </c:if>
+	                                        <c:if test="${ requestScope.applyingResult ne null }">
+	                                            <ul>
+	                                                <li><a onclick="cancel();" style="width:200px"><i class="fa fa-plus-circle"></i> &nbsp; 지원 취소</a></li>
+		                                            <li><input type="text" id="resumeNo" value="${ requestScope.applyingResult.resumeNo }" readonly></li>
+	                                            </ul>
+	                                        </c:if>
+											<%
+											    }
+											%>
+											<%
+											    if(memKinds.equals("기업회원")) {
+											%> 
+											<%
+											    }
+											%>
+	                                        <ul>
+	                                        	<li><a onclick="goBack();" style="width:200px"><i class="fa fa-plus-circle"></i> &nbsp; 뒤로가기</a></li>
+	                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -262,11 +280,13 @@
 
 	
 	<script>
+		function goBack() {
+			window.history.back();
+		}
 		function aboutCompany(label) {
 			
 			const coMemNo = label.parentNode.children[4].value;
 			
-			const coMemNo1 = 
 			
 			location.href = "${ pageContext.servletContext.contextPath }/aboutCompany/select?coMemNo="+ coMemNo;
 	

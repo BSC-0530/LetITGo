@@ -17,33 +17,48 @@ import com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPosti
 
 public class SelectJobPostingService {
 
-//	public Map<String, List<Object>> selectAllJobPosting() {
-//
-//		SqlSession session = getSqlSession();
-//		
-//		
-//		SelectJobPostingMapper mapper = session.getMapper(SelectJobPostingMapper.class);
-//		
-//		List<Object> jpAndInfo = mapper.selectAllJobPosting();
-//		
-//		List<Object> jpSkills = mapper.selectJpSkills();
-//		
-//		List<Object> jobNameList = mapper.selectJobNames();
-//		
-//		List<Object> skillsList = mapper.selectSkills();
-//		System.out.println(jobNameList);
-//		
-//		Map<String, List<Object>> jp = new HashMap<>();
-//		jp.put("jpAndInfo", jpAndInfo);
-//		jp.put("jpSkills", jpSkills);
-//		jp.put("jobNameList", jobNameList);
-//		jp.put("skillsList", skillsList);
-//		
-//		System.out.println("service jpAndInfo : " + jpAndInfo);
-//		session.close();
-//		
-//		return jp;
-//	}
+	public Map<String, List<Object>> selectJobPosting(SelectRequestJobPostingDTO dto) {
+
+		SqlSession session = getSqlSession();
+		
+		
+		SelectJobPostingMapper mapper = session.getMapper(SelectJobPostingMapper.class);
+		
+		List<Object> jpAndInfo = mapper.selectJobPosting(dto);
+		
+		List<Object> jpSkills = mapper.selectJpSkills();
+		
+		List<Object> jobNameList = mapper.selectJobNames();
+		
+		List<Object> skillsList = mapper.selectSkills();
+		System.out.println(jobNameList);
+		
+		Map<String, List<Object>> jp = new HashMap<>();
+		jp.put("jpAndInfo", jpAndInfo);
+		jp.put("jpSkills", jpSkills);
+		jp.put("jobNameList", jobNameList);
+		jp.put("skillsList", skillsList);
+		
+		System.out.println("service jpAndInfo : " + jpAndInfo);
+		session.close();
+		
+		return jp;
+		
+	}
+	
+	// 페이징을 위해 게시글 카운트
+	public int selectJpTotalCount(SelectRequestJobPostingDTO dto) {
+		
+		SqlSession session = getSqlSession();
+		
+		SelectJobPostingMapper mapper = session.getMapper(SelectJobPostingMapper.class);
+		
+		int totlaCount = mapper.selectJpTotalCount(dto);
+		
+		session.close();
+		return totlaCount;
+	}
+
 
 	public Map<String, Object> selectDetailedJobPosting(int selectJobPostNo) {
 		
@@ -154,47 +169,6 @@ public class SelectJobPostingService {
 		return result;
 	}
 
-	public Map<String, List<Object>> selectJobPosting(SelectRequestJobPostingDTO dto) {
-
-		SqlSession session = getSqlSession();
-		
-		
-		SelectJobPostingMapper mapper = session.getMapper(SelectJobPostingMapper.class);
-		
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@service dto확인" + dto);
-		List<Object> jpAndInfo = mapper.selectJobPosting(dto);
-		
-		List<Object> jpSkills = mapper.selectJpSkills();
-		
-		List<Object> jobNameList = mapper.selectJobNames();
-		
-		List<Object> skillsList = mapper.selectSkills();
-		System.out.println(jobNameList);
-		
-		Map<String, List<Object>> jp = new HashMap<>();
-		jp.put("jpAndInfo", jpAndInfo);
-		jp.put("jpSkills", jpSkills);
-		jp.put("jobNameList", jobNameList);
-		jp.put("skillsList", skillsList);
-		
-		System.out.println("service jpAndInfo : " + jpAndInfo);
-		session.close();
-		
-		return jp;
-		
-	}
-	// 페이징을 위해 게시글 카운트
-	public int selectJpTotalCount(SelectRequestJobPostingDTO dto) {
-		
-		SqlSession session = getSqlSession();
-		
-		SelectJobPostingMapper mapper = session.getMapper(SelectJobPostingMapper.class);
-		
-		int totlaCount = mapper.selectJpTotalCount(dto);
-		
-		session.close();
-		return totlaCount;
-	}
 
 
 
