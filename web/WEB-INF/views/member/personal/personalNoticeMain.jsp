@@ -121,8 +121,8 @@
 											
 										</tr>
 									</thead>
-								<c:forEach var="notice" items="${ requestScope.noticeList }">
 										<tbody align="center">
+								<c:forEach var="notice" items="${ requestScope.noticeList }">
 											<tr id="postNo">
 												<td><c:out value="${ notice.postNo }"/></td>				
 												<td><c:out value="${ notice.postTitle }"/></td>
@@ -130,8 +130,8 @@
 												<td><button type="button" onclick="browse(this);" >상세보기</button></td>
 												
 											</tr>
-										</tbody>	
 									</c:forEach>					
+										</tbody>	
 								</table>
 								</div>
 <!-- 						</form> -->

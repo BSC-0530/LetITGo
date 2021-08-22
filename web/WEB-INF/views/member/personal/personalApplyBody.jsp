@@ -140,9 +140,9 @@
 
 								</tr>
 							</thead>
+								<tbody align="center">
 							<c:forEach var="whole"
 								items="${ requestScope.PersonalApplyList }">
-								<tbody align="center">
 									<tr>
 										<td onclick="post1(this);"><input type="hidden"
 											name="resumeNo" value="${ whole.resumeNo }"> <input
@@ -173,8 +173,8 @@
 
 
 									</tr>
-								</tbody>
 							</c:forEach>
+								</tbody>
 						</table>
 					</div>
 				</div>
@@ -199,13 +199,13 @@
 									<td>이력서</td>
 								</tr>
 							</thead>
+								<tbody align="center">
 							<c:forEach var="complete"
 								items="${ requestScope.PersonalApplyCompletedList }">
 								<input type="hidden" name="resumeNo"
 									value="${ complete.resumeNo }">
 								<input type="hidden" name="jobPostNo"
 									value="${ complete.jobPostNo }">
-								<tbody align="center">
 									<tr>
 										<td onclick="post1(this);"><input type="hidden"
 											name="resumeNo" value="${ complete.resumeNo }"> <input
@@ -234,8 +234,8 @@
 											<td><button type="submit" disabled>자샤양식</button></td>
 										</c:if>
 									</tr>
-								</tbody>
 							</c:forEach>
+								</tbody>
 						</table>
 					</div>
 				</div>
@@ -260,9 +260,9 @@
 
 								</tr>
 							</thead>
+								<tbody align="center">
 							<c:forEach var="canceled"
 								items="${ requestScope.PersonalApplyCanceledList }">
-								<tbody align="center">
 									<tr>
 										<td onclick="post1(this);"><input type="hidden"
 											name="resumeNo" value="${ canceled.resumeNo }"> <input
@@ -277,8 +277,8 @@
 												value="${ canceled.jobPostApplyingCancelDate }" /></td>
 										<td><c:out value="${ canceled.jobPostBrowesStatus }" /></td>
 									</tr>
-								</tbody>
 							</c:forEach>
+								</tbody>
 						</table>
 					</div>
 				</div>

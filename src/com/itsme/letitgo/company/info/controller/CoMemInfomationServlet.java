@@ -1,6 +1,8 @@
 package com.itsme.letitgo.company.info.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,10 +24,9 @@ public class CoMemInfomationServlet extends HttpServlet {
 
         MemberLoginDTO dto = (MemberLoginDTO) session.getAttribute("loginMember");
 
-//        int memNo = dto.getMemNo();
-//		System.out.println(memNo);
+        int memNo = dto.getMemNo();
 		
-//		CompanyInfoDTO coMemDTO = new CompanyInfoService().selectCoMemInfo();
+		CompanyInfoDTO coMemDTO = new CompanyInfoService().selectCoMemInfo(memNo);
         
 		System.out.println("@@@@@@");
         System.out.println(dto.getMemId());
@@ -53,10 +54,7 @@ public class CoMemInfomationServlet extends HttpServlet {
 		System.out.println(phone);
 		System.out.println(name);
 		
-//			HttpSession session = request.getSession();
-//			MemberLoginDTO dto = (MemberLoginDTO) session.getAttribute("loginMember");
 			CompanyInfoDTO dto = new CompanyInfoDTO();
-//	     int memNo = dto.getMemNo();
 		
 	     dto.setMemName(name);
 	     dto.setMemId(id);
@@ -65,17 +63,16 @@ public class CoMemInfomationServlet extends HttpServlet {
 		
 		int result = new CompanyInfoService().modifyCoMemInfo(dto);
 
-//		response.setContentType("text/html; charset=UTF-8");
-		String path="";
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		response.setCharacterEncoding("UTF-8");
+
 		if(result > 0) {
-			System.out.println("성공");
-			path="/WEB-INF/views/member/company/companyMemInfoPage.jsp";
-			
+			out.println("<script>alert('회원정보가 변경되었습니다. 재로그인해주세요.'); location.href='/let/loginPage';</script>");
+			out.flush();
 		}else {
 			System.out.println("실패");
 		}
-		response.setCharacterEncoding("UTF-8");
-		response.sendRedirect("/let/coMem/infomationServlet");
 	}
 
 }

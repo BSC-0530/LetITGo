@@ -58,7 +58,25 @@ public class RequestService {
 			
 			InsertRequestMapper mapper = session.getMapper(InsertRequestMapper.class);
 			
-			int result2 = mapper.insertCoLogoAttachment(logoFile);
+			int result1 = mapper.insertCoLogoAttachment(logoFile);
+			
+			if(result1 > 0) {
+				session.commit();
+			}else {
+				session.rollback();
+			}
+			session.close();
+			
+			return result1;
+			
+		}
+		public int insertCoRepresentativImageAttachment(CoMemberAppHistoryDTO representativImage) {
+			
+			SqlSession session = getSqlSession();
+			
+			InsertRequestMapper mapper = session.getMapper(InsertRequestMapper.class);
+			
+			int result2 = mapper.insertCoRepresentativImageAttachment(representativImage);
 			
 			if(result2 > 0) {
 				session.commit();
@@ -70,13 +88,13 @@ public class RequestService {
 			return result2;
 			
 		}
-		public int insertCoRepresentativImageAttachment(CoMemberAppHistoryDTO representativImage) {
+		public int insertBusinessRegistrationAttachment(CoMemberAppHistoryDTO businessNO) {
 			
 			SqlSession session = getSqlSession();
 			
 			InsertRequestMapper mapper = session.getMapper(InsertRequestMapper.class);
 			
-			int result3 = mapper.insertCoRepresentativImageAttachment(representativImage);
+			int result3 = mapper.insertBusinessRegistrationAttachment(businessNO);
 			
 			if(result3 > 0) {
 				session.commit();
@@ -86,24 +104,6 @@ public class RequestService {
 			session.close();
 			
 			return result3;
-			
-		}
-		public int insertBusinessRegistrationAttachment(CoMemberAppHistoryDTO businessNO) {
-			
-			SqlSession session = getSqlSession();
-			
-			InsertRequestMapper mapper = session.getMapper(InsertRequestMapper.class);
-			
-			int result4 = mapper.insertBusinessRegistrationAttachment(businessNO);
-			
-			if(result4 > 0) {
-				session.commit();
-			}else {
-				session.rollback();
-			}
-			session.close();
-			
-			return result4;
 			
 		}
 
@@ -341,6 +341,7 @@ public class RequestService {
 				session.commit();
 			}else {
 				session.rollback();
+				System.out.println("@@실패");
 			}
 			session.close();
 			
@@ -398,6 +399,7 @@ public class RequestService {
 			
 			return result;
 		}
+
 
 
 }

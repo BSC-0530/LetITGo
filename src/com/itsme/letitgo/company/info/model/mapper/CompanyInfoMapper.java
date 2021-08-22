@@ -21,7 +21,7 @@ public interface CompanyInfoMapper {
 	List<Object> myJobPosting(CompanyAddInfoDTO dto);
 
 
-	CompanyInfoDTO coMemInfoSelect();
+	CompanyInfoDTO coMemInfoSelect(int memNo);
 
 //기업담당자 수정
 	int modifyCoMemInfo(CompanyInfoDTO coMem);

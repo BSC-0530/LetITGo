@@ -165,6 +165,7 @@
 											<td align="center">상태</td>
 											<td align="center">거절 사유</td>
 											<td align="center">상세 보기</td>
+											<td align="center">이미지</td>
 										</tr>
 									</thead>
 										<tbody align="center">
@@ -180,6 +181,7 @@
 												<td><c:out value="${ reqlist.coAnsKinds }"/></td>
 												<td><button type=button onclick="reason(this);" >거절사유</button></td>
 												<td><button type=button onclick="detail(this);" >상세보기</button></td>
+												<td><button type=button onclick="Image(this);" >이미지</button></td>
 											</tr>
 										</c:if>
 								</c:forEach></c:forEach>						
@@ -197,10 +199,6 @@
 						</div>
 						
 					</div>
-					<div class="category-insert">
-										<button style="margin-left: 90%; margin-top: 5%;"
-											type="submit" class="btn btn-info" onclick="insert();">등록</button>
-					</div>
 					<br>
 					
 				</div>
@@ -214,7 +212,16 @@
 			$('#table_payment').DataTable();
 		});
 </script>
-
+<script>
+	function Image(button){
+		
+		const memNo = document.getElementById("memNO").children[0].value;
+		const reqNo = button.parentNode.parentNode.children[1].innerText
+		
+		location.href="${ pageContext.servletContext.contextPath }/request/detailImage/servlet?memNo="+memNo+"&reqNo="+reqNo
+				
+	}
+</script>
 <script>
 //상세보기 버튼
 		function detail(button) {

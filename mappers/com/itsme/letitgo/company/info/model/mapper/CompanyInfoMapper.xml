@@ -63,7 +63,7 @@
 		    , CM.CO_SECTORS
 		    , CM.CO_STATUS
 		    , CM.CO_INTRO
-		    , REGEXP_SUBSTR(CM.CO_ADDRESS, '[^$]+',1,2) as CO_ADDRESS
+		    , REGEXP_SUBSTR(CM.CO_ADDRESS, '[^$]+',1,1) as CO_ADDRESS
 		    , CM.CO_WEBSITE
 		    , CM.CO_PHONE
 		    , CM.CO_PAX
@@ -112,7 +112,7 @@
     	  , MEM_EMAIL
           , MEM_PHONE
        FROM TBL_MEMBER
-      WHERE MEM_NO= 2
+      WHERE MEM_NO= #{ memNo }
 	</select>
 	
 	<update id="modifyCoMemInfo">

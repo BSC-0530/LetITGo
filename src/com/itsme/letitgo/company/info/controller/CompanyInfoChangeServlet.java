@@ -20,15 +20,6 @@ public class CompanyInfoChangeServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 //		
-		System.out.println("@@" + request.getParameter("coNo"));
-		System.out.println("@@" +request.getParameter("webSite"));
-		System.out.println("@@" +request.getParameter("coComName"));
-		System.out.println("@@" +request.getParameter("coCeoName"));
-		System.out.println("@@" +request.getParameter("secTors"));
-		System.out.println("@@" +request.getParameter("coStatus"));
-		System.out.println("@@" +request.getParameter("address"));
-		System.out.println("@@" +request.getParameter("intro"));
-		System.out.println("@@" +request.getParameter("coMemNo"));
 		
 		CompanyAddInfoDTO comDTO = new CompanyAddInfoDTO();
 		int coMemNo = Integer.parseInt(request.getParameter("coMemNo"));

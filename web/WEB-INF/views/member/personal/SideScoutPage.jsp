@@ -161,8 +161,8 @@
 									<td>상세보기</td>
 								</tr>
 							</thead>
-							<c:forEach var="list" items="${ readList }">
 								<tbody align="center">
+							<c:forEach var="list" items="${ readList }">
 									<tr>
 										<td><c:out value="${ list.coComName }"></c:out></td>
 										<td><c:out value="${ list.address }"></c:out></td>
@@ -172,8 +172,8 @@
 										<td><button type="button" onclick="browse(this);">상세보기</button>
 											
 									</tr>
-								</tbody>
 							</c:forEach>
+								</tbody>
 						</table>
 						<br><br>
 						<h2>면접 제안</h2><br><br>
@@ -187,8 +187,8 @@
 									<th>상세보기</th>
 								</tr>
 							</thead>
-							<c:forEach var="list" items="${ readList }">
 								<tbody align="center">
+							<c:forEach var="list" items="${ readList }">
 									<tr>
 										<td><c:out value="${ list.coComName }"></c:out></td>
 										<td><c:out value="${ list.address }"></c:out></td>
@@ -212,8 +212,8 @@
 											</c:choose>
 										</td>
 									</tr>
-								</tbody>
 							</c:forEach>
+								</tbody>
 						</table>
 
 					</div>

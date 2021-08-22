@@ -165,7 +165,6 @@
 					<div class="companyText">	
                     	</div>
             	<!-- end --> 
-            		
 						 <button type="submit" class="btn btn-info" id="coMemInfoChange" style=" float: right;" >회원 정보 변경</button>
 						 <button type="button" class="btn btn-info" id="coPassChange" style=" float: right; margin-right:10px  " >비밀번호 변경</button>
 					</form>	 

@@ -162,16 +162,16 @@
 										<div class="form-group col-md-6 col-sm-3col-xs-12">
 											<button class="btn btn-info"style="margin-left: 100px"type="button" onclick="emailSend2();">인증번호 보내기</button>
 										</div>
-										<div class="form-group col-md-8 col-sm-5col-xs-12">
-										<div>
+										<div class="form-group col-md-6 col-sm-3col-xs-12">
+										</div><div class="form-group col-md-8 col-sm-5col-xs-12">
 											<h3>인증번호  : </h3>
 										</div>
+										<div class="form-group col-md-6 col-sm-5 col-xs-12">
+											<input type="text" name="certificationNumber" id="certificationNumber"  placeholder="인증번호 *"  required>
 										</div>
-										<input  style="margin-top:30px; width:430px; height:60px; border-radius: 5px;" type="text" name="certificationNumber" id="certificationNumber"  placeholder="인증번호 *"  required>
-                                             <button class="btn btn-info" style="width:120px; height:50px;" id="certificationBtn" type="button" onclick="checkEmailCode();">인증하기</button>
-                                             <input  type="hidden" id="certificationYn" value="false">
 										<div class="form-group col-md-6 col-sm-3col-xs-12">
-<!-- 											<button class="btn btn-info" style="margin-left: 100px;" type="button" id="certificationNumber" onclick="checkEmailCode2();">인증코드확인</button> -->
+											<button class="btn btn-info"style="margin-left: 100px"type="button" id="certificationBtn" onclick="checkEmailCode();">인증하기</button>
+											 <input  type="hidden" id="certificationYn" value="false">
 										</div>
 										<div class="form-group col-md-8 col-sm-5col-xs-12">
 											<h3>연락처  : </h3>
@@ -186,7 +186,6 @@
 						</div>		
 						</div>
 						<br>
-				
 				</div>		
 							<button class="btn btn-info"style="margin-left: 80%" type="submit">변경하기</button>
 					<br>

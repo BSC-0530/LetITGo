@@ -144,6 +144,8 @@ public class requestDetailComInfoServlet extends HttpServlet {
 		info.setWebSite(site);
 		System.out.println("!@#!@#!@#!@#" + info);
 		
+		System.out.println("@@주소왜짤리니@@" + address);
+		
 		String path="";
 		
 		int result = new RequestService().adminAcceptRequestInfo(info);

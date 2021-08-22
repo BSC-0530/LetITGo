@@ -13,6 +13,7 @@ import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 
 import com.itsme.letitgo.admin.board.notice.model.mapper.NoticeMapper;
 import com.itsme.letitgo.admin.board.notice.model.mapper.PersonalInfoPolicyMapper;
+import com.itsme.letitgo.admin.info.model.mapper.BoxCountMapper;
 import com.itsme.letitgo.admin.info.model.mapper.InsertRequestMapper;
 import com.itsme.letitgo.admin.info.model.mapper.JoinMapper;
 import com.itsme.letitgo.admin.info.model.mapper.MemberWithdrawalMapper;
@@ -66,6 +67,7 @@ public class Template {
 			configuration.addMapper(AdminInquiryMapper.class);
 			configuration.addMapper(NoticeMapper.class);
 			configuration.addMapper(RequestComInfoMapper.class);
+			configuration.addMapper(BoxCountMapper.class);
 			//configuration.addMapper(PersonalMemberMapper.class);
 			
 

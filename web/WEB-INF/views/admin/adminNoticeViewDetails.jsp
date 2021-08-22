@@ -214,7 +214,8 @@
 										<li><a href="#"><button onclick="back();"
 													style="background-color: transparent; border: 0px transparent solid; width: 150px; height: 50px;">&nbsp;
 													back</button>
-												<i class="fa fa-plus-circle"></i> </a></li>
+											<i class="fa fa-plus-circle"></i> </a>
+										</li>
 									</ul>
 								</div>
 							</div>

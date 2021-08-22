@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.itsme.letitgo.admin.info.model.mapper.BoxCountMapper">
+	
+	
+	<resultMap type="com.itsme.letitgo.admin.info.model.dto.CoMemberAppHistoryDTO" id="selectInfoAndRegist">
+ 		<id property="coReqNo" column="CO_REQ_NO"/>
+ 		<result property="coMemNo" column="CO_MEM_NO"/>
+ 		<result property="coAnsKinds" column="CO_ANS_KINDS"/>
+ 		<result property="coReqDate" column="CO_REQ_DATE"/>
+ 		<result property="coAnsDate" column="CO_ANS_DATE"/>
+ 		<result property="coReqKinds" column="CO_REQ_KINDS"/>
+ 		<result property="coRejectReason" column="CO_REJECT_REASON"/>
+ 		<result property="coIntro" column="CO_INTRO"/>
+ 		<result property="coNo" column="CO_NO"/>
+ 		<result property="coComName" column="CO_COM-NAME"/>
+ 		<result property="coCeoName" column="CO_CEO_NAME"/>
+ 		<result property="coAddress" column="CO_ADDRESS"/>
+ 		<result property="coPhone" column="CO_PHONE"/>
+ 		<result property="coPax" column="CO_PAX"/>
+ 		<result property="coSectors" column="CO_SECTORS"/>
+ 		<result property="coStatus" column="CO_STATUS"/>
+ 		<result property="webSite" column="CO_WEBSITE"/>
+ 		<result property="memFileName" column="MEM_FILE_NAME"/>
+ 		<result property="memFileOrignalName" column="MEM_FILE_ORIGINAL_NAME"/>
+ 		<result property="memFilePath" column="MEM_FILE_PATH"/>
+ 		<result property="memFileKinds" column="MEM_FILE_KINDS"/>
+ 	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.admin.question.model.dto.InquiryDTO" id="selectInpuiry">
+		<result property="inquiryNo" column="INQUIRY_NO"/>
+		<result property="managerMemberNo" column="MANAGER_MEMBER_NO"/>
+		<result property="inquiryEmail" column="INQUIRY_EMAIL"/>
+		<result property="inquiryTitle" column="INQUIRY_TITLE"/>
+		<result property="inquiryContents" column="INQUIRY_CONTENTS"/>
+		<result property="inquiryAnsYN" column="INQUIRY_ANS_YN"/>
+		<result property="inquiryDate" column="INQUIRY_DATE"/>
+		<result property="inquiryAnsContent" column="INQUIRY_ANS_CONTENT"/>
+		<result property="inquiryAnsDate" column="INQUIRY_ANS_DATE"/>
+		<result property="inquiryCategoryNo" column="INQUIRY_CATEGORY_NO"/>
+	</resultMap>
+	<resultMap type="com.itsme.letitgo.admin.board.notice.model.dto.PersonalInfoPolicyDTO" id="selectPosing"></resultMap>
+	
+	
+	<select id="selectRegistRequestNum" resultType="_int">
+		 SELECT
+                COUNT(1)
+           FROM TBL_CO_MEMBER_APP_HISTORY
+          WHERE CO_REQ_KINDS = '회원가입' AND CO_ANS_KINDS ='대기'
+	</select>
+	<select id="selectInfoChangeNum" resultType="_int">
+		SELECT
+                COUNT(1)
+           FROM TBL_CO_MEMBER_APP_HISTORY
+          WHERE CO_REQ_KINDS = '회원정보수정' AND CO_ANS_KINDS ='대기'
+	</select>
+	<select id="selectPostNum" resultType="_int">
+		SELECT
+                COUNT(1)
+           FROM TBL_JOB_POSTING_APP_HISTORY
+          WHERE JOB_POST_REQ_KINDS = '공고등록' AND JOB_POST_ANS_KINDS ='대기'
+	</select>
+	<select id="selectPostChangeNum" resultType="_int">
+		SELECT
+                COUNT(1)
+           FROM TBL_JOB_POSTING_APP_HISTORY
+          WHERE JOB_POST_REQ_KINDS = '공고수정' AND JOB_POST_ANS_KINDS ='대기'
+	</select>
+	<select id="selectNoticeNum" resultType="_int">
+		 SELECT
+                COUNT(1)
+           FROM TBL_POST
+          WHERE POST_KINDS = '공지사항'
+	</select>
+	<select id="selectInquiryNum" resultType="_int">
+		SELECT
+                COUNT(1)
+           FROM TBL_INQUIRY
+          WHERE INQUIRY_ANS_YN = 'N'
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>

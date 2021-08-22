@@ -57,13 +57,13 @@ public class CompanyInfoService {
 		return coAddInfoAndJobPosting;
 	}
 	//마이페이지 기업당장자 조회
-	public CompanyInfoDTO selectCoMemInfo() {
+	public CompanyInfoDTO selectCoMemInfo(int memNo) {
 		
 		SqlSession session = getSqlSession();
 		
 		CompanyInfoMapper mapper = session.getMapper(CompanyInfoMapper.class);
 		
-		CompanyInfoDTO coMemDTO = mapper.coMemInfoSelect();
+		CompanyInfoDTO coMemDTO = mapper.coMemInfoSelect(memNo);
 		
 		session.close();
 		

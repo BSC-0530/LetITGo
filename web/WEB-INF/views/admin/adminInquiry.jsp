@@ -162,8 +162,8 @@
 											<td></td>
 										</tr>
 									</thead>
-								<c:forEach var="inq" items="${ requestScope.InquirySelectHistory }">
 										<tbody align="center">
+								<c:forEach var="inq" items="${ requestScope.InquirySelectHistory }">
 											<tr>
 												<td><c:out value="${ inq.categoryNameDTO.inquiryCategoryName }"/></td>
 												<td><c:out value="${ inq.inquiryTitle }"/></td>									
@@ -173,8 +173,8 @@
 												<td><button  type="submit" onclick="browse(this);" >상세보기</button></td>
 												<td style="font-size: 0px; width:0px; height:0px;"><c:out value="${ inq.inquiryNo }"/></td>
 											</tr>
-										</tbody>	
 								</c:forEach>			
+										</tbody>	
 								</table>
 								<br>
 								<br>
