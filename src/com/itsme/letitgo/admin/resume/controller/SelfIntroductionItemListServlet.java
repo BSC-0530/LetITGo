@@ -21,10 +21,10 @@ public class SelfIntroductionItemListServlet extends HttpServlet {
 		
 		System.out.println(selfIntroductionItemList);
 		
-		String path = ""; //빈 문자열을 선언 후, 밑의 if문 안의 주소값으로 가기
+		String path = ""; 
 		
 		if(selfIntroductionItemList != null) {
-			path = "/WEB-INF/views/admin/adminSelfIntroductionItem.jsp"; //주소값 아직 지정 안함
+			path = "/WEB-INF/views/admin/adminSelfIntroductionItem.jsp"; 
 			request.setAttribute("selfIntroductionItemList", selfIntroductionItemList);
 		} 
 		

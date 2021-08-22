@@ -29,13 +29,11 @@
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
-  
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-
+<!--  이거 보고 하세용 ~  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+<script type="text/javascript" src="/let/resources/js/datatables.js"></script>
+<link rel="stylesheet" type="text/css" href="/let/resources/css/datatables.css" />
+
 
 <!-- letitgo 제작 css -->
 <link rel="stylesheet" type="text/css" href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css"/>
@@ -54,6 +52,7 @@
 <body>
 
 <!-- 사이드바 -->
+
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
@@ -157,6 +156,10 @@
 												</p>
 												<br>
 												<br>
+												<div align="center">
+					<button type="submit" onclick="href='${ pageContext.servletContext.contextPath }/member/logout'">로그아웃</button>
+<%-- 					<button type="submit" onclick="href='${ pageContext.servletContext.contextPath }/let/login'">로그아웃</button> --%>
+				</div>
 											</div>
 										</div>
 									</div>
@@ -165,26 +168,39 @@
 						</div>
 					</div>
 				</div>
+				
 				<!-- 옆에 넣으려면 여기에 넣어야함 -->
 				<!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
 				<br>
 				<br>
 				<br>
-				
-				<h2>회원탈퇴</h2>
-				<form action="${ pageContext.servletContext.contextPath }/login/check/pwd" 
-								method="post">
-					<label >비밀번호 입력</label>
-					<input name="memPwd" id='memPwd' type='password'>
-					<button type="submit">전송</button>
-<!-- 					<input type="submit" name="memPwd" -->
-<%-- 							value="${ testCheckPwd.memPwd }"> <!-- value 안에 받아오는 변수명 --> --%>
-				</form>
-				
-				
-				
-				
-
+				<div class="outer outer-comember-withdrawal-yn">
+					<br>
+					<h2 align="center">회원 탈퇴</h2>
+					<br>
+					<br>
+					<div class="table-area">
+						<form
+							action="${ pageContext.servletContext.contextPath }/login/comember/withdrawal/yn"
+							method="post">
+							<div align="center">
+								
+								<p style="color:red">===== 탈퇴 시 주의 사항 =====</p>
+								<p>등록된 공고가 있는 경우에는 탈퇴가 불가능합니다.</p>
+								<p>기업 서비스에 등록되어 있는 계정일 경우, 기업 서비스 접속권한도 동시에 삭제됩니다.</p> 
+								<p>유료 결제 서비스를 이용중인 회원은 탈퇴를 하게되면 이에 대하여 환불이 불가합니다.</p> 
+								<p>회원 탈퇴 요청 시 취소가 불가능합니다.</p> 
+								<p>그래도 탈퇴를 진행 하시겠습니까? </p>
+								<p>이상의 내용에 동의하여 탈퇴를 원하실 경우, 아래의 “탈퇴하기” 버튼을 클릭 부탁드립니다.</p> 
+								<br><br>
+								
+								<button type="button" onClick="history.go(-1)">취소하기</button>
+								<button type="submit"
+									onclick="href='${ pageContext.servletContext.contextPath }/let/loginPage'">탈퇴하기</button>
+							</div>		
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -195,25 +211,19 @@
 	
 	<script type="text/javascript">
 		
-		function memberWithdrawal(button) {
+		function coMemberWithdrawalYn(button) {
+			
+			confirm();
 			
 			const no = button.value;
-			location.href = "${ pageContext.servletContext.contextPath }?memNo=" + memNo;
+			location.href = "${ pageContext.servletContext.contextPath }/login/comember/withdrawal/yn?memNo=" + memNo;
 			
 		}
 		
 		$("input").filter("[value='null']").val("");
 		
-		/* location.reload();  무한로딩; 함수 안에서도 안먹힘  */
-	
 	</script>
 	
 				
 </body>
 </html>
-
-
-
-
-
-

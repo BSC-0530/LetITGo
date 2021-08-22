@@ -26,26 +26,17 @@ public class SkillsInsertServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 
-		/* int skillsNo = Integer.parseInt(request.getParameter("skillsNo")); */
-		
-		//입력한 값을 직접 DB에 저장되게끔??? 어케????
 		String name = request.getParameter("name");
 		int no = Integer.parseInt(request.getParameter("no"));
 		
 		SkillsDTO requestSkills = new SkillsDTO();
-		/* requestSkills.setSkillsNo(3); */
+		
 		requestSkills.setName(name);
 		requestSkills.setNo(no);
 		
-		//requestSkills 확인
-		System.out.println("skillsController requestSkills : " + requestSkills);
-		
 		int result = new SkillsService().skillsInsert(requestSkills);
 		
-		//result값 확인
-		System.out.println("skillsController result : " + result);
-		
-		String path = ""; //빈 문자열을 선언 후, 밑의 if문을 돌려서 성공과 실패의 주소로 간다.
+		String path = ""; 
 		
 		if(result > 0) {
 			path = "/WEB-INF/views/admin/adminSuccess.jsp";
