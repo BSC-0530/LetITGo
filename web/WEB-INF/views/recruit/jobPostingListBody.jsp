@@ -2,9 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +21,6 @@
 </head>
 <body>
 
-	
 	<!-- jp listing sidebar Wrapper Start -->
 	<!-- 상단 검은색 -->
 	<div class="jp_tittle_main_wrapper">
@@ -39,7 +35,8 @@
 						<div class="jp_tittle_breadcrumb_main_wrapper">
 							<div class="jp_tittle_breadcrumb_wrapper">
 								<ul>
-									<li><a href="#">Home</a> <i class="fa fa-angle-right"></i></li>
+									<li><a href="#">Home</a></li>
+									<li>></li>
 									<li>채용공고</li>
 								</ul>
 							</div>

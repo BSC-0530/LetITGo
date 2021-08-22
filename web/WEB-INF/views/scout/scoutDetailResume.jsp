@@ -36,7 +36,36 @@
 </head>
 <body>
 	<body>
-	
+		<jsp:include page="../common/header/companyHeader.jsp" />
+
+	<div class="jp_tittle_main_wrapper">
+		<div class="jp_tittle_img_overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="jp_tittle_heading_wrapper">
+						<div class="jp_tittle_heading">
+							<h2>깊은열람</h2>
+						</div>
+						<div class="jp_tittle_breadcrumb_main_wrapper">
+							<div class="jp_tittle_breadcrumb_wrapper">
+								<ul>
+									<li><a href="${ pageContext.servletContext.contextPath }/mainPage/CoMember">Home</a></li>
+                                    <li>></li>
+                                    <li><a href="${ pageContext.servletContext.contextPath }/main/Scout/List">스카우트</a></li>
+                                    <li>></li>
+                                    <li><a href="">얕은열람</a></li>
+                                    <li>></li>
+                                    <li>깊은열람</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 		<div class="jp_cp_profile_main_wrapper">
 			<div class="container">

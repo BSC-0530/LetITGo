@@ -16,14 +16,17 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="jp_tittle_heading_wrapper">
 						<div class="jp_tittle_heading">
-							<h2>상세 공고</h2>
+							<h2>공고관리</h2>
 						</div>
 						<div class="jp_tittle_breadcrumb_main_wrapper">
 							<div class="jp_tittle_breadcrumb_wrapper">
 								<ul>
-									<li><a href="#">Home</a> <i class="fa fa-angle-right"></i></li>
-									<li><a href="#">기업 마이페이지</a> <i class="fa fa-angle-right"></i></li>
-									<li>채용공고</li>
+									<li><a
+										href="${ pageContext.servletContext.contextPath }/mainPage/CoMember">Home</a></li>
+									<li>></li>
+									<li><a href="${ pageContext.servletContext.contextPath }/company/myPage/main">기업 마이페이지</a></li>
+									<li>></li>
+									<li>공고관리</li>
 								</ul>
 							</div>
 						</div>
@@ -48,36 +51,41 @@
 									<div class="handyman_sec1_wrapper">
 										<div class="content">
 											<div class="box">
-												<p align="center">
-													<a href="#">회원정보</a>
+												<p>
+													<a href="${ pageContext.servletContext.contextPath }/coMem/infomationServlet">회원정보</a>
 												</p>
 												<br> <br>
-												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/companyTestServlet">기업정보</a>
+												<p>
+													<a
+														href="${ pageContext.servletContext.contextPath }/companyTestServlet">기업정보</a>
 												</p>
 												<br> <br>
-												<p align="center">
-													<a href="#">결제내역</a>
+												<p>
+													<a
+														href="${ pageContext.servletContext.contextPath }/company/paymentHistory/select">결제내역</a>
 												</p>
 												<br> <br>
-												<p align="center">
-													<a href="#">환불내역</a>
+												<p>
+													<a
+														href="${ pageContext.servletContext.contextPath }/company/refundHistory/select">환불내역</a>
 												</p>
 												<br> <br>
-												<p align="center">
-													<a href="#">공고관리</a>
+												<p>
+													<a
+														href="${ pageContext.servletContext.contextPath }/company/jobPostingHistory/select">공고관리</a>
 												</p>
 												<br> <br>
-												<p align="center">
-													<a href="#">스카우트 현황</a>
+												<p>
+													<a
+														href="${ pageContext.servletContext.contextPath }/Company/Scout/List/Select">스카우트현황</a>
 												</p>
 												<br> <br>
-												<p align="center">
-													<a href="#">찜한 후보자</a>
+												<p>
+													<a href="${ pageContext.servletContext.contextPath }/company/scout/wish/select">찜한후보자</a>
 												</p>
 												<br> <br>
-												<p align="center">
-													<a href="#">회원 탈퇴</a>
+												<p>
+													<a href="#">회원탈퇴</a>
 												</p>
 											</div>
 										</div>
