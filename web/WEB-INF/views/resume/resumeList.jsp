@@ -40,14 +40,15 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="jp_tittle_heading_wrapper">
 						<div class="jp_tittle_heading">
-							<h2>이력서 조회</h2>
+							<h2>이력서</h2>
 						</div>
 						<div class="jp_tittle_breadcrumb_main_wrapper">
 							<div class="jp_tittle_breadcrumb_wrapper">
 								<ul>
-									<li><a href="#">Home</a> <i class="fa fa-angle-right"></i></li>
-									<li><a href="#">이력서</a> <i class="fa fa-angle-right"></i></li>
-									<li>이력서 조회</li>
+									<li><a
+										href="${ pageContext.servletContext.contextPath }/mainPage/InMember">Home</a></li>
+									<li>></li>
+									<li>이력서</li>
 								</ul>
 							</div>
 						</div>
@@ -61,9 +62,10 @@
 
 
 
-	<c:forEach items="${ resumeList }" var="resume">
 
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 jp_cl_right_bar">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 jp_cl_right_bar">
+		<h1 style="margin-left: 430px; margin-top: 50px;">이력서 조회</h1>
+		<c:forEach items="${ resumeList }" var="resume">
 			<div class="row">
 				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -87,21 +89,22 @@
 								<li><a href="#">수정하기</a></li>
 							</ul>
 						</div>
-					
+
 
 					</div>
 				</div>
 			</div>
 
-		</div>
-
-	</c:forEach>
-	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 jp_cl_right_bar"></div>
-	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 jp_cl_right_bar" onClick="onInsert(this);">
-		<button class="btn-info">새 이력서 등록</button>
-	
+		</c:forEach>
 	</div>
-	
+
+	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 jp_cl_right_bar"></div>
+	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 jp_cl_right_bar"
+		onClick="onInsert(this);">
+		<button class="btn-info">새 이력서 등록</button>
+
+	</div>
+
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 jp_cl_right_bar"></div>
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 jp_cl_right_bar"></div>
 	<script>

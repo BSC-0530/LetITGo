@@ -52,7 +52,7 @@
 						<div class="jp_tittle_breadcrumb_main_wrapper">
 							<div class="jp_tittle_breadcrumb_wrapper">
 								<ul>
-									<li><a href="${ pageContext.servletContext.contextPath }/mainPage/CoMember">Home</a></li>
+									<li><a href="${ pageContext.servletContext.contextPath }/mainPage/InMember">Home</a></li>
 									<li>></li>
 									<li>개인 마이페이지</li>
 								</ul>
@@ -88,13 +88,16 @@
 												<br> <br>
 												<p>
 													<a
-														href="${ pageContext.servletContext.contextPath }/personal/apply/select">지원
-														현황</a>
+														href="${ pageContext.servletContext.contextPath }/personal/apply/select">지원현황</a>
 												</p>
 												<br> <br>
 												<p>
 													<a
 														href="${ pageContext.servletContext.contextPath }/scout/myPageList/servlet">스카우트현황</a>
+												</p>
+												<br> <br>
+												<p>
+													<a href="${ pageContext.servletContext.contextPath }/personal/bookmark/select">북마크</a>
 												</p>
 												<br> <br>
 												<p>

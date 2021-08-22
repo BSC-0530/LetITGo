@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+<%@ page import="java.util.List,javax.servlet.http.HttpSession, javax.servlet.http.HttpServlet, com.itsme.letitgo.login.model.dto.MemberLoginDTO"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,10 +29,30 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/style_II.css" />
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
-
 </head>
 <body>
-<%-- 	<jsp:include page="../common/header/personalHeader.jsp"/> --%>
+
+<%
+	MemberLoginDTO dto = (MemberLoginDTO) session.getAttribute("loginMember");
+
+	String memKinds = dto.getMemKinds();
+	
+%>	
+<%
+	if(memKinds.equals("개인회원")) {
+%>
+	<jsp:include page="../common/header/personalHeader.jsp"/>
+<%
+	}
+%>
+<%
+	if(memKinds.equals("기업회원")) {
+%>
+	<jsp:include page="../common/header/companyHeader.jsp"/>
+<%
+	}
+%>	
+
 	
 	<jsp:include page="jobPostingListBody.jsp"/>
 

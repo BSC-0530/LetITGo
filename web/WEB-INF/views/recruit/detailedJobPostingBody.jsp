@@ -13,6 +13,27 @@
 </head>
 <body>
 
+<%
+	MemberLoginDTO dto = (MemberLoginDTO) session.getAttribute("loginMember");
+
+	String memKinds = dto.getMemKinds();
+	
+%>	
+<%
+	if(memKinds.equals("개인회원")) {
+%>
+	<jsp:include page="../common/header/personalHeader.jsp"/>
+<%
+	}
+%>
+<%
+	if(memKinds.equals("기업회원")) {
+%>
+	<jsp:include page="../common/header/companyHeader.jsp"/>
+<%
+	}
+%>	
+
 	<c:set var="jobPosting" value="${ requestScope.detailedJobPosting }"></c:set>
 	<div class="jp_tittle_main_wrapper">
 		<div class="jp_tittle_img_overlay"></div>
@@ -26,8 +47,10 @@
 						<div class="jp_tittle_breadcrumb_main_wrapper">
 							<div class="jp_tittle_breadcrumb_wrapper">
 								<ul>
-									<li><a href="#">Home</a> <i class="fa fa-angle-right"></i></li>
-									<li><a href="${ pageContext.servletContext.contextPath }/member/allJobPosting/select">채용공고</a> <i class="fa fa-angle-right"></i></li>
+									<li><a href="#">Home</a></li>
+									<li>></li>
+									<li><a href="${ pageContext.servletContext.contextPath }/member/allJobPosting/select">채용공고</a></li>
+									<li>></li>
 									<li>상세공고</li>
 								</ul>
 							</div>

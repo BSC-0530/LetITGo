@@ -21,14 +21,16 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="jp_tittle_heading_wrapper">
 						<div class="jp_tittle_heading">
-							<h2>기업 마이페이지</h2>
+							<h2>회원정보</h2>
 						</div>
 						<div class="jp_tittle_breadcrumb_main_wrapper">
 							<div class="jp_tittle_breadcrumb_wrapper">
 								<ul>
-									<li><a href="#">Home</a></li>
-									<li><a href="#">기업 마이페이지</a></li>
-									<li>기업 마이페이지</li>
+									<li><a href="${ pageContext.servletContext.contextPath }/mainPage/InMember">Home</a></li>
+									<li>></li>
+									<li><a href="${ pageContext.servletContext.contextPath }/personal/myPage/select" >개인 마이페이지</a></li>
+									<li>></li>
+									<li>회원정보</li>
 								</ul>
 							</div>
 						</div>
@@ -47,7 +49,7 @@
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_rightside_job_categories_wrapper">
 								<div class="jp_rightside_job_categories_heading">
-									<h4 style="font-weight: bold">My Page</h4>
+									<h4 style="font-weight: bold">회원정보</h4>
 								</div>
 								<div class="jp_rightside_job_categories_content">
 									<div class="handyman_sec1_wrapper">
@@ -55,9 +57,11 @@
 											<div class="box">
 												<p><a href="${ pageContext.servletContext.contextPath }/personalMyInfo">회원정보</a></p>
 												<br> <br>
-												<p><a href="${ pageContext.servletContext.contextPath }/personal/apply/select">지원 현황</a></p>
+												<p><a href="${ pageContext.servletContext.contextPath }/personal/apply/select">지원현황</a></p>
 												<br> <br>
-												<p><a href="${ pageContext.servletContext.contextPath }">스카우트현황</a></p>
+												<p><a href="${ pageContext.servletContext.contextPath }/scout/myPageList/servlet">스카우트현황</a></p>
+												<br> <br>
+												<p><a href="${ pageContext.servletContext.contextPath }/personal/bookmark/select">북마크</a></p>
 												<br> <br>
 												<p><a href="${ pageContext.servletContext.contextPath }">회원탈퇴</a></p>
 												<br> <br>

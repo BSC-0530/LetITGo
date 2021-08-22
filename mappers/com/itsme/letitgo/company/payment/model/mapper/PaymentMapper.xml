@@ -108,11 +108,11 @@
 	</select>
 	
 	<select id="selectExposureUsingPostNum" resultType="_int">
-		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#SelectExposureUsingPostNum() */
-	           COUNT(*)
-          FROM TBL_JOB_POSTING
-         WHERE EXPOSURE_USE_CHECK = 'Y'
-           AND CO_MEM_NO = #{ memNo }
+		SELECT
+		       COUNT(*)
+		  FROM TBL_EXPOSURE_USAGE_HISTORY
+		 WHERE CO_MEM_NO = #{ memNo }
+		   AND SYSDATE BETWEEN EXPOSURE_USE_DATE AND EXPOSURE_END_DATE
 	</select>
 	
 	<select id="selectExposureRestTime" resultMap="exposureLeftTimeResultMap">

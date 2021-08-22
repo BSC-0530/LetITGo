@@ -21,9 +21,6 @@ public class ScoutDetailResumeServlet extends HttpServlet {
 		System.out.println(resumeNo);
 		Map<String, Object> detailMap = new MainScoutListService().selectDetailResume(resumeNo);
 
-		
-		
-		
 		int result = new MainScoutListService().updateDetailStatus(resumeNo);
 		
 		String path = "";
