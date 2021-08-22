@@ -40,26 +40,35 @@ public class CheckPwdServlet extends HttpServlet {
 		System.out.println("memNo : " + memNo);
 		
 		String rawMemPwd = request.getParameter("memPwd");
-		System.out.println("패스워드 요청 : " + memPwd);
+		System.out.println("memPwd : " + memPwd);
 		
 		String memPwd2 = new BCryptPasswordEncoder().encode(rawMemPwd);
-	
+		System.out.println("memPwd2 : " + memPwd2);
+		
+		
 		String path = "";
 		
 		StringBuilder redirectText = new StringBuilder();
 		
+		//BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
 		if(memPwd.equals(memPwd2)) {
+//		if(encoder.matches(dto.getMemPwd(), memPwd2)) {
+//		if(memPwd == memPwd2) {
 			
 			int result = new CheckPwdService().memEntYnStatus(memNo);
 			
 			if(result > 0) {
-				redirectText.append("<script>alert('탈퇴요청이 정상적으로 되었습니다.'); location.href='../../login';</script>");
+				redirectText.append("<script>alert('탈퇴가 정상적으로 되었습니다.'); location.href='/let/loginPage';</script>");
+				
+				request.getSession().invalidate();
+				response.sendRedirect(request.getContextPath());
 			}  else {
-				redirectText.append("<script>alert('탈퇴요청에 실패하였습니다.'); location.href='../..//mainPage/InMember';</script>");
+				redirectText.append("<script>alert('탈퇴요청에 실패하였습니다.'); location.href='../../main/InMemberPage';</script>");
 			}
 		} else {
 			
-			redirectText.append("<script>alert('탈퇴요청이 정상적으로 되었습니다.'); location.href='../../login';</script>");
+			redirectText.append("<script>alert('비밀번호를 다시 한번 확인해주세요.'); location.href='../../main/InMemberPage';</script>");
 		}		
 
 		response.setContentType("text/html; charset=UTF-8");
@@ -68,6 +77,8 @@ public class CheckPwdServlet extends HttpServlet {
 		out.print(redirectText.toString());
 		out.flush();
 		out.close();
+		
+		
 	}
 
 }
