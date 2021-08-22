@@ -109,7 +109,7 @@
 												</p>
 												<br><br>
 												<p>
-													<a href="#">회원탈퇴</a>
+													<a href="${ pageContext.servletContext.contextPath }/login/comember/withdrawal/yn">회원탈퇴</a>
 												</p>
 												<br><br>
 											</div>

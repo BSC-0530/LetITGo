@@ -185,7 +185,7 @@
 														value="${ controllSkillsCategory.name }" /></td>
 
 												<!-- <td><button type="button" disabled>삭제</button></td> -->
-												<td><button class="btn-info" onClick="skillsCategoryDelete(this);" value="${ controllSkillsCategory.no }">삭제</button></td>
+												<td><button type="button" class="btn-info" onClick="skillsCategoryDelete(this);" value="${ controllSkillsCategory.no }">삭제</button></td>
 											</tr>
 									</c:forEach>
 										</tbody>
@@ -232,8 +232,8 @@
 		function skillsCategoryDelete(button) {
 			
 			
-			
 			const no = button.value;
+// 			alert(no);
 			location.href = "${ pageContext.servletContext.contextPath }/skillscategory/delete?no=" + no;
 			
 		}

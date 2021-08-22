@@ -51,8 +51,34 @@
 
 <body>
 
+<jsp:include page="../../common/header/companyHeader.jsp"/>
+   <div class="jp_tittle_main_wrapper">
+        <div class="jp_tittle_img_overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="jp_tittle_heading_wrapper">
+                        <div class="jp_tittle_heading">
+                            <h2>회원탈퇴</h2>
+                        </div>
+                        <div class="jp_tittle_breadcrumb_main_wrapper">
+                            <div class="jp_tittle_breadcrumb_wrapper">
+                                <ul>
+                                    <li><a href="${ pageContext.servletContext.contextPath }/mainPage/CoMember">Home</a></li>
+                                    <li>></li>
+                                    <li><a href="${ pageContext.servletContext.contextPath }/company/myPage/main">기업 마이페이지</a></li>
+                                    <li>></li>
+                                    <li>회원탈퇴</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- 기업정보화면입니다. --><!-- 기업정보화면입니다. --><!-- 기업정보화면입니다. --><!-- 기업정보화면입니다. --><!-- 기업정보화면입니다. --><!-- 기업정보화면입니다. --><!-- 기업정보화면입니다. -->
 <!-- 사이드바 -->
-
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
@@ -62,104 +88,45 @@
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_rightside_job_categories_wrapper">
 								<div class="jp_rightside_job_categories_heading">
-									<h4 style="font-weight: bold">My Page</h4>
+									<h4 style="font-weight : bold">기업정보</h4>
 								</div>
 								<div class="jp_rightside_job_categories_content">
 									<div class="handyman_sec1_wrapper">
 										<div class="content">
-
 											<div class="box">
-												<h3 style="font-weight: bold">회원정보</h3>
 												<p>
-												<p align="center">
-													<a
-														href="${ pageContext.servletContext.contextPath }/selfintroductionitem/list">자기소개서
-														항목 관리</a>
+													<a href="${ pageContext.servletContext.contextPath }/coMem/infomationServlet">회원정보</a>
 												</p>
-												<br>
-												<p align="center">
-													<a
-														href="${ pageContext.servletContext.contextPath }/jobfield/list">직무분야
-														관리</a>
+												<br><br>
+												<p> 
+													<a href="${ pageContext.servletContext.contextPath }/companyTestServlet">기업정보</a>
 												</p>
-												<br>
-												<p align="center">
-													<a
-														href="${ pageContext.servletContext.contextPath }/skills/list">기술
-														관리</a>
-												</p>
-												<br>
-												<p align="center">
-													<a
-														href="${ pageContext.servletContext.contextPath }/skillscategory/list">기술
-														카테고리 관리</a>
-												</p>
-												<br>
-												<br>
-												<h3 style="font-weight: bold">결제 관리</h3>
+												<br><br>
 												<p>
-												<p align="center">
-													<a href="#">상품 관리</a>
+													<a href="${ pageContext.servletContext.contextPath }/company/paymentHistory/select">결제내역</a>
 												</p>
-												<br>
-												<p align="center">
-													<a href="#">결제 내역 조회</a>
-												</p>
-												<br>
-												<p align="center">
-													<a href="#">환불 요청 관리</a>
-												</p>
-												<br>
-												<br>
-												<h3 style="font-weight: bold">기업 요청 관리</h3>
+												<br><br>
 												<p>
-												<p align="center">
-													<a href="#">공고 등록 요청</a>
+													<a href="${ pageContext.servletContext.contextPath }/company/refundHistory/select">환불내역</a>
 												</p>
-												<br>
-												<p align="center">
-													<a href="#">공고 수정 요청</a>
-												</p>
-												<br>
-												<p align="center">
-													<a href="#">기업 회원 가입 요청</a>
-												</p>
-												<p align="center">
-													<a href="#">기업 정보 변경 요청</a>
-												</p>
-												<br>
-												<br>
-												<h3 style="font-weight: bold">회원 탈퇴</h3>
+												<br><br>
 												<p>
-												<p align="center">
-													<a href="#">회원 탈퇴 사유 조회</a>
+
+													<a href="${ pageContext.servletContext.contextPath }/company/jobPostingHistory/select">공고관리</a>
 												</p>
-												<br>
-												<br>
-												<h3 style="font-weight: bold">게시물 관리</h3>
+												<br><br>
 												<p>
-												<p align="center">
-													<a href="#">공지사항 관리</a>
+													<a href="${ pageContext.servletContext.contextPath }/Company/Scout/List/Select">스카우트현황</a>
 												</p>
-												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/personalinfopolicy/list">개인정보 처리 방침, 이용약관 관리</a>
-												</p>
-												<br>
-												<br>
-												<h3 style="font-weight: bold">1:1 문의</h3>
+												<br><br>
 												<p>
-												<p align="center">
-													<a href="#">1:1 문의 조회</a>
+													<a href="${ pageContext.servletContext.contextPath }/company/scout/wish/select">찜한후보자</a>
 												</p>
-												<p align="center">
-													<a href="#">1:1 문의 카테고리 관리</a>
+												<br><br>
+												<p>
+													<a href="${ pageContext.servletContext.contextPath }/login/comember/withdrawal/yn">회원탈퇴</a>
 												</p>
-												<br>
-												<br>
-												<div align="center">
-					<button type="submit" onclick="href='${ pageContext.servletContext.contextPath }/member/logout'">로그아웃</button>
-<%-- 					<button type="submit" onclick="href='${ pageContext.servletContext.contextPath }/let/login'">로그아웃</button> --%>
-				</div>
+												<br><br>
 											</div>
 										</div>
 									</div>
