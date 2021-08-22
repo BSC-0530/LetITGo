@@ -241,8 +241,7 @@
 	<!-- jp profile Wrapper End -->
 	<!-- jp profile Wrapper Start -->
 	
-	<script>
-		
+<script>		
 		function interview(a) {
 			
 			var answer;
@@ -255,11 +254,8 @@
 										+"&resumeNo=" + resumeNo;
 			}
 		}
+</script>		
 		
-		function 
-		
-		
-	</script>
 	
 	<script type="text/javascript" src="/let/resources/js/jquery_min.js"></script>
     <script type="text/javascript" src="/let/resources/js/bootstrap.js"></script>
