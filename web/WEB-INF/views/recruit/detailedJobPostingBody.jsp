@@ -225,12 +225,12 @@
 	                                                <li><a onclick="apply();" style="width:200px"><i class="fa fa-plus-circle"></i> &nbsp; 지원 하기</a></li>
 	                                                <li><a onclick="selectResume();" style="width:200px"><i class="fa fa-plus-circle"></i> &nbsp; 이력서 선택</a></li>
 	                                            </ul>
-		                                            <input type="text" id="resumeNo" readonly>
+		                                            <input type="hidden" id="resumeNo" readonly>
 	                                        </c:if>
 	                                        <c:if test="${ requestScope.applyingResult ne null }">
 	                                            <ul>
 	                                                <li><a onclick="cancel();" style="width:200px"><i class="fa fa-plus-circle"></i> &nbsp; 지원 취소</a></li>
-		                                            <li><input type="text" id="resumeNo" value="${ requestScope.applyingResult.resumeNo }" readonly></li>
+		                                            <li><input type="hidden" id="resumeNo" value="${ requestScope.applyingResult.resumeNo }" readonly></li>
 	                                            </ul>
 	                                        </c:if>
 											<%
@@ -279,7 +279,7 @@
 			 
 			var path = "${ pageContext.servletContext.contextPath }/resumeForApply/select?jobPostNo="+ jobPostNo;
 			 
-			window.open( path , "이력서 선택", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+			window.open( path , "이력서 선택", "width=600, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 
 		}
 		

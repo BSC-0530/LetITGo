@@ -69,7 +69,14 @@
                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_recent_resume_box_wrapper">
 								<div class="jp_recent_resume_img_wrapper">
-									<img src="images/content/resume_img1.jpg" alt="resume_img" />
+								
+								<c:if test="${ applicant.memFilePath ne null}">
+									<img style="width:90px; height:100px;" src="${ pageContext.servletContext.contextPath }${ applicant.memFilePath }" alt="profile_img" style="width:300px; height: 300px;">
+								</c:if>
+								<c:if test="${ applicant.memFilePath eq null }">
+									<img style="width:90px; height:100px;" src="${ pageContext.servletContext.contextPath }/resources/image/basic.png" alt="profile_img" style="width:350px; height: 400px;">
+								</c:if>
+								
 								</div>
 								<div class="jp_recent_resume_cont_wrapper">
 									<h3><c:out value="${ applicant.resumeTitle }"/></h3>

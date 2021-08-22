@@ -168,7 +168,9 @@
 									<div style="width: 150px; float: left;"
 										class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 										<div class="jp_form_btn_wrapper">
-											<button type="submit" id="btn btn-info"><i class="fa fa-search"></i>Search</button>
+											<ul>
+	                                        <li><a><i class="fa fa-search"></i><button type="submit" style="background-color: transparent; border: 0px">Search</button></a></li>
+											</ul>
 										</div>
 									</div>
 								</div>
@@ -280,28 +282,28 @@
 					
 					<!-- 이전 페이지 버튼 -->
 					<c:if test="${ requestScope.selectCriteria.pageNo <= 1 }">
-						<button type="button" disabled>PRIV</button>
+						<button class="btn btn-info" type="button" disabled>PRIV</button>
 					</c:if>
 					<c:if test="${ requestScope.selectCriteria.pageNo > 1 }">
-						<button type="button" id="prevPage">PRIV</button>
+						<button class="btn btn-info" type="button" id="prevPage">PRIV</button>
 					</c:if>
 					
 					<!-- 숫자 버튼 -->
 					<c:forEach var="p" begin="${ requestScope.selectCriteria.startPage }" end="${ requestScope.selectCriteria.endPage }" step="1">
 						<c:if test="${ requestScope.selectCriteria.pageNo eq p }">
-							<button type="button" disabled><c:out value="${ p }"/></button>
+							<button class="btn btn-info" type="button" disabled><c:out value="${ p }"/></button>
 						</c:if>
 						<c:if test="${ requestScope.selectCriteria.pageNo ne p }">
-							<button type="button" onclick="pageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
+							<button class="btn btn-info" type="button" onclick="pageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
 						</c:if>
 					</c:forEach>
 					
 					<!-- 다음 페이지 버튼 -->
 					<c:if test="${ requestScope.selectCriteria.pageNo >= requestScope.selectCriteria.maxPage }">
-						<button type="button" disabled>NEXT</button>
+						<button class="btn btn-info" type="button" disabled>NEXT</button>
 					</c:if>
 					<c:if test="${ requestScope.selectCriteria.pageNo < requestScope.selectCriteria.maxPage }">
-						<button type="button" id="nextPage">NEXT</button>
+						<button class="btn btn-info" type="button" id="nextPage">NEXT</button>
 					</c:if>
 				</form>
 			</div>

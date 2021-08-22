@@ -268,8 +268,8 @@
                                 </div>
                             </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        	<input type="button" value="insert" onclick="btn_click('insert');">
-                        	<input type="button" value="preview" onclick="btn_click('preview');">
+                        	<input class="btn btn-info" type="button" value="insert" onclick="btn_click('insert');">
+                        	<input class="btn btn-info" type="button" value="preview" onclick="btn_click('preview');">
                         </div>
                     </div>
                 </div>
