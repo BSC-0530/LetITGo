@@ -179,7 +179,7 @@
 		     , A.RESUME_SCOUT_STATUS
 		     , A.JOB_NO
 		  FROM TBL_RESUME A
-		 WHERE A.IN_MEM_NO = 3
+		 WHERE A.IN_MEM_NO = #{ memberNo }
 	</select>
 	
 	<select id="selectDetailResumeList" parameterType="_int" resultMap="detailResumeResultMap">
@@ -216,7 +216,7 @@
 		)
 		VALUES
 		(
-		  SEQ_RESUME_NO.NEXTVAL, 3, SYSDATE
+		  SEQ_RESUME_NO.NEXTVAL, #{ inMemNo }, SYSDATE
 		, 'Y', #{ jobNo }, #{ resumeTitle }
 		)
 		

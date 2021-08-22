@@ -56,15 +56,15 @@
 								<ul>
 									<li>
 										<a onclick="interview(this);">
-											<input id="interviewMemNo" type="hidden" value="${ detailList[0].scoutResume[status.index].inMemNo }">
+											<input id="interviewMemNo" type="hidden" value="${ requestScope.detailResume[0].resume[0].inMemNo }">
 											<i class="fa fa-download"></i>
 											&nbsp;면접 제안
 										</a>
 									</li>
 									
 									<li>
-										<a href="#">
-											<input id="addWishList" type="hidden" value="${ detailList[0].scoutResume[status.index].resumeNo }"><i class="fa fa-phone"></i>
+										<a onClick="addWish(this);">
+											<input id="addWishList" type="hidden" value="${ requestScope.detailResume[0].resume[0].resumeNo }"><i class="fa fa-phone"></i>
 											&nbsp;후보자 찜하기
 										</a>
 									</li>
@@ -90,7 +90,9 @@
 											<td class="td-w25">보유기술</td>
 											<td class="td-w10">:</td>
 											<c:forEach items="${ requestScope.detailSkills }" var="detailSkills" varStatus="status">
-												<td class="td-w65">${ detailSkills.skillsName }<br></td>
+												<td class="td-w65">
+													${ detailSkills.skillsName }
+												</td>
 											</c:forEach>
 										</tr>
 										<tr>
@@ -105,8 +107,7 @@
 											<td class="td-w10">:</td>
 											<c:forEach items="${ requestScope.detailCareer }" var="detail" varStatus="status">
 												<td class="td-w65">
-													${ detail.carHireDate }
-													~ ${ detail.carEntDate }
+													${ detail.carHireDate } ~ ${ detail.carEntDate }
 												</td>
 											</c:forEach>
 										</tr>
@@ -163,8 +164,8 @@
 												role="tablist">
 												<div class="panel-body">
 													<c:forEach items="${ requestScope.detailIntroContent }" var="detail" varStatus="status">
-													${ detail.selfIntroItemName }<br>
-													${ detail.selfIntroContent.selfIntroItemContent }<br><br>
+														${ detail.selfIntroItemName }<br>
+														${ detail.selfIntroContent.selfIntroItemContent }<br><br>
 													</c:forEach>
 												</div>
 											</div>
@@ -183,38 +184,52 @@
 												class="panel-collapse collapse" aria-expanded="false"
 												role="tablist">
 												<div class="panel-body">
-													<c:forEach items="${ detailList }" var="detail" varStatus="status">
-													경력<br> 
-														<label>회사명 : </label>${ detail.scoutResume[status.index].careerHistoryList[status.index].carComName }<br>
-														부서명 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].carDeptName }<br>
-														직책 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].carJobName }<br>
-														업무 분야 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].carWorkField }<br>
-														입사일 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].carHireDate }<br>
-														퇴사일 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].carEntDate }<br>
-														<br>프로젝트 이력<br>
-														프로젝트명 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].projectName }<br>
-														프로젝트 업무 내용 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].projectContent }<br>
-														프로젝트 시작일 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].projectStartDate }<br>
-														프로젝트 종료일 : ${ detail.scoutResume[status.index].careerHistoryList[status.index].projectEndDate }<br>
+													<h4><label>경력</label></h4>
+													<c:forEach items="${ requestScope.detailCareer }" var="detail" varStatus="status">
+														회사명 : ${ detail.carComName }<br>
+														부서명 : ${ detail.carDeptName }<br>
+														직책 : ${ detail.carJobName }<br>
+														업무 분야 : ${ detail.carWorkField }<br>
+														입사일 : ${ detail.carHireDate }<br>
+														퇴사일 : ${ detail.carEntDate }<br>
 														<br>
-														자격증<br>
-														자격증 명 : ${ detail.scoutResume[status.index].licenseHistoryList[status.index].licenseName }<br>
-														발행처 : ${ detail.scoutResume[status.index].licenseHistoryList[status.index].licenseAgency }<br>
-														자격증 취득일 : ${ detail.scoutResume[status.index].licenseHistoryList[status.index].licenseDate }<br>
+													</c:forEach>
+													<h4><label>프로젝트 이력</label></h4>
+													<c:forEach items="${ requestScope.detailCareer }" var="detail" varStatus="status">
+														프로젝트명 : ${ detail.projectName }<br>
+														프로젝트 업무 내용 : ${ detail.projectContent }<br>
+														프로젝트 시작일 : ${ detail.projectStartDate }<br>
+														프로젝트 종료일 : ${ detail.projectEndDate }<br>
 														<br>
-														교육 이력<br>
-														교육명 : ${ detail.scoutResume[status.index].educationHistoryList[status.index].eduName }<br>
-														교육기관 : ${ detail.scoutResume[status.index].educationHistoryList[status.index].eduAgency }<br>
-														교육 시작일 : ${ detail.scoutResume[status.index].educationHistoryList[status.index].eduStartDate }<br> 
-														교육 종료일 : ${ detail.scoutResume[status.index].educationHistoryList[status.index].eduEndDate }<br>
-														교육 내용 : ${ detail.scoutResume[status.index].educationHistoryList[status.index].eduContent }<br>
+														
+													</c:forEach>
+													<h4><label>자격증</label></h4>
+													<c:forEach items="${ requestScope.detailLicense }" var="detail" varStatus="status">
+														자격증 명 : ${ detail.licenseName }<br>
+														발행처 : ${ detail.licenseAgency }<br>
+														자격증 취득일 : ${ detail.licenseDate }<br>
 														<br>
-														수상 이력<br>
-														수상명 : ${ detail.scoutResume[status.index].awardHistoryList[status.index].awdName }<br>
-														수상기관 : ${ detail.scoutResume[status.index].awardHistoryList[status.index].awdAgency }<br>
-														수상일 : ${ detail.scoutResume[status.index].awardHistoryList[status.index].awdDate }<br>
-														수상내용 : ${ detail.scoutResume[status.index].awardHistoryList[status.index].awdContent }<br>
-														</c:forEach>
+													
+													</c:forEach>
+													<h4><label>교육 이력</label></h4>
+													<c:forEach items="${ requestScope.detailEdu }" var="detail" varStatus="status">
+														교육명 : ${ detail.eduName }<br>
+														교육기관 : ${ detail.eduAgency }<br>
+														교육 시작일 : ${ detail.eduStartDate }<br> 
+														교육 종료일 : ${ detail.eduEndDate }<br>
+														교육 내용 : ${ detail.eduContent }<br>
+														<br>
+													
+													</c:forEach>
+													<h4><label>수상 이력</label></h4>
+													<c:forEach items="${ requestScope.detailAward }" var="detail" varStatus="status">
+														수상명 : ${ detail.awdName }<br>
+														수상기관 : ${ detail.awdAgency }<br>
+														수상일 : ${ detail.awdDate }<br>
+														수상내용 : ${ detail.awdContent }<br>
+														<br>
+													</c:forEach>
+														
 												</div>
 											</div>
 										</div>
@@ -228,7 +243,7 @@
 				</div>
 			</div>
 		</div>
-		<input id="resumeNo" type="hidden" value="${ detail.scoutResume[status.index].resumeNo }">
+		<input id="resumeNo" type="hidden" value="${ requestScope.detailResume[0].resume[0].resumeNo }">
 <%-- 	<input type="hidden" value="${ detail.scoutResume[status.index].resumeNo }"> --%>
 		
 		
@@ -246,6 +261,19 @@
 				const resumeNo = document.getElementById("resumeNo").value;
 				location.href = "${ pageContext.servletContext.contextPath }/company/scout/interview?memNo=" + memNo 
 										+"&resumeNo=" + resumeNo;
+			}
+		}
+		
+		function addWish(a) {
+			
+			var answer;
+			answer = confirm('후보자를 찜하기 목록에 추가하시겠습니까?');
+			
+			if(answer == true) {
+				const inputPage = 'detail';
+				const resumeNo = document.getElementById("resumeNo").value;
+				location.href = "${ pageContext.servletContext.contextPath }/company/scout/wish/insert?resumeNo=" + resumeNo 
+						+ "&inputPage=" + inputPage;
 			}
 		}
 </script>		

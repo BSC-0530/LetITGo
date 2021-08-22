@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.itsme.letitgo.login.model.dto.MemberLoginDTO;
 import com.itsme.letitgo.personal.resume.model.dto.ResumeDTO;
 import com.itsme.letitgo.personal.resume.model.service.ResumeService;
 
@@ -17,7 +19,14 @@ public class ResumeSelectListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		List<ResumeDTO> resumeList = new ResumeService().selectAllResumeList();
+		HttpSession session = request.getSession();
+		
+		MemberLoginDTO comDTO1 = (MemberLoginDTO) session.getAttribute("loginMember");
+		System.out.println("번호" + comDTO1.getMemNo());
+		//로그인된 멤버 번호
+		int memberNo = comDTO1.getMemNo();
+		
+		List<ResumeDTO> resumeList = new ResumeService().selectAllResumeList(memberNo);
 		
 		System.out.println(resumeList);
 		
