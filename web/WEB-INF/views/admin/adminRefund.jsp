@@ -34,9 +34,9 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" charset="utf8"
-	src="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"></script>
+	src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 <link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 
 </head>
 <body>
@@ -163,7 +163,7 @@
 							<br> <br> <br>
 							<h1>환불 요청 관리</h1>
 							<div class="jp_listing_tabs_wrapper">
-								<table id="table_refund" class="hover cell-border stripe">
+								<table id="table_refunded" class="hover cell-border stripe">
 									<thead>
 										<tr align="center">
 											<td>결제번호</td>
@@ -176,9 +176,9 @@
 											<td></td>
 										</tr>
 									</thead>
-									<c:forEach var="adminRefund" items="${ requestScope.refundHistoryList }">
 										
 										<tbody align="center">
+									<c:forEach var="adminRefund" items="${ requestScope.refundHistoryList }">
 											<tr>
 												<td>
 												<input type="hidden" name="payChangeNo"value="${ adminRefund.payChangeNo }">
@@ -208,8 +208,8 @@
 													<td><button disabled>거절</button></td>
 												</c:if>
 											</tr>
-										</tbody>
 									</c:forEach>
+										</tbody>
 								</table>
 								<br> <br>
 							</div>
@@ -224,11 +224,13 @@
 	</div>
 
 	<!-- 데이터테이블 사용 -->
-	<script>
+
+<script>
 		$(document).ready(function() {
-			$('#table_refund').DataTable();
+			$('#table_refunded').DataTable();
 		});
-	</script>
+</script>
+</body>
 
 	<!-- 환불 승인시 -->
 	<script>
@@ -253,14 +255,12 @@
 	</script>
 
 	<!-- 환불 거절시 -->
+	
 	<script>
 		function reject(button) {
 
 			var payChangeNo = button.parentNode.parentNode.children[0].children[0].value;
 			var payNo = button.parentNode.parentNode.children[0].innerText;
-			
-			alert(payChangeNo);
-			alert(payNo);
 			
 			var $form = $("<form>")
 					.attr("action",

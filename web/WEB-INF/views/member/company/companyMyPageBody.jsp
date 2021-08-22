@@ -45,14 +45,16 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="jp_tittle_heading_wrapper">
                         <div class="jp_tittle_heading">
-                            <h2>기업 마이페이지</h2>
+                            <h2>기업정보</h2>
                         </div>
                         <div class="jp_tittle_breadcrumb_main_wrapper">
                             <div class="jp_tittle_breadcrumb_wrapper">
                                 <ul>
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="#">기업 마이페이지</a></li>
-                                    <li>기업 마이페이지</li>
+                                    <li><a href="${ pageContext.servletContext.contextPath }/mainPage/CoMember">Home</a></li>
+                                    <li>></li>
+                                    <li><a href="${ pageContext.servletContext.contextPath }/company/myPage/main">기업 마이페이지</a></li>
+                                    <li>></li>
+                                    <li>기업정보</li>
                                 </ul>
                             </div>
                         </div>
@@ -72,13 +74,13 @@
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_rightside_job_categories_wrapper">
 								<div class="jp_rightside_job_categories_heading">
-									<h4 style="font-weight : bold">My Page</h4>
+									<h4 style="font-weight : bold">기업정보</h4>
 								</div>
 								<div class="jp_rightside_job_categories_content">
 									<div class="handyman_sec1_wrapper">
 										<div class="content">
 											<div class="box">
-												<p align="center">
+												<p>
 													<a href="${ pageContext.servletContext.contextPath }/coMem/infomationServlet">회원정보</a>
 												</p>
 												<br><br>
@@ -100,15 +102,15 @@
 												</p>
 												<br><br>
 												<p>
-													<a href="${ pageContext.servletContext.contextPath }/Company/Scout/List/Select">스카우트 현황</a>
+													<a href="${ pageContext.servletContext.contextPath }/Company/Scout/List/Select">스카우트현황</a>
 												</p>
 												<br><br>
 												<p>
-													<a href="${ pageContext.servletContext.contextPath }/company/scout/wish/select">찜한 후보자</a>
+													<a href="${ pageContext.servletContext.contextPath }/company/scout/wish/select">찜한후보자</a>
 												</p>
 												<br><br>
 												<p>
-													<a href="#">회원 탈퇴</a>
+													<a href="#">회원탈퇴</a>
 												</p>
 												<br><br>
 											</div>

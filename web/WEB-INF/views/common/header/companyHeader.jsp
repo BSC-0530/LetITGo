@@ -29,7 +29,7 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
 </head>
 <body>
-<!-- Header Wrapper Start -->
+
 	<div class="jp_top_header_img_wrapper">
 		<div class="jp_slide_img_overlay"></div>
 		<div class="gc_main_menu_wrapper">
@@ -45,16 +45,14 @@
 					</div>
 					<div
 						class="col-lg-7 col-md-8 col-sm-12 col-xs-12 center_responsive">
-						<div class="header-area hidden-menu-bar stick" id="sticker">
-							<!-- mainmenu start -->
+						<div  class="header-area hidden-menu-bar stick" id="sticker">
 							<div class="mainmenu">
-
-								<ul class="float_left">
-									<li class="parent gc_main_navigation"><a href="" class="gc_main_navigation">채용공고 </a></li>
-									<li class="has-mega gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }/productList/select" id="paymentMainPage" class="gc_main_navigation">결제페이지</a></li>
-									<li class="has-mega gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }/main/Scout/List" class="gc_main_navigation">스카우트</a> </li>
-									<li class="has-mega gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }/company/myPage/main" class="gc_main_navigation" >마이페이지</a></li>
-									<li class="gc_main_navigation parent"><a href="${ pageContext.servletContext.contextPath }/request/inquiry/servlet" class="gc_main_navigation">문의하기</a></li>
+								<ul style="font-color:rgb(106, 179, 209);" class="float_left">
+									<li class="parent gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }/member/allJobPosting/select">채용공고</a></li>
+									<li class="has-mega gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }/productList/select" id="paymentMainPage">결제페이지</a></li>
+									<li class="has-mega gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }/main/Scout/List">스카우트</a> </li>
+									<li class="has-mega gc_main_navigation"><a href="${ pageContext.servletContext.contextPath }/company/myPage/main">마이페이지</a></li>
+									<li class="gc_main_navigation parent"><a href="${ pageContext.servletContext.contextPath }/request/inquiry/servlet">문의하기</a></li>
 								</ul>
 							</div>
 						</div>

@@ -3,7 +3,7 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%@ page import="java.util.List,javax.servlet.http.HttpSession, javax.servlet.http.HttpServlet, com.itsme.letitgo.login.model.dto.MemberLoginDTO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +12,27 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=78b48235e398b3e2421dd3b9095893d6&libraries=services"></script>
 </head>
 <body>
+
+<%
+	MemberLoginDTO dto = (MemberLoginDTO) session.getAttribute("loginMember");
+
+	String memKinds = dto.getMemKinds();
+	
+%>	
+<%
+	if(memKinds.equals("개인회원")) {
+%>
+	<jsp:include page="../common/header/personalHeader.jsp"/>
+<%
+	}
+%>
+<%
+	if(memKinds.equals("기업회원")) {
+%>
+	<jsp:include page="../common/header/companyHeader.jsp"/>
+<%
+	}
+%>	
 
 	<c:set var="jobPosting" value="${ requestScope.detailedJobPosting }"></c:set>
 	<div class="jp_tittle_main_wrapper">
@@ -26,8 +47,10 @@
 						<div class="jp_tittle_breadcrumb_main_wrapper">
 							<div class="jp_tittle_breadcrumb_wrapper">
 								<ul>
-									<li><a href="#">Home</a> <i class="fa fa-angle-right"></i></li>
-									<li><a href="${ pageContext.servletContext.contextPath }/member/allJobPosting/select">채용공고</a> <i class="fa fa-angle-right"></i></li>
+									<li><a href="#">Home</a></li>
+									<li>></li>
+									<li><a href="${ pageContext.servletContext.contextPath }/member/allJobPosting/select">채용공고</a></li>
+									<li>></li>
 									<li>상세공고</li>
 								</ul>
 							</div>
