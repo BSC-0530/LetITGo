@@ -140,7 +140,7 @@
 									<div class="row">
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="coMemId" value="${ coMemDTO.memId }" readonly>
+											<input type="text" name="coMemId" id="memId" value="${ coMemDTO.memId }" readonly>
 										</div>
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
@@ -168,17 +168,21 @@
                     	</div>
             	<!-- end --> 
 						 <button type="submit" class="btn btn-info" id="coMemInfoChange" style=" float: right;" >회원 정보 변경</button>
-						 <button type="button" class="btn btn-info" id="coPassChange" style=" float: right; margin-right:10px  " >비밀번호 변경</button>
+						 <button type="button" class="btn btn-info" id="coPassChange" style=" float: right; margin-right:10px;" onclick="passwordChange();">비밀번호 변경</button>
 					</form>	 
             	</div>
 			</div>
 		</div>
 	</div>
 <script>
-// function infoChange(button){
+	function passwordChange(){
 	
-// 	location.href="${ pageContext.servletContext.contextPath }/company/info/change/servlet"	
-// }
+		var memId = document.getElementById("memId").value;
+		
+		alert(memId);
+		
+		location.href="${ pageContext.servletContext.contextPath }/company/resetpassword?memId=" + memId;	
+	}
 
 </script>	
 	

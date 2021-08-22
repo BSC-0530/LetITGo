@@ -31,19 +31,9 @@ public class AdminCoJoinDetailServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		int coReqNo = Integer.parseInt(request.getParameter("coReqNo"));			//view에 있는 값을  서블릿에 담는다
+		
+		System.out.println(coReqNo);
 //		int memNo = Integer.parseInt(request.getParameter("memNo"));
-		String id = request.getParameter("id");
-		String email = request.getParameter("email");
-		String intro = request.getParameter("intro");
-		String coNo = request.getParameter("coNo");
-		String comName = request.getParameter("comName");
-		String ceoName = request.getParameter("ceoName");
-		String coAddress = request.getParameter("coAddress");
-		String comPhone = request.getParameter("comPhone");
-		String fax = request.getParameter("pax");
-		String sectors = request.getParameter("sectors");
-		String status = request.getParameter("status");
-		String website = request.getParameter("website");							//여기까지 
 		//view 값을 담아준다
 		
 		
@@ -69,30 +59,15 @@ public class AdminCoJoinDetailServlet extends HttpServlet {
 		CompanyDetailService companyDetailService = new CompanyDetailService();
 		
 		CompanyJoinDTO result = companyDetailService.joinDetail(coReqNo);
-		result.setCoReqNo(coReqNo);
-		result.setId(id);
-		result.setEmail(email);
-		result.setIntro(intro);
-		result.setCoNo(coNo);
-		result.setComName(comName);
-		result.setCeoName(ceoName);
-		result.setAddress(coAddress);
-		result.setPhone(comPhone);
-		result.setFax(fax);
-		result.setSectors(sectors);
-		result.setStatus(status);
-		result.setWebsite(website);
 		
 		String path = "";
 		
-		request.setAttribute("coReqNo", coReqNo);
+		request.setAttribute("result", result);
 		
-		 if(result != null) {
+		 
 			path ="/WEB-INF/views/admin/adminJoinDetail.jsp";
 			request.getRequestDispatcher(path).forward(request, response);
 			
-		 }
-		
 	}
 
 

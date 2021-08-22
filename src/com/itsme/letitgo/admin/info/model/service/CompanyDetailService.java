@@ -19,15 +19,11 @@ public class CompanyDetailService {
 		
 		JoinMapper mapper = session.getMapper(JoinMapper.class);
 		
-		CompanyJoinDTO companyJoinDTO = new CompanyJoinDTO();
-		
 		CompanyJoinDTO joinDetail = mapper.memberInfo(coReqNo);
-		
-		System.out.println(joinDetail);
 		
 		session.close();
 		
-		return companyJoinDTO;
+		return joinDetail;
 	}
 
 

@@ -40,6 +40,7 @@
 
 </head>
 <body>
+
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
@@ -138,9 +139,10 @@
 					</div>
 				</div>
 
+				
+				<!-- 거절사유 작성란 -->
 
-				<form id="postInsertRejectMessage" action="${ pageContext.servletContext.contextPath }/admin/post/reject/InsertUpdate" method="post">
-					
+				<form id="postUpdateRejectMessage" action="${ pageContext.servletContext.contextPath }/admin/post/reject/InsertUpdate" method="post">
 					<div style="width: 500px;" class="jp_contact_form_main_wrapper">
 						<div class="container">
 							<div class="row">
@@ -151,9 +153,6 @@
 									<div class="jp_contact_form_box">
 										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 											<h3>거절 사유</h3>
-										</div>
-										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-											<input type="hidden" name="coReqNo" value="${ requestScope.coReqNo }">
 										</div>
 										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 											<div
@@ -167,7 +166,7 @@
 											<div class="jp_contact_form_btn_wrapper">
 
 												<input type="submit" value="거절 사유 등록">
-												<button type="reset">취소</button>
+
 											</div>
 										</div>
 									</div>

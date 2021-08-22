@@ -200,7 +200,7 @@ function imgChange(button){
 	
 	let no = document.getElementById("memNo").value;
 // 	alert(no);
-	location.href ="${ pageContext.servletContext.contextPath }/company/image/change?no="+no
+	location.href ="${ pageContext.servletContext.contextPath }/company/image/change?no=" + no;
 	
 }
 </script>

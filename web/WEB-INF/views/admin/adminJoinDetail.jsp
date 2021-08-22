@@ -142,9 +142,6 @@
 					<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 						<br><br><br>
 					</div>
-					<form
-						action="${ pageContext.servletContext.contextPath }/info/detail"
-						method="get">
 						<div class="row">
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<div class="jp_listing_tabs_wrapper">
@@ -158,9 +155,6 @@
 										<br> <br>
 										<div class="row">
 											<!--Form Group-->
-											<div><input type="hidden" name="coReqNo"
-													value="${ requestScope.coReqNo }" ></div>
-											
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
 												<input type="text" name="id" 
 												value="${ result.id }" readonly>
@@ -176,7 +170,7 @@
 											</div>
 											<!--Form Group-->
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="comName" readonly.
+												<input type="text" name="comName" readonly
 												value="${ result.comName }">
 											</div>
 											<!--Form Group-->
@@ -203,7 +197,7 @@
 											</div>
 											<div class="form-group col-md-12 col-sm-12 col-xs-12">
 												<input type="text" name=" coAddress" readonly
-												value="${ result.coAddress }">
+												value="${ result.address }">
 											</div>
 										</div>
 									</div>
@@ -213,35 +207,13 @@
 						<br>
 						<div class="companyText">
 							<label>회사소개</label><input id="textArea" type="text"
-								value="${ intro  }" readonly>
+								value="${ result.intro  }" readonly>
 						</div>
 
 						<!-- end -->
-
-						<button type="submit" class="btn btn-info" 
-							style="float: right; margin: 5px; border: 0px; background: red;" onclick="JoinReject(this)">거절</button>
-						<button type="submit" class="btn btn-info"
-							style="float: right; margin: 5px;" onclick="JoinApproval(this)">수락</button>
-					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-<script>
-function JoinApproval(button) {
-	
-	var coReqNo = button.parentNode.parentNode.children[0].innerText;
-	
-	location.href = "${ pageContext.servletContext.contextPath }/info/accept?coReqNo=" + coReqNo;
-	
-}
-function JoinReject(button) {
-	
-	const coReqNo = button.value;
-		
-	location.href = "${ pageContext.servletContext.contextPath }/admin/post/reject/InsertUpdate?coReqNo=" + coReqNo;
-	
-}
-</script>
 </body>
 </html>
