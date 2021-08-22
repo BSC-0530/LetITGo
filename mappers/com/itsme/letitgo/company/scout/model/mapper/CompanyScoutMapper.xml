@@ -6,9 +6,11 @@
 		<result property="memNo" column="MEM_NO"/>
 		<result property="carNo" column="CAR_NO"/>
 		<result property="skillNo" column="SKILLS_NO"/>
+		<result property="path" column="MEM_FILE_PATH" />
 		
 		<association property="memberDTO" resultMap="mainScoutMemberDTO"/>
 		<association property="resumeDTO" resultMap="mainScoutResumeDTO"/>
+		
 <!-- 		<collection property="carHistoryDTO" resultMap="mainScoutCarHistoryDTO"/> -->
 	</resultMap>
 	
@@ -392,16 +394,29 @@
 		<result property="potFileName" column="POT_FILE_NAME"/>
 		
 	</resultMap>
+	<resultMap type="com.itsme.letitgo.company.info.model.dto.FileUploadDTO" id="fileImage">
+		<result property="memFileNo" column="MEM_FILE_NO"/>
+		<result property="memNo" column="MEM_NO" />
+		<result property="memFileName" column="MEM_FILE_NAME" />
+		<result property="memFileOriginalName" column="MEM_FILE_PATH" />
+		<result property="filePath" column="MEM_FILE_PATH" />
+		<result property="fileKinds" column="MEM_FILE_KINDS" />
+	</resultMap>
+	
 		
 		
 		<select id="companySelectAllScout" resultMap="mainScoutResultMap">
 			SELECT
 				   M.MEM_NAME
 			     , R.RESUME_NO
+			     , M.MEM_NO
+                 , SUBSTR(A.MEM_FILE_PATH,21) AS MEM_FILE_PATH
 			  FROM TBL_MEMBER M
 			  JOIN TBL_RESUME R ON (R.IN_MEM_NO = M.MEM_NO)
+		      LEFT JOIN TBL_ATTACHMENT A ON (M.MEM_NO = A.MEM_NO) 
 	         WHERE R.RESUME_SCOUT_STATUS = 'Y'
-        
+               
+        	 
 		</select>
 		<select id="companyScoutSkills" resultMap="mainScoutHoldingSkillsDTO">
 		SELECT
@@ -680,7 +695,13 @@
 <!-- 				SKILLS_NAME -->
 <!-- 			FROM TBL_SKILLS	 -->
 <!-- 		</select> -->
-
+	<select id="selectedProfileList" resultMap="fileImage">
+			SELECT
+     			   MEM_NO
+        		 , SUBSTR(MEM_FILE_PATH,21) AS MEM_FILE_PATH
+			  FROM TBL_ATTACHMENT
+		 	 WHERE MEM_FILE_KINDS = '프로필사진'
+	</select>
 	
 
 	<insert id="insertInterview">
