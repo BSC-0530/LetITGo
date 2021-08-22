@@ -20,6 +20,12 @@ public interface PersonalScoutMapper {
 
 	// 면접 제안 수락 상태 업데이트
 	int updateAcceptScoutKinds(ReadingResumeListOfPersonalDTO resumeAndCoMem);
+	//스카우트 현황 파란박스 카운트
+	int selectAllCountSimpeOpen(int memNo);
+	//스카우트 현황 파란박스 카운트
+	int selectAllCountDeepOpen(int memNo);
+	//스카우트 현황 파란박스 카운트
+	int selectAllScountNum(int memNo);
 
 	
 

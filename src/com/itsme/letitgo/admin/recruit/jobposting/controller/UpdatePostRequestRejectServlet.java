@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.itsme.letitgo.admin.recruit.jobposting.model.service.UpdatePostRequestRejectService;
 
+/* 관리자 -> 공고등록요청 -> 승인 */
 @WebServlet("/admin/post/reject/update")
 public class UpdatePostRequestRejectServlet extends HttpServlet {
 	
@@ -23,10 +24,7 @@ public class UpdatePostRequestRejectServlet extends HttpServlet {
 		
 		jobPostNo = Integer.parseInt(request.getParameter("jobPostNo"));
 		jobPostReqNo = Integer.parseInt(request.getParameter("jobPostReqNo"));
-		
-		System.out.println("jobPostNo : " + jobPostNo); 
-		System.out.println("jobPostReqNo : " + jobPostReqNo); 
-		
+
 		String path = "/WEB-INF/views/admin/adminPostRejectMessage.jsp";
 		
 		request.getRequestDispatcher(path).forward(request, response);
@@ -36,17 +34,20 @@ public class UpdatePostRequestRejectServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		String rejectMessage = request.getParameter("rejectMessage");	
-		System.out.println("rejectMessage : " + rejectMessage); 
+		String rejectMessage = request.getParameter("rejectMessage");
 
 		UpdatePostRequestRejectService updatePostRejectRequestApp = new UpdatePostRequestRejectService();	
 	
+		/* 재용공고번호, 요청번호, 거절메세지 묶어서 전달 */
 		Map<String, Object> map = new HashMap<>();
 		map.put("rejectMessage", rejectMessage);
 		map.put("jobPostNo", jobPostNo);
 		map.put("jobPostReqNo", jobPostReqNo);
 		
-		int result1 = updatePostRejectRequestApp.updatePostRejectRequest1(map);		
+		/* 채용공고의 분류를 거절된 공고로 변경 */
+		int result1 = updatePostRejectRequestApp.updatePostRejectRequest1(map);
+		
+		/* 채용공고 승인여부이력 응답구분을 거절로 변경 */
 		int result2 = updatePostRejectRequestApp.updatePostRejectRequest2(map);
 		
 		System.out.println("result1 : " + result1);

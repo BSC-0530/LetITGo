@@ -2,6 +2,7 @@ package com.itsme.letitgo.admin.recruit.jobposting.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,9 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.itsme.letitgo.admin.recruit.jobposting.model.dto.PostInsertRuqeustDTO;
+import com.itsme.letitgo.admin.recruit.jobposting.model.service.SelectPostRequestService;
 import com.itsme.letitgo.admin.recruit.jobposting.model.service.UpdatePostUpdateAppService;
 
-
+/* 관리자 -> 공고수정요청 -> 승인 */
 @WebServlet("/admin/post/update/app/update")
 public class UpdatePostUpdateAppServlet extends HttpServlet {
 
@@ -22,18 +25,21 @@ public class UpdatePostUpdateAppServlet extends HttpServlet {
 		
 		UpdatePostUpdateAppService service = new UpdatePostUpdateAppService();
 		
-		System.out.println("jobPostNo :	" + jobPostNo);
-		System.out.println("jobPostReqNo :	" + jobPostReqNo);
+		/* 요청번호를 통해서 수정전 채용공고번호를 가져옴 */
+		int changeReqJobPostNo = service.selectChangeReqJobPostNo(jobPostReqNo);
 		
+		/* 채용공고의 분류를 승인된 공고로 변경 */
 		int result1 = service.updatePostUpdateApp1(jobPostNo);
+		
+		/* 채용공고 승인여부이력의 응답구분을 승인으로 변경 */
 		int result2 = service.updatePostUpdateApp2(jobPostReqNo);
+		
+		/* 수정완료전공고의 분류를 수정완료전공고 로 변경 */
+		int result3 = service.updatePostUpdateApp3(changeReqJobPostNo);
 		
 		StringBuilder redirectText = new StringBuilder();
 		
-		System.out.println(result1);
-		System.out.println(result2);
-		
-		if(result1 > 0 && result2 > 0) {
+		if(result1 > 0 && result2 > 0 && result3 > 0) {
 			redirectText.append("<script>alert('채용공고수정을 승인하셨습니다.'); location.href='../../updateRequest/select';</script>");
 		} else {
 			redirectText.append("<script>alert('채용공고수정승인에 실패하셨습니다.'); location.href='../../updateRequest/select';</script>");

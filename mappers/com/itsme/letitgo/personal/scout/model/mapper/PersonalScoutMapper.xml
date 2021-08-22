@@ -46,6 +46,7 @@
 		   AND RESUME_NO = #{ resumeNo }
 	</select>
 	
+<!-- 	열람 이력 리스트 데이터 테이블 -->
 	<select id="selectReadingResumeListOfPersonal" resultMap="readKindsListResultMap">
 		SELECT
 			   C.CO_COM_NAME
@@ -70,5 +71,38 @@
 		 WHERE RESUME_NO = #{ resumeNo }
 		   AND CO_MEM_NO = #{ coMemNo }
 	</update>
+	
+	
+	<select id="selectAllCountSimpeOpen" resultType="_int">
+		SELECT
+               COUNT(1)
+          FROM TBL_RESUME R
+          JOIN TBL_RESUME_READING_HISTORY RD ON (R.RESUME_NO = RD.RESUME_NO)
+         WHERE RESUME_SCOUT_STATUS = 'Y'
+           AND RESUME_BROWSE_KINDS = '얕은열람'
+           AND IN_MEM_NO = #{ memNo }
+	</select>
+	<select id="selectAllCountDeepOpen" resultType="_int">
+		SELECT
+               COUNT(1)
+          FROM TBL_RESUME R
+          JOIN TBL_RESUME_READING_HISTORY RD ON (R.RESUME_NO = RD.RESUME_NO)
+         WHERE RESUME_SCOUT_STATUS = 'Y'
+           AND RESUME_BROWSE_KINDS = '깊은열람'
+           AND IN_MEM_NO = #{ memNo }
+	</select>
+	<select id="selectAllScountNum" resultType="_int">
+		SELECT
+               COUNT(1)
+          FROM TBL_RESUME R
+          JOIN TBL_RESUME_READING_HISTORY RD ON (R.RESUME_NO = RD.RESUME_NO)
+         WHERE RESUME_SCOUT_STATUS = 'Y'
+           AND RESUME_BROWSE_KINDS = '면접제안'
+           AND IN_MEM_NO = #{ memNo }
+	</select>
+	
+	
+	
+	
 
 </mapper>

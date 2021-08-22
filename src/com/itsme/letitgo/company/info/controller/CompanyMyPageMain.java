@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.itsme.letitgo.company.payment.model.dto.ExposureLeftTimeDTO;
 import com.itsme.letitgo.company.payment.model.dto.ReadingLeftNumDTO;
 import com.itsme.letitgo.company.payment.model.service.SelectPaymentHistoryService;
 import com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO;
@@ -26,6 +27,7 @@ public class CompanyMyPageMain extends HttpServlet {
 		
 		SelectPaymentHistoryService selectPaymentHistoryService = new SelectPaymentHistoryService();
 		MainScoutListService mainScoutListService = new MainScoutListService();
+		
 		/* 세션에서 로그인된 회원의 번호 꺼내오기 */
 		HttpSession session = request.getSession();
         MemberLoginDTO dto = (MemberLoginDTO) session.getAttribute("loginMember");
@@ -43,10 +45,27 @@ public class CompanyMyPageMain extends HttpServlet {
 		int exposureUsingPostNum = selectPaymentHistoryService.selectExposureUsingPostNum(memNo);	
 		
 		/* 노출권 잔여시간 조회 */
-//		long exposureRestTime = selectPaymentHistoryService.selectExposureRestTime(memNo);	
-//		long exposureRestHour = exposureRestTime / 1000 / 60 / 60;
-//		long exposureRestMinute = exposureRestHour % 60;
-
+		/* 노출권 잔여시간 조회 */
+		List<ExposureLeftTimeDTO> exposureRestTime = selectPaymentHistoryService.selectExposureRestTime(memNo);	
+		
+		int exposureLeftTime = 0;
+		for(int i = 0; i < exposureRestTime.size(); i++) {
+			exposureLeftTime += exposureRestTime.get(i).getExposureTime();
+		}
+		Integer exposureRestHour = null;
+		Integer exposureRestMinute = null;
+		if(exposureLeftTime != 0) {
+			exposureRestHour = exposureLeftTime / 60 / 60;
+			exposureRestMinute = (exposureRestHour % 100) / 100 * 60;
+			request.setAttribute("exposureRestHour", exposureRestHour);
+			request.setAttribute("exposureRestMinute", exposureRestMinute);
+		} else {
+			exposureRestHour = 0;
+			exposureRestMinute = 0;
+			request.setAttribute("exposureRestHour", exposureRestHour);
+			request.setAttribute("exposureRestMinute", exposureRestMinute);			
+		}
+		//스카우트열람조회
 		int simpleOpen = mainScoutListService.selectAllCountSimpeOpen(memNo);
 		int deepOpen = mainScoutListService.selectAllCountDeepOpen(memNo);
 		int scoutNum = mainScoutListService.selectAllScountNum(memNo);
@@ -74,8 +93,6 @@ public class CompanyMyPageMain extends HttpServlet {
 		
 		request.setAttribute("resumeBrowsingNum", resumeBrowsingNum);
 		request.setAttribute("exposureUsingPostNum", exposureUsingPostNum);
-//		request.setAttribute("exposureRestHour", exposureRestHour);
-//		request.setAttribute("exposureRestMinute", exposureRestMinute);
 		
 		String path = "";
 		path = "/WEB-INF/views/member/company/companyMyPageMain.jsp";

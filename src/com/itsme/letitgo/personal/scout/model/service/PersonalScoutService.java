@@ -72,6 +72,42 @@ public class PersonalScoutService {
 		return result;
 	}
 
+	public int selectAllCountSimpeOpen(int memNo) {
+		
+		SqlSession session = getSqlSession();
+		PersonalScoutMapper mapper = session.getMapper(PersonalScoutMapper.class);
+		
+		int simpleOpen = mapper.selectAllCountSimpeOpen(memNo);
+		
+		session.close();
+		
+		return simpleOpen;
+	}
+
+	public int selectAllCountDeepOpen(int memNo) {
+		
+		SqlSession session = getSqlSession();
+		PersonalScoutMapper mapper = session.getMapper(PersonalScoutMapper.class);
+		
+		int deepOpen = mapper.selectAllCountDeepOpen(memNo);
+		
+		session.close();
+		
+		return deepOpen;
+	}
+
+	public int selectAllScountNum(int memNo) {
+		
+		SqlSession session = getSqlSession();
+		PersonalScoutMapper mapper = session.getMapper(PersonalScoutMapper.class);
+		
+		int scoutNum = mapper.selectAllScountNum(memNo);
+		
+		session.close();
+		
+		return scoutNum;
+	}
+
 	
 	
 	

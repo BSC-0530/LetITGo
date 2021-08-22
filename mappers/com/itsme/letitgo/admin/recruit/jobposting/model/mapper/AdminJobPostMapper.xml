@@ -10,6 +10,7 @@
 		<result property="jobPostAnsDate" column="JOB_POST_ANS_DATE"/>
 		<result property="jobPostRejectReason" column="JOB_POST_REJECT_REASON"/>
 		<result property="jobPostAnsKinds" column="JOB_POST_ANS_KINDS"/>
+		<result property="changeReqJobPostNo" column="CHANGE_REQ_JOB_POST_NO"/>
 	</resultMap>
 
 	
@@ -23,11 +24,11 @@
 		     , A.JOB_POST_REJECT_REASON
 		     , A.JOB_POST_ANS_KINDS
 		  FROM TBL_JOB_POSTING_APP_HISTORY A
-		  JOIN TBL_JOB_POSTING B ON (A.JOB_POST_NO = B.JOB_POST_NO)
-		  JOIN TBL_MEMBER C ON (B.CO_MEM_NO = C.MEM_NO)
-		  JOIN TBL_CO_MEMBER_ADD_INFO D ON (C.MEM_NO = D.CO_MEM_NO)
+		  LEFT JOIN TBL_JOB_POSTING B ON (A.JOB_POST_NO = B.JOB_POST_NO)
+		  LEFT JOIN TBL_MEMBER C ON (B.CO_MEM_NO = C.MEM_NO)
+		  LEFT JOIN TBL_CO_MEMBER_ADD_INFO D ON (C.MEM_NO = D.CO_MEM_NO)
 		 WHERE A.JOB_POST_REQ_KINDS = '공고등록'
-		 ORDER BY A.JOB_POST_REQ_NO
+		 ORDER BY A.JOB_POST_REQ_NO ASC
 	</select>
 	
 	<update id="updatePostRequestApp1">
@@ -71,6 +72,7 @@
 		     , A.JOB_POST_ANS_DATE
 		     , A.JOB_POST_REJECT_REASON
 		     , A.JOB_POST_ANS_KINDS
+		     , A.CHANGE_REQ_JOB_POST_NO
 		  FROM TBL_JOB_POSTING_APP_HISTORY A
 		  JOIN TBL_JOB_POSTING B ON (A.JOB_POST_NO = B.JOB_POST_NO)
 		  JOIN TBL_MEMBER C ON (B.CO_MEM_NO = C.MEM_NO)
@@ -83,7 +85,7 @@
 		UPDATE /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#updatePostUpdateApp1() */
 		       TBL_JOB_POSTING
 		   SET JOB_POST_KINDS = '승인된공고'
-		     , JOB_POST_UPDATE_DATE = SYSDATE;
+		     , JOB_POST_UPDATE_DATE = SYSDATE
 		 WHERE JOB_POST_NO = #{ jobPostNo }
 	</update>
 	
@@ -109,6 +111,20 @@
 		     , JOB_POST_ANS_DATE = SYSDATE
 		     , JOB_POST_REJECT_REASON = #{ rejectMessage }
 		 WHERE JOB_POST_REQ_NO = #{ jobPostReqNo }
+	</update>
+	
+	<select id="selectChangeReqJobPostNo" resultType="_int"> 
+		SELECT /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#selectChangeReqJobPostNo() */
+		       CHANGE_REQ_JOB_POST_NO
+		  FROM TBL_JOB_POSTING_APP_HISTORY
+		 WHERE JOB_POST_REQ_NO = #{ jobPostReqNo } 	
+	</select>
+	
+	<update id="updatePostUpdateApp3">
+		UPDATE /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#updatePostUpdateApp3() */
+		       TBL_JOB_POSTING
+		   SET JOB_POST_KINDS = '수정완료전공고'
+		 WHERE JOB_POST_NO = #{ changeReqJobPostNo }
 	</update>
 	
 </mapper>

@@ -184,7 +184,7 @@
 										<td><c:out value="${broswe.jobName }"></c:out> </td>
 										<td id="kindsName"><c:out value="${ broswe.resumeBrowseKinds }"></c:out> </td>
 										<td><button type="button"  onclick="browse(this);">상세보기</button>
-										<input type="text" id="hiddenResumeNo" value="${ broswe.resumeNo }">
+										<input type="hidden" id="hiddenResumeNo" value="${ broswe.resumeNo }">
 										<input type="hidden" id="hiddenkinds" value="${ broswe.resumeBrowseKinds }">
 										
 										</td>

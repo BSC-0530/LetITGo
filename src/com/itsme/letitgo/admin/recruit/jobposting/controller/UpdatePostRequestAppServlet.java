@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.itsme.letitgo.admin.recruit.jobposting.model.service.UpdatePostRequestAppService;
 
-
+/* 관리자 -> 공고등록요청 -> 승인 */
 @WebServlet("/admin/post/app/update")
 public class UpdatePostRequestAppServlet extends HttpServlet {
 	
@@ -21,24 +21,20 @@ public class UpdatePostRequestAppServlet extends HttpServlet {
 		int jobPostReqNo = Integer.parseInt(request.getParameter("jobPostReqNo"));
 		
 		UpdatePostRequestAppService service = new UpdatePostRequestAppService();
-		
-		System.out.println("jobPostNo :	" + jobPostNo);
-		System.out.println("jobPostReqNo :	" + jobPostReqNo);
-		
+
+		/* 채용공고의 분류를 승인된 공고로 변경 */
 		int result1 = service.updatePostRequestApp1(jobPostNo);
+		
+		/* 채용공고 승인여부이력 응답구분을 승인으로 변경 */
 		int result2 = service.updatePostRequestApp2(jobPostReqNo);
 		
 		StringBuilder redirectText = new StringBuilder();
-		
-		System.out.println(result1);
-		System.out.println(result2);
 		
 		if(result1 > 0 && result2 > 0) {
 			redirectText.append("<script>alert('채용공고등록을 승인하셨습니다.'); location.href='../../post/insertRequest/select';</script>");
 		} else {
 			redirectText.append("<script>alert('채용공고등록승인에 실패하셨습니다.'); location.href='../../post/insertRequest/select';</script>");
 		}
-		 
 									
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();

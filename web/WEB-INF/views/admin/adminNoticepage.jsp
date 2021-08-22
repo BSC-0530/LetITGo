@@ -30,12 +30,13 @@
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
 <link rel="stylesheet" type="text/css" href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css" />
+
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript" charset="utf8"
-	src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
+<script type="text/javascript" src="/let/resources/js/datatables.js"></script>
+<link rel="stylesheet" type="text/css" href="/let/resources/css/datatables.css" />
 
 </head>
 <body>
@@ -162,8 +163,8 @@
 											<td align="center">노출수정</td>
 										</tr>
 									</thead>
-								<c:forEach var="notice" items="${ requestScope.notice }">
 										<tbody align="center">
+								<c:forEach var="notice" items="${ requestScope.notice }">
 											<tr id="postNo">
 												<td><c:out value="${ notice.postNo }"/></td>									
 												<td><c:out value="${ notice.postTitle }"/></td>
@@ -182,8 +183,8 @@
 <%-- 												<td><input name="no" value="${ notice.postNo }"> --%>
 <!-- 												<td><button class="fa fa-plus-circle" type="submit" ></button></td> -->
 											</tr>
-										</tbody>	
 								</c:forEach>					
+										</tbody>	
 								</table>
 								</div>
 <!-- 						</form> -->
