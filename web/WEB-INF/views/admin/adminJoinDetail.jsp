@@ -153,10 +153,7 @@
 				</div>
 				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 					<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-						<br>
-					</div>
-					<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-						<br>
+						<br><br><br>
 					</div>
 					<form
 						action="${ pageContext.servletContext.contextPath }/info/detail"
@@ -178,38 +175,48 @@
 													value="${ requestScope.coReqNo }" ></div>
 											
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="userId" readonly>
+												<input type="text" name="id" 
+												value="${ result.id }" readonly>
 											</div>
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="coNo" readonly>
-											</div>
-											<!--Form Group-->
-											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="email" readonly>
+												<input type="text" name="coNo" 
+												value="${ result.coNo }"	readonly>
 											</div>
 											<!--Form Group-->
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="comName" readonly>
+												<input type="text" name="email" 
+												value="${ result.email }"	readonly>
 											</div>
 											<!--Form Group-->
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="ceoName" readonly>
-											</div>
-											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="fax" readonly>
-											</div>
-											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="sectors" readonly>
+												<input type="text" name="comName" readonly.
+												value="${ result.comName }">
 											</div>
 											<!--Form Group-->
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="status" readonly>
+												<input type="text" name="ceoName" readonly
+												value="${ result.ceoName }">
 											</div>
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="website" readonly>
+												<input type="text" name="fax" readonly
+												value="${ result.fax }">
+											</div>
+											<div class="form-group col-md-6 col-sm-6 col-xs-12">
+												<input type="text" name="sectors" readonly
+												value="${ result.sectors }">
+											</div>
+											<!--Form Group-->
+											<div class="form-group col-md-6 col-sm-6 col-xs-12">
+												<input type="text" name="status" readonly
+												value="${ result.status }">
+											</div>
+											<div class="form-group col-md-6 col-sm-6 col-xs-12">
+												<input type="text" name="website" readonly
+												value="${ result.website }">
 											</div>
 											<div class="form-group col-md-12 col-sm-12 col-xs-12">
-												<input type="text" name=" coAddress" readonly>
+												<input type="text" name=" coAddress" readonly
+												value="${ result.coAddress }">
 											</div>
 										</div>
 									</div>

@@ -17,7 +17,12 @@ public class ModifyPersonalInfoServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int memNo = Integer.parseInt(request.getParameter("memNo"));
+		
+		request.setAttribute("memNo",memNo);
+		
 		String path = "/WEB-INF/views/member/personal/modifypersoanlmain.jsp";
+		
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 
@@ -25,14 +30,14 @@ public class ModifyPersonalInfoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8"); //UTF-8(한글) 로 변환
-		
+		int memNo = Integer.parseInt(request.getParameter("memNo"));
 		String personalId = request.getParameter("personalId");				//viewpage에서 넘긴 값을 getparameter로 받는다 id를 담는다
 		String personalEmail = request.getParameter("personalEmail");			
 		String personalName = request.getParameter("personalName");
 		String personalPhone = request.getParameter("personalPhone");
 		
 		ModifyMemberDTO mdMemberDTO = new ModifyMemberDTO();		//DTO 생성
-		
+		mdMemberDTO.setMemNo(memNo);
 		mdMemberDTO.setMemId(personalId);
 		mdMemberDTO.setEmail(personalEmail);
 		mdMemberDTO.setMemName(personalName);

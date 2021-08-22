@@ -146,12 +146,15 @@
 					</div>
 				</div>
 
+				<br><br><br>
 				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<br><br><br>
 							<h1>기업회원 가입요청 관리</h1>
 							<div class="jp_listing_tabs_wrapper">
+								
+								
+								
 								<table id="table_postUpdate" class="hover cell-border stripe">
 									<thead>
 										<tr>
@@ -165,9 +168,9 @@
 											<td align="center">요청 응답</td>
 										</tr>
 									</thead>
+									<tbody align="center">
 									<c:forEach var="insertRequestList" 
 										items="${ requestScope.insertRequestList }">							
-									<tbody align="center">
 											<tr>
 												<td><c:out value="${ insertRequestList.coReqNo }"/></td>
 												<td><c:out value="${ insertRequestList.coComName }"/></td>
@@ -187,8 +190,8 @@
 												<td><button type="submit" onclick="jobPostReject(this);">거절</button></td>
 												</c:if>	
 											</tr>
-									</tbody>
 									</c:forEach>															
+									</tbody>
 								</table>
 								<br>
 								<br>
@@ -217,7 +220,7 @@ function post3(button) {
 }	
 function JoinApproval(button) {
 	
-	var coReqNo = button.parentNode.parentNode.children[0].innerText;
+	const coReqNo = button.parentNode.parentNode.children[0].innerText;
 	
 		
 	var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/info/accept").attr("method", "get");
@@ -231,10 +234,9 @@ function JoinApproval(button) {
 
 function JoinReject(button) {
 		
-		var coReqNo = button.parentNode.parentNode.children[0].innerText;
+		var coReqNo = button.value;
 			
 		location.href = "${ pageContext.servletContext.contextPath }/admin/post/reject/InsertUpdate?coReqNo=" + coReqNo;
-
 		
 }
 
