@@ -152,15 +152,16 @@
 								
 								<table id="table_postUpdate" class="hover cell-border stripe">
 									<thead>
-										<tr>
-											<td align="center">번호</td>
-											<td align="center">기업명</td>
-											<td align="center">요청 일자</td>
-											<td align="center">응답 일자</td>
-											<td align="center">상태</td>
-											<td align="center">거절 사유</td>
-											<td align="center">상세 보기</td>
-											<td align="center">요청 응답</td>
+										<tr align="center">
+											<td>번호</td>
+											<td>기업</td>
+											<td>요청일</td>
+											<td>응답일</td>
+											<td>상태</td>
+											<td>사유</td>
+											<td>보기</td>
+											<td>응답</td>
+											<td></td>
 										</tr>
 									</thead>
 									<tbody align="center">
@@ -173,7 +174,7 @@
 												<td><c:out value="${ insertRequestList.coAnsDate }"/></td>								
 												<td><c:out value="${ insertRequestList.coAnsKinds }"/></td>
 												<td><c:out value="${ insertRequestList.coRejectReason }"/></td>	
-												<td><button type="submit" onclick="post3(this);">상세 보기</button></td>
+												<td><button type="button" onclick="post3(this);">보기</button></td>
 												
 												<c:if test="${  insertRequestList.coAnsDate != null }">
 												<td><button disabled>승인</button></td>
@@ -181,8 +182,8 @@
 												</c:if>
 												
 												<c:if test="${  insertRequestList.coAnsDate == null }">
-												<td><button type="submit" onclick="jobPostApproval(this);">승인</button></td>
-												<td><button type="submit" onclick="jobPostReject(this);">거절</button></td>
+												<td><button type="button" onclick="jobPostApproval(this);">승인</button></td>
+												<td><button type="button" onclick="jobPostReject(this);">거절</button></td>
 												</c:if>	
 											</tr>
 									</c:forEach>															
@@ -208,15 +209,15 @@
 
 function post3(button) { 
 	
-	const coReqNo = button.parentNode.parentNode.children[0].innerText;
+	/**/
+	const coReqNo = button.parentNode.parentNode.children[0].innerText;		
 		
 	location.href = "${ pageContext.servletContext.contextPath }/info/detail?coReqNo=" +coReqNo;
 				
 }	
-function JoinApproval(button) {
+function jobPostApproval(button) {
 	
 	const coReqNo = button.parentNode.parentNode.children[0].innerText;
-	
 		
 	var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/info/accept").attr("method", "get");
 		
@@ -227,11 +228,17 @@ function JoinApproval(button) {
 	$form.submit();
 }
 
-function JoinReject(button) {
+function jobPostReject(button) {
 		
-		var coReqNo = button.value;
-			
-		location.href = "${ pageContext.servletContext.contextPath }/admin/post/reject/InsertUpdate?coReqNo=" + coReqNo;
+	const coReqNo = button.parentNode.parentNode.children[0].innerText;
+	
+	var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/admin/post/reject/InsertUpdate").attr("method", "get");
+		
+	$form.append($("<input>").attr("name", "coReqNo").attr("type", "hidden").val(coReqNo));
+		
+	$("body").append($form);
+		
+	$form.submit();
 		
 }
 

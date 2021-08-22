@@ -30,23 +30,6 @@ public class RequestJoinRejectService {
 		return result;
 	}
 
-	public int joinRejectRequest2(Map<String, Object> map) {
-		
-		SqlSession session = getSqlSession();
-		
-		JoinMapper mapper = session.getMapper(JoinMapper.class);
-
-		int result = mapper.RequestJoinReject2(map);
-		
-		if(result > 0) {
-			session.commit();
-		} else {
-			session.rollback();
-		}
-		
-		session.close();
-		
-		return result;
-	}
+	
 
 }

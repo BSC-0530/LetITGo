@@ -38,34 +38,22 @@
 	<update id="RequestJoin">
 		UPDATE
 				TBL_CO_MEMBER_APP_HISTORY
-		   SET CO_ANS_KINDS = '승인된 기업회원 아이디'
+		   SET CO_ANS_KINDS = '승인'
 			 , CO_ANS_DATE = SYSDATE
 		   WHERE CO_REQ_NO = #{ coReqNo }
 	</update>
 	
-	<update id="RequestJoin2">
-		UPDATE
-				TBL_CO_MEMBER_APP_HISTORY
-		   SET SET CO_ANS_KINDS = '승인'
-			  , CO_ANS_DATE = SYSDATE
-		  WHERE CO_REQ_NO = #{ coReqNo }
-	</update>
+	
 	
 	<update id="RequestJoinReject1">
 		UPDATE
 			   TBL_CO_MEMBER_APP_HISTORY
-			SET CO_ANS_KINDS = '거절된 기업회원 아이디'
-		  WHERE CO_REQ_NO = #{ coReqNo }
+		   SET CO_ANS_KINDS = '거절'
+             , CO_ANS_DATE = SYSDATE
+             , CO_REJECT_REASON = #{ rejectMessage }
+         WHERE CO_REQ_NO = #{ coReqNo }
 	</update>
 	
-	<update id="RequestJoinReject2">
-		UPDATE
-			   TBL_CO_MEMBER_APP_HISTORY
-		   SET CO_ANS_KINDS = '거절'
-			 , CO_ANS_DATE = SYSDATE
-			 , CO_REJECT_REASON = #{ rejectMessage }
-		 WHERE CO_REQ_NO = #{ coReqNo }
-	</update>
 
 	<select id="memberInfo" resultMap="SelectJoinInfo1">
 		SELECT	/*com.itsme.letitgo.admin.info.model.dto.CompanyJoinDTO#SelectJoinInfo2()*/

@@ -179,15 +179,15 @@ td {
 								<table id="skillsCategory" class="hover cell-border stripe">
 									<thead>
 										<tr>
-											<td align="center">상품 번호</td>
-											<td align="center">상품 이름</td>
-											<td align="center">상품 가격</td>
-											<td align="center">상품 구분</td>
-											<td align="center">노출 여부</td>
-											<td align="center">열람권 갯수</td>
-											<td align="center">상단노출시간</td>
-											<td align="center">수정 하기</td>
-											<td align="center">삭제 하기</td>
+											<td align="center">번호</td>
+											<td align="center">이름</td>
+											<td align="center">가격</td>
+											<td align="center">구분</td>
+											<td align="center">노출</td>
+											<td align="center">열람권</td>
+											<td align="center">노출시간</td>
+											<td align="center">수정</td>
+											<td align="center">삭제</td>
 										</tr>
 									</thead>
 										<tbody align="center">

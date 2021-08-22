@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.itsme.letitgo.admin.info.model.service.RequestJoinRejectService;
 
-
-
 @WebServlet("/admin/post/reject/InsertUpdate")
 public class RequestRejectServlet extends HttpServlet {
 
@@ -44,14 +42,13 @@ public class RequestRejectServlet extends HttpServlet {
 		
 		
 		int result1 = rjrService.joinRejectRequest1(map);
-		int result2 = rjrService.joinRejectRequest2(map);
 		
 		StringBuilder redirectText = new StringBuilder();
 		
-		if(result1 > 0 && result2 > 0) {
-			redirectText.append("<script>alert('기업회원 가입 거절하였습니다.'); location.href='../../info/requestList';</script>\"");
+		if(result1 > 0) {
+			redirectText.append("<script>alert('기업회원 가입 거절하였습니다.'); location.href='requestList';</script>\"");
 		}else {
-			redirectText.append("<script>alert('기업회원 가입 거절을 실패하셨습니다.');location.href='../../info/requestList';</script>\"");
+			redirectText.append("<script>alert('기업회원 가입 거절을 실패하셨습니다.');location.href='requestList';</script>\"");
 		}
 		
 		response.setContentType("/WEB-INF/views/admin/adminJoinDetail.jsp");

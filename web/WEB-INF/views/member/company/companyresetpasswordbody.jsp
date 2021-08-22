@@ -154,7 +154,7 @@
 								<h3>비밀번호 변경</h3>
 								<br> <br>
 								<div align="center" >
-								<input type="hidden" name="memNO" value="${ requestScope.memNO }">
+								<input type="hidden" name="memId" value="${ requestScope.memId }">
 								</div>
 								<div style="font: bold">
 									현재 비밀번호 &nbsp; &nbsp; &nbsp; &nbsp; <input type="password"

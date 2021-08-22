@@ -87,8 +87,7 @@
 	<update id="modifyPersonalInfo" parameterType="com.itsme.letitgo.personal.info.model.dto.ModifyMemberDTO">
 		UPDATE 
 			   TBL_MEMBER
-		   SET MEM_ID = #{ memId }
-		     , MEM_EMAIL = #{ email }
+		   SET MEM_EMAIL = #{ email }
 		     , MEM_PHONE = #{ memPhone }
 			 , MEM_NAME	= #{ memName } 
 	    WHERE  MEM_NO = #{ memNo }

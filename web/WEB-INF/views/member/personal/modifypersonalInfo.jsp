@@ -112,10 +112,7 @@
 									<div class="row">
 										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="hidden" name="memNo" value="${ requestScope.memNo }" style="text-transform: lowercase;">
-										</div>
-										<div class="form-group col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="personalId"  placeholder="아이디" style="text-transform: lowercase;">
+											<input type="hidden" name="memNo" value="${ requestScope.memNo }" >
 										</div>
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
 											<input type="text" name="personalEmail"  placeholder="이메일" style="text-transform: lowercase;">

@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class CompanyInfoDTO implements java.io.Serializable {
 	
-	private int memNO;
+	private int memNo;
 	private String memId;
 	private String memPwd;
 	private String memName;
@@ -22,7 +22,7 @@ public class CompanyInfoDTO implements java.io.Serializable {
 	public CompanyInfoDTO(int memNO, String memId, String memPwd, String memName, String memEmail, String memPhone,
 			String memKinds, Date enrollDate, String entYn, Date entDate, int memEntNo) {
 		super();
-		this.memNO = memNO;
+		this.memNo = memNo;
 		this.memId = memId;
 		this.memPwd = memPwd;
 		this.memName = memName;
@@ -37,11 +37,11 @@ public class CompanyInfoDTO implements java.io.Serializable {
 
 
 	public int getMemNO() {
-		return memNO;
+		return memNo;
 	}
 
 	public void setMemNO(int memNO) {
-		this.memNO = memNO;
+		this.memNo = memNO;
 	}
 
 	public String getMemId() {
@@ -127,7 +127,7 @@ public class CompanyInfoDTO implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "CompanyTestDTO [memNO=" + memNO + ", memId=" + memId + ", memPwd=" + memPwd + ", memName=" + memName
+		return "CompanyTestDTO [memNo=" + memNo + ", memId=" + memId + ", memPwd=" + memPwd + ", memName=" + memName
 				+ ", memEmail=" + memEmail + ", memPhone=" + memPhone + ", memKinds=" + memKinds + ", enrollDate="
 				+ enrollDate + ", entYn=" + entYn + ", entDate=" + entDate + ", memEntNo=" + memEntNo + "]";
 	}
