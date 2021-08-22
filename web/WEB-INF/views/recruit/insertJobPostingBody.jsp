@@ -258,7 +258,7 @@
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">
                                 <div class="jp_adp_textarea_main_wrapper">
                                     <label id="titleFont">혜택 및 복지</label>
-                                    <textarea rows="7" placeholder="혜택 및 복지를 입력하세요*" name="benefitAndWelfare" required maxlength=3q00></textarea>
+                                    <textarea rows="7" placeholder="혜택 및 복지를 입력하세요*" name="benefitAndWelfare" required maxlength=300></textarea>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12">

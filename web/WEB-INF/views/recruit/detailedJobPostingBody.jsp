@@ -315,7 +315,6 @@
 		}
 
 	</script>
-
 	<script>
 		var container = document.getElementById('map');
 		var options = {

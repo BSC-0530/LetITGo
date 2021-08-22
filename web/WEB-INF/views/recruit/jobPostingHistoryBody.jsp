@@ -32,7 +32,6 @@
 			</div>
 		</div>
 	</div>
-	
 	<!-- 전체 묶음 -->
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
@@ -90,7 +89,6 @@
 				</div>
 				
 				<!-- 파란색 박스 -->
-				
 				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -139,7 +137,6 @@
 						<table id="table_myPosting" class="hover cell-border stripe">
 							<thead>
 								<tr align="center">
-									<th>공고 번호</th>
 									<th>공고 제목</th>
 									<th>공고 상태</th>
 									<th style="width:70px;">요구 경력</th>
@@ -157,9 +154,10 @@
 								<tbody align="center">
 								<c:forEach var="jobPosting"  items="${ requestScope.allJobPosting }">
 									<tr>
-										<td><c:out value="${ jobPosting.jobPostNo }"/></td>
-										<td><c:out value="${ jobPosting.jobPostTitle }"/></td>
-										
+										<td>
+											<input type="hidden" value="${ jobPosting.jobPostNo }">
+											<c:out value="${ jobPosting.jobPostTitle }"/>
+										</td>
 										<!-- 공고 상태에 따라 view에 다르게 표기 -->
 										<td>
 										<c:if test="${ jobPosting.jobPostKinds eq '승인된공고' }"><c:out value="채용중"/></c:if>
@@ -173,7 +171,7 @@
 										<td><button onclick="updateJobPosting(this);">수정</button></td>			
 										<td><button onclick="selectApplicant(this);">지원자</button></td>
 										<c:if test="${ jobPosting.exposureUseCheck eq 'N' }">
-										<td><button type="submit" onclick="req(this);">사용하기</button></td>
+										<td><button type="submit" onclick="useExposure(this);">사용하기</button></td>
 										</c:if>
 										<c:if test="${ jobPosting.exposureUseCheck eq 'Y' }">
 										<!-- 노출권 마감일자가 나와주면 좋을듯  -->
@@ -190,9 +188,11 @@
 								<tbody align="center">
 								<c:forEach var="jobPosting"  items="${ requestScope.recruitingJopPosting }">
 									<tr>
-										<td><c:out value="${ jobPosting.jobPostNo }"/></td>
-										<td><c:out value="${ jobPosting.jobPostTitle }"/></td>
-										
+										<td>
+											<input type="hidden" value="${ jobPosting.jobPostNo }">
+											<c:out value="${ jobPosting.jobPostTitle }"/>
+										</td>
+										<td>
 										<!-- 공고 상태에 따라 view에 다르게 표기 -->
 										<td>
 										<c:if test="${ jobPosting.jobPostKinds eq '승인된공고' }"><c:out value="채용중"/></c:if>
@@ -206,7 +206,7 @@
 										<td><button onclick="updateJobPosting(this);">수정</button></td>			
 										<td><button onclick="selectApplicant(this);">지원자</button></td>
 										<c:if test="${ jobPosting.exposureUseCheck eq 'N' }">
-										<td><button type="submit" onclick="req(this);">사용하기</button></td>
+										<td><button type="submit" onclick="useExposure(this);">사용하기</button></td>
 										</c:if>
 										<c:if test="${ jobPosting.exposureUseCheck eq 'Y' }">
 										<!-- 노출권 마감일자가 나와주면 좋을듯  -->
@@ -223,15 +223,16 @@
 								<tbody align="center">
 								<c:forEach var="jobPosting"  items="${ requestScope.requestJobPosting }">
 									<tr>
-										<td><c:out value="${ jobPosting.jobPostNo }"/></td>
-										<td><c:out value="${ jobPosting.jobPostTitle }"/></td>
-										
+										<td>
+											<input type="hidden" value="${ jobPosting.jobPostNo }">
+											<c:out value="${ jobPosting.jobPostTitle }"/>
+										</td>
 										<!-- 공고 상태에 따라 view에 다르게 표기 -->
 										<td>
-										<c:if test="${ jobPosting.jobPostKinds eq '승인된공고' }"><c:out value="채용중"/></c:if>
-										<c:if test="${ jobPosting.jobPostKinds eq '승인대기중인공고' }"><c:out value="수정/등록 요청"/></c:if>
-										<c:if test="${ jobPosting.jobPostKinds eq '마감된공고' }"><c:out value="마감"/></c:if>
-										<c:if test="${ jobPosting.jobPostKinds eq '거절된공고' }"><c:out value="등록 거절"/></c:if>
+											<c:if test="${ jobPosting.jobPostKinds eq '승인된공고' }"><c:out value="채용중"/></c:if>
+											<c:if test="${ jobPosting.jobPostKinds eq '승인대기중인공고' }"><c:out value="수정/등록 요청"/></c:if>
+											<c:if test="${ jobPosting.jobPostKinds eq '마감된공고' }"><c:out value="마감"/></c:if>
+											<c:if test="${ jobPosting.jobPostKinds eq '거절된공고' }"><c:out value="등록 거절"/></c:if>
 										</td>
 										<td><c:out value="${ jobPosting.jobPostMinExperience }" />년 ~ <c:out value="${ jobPosting.jobPostMaxExperience }" />년</td>								
 										<td><c:out value="${ jobPosting.jobPostEnrollDate }" /></td>								
@@ -239,7 +240,7 @@
 										<td><button onclick="updateJobPosting(this);">수정</button></td>			
 										<td><button onclick="selectApplicant(this);">지원자</button></td>
 										<c:if test="${ jobPosting.exposureUseCheck eq 'N' }">
-										<td><button type="submit" onclick="req(this);">사용하기</button></td>
+										<td><button type="submit" onclick="useExposure(this);">사용하기</button></td>
 										</c:if>
 										<c:if test="${ jobPosting.exposureUseCheck eq 'Y' }">
 										<!-- 노출권 마감일자가 나와주면 좋을듯  -->
@@ -276,9 +277,7 @@
 	function updateJobPosting(button) {
 		
 		
-		let jobPostNo = button.parentNode.parentNode.children[0].innerText;
-		
-		alert(jobPostNo);
+		let jobPostNo = button.parentNode.parentNode.children[0].children[0].value;
 		
 		location.href = "${ pageContext.servletContext.contextPath }/recruit/update?jobPostNo=" + jobPostNo
 		
@@ -286,11 +285,19 @@
 	
 	function selectApplicant(button) {
 		
-		let jobPostNo = button.parentNode.parentNode.children[0].innerText;
-		
-		alert(jobPostNo);
+		let jobPostNo = button.parentNode.parentNode.children[0].children[0].value;
 		
 		location.href = "${ pageContext.servletContext.contextPath }/applicant/select?jobPostNo=" + jobPostNo
+
+	}
+	
+	function useExposure(button) {
+		
+		let jobPostNo = button.parentNode.parentNode.children[0].children[0].value;
+		 
+		var path = "${ pageContext.servletContext.contextPath }/exposureForuse/select?jobPostNo="+ jobPostNo;
+		 
+		window.open( path , "이력서 선택", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 
 	}
 	

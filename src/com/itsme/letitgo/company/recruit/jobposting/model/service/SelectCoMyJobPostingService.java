@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.itsme.letitgo.company.recruit.jobposting.model.dto.ExposureProductDTO;
 import com.itsme.letitgo.company.recruit.jobposting.model.dto.JpSkillsDTO;
 import com.itsme.letitgo.company.recruit.jobposting.model.dto.RequestJobPostingDTO;
 import com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO;
@@ -143,7 +144,7 @@ public class SelectCoMyJobPostingService {
 			// 이때 TBL_JOB_POSTING_APP_HISTORY에 insert
 			if(result2 >= dto.getSkillsCodeList().size()) {
 				
-				result3 = mapper.updateJobPostingAppHistory(dto.getJobPostNo());
+				result3 = mapper.updateJobPostingAppHistory(dto);
 				
 				if(result3 > 0) {
 					
@@ -197,6 +198,19 @@ public class SelectCoMyJobPostingService {
 		String jobName = mapper.selectJobNameFromJobNo(jobNo);
 		 
 		return null;
+	}
+
+	public List<ExposureProductDTO> selectExposureProduct(int memNo) {
+		
+		SqlSession session = getSqlSession();
+		
+		SelectCoMyJobPostingMapper mapper = session.getMapper(SelectCoMyJobPostingMapper.class);
+		
+		List<ExposureProductDTO> exposureProduct = mapper.selectExposureProduct(memNo);
+		
+		session.close();
+		
+		return exposureProduct;
 	}
 	
 }

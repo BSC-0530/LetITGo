@@ -129,7 +129,7 @@
 			} else {
 
 				document.insertForm.method = "post";
-				document.insertForm.action = "${ pageContext.servletContext.contextPath }/recruit/insert"
+				document.insertForm.action = "${ pageContext.servletContext.contextPath }/recruit/update"
 				document.insertForm.submit();
 			
 		}

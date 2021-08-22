@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 
 <!DOCTYPE html>
@@ -8,6 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="/let/resources/js/datatables.js"></script>
+<link rel="stylesheet" type="text/css" href="/let/resources/css/datatables.css"/>
 
 <body>
 	<c:set var="resume" value="${ requestScope.resultResume }"/>
@@ -281,7 +284,6 @@
 			$('#table_id').DataTable();
 		});
 	</script>
-
 	
 	<script type="text/javascript" src="/let/resources/js/jquery_min.js"></script>
     <script type="text/javascript" src="/let/resources/js/bootstrap.js"></script>
