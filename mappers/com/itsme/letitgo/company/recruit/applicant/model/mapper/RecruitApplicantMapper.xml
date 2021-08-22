@@ -236,6 +236,15 @@
 	     WHERE A.RESUME_NO = #{ resumeNo }
 	</select>
 	
+	<!-- 공고 지원자 이력서 열람시 열람완료로 업데이트 -->
+	<update id="updateBrowesStatus">
+		UPDATE /* com.itsme.letitgo.company.recruit.applicant.model.mapper.RecruitApplicantMapper#updateBrowesStatus() */
+			   TBL_APPLYING_HISTORY A
+		   SET A.JOB_POST_BROWES_STATUS = '열람완료'
+		 WHERE A.RESUME_NO = #{ resumeNo }
+		   AND A.JOB_POST_NO = #{ jobPostNo }
+	</update>
+	
 
 
 </mapper>

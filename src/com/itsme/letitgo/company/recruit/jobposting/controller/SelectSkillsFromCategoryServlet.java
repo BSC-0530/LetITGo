@@ -20,7 +20,7 @@ import com.itsme.letitgo.company.recruit.jobposting.model.service.SelectCoMyJobP
 
 
 @WebServlet("/fromCategory/getSkills/select")
-public class SelectSkillsFromCategory extends HttpServlet {
+public class SelectSkillsFromCategoryServlet extends HttpServlet {
 	
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

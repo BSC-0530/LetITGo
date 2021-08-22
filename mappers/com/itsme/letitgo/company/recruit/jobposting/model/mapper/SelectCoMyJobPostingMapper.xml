@@ -15,7 +15,7 @@
 		<result property="preferentialMatters" column="PREFERENTIAL_MATTERS"/>
 		<result property="benefitAndWelfare" column="BENEFIT_AND_WELFARE"/>
 		<result property="companyResumeLink" column="COMPANY_RESUME_FORM_LINK"/>
-		
+		<result property="exposureEndDate" column="EXPOSURE_END_DATE"/>
 	</resultMap>
 	
 	<resultMap type="com.itsme.letitgo.company.recruit.jobposting.model.dto.JpJobFieldDTO" id="resultJobField">
@@ -38,56 +38,71 @@
 	
 	<resultMap type="com.itsme.letitgo.company.recruit.jobposting.model.dto.ExposureProductDTO" id="exposureProductResultMap">
 		<result property="exposureTime" column="EXPOSURE_TIME"/>
-		<result property="productNo" column="PRODUCT_NO"/>
+		<result property="retainedProductCode" column="RETAINED_PRODUCT_CODE"/>
 		<result property="productName" column="PRODUCT_NAME"/>
 	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.company.recruit.jobposting.model.dto.UseExposureProductDTO" id="useExposureResultMap">
+		<result property="coMemNo" column="CO_MEM_NO"/>
+		<result property="retainedProductCode" column="RETAINED_PRODUCT_CODE"/>
+		<result property="jobPostNo" column="JOB_POST_NO"/>
+		<result property="exposureUseDate" column="EXPOSURE_USE_DATE"/>
+		<result property="exposureEndDate" column="EXPOSURE_END_DATE"/>
+	</resultMap>
+	
 	
 	
 	<!-- 기업 마이페이지 등록한 모든공고 -->
 	<select id="selectCoMyJobPosting" parameterType="com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO" resultMap="resultMyJobPosting">
 		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectCoMyJobPosting() */
-	    	   JP.JOB_POST_NO
-	    	 , JP.JOB_POST_TITLE
-	    	 , JP.JOB_POST_MIN_EXPERIENCE
-	    	 , JP.JOB_POST_MAX_EXPERIENCE
-	    	 , JP.JOB_POST_ENROLL_DATE
-	    	 , JP.JOB_POST_DEADLINE
-	    	 , JP.JOB_POST_KINDS
-	    	 , JP.EXPOSURE_USE_CHECK
-	      FROM TBL_JOB_POSTING JP
-	     WHERE JP.CO_MEM_NO = #{ coMemNo }
+	    	   A.JOB_POST_NO
+	    	 , A.JOB_POST_TITLE
+	    	 , A.JOB_POST_MIN_EXPERIENCE
+	    	 , A.JOB_POST_MAX_EXPERIENCE
+	    	 , A.JOB_POST_ENROLL_DATE
+	    	 , A.JOB_POST_DEADLINE
+	    	 , A.JOB_POST_KINDS
+	    	 , A.EXPOSURE_USE_CHECK
+	    	 , B.EXPOSURE_END_DATE
+	      FROM TBL_JOB_POSTING A
+	      LEFT JOIN TBL_EXPOSURE_USAGE_HISTORY B ON (A.JOB_POST_NO = B.JOB_POST_NO)
+	     WHERE A.CO_MEM_NO = #{ coMemNo }
 	</select>
 	
 	<!-- 기업 마이페이지 채용공고 진행중인 공고 -->
 	<select id="selectRecruitingMyJobPosting" parameterType="com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO" resultMap="resultMyJobPosting">
 		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectRecruitingMyJobPosting() */
-	    	   JP.JOB_POST_NO
-	    	 , JP.JOB_POST_TITLE
-	    	 , JP.JOB_POST_MIN_EXPERIENCE
-	    	 , JP.JOB_POST_MAX_EXPERIENCE
-	    	 , JP.JOB_POST_ENROLL_DATE
-	    	 , JP.JOB_POST_DEADLINE
-	    	 , JP.JOB_POST_KINDS
-	    	 , JP.EXPOSURE_USE_CHECK
-	      FROM TBL_JOB_POSTING JP
-	     WHERE JP.CO_MEM_NO = #{ coMemNo }
-	       AND JP.JOB_POST_KINDS = '승인된공고'
+	    	   A.JOB_POST_NO
+	    	 , A.JOB_POST_TITLE
+	    	 , A.JOB_POST_MIN_EXPERIENCE
+	    	 , A.JOB_POST_MAX_EXPERIENCE
+	    	 , A.JOB_POST_ENROLL_DATE
+	    	 , A.JOB_POST_DEADLINE
+	    	 , A.JOB_POST_KINDS
+	    	 , A.EXPOSURE_USE_CHECK
+	    	 , B.EXPOSURE_END_DATE
+	      FROM TBL_JOB_POSTING A
+	      LEFT JOIN TBL_EXPOSURE_USAGE_HISTORY B ON (A.JOB_POST_NO = B.JOB_POST_NO)
+	     WHERE A.CO_MEM_NO = #{ coMemNo }
+	       AND A.JOB_POST_KINDS = '승인된공고'
 	</select>
 	
 	<!-- 기업 마이페이지 요청중인 공고 -->
 	<select id="selectRequestMyJobPosting" parameterType="com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO" resultMap="resultMyJobPosting">
 		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectRequestMyJobPosting() */
-	    	   JP.JOB_POST_NO
-	    	 , JP.JOB_POST_TITLE
-	    	 , JP.JOB_POST_MIN_EXPERIENCE
-	    	 , JP.JOB_POST_MAX_EXPERIENCE
-	    	 , JP.JOB_POST_ENROLL_DATE
-	    	 , JP.JOB_POST_DEADLINE
-	    	 , JP.JOB_POST_KINDS
-	    	 , JP.EXPOSURE_USE_CHECK
-	      FROM TBL_JOB_POSTING JP
-	     WHERE JP.CO_MEM_NO = #{ coMemNo }
-	       AND JP.JOB_POST_KINDS = '승인대기중인공고'
+	    	   A.JOB_POST_NO
+	    	 , A.JOB_POST_TITLE
+	    	 , A.JOB_POST_MIN_EXPERIENCE
+	    	 , A.JOB_POST_MAX_EXPERIENCE
+	    	 , A.JOB_POST_ENROLL_DATE
+	    	 , A.JOB_POST_DEADLINE
+	    	 , A.JOB_POST_KINDS
+	    	 , A.EXPOSURE_USE_CHECK
+	    	 , B.EXPOSURE_END_DATE
+	      FROM TBL_JOB_POSTING A
+	      LEFT JOIN TBL_EXPOSURE_USAGE_HISTORY B ON (A.JOB_POST_NO = B.JOB_POST_NO)
+	     WHERE A.CO_MEM_NO = #{ coMemNo }
+	       AND A.JOB_POST_KINDS = '승인대기중인공고'
 	</select>
 	
 	<select id="selectJobName" resultMap="resultJobField">
@@ -269,7 +284,7 @@
 	<select id="selectExposureProduct" resultMap="exposureProductResultMap">
 		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectExposureProduct() */
 			   A.EXPOSURE_TIME
-			 , A.PRODUCT_NO
+			 , A.RETAINED_PRODUCT_CODE
 			 , B.PRODUCT_NAME
 		  FROM TBL_MEMBER_HOLDING_PRODUCT A
 		  JOIN TBL_PRODUCT_LIST B ON (A.PRODUCT_NO = B.PRODUCT_NO)
@@ -278,7 +293,64 @@
 		   AND A.CO_MEM_NO = #{ memNo }
 	</select>
 	
-
+	<!-- 공고 노출권 사용을 위해 사용이력 select -->
+	<select id="selectExposureHistory" resultType="_int">
+		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectExposureHistory() */
+			   COUNT(UH.EXPOSURE_USE_DATE)
+		  FROM TBL_EXPOSURE_USAGE_HISTORY UH
+		 WHERE UH.JOB_POST_NO = #{ jobPostNo }
+		   AND UH.CO_MEM_NO = #{ coMemNo }
+		   AND UH.RETAINED_PRODUCT_CODE = #{ retainedProductCode }
+	</select>
+	
+	<!-- 상품 번호 회원번호로 남은시간 조회 -->
+	<select id="selectExposureRestTime" resultType="Integer">
+		SELECT
+			   A.EXPOSURE_TIME
+		  FROM TBL_MEMBER_HOLDING_PRODUCT A
+		 WHERE A.CO_MEM_NO = #{ coMemNo }
+		   AND A.RETAINED_PRODUCT_CODE = #{ retainedProductCode }
+	</select>
+	
+	<update id="updateExposureUsageHistory">
+		UPDATE 
+			   TBL_EXPOSURE_USAGE_HISTORY AH
+		   SET AH.EXPOSURE_USE_DATE = #{ exposureUseDate }
+		   	 , AH.EXPOSURE_END_DATE = #{ exposureEndDate }
+		 WHERE AH.JOB_POST_NO = #{ jobPostNo }
+		   AND AH.CO_MEM_NO = #{ coMemNo }
+		   AND AH.RETAINED_PRODUCT_CODE = #{ retainedProductCode }
+	</update>
+		
+	<insert id="insertExposureUsageHistory">
+		INSERT 
+		  INTO TBL_EXPOSURE_USAGE_HISTORY AH
+		(
+		  AH.EXPOSURE_USE_DATE, AH.EXPOSURE_END_DATE, AH.JOB_POST_NO
+		, AH.CO_MEM_NO, AH.RETAINED_PRODUCT_CODE
+		)
+		VALUES
+		(
+		  #{ exposureUseDate }, #{ exposureEndDate }, #{ jobPostNo }
+		, #{ coMemNo }, #{ retainedProductCode }
+		)  
+	</insert>
+	
+	<update id="updateMemberHoldingProduct">
+		UPDATE
+		       TBL_MEMBER_HOLDING_PRODUCT A
+		   SET A.EXPOSURE_TIME = #{ usingTime }
+		 WHERE A.RETAINED_PRODUCT_CODE = #{ retainedProductCode }
+		   AND A.CO_MEM_NO = #{ coMemNo }
+	</update>
+	
+	<select id="selectExposureYn" resultMap="useExposureResultMap">
+		SELECT
+			   A.EXPOSURE_END_DATE
+			 , A.JOB_POST_NO
+		  FROM TBL_EXPOSURE_USAGE_HISTORY A
+		 WHERE SYSDATE BETWEEN EXPOSURE_USE_DATE AND EXPOSURE_END_DATE
+	</select>
 
 
 

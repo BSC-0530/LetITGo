@@ -53,7 +53,6 @@ public class InsertJobPostingPreviewServlet extends HttpServlet {
 			jobNo = Integer.parseInt(request.getParameter("jobNo"));
 			SelectCoMyJobPostingService service = new SelectCoMyJobPostingService();
 			jobName = service.selectJobName(jobNo);
-			System.out.println("@@@@@@@@@@@@@@@@@@@@@@"+jobName);
 			
 		} else if (request.getParameter("jobPostMinExperience") != null) {
 			jobPostMinExperience = request.getParameter("jobPostMinExperience");

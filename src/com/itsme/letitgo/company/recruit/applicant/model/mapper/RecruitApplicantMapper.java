@@ -1,6 +1,7 @@
 package com.itsme.letitgo.company.recruit.applicant.model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.itsme.letitgo.company.recruit.applicant.model.dto.ApplicantDTO;
 import com.itsme.letitgo.company.recruit.applicant.model.dto.AwardHistoryDTO;
@@ -35,6 +36,8 @@ public interface RecruitApplicantMapper {
 	List<PortfolioDTO> selectPortFolio(int resumeNo);
 
 	List<ResumeSkillsAndNameDTO> selectSkillsAndName(int resumeNo);
+
+	int updateBrowesStatus(ApplicantDTO updateDTO);
 
 	
 }

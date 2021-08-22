@@ -12,8 +12,23 @@
 <script type="text/javascript" src="/let/resources/js/datatables.js"></script>
 <link rel="stylesheet" type="text/css" href="/let/resources/css/datatables.css"/>
 
+<script>
+	function selectEmail(a){
+		
+		var memEmail = a.children[0].value;
+		var mailText = "지원자의 이메일은 : " + memEmail + "입니다.";
+		alert(mailText);
+	}
+	
+	function selectPhone(a){
+		
+		var memPhone = a.children[0].value;
+		var phoneText = "지원자의 이메일은 : " + memPhone + "입니다.";
+		alert(phoneText);
+	}
+	
+</script>
 <body>
-	<c:set var="resume" value="${ requestScope.resultResume }"/>
 
 	<div class="jp_cp_profile_main_wrapper">
 		<div class="container">
@@ -27,17 +42,18 @@
 						<div class="jp_cp_rd_wrapper">
 							<ul>
 								<li>
-									<a onclick="interview(this);">
-										<input id="interviewMemNo" type="hidden" value="${ detailList[0].scoutResume[status.index].inMemNo }">
+									<a onclick="selectEmail(this);">
+										<input type="hidden" value="${ requestScope.resultResume.detailResume.memEmail }">
 										<i class="fa fa-download"></i>
-										&nbsp;면접 제안
+										&nbsp;이메일 확인
 									</a>
 								</li>
 								
 								<li>
-									<a href="#">
-										<input id="addWishList" type="hidden" value="${ detailList[0].scoutResume[status.index].resumeNo }"><i class="fa fa-phone"></i>
-										&nbsp;후보자 찜하기
+									<a onclick="selectPhone(this);">
+										<input type="hidden" value="${ requestScope.resultResume.detailResume.memPhone }">
+										<i class="fa fa-phone"></i>
+										&nbsp;연락처 확인
 									</a>
 								</li>
 							</ul>
@@ -54,20 +70,20 @@
 									<tr>
 										<td>이름</td>
 										<td>:</td>
-										<td><c:out value="${ resume.detailResume.memName }"/></td>
+										<td><c:out value="${ requestScope.resultResume.detailResume.memName }"/></td>
 									</tr>
 									<tr>
 										<td>직무</td>
 										<td>:</td>
-										<td><c:out value="${ resume.detailResume.jobName }"/></td>
+										<td><c:out value="${ requestScope.resultResume.detailResume.jobName }"/></td>
 									</tr>
 									<tr>
 										<td>경력</td>
 										<td>:</td>
-										<c:if test="${ resume.careerHistoryList eq null}">
+										<c:if test="${ requestScope.resultResume.careerHistoryList eq null}">
 										<td><c:out value="경력"/></td>
 										</c:if>
-										<c:if test="${ resume.careerHistoryList ne null}">
+										<c:if test="${ requestScope.resultResume.careerHistoryList ne null}">
 										<td><c:out value="신입"/></td>
 										</c:if>
 									</tr>
@@ -75,9 +91,14 @@
 										<td>보유 스킬</td>
 										<td>:</td>
 										<td>
-										<c:forEach var="skills" items="${ resume.resumeSkillsAndNameList }">
-										<c:out value="${ skills.skillsName }"/>
-										</c:forEach>
+										<c:if test="${ requestScope.resultResume.resumeSkillsAndNameList.size() ne 0 }">
+											<c:forEach items="${ requestScope.resultResume.resumeSkillsAndNameList }" var="skills">
+												<c:out value="${ resume.skillsName }"/>
+											</c:forEach>
+										</c:if>
+										<c:if test="${ requestScope.resultResume.resumeSkillsAndNameList.size() eq 0 }">
+											보유 스킬이 없습니다.
+										</c:if>
 										</td>
 									</tr>
 								</tbody>
@@ -87,67 +108,32 @@
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
 							<div class="jp_cp_accor_heading_wrapper">
-								<h2>지원자 상세 이력서</h2>
+								<h2>상세이력서</h2>
 								<p>아래의 메뉴에서 상세한 이력서를 조회하세요.</p>
 							</div>
 						</div>
 						<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
 							<div class="accordion_wrapper abt_page_2_wrapper">
 								<div class="panel-group" id="accordion_threeLeft">
-
-
-									<!-- /.panel-default -->
 									<div class="panel panel-default">
 										<div class="panel-heading bell">
 											<h4 class="panel-title">
 												<a class="collapsed" data-toggle="collapse" data-parent="#accordion_threeLeft" href="#collapseTwentyLeftThree" aria-expanded="false">
-													경력 및 프로젝트이력, 포트폴리오
+													포트폴리오
 												</a>
 											</h4>
 										</div>
-										<div id="collapseTwentyLeftThree" class="panel-collapse collapse" aria-expanded="false" role="tablist">
-											<div class="panel-body">
-												<label style="font-size: 20px;"><c:out value="경력"/></label><br>
-												<c:if test="${ resume.careerHistoryList ne null }">
-													 <table id="myTable" class="hover cell-border stripe">
-<%-- 													<c:forEach var="career" items="${ resume.careerHistoryList }"> --%>
-														 	<thead>
-														 		<tr>
-														 			<th>회사명</th>
-														 			<th>부서명</th>
-														 			<th>직책</th>
-														 			<th>업무분야</th>
-														 			<th>퇴사일</th>
-														 		</tr>
-														 	</thead>
-														 	<tbody>
-														 		<tr>
-														 			<td>회사명</td>
-														 			<td>회사명</td>
-														 			<td>회사명</td>
-														 			<td>:</td>
-														 			<td>내용</td>
-														 		<tr>
-														 	</tbody>
-<%-- 													</c:forEach> --%>
-												</table>
-												</c:if>
-												<c:if test="${ resume.careerHistoryList ne null }">
-													<c:out value="신입개발자입니다."/>
-												</c:if>
-												
-												
-												
-												<label style="font-size: 20px;"><c:out value="포트폴리오 링크"/></label><br>
-												<c:if test="${ resume.portFolioList ne null }">
-													<c:forEach var="portForlio" items="${ resume.portFolioList }">
-														<a href="${ portForlio.potLinkAddress }">
-															<c:out value="${ portForlio.potLinkAddress }"/><br>
-														</a>
+										<div id="collapseTwentyLeftThree"
+											class="panel-collapse collapse" aria-expanded="false"
+											role="tablist">
+											<div class="panel-body">	
+												<c:if test="${ requestScope.resultResume.portFolioList.size() ne 0 }">
+													<c:forEach items="${ requestScope.resultResume.portFolioList }" var="resume">
+														<c:out value="${ resume.potLinkAddress }"/>
 													</c:forEach>
 												</c:if>
-												<c:if test="${ resume.portFolioList eq null }">
-													<c:out value="지원자가 등록한 포트폴리오가 없습니다."/>
+												<c:if test="${ requestScope.resultResume.portFolioList.size() eq 0 }">
+													<label>등록된 포트폴리오가 없습니다.</label>
 												</c:if>
 											</div>
 										</div>
@@ -155,21 +141,25 @@
 									<div class="panel panel-default">
 										<div class="panel-heading bell">
 											<h4 class="panel-title">
-												<a class="collapsed" data-toggle="collapse" data-parent="#accordion_threeLeft" href="#collapseTwentyLeftThree2" aria-expanded="false">
+												<a class="collapsed" data-toggle="collapse"
+													data-parent="#accordion_threeLeft"
+													href="#collapseTwentyLeftThree2" aria-expanded="false">
 													자기소개	
 												</a>
 											</h4>
 										</div>
-										<div id="collapseTwentyLeftThree2" class="panel-collapse collapse" aria-expanded="false" role="tablist">
+										<div id="collapseTwentyLeftThree2"
+											class="panel-collapse collapse" aria-expanded="false"
+											role="tablist">
 											<div class="panel-body">
-												<c:if test="${ resume.selfIntroductionList ne null }">
-													<c:forEach var="selfIntroduce" items="${ resume.selfIntroductionList }">
-															<label style="font-size: 20px;"><c:out value="${ selfIntroduce.selfIntroItemName }"/></label><br>
-															<c:out value="${ selfIntroduce.selfIntroItemContent }"></c:out><br><br>
+												<c:if test="${ requestScope.resultResume.selfIntroductionList.size() ne 0 }">
+													<c:forEach items="${ requestScope.resultResume.selfIntroductionList }" var="resume">
+														<c:out value="${ resume.selfIntroItemName }"/><br>
+														<c:out value="${ resume.selfIntroItemContent }"/>
 													</c:forEach>
 												</c:if>
-												<c:if test="${ resume.selfIntroductionList eq null }">
-													<c:out value="지원자가 등록한 자기소개가 없습니다."/>
+												<c:if test="${ requestScope.resultResume.selfIntroductionList.size() eq 0 }">
+													<label>등록된 자기소개가 없습니다.</label>
 												</c:if>
 											</div>
 										</div>
@@ -177,47 +167,79 @@
 									<div class="panel panel-default">
 										<div class="panel-heading bell">
 											<h4 class="panel-title">
-												<a class="collapsed" data-toggle="collapse" data-parent="#accordion_threeLeft" href="#collapseTwentyLeftThree3" aria-expanded="false">														
-													자격증, 교육, 수상 이력 	
-												</a>
+												<a class="collapsed" data-toggle="collapse"
+													data-parent="#accordion_threeLeft"
+													href="#collapseTwentyLeftThree3" aria-expanded="false">														
+													경력, 프로젝트 이력, 자격증, 교육, 수상 이력 	
+													</a>
 											</h4>
 										</div>
-										<div id="collapseTwentyLeftThree3" class="panel-collapse collapse" aria-expanded="false" role="tablist">
+										<div id="collapseTwentyLeftThree3"
+											class="panel-collapse collapse" aria-expanded="false"
+											role="tablist">
 											<div class="panel-body">
-											<c:if test="${ resume ne null }">
-											<table>
-												<thead style="border: 1px solid black;">
-													<tr>
-														<th>회사명</th>
-														<th>부서명</th>
-														<th>직책</th>
-														<th>업무분야</th>
-														<th>입사일</th>
-														<th>퇴사일</th>
-													<tr>
+												<c:if test="${ requestScope.resultResume.careerHistoryList.size() ne 0 }">
+													<h4><label>경력</label></h4>
+													<c:forEach items="${ requestScope.resultResume.careerHistoryList }" var="resume">
+														회사명 : <c:out value="${ resume.carComName }"/><br>
+														부서명 : <c:out value="${ resume.carDeptName }"/><br>
+														직책 : <c:out value="${ resume.carJobName }"/><br>
+														업무 분야  : <c:out value="${ resume.carWorkField }"/><br>
+														입사일 : <c:out value="${ resume.carHireDate }"/><br>
+														퇴사일 : <c:out value="${ resume.carEntDate }"/><br>
+													</c:forEach><br>
+													<h4><label>프로젝트 이력</label></h4>
+													<c:forEach items="${ requestScope.resultResume.careerHistoryList }" var="resume">
+														프로젝트명 : <c:out value="${ resume.projectName }"/><br>
+														프로젝트 업무 내용 : <c:out value="${ resume.projectContent }"/><br>
+														프로젝트 시작일 : <c:out value="${ resume.projectStartDate }"/><br>
+														업무 프로젝트 종료일  : <c:out value="${ resume.projectEndDate }"/><br>
+													</c:forEach><br>
+												</c:if>
+												<c:if test="${ requestScope.resultResume.careerHistoryList.size() eq 0 }">
+													<label>프로젝트/경력 이력이 없습니다.</label><br>
+												</c:if>
 												
-												</thead>
-												<tbody style="border: 1px solid black;">
-													<tr>
-														<td>d</td>
-														<td>d</td>
-														<td>d</td>
-														<td>d</td>
-														<td>d</td>
-														<td>d</td>
-													</tr>
-													
-												</tbody>
-											</table>
-											</c:if>
-											
 												
+												<c:if test="${ requestScope.resultResume.licenseHistoryList.size() ne 0 }">
+													<c:forEach items="${ requestScope.resultResume.licenseHistoryList }" var="resume">
+														자격증 명 :<c:out value="${ resume.licenseName }"/><br>
+														발행처 : <c:out value="${ resume.licenseAgency }"/><br>
+														자격증 취득일 : <c:out value="${ resume.licenseDate }"/><br>
+													</c:forEach><br>
+												</c:if>
+												<c:if test="${ requestScope.resultResume.licenseHistoryList.size() eq 0 }">
+													<label>등록된 자격증이 없습니다.</label><br>
+												</c:if>
+												
+												<c:if test="${ requestScope.resultResume.educationHistoryList.size() ne 0 }">
+													<c:forEach items="${ requestScope.resultResume.educationHistoryList }" var="resume">
+														교육명 :<c:out value="${ resume.eduName }"/><br>
+														교육기관 : <c:out value="${ resume.eduAgency }"/><br>
+														교육 시작일 : <c:out value="${ resume.eduStartDate }"/><br>
+														교육 종료일 : <c:out value="${ resume.eduEndDate }"/><br>
+														교육 내용 : <c:out value="${ resume.eduContent }"/><br>
+													</c:forEach>
+												</c:if>
+												<c:if test="${ requestScope.resultResume.educationHistoryList.size() eq 0 }">
+													<label>교육 이력이 없습니다.</label><br>
+												</c:if>
+												
+												<c:if test="${ requestScope.resultResume.awardHistoryList.size() ne 0 }">
+													<c:forEach items="${ requestScope.resultResume.awardHistoryList }" var="resume">
+														수상명 :<c:out value="${ resume.awdName }"/><br>
+														수상기관 : <c:out value="${ resume.awdAgency }"/><br>
+														수상일 : <c:out value="${ resume.awdDate }"/><br>
+														수상내용 : <c:out value="${ resume.awdContent }"/><br>
+													</c:forEach><br>
+												</c:if>
+												<c:if test="${ requestScope.resultResume.awardHistoryList.size() eq 0 }">
+													<label>수상 이력이 없습니다.</label><br>
+												</c:if>
 											</div>
 										</div>
 									</div>
-									<!-- /.panel-default -->
 								</div>
-								<!--end of /.panel-group-->
 							</div>
 						</div>
 					</div>
@@ -225,65 +247,6 @@
 			</div>
 		</div>
 	</div>
-	<table id="table_id" class="display">
-        <thead>
-            <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
-    
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1 Data 1</td>
-                <td><p>호구야</p> </td>
-            </tr>
-            <tr>
-                <td>2 Data 1</td>
-                <td>Row 2 Data 2</td>
-            </tr>
-            <tr>
-                <td>3 Data 1</td>
-                <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label>
-                    <p>OFF</p>
-                    <p style="display:none;">ON</p></td>
-            </tr>
-            <tr>
-                <td>4 Data 1</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>5 Data 1</td>
-                <td>Row 1 Data 2</td>
-            </tr>
-            <tr>
-                <td>6 Data 1</td>
-                <td>Row 2 Data 2</td>
-            </tr>
-            <tr>
-                <td>7 Data 1</td>
-                <td>Row 1 Data 2</td>
-            </tr>
-            <tr>
-                <td>8 Data 1</td>
-                <td>Row 2 Data 2</td>
-            </tr>
-            <tr>
-                <td>9 Data 1</td>
-                <td>Row 1 Data 2</td>
-            </tr>
-            <tr>
-                <td>10 Data 1</td>
-                <td>Row 2  2</td>
-            </tr>
-        </tbody>
-    </table>
-
-	<script>
-		$(document).ready(function() {
-			$('#table_id').DataTable();
-		});
-	</script>
 	
 	<script type="text/javascript" src="/let/resources/js/jquery_min.js"></script>
     <script type="text/javascript" src="/let/resources/js/bootstrap.js"></script>

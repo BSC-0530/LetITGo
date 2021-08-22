@@ -30,41 +30,10 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/style_II.css" />
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
-        <script>
-
-            function closeSelectResume(){
-            	
-                window.close();
-            }
-
-           	function selectProduct() {
-            			
-            	
-            	// radio버튼의 길이 저장
-            	var radio_length = document.getElementsByName("productNo").length;
-            	
-            	for(var i = 0; i < radio_length; i++) {
-            		// 
-            		if(document.getElementsByName("productNo")[i].checked == true) {
-            			
-            			$("#selectProductForm").method = "post";
-            			$("#selectProductForm").action = "/let//exposureForuse/select";
-            			$("#selectProductForm").submit();
-            			window.open("about:blank", "_self").close();
-            		}
-            	}
-            }
-           	
-            function closeTab() {
-            	
-            	window.close();
-            }
-           
-        </script>
 </head>
 <body>
-	<form id="selectProductForm" method="post">
-	<input id="jobPostNo" type="text" value="${ requestScope.jobPostNo }">
+	<form id="selectProductForm" action="/let/exposureForuse/select" method="post">
+	<input name="jobPostNo" type="hidden" value="${ requestScope.jobPostNo }">
 	<c:if test="${ requestScope.exposureProduct ne null }">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<div class="jp_rightside_job_categories_wrapper">
@@ -86,7 +55,7 @@
 								<c:forEach var="product" items="${ requestScope.exposureProduct }" varStatus="status">
 								<tr>
 									<td>
-									<input type="radio" id="${ status.index }" value="${ product.productNo }" name="productNo">
+									<input type="radio" id="${ status.index }" value="${ product.retainedProductCode }" name="retainedProductCode">
 									<label for="${ status.index }"><c:out value="${ product.productName }"/></label>
 									</td>
 									<td>
@@ -98,12 +67,14 @@
 								<tr>
 								</c:forEach>
 							</tbody>
-						</table>	
-							<input type="datetime-local">
-								
+						</table>
+							<label>공고 노출 시작시간<input name="exposureUseDate" type="date"></label><br>
+							<label>공고 노출 마감시간<input name="exposureEndDate" type="date"></label>
 						</div>
-						<button type="button" onclick="selectProduct()">공고권 선택</button>
-						<button type="button" onclick="closeTab()">닫기</button>
+						<div>
+						<button class="btn btn-info"type="submit">공고권 선택</button>
+						<button class="btn btn-info"type="button" onclick="closeTab()">닫기</button>
+						</div>
 					</div>
 				</div>
 			</div>
