@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.itsme.letitgo.company.info.model.dto.FileUploadDTO;
 import com.itsme.letitgo.company.scout.model.dto.BrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.BrosweSimplelDTO;
 import com.itsme.letitgo.company.scout.model.dto.CandidateRegisterSkillsDTO;
@@ -37,7 +38,7 @@ public class MainScoutListService {
 		SqlSession session = getSqlSession();
 		
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
-		//이름
+		//이름  사진 
 		List<Object> scoutListName = mapper.companySelectAllScout();
 		//기술
 		List<Object> scoutListSkills = mapper.companyScoutSkills();
@@ -78,8 +79,10 @@ public class MainScoutListService {
 		Map<String,Object> simpleInfo =  new HashMap<>();
 		
 		if(brosweSimplelDTO.size() != 0) {
-			String browseName = (brosweSimplelDTO.get(0).getMemDTO().get(0).getMemName()).toString();			
+			String browseName = (brosweSimplelDTO.get(0).getMemDTO().get(0).getMemName()).toString();
+			String path = brosweSimplelDTO.get(0).getPath();
 			simpleInfo.put("browseName", browseName);
+			simpleInfo.put("path", path);
 		}
 		if(brosweSimplelDTO.size() != 0) {
 			String jobName = (brosweSimplelDTO.get(0).getJobFieldDTO().get(0).getJobName()).toString();			
@@ -503,7 +506,7 @@ public class MainScoutListService {
 		
 		return selectedByTwoScoutList;
 	}
-	
+		
 
 //	public List<SkillsAndCategoryDTO> skillsSelect() {
 //		

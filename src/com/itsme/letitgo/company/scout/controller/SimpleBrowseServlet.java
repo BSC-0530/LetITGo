@@ -37,6 +37,7 @@ public class SimpleBrowseServlet extends HttpServlet {
 		String path = "";
 		if(kinds == null) {
 			int kindsInsert = browseInfoService.readingKindsInsert(onClickResumeNo);
+			request.setAttribute("path", browseInfo.get("path"));
 			request.setAttribute("browseName", browseInfo.get("browseName"));
 			request.setAttribute("jobName", browseInfo.get("jobName"));
 			request.setAttribute("browseSkills", browseInfo.get("browseSkills"));
@@ -50,6 +51,7 @@ public class SimpleBrowseServlet extends HttpServlet {
 //			path = "/WEB-INF/views/scout/scoutSimpleBrowse.jsp";
 		}else {
 			path="/WEB-INF/views/scout/scoutSimpleBrowse.jsp";
+			request.setAttribute("path", browseInfo.get("path"));
 			request.setAttribute("browseName", browseInfo.get("browseName"));
 			request.setAttribute("jobName", browseInfo.get("jobName"));
 			request.setAttribute("browseSkills", browseInfo.get("browseSkills"));
