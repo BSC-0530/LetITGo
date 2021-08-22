@@ -171,6 +171,7 @@
 				<br>
 				<br>
 				
+				<h2>회원탈퇴</h2>
 				<form action="${ pageContext.servletContext.contextPath }/login/check/pwd" 
 								method="post">
 					<label >비밀번호 입력</label>

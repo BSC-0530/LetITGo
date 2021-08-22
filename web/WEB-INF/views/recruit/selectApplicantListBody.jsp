@@ -9,45 +9,13 @@
 <title>Insert title here</title>
 
 <script>
-	
-		const link = "${ pageContext.servletContext.contextPath }/member/allJobPosting/select";
-
-		
-		if(document.getElementById("prevPage")) {
-			const $prevPage = document.getElementById("prevPage");
-			$prevPage.onclick = function() {
-				$("#pagingForm").append("<input type='hidden' name='currentPage' value='${ requestScope.selectCriteria.pageNo - 1 }'>");
-				$("#pagingForm").method = "post";
-				$("#pagingForm").action =  link;
-				$("#pagingForm").submit();
-			}
-		}
-		
-		if(document.getElementById("nextPage")) {
-			const $nextPage = document.getElementById("nextPage");
-			$nextPage.onclick = function() {
-				$("#pagingForm").append("<input type='hidden' name='currentPage' value='${ requestScope.selectCriteria.pageNo + 1 }'>");
-				$("#pagingForm").method = "post";
-				$("#pagingForm").action = link;
-				$("#pagingForm").submit();			
-			}
-		}
-
-		
-		function pageButtonAction(text) {
-			
-			$("#pagingForm").append("<input type='hidden' name='currentPage' value='" + text + "'>");
-			$("#pagingForm").method = "post";
-			$("#pagingForm").action = link;
-			$("#pagingForm").submit();
-		}
-</script>
-<script>
 	function viewProfile() {
 		
-		const resumeNo = document.getElementById("resumeNo").value;
+		var resumeNo = document.getElementById("resumeNo").value;
 		
-		location.href = "/let/applicantResume/select?resumeNo=" + resumeNo;
+		var jobPostNo = document.getElementById("jobPostNo").value;
+		
+		location.href = "/let/applicantResume/select?resumeNo=" + resumeNo + "&jobPostNo=" + jobPostNo;
 	}
 </script>
 </head>
@@ -118,7 +86,8 @@
 								<div class="jp_recent_resume_btn_wrapper">
 									<ul>
                                         <li><p align="center"><c:out value="${ applicant.jobPostBrowesStatus }"/></p></li>
-										<li><input id="resumeNo" type="text" value="${ applicant.resumeNo }">
+										<li><input id="resumeNo" type="hidden" value="${ applicant.resumeNo }">
+										<li><input id="jobPostNo" type="hidden" value="${ requestScope.jobPostNo }">
 										<li><a onclick="viewProfile();">View Profile</a></li>
 									</ul>
 								</div>
@@ -126,36 +95,6 @@
 						</div>
                     </div>
                     </c:forEach>
-<!--                     <div align="center"> -->
-<!-- 	                    <form id="pagingForm"method="post"> -->
-<%-- 	                        <input type="hidden" name="skills" value="${ requestScope.skillsName }" readonly>  --%>
-<!-- 	                        이전 페이지 버튼 -->
-<%-- 	                        <c:if test="${ selectCriteria.pageNo <= 1 }"> --%>
-<!-- 	                            <button type="button" disabled>PRIV</button> -->
-<%-- 	                        </c:if> --%>
-<%-- 	                        <c:if test="${ selectCriteria.pageNo > 1 }"> --%>
-<!-- 	                            <button type="button" id="prevPage">PRIV</button> -->
-<%-- 	                        </c:if> --%>
-	                        
-<!-- 	                        숫자 버튼 -->
-<%-- 	                        <c:forEach var="p" begin="${ selectCriteria.startPage }" end="${ selectCriteria.endPage }" step="1"> --%>
-<%-- 	                            <c:if test="${ selectCriteria.pageNo eq p }"> --%>
-<%-- 	                                <button type="button" disabled><c:out value="${ p }"/></button> --%>
-<%-- 	                            </c:if> --%>
-<%-- 	                            <c:if test="${ selectCriteria.pageNo ne p }"> --%>
-<%-- 	                                <button type="button" onclick="pageButtonAction(this.innerText);"><c:out value="${ p }"/></button> --%>
-<%-- 	                            </c:if> --%>
-<%-- 	                        </c:forEach> --%>
-	                        
-<!-- 	                        다음 페이지 버튼 -->
-<%-- 	                        <c:if test="${ selectCriteria.pageNo >= selectCriteria.maxPage }"> --%>
-<!-- 	                            <button type="button" disabled>NEXT</button> -->
-<%-- 	                        </c:if> --%>
-<%-- 	                        <c:if test="${ selectCriteria.pageNo < selectCriteria.maxPage }"> --%>
-<!-- 	                            <button type="button" id="nextPage">NEXT</button> -->
-<%-- 	                        </c:if> --%>
-<!--                     	</form> -->
-<!--                     </div> -->
                 </div>
             </div>
         </div>

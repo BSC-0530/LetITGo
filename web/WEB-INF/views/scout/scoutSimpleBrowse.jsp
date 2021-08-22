@@ -39,14 +39,16 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="jp_tittle_heading_wrapper">
 						<div class="jp_tittle_heading">
-							<h2>기업 마이페이지</h2>
+							<h2>얕은열람</h2>
 						</div>
 						<div class="jp_tittle_breadcrumb_main_wrapper">
 							<div class="jp_tittle_breadcrumb_wrapper">
 								<ul>
-									<li><a href="#">Home</a></li>
-									<li><a href="#">기업 마이페이지</a></li>
-									<li>기업 마이페이지</li>
+									<li><a href="${ pageContext.servletContext.contextPath }/mainPage/CoMember">Home</a></li>
+                                    <li>></li>
+                                    <li><a href="${ pageContext.servletContext.contextPath }/main/Scout/List">스카우트</a></li>
+                                    <li>></li>
+                                    <li>얕은열람</li>
 								</ul>
 							</div>
 						</div>

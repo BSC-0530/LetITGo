@@ -26,6 +26,7 @@ public class SelectApplicantServlet extends HttpServlet {
 		ApplicantDTO requestDTO = new ApplicantDTO();		
 		
 		int jobPostNo = Integer.parseInt(request.getParameter("jobPostNo"));
+		request.setAttribute("jobPostNo", jobPostNo);
 		
 		// 이력서 조회시 선택한 공고에 대한 이력서를 가져오기 위해서 jobPostNo를 받아온다.
 		requestDTO.setJobPostNo(jobPostNo);

@@ -84,87 +84,77 @@ td {
 											<div class="box">
 												<h3 style="font-weight: bold">회원정보</h3>
 												<p>
-												<p align="center">
-													<a
-														href="${ pageContext.servletContext.contextPath }/selfintroductionitem/list">자기소개서
-														항목 관리</a>
+												<p align="left">
+													<a href="${ pageContext.servletContext.contextPath }/selfintroductionitem/list">자기소개서 항목 관리</a>
 												</p>
-												<br>
-												<p align="center">
-													<a
-														href="${ pageContext.servletContext.contextPath }/jobfield/list">직무분야
-														관리</a>
+												<p align="left">
+													<a href="${ pageContext.servletContext.contextPath }/jobfield/list">직무분야 관리</a>
 												</p>
-												<br>
-												<p align="center">
-													<a
-														href="${ pageContext.servletContext.contextPath }/skills/list">기술
-														관리</a>
+												<p align="left">
+													<a href="${ pageContext.servletContext.contextPath }/skills/list">기술 관리</a>
 												</p>
-												<br>
-												<p align="center">
-													<a
-														href="${ pageContext.servletContext.contextPath }/skillscategory/list">기술
-														카테고리 관리</a>
+												<p align="left">
+													<a href="${ pageContext.servletContext.contextPath }/skillscategory/list">기술 카테고리 관리</a>
 												</p>
 												<br> <br>
 												<h3 style="font-weight: bold">결제 관리</h3>
 												<p>
-												<p align="center">
-													<a href="#">상품 관리</a>
+												<p align="left">
+													<a href="${ pageContext.servletContext.contextPath }/admin/product/list">상품 관리</a>
 												</p>
-												<br>
-												<p align="center">
-													<a href="#">결제 내역 조회</a>
+												<p align="left">
+													<a href="${ pageContext.servletContext.contextPath }/admin/payment/select">결제 내역 조회</a>
 												</p>
-												<br>
-												<p align="center">
-													<a href="#">환불 요청 관리</a>
+												<p align="left">
+													<a href="${ pageContext.servletContext.contextPath }/admin/refund/select">환불 요청 관리</a>
 												</p>
 												<br> <br>
 												<h3 style="font-weight: bold">기업 요청 관리</h3>
 												<p>
-												<p align="center">
-													<a href="#">공고 등록 요청</a>
+												<p align="left">
+													<a href="${ pageContext.servletContext.contextPath }/admin/post/insertRequest/select">공고 등록 요청</a>
 												</p>
-												<br>
-												<p align="center">
-													<a href="#">공고 수정 요청</a>
+												<p align="left">
+													<a href="${ pageContext.servletContext.contextPath }/admin/post/updateRequest/select">공고 수정 요청</a>
 												</p>
-												<br>
-												<p align="center">
-													<a href="#">기업 회원 가입 요청</a>
+												<p align="left">
+													<a href="${ pageContext.servletContext.contextPath }/info/requestList">기업 회원 가입 요청</a>
 												</p>
-												<p align="center">
-													<a href="#">기업 정보 변경 요청</a>
+												<p align="left">
+													<a href="${ pageContext.servletContext.contextPath }/admin/request/comInfo">기업 정보 변경 요청</a>
 												</p>
 												<br> <br>
 												<h3 style="font-weight: bold">회원 탈퇴</h3>
 												<p>
-												<p align="center">
-													<a href="#">회원 탈퇴 사유 조회</a>
+												<p align="left">
+													<a href="${ pageContext.servletContext.contextPath }/member/withdrawal">회원 탈퇴 사유 조회</a>
 												</p>
 												<br> <br>
 												<h3 style="font-weight: bold">게시물 관리</h3>
 												<p>
-												<p align="center">
-													<a href="#">공지사항 관리</a>
+												<p align="left">
+													<a href="${ pageContext.servletContext.contextPath }/admin/notice/manger/servlet">공지사항 관리</a>
 												</p>
-												<p align="center">
-													<a
-														href="${ pageContext.servletContext.contextPath }/personalinfopolicy/list">개인정보
-														처리 방침, 이용약관 관리</a>
+												<p align="left">
+													<a href="${ pageContext.servletContext.contextPath }/personalinfopolicy/list">개인정보 처리 방침, 이용약관 관리</a>
 												</p>
 												<br> <br>
 												<h3 style="font-weight: bold">1:1 문의</h3>
 												<p>
-												<p align="center">
-													<a href="#">1:1 문의 조회</a>
+												<p align="left">
+													<a href="${ pageContext.servletContext.contextPath }/admin/inquiry/select">1:1 문의 조회</a>
 												</p>
-												<p align="center">
-													<a href="#">1:1 문의 카테고리 관리</a>
+												<p align="left">
+													<a href="${ pageContext.servletContext.contextPath }/admin/Category/Page">1:1 문의 카테고리 관리</a>
 												</p>
 												<br> <br>
+												<div align="center" style="background-color:green" style="color:white">
+                            						<ul>
+														<li>
+															<a href="${ pageContext.servletContext.contextPath }/member/logout">LOG OUT</a>
+														</li>
+							                    	 </ul>
+							                    </div>
 											</div>
 										</div>
 									</div>
@@ -173,6 +163,7 @@ td {
 						</div>
 					</div>
 				</div>
+
 
 				<!-- 옆에 넣으려면 여기에 넣어야함 -->
 				<!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->

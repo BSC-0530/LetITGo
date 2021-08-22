@@ -3,7 +3,6 @@ package com.itsme.letitgo.common.mybatis;
 
 
 import org.apache.ibatis.datasource.pooled.PooledDataSource;
-
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSession;
@@ -32,8 +31,13 @@ import com.itsme.letitgo.company.recruit.applicant.model.mapper.RecruitApplicant
 import com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper;
 import com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper;
 import com.itsme.letitgo.company.scout.model.mapper.CompanyScoutMapper;
-import com.itsme.letitgo.login.model.mapper.CheckPwdMapper;
+import com.itsme.letitgo.login.model.mapper.CoMemberWithdrawalYnMapper;
 import com.itsme.letitgo.login.model.mapper.MemberLoginMapper;
+
+import com.itsme.letitgo.login.model.mapper.MemberWithdrawalYnMapper;
+
+import com.itsme.letitgo.main.model.mapper.MainPageMapper;
+
 import com.itsme.letitgo.member.board.notice.model.mapper.GuideLineMapper;
 import com.itsme.letitgo.personal.info.model.mapper.PersonalInfoMapper;
 import com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper;
@@ -89,6 +93,7 @@ public class Template {
 			configuration.addMapper(SelectJobPostingMapper.class);
 			configuration.addMapper(SelectCoMyJobPostingMapper.class);
 			configuration.addMapper(RecruitApplicantMapper.class);
+			configuration.addMapper(MainPageMapper.class);
 
 			//승수
 
@@ -105,7 +110,9 @@ public class Template {
 			configuration.addMapper(PersonalInfoPolicyMapper.class);
 			configuration.addMapper(GuideLineMapper.class);
 			configuration.addMapper(MemberWithdrawalMapper.class);
-			configuration.addMapper(CheckPwdMapper.class);
+			configuration.addMapper(MemberWithdrawalYnMapper.class);
+			configuration.addMapper(CoMemberWithdrawalYnMapper.class);
+		  //configuration.addMapper(CheckPwdMapper.class);
 			 
 
 

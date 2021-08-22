@@ -17,22 +17,28 @@ public class RequestRegistAcceptServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int coReqNo = Integer.parseInt(request.getParameter("coReqNo"));
+		int coReqNo = Integer.parseInt(request.getParameter("coReqNo"));	
 		
-		RequestJoinService rJService = new RequestJoinService();
+		/* rJService 서비스 생성*/
+		RequestJoinService rJService = new RequestJoinService();		
 		
-		int result1 = rJService.JoinRequest1(coReqNo);
+		/* 기업회원 가입 상태를 승인으로 변경*/
+		int result1 = rJService.JoinRequest1(coReqNo);					
+		
+		
+		
 		
 		StringBuilder redirectText = new StringBuilder();
 		
 		if(result1 > 0) {
-			redirectText.append("<script>alert('기업회원가입을 승인하셨습니다.'); location.href='../../post/insertRequest/select';</script>");
+			redirectText.append("<script>alert('기업회원가입을 승인하셨습니다.'); location.href='../../info/requestList';</script>");
 		} else {
-			redirectText.append("<script>alert('기업회원가입에 실패하셨습니다.'); location.href='../../post/insertRequest/select';</script>");
+			redirectText.append("<script>alert('기업회원가입에 실패하셨습니다.'); location.href='../../info/requestList';</script>");
 		}
 									
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
+		request.setAttribute("coReqNo", coReqNo);
 		
 		out.print(redirectText.toString());
 		out.flush();

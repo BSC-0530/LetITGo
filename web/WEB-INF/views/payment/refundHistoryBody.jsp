@@ -47,7 +47,7 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="jp_tittle_heading_wrapper">
 						<div class="jp_tittle_heading">
-							<h2>환불 내역</h2>
+							<h2>환불내역</h2>
 						</div>
 						<div class="jp_tittle_breadcrumb_main_wrapper">
 							<div class="jp_tittle_breadcrumb_wrapper">
@@ -55,7 +55,7 @@
 									<li><a
 										href="${ pageContext.servletContext.contextPath }/mainPage/CoMember">Home</a></li>
 									<li>></li>
-									<li><a href="#">기업 마이페이지</a></li>
+									<li><a href="${ pageContext.servletContext.contextPath }/company/myPage/main">기업 마이페이지</a></li>
 									<li>></li>
 									<li>환불내역</li>
 								</ul>
@@ -84,42 +84,41 @@
 									<div class="handyman_sec1_wrapper">
 										<div class="content">
 											<div class="box">
-												<p align="center">
-													<a href="#">회원정보</a>
+												<p>
+													<a href="${ pageContext.servletContext.contextPath }/coMem/infomationServlet">회원정보</a>
 												</p>
 												<br> <br>
-												<p align="center">
+												<p>
 													<a
 														href="${ pageContext.servletContext.contextPath }/companyTestServlet">기업정보</a>
 												</p>
 												<br> <br>
-												<p align="center">
+												<p>
 													<a
 														href="${ pageContext.servletContext.contextPath }/company/paymentHistory/select">결제내역</a>
 												</p>
 												<br> <br>
-												<p align="center">
+												<p>
 													<a
 														href="${ pageContext.servletContext.contextPath }/company/refundHistory/select">환불내역</a>
 												</p>
 												<br> <br>
-												<p align="center">
+												<p>
 													<a
 														href="${ pageContext.servletContext.contextPath }/company/jobPostingHistory/select">공고관리</a>
 												</p>
 												<br> <br>
-												<p align="center">
+												<p>
 													<a
-														href="${ pageContext.servletContext.contextPath }/Company/Scout/List/Select">스카우트
-														현황</a>
+														href="${ pageContext.servletContext.contextPath }/Company/Scout/List/Select">스카우트현황</a>
 												</p>
 												<br> <br>
-												<p align="center">
-													<a href="#">찜한 후보자</a>
+												<p>
+													<a href="${ pageContext.servletContext.contextPath }/company/scout/wish/select">찜한후보자</a>
 												</p>
 												<br> <br>
-												<p align="center">
-													<a href="#">회원 탈퇴</a>
+												<p>
+													<a href="#">회원탈퇴</a>
 												</p>
 											</div>
 										</div>
@@ -150,8 +149,8 @@
 									<td>환불취소</td>
 								</tr>
 							</thead>
-							<c:forEach var="refund" items="${ requestScope.refundHistoryList }">
 								<tbody align="center">
+							<c:forEach var="refund" items="${ requestScope.refundHistoryList }">
 									<tr>
 										<td>
 										<input type="hidden" name="payChangeNo" value="${ refund.payChangeNo }">
@@ -191,9 +190,9 @@
 										</c:if>
 
 									</tr>
+							</c:forEach>
 								</tbody>
 
-							</c:forEach>
 						</table>
 					</div>
 				</div>

@@ -50,18 +50,16 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="jp_tittle_heading_wrapper">
 						<div class="jp_tittle_heading">
-							<h2>개인 마이페이지</h2>
+							<h2>지원현황</h2>
 						</div>
 						<div class="jp_tittle_breadcrumb_main_wrapper">
 							<div class="jp_tittle_breadcrumb_wrapper">
 								<ul>
-									<li><a href="#">Home</a></li>
+									<li><a href="${ pageContext.servletContext.contextPath }/mainPage/InMember">Home</a></li>
 									<li>></li>
-									<li><a
-										href="${ pageContext.servletContext.contextPath }/personal/myPage/select">개인
-											마이페이지</a></li>
+									<li><a href="${ pageContext.servletContext.contextPath }/personal/myPage/select">개인 마이페이지</a></li>
 									<li>></li>
-									<li>지원 현황</li>
+									<li>지원현황</li>
 								</ul>
 							</div>
 						</div>
@@ -85,7 +83,7 @@
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_rightside_job_categories_wrapper">
 								<div class="jp_rightside_job_categories_heading">
-									<h4 align="left" style="font-weight: bold">My Page</h4>
+									<h4 align="left" style="font-weight: bold">지원현황</h4>
 								</div>
 								<div class="jp_rightside_job_categories_content">
 									<div class="handyman_sec1_wrapper">
@@ -98,12 +96,15 @@
 												<br> <br>
 												<p>
 													<a
-														href="${ pageContext.servletContext.contextPath }/personal/apply/select">지원
-														현황</a>
+														href="${ pageContext.servletContext.contextPath }/personal/apply/select">지원현황</a>
 												</p>
 												<br> <br>
 												<p>
-													<a href="${ pageContext.servletContext.contextPath }">스카우트현황</a>
+													<a href="${ pageContext.servletContext.contextPath }/scout/myPageList/servlet">스카우트현황</a>
+												</p>
+												<br> <br>
+												<p>
+													<a href="${ pageContext.servletContext.contextPath }/personal/bookmark/select">북마크</a>
 												</p>
 												<br> <br>
 												<p>
@@ -141,8 +142,9 @@
 								</tr>
 							</thead>
 								<tbody align="center">
-							<c:forEach var="whole"
-								items="${ requestScope.PersonalApplyList }">
+
+							<c:forEach var="whole" items="${ requestScope.PersonalApplyList }">
+
 									<tr>
 										<td onclick="post1(this);"><input type="hidden"
 											name="resumeNo" value="${ whole.resumeNo }"> <input
@@ -200,18 +202,14 @@
 								</tr>
 							</thead>
 								<tbody align="center">
-							<c:forEach var="complete"
-								items="${ requestScope.PersonalApplyCompletedList }">
-								<input type="hidden" name="resumeNo"
-									value="${ complete.resumeNo }">
-								<input type="hidden" name="jobPostNo"
-									value="${ complete.jobPostNo }">
+
+							<c:forEach var="complete" items="${ requestScope.PersonalApplyCompletedList }">
+
 									<tr>
-										<td onclick="post1(this);"><input type="hidden"
-											name="resumeNo" value="${ complete.resumeNo }"> <input
-											type="hidden" name="jobPostNo"
-											value="${ complete.jobPostNo }"> <c:out
-												value="${ complete.jobPostTitle }" /></td>
+										<td onclick="post1(this);">
+										<input type="hidden" name="resumeNo" value="${ complete.resumeNo }">
+										<input type="hidden" name="jobPostNo" value="${ complete.jobPostNo }"> 
+										<c:out value="${ complete.jobPostTitle }" /></td>
 										<td><c:out value="${ complete.coComName }" /></td>
 										<td><c:out value="${ complete.jobPostEnrollDate }" /></td>
 										<td><c:out value="${ complete.jobPostDeadLine }" /></td>
@@ -261,8 +259,9 @@
 								</tr>
 							</thead>
 								<tbody align="center">
-							<c:forEach var="canceled"
-								items="${ requestScope.PersonalApplyCanceledList }">
+
+							<c:forEach var="canceled" items="${ requestScope.PersonalApplyCanceledList }">
+
 									<tr>
 										<td onclick="post1(this);"><input type="hidden"
 											name="resumeNo" value="${ canceled.resumeNo }"> <input

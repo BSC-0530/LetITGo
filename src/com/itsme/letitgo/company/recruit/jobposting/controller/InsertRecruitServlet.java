@@ -44,11 +44,11 @@ public class InsertRecruitServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		HttpSession session = request.getSession();
-//
-//        MemberLoginDTO memberLoginDTO = (MemberLoginDTO) session.getAttribute("loginMember");
-//
-//        int memNo = memberLoginDTO.getMemNo();
+		HttpSession session = request.getSession();
+
+        MemberLoginDTO memberLoginDTO = (MemberLoginDTO) session.getAttribute("loginMember");
+
+        int memNo = memberLoginDTO.getMemNo();
         
 		RequestJobPostingDTO dto = new RequestJobPostingDTO();
 		
@@ -62,7 +62,7 @@ public class InsertRecruitServlet extends HttpServlet {
 		for(String i: getSkills) {
 			skillsList.add(Integer.parseInt(i));
 		}
-		dto.setCoMemNo(3);
+		dto.setCoMemNo(memNo);
 		dto.setJobPostTitle(request.getParameter("jobPostTitle"));
 		dto.setJobNo(Integer.parseInt(request.getParameter("jobNo")));
 		dto.setJobPostDeadLine(java.sql.Date.valueOf(request.getParameter("jobPostDeadLine")));

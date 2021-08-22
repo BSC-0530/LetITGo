@@ -21,36 +21,20 @@ public class CompanyAddWishListServlet extends HttpServlet {
 		
 		int resumeNo = Integer.parseInt(request.getParameter("resumeNo"));
 		String inputPage = request.getParameter("inputPage");
-		System.out.println(inputPage);
 		
-//		-------- 얕은열람용
 		int onClickResumeNo = Integer.parseInt(request.getParameter("resumeNo"));
 		
 		MainScoutListService browseInfoService = new MainScoutListService();
 		Map<String, Object> browseInfo = browseInfoService.browseSelectInfo(onClickResumeNo);
 		List<ResumeReadingHistoryDTO> kinds = browseInfoService.brosweHistoryKindsSelect(onClickResumeNo);
 		
-		
-		System.out.println("kinds : " + kinds);
-		
-		request.setAttribute("browseName", browseInfo.get("browseName"));
-		request.setAttribute("jobName", browseInfo.get("jobName"));
-		request.setAttribute("browseSkills", browseInfo.get("browseSkills"));
-		request.setAttribute("careeaNumber", browseInfo.get("careeaNumber"));
-		request.setAttribute("number", browseInfo.get("number"));
-		
-//		-------- 깊은열람용
 		int result = new MainScoutListService().insertWishList(resumeNo);
-		Map<String, Object> detailResume = new MainScoutListService().selectDetailResume(resumeNo);
-		System.out.println(detailResume);
-		
-		request.setAttribute("number", resumeNo);
-		
-		StringBuilder redirectText = new StringBuilder();
 		
 		String path = "";
 		if(result > 0 && inputPage.equals("simple")) {
+	//		-------- 얕은열람용
 			System.out.println("============== simple ============");
+			Map<String, Object> detailResume = new MainScoutListService().selectDetailResume(resumeNo);
 			path = "/WEB-INF/views/scout/scoutSimpleBrowse.jsp";
 			request.setAttribute("browseName", browseInfo.get("browseName"));
 			request.setAttribute("jobName", browseInfo.get("jobName"));
@@ -61,8 +45,18 @@ public class CompanyAddWishListServlet extends HttpServlet {
 			request.getRequestDispatcher(path).forward(request, response);
 			
 		} else if(result > 0 && inputPage.equals("detail") ) {
+	//		-------- 깊은열람용
 			path = "/WEB-INF/views/scout/scoutDetailResume.jsp";
-			request.setAttribute("detailList", detailResume);
+			Map<String, Object> detailMap = new MainScoutListService().selectDetailResume(resumeNo);
+			request.setAttribute("detailResume", detailMap.get("detailResume"));
+			request.setAttribute("detailCareer", detailMap.get("detailCareer"));
+			request.setAttribute("detailSkills", detailMap.get("detailSkills"));
+			request.setAttribute("detailIntroContent", detailMap.get("detailIntroContent"));
+			request.setAttribute("detailAward", detailMap.get("detailAward"));
+			request.setAttribute("detailEdu", detailMap.get("detailEdu"));
+			request.setAttribute("detailLicense", detailMap.get("detailLicense"));
+			request.setAttribute("detailJobField", detailMap.get("detailJobField"));
+			request.setAttribute("detailPot", detailMap.get("detailPot"));
 			request.setCharacterEncoding("UTF-8");
 			request.getRequestDispatcher(path).forward(request, response);
 		}

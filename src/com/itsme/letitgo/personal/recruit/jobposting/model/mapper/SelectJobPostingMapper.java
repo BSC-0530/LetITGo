@@ -13,7 +13,6 @@ public interface SelectJobPostingMapper {
 	
 	List<Object> selectJobPosting(SelectRequestJobPostingDTO dto);
 
-//	List<Object> selectAllJobPosting();
 
 	List<Object> selectJpSkills();
 

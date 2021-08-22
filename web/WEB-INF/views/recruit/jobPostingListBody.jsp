@@ -2,9 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +21,6 @@
 </head>
 <body>
 
-	
 	<!-- jp listing sidebar Wrapper Start -->
 	<!-- 상단 검은색 -->
 	<div class="jp_tittle_main_wrapper">
@@ -39,7 +35,8 @@
 						<div class="jp_tittle_breadcrumb_main_wrapper">
 							<div class="jp_tittle_breadcrumb_wrapper">
 								<ul>
-									<li><a href="#">Home</a> <i class="fa fa-angle-right"></i></li>
+									<li><a href="#">Home</a></li>
+									<li>></li>
 									<li>채용공고</li>
 								</ul>
 							</div>
@@ -223,22 +220,24 @@
 																		</div>
 																		<div>
 																		<label>
-																		<c:set var="minExp" value="${ jobPosting.jobPostMinExperience }"></c:set>
-																		<c:set var="maxExp" value="${ jobPosting.jobPostMaxExperience }"></c:set>
+																		<c:set var="minExp" value="${ pr.jobPostMinExperience }"/>
+																		<c:set var="maxExp" value="${ pr.jobPostMaxExperience }"/>
+																		<c:if test="${ minExp ne maxExp }">
 																			<c:choose>
-																				<c:when test="${ minExp ne maxExp }">
-																					<c:out value="${ minExp }"/><c:out value="~${ maxEmp }"></c:out>
-																				<</c:when>
-																				<c:when test="${ (minExp eq maxExp) && (minExp eq 0)}">
-																					<c:out value="신입"></c:out>
-																				</c:when>
-																				<c:when test="${( minExp eq maxExp) && (minExp ne 0)}">
-																					<c:out value="${ maxExp }년 이상"/>
-																				</c:when>
-																				<c:when test="${ (minExp eq 0) && (maxExp eq 10)}">
+																				<c:when test="${ (minExp eq 0) && (maxExp eq 10) }">
 																					<c:out value="경력 무관"></c:out>
 																				</c:when>
+																				<c:otherwise>
+																					<c:out value="${ minExp }"/><c:out value="~${ maxExp }년"/>
+																				</c:otherwise>
 																			</c:choose>
+																		</c:if>
+																		<c:if test="${ (minExp eq maxExp) && (minExp eq 0)}">
+																			<c:out value="신입"></c:out>
+																		</c:if>
+																		<c:if test="${( minExp eq maxExp) && (minExp ne 0)}">
+																			<c:out value="${ maxExp }년 이상"/>
+																		</c:if>
 																		</label>
 																		</div>
 																		<!-- 직무 -->

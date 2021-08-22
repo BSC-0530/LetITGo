@@ -113,14 +113,7 @@
 		</div>
 	</div>
   	
-		
-<%-- 				<c:out value="${ resumeList.resumeNo }"/> --%>
-<%-- 				<c:out value="${ resumeList.resumeTitle }"/> --%>
-<%-- 				<c:out value="${ resumeList.resumeWriteDate }"/> --%>
-<!-- 				<button type="submit" onclick="req(this);">상세보기</button> -->
-<!-- 				<br> -->
-				
-	
+
   </c:if>
   
 	<c:if test="${ requestScope.resumeStatus eq 'N' }">

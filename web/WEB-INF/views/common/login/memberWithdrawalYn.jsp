@@ -57,106 +57,38 @@
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
-				<div
+				<div style="height: 1000px;"
 					class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_rightside_job_categories_wrapper">
 								<div class="jp_rightside_job_categories_heading">
-									<h4 style="font-weight: bold">My Page</h4>
+									<h4 align="left" style="font-weight: bold">My Page</h4>
 								</div>
 								<div class="jp_rightside_job_categories_content">
 									<div class="handyman_sec1_wrapper">
 										<div class="content">
-
 											<div class="box">
-												<h3 style="font-weight: bold">회원정보</h3>
 												<p>
-												<p align="center">
 													<a
-														href="${ pageContext.servletContext.contextPath }/selfintroductionitem/list">자기소개서
-														항목 관리</a>
+														href="${ pageContext.servletContext.contextPath }/personalMyInfo">회원정보</a>
 												</p>
-												<br>
-												<p align="center">
+												<br> <br>
+												<p>
 													<a
-														href="${ pageContext.servletContext.contextPath }/jobfield/list">직무분야
-														관리</a>
+														href="${ pageContext.servletContext.contextPath }/personal/apply/select">지원
+														현황</a>
 												</p>
-												<br>
-												<p align="center">
+												<br> <br>
+												<p>
 													<a
-														href="${ pageContext.servletContext.contextPath }/skills/list">기술
-														관리</a>
+														href="${ pageContext.servletContext.contextPath }/scout/myPageList/servlet">스카우트현황</a>
 												</p>
-												<br>
-												<p align="center">
-													<a
-														href="${ pageContext.servletContext.contextPath }/skillscategory/list">기술
-														카테고리 관리</a>
-												</p>
-												<br>
-												<br>
-												<h3 style="font-weight: bold">결제 관리</h3>
+												<br> <br>
 												<p>
-												<p align="center">
-													<a href="#">상품 관리</a>
+													<a href="${ pageContext.servletContext.contextPath }">회원탈퇴</a>
 												</p>
-												<br>
-												<p align="center">
-													<a href="#">결제 내역 조회</a>
-												</p>
-												<br>
-												<p align="center">
-													<a href="#">환불 요청 관리</a>
-												</p>
-												<br>
-												<br>
-												<h3 style="font-weight: bold">기업 요청 관리</h3>
-												<p>
-												<p align="center">
-													<a href="#">공고 등록 요청</a>
-												</p>
-												<br>
-												<p align="center">
-													<a href="#">공고 수정 요청</a>
-												</p>
-												<br>
-												<p align="center">
-													<a href="#">기업 회원 가입 요청</a>
-												</p>
-												<p align="center">
-													<a href="#">기업 정보 변경 요청</a>
-												</p>
-												<br>
-												<br>
-												<h3 style="font-weight: bold">회원 탈퇴</h3>
-												<p>
-												<p align="center">
-													<a href="#">회원 탈퇴 사유 조회</a>
-												</p>
-												<br>
-												<br>
-												<h3 style="font-weight: bold">게시물 관리</h3>
-												<p>
-												<p align="center">
-													<a href="#">공지사항 관리</a>
-												</p>
-												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/personalinfopolicy/list">개인정보 처리 방침, 이용약관 관리</a>
-												</p>
-												<br>
-												<br>
-												<h3 style="font-weight: bold">1:1 문의</h3>
-												<p>
-												<p align="center">
-													<a href="#">1:1 문의 조회</a>
-												</p>
-												<p align="center">
-													<a href="#">1:1 문의 카테고리 관리</a>
-												</p>
-												<br>
-												<br>
+												<br> <br>
 											</div>
 										</div>
 									</div>
@@ -165,28 +97,39 @@
 						</div>
 					</div>
 				</div>
-				<!-- 옆에 넣으려면 여기에 넣어야함 -->
-				<!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
+				
 				<br>
 				<br>
 				<br>
 				
-				<!-- 탈퇴 Y or N 받는 창 -->
-				<form action="${ pageContext.servletContext.contextPath }" 
-								method="post">
-					<label>탈퇴하시겠습니까?</label>
-					<!-- 취소하면 마이페이지로 -->
-					<button type="submit" onclick="href='${ pageContext.servletContext.contextPath }'">취소</button>
-					<!-- 탈퇴하면 로그인 화면으로 -->
-					<button type="submit" onclick="href='${ pageContext.servletContext.contextPath }'">탈퇴</button>
-<!-- 					<input type="submit" name="memPwd" -->
-<%-- 							value="${ testCheckPwd.memPwd }"> <!-- value 안에 받아오는 변수명 --> --%>
-				</form>
-				
-				
-				
-				
+				<div class="outer outer-member-withdrawal-yn">
+					<br>
+					<h2 align="center">회원 탈퇴</h2>
+					<br>
+					<br>
+					<div class="table-area">
+						<form
+							action="${ pageContext.servletContext.contextPath }/login/member/withdrawal/yn"
+							method="post">
+							<div align="center">
+							
+								<p style="color:red">===== 탈퇴 시 주의 사항 =====</p>
+								<p>탈퇴 시 회원님의 이력서를 포함하여 회원님의 계정에 저장된 모든 정보가 영구적으로 삭제되며, 다시는 복구할 수 없습니다.</p>
+								<p>이력서의 저장을 원하실 경우, 탈퇴 이전에 이력서 관리 페이지에서 다운로드 해주세요.</p>
+								<p>제출된 스카우트 이력서의 수정이나 삭제를 원하실 경우, 탈퇴 이전에 추천 페이지에서</p>
+								<p>스카우트 이력서를 수정, 또는 삭제 해주세요.</p>
+								<p>기업에 대한 채용 수수료 정산과 부정이용 방지를 위해, 기업에 대한 지원 내역은 관련 법령에 의거하여</p>
+								<p>탈퇴 후 최장 6개월 간 저장됩니다.</p>
+								<p>이상의 내용에 동의하여 탈퇴를 원하실 경우, 아래의 “동의하기” 버튼을 클릭 부탁드립니다.</p>
+								<br><br>
 
+								<button type="button" onClick="history.go(-1)">취소하기</button>
+								<button type="submit"
+									onclick="href='${ pageContext.servletContext.contextPath }/let/loginPage'">탈퇴하기</button>
+							</div>		
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -197,17 +140,17 @@
 	
 	<script type="text/javascript">
 		
-		function memberWithdrawal(button) {
+		function memberWithdrawalYn(button) {
+			
+			confirm();
 			
 			const no = button.value;
-			location.href = "${ pageContext.servletContext.contextPath }?memNo=" + memNo;
+			location.href = "${ pageContext.servletContext.contextPath }/login/member/withdrawal/yn?memNo=" + memNo;
 			
 		}
 		
 		$("input").filter("[value='null']").val("");
 		
-		/* location.reload();  무한로딩; 함수 안에서도 안먹힘  */
-	
 	</script>
 	
 				

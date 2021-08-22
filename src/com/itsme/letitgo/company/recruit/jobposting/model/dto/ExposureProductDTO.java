@@ -4,40 +4,49 @@ public class ExposureProductDTO implements java.io.Serializable {
 
 	
 	private Integer exposureTime;
-	private int productNo;
+	private int retainedProductCode;
 	private String productName;
 	
 	public ExposureProductDTO() {}
-	
-	public ExposureProductDTO(Integer exposureTime, int productNo, String productName) {
+
+	public ExposureProductDTO(Integer exposureTime, int retainedProductCode, String productName) {
 		super();
 		this.exposureTime = exposureTime;
-		this.productNo = productNo;
+		this.retainedProductCode = retainedProductCode;
 		this.productName = productName;
 	}
+
 	public Integer getExposureTime() {
 		return exposureTime;
 	}
+
 	public void setExposureTime(Integer exposureTime) {
 		this.exposureTime = exposureTime;
 	}
-	public int getProductNo() {
-		return productNo;
+
+	public int getRetainedProductCode() {
+		return retainedProductCode;
 	}
-	public void setProductNo(int productNo) {
-		this.productNo = productNo;
+
+	public void setRetainedProductCode(int retainedProductCode) {
+		this.retainedProductCode = retainedProductCode;
 	}
+
 	public String getProductName() {
 		return productName;
 	}
+
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
+
 	@Override
 	public String toString() {
-		return "ExposureProductDTO [exposureTime=" + exposureTime + ", productNo=" + productNo + ", productName="
-				+ productName + "]";
+		return "ExposureProductDTO [exposureTime=" + exposureTime + ", retainedProductCode=" + retainedProductCode
+				+ ", productName=" + productName + "]";
 	}
+	
+	
 	
 	
 }

@@ -22,15 +22,9 @@ public class SelfIntroductionItemDeleteServlet extends HttpServlet {
 		
 		SelfIntroductionItemDTO requestSelfIntroductionItem = new SelfIntroductionItemDTO();
 		
-		//requestSelfIntroductionItem 확인
-		System.out.println("selfIntroductionController requestSelfIntroductionItem : " + requestSelfIntroductionItem);
-		
 		int result = new SelfIntroductionItemService().selfIntroductionItemDelete(selfIntroItemNo);
 		
-		//result값 확인
-		System.out.println("selfIntroductionItemController result : " + result);
-		
-		String path = "";	//빈 문자열을 선언 후, 밑의 if문을 돌려서 성공과 실패의 주소로 간다.
+		String path = "";	
 		
 		if(result > 0) {
 			path = "/WEB-INF/views/admin/adminSuccess.jsp";
