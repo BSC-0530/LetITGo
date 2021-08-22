@@ -59,7 +59,7 @@
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_rightside_job_categories_wrapper">
 								<div class="jp_rightside_job_categories_heading">
-									<h4 style="font-weight: bold">My Page</h4>
+									<h4 style="font-weight: bold">Admin</h4>
 								</div>
 								<div class="jp_rightside_job_categories_content">
 									<div class="handyman_sec1_wrapper">
@@ -169,7 +169,7 @@
 											<td align="center">회원구분</td>
 											<td align="center">이름</td>
 											<td align="center">탈퇴일자</td>
-											<td align="center">회원탈퇴사유</td>
+<!-- 											<td align="center">회원탈퇴사유</td> -->
 										</tr>
 									</thead>
 										<tbody align="center">
@@ -183,7 +183,7 @@
 												<td id="memKinds"><c:out value="${ controllMemberWithdrawal.memKinds }" /></td>
 												<td id="memName"><c:out value="${ controllMemberWithdrawal.memName }" /></td>
 												<td id="memEntDate"><c:out value="${ controllMemberWithdrawal.memEntDate }" /></td>
-												<td id="memEntNo"><c:out value="${ controllMemberWithdrawal.memEntNo }" /></td>
+<%-- 												<td id="memEntNo"><c:out value="${ controllMemberWithdrawal.memEntNo }" /></td> --%>
 												<!-- <td><button type="button" disabled>삭제</button></td>  -->
 <%-- 												<td><button class="btn-info" onClick="jobFieldDelete(this);" value="${ controllJobField.no }">삭제</button></td> --%>
 												<!-- 위의 것을 실행하려면 div 안에 담아야 하는? --> 
