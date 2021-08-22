@@ -14,12 +14,12 @@ import static com.itsme.letitgo.common.mybatis.Template.getSqlSession;
 
 public class ResumeService {
 
-	public List<ResumeDTO> selectAllResumeList() {
+	public List<ResumeDTO> selectAllResumeList(int memberNo) {
 		
 		SqlSession session = getSqlSession();
 		ResumeMapper mapper = session.getMapper(ResumeMapper.class);
 		
-		List<ResumeDTO> resumeList = mapper.selectAllResumeList();
+		List<ResumeDTO> resumeList = mapper.selectAllResumeList(memberNo);
 		
 		session.close();
 		

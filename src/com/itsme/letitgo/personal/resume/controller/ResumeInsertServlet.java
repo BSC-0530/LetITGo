@@ -9,7 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.itsme.letitgo.login.model.dto.MemberLoginDTO;
 import com.itsme.letitgo.personal.resume.model.dto.InsertResumeDTO;
 import com.itsme.letitgo.personal.resume.model.service.ResumeService;
 
@@ -24,6 +26,13 @@ public class ResumeInsertServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 
 		request.setCharacterEncoding("UTF-8");
+		
+		HttpSession session = request.getSession();
+		
+		MemberLoginDTO comDTO1 = (MemberLoginDTO) session.getAttribute("loginMember");
+		System.out.println("번호" + comDTO1.getMemNo());
+		//로그인된 멤버 번호
+		int memberNo = comDTO1.getMemNo();
  
 //		-- value 꺼내기
 //		---- resume
@@ -69,10 +78,13 @@ public class ResumeInsertServlet extends HttpServlet {
 		String awdAgency = request.getParameter("awdAgency");
 		java.sql.Date awdDate = java.sql.Date.valueOf(request.getParameter("awdDate"));
 		String awdContent = request.getParameter("awdContent");
+//		---- skills
+		String skillsName = request.getParameter("inputSkill");
 		
 		InsertResumeDTO ir = new InsertResumeDTO();
+		
 //		ir.setResumeNo(resumeNo);
-//		ir.setInMemNo(inMemNo);
+		ir.setInMemNo(memberNo);
 //		ir.setResumeWriteDate(resumeWriteDate);
 //		ir.setResumeScoutStatus(resumeScoutStatus);
 		ir.setJobNo(jobNo);

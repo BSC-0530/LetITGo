@@ -406,7 +406,7 @@
 		<select id="companyScoutSkills" resultMap="mainScoutHoldingSkillsDTO">
 		SELECT
                 RS.RESUME_NO
-		 	  , LISTAGG(S.SKILLS_NAME,',') WITHIN GROUP(ORDER BY S.SKILLS_NAME) as SKILLS_NAME
+		 	  , LISTAGG(S.SKILLS_NAME,', ') WITHIN GROUP(ORDER BY S.SKILLS_NAME) as SKILLS_NAME
 		  FROM TBL_RESUME_HOLDING_SKILLS RS
           JOIN TBL_SKILLS S ON (S.SKILLS_NO = RS.SKILLS_NO)
           GROUP BY RS.RESUME_NO
@@ -573,6 +573,7 @@
 		SELECT
 		       R.RESUME_NO
 		     , M.MEM_NAME
+		     , R.IN_MEM_NO
 		  FROM TBL_MEMBER M
 		  JOIN TBL_RESUME R ON (M.MEM_NO = R.IN_MEM_NO)
 		 WHERE R.RESUME_NO = #{ resumeNo }
@@ -599,11 +600,12 @@
 	<select id="selectDetailSkills" parameterType="_int"
 		resultMap="detailSkillsResultMap">
 		SELECT
-		       S.SKILLS_NO
-		     , S.SKILLS_NAME
-		  FROM TBL_SKILLS S
-		  JOIN TBL_RESUME_HOLDING_SKILLS HS ON (S.SKILLS_NO = HS.SKILLS_NO)	
-		 WHERE HS.RESUME_NO = #{ resumeNo }
+                HS.RESUME_NO
+		 	  , LISTAGG(S.SKILLS_NAME,', ') WITHIN GROUP(ORDER BY S.SKILLS_NAME) as SKILLS_NAME
+		  FROM TBL_RESUME_HOLDING_SKILLS HS
+          JOIN TBL_SKILLS S ON (S.SKILLS_NO = HS.SKILLS_NO)
+         WHERE HS.RESUME_NO = #{ resumeNo }
+         GROUP BY HS.RESUME_NO
 	</select>
 	
 	<select id="selectDetailContent" parameterType="_int"
@@ -630,7 +632,7 @@
 	</select>
 	
 	<select id="selectDetailEdu" parameterType="_int"
-		resultMap="detailAwardResultMap">
+		resultMap="detailEduResultMap">
 		SELECT
 		       E.EDU_NO
 		     , E.EDU_NAME
@@ -666,7 +668,7 @@
 	
 	<select id="selectDetailPot" parameterType="_int"
 		resultMap="detailPortfolioResultMap">
-		SELECT
+		SELECT DISTINCT
 		       P.POT_LINK_ADDRESS
 		  FROM TBL_PORTFOLIO P
 		  JOIN TBL_RESUME R ON (P.RESUME_NO = R.RESUME_NO)
@@ -689,7 +691,7 @@
 		)
 		VALUES
 		(
-		  SEQ_SCOUT_NO.NEXTVAL, #{ sessionScope.loginMember.memNo }, #{ resumeNo }, #{ inMemNo }, DEFAULT
+		  SEQ_SCOUT_NO.NEXTVAL, #{ coMemNo }, #{ resumeNo }, #{ inMemNo }, DEFAULT
 		)
 	</insert>
 	
