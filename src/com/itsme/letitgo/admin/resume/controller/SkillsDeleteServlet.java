@@ -18,7 +18,7 @@ public class SkillsDeleteServlet extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 		
-		int skillsNo = Integer.parseInt(request.getParameter("skillsNo"));
+		int skillsNo = Integer.parseInt(request.getParameter("no"));
 		
 		SkillsDTO requestSkills = new SkillsDTO();
 		requestSkills.setSkillsNo(skillsNo);

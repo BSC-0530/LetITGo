@@ -89,45 +89,38 @@
 												<br>
 												<br>
 												<p>
-													<a
-														href="${ pageContext.servletContext.contextPath }/companyTestServlet">기업정보</a>
+													<a href="${ pageContext.servletContext.contextPath }/companyTestServlet">기업정보</a>
 												</p>
 												<br>
 												<br>
 
 												<p>
-													<a
-														href="${ pageContext.servletContext.contextPath }/company/paymentHistory/select">결제내역</a>
+													<a href="${ pageContext.servletContext.contextPath }/company/paymentHistory/select">결제내역</a>
 												</p>
 												<br>
 												<br>
 												<p>
-													<a
-														href="${ pageContext.servletContext.contextPath }/company/refundHistory/select">환불내역</a>
+													<a href="${ pageContext.servletContext.contextPath }/company/refundHistory/select">환불내역</a>
 												</p>
 												<br>
 												<br>
 												<p>
-
-													<a
-														href="${ pageContext.servletContext.contextPath }/company/jobPostingHistory/select">공고관리</a>
+													<a href="${ pageContext.servletContext.contextPath }/company/jobPostingHistory/select">공고관리</a>
 												</p>
 												<br>
 												<br>
 												<p>
-													<a
-														href="${ pageContext.servletContext.contextPath }/Company/Scout/List/Select">스카우트
-														현황</a>
+													<a href="${ pageContext.servletContext.contextPath }/Company/Scout/List/Select">스카우트 현황</a>
 												</p>
 												<br>
 												<br>
 												<p>
-													<a href="#">찜한 후보자</a>
+													<a href="${ pageContext.servletContext.contextPath }/company/scout/wish/select">찜한 후보자</a>
 												</p>
 												<br>
 												<br>
 												<p>
-													<a href="#">회원 탈퇴</a>
+													<a href="${ pageContext.servletContext.contextPath }/login/comember/withdrawal/yn">회원 탈퇴</a>
 												</p>
 												<br>
 												<br>

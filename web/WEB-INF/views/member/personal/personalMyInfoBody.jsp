@@ -63,7 +63,7 @@
 												<br> <br>
 												<p><a href="${ pageContext.servletContext.contextPath }/personal/bookmark/select">북마크</a></p>
 												<br> <br>
-												<p><a href="${ pageContext.servletContext.contextPath }">회원탈퇴</a></p>
+												<p><a href="${ pageContext.servletContext.contextPath }/login/member/withdrawal/yn">회원탈퇴</a></p>
 												<br> <br>
 											</div>
 										</div>

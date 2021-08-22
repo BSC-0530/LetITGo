@@ -79,12 +79,12 @@
 												</p>
 												<br><br>
 												<p align="center"> 
-													<a href="${ pageContext.servletContext.contextPath }/companyTestServlet">개인정보처리방침</a>
+													<a href="${ pageContext.servletContext.contextPath }/guideline/list">개인정보처리방침</a>
 												</p>
 												<br><br>
 
 												<p align="center">
-													<a href="${ pageContext.servletContext.contextPath }/company/paymentHistory/select">이용약관</a>
+													<a href="${ pageContext.servletContext.contextPath }/guideline/list">이용약관</a>
 												</p>
 												
 												<br><br>

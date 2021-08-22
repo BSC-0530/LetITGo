@@ -86,7 +86,7 @@
 												<br> <br>
 												<p><a href="${ pageContext.servletContext.contextPath }">스카우트현황</a></p>
 												<br> <br>
-												<p><a href="${ pageContext.servletContext.contextPath }">회원탈퇴</a></p>
+												<p><a href="${ pageContext.servletContext.contextPath }/login/member/withdrawal/yn">회원탈퇴</a></p>
 												<br> <br>
 											</div>
 										</div>
