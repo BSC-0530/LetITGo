@@ -33,8 +33,6 @@
 		var coMemNo = p.parentNode.children[2].value;
 
 		location.href = "${ pageContext.servletContext.contextPath }/aboutCompany/select?coMemNo="+ coMemNo;
-
-		
 		
 	}
 </script>
@@ -150,11 +148,11 @@
 															<div class="row">
 																<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 																	<div class="jp_job_post_side_img">
-																		<img src="${ pageContext.servletContext.contextPath }/resources/image/content/job_post_img1.jpg" alt="post_img" />
+																		<img src="${ pageContext.servletContext.contextPath }${ pr.memFilePath }" alt="post_img"/>
 																	</div>
 																	<div class="jp_job_post_right_cont">
 																		<h4><c:out value="${ pr.jobPostTitle }"/></h4>
-																		<p style="cursor:pointer;"" onclick="selectCompany(this);"><label style="font-size: 20px;"><c:out value="${ pr.coComName }"/></label></p>
+																		<p style="cursor:pointer;" onclick="selectCompany(this);"><label style="font-size: 20px;"><c:out value="${ pr.coComName }"/></label></p>
 																		
 																		<input name="coMemNo" type="hidden" value="${ pr.coMemNo }">
 																		<input name="jobPostNo" type="hidden" value="${ pr.jobPostNo }">

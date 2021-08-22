@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Let IT Go</title>
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/animate.css" />
 <link rel="stylesheet" type="text/css"
@@ -90,8 +90,6 @@
 			<div class="jp_rightside_job_categories_content">
 				<div class="handyman_sec1_wrapper">
 					<div class="content">
-					
-<%-- 						<label><c:out value="${ requestScope.jobPostNo }"/></label> --%>
 						
 						<h4 align="center">이력서를 선택해주세요</h4>
 						<c:forEach var="resumeList" items="${ requestScope.resumeList }" varStatus="status">
@@ -114,23 +112,17 @@
 	</div>
   	
 
-  </c:if>
+ 	</c:if>
   
 	<c:if test="${ requestScope.resumeStatus eq 'N' }">
 	
 	<label>등록된 이력서가 없습니다.</label>
 	
 	<button onclick="closeSelectResume();">닫기</button>
-	 
-	 
-	 
-	 </c:if>
+	</c:if>
   
 
 
 
 </body>
-
-
-
 </html>

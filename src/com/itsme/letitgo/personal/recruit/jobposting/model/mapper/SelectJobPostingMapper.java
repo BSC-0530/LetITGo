@@ -1,5 +1,6 @@
 package com.itsme.letitgo.personal.recruit.jobposting.model.mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -41,6 +42,13 @@ public interface SelectJobPostingMapper {
 
 
 	int selectJpTotalCount(SelectRequestJobPostingDTO dto);
+
+
+
+	String selectTitleFilePath(int selectJobPostNo);
+
+
+	String selectLogoFilePath(int selectJobPostNo);
 
 
 

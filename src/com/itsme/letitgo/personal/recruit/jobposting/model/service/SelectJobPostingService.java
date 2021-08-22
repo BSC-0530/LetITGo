@@ -2,6 +2,7 @@ package com.itsme.letitgo.personal.recruit.jobposting.model.service;
 
 import static com.itsme.letitgo.common.mybatis.Template.getSqlSession;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,13 +73,17 @@ public class SelectJobPostingService {
 		// 조회 후 값을 변수에 담음
 		SelectJobPostingDTO detailedJobPosting = mapper.selectDetailedJobPosting(selectJobPostNo);
 		List<Object> deteildeJpSkills = mapper.selectDeteildeJpSkills(selectJobPostNo);
+		String titleFilePath = mapper.selectTitleFilePath(selectJobPostNo);
+		String logoFilePath = mapper.selectLogoFilePath(selectJobPostNo);
+		
 		
 		
 		// return값으로 넘겨주기 위해 map에 담기 
 		
 		jp.put("detailedJobPosting", detailedJobPosting);
 		jp.put("deteildeJpSkills", deteildeJpSkills);
-		
+		jp.put("titleFilePath", titleFilePath);
+		jp.put("logoFilePath", logoFilePath);
 	
 		session.close();
 		

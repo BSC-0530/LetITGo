@@ -12,11 +12,12 @@ public class DetailResumeDTO implements java.io.Serializable {
 	private String memName;
 	private String memPhone;
 	private String memEmail;
+	private String memFilePath;
 	
 	public DetailResumeDTO() {}
 
 	public DetailResumeDTO(int resumeNo, String resumeTitle, int jobNo, String jobName, String memName, String memPhone,
-			String memEmail) {
+			String memEmail, String memFilePath) {
 		super();
 		this.resumeNo = resumeNo;
 		this.resumeTitle = resumeTitle;
@@ -25,6 +26,7 @@ public class DetailResumeDTO implements java.io.Serializable {
 		this.memName = memName;
 		this.memPhone = memPhone;
 		this.memEmail = memEmail;
+		this.memFilePath = memFilePath;
 	}
 
 	public int getResumeNo() {
@@ -83,11 +85,19 @@ public class DetailResumeDTO implements java.io.Serializable {
 		this.memEmail = memEmail;
 	}
 
+	public String getMemFilePath() {
+		return memFilePath;
+	}
+
+	public void setMemFilePath(String memFilePath) {
+		this.memFilePath = memFilePath;
+	}
+
 	@Override
 	public String toString() {
 		return "DetailResumeDTO [resumeNo=" + resumeNo + ", resumeTitle=" + resumeTitle + ", jobNo=" + jobNo
 				+ ", jobName=" + jobName + ", memName=" + memName + ", memPhone=" + memPhone + ", memEmail=" + memEmail
-				+ "]";
+				+ ", memFilePath=" + memFilePath + "]";
 	}
 
 	

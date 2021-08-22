@@ -34,34 +34,28 @@
             </div>
         </div>
     </div>
-    <!-- jp Tittle Wrapper End -->
-	<!-- aboutus_section start-->
     <div class="aboutus_section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
                     <div class="about_text_wrapper">
                         <div class="section_heading section_2_heading">
-                            <c:forEach var="companyAddInfo" items="${ requestScope.companyAddInfo }">
-                            <h2><c:out value="${ companyAddInfo.coComName }"></c:out></h2>
-                            </c:forEach>
+                            <h2><c:out value="${ requestScope.companyAddInfo.coComName }"></c:out></h2>
                         </div>
                        	<br>
-                        <c:forEach var="companyAddInfo" items="${ requestScope.companyAddInfo }">
-	                        <ul>
-	                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a>대표자명 : <c:out value="${ companyAddInfo.coCeoName }"/></a></li>
-	                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a>업종       : <c:out value="${ companyAddInfo.coSectors }"/></a></li>
-	                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a>회사주소 : <c:out value="${ companyAddInfo.webSite }"/></a></li>
-	                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a href="${ companyAddInfo.webSite }">홈페이지 : <c:out value="${ companyAddInfo.coCeoName }"/></a></li>
-	                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a>사업장전화번호 : <c:out value="${ companyAddInfo.coPhone }"/></a></li>
-	                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a>사업장팩스번호 : <c:out value="${ companyAddInfo.coPax }"/></a></li>
-	                        </ul>
-                        </c:forEach>
+                        <ul>
+                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a>대표자명 : <c:out value="${ requestScope.companyAddInfo.coCeoName }"/></a></li>
+                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a>업종       : <c:out value="${ requestScope.companyAddInfo.coSectors }"/></a></li>
+                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a>회사주소 : <c:out value="${ requestScope.companyAddInfo.webSite }"/></a></li>
+                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a href="${ requestScope.companyAddInfo.webSite }">홈페이지 : <c:out value="${ companyAddInfo.coCeoName }"/></a></li>
+                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a>사업장전화번호 : <c:out value="${ requestScope.companyAddInfo.coPhone }"/></a></li>
+                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a>사업장팩스번호 : <c:out value="${ requestScope.companyAddInfo.coPax }"/></a></li>
+                        </ul>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
                     <div class="about_image_wrapper">
-                        <img class="img-responsive" src="images/content/register_bg.jpg" alt="about-img">
+                        <img class="img-responsive" src="${ pageContext.servletContext.contextPath }${ requestScope.companyAddInfo.memFilePath }" alt="about-img">
                     </div>
                 </div>
                 <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
@@ -69,18 +63,13 @@
                         <div class="section_heading section_2_heading">
                             <h2>기업 간단소개</h2>
                         </div>
-                        <c:forEach var="companyAddInfo" items="${ requestScope.companyAddInfo }">
-                        <p><c:out value="${ companyAddInfo.coIntro }"/></p>
-                        </c:forEach>
+                        <p><c:out value="${ requestScope.companyAddInfo.coIntro }"/></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-	<!-- jp best deal Wrapper Start -->
-   
-    <!-- jp best deal Wrapper End -->
-    <!-- jp career Wrapper Start -->
+
     <div class="jp_career_main_wrapper">
         <div class="container">
             <div class="row">
@@ -96,7 +85,7 @@
 	                                <div class="item jp_recent_main">
 	                                    <div class="jp_career_main_box_wrapper">
 	                                        <div class="jp_career_img_wrapper">
-	                                            <img src="/let/resources/image/content/car_img1.jpg" alt="career_img" /> <!-- 370 X 250 로고이미지-->
+	                                            <img src="${ pageContext.servletContext.contextPath }${ requestScope.companyAddInfo.memFilePath }" alt="career_img" />
 	                                        </div>
 	                                        <div class="jp_career_cont_wrapper">
 	                                            <p><i class="fa fa-calendar"></i>&nbsp;&nbsp; <a><c:out value="${ myJobPosting.jobPostDeadline }"/></a></p>
@@ -114,8 +103,6 @@
             </div>
         </div>
     </div>
-    <!-- jp career Wrapper End -->
-	<!--main js file start-->
     <script type="text/javascript" src="/web/resources/js/jquery_min.js"></script>
     <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/bootstrap.js"></script>
     <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery.menu-aim.js"></script>
@@ -125,6 +112,6 @@
     <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/modernizr.js"></script>
     <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery.magnific-popup.js"></script>
     <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/custom_II.js"></script>
-    <!--main js file end-->
+
 </body>
 </html>

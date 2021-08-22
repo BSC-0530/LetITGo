@@ -10,13 +10,14 @@
 
 	window.onload = function(){
 	
-	location.href = "/let/mainPage/letitgo"
+
+	location.href = "/let/mainPage/letitgo";
+
 	
 	}
 
 </script>
 </head>
 <body>
-<%-- 	<jsp:forward page="/WEB-INF/views/main/main.jsp"/> --%>
 </body>
 </html>

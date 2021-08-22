@@ -14,6 +14,7 @@
 		<result property="coSectors" column="CO_SECTORS"/>
 		<result property="coStatus" column="CO_STATUS"/>
 		<result property="webSite" column="CO_WEBSITE"/>
+		<result property="memFilePath" column="MEM_FILE_PATH"/>
 	</resultMap>
 	
 	<resultMap type="com.itsme.letitgo.company.info.model.dto.CompanyInfoDTO" id="coMemResultMap">
@@ -85,8 +86,11 @@
 		     , AI.CO_SECTORS
 		     , AI.CO_STATUS
 		     , AI.CO_WEBSITE
+		     , SUBSTR(B.MEM_FILE_PATH,21) AS MEM_FILE_PATH
 		  FROM TBL_CO_MEMBER_ADD_INFO AI
+		  LEFT JOIN TBL_ATTACHMENT B ON(AI.CO_MEM_NO = B.MEM_NO)
 		 WHERE AI.CO_MEM_NO = #{ coMemNo }
+		   AND B.MEM_FILE_KINDS = '프로필사진'
 	</select>
 	<!--  기업정보 조회시 하단 기업의 jobPosting으로 이동하기 위해서 -->
 	<select id="myJobPosting" parameterType="com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectJobPostingDTO" resultMap="resultMyJobPosting">
@@ -121,8 +125,7 @@
 			   A.MEM_NAME = #{ memName }
 		     , A.MEM_EMAIL = #{ memEmail }
 			 , A.MEM_PHONE = #{ memPhone }
-		WHERE A.MEM_ID = #{ memId }	  	
-			 
+		WHERE A.MEM_ID = #{ memId }
 	</update>
 <!-- 	마이페이지 이미지불러오기 -->
 	<select id="selectLogoFile" parameterType="com.itsme.letitgo.company.info.model.dto.FileUploadDTO" resultMap="fileUp]load">

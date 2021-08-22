@@ -5,10 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Let IT Go</title>
 </head>
 <body>
-	<!-- 상단 검은색바탕 -->
 	<div class="jp_tittle_main_wrapper">
 		<div class="jp_tittle_img_overlay"></div>
 		<div class="container">
@@ -35,7 +34,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- 전체 묶음 -->
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
@@ -343,9 +341,6 @@
 		window.open( path , "이력서 선택", "width=400, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 
 	}
-	
-	
-	
 	</script>
 </body>
 </html>

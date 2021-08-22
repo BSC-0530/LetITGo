@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.itsme.letitgo.company.info.model.dto.CompanyAddInfoDTO;
 import com.itsme.letitgo.company.info.model.dto.CompanyInfoDTO;
 import com.itsme.letitgo.company.info.model.dto.FileUploadDTO;
+import com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO;
 import com.itsme.letitgo.login.model.dto.MemberLoginDTO;
 import com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectJobPostingDTO;
 
@@ -15,10 +16,10 @@ public interface CompanyInfoMapper {
 	CompanyAddInfoDTO selectedInfoCompany(int memberNo);
 
 
-	List<Object> companyAddInfo(CompanyAddInfoDTO dto);
+	CompanyAddInfoDTO companyAddInfo(CompanyAddInfoDTO dto);
 
 
-	List<Object> myJobPosting(CompanyAddInfoDTO dto);
+	List<SelectCoMyJobPostingDTO> myJobPosting(CompanyAddInfoDTO dto);
 
 
 	CompanyInfoDTO coMemInfoSelect(int memNo);

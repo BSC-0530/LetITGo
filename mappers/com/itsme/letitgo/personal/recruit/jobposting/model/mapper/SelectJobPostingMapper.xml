@@ -19,6 +19,8 @@
 		<result property="preferentialMatters" column="PREFERENTIAL_MATTERS"/>
 		<result property="benefitAndWelfare" column="BENEFIT_AND_WELFARE"/>
 		<result property="companyResumeLink" column="COMPANY_RESUME_FORM_LINK"/>
+		<result property="memFilePath" column="MEM_FILE_PATH"/>
+		<result property="memFileKinds" column="MEM_FILE_KINDS"/>
 		
 		<association property="coMemberAddInfoDTO" resultMap="resultCoMemberAddInfo"/>
 		<association property="jobFieldDTO" resultMap="resultJobField"/>
@@ -152,6 +154,7 @@
   	   		 , A.CO_ADDRESS
   	   		 , A.JOB_POST_CONTENTS
   	   		 , A.JOB_POST_KINDS
+  	   		 , A.MEM_FILE_PATH
 	      FROM (SELECT 
                        ROWNUM RNUM
                      , B.JOB_POST_NO
@@ -167,6 +170,7 @@
                      , B.CO_ADDRESS
                      , B.JOB_POST_CONTENTS
                      , B.JOB_POST_KINDS
+                     , B.MEM_FILE_PATH
                   FROM (SELECT
 	  						   DISTINCT JP.JOB_POST_NO
 		                     , JP.JOB_POST_TITLE
@@ -181,12 +185,15 @@
 		                     , AI.CO_ADDRESS
 		                     , JP.JOB_POST_CONTENTS
 		                     , JP.JOB_POST_KINDS
+		                     , SUBSTR(TA.MEM_FILE_PATH,21) MEM_FILE_PATH
 		                  FROM TBL_JOB_POSTING JP
 		                  JOIN TBL_CO_MEMBER_ADD_INFO AI ON (JP.CO_MEM_NO = AI.CO_MEM_NO)
 		                  JOIN TBL_JOB_FIELD JF ON (JP.JOB_NO = JF.JOB_NO)
 		                  JOIN TBL_JOB_POSTING_REQ_SKILLS RS ON (JP.JOB_POST_NO = RS.JOB_POST_NO)
 		                  JOIN TBL_SKILLS S ON (S.SKILLS_NO = RS.SKILLS_NO)
+		                  LEFT JOIN TBL_ATTACHMENT TA ON(AI.CO_MEM_NO = TA.MEM_NO)
 						 WHERE JP.JOB_POST_KINDS = '승인된공고'
+						   AND TA.MEM_FILE_KINDS  = '프로필사진'
 						   AND JP.JOB_POST_DEADLINE > SYSDATE
 		                <if test="skills != null">
 		                   AND LOWER(S.SKILLS_NAME) LIKE '%' || #{ skills } || '%'
@@ -328,9 +335,26 @@
 		 WHERE IN_MEM_NO = #{ inMemNo }
 		   AND JOB_POST_NO = #{ jobPostNo }
 	</delete>
+
+	<select id="selectTitleFilePath" resultType="string">
+		SELECT
+		       SUBSTR(B.MEM_FILE_PATH,21)
+		  FROM TBL_JOB_POSTING A
+		  JOIN TBL_CO_MEMBER_ADD_INFO B ON (A.CO_MEM_NO = B.CO_MEM_NO)
+		  LEFT JOIN TBL_ATTACHMENT B ON(A.CO_MEM_NO = B.MEM_NO)
+		 WHERE A.JOB_POST_NO = #{ JobPostNo }
+		   AND B.MEM_FILE_KINDS = '대표이미지'
+	</select>
 	
-	<!-- 공고 지원, 취소 시 지원내역상태변경이력에 저장 -->
-	<!-- 공고 지원 취소  -->
+		<select id="selectLogoFilePath" resultType="string">
+		SELECT
+		       SUBSTR(B.MEM_FILE_PATH,21)
+		  FROM TBL_JOB_POSTING A
+		  JOIN TBL_CO_MEMBER_ADD_INFO B ON (A.CO_MEM_NO = B.CO_MEM_NO)
+		  LEFT JOIN TBL_ATTACHMENT B ON(A.CO_MEM_NO = B.MEM_NO)
+		 WHERE A.JOB_POST_NO = #{ JobPostNo }
+		   AND B.MEM_FILE_KINDS = '프로필사진'
+	</select>
 
 	
 	

@@ -14,6 +14,7 @@
 		<result property="jobPostDeadline" column="JOB_POST_DEADLINE"/>
 		<result property="jobName" column="JOB_NAME"/>
 		<result property="coAddress" column="CO_ADDRESS"/>
+		<result property="memFilePath" column="MEM_FILE_PATH"/>
 	</resultMap>
 	
 		<resultMap type="com.itsme.letitgo.main.model.dto.JpSkillsDTO" id="resultJpSkills" >
@@ -35,6 +36,7 @@
 		     , A.JOB_POST_ENROLL_DATE
 		     , A.JOB_POST_DEADLINE
 		     , A.CO_ADDRESS
+		     , A.MEM_FILE_PATH
 		  FROM (SELECT 
 		               ROWNUM RNUM
 		             , B.JOB_POST_NO
@@ -53,6 +55,7 @@
 		             , B.JOB_POST_KINDS
 		             , B.EXPOSURE_USE_DATE
 		             , B.EXPOSURE_END_DATE
+		             , B.MEM_FILE_PATH
 		          FROM (SELECT
 		                       DISTINCT JP.JOB_POST_NO
 		                     , JP.JOB_POST_TITLE
@@ -70,24 +73,21 @@
 		                     , JP.JOB_POST_KINDS
 		                     , UH.EXPOSURE_USE_DATE
 		                     , UH.EXPOSURE_END_DATE
+		                     , SUBSTR(TA.MEM_FILE_PATH,21) MEM_FILE_PATH
 		                  FROM TBL_JOB_POSTING JP
 		                  JOIN TBL_CO_MEMBER_ADD_INFO AI ON (JP.CO_MEM_NO = AI.CO_MEM_NO)
 		                  JOIN TBL_JOB_FIELD JF ON (JP.JOB_NO = JF.JOB_NO)
 		                  JOIN TBL_JOB_POSTING_REQ_SKILLS RS ON (JP.JOB_POST_NO = RS.JOB_POST_NO)
 		                  JOIN TBL_SKILLS S ON (S.SKILLS_NO = RS.SKILLS_NO)
 		                  LEFT JOIN TBL_EXPOSURE_USAGE_HISTORY UH ON (JP.JOB_POST_NO = UH.JOB_POST_NO)
+		                  LEFT JOIN TBL_ATTACHMENT TA ON(AI.CO_MEM_NO = TA.MEM_NO)
 		                 WHERE JP.JOB_POST_KINDS = '승인된공고'
 		                   AND SYSDATE BETWEEN UH.EXPOSURE_USE_DATE AND UH.EXPOSURE_END_DATE
 		                   AND JP.JOB_POST_DEADLINE > SYSDATE
+		                   AND TA.MEM_FILE_KINDS  = '프로필사진'
 		                 ORDER BY UH.EXPOSURE_USE_DATE DESC
 		               ) B
-<!--                    <![CDATA[ -->
-<!--                    WHERE ROWNUM <= #{ selectCriteria.endRow }  -->
-<!--                    ]]> 		        -->
               ) A
-<!-- 		<![CDATA[ -->
-<!--  		  WHERE A.RNUM >= #{ selectCriteria.startRow } -->
-<!--  		]]>	 -->
 	</select>
 	
 		

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Let IT Go</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="/let/resources/js/datatables.js"></script>
@@ -36,7 +36,12 @@
 				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 					<div class="jp_cp_left_side_wrapper">
 						<div class="jp_cp_left_pro_wallpaper">
-							<img src="images/content/cp1.png" alt="profile_img" style="width:300px; height: 300px;">
+							<c:if test="${ requestScope.resultResume.detailResume.memFilePath ne null}">
+								<img src="${ pageContext.servletContext.contextPath }${ requestScope.resultResume.detailResume.memFilePath }" alt="profile_img" style="width:300px; height: 300px;">
+							</c:if>
+							<c:if test="${ requestScope.resultResume.detailResume.memFilePath eq null }">
+								<img src="${ pageContext.servletContext.contextPath }/resources/image/basic.png" alt="profile_img" style="width:350px; height: 400px;">
+							</c:if>
 								<h2>${ detailList[0].memName }</h2>				
 						</div>
 						<div class="jp_cp_rd_wrapper">
@@ -154,8 +159,8 @@
 											<div class="panel-body">
 												<c:if test="${ requestScope.resultResume.selfIntroductionList.size() ne 0 }">
 													<c:forEach items="${ requestScope.resultResume.selfIntroductionList }" var="resume">
-														<c:out value="${ resume.selfIntroItemName }"/><br>
-														<c:out value="${ resume.selfIntroItemContent }"/>
+														<h4><c:out value="${ resume.selfIntroItemName }"/></h4>
+														<c:out value="${ resume.selfIntroItemContent }"/><br><br>
 													</c:forEach>
 												</c:if>
 												<c:if test="${ requestScope.resultResume.selfIntroductionList.size() eq 0 }">
@@ -186,14 +191,14 @@
 														직책 : <c:out value="${ resume.carJobName }"/><br>
 														업무 분야  : <c:out value="${ resume.carWorkField }"/><br>
 														입사일 : <c:out value="${ resume.carHireDate }"/><br>
-														퇴사일 : <c:out value="${ resume.carEntDate }"/><br>
+														퇴사일 : <c:out value="${ resume.carEntDate }"/><br><br>
 													</c:forEach><br>
 													<h4><label>프로젝트 이력</label></h4>
 													<c:forEach items="${ requestScope.resultResume.careerHistoryList }" var="resume">
 														프로젝트명 : <c:out value="${ resume.projectName }"/><br>
 														프로젝트 업무 내용 : <c:out value="${ resume.projectContent }"/><br>
 														프로젝트 시작일 : <c:out value="${ resume.projectStartDate }"/><br>
-														업무 프로젝트 종료일  : <c:out value="${ resume.projectEndDate }"/><br>
+														업무 프로젝트 종료일  : <c:out value="${ resume.projectEndDate }"/><br><br>
 													</c:forEach><br>
 												</c:if>
 												<c:if test="${ requestScope.resultResume.careerHistoryList.size() eq 0 }">
@@ -205,7 +210,7 @@
 													<c:forEach items="${ requestScope.resultResume.licenseHistoryList }" var="resume">
 														자격증 명 :<c:out value="${ resume.licenseName }"/><br>
 														발행처 : <c:out value="${ resume.licenseAgency }"/><br>
-														자격증 취득일 : <c:out value="${ resume.licenseDate }"/><br>
+														자격증 취득일 : <c:out value="${ resume.licenseDate }"/><br><br>
 													</c:forEach><br>
 												</c:if>
 												<c:if test="${ requestScope.resultResume.licenseHistoryList.size() eq 0 }">
@@ -218,7 +223,7 @@
 														교육기관 : <c:out value="${ resume.eduAgency }"/><br>
 														교육 시작일 : <c:out value="${ resume.eduStartDate }"/><br>
 														교육 종료일 : <c:out value="${ resume.eduEndDate }"/><br>
-														교육 내용 : <c:out value="${ resume.eduContent }"/><br>
+														교육 내용 : <c:out value="${ resume.eduContent }"/><br><br>
 													</c:forEach>
 												</c:if>
 												<c:if test="${ requestScope.resultResume.educationHistoryList.size() eq 0 }">
@@ -230,7 +235,7 @@
 														수상명 :<c:out value="${ resume.awdName }"/><br>
 														수상기관 : <c:out value="${ resume.awdAgency }"/><br>
 														수상일 : <c:out value="${ resume.awdDate }"/><br>
-														수상내용 : <c:out value="${ resume.awdContent }"/><br>
+														수상내용 : <c:out value="${ resume.awdContent }"/><br><br>
 													</c:forEach><br>
 												</c:if>
 												<c:if test="${ requestScope.resultResume.awardHistoryList.size() eq 0 }">

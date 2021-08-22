@@ -1,5 +1,9 @@
 package com.itsme.letitgo.company.info.model.dto;
 
+import java.util.List;
+
+import com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPostingDTO;
+
 public class CompanyAddInfoDTO implements java.io.Serializable {
 
 	private int coMemNo;
@@ -13,11 +17,14 @@ public class CompanyAddInfoDTO implements java.io.Serializable {
 	private String coSectors;
 	private String coStatus;
 	private String webSite;
+	private String memFilePath;
+	private List<SelectCoMyJobPostingDTO> coMyJobPostingList;
 	
 	public CompanyAddInfoDTO() {}
 
 	public CompanyAddInfoDTO(int coMemNo, String coIntro, String coNo, String coComName, String coCeoName,
-			String coAddress, String coPhone, String coPax, String coSectors, String coStatus, String webSite) {
+			String coAddress, String coPhone, String coPax, String coSectors, String coStatus, String webSite,
+			String memFilePath, List<SelectCoMyJobPostingDTO> coMyJobPostingList) {
 		super();
 		this.coMemNo = coMemNo;
 		this.coIntro = coIntro;
@@ -30,6 +37,8 @@ public class CompanyAddInfoDTO implements java.io.Serializable {
 		this.coSectors = coSectors;
 		this.coStatus = coStatus;
 		this.webSite = webSite;
+		this.memFilePath = memFilePath;
+		this.coMyJobPostingList = coMyJobPostingList;
 	}
 
 	public int getCoMemNo() {
@@ -120,13 +129,31 @@ public class CompanyAddInfoDTO implements java.io.Serializable {
 		this.webSite = webSite;
 	}
 
+	public String getMemFilePath() {
+		return memFilePath;
+	}
+
+	public void setMemFilePath(String memFilePath) {
+		this.memFilePath = memFilePath;
+	}
+
+	public List<SelectCoMyJobPostingDTO> getCoMyJobPostingList() {
+		return coMyJobPostingList;
+	}
+
+	public void setCoMyJobPostingList(List<SelectCoMyJobPostingDTO> coMyJobPostingList) {
+		this.coMyJobPostingList = coMyJobPostingList;
+	}
+
 	@Override
 	public String toString() {
 		return "CompanyAddInfoDTO [coMemNo=" + coMemNo + ", coIntro=" + coIntro + ", coNo=" + coNo + ", coComName="
 				+ coComName + ", coCeoName=" + coCeoName + ", coAddress=" + coAddress + ", coPhone=" + coPhone
 				+ ", coPax=" + coPax + ", coSectors=" + coSectors + ", coStatus=" + coStatus + ", webSite=" + webSite
-				+ "]";
+				+ ", memFilePath=" + memFilePath + ", coMyJobPostingList=" + coMyJobPostingList + "]";
 	}
+
+	
 
 
 	

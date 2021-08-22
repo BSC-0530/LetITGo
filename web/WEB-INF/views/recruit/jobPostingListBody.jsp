@@ -6,8 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>Let IT Go</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -21,8 +20,6 @@
 </head>
 <body>
 
-	<!-- jp listing sidebar Wrapper Start -->
-	<!-- 상단 검은색 -->
 	<div class="jp_tittle_main_wrapper">
 		<div class="jp_tittle_img_overlay"></div>
 		<div class="container">
@@ -78,7 +75,7 @@
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<div class="jp_rightside_job_categories_wrapper">
 									<div class="jp_rightside_job_categories_heading">
-	<!-- 검색 자동완성 -->					<h4>기술</h4>
+	 									<h4>기술</h4>
 									</div>
 									<div class="jp_blog_right_search_wrapper">
 										<input id="autocomplete" type="text" placeholder="Search" name="skills">
@@ -199,8 +196,7 @@
 	
 																	<!-- 이미지 경로  -->
 																	<div class="jp_job_post_side_img">
-	<!--  이미지 경로 -->																	<img
-																			src="${ pageContext.servletContext.contextPath }/resources/image/bmw.png"
+																		<img src="${ pageContext.servletContext.contextPath }${ jobPosting.memFilePath }"
 																			style="width: 120px; height: 120px;" alt="post_img" />
 																	</div>
 																	<div></div>
@@ -213,7 +209,7 @@
 																		</div>
 																		<div>
 																		<label><c:out value="${ jobPosting.coMemberAddInfoDTO.coComName }"/></label>
-	<!-- 지역 처리 필요 -->														<c:set var="coAddress" value="${ jobPosting.coMemberAddInfoDTO.coAddress }"/>
+	   																	<c:set var="coAddress" value="${ jobPosting.coMemberAddInfoDTO.coAddress }"/>
 																		<c:set var="address" value="${ fn:split(coAddress,'$')[0]}"/>
 																		<c:set var="area" value="${ fn:split(address, ' ')[0] }"></c:set>
 																			<label><c:out value="(${ area })"></c:out></label>
@@ -265,7 +261,7 @@
 													</div>
 												</div>
 											</c:forEach>
-										</div><!--  -->
+										</div>
 									</div>
 								</div>
 							</div>
