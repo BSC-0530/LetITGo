@@ -23,8 +23,8 @@ public class MainPageServlet extends HttpServlet {
 		
 		String path = "";
 		
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:" + resultMap)
-		;
+		
+		System.out.println(resultMap);
 		if(resultMap != null) {
 			request.setAttribute("resultMap", resultMap);
 			path = "/WEB-INF/views/main/main.jsp";			

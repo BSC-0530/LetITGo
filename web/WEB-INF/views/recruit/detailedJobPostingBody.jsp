@@ -8,12 +8,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Let IT Go</title>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=78b48235e398b3e2421dd3b9095893d6&libraries=services"></script>
 </head>
 <body>
-
-
 	<c:set var="jobPosting" value="${ requestScope.detailedJobPosting }"></c:set>
 	<div class="jp_tittle_main_wrapper">
 		<div class="jp_tittle_img_overlay"></div>
@@ -48,7 +46,7 @@
                     	
                         <div style="width:100%; height:300px;">
                         <!-- 경로가 널이 아닐때 대표이미지 출력해줘야함 -->
-                            <img style=" height: 280px;"src="images/content/web.png" alt="대표이미지 없음" />
+                            <img style=" height: 280px;"src="${ pageContext.servletContext.contextPath }${ requestScope.titleFilePath }" alt="대표이미지 없음" />
                         </div>
                         
                         <div class="jp_job_des">
@@ -111,7 +109,7 @@
                                 </div>
                                 <div class="jp_jop_overview_img_wrapper">
                                     <div class="jp_jop_overview_img">
-                                        <img src="images/content/web.png" alt="로고 없음" />
+                                        <img style="width: 200px; height: 200px;"src="${ pageContext.servletContext.contextPath }${ requestScope.logoFilePath }" alt="로고 없음" />
                                     </div>
                                 </div>
                                 <div class="jp_job_listing_single_post_right_cont">

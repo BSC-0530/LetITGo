@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Let IT Go admin</title>
 </head>
 <body>
 	<!-- <h1 align="center">성공!</h1> -->	

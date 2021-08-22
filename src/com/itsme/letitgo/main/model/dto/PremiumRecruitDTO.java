@@ -22,13 +22,14 @@ public class PremiumRecruitDTO implements java.io.Serializable {
 	private Date jobPostDeadline;
 	private String jobName;
 	private String coAddress;
+	private String memFilePath;
 	private List<JpSkillsDTO> reqSkillsList;
 	
 	public PremiumRecruitDTO() {}
 
 	public PremiumRecruitDTO(int jobPostNo, String jobPostTitle, String coComName, int coMemNo,
 			String jobPostMinExperience, String jobPostMaxExperience, Date jobPostEnrollDate, Date jobPostDeadline,
-			String jobName, String coAddress, List<JpSkillsDTO> reqSkillsList) {
+			String jobName, String coAddress, String memFilePath, List<JpSkillsDTO> reqSkillsList) {
 		super();
 		this.jobPostNo = jobPostNo;
 		this.jobPostTitle = jobPostTitle;
@@ -40,6 +41,7 @@ public class PremiumRecruitDTO implements java.io.Serializable {
 		this.jobPostDeadline = jobPostDeadline;
 		this.jobName = jobName;
 		this.coAddress = coAddress;
+		this.memFilePath = memFilePath;
 		this.reqSkillsList = reqSkillsList;
 	}
 
@@ -123,6 +125,14 @@ public class PremiumRecruitDTO implements java.io.Serializable {
 		this.coAddress = coAddress;
 	}
 
+	public String getMemFilePath() {
+		return memFilePath;
+	}
+
+	public void setMemFilePath(String memFilePath) {
+		this.memFilePath = memFilePath;
+	}
+
 	public List<JpSkillsDTO> getReqSkillsList() {
 		return reqSkillsList;
 	}
@@ -137,11 +147,9 @@ public class PremiumRecruitDTO implements java.io.Serializable {
 				+ coComName + ", coMemNo=" + coMemNo + ", jobPostMinExperience=" + jobPostMinExperience
 				+ ", jobPostMaxExperience=" + jobPostMaxExperience + ", jobPostEnrollDate=" + jobPostEnrollDate
 				+ ", jobPostDeadline=" + jobPostDeadline + ", jobName=" + jobName + ", coAddress=" + coAddress
-				+ ", reqSkillsList=" + reqSkillsList + "]";
+				+ ", memFilePath=" + memFilePath + ", reqSkillsList=" + reqSkillsList + "]";
 	}
-
 	
-
 	
 	
 	

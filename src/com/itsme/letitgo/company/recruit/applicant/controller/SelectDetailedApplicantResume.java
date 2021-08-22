@@ -30,17 +30,16 @@ public class SelectDetailedApplicantResume extends HttpServlet {
 		ApplicantDTO updateDTO = new ApplicantDTO();
 		updateDTO.setJobPostNo(jobPostNo);
 		updateDTO.setResumeNo(resumeNo);
+		
 		int updateResult = service.updateBrowesStatus(updateDTO);
 		
 		// 이력서 내용(list포함) 을 담을 dto 인스턴스 생성하기
 		SelectDetailedResumeDTO resultResume = new SelectDetailedResumeDTO();
 		
 		// service 호출을 통해 이력서 상세 내용에 대한 dto 반환받기
-		
 		resultResume = service.selectDetailedApplicantResume(resumeNo);
 		
 		// 값을 request영역에 담아 detailedApplicant.jsp로 forward해주기
-		
 		
 		String path ="";
 		if(resultResume != null) {

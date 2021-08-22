@@ -1,6 +1,8 @@
 package com.itsme.letitgo.personal.recruit.jobposting.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -41,10 +43,11 @@ public class SelectDetailedJobPostingServlet extends HttpServlet {
 		// jobPostring에 대한 상세 정보를 db에서 조회한다.
 		Map<String, Object> jp = service.selectDetailedJobPosting(jobPostNo);
 		
-		
 		request.setAttribute("detailedJobPosting", jp.get("detailedJobPosting"));
 		request.setAttribute("deteildeJpSkills", jp.get("deteildeJpSkills"));
 		request.setAttribute("applyingResult", applyingResult);
+		request.setAttribute("titleFilePath", jp.get("titleFilePath"));
+		request.setAttribute("logoFilePath", jp.get("logoFilePath"));
 		
 		
 		String path = "/WEB-INF/views/recruit/detailedJobPosting.jsp";

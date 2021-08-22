@@ -19,6 +19,7 @@
 		<result property="memName" column="MEM_NAME"/>
 		<result property="memPhone" column="MEM_PHONE"/>
 		<result property="memEmail" column="MEM_EMAIL"/>
+		<result property="memFilePath" column="MEM_FILE_PATH"/>
 	</resultMap>
 	
 	<resultMap type="com.itsme.letitgo.company.recruit.applicant.model.dto.AwardHistoryDTO" id="awardHistoryResultMap">
@@ -98,8 +99,6 @@
   	       AND AH.JOB_POST_NO = #{ jobPostNo }
 	</select>
 	
-	<!-- 지원자별 공고 리스트 조회
-		  여기에 검색 조건 추가해야됨 -->
 	<select id="selectApplicant" resultMap="applicantList">
 		SELECT 	/* com.itsme.letitgo.company.recruit.applicant.model.mapper.RecruitApplicantMapper#selectApplicant() */	
 			   A.RNUM
@@ -153,10 +152,13 @@
 			 , M.MEM_NAME
 			 , M.MEM_PHONE
 			 , M.MEM_EMAIL
+			 , SUBSTR(B.MEM_FILE_PATH,21) AS MEM_FILE_PATH
 		  FROM TBL_RESUME R	   
 		  JOIN TBL_JOB_FIELD JF ON(R.JOB_NO = JF.JOB_NO)
 		  JOIN TBL_MEMBER M ON(R.IN_MEM_NO = M.MEM_NO)
+		  LEFT JOIN TBL_ATTACHMENT B ON(R.IN_MEM_NO = B.MEM_NO)
 		 WHERE R.RESUME_NO = #{ resumeNo }
+		   AND B.MEM_FILE_KINDS ='프로필사진'
 	</select>
 	
 	<select id="selectAwardHistory" resultMap="awardHistoryResultMap">

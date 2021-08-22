@@ -21,6 +21,8 @@ public class SelectJobPostingDTO implements java.io.Serializable {
 	private String preferentialMatters; 		// 우대사항
 	private String benefitAndWelfare;			// 혜택 및 복지
 	private String companyResumeLink;			// 자사 이력서 양식 링크
+	private String memFilePath;
+	private String memFileKinds;
 	private JpCoMemberAddInfoDTO coMemberAddInfoDTO;
 	private JpJobFieldDTO jobFieldDTO;
 	private JpAttachmentDTO attachmentDTO;
@@ -34,8 +36,8 @@ public class SelectJobPostingDTO implements java.io.Serializable {
 			String jobPostMaxExperience, Date jobPostEnrollDate, Date jobPostDeadline, String jobPostKinds, int jobNo,
 			String exposureUseCheck, String jobPostApplying_kinds, String jobPostContents,
 			String qualificationRequirements, String preferentialMatters, String benefitAndWelfare,
-			String companyResumeLink, JpCoMemberAddInfoDTO coMemberAddInfoDTO, JpJobFieldDTO jobFieldDTO,
-			JpAttachmentDTO attachmentDTO, JpJobPostingAppHistoryDTO jobPostingAppHistoryDTO,
+			String companyResumeLink, String memFilePath, String memFileKinds, JpCoMemberAddInfoDTO coMemberAddInfoDTO,
+			JpJobFieldDTO jobFieldDTO, JpAttachmentDTO attachmentDTO, JpJobPostingAppHistoryDTO jobPostingAppHistoryDTO,
 			List<JpSkillsDTO> reqSkillsList, JpOwnFormResumeAttachmentDTO ownFormResumeAttachmentDTO) {
 		super();
 		this.jobPostNo = jobPostNo;
@@ -54,6 +56,8 @@ public class SelectJobPostingDTO implements java.io.Serializable {
 		this.preferentialMatters = preferentialMatters;
 		this.benefitAndWelfare = benefitAndWelfare;
 		this.companyResumeLink = companyResumeLink;
+		this.memFilePath = memFilePath;
+		this.memFileKinds = memFileKinds;
 		this.coMemberAddInfoDTO = coMemberAddInfoDTO;
 		this.jobFieldDTO = jobFieldDTO;
 		this.attachmentDTO = attachmentDTO;
@@ -190,6 +194,22 @@ public class SelectJobPostingDTO implements java.io.Serializable {
 		this.companyResumeLink = companyResumeLink;
 	}
 
+	public String getMemFilePath() {
+		return memFilePath;
+	}
+
+	public void setMemFilePath(String memFilePath) {
+		this.memFilePath = memFilePath;
+	}
+
+	public String getMemFileKinds() {
+		return memFileKinds;
+	}
+
+	public void setMemFileKinds(String memFileKinds) {
+		this.memFileKinds = memFileKinds;
+	}
+
 	public JpCoMemberAddInfoDTO getCoMemberAddInfoDTO() {
 		return coMemberAddInfoDTO;
 	}
@@ -247,14 +267,14 @@ public class SelectJobPostingDTO implements java.io.Serializable {
 				+ ", jobPostApplying_kinds=" + jobPostApplying_kinds + ", jobPostContents=" + jobPostContents
 				+ ", qualificationRequirements=" + qualificationRequirements + ", preferentialMatters="
 				+ preferentialMatters + ", benefitAndWelfare=" + benefitAndWelfare + ", companyResumeLink="
-				+ companyResumeLink + ", coMemberAddInfoDTO=" + coMemberAddInfoDTO + ", jobFieldDTO=" + jobFieldDTO
-				+ ", attachmentDTO=" + attachmentDTO + ", jobPostingAppHistoryDTO=" + jobPostingAppHistoryDTO
-				+ ", reqSkillsList=" + reqSkillsList + ", ownFormResumeAttachmentDTO=" + ownFormResumeAttachmentDTO
-				+ "]";
+				+ companyResumeLink + ", memFilePath=" + memFilePath + ", memFileKinds=" + memFileKinds
+				+ ", coMemberAddInfoDTO=" + coMemberAddInfoDTO + ", jobFieldDTO=" + jobFieldDTO + ", attachmentDTO="
+				+ attachmentDTO + ", jobPostingAppHistoryDTO=" + jobPostingAppHistoryDTO + ", reqSkillsList="
+				+ reqSkillsList + ", ownFormResumeAttachmentDTO=" + ownFormResumeAttachmentDTO + "]";
 	}
 
-
-
+	
+	
 	
 	
 }

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>LetItGo</title>
+<title>Let IT Go</title>
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/animate.css" />
 <link rel="stylesheet" type="text/css"
@@ -37,7 +37,7 @@
 	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 </head>
 <body>
-
+	<jsp:include page="../common/header/companyHeader.jsp"/>
 	<jsp:include page="selectApplicantListBody.jsp"/>
 	<jsp:include page="../common/footer.jsp"/>
 

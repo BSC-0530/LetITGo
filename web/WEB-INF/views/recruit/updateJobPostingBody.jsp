@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Let IT Go</title>
     <style>
         #titleFont {
             font-size: 30px;
@@ -62,11 +62,7 @@
 			});
 			
 		}
-// 			<input type="checkBox" name="skills" id="s${ status.index }" value="${ skills.skillsNo }">
-// 			<label for="s${ status.index }"><c:out value="${ skills.skillsName }"></c:out></label>
-//         <input type="checkbox" value="" name="selectSkills" id="test" style="display:none;">
-//         <label for="test"><c:out value="dd"></c:out></label>
-        
+
 		$("#skills").change(function() {
 			var skillsNo = $("#skills option:selected").val();
 			var skillsName = $("#skills option:selected").text();
@@ -197,7 +193,7 @@
 
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%; margin-top: 30px;">
                                 <div class="jp_adp_form_wrapper">
-     <!--  기@@@술 -->                           </div>
+                               </div>
                                 <label id="titleFont">기술</label><br>
                                 <label>카테고리</label>
                                 <select name="skillsCategory" id="skillsCategory">

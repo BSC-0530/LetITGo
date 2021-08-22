@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>Insert title here</title>
+<title>Let IT Go</title>
 </head>
 <body>
 
