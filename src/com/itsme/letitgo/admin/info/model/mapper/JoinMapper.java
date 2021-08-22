@@ -17,8 +17,12 @@ public interface JoinMapper {
 
 	int selectedDetail(CompanyJoinDTO companyJoinDTO);
 
-	int joinDetail(CompanyJoinDTO companyJoinDTO);
+	CompanyJoinDTO memberInfo(int coReqNo);
 
+
+
+	
+	
 
 
 
