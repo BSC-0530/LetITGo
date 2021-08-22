@@ -42,16 +42,17 @@
 	
 	<select id="insertRequestList" resultMap="requestInsert">
 		SELECT
-			   CO_REQ_NO
-			 , CO_COM_NAME
-			 , CO_MEM_NO
-			 , CO_ANS_KINDS
-			 , CO_REQ_DATE
-			 , CO_ANS_DATE
-			 , CO_REQ_KINDS
-			 , CO_REJECT_REASON
-	      FROM TBL_CO_MEMBER_APP_HISTORY
-	     WHERE CO_REQ_KINDS = '회원가입'
+			   A.CO_REQ_NO
+			 , B.CO_COM_NAME
+			 , A.CO_MEM_NO
+			 , A.CO_ANS_KINDS
+			 , A.CO_REQ_DATE
+			 , A.CO_ANS_DATE
+			 , A.CO_REQ_KINDS
+			 , A.CO_REJECT_REASON
+	      FROM TBL_CO_MEMBER_APP_HISTORY A
+          JOIN TBL_CO_MEMBER_ADD_INFO B ON(A.CO_MEM_NO = B.CO_MEM_NO)
+	     WHERE A.CO_REQ_KINDS = '회원가입'
 	</select>
 	
 	

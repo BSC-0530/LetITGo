@@ -63,7 +63,7 @@
 												<br> <br>
 												<p><a href="${ pageContext.servletContext.contextPath }/personal/bookmark/select">북마크</a></p>
 												<br> <br>
-												<p><a href="${ pageContext.servletContext.contextPath }">회원탈퇴</a></p>
+												<p><a href="${ pageContext.servletContext.contextPath }/login/member/withdrawal/yn">회원탈퇴</a></p>
 												<br> <br>
 											</div>
 										</div>
@@ -117,7 +117,8 @@
 						</div>
 						<br>
 						
-						<button onclick="infoChange();" class="btn btn-info" id="coInfoChange" style="float: right;">회원 정보 변경</button>
+						<button type="button" onclick="infoChange();" class="btn btn-info" id="coInfoChange" style="float: right;">회원 정보 변경</button>
+						<input type="hidden" id="memNo" value="${ sessionScope.loginMember.memNo }">
 					</div>
 				</div>
 			</div>
@@ -125,9 +126,9 @@
 	</div>
 <script>
 	function infoChange() {
-		alert("");	
+		var memNo = document.getElementById("memNo").value;
 		
-		location.href ="/let/personalMyInfo/update";
+		location.href ="${ pageContext.servletContext.contextPath }/member/personal/modifyinfo?memNo=" + memNo;
 		
 	}
 	

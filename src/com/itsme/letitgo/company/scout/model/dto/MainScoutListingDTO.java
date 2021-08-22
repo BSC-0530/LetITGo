@@ -13,6 +13,7 @@ public class MainScoutListingDTO implements java.io.Serializable {
 	private int resumeNo;
 	private int carNo;
 	private int skillNo;
+	private String path;
 	private CompanyInfoDTO memberDTO;
 	private ResumeDTO resumeDTO;
 	private List<CompanyCareerHistoryDTO> carHistoryDTO;
@@ -20,7 +21,7 @@ public class MainScoutListingDTO implements java.io.Serializable {
 	
 	public MainScoutListingDTO() {}
 
-	public MainScoutListingDTO(int memNo, int resumeNo, int carNo, int skillNo, CompanyInfoDTO memberDTO,
+	public MainScoutListingDTO(int memNo, int resumeNo, int carNo, int skillNo, String path, CompanyInfoDTO memberDTO,
 			ResumeDTO resumeDTO, List<CompanyCareerHistoryDTO> carHistoryDTO,
 			List<HoldingAndSkillsDTO> holdingSkillDTO) {
 		super();
@@ -28,6 +29,7 @@ public class MainScoutListingDTO implements java.io.Serializable {
 		this.resumeNo = resumeNo;
 		this.carNo = carNo;
 		this.skillNo = skillNo;
+		this.path = path;
 		this.memberDTO = memberDTO;
 		this.resumeDTO = resumeDTO;
 		this.carHistoryDTO = carHistoryDTO;
@@ -66,6 +68,14 @@ public class MainScoutListingDTO implements java.io.Serializable {
 		this.skillNo = skillNo;
 	}
 
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
 	public CompanyInfoDTO getMemberDTO() {
 		return memberDTO;
 	}
@@ -101,8 +111,10 @@ public class MainScoutListingDTO implements java.io.Serializable {
 	@Override
 	public String toString() {
 		return "MainScoutListingDTO [memNo=" + memNo + ", resumeNo=" + resumeNo + ", carNo=" + carNo + ", skillNo="
-				+ skillNo + ", memberDTO=" + memberDTO + ", resumeDTO=" + resumeDTO + ", carHistoryDTO=" + carHistoryDTO
-				+ ", holdingSkillDTO=" + holdingSkillDTO + "]";
+				+ skillNo + ", path=" + path + ", memberDTO=" + memberDTO + ", resumeDTO=" + resumeDTO
+				+ ", carHistoryDTO=" + carHistoryDTO + ", holdingSkillDTO=" + holdingSkillDTO + "]";
 	}
+	
+	
 	
 }

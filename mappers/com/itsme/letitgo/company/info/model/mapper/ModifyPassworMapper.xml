@@ -18,6 +18,6 @@
 			UPDATE
 			  	   TBL_MEMBER
 			   SET MEM_PWD = #{ memPwd }
-			 WHERE MEM_NO = #{ memNO }
+			 WHERE MEM_ID = #{ memId }
 		</update>	
 </mapper>

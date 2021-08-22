@@ -177,7 +177,6 @@
 										items="${ requestScope.skillsList }">
 										
 										<input type="hidden" name="no" value="${ controllSkills.no }"/>
-										<input type="hidden" name="skillsNo" value="${ controllSkills.skillsNo }"/>
 										
 
 											<tr>
@@ -197,7 +196,7 @@
 								<br>
 
 								<div class="skills-insert-wrapper" onclick="post(this);">
-									<button type="submit">등록하기</button>
+									<button type="button">등록하기</button>
 								</div>
 
 							</div>

@@ -61,9 +61,6 @@ public class UpdateRejectRefundStatusServlet extends HttpServlet {
 
 		/* 결제의 상태를 환불거절로 변경 */
 		int result2 = UpdateRefundStatus.updateRefundRejectStatus2(map);
-		
-		System.out.println("result1 : " + result1);
-		System.out.println("result2 : " + result2);
 
 		StringBuilder redirectText = new StringBuilder();
 		

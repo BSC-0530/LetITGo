@@ -110,7 +110,7 @@
 												</p>
 												<br><br>
 												<p>
-													<a href="#">회원탈퇴</a>
+													<a href="${ pageContext.servletContext.contextPath }/login/comember/withdrawal/yn">회원탈퇴</a>
 												</p>
 												<br><br>
 											</div>
@@ -200,7 +200,7 @@ function imgChange(button){
 	
 	let no = document.getElementById("memNo").value;
 // 	alert(no);
-	location.href ="${ pageContext.servletContext.contextPath }/company/image/change?no="+no
+	location.href ="${ pageContext.servletContext.contextPath }/company/image/change?no=" + no;
 	
 }
 </script>

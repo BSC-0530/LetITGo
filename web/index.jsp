@@ -10,7 +10,9 @@
 
 	window.onload = function(){
 	
+
 	location.href = "/let/mainPage/letitgo";
+
 	
 	}
 

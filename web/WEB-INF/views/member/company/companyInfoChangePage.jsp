@@ -118,11 +118,11 @@ width: 100px; height: 50px; background-color:transparent;
                                             </p>
                                             <br><br>
                                             <p>
-                                                <a href="#">찜한 후보자</a>
+                                                <a href="${ pageContext.servletContext.contextPath }/company/scout/wish/select">찜한 후보자</a>
                                             </p>
                                             <br><br>
                                             <p>
-                                                <a href="#">회원 탈퇴</a>
+                                                <a href="${ pageContext.servletContext.contextPath }/login/comember/withdrawal/yn">회원 탈퇴</a>
                                             </p>
                                             <br><br>
                                         </div>
