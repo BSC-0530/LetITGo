@@ -1,6 +1,7 @@
 package com.itsme.letitgo.company.scout.controller;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -19,6 +20,8 @@ public class ScoutDetailResumeServlet extends HttpServlet {
 		int resumeNo = Integer.parseInt(request.getParameter("resumeNo"));
 		System.out.println(resumeNo);
 		Map<String, Object> detailMap = new MainScoutListService().selectDetailResume(resumeNo);
+
+		
 		
 		
 		int result = new MainScoutListService().updateDetailStatus(resumeNo);
@@ -27,7 +30,15 @@ public class ScoutDetailResumeServlet extends HttpServlet {
 		
 		if(detailMap != null) {
 			path = "/WEB-INF/views/scout/scoutDetailResume.jsp";
-			request.setAttribute("detailList", detailMap);
+			request.setAttribute("detailResume", detailMap.get("detailResume"));
+			request.setAttribute("detailCareer", detailMap.get("detailCareer"));
+			request.setAttribute("detailSkills", detailMap.get("detailSkills"));
+			request.setAttribute("detailIntroContent", detailMap.get("detailIntroContent"));
+			request.setAttribute("detailAward", detailMap.get("detailAward"));
+			request.setAttribute("detailEdu", detailMap.get("detailEdu"));
+			request.setAttribute("detailLicense", detailMap.get("detailLicense"));
+			request.setAttribute("detailJobField", detailMap.get("detailJobField"));
+			request.setAttribute("detailPot", detailMap.get("detailPot"));
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);
