@@ -79,6 +79,7 @@
 		<result property="resumeScoutStatus" column="RESUME_SCOUT_STATUS"/>
 		<result property="jobNo" column="JOB_NO"/>
 		<result property="resumeTitle" column="RESUME_TITLE"/>
+		<result property="path" column="MEM_FILE_PATH"/>
 		
 		<collection property="memDTO" resultMap="candiMemResultMap"/>
 		<collection property="holdingAndSkillsDTO" resultMap="holdingSkillsResultMap" />
@@ -473,12 +474,14 @@
 			      , R.RESUME_NO 
 			      , JF.JOB_NAME
                   , CH.CAR_COM_NAME
-		      FROM TBL_RESUME R
-			  JOIN TBL_MEMBER M ON (M.MEM_NO = R.IN_MEM_NO)
-			  JOIN TBL_CAREER_HISTORY CH ON (R.RESUME_NO = CH.RESUME_NO)
-			  JOIN TBL_JOB_FIELD JF ON (R.JOB_NO = JF.JOB_NO)
-              GROUP BY R.RESUME_NO, M.MEM_NAME, JF.JOB_NAME, CH.CAR_COM_NAME
-              HAVING R.RESUME_NO = #{ onClickResumeNo }
+                  , SUBSTR(A.MEM_FILE_PATH,21) AS MEM_FILE_PATH
+		       FROM TBL_RESUME R
+		  LEFT JOIN TBL_MEMBER M ON (M.MEM_NO = R.IN_MEM_NO)
+		  LEFT JOIN TBL_CAREER_HISTORY CH ON (R.RESUME_NO = CH.RESUME_NO)
+	      LEFT JOIN TBL_JOB_FIELD JF ON (R.JOB_NO = JF.JOB_NO)
+          LEFT JOIN TBL_ATTACHMENT A ON (M.MEM_NO = A.MEM_NO)
+           GROUP BY R.RESUME_NO, M.MEM_NAME, JF.JOB_NAME, CH.CAR_COM_NAME, A.MEM_FILE_PATH
+             HAVING R.RESUME_NO = #{ onClickResumeNo }
 		</select>
 		
 		<select id="careeaNumber" resultType="_int">
@@ -695,13 +698,13 @@
 <!-- 				SKILLS_NAME -->
 <!-- 			FROM TBL_SKILLS	 -->
 <!-- 		</select> -->
-	<select id="selectedProfileList" resultMap="fileImage">
-			SELECT
-     			   MEM_NO
-        		 , SUBSTR(MEM_FILE_PATH,21) AS MEM_FILE_PATH
-			  FROM TBL_ATTACHMENT
-		 	 WHERE MEM_FILE_KINDS = '프로필사진'
-	</select>
+<!-- 	<select id="selectedProfileList" resultMap="fileImage"> -->
+<!-- 			SELECT -->
+<!--      			   MEM_NO -->
+<!--         		 , SUBSTR(MEM_FILE_PATH,21) AS MEM_FILE_PATH -->
+<!-- 			  FROM TBL_ATTACHMENT -->
+<!-- 		 	 WHERE MEM_FILE_KINDS = '프로필사진' -->
+<!-- 	</select> -->
 	
 
 	<insert id="insertInterview">

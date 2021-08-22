@@ -79,8 +79,10 @@ public class MainScoutListService {
 		Map<String,Object> simpleInfo =  new HashMap<>();
 		
 		if(brosweSimplelDTO.size() != 0) {
-			String browseName = (brosweSimplelDTO.get(0).getMemDTO().get(0).getMemName()).toString();			
+			String browseName = (brosweSimplelDTO.get(0).getMemDTO().get(0).getMemName()).toString();
+			String path = brosweSimplelDTO.get(0).getPath();
 			simpleInfo.put("browseName", browseName);
+			simpleInfo.put("path", path);
 		}
 		if(brosweSimplelDTO.size() != 0) {
 			String jobName = (brosweSimplelDTO.get(0).getJobFieldDTO().get(0).getJobName()).toString();			
