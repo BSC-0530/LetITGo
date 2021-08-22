@@ -23,15 +23,9 @@ public class JobFieldDeleteServlet extends HttpServlet {
 		JobFieldDTO requestJobField = new JobFieldDTO();
 		requestJobField.setNo(no);
 		
-		//requestJobField 확인
-		System.out.println("jobFieldController requestJobField : " + requestJobField);
-		
 		int result = new JobFieldService().jobFieldDelete(no);
 		
-		//result값 확인
-		System.out.println("jobFieldController result : " + result);
-		
-		String path = "";  //빈 문자열을 선언 후, 밑의 if문을 돌려서 성공과 실패의 주소로 간다.
+		String path = "";  
 		
 		if(result > 0) {
 			path = "/WEB-INF/views/admin/adminSuccess.jsp";

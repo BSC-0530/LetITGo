@@ -42,7 +42,7 @@
 									href="${ pageContext.servletContext.contextPath }/company/myPage/main"
 									class="gc_main_navigation" class="gc_main_navigation">본근</a></li>
 								<li class="has-mega gc_main_navigation"><a
-									href="${ pageContext.servletContext.contextPath }/login/check/pwd"
+									href="${ pageContext.servletContext.contextPath }/jobfield/list"
 									class="gc_main_navigation" class="gc_main_navigation">태훈</a></li>
 								<li class="has-mega gc_main_navigation">
 									<a

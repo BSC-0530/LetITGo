@@ -19,25 +19,14 @@ public class SkillsCategoryDeleteServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		int no = Integer.parseInt(request.getParameter("no"));
-//		String name = request.getParameter("name");
-//		int upperNo = Integer.parseInt(request.getParameter("uppperNo"));
-		
+	
 		SkillsCategoryDTO requestSkillsCategory = new SkillsCategoryDTO();
-		requestSkillsCategory.setNo(no);
-		/*
-		 * requestSkillsCategory.setName(name);
-		 * requestSkillsCategory.setUpperNo(upperNo);
-		 */
 		
-		//requestSkillsCategory 확인
-		System.out.println("skillsCategoryController requestSkillsCategory : " + requestSkillsCategory);
+		requestSkillsCategory.setNo(no);
 		
 		int result = new SkillsCategoryService().skillsCategoryDelete(no);
 		
-		//result값 확인
-		System.out.println("skillsCategoryController result" + result);
-		
-		String path = ""; //빈 문자열을 선언 후, 밑의 if문을 돌려서 성공과 실패의 주소로 간다.
+		String path = ""; 
 		
 		if(result > 0) {
 			path = "/WEB-INF/views/admin/adminSuccess.jsp";

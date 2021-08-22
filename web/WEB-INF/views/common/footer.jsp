@@ -34,14 +34,14 @@
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <div class="jp_footer_candidate_wrapper jp_footer_candidate_wrapper2">
                                 <div class="jp_footer_candidate">
-                                    <h2>이용약관</h2>
+                                    <h2><a href="${ pageContext.servletContext.contextPath }/personalinfopolicy/list">이용약관</a></h2>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <div class="jp_footer_candidate_wrapper jp_footer_candidate_wrapper3">
                                 <div class="jp_footer_candidate">
-                                    <h2>개인정보 처리방침</h2>
+                                    <h2><a href="${ pageContext.servletContext.contextPath }/personalinfopolicy/list">개인정보 처리방침</a></h2>
                                 </div>
                             </div>
                         </div>
