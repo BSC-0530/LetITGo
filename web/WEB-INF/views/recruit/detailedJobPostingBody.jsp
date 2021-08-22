@@ -13,26 +13,6 @@
 </head>
 <body>
 
-<%
-	MemberLoginDTO dto = (MemberLoginDTO) session.getAttribute("loginMember");
-
-	String memKinds = dto.getMemKinds();
-	
-%>	
-<%
-	if(memKinds.equals("개인회원")) {
-%>
-	<jsp:include page="../common/header/personalHeader.jsp"/>
-<%
-	}
-%>
-<%
-	if(memKinds.equals("기업회원")) {
-%>
-	<jsp:include page="../common/header/companyHeader.jsp"/>
-<%
-	}
-%>	
 
 	<c:set var="jobPosting" value="${ requestScope.detailedJobPosting }"></c:set>
 	<div class="jp_tittle_main_wrapper">
@@ -275,6 +255,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
     
 
