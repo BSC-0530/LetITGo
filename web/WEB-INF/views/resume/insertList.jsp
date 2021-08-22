@@ -36,6 +36,34 @@
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+		$("#searchSkillsAuto").autocomplete({
+			source: function(request, response) {
+				$.ajax({
+					url: "${ pageContext.servletContext.contextPath }/search/auto/skills",
+					type: "POST",
+					data: { term: request.term },
+					dataType: "json",
+					success: function(data, textStatus, xnr) {
+						response($.map(data, function(item) {
+							console.log(item);
+							return {
+								label: item.skillsName,
+								value: item.value
+							};
+						}));
+					},
+					error: function(xnr, status, error) {
+						console.log(xnr);
+					}
+				});
+			},
+		});
+	});
+		
+</script>
 </head>
 <body>
 	<jsp:include page="../common/header/personalHeader.jsp" />
@@ -111,6 +139,17 @@
 								id="jobNo" value="13" name="jobNo">HW/임베디드</label> <label><input
 								style="width: 20px; height: 20px; border: 1px;" type="radio"
 								id="jobNo" value="14" name="jobNo">SW/솔루션</label>
+						</div>
+						
+						<div class="row" id="inputSkills">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="jp_adp_form_wrapper">
+									<h3>보유 기술</h3>
+									<label for="searchSkillsAuto">
+										<input id="searchSkillsAuto" name="inputSkill">
+									</label>
+								</div>
+							</div>
 						</div>
 						
 						<div class="row" id="inputCareer">
@@ -216,7 +255,7 @@
 						</div>
 					</div>
 
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="inputIntro">
 						<div class="jp_adp_textarea_main_wrapper" id="selfIntro">
 							<h3>자기소개서</h3>
 							<select name="selfIntroItemNo">
@@ -229,6 +268,11 @@
 							<textarea rows="7" placeholder="항목에 맞는 내용을 입력하세요"
 								name="selfIntroItemContent"></textarea>
 						</div>
+						<div class="col-lg-12 col-md-12 col-md-12 col-xs-12">
+								<div class="jp_adp_form_wrapper">
+									<button id="addIntroBtn" type="button">추가 +</button>
+								</div>
+							</div>
 					</div>
 					<br> <br>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -252,6 +296,11 @@
 									<label>자격증 취득일</label> <input type="date" name="licenseDate">
 								</div>
 							</div>
+							<div class="col-lg-12 col-md-12 col-md-12 col-xs-12">
+									<div class="jp_adp_form_wrapper">
+										<button id="addLicenseBtn" type="button">추가 +</button>
+									</div>
+								</div>
 						</div>
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -286,6 +335,11 @@
 										name="eduContent"></textarea>
 								</div>
 							</div>
+							<div class="col-lg-12 col-md-12 col-md-12 col-xs-12">
+								<div class="jp_adp_form_wrapper">
+									<button id="addEduBtn" type="button">추가 +</button>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -314,6 +368,11 @@
 										name="awdContent"></textarea>
 								</div>
 							</div>
+							<div class="col-lg-12 col-md-12 col-md-12 col-xs-12">
+								<div class="jp_adp_form_wrapper">
+									<button id="addAwdBtn" type="button">추가 +</button>
+								</div>
+							</div>
 						</div>
 					</div>
 
@@ -331,9 +390,15 @@
 		<!-- jp ad post Wrapper End -->
 
 	</form>
+	
  	<script type="text/javascript">
  	 	$(document).on('click','#addCareerBtn',function() {
+ 	 		
  			$('#inputCareer')
+ 				.append('<div class="jp_adp_main_section_wrapper">')
+ 				.append('<div class="container">')
+ 				.append('<div class="row">')
+ 				.append('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">')
  				.append("<div class='row' id='inputCareer'>")
  				.append("<div class='col-lg-3 col-md-3 col-md-3 col-xs-12'>")
  				.append("<div class='jp_adp_form_wrapper'>")
@@ -410,15 +475,56 @@
  				.append("<button id='addCareerBtn' type='button'>추가 +</button>")
  				.append("</div>")
  				.append("</div>")
- 				.append("</div>");
+ 				.append("</div>")
+ 				.append("</div>")
+ 				.append("</div>")
+ 				.append("</div>")
+ 				.append("</div>").trigger('create');
  		 
  	 });
-// 		$('#addCareerBtn').on('click', function() {
- 				
-			
-//  		});
-		
-		
+ 	 	
+ 	 $(document).on('click', '#addIntroBtn', function() {
+ 		$('#inputIntro').append('<div class="jp_adp_main_section_wrapper">')
+						.append('<div class="container">')
+						.append('<div class="row">')
+						.append('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">')
+ 						.append('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="inputIntro">')
+ 						.append('<div class="jp_adp_textarea_main_wrapper" id="selfIntro">')
+ 						.append('<h3>자기소개서</h3>')
+ 						.append('<select name="selfIntroItemNo">')
+ 						.append('<option value="" selected>-- 카테고리 선택 --</option>')
+ 						.append('<option value="1">성장과정</option>')
+ 						.append('<option value="2">지원동기</option>')
+ 						.append('<option value="3">성격장단점</option>')
+ 						.append('<option value="4">입사후포부</option>')
+ 						.append('</select>')
+ 						.append('<textarea rows="7" placeholder="항목에 맞는 내용을 입력하세요" name="selfIntroItemContent"></textarea>')
+ 						.append('</div>')
+ 						.append('<div class="col-lg-12 col-md-12 col-md-12 col-xs-12">')
+ 						.append('<div class="jp_adp_form_wrapper">')
+ 						.append('<button id="addIntroBtn" type="button">추가 +</button>')
+ 						.append('</div></div></div>')
+ 						.append('</div></div></div></div>');
+ 	 });
+ 	 
+ 	 $(document).on('click', '#addLicenseBtn', function() {
+ 		 $('#inputLicense').append('<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">')
+ 		 				.append('<div class="jp_adp_form_wrapper">')
+ 		 				.append('<h3>자격증 이력</h3>')
+ 		 				.append('<input type="text" placeholder="자격증 명" name="licenseName">')
+ 		 				.append('</div></div>')
+ 		 				.append('<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">')
+ 		 				.append('<div class="jp_adp_form_wrapper">')
+ 		 				.append('<br> <input type="text" placeholder="발행처" name="licenseAgency">')
+ 		 				.append('</div></div>')
+ 		 				.append('<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">')
+ 		 				.append('<div class="jp_adp_form_wrapper">')
+ 		 				.append('<label>자격증 취득일</label> <input type="date" name="licenseDate">')
+ 		 				.append('</div></div>')
+ 		 				.append('<div class="col-lg-12 col-md-12 col-md-12 col-xs-12">')
+ 		 				.append('<div class="jp_adp_form_wrapper">')
+ 		 				.append('<button id="addLicenseBtn" type="button">추가 +</button>')
+ 		 				.append('</div></div>');
 
  	</script>
 	<jsp:include page="../common/footer.jsp" />

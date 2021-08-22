@@ -9,7 +9,7 @@ import com.itsme.letitgo.personal.resume.model.dto.ResumeDTO;
 
 public interface ResumeMapper {
 
-	List<ResumeDTO> selectAllResumeList();
+	List<ResumeDTO> selectAllResumeList(int memberNo);
 
 	List<DetailResumeDTO> selectDetailResumeList(int resumeNo);
 

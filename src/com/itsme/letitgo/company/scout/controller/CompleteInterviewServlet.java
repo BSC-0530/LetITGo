@@ -34,9 +34,19 @@ public class CompleteInterviewServlet extends HttpServlet {
 		System.out.println("comp resumeNo : " + resumeNo);
 		Map<String, Object> detailResume = new MainScoutListService().selectDetailResume(resumeNo);
 		
-		request.setAttribute("detailList", detailResume);
+		Map<String, Object> detailMap = new MainScoutListService().selectDetailResume(resumeNo);
+		request.setAttribute("detailResume", detailMap.get("detailResume"));
+		request.setAttribute("detailCareer", detailMap.get("detailCareer"));
+		request.setAttribute("detailSkills", detailMap.get("detailSkills"));
+		request.setAttribute("detailIntroContent", detailMap.get("detailIntroContent"));
+		request.setAttribute("detailAward", detailMap.get("detailAward"));
+		request.setAttribute("detailEdu", detailMap.get("detailEdu"));
+		request.setAttribute("detailLicense", detailMap.get("detailLicense"));
+		request.setAttribute("detailJobField", detailMap.get("detailJobField"));
+		request.setAttribute("detailPot", detailMap.get("detailPot"));
+		request.setCharacterEncoding("UTF-8");
 		
-		request.getRequestDispatcher("/WEB-INF/views/scout/scoutCompleteInterview.jsp").include(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/scout/scoutDetailResume.jsp").include(request, response);
 	}
 
 }
