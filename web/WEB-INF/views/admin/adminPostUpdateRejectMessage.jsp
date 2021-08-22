@@ -40,9 +40,14 @@
 
 </head>
 <body>
+
+	<!-- 전체 묶음 -->
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
+			
+				<!-- 사이드바 -->
+			
 				<div
 					class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
 					<div class="row">
@@ -149,6 +154,8 @@
 						</div>
 					</div>
 				</div>
+				
+				<!-- 거절사유 작성란 -->
 
 				<form id="postUpdateRejectMessage" action="${ pageContext.servletContext.contextPath }/admin/post/update/reject/update" method="post">
 					<div style="width: 500px;" class="jp_contact_form_main_wrapper">

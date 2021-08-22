@@ -10,6 +10,7 @@ import com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMappe
 
 public class UpdatePostUpdateRejectService {
 
+	/* 채용공고의 분류를 거절된 공고로 변경 */
 	public int updatePostRejectRequest1(Map<String, Object> map) {
 		
 		SqlSession session = getSqlSession();
@@ -29,6 +30,7 @@ public class UpdatePostUpdateRejectService {
 		return result;
 	}
 
+	/* 채용공고 승인여부이력의 응답구분을 승인으로 변경 */
 	public int updatePostRejectRequest2(Map<String, Object> map) {
 		
 		SqlSession session = getSqlSession();

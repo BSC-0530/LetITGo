@@ -366,9 +366,8 @@
 		function openResume(td) {
 			
 			const resumeNo = td.children[0].value;
-			alert(resumeNo);
-			
-			location.href = "${ pageContext.servletContext.contextPath }/resume/detail?selectedDetailResumeNo=" + resumeNo
+
+			location.href = "${ pageContext.servletContext.contextPath }/detail/browse/select?resumeNo=" + resumeNo
 
 		}
 		
@@ -376,7 +375,6 @@
 		function openPost(td) {
 			
 			const jobPostNo = td.children[0].value;
-			alert(jobPostNo);
 			
 			location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?jobPostNo="
 				+ jobPostNo

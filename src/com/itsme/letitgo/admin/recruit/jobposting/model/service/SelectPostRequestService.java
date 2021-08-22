@@ -11,6 +11,7 @@ import com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMappe
 
 public class SelectPostRequestService {
 
+	/* 공고등록요청 리스트 조회 */
 	public List<PostInsertRuqeustDTO> selectPostRequest() {
 		
 		SqlSession session = getSqlSession();
@@ -24,6 +25,7 @@ public class SelectPostRequestService {
 		return postInsertRuqeustList;
 	}
 
+	/* 공고수정요청 리스트 조회 */
 	public List<PostInsertRuqeustDTO> selectPostInsertUpdate() {
 		
 		SqlSession session = getSqlSession();
