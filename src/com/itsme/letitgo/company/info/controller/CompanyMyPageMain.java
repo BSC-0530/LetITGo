@@ -56,7 +56,7 @@ public class CompanyMyPageMain extends HttpServlet {
 		Integer exposureRestMinute = null;
 		if(exposureLeftTime != 0) {
 			exposureRestHour = exposureLeftTime / 60 / 60;
-			exposureRestMinute = (exposureRestHour % 100) / 100 * 60;
+			exposureRestMinute =  (exposureRestHour % 1) * 100 / 100 * 60;
 			request.setAttribute("exposureRestHour", exposureRestHour);
 			request.setAttribute("exposureRestMinute", exposureRestMinute);
 		} else {

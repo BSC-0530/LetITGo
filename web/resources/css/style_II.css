@@ -4088,6 +4088,7 @@ ul{
 	-ms-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	transition: all 0.5s;
+	text-transform:none;
 }
 .jp_contact_inputs_wrapper input:hover, .jp_contact_inputs_wrapper input:focus{
 	border:1px solid #23c0e9;
@@ -4112,13 +4113,15 @@ ul{
 	top:48px;
 }
 .jp_contact_inputs4_wrapper textarea{
+	text-transform:none;
 	width:100%;
 	padding-left:45px;
 	margin-top:30px;
 	position:relative;
 	padding-top:15px;
 	-webkit-border-radius: 10px; 
-  -moz-border-radius: 10px; 
+  -moz-border-radius: 10px;
+  text-transform:none; 
    border-radius: 10px; 
    resize:none;
 	border:1px solid #e9e9e9;
@@ -7126,7 +7129,7 @@ input[type="checkbox"]:checked + label:after {
     display: block;
     width: 100%;
     background: #ffffff;
-	text-transform:capitalize;
+	text-transform:none;
     font-size: 15px;
     line-height: 26px;
     color: #888888;

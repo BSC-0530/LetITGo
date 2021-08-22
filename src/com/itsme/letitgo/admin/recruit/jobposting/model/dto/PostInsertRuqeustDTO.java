@@ -12,6 +12,7 @@ public class PostInsertRuqeustDTO {
 	private String jobPostRejectReason;
 	private String jobPostAnsKinds;
 	private Integer changeReqJobPostNo;
+	
 
 	public PostInsertRuqeustDTO() {}
 

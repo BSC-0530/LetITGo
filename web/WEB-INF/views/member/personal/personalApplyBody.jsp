@@ -142,7 +142,9 @@
 								</tr>
 							</thead>
 								<tbody align="center">
+
 							<c:forEach var="whole" items="${ requestScope.PersonalApplyList }">
+
 									<tr>
 										<td onclick="post1(this);"><input type="hidden"
 											name="resumeNo" value="${ whole.resumeNo }"> <input
@@ -200,7 +202,9 @@
 								</tr>
 							</thead>
 								<tbody align="center">
+
 							<c:forEach var="complete" items="${ requestScope.PersonalApplyCompletedList }">
+
 									<tr>
 										<td onclick="post1(this);">
 										<input type="hidden" name="resumeNo" value="${ complete.resumeNo }">
@@ -255,7 +259,9 @@
 								</tr>
 							</thead>
 								<tbody align="center">
+
 							<c:forEach var="canceled" items="${ requestScope.PersonalApplyCanceledList }">
+
 									<tr>
 										<td onclick="post1(this);"><input type="hidden"
 											name="resumeNo" value="${ canceled.resumeNo }"> <input

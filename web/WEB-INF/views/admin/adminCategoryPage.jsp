@@ -150,18 +150,19 @@
 											<td align="center">카테고리 코드</td>
 											<td align="center">카테고리 이름</td>
 											<td align="center">삭제</td>
+											<td></td>
 										</tr>
 									</thead>
-								<c:forEach var="categoryList" items="${ requestScope.inquiryCategory }">
 										<tbody align="center">
+								<c:forEach var="categoryList" items="${ requestScope.inquiryCategory }">
 											<tr>
 												<td><c:out value="${categoryList.inquiryCategoryNo }"/></td>
 												<td><c:out value="${categoryList.inquiryCategoryName }"/></td>									
 												<td><button type="submit" class="btn btn-info" onclick="deleted(this);" >삭제</button></td>
 												<td style="font-size: 0px; width:0px; height:0px;"><c:out value="${ categoryList.inquiryCategoryNo }"/></td>
 											</tr>
-										</tbody>	
 								</c:forEach>			
+										</tbody>	
 								</table>
 								<br>
 								<br>

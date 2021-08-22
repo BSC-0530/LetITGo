@@ -130,8 +130,8 @@
 								</div>
 								<div style="height: 200px; background: white;"
 									class="jp_form_location_wrapper">
-									<label for="searchSkillsAuto" style="border: 1px solid;">
-										<input id="searchSkillsAuto" name="inputSkill">
+									<label for="searchSkillsAuto" style="border: 1px solid; width: 500px" >
+										<input id="searchSkillsAuto" name="inputSkill"  style="border: 1px solid; width: 260px">
 									</label>
 								</div>
 							</div>

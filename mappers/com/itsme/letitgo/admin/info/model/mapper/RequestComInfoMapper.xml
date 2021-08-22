@@ -231,21 +231,23 @@
 	<update id="updateLogoFile">
 		UPDATE TBL_ATTACHMENT
 		   SET
-		       MEM_FILE_PATH
+		       MEM_FILE_PATH = #{ filePath }
+		     , MEM_FILE_NAME = #{ memFileName}
+			 , MEM_FILE_ORIGINAL_NAME = #{ memFileOriginalName }
 		 WHERE MEM_NO = #{ memNO } AND MEM_FILE_KINDS = '프로필사진'
 	</update>
 	
 	<update id="updateRepreFile">
 		UPDATE TBL_ATTACHMENT
 		   SET
-		       MEM_FILE_PATH
+		       MEM_FILE_PATH = #{ filePath }
 		 WHERE MEM_NO = #{ memNO } AND MEM_FILE_KINDS = '대표이미지'
 	</update>
 	
 	<update id="updateBusinFile">
 		UPDATE TBL_ATTACHMENT
 		   SET
-		       MEM_FILE_PATH
+		       MEM_FILE_PATH = #{ filePath }
 		 WHERE MEM_NO = #{ memNO } AND MEM_FILE_KINDS = '사업자등록증'
 	</update>
 	

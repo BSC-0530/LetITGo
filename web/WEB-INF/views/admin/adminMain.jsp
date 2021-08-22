@@ -177,20 +177,19 @@
 								<div class="container">
 									<div class="gc_counter_cont_wrapper">
 										<div class="count-description">
-											<span class="timer"><c:out value="" /></span> <i class="fa"></i>
+											<span class="timer"><c:out value="${ regist }" /></span> <i class="fa"></i>
 											<h5 class="con1">기업 회원 가입 요청</h5>
 										</div>
 									</div>
 									<div class="gc_counter_cont_wrapper2">
 										<div class="count-description">
-											<span class="timer"><c:out value="" /></span> <i class="fa"></i>
+											<span class="timer"><c:out value="${ posting }" /></span> <i class="fa"></i>
 											<h5 class="con2">공고 등록 요청</h5>
 										</div>
 									</div>
 									<div class="gc_counter_cont_wrapper3">
 										<div class="count-description">
-											<span class="timer"><c:out value="" /></span> <span>:</span>
-											<span class="timer"><c:out value="" /></span> <i class="fa"></i>
+											<span class="timer"><c:out value="${ notice }" /></span>
 											<h5 class="con3">공지사항</h5>
 										</div>
 									</div>
@@ -200,20 +199,19 @@
 								<div class="container">
 									<div class="gc_counter_cont_wrapper">
 										<div class="count-description">
-											<span class="timer"><c:out value="" /></span> <i class="fa"></i>
+											<span class="timer"><c:out value="${ infoChange }" /></span> <i class="fa"></i>
 											<h5 class="con1">기업 회원 변경 요청</h5>
 										</div>
 									</div>
 									<div class="gc_counter_cont_wrapper2">
 										<div class="count-description">
-											<span class="timer"><c:out value="" /></span> <i class="fa"></i>
+											<span class="timer"><c:out value="${ postingChange }" /></span> <i class="fa"></i>
 											<h5 class="con2">공고 수정 요청</h5>
 										</div>
 									</div>
 									<div class="gc_counter_cont_wrapper3">
 										<div class="count-description">
-											<span class="timer"><c:out value="" /></span> <span>:</span>
-											<span class="timer"><c:out value="" /></span> <i class="fa"></i>
+											<span class="timer"><c:out value="${ inquiry }" /></span> <i class="fa"></i>
 											<h5 class="con3">1:1 문의</h5>
 										</div>
 									</div>

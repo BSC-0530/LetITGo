@@ -81,7 +81,7 @@
 								 onclick="addWishList(this);" value="${ number }">
 								 <i class="fa fa-phone"></i> &nbsp;후보자찜하기</button></a></li>
 							</ul>
-							<input type="text" id="hiddenResumeNo" value="${ number }">
+							<input type="hidden" id="hiddenResumeNo" value="${ number }">
 						</div>
 					</div>
 				</div>

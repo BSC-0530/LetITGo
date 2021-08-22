@@ -52,7 +52,7 @@ public class selectCompanyInfoServlet extends HttpServlet {
 		 String businFile = file3.substring(20);
 		 
 		String address = comDTO.getCoAddress();
-		
+		System.out.println("주소@@@@2" + address);
 		
 		request.setAttribute("logoFile", logoFile);
 		request.setAttribute("repreFile", repreFile);

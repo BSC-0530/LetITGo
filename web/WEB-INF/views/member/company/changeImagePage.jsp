@@ -66,8 +66,10 @@ width: 100px; height: 50px; background-color:transparent;
                             <ul>
                                 <li><a href="#">Home</a></li>
                                 <li><a href="#">기업 마이페이지</a></li>
-                                <li>기업 마이페이지</li>
+                                <li>기업 정보</li>
+                                <li>이미지 변경</li>
                             </ul>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -135,8 +137,7 @@ width: 100px; height: 50px; background-color:transparent;
             </div>
 <!-- 옆에 넣으려면 여기에 넣어야함 -->
 <!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
-<%-- <form action="${ pageContext.servletContext.contextPath }/company/modify/info" method="post" onsubmit="requestAdminChange();"> --%>
-<form id="fileUpLoad" method="post" enctype="multipart/form-data" onsubmit="requestAdminChange();" action="${ pageContext.servletContext.contextPath }/company/modify/info">
+ <form id="fileUpLoad" method="post" enctype="multipart/form-data" action="${ pageContext.servletContext.contextPath }/modify/comImge">
             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -146,119 +147,46 @@ width: 100px; height: 50px; background-color:transparent;
                                 id="contentOne-1">
 
                                 <div class="jp_regiter_top_heading">
-                                    <p><h1>기업정보 변경</h1></p>
+                                    <p><h1>이미지 변경</h1></p>
+                                    <input type="text" name="memNo" value= " ${ memNo }" >
+                                    <div
+									class="form-group col-md-12 col-sm-6 col-xs-12 custom_input">
+									<p>회사 로고</p>
+									<img name="repreFile" src="${ pageContext.servletContext.contextPath }${ logoFile }" width="300" height="300">
+									<p></p>
+									<p>회사 대표이미지</p>
+									<img name="repreFile" src="${ pageContext.servletContext.contextPath }${ repreFile }" width="300" height="300">
+									<p></p>
+									<p>사업자 등록증</p>
+                              	<img name="businFile" src="${ pageContext.servletContext.contextPath }${ businFile }" width="300" height="300">
                                 </div>
-                                <div class="row">
+                				 <div class="row">
                                     <!--Form Group-->
-                                    
-                                    <div class="form-group col-md-8 col-sm-6 col-xs-12">
-                                        <input type=text  onkeypress="inNumber();"
-                                        id="coComNo" name="requestcoNo" value="${ comDTO.coNo }" placeholder="-를 포함해서 입력해주세요">
-                                    </div>
-                                    <div class="form-group col-md-2 col-sm-6 col-xs-12">
-                                         <i><button class="btn btn-info" type="button" onclick="noCheck();">중복검사</button></i>
-                                    </div>
-								                                    
-                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" name="requestComName" value="${ comDTO.coComName }" >
-                                    </div>
-                                    
-                                                                       <!--Form Group-->
-                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" name="requestcoCeoName" value="${ comDTO.coCeoName }"  >
-                                    </div>
-                                    <!--Form Group-->
-                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
-
-                                        <input type="text" name="requestcoSectors" value="${comDTO.coSectors }">
-                                    </div>
-                                    <!--Form Group-->
-                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" name="requestcoStatus" value="${comDTO.coStatus }">
-                                    </div>
-                                    <!--Form Group-->
-                                    <div class="form-group col-md-8 col-sm-6 col-xs-12">
-										<input type="text" name="zipCode" id="zipCode" id="zipCode"readonly placeholder="우편번호 *">
-									</div> 
-                                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                         <i><button style="width: 50px; height: 30px; magin-left: 20px; border-radius: 5px;"
-                                          class="btn btn-info" type="button"id="searchZipCode" value="검색">검색</button></i>
-                                    </div>
-                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" name="requestcoAddress" id="requestcoAddress" value="${ comDTO.coAddress }">
-                                   </div>
-                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                      <input type="text" name="detailAddress" id="detailAddress" value="상세주소" placeholder="상세주소">
-                                    </div>
-                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" name="requestWebSite" value="${ comDTO.webSite }" >
-                                    </div>
-                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" name="coPhone" id="coPhone" value="${ comDTO.coPhone }"  >
-                                    </div>
-                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" name="coPax" id="coPax" value="${ comDTO.coPax }"
-													 >
-                                    </div>
-                            </div>
-                        </div>
+									<p>회사 로고</p>
+									<input type="file" name="coLogo" id="coLogo" >
+									<p></p>
+									<p>회사 대표이미지</p>
+									<input type="file" name="coRepresentativImage"id="coRepresentativImage" >
+									<p></p>
+									<p>사업자 등록증</p>
+									<input type="file" name="businessRegistration"id="businessRegistration" >
+									<p></p>
+                           			 </div>
+                      			  </div>               
                     </div>
+                </div>
+                </div>
                 </div>
                 </div>
                 
-                <br>
-                <div class="companyText">	
-                              <label>회사소개</label><input id="textArea" name="requestcoIntro" type="text" value="${ comDTO.coIntro  }" placeholder="${ comDTO.coIntro  }" >
-                    </div>
-                    
-                     <button type="submit" class="btn btn-info" style="float: right;" >기업 정보 변경 요청 </button>
-	            </div>
-<!--       	<div -->
-<!-- 		class="form-group col-md-6 col-sm-6 col-xs-12 custom_input"> -->
-<!-- 		<input type="file" name="coLogo" id="coLogo" > -->
-<!-- 		<p></p> -->
-<!-- 		<p>회사 로고</p> -->
-<!-- 		<input type="file" name="coRepresentativImage"id="coRepresentativImage" > -->
-<!-- 		<p></p> -->
-<!-- 		<p>회사 대표이미지</p> -->
-<!-- 		<input type="file" name="businessRegistration"id="businessRegistration" > -->
-<!-- 		<p></p> -->
-<!-- 		<p>사업자 등록증</p> -->
+                     <button type="submit" class="btn btn-info" style="float: right;" >이미지 정보 변경 요청 </button>
       </form>
+                <br>
+                    
+	            </div>
 	</div>		
 	</div>
-        </div>
-<script>
-// 		$("#send-file-1").click(function() {
-			
-// 			console.log($("#file")[0].files[0]);
-			
-// 			const formData = new FormData();
-			
-// 			formData.append("file", $("#coLogo")[0].files[0]);
-// 			formData.append("file2", $("#coRepresentativImage")[0].files[0]);
-// 			formData.append("file3", $("#businessRegistration")[0].files[0]);
-			
-// 			console.log(formData.get("coLogo"));
-// 			console.log(formData.get("coRepresentativImage"));
-// 			console.log(formData.get("businessRegistration"));
-			
-// 			$.ajax({
-// 				url: "/let/member/personal/modifyinfo",
-// 				type: "post",
-// 				data: formData,
-// 				contentType: false,
-// 				processData: false,
-// 				success: function(data) {
-// 					alert(data);
-// 				},
-// 				error: function(xhr, status, error) {
-// 					console.log(xhr);
-// 				} 
-// 			});
-			
-// 		});
-</script>
+        
 <script>
 // 변경 요청 버튼 
 function requestAdminChange(button){
@@ -274,59 +202,7 @@ function requestAdminChange(button){
 	
 }
 </script>
-<script>
-function noCheck(button){
-// 	사업자 등록증 번호 유효한지 체크 
-	let coComNo = $("#coComNo").val();
-			
-// 	alert(coComNo);
-	if(!checkCorporateRegistrationNumber(coComNo.replaceAll("-",""))){
-		   alert("유효한 사업자번호를 입력하세요");
-		   $("#coComNo").focus();
-		   $("#coComNo").val("");
-		   return;
-		}
-	alert('중복확인되었습니다.')
-	
-	
-}
-</script>
-<script>
-function checkCorporateRegistrationNumber(value) {
-    var valueMap = value.replace(/-/gi, '').split('').map(function(item) {
-        return parseInt(item, 10);
-    });
 
-    if (valueMap.length === 10) {
-        var multiply = new Array(1, 3, 7, 1, 3, 7, 1, 3, 5);
-        var checkSum = 0;
-
-        for (var i = 0; i < multiply.length; ++i) {
-            checkSum += multiply[i] * valueMap[i];
-        }
-
-        checkSum += parseInt((multiply[8] * valueMap[8]) / 10, 10);
-        return Math.floor(valueMap[9]) === (10 - (checkSum % 10));
-    }
-
-    return false;
-}
-</script>	
-
-	<script>
-		const $searchZipCode = document.getElementById("searchZipCode");
-
-		$searchZipCode.onclick = function() {
-
-			new daum.Postcode({
-				oncomplete : function(data) {
-					document.getElementById("zipCode").value = data.zonecode;
-					document.getElementById("requestcoAddress").value = data.address;
-					document.getElementById("detailAddress").focus();
-				}
-			}).open();
-		}
-	</script>
 </body>
 </html>
 

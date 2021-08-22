@@ -63,7 +63,7 @@
             </div>
         </div>
     </div>
-
+<!-- 기업정보화면입니다. --><!-- 기업정보화면입니다. --><!-- 기업정보화면입니다. --><!-- 기업정보화면입니다. --><!-- 기업정보화면입니다. --><!-- 기업정보화면입니다. --><!-- 기업정보화면입니다. -->
 <!-- 사이드바 -->
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
@@ -131,7 +131,7 @@
 
 								<!--                             이거는 이제 정보뜨는 칸 -->
 								<input type="hidden" name="comDTO" value="${ comDTO }">
-								<input type="hidden" name="coMemNo" value="${ comDTO.coMemNo }">
+								<input id="memNo" type="hidden" name="coMemNo" value="${ comDTO.coMemNo }">
 								<div class="tab-pane fade in active register_left_form"
 									id="contentOne-1">
 
@@ -170,7 +170,7 @@
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
 											<label>주소:</label><input type="text" name="address" value="${ comDTO.coAddress }" readonly>
 										</div>
-										<div class="form-group col-md-4 col-sm-6 col-xs-12">
+										<div class="form-group col-md-6 col-sm-6 col-xs-12">
 											<label>회사전화번호:</label><input type="text" name="coPhone" value="${ comDTO.coPhone }" readonly>
 										</div>
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
@@ -185,17 +185,24 @@
 					<div class="companyText">	
                               	<label>회사소개</label><input id="textArea" name="intro" value="${ comDTO.coIntro  }" readonly >
                     	</div>
-                              	<img name="repreFile" src="${ pageContext.servletContext.contextPath }${ repreFile }" width="150" height="150">
-                              	<img name="businFile" src="${ pageContext.servletContext.contextPath }${ businFile }" width="150" height="150">
+                              	<img name="repreFile" src="${ pageContext.servletContext.contextPath }${ repreFile }" width="300" height="300">
+                              	<img name="businFile" src="${ pageContext.servletContext.contextPath }${ businFile }" width="300" height="300">
             		
 						 <button type="submit" class="btn btn-info" id="coInfoChange" style=" float: right;" >기업 정보 변경</button>
+						 <button type="button" class="btn btn-info" id="coImageChange" onclick="imgChange();" style=" float: left;" >이미지 정보 변경</button>
 					</form>	 
             	</div>
 			</div>
 		</div>
 	</div>
 <script>
-
+function imgChange(button){
+	
+	let no = document.getElementById("memNo").value;
+// 	alert(no);
+	location.href ="${ pageContext.servletContext.contextPath }/company/image/change?no="+no
+	
+}
 </script>
 	
 </body>
