@@ -11,25 +11,26 @@ import com.itsme.letitgo.admin.info.model.dto.CompanyJoinDTO;
 import com.itsme.letitgo.admin.info.model.mapper.JoinMapper;
 
 public class CompanyDetailService {
-	//가입 요청 상세보기
 
-	public int joinDetail(CompanyJoinDTO companyJoinDTO) {
-		
+	//가입 요청 상세보기
+	public CompanyJoinDTO joinDetail(int coReqNo) {
+	
 		SqlSession session = getSqlSession();
 		
 		JoinMapper mapper = session.getMapper(JoinMapper.class);
 		
-		int result = mapper.joinDetail(companyJoinDTO);
+		CompanyJoinDTO companyJoinDTO = new CompanyJoinDTO();
 		
-		if(result > 0) {
-			session.commit();
-		}else {
-			session.rollback();
-		}
+		CompanyJoinDTO joinDetail = mapper.memberInfo(coReqNo);
+		
+		System.out.println(joinDetail);
+		
 		session.close();
 		
-		return result;
+		return companyJoinDTO;
 	}
+
+
 
 
 
