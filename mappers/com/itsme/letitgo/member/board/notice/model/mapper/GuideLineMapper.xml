@@ -68,9 +68,8 @@
 		     , A.POST_EXPOSURE_STATUS
 		     , A.MANAGER_MEMBER_NO
 		  FROM TBL_POST A
-		 WHERE A.POST_KINDS = '공지사항'
+		 WHERE A.POST_KINDS = '공지사항' AND A.POST_EXPOSURE_STATUS = 'Y'
 	</select>
-	
 </mapper>
 
 
