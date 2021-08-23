@@ -51,4 +51,18 @@ public class PersonalInfoService {
 		return result;
 	}
 
+	public String selectTitlePath(int memNo) {
+		
+		SqlSession session = getSqlSession();	
+		
+		PersonalInfoMapper mapper = session.getMapper(PersonalInfoMapper.class);	
+		
+		String titlePath = mapper.selectTitlePath(memNo);
+		
+		
+		session.close();
+
+		return titlePath;
+	}
+
 }

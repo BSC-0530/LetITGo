@@ -6,14 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Let IT Go</title>
 
-<!-- letitgo 제작 css -->
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css" />
 </head>
 <body>
-	<!-- 상단 검은색 -->
+
 	<div class="jp_tittle_main_wrapper">
 		<div class="jp_tittle_img_overlay"></div>
 		<div class="container">
@@ -73,15 +72,17 @@
 						</div>
 					</div>
 				</div>
-				<!-- 옆에 넣으려면 여기에 넣어야함 -->
-				<!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
 				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_listing_tabs_wrapper">
 								<label style="font-size:30px;">개인회원 정보</label><br>
-								<img alt="대표이미지없음" src="/let/resources/image/bmw.png" style="width: 300px; height:300px">
-														<!--                             이거는 이제 정보뜨는 칸 -->
+								<c:if test="${ requestScope.titlePath ne null}">
+									<img style="width:200px;; height:250px;;" src="${ pageContext.servletContext.contextPath }${ requestScope.titlePath }" alt="profile_img" style="width:300px; height: 300px;">
+								</c:if>
+								<c:if test="${ requestScope.titlePath eq null }">
+									<img style="width:200px; height:250px;" src="${ pageContext.servletContext.contextPath }/resources/image/basic.png" alt="profile_img" style="width:350px; height: 400px;">
+								</c:if>										
 								<div class="tab-pane fade in active register_left_form"id="contentOne-1">
 
 									<div class="jp_regiter_top_heading">

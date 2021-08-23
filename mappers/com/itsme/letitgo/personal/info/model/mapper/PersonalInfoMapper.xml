@@ -73,15 +73,15 @@
  		WHERE IN_MEM_NO = '3'
 	</select>
 	
-	<!-- 개인 열람제한기업 조회 -->
-	<select id="selectRectrictedCompany" parameterType="_int" resultMap="restricedCompanyResult">
-		SELECT
-			   RC.IN_MEM_NO
-			 , RC.CO_COM_NAME
-			 , RC.CO_MEM_NO
-		  FROM TBL_RESTRICTED_COMPANY RC
-		 WHERE IN_MEM_NO = #{ memNo }
-	</select>
+<!-- 	 개인 열람제한기업 조회 -->
+<!-- 	<select id="selectRectrictedCompany" parameterType="_int" resultMap="restricedCompanyResult"> -->
+<!-- 		SELECT -->
+<!-- 			   RC.IN_MEM_NO -->
+<!-- 			 , RC.CO_COM_NAME -->
+<!-- 			 , RC.CO_MEM_NO -->
+<!-- 		  FROM TBL_RESTRICTED_COMPANY RC -->
+<!-- 		 WHERE IN_MEM_NO = #{ memNo } -->
+<!-- 	</select> -->
 	
 	<!-- 개인정보 수정 -->
 	<update id="modifyPersonalInfo" parameterType="com.itsme.letitgo.personal.info.model.dto.ModifyMemberDTO">
@@ -93,5 +93,13 @@
 	    WHERE  MEM_NO = #{ memNo }
 	</update>
 	
+	<select id="selectTitlePath" resultType="String">
+	
+		SELECT
+			   SUBSTR(B.MEM_FILE_PATH,21) AS MEM_FILE_PATH
+		  FROM TBL_ATTACHMENT B
+		 WHERE B.MEM_NO = #{ memNo }
+			   
+	</select>
 
 </mapper>
