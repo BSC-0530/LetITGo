@@ -70,7 +70,8 @@
 			alert(skillsNo);
 			
 			var appendSkills = "<div><input type='checkBox' value='" + skillsNo + "' name='selectSkills' id='s" + skillsNo + "' checked style='display:none;'>" +
-							   "<label id='skillsLabel' for='s" + skillsNo + "'>" + skillsName +skillsNo+ "</label></div> "
+			   "<label id='skillsLabel' for='s" + skillsNo + "'>" + skillsName +skillsNo+ "</label></div>" +
+			   "<div><input type='hidden' value='" + skillsName + "' name='selectSkillsName'></div>"
 			
 							   
 			var checked_length = document.getElementsByName("selectSkills").length;
