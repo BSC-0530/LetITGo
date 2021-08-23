@@ -162,8 +162,7 @@
             </div>
         </div>
         <form id="insertForm" name="insertForm" method="post">
-        <input type="text" name="jobPostNo" value="${ requestScope.jobPostNo }" readonly>
-            <!-- jp ad post Wrapper Start -->
+        <input type="hidden" name="jobPostNo" value="${ requestScope.jobPostNo }" readonly>
             <div class="jp_adp_main_section_wrapper">
                 <div class="container">
                     <div class="row">
@@ -238,7 +237,7 @@
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">
                                 <div class="jp_adp_textarea_main_wrapper">
                                     <label id="titleFont">주요 업무</label>
-                                    <textarea rows="7" placeholder="주요 업무를 입력하세요*" name="jobPostContents" required maxlength=300><c:out value="value=${ jobPostInfo.jobPostContents }"/></textarea>
+                                    <textarea rows="7" placeholder="주요 업무를 입력하세요*" name="jobPostContents" required maxlength=300><c:out value="${ jobPostInfo.jobPostContents }"/></textarea>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">
@@ -288,9 +287,8 @@
                                 </div>
                             </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        	<input type="button" value="insert" onclick="btn_click('insert');">
-                        	<input type="button" value="preview" onclick="btn_click('preview');">
-                        
+                        	<input class="btn btn-info" type="button" value="insert" onclick="btn_click('insert');">
+                        	<input class="btn btn-info" type="button" value="preview" onclick="btn_click('preview');">
                         </div>
                         
                     </div>

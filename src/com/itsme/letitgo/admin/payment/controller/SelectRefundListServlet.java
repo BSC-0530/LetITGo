@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.itsme.letitgo.admin.payment.model.dto.AdminRefundHistoryDTO;
 import com.itsme.letitgo.admin.payment.model.service.SelectRefundListService;
 
-/* 관리자 -> 환불 내역 조회 */
+/* 관리자 -> 환불 요청 관리 */
 @WebServlet("/admin/refund/select")
 public class SelectRefundListServlet extends HttpServlet {
 	

@@ -23,7 +23,7 @@
 	function selectPhone(a){
 		
 		var memPhone = a.children[0].value;
-		var phoneText = "지원자의 이메일은 : " + memPhone + "입니다.";
+		var phoneText = "지원자의 연락처느 : " + memPhone + "입니다.";
 		alert(phoneText);
 	}
 	
@@ -96,12 +96,12 @@
 										<td>보유 스킬</td>
 										<td>:</td>
 										<td>
-										<c:if test="${ requestScope.resultResume.resumeSkillsAndNameList.size() ne 0 }">
+										<c:if test="${ requestScope.resultResume.resumeSkillsAndNameList.size() > 0 }">
 											<c:forEach items="${ requestScope.resultResume.resumeSkillsAndNameList }" var="skills">
-												<c:out value="${ resume.skillsName }"/>
+												<c:out value="${ skills.skillsName }"/>
 											</c:forEach>
 										</c:if>
-										<c:if test="${ requestScope.resultResume.resumeSkillsAndNameList.size() eq 0 }">
+										<c:if test="${ requestScope.resultResume.resumeSkillsAndNameList.size() == 0 }">
 											보유 스킬이 없습니다.
 										</c:if>
 										</td>
@@ -207,6 +207,7 @@
 												
 												
 												<c:if test="${ requestScope.resultResume.licenseHistoryList.size() ne 0 }">
+													<h4><label>보유 자격증</label></h4>
 													<c:forEach items="${ requestScope.resultResume.licenseHistoryList }" var="resume">
 														자격증 명 :<c:out value="${ resume.licenseName }"/><br>
 														발행처 : <c:out value="${ resume.licenseAgency }"/><br>
@@ -218,6 +219,7 @@
 												</c:if>
 												
 												<c:if test="${ requestScope.resultResume.educationHistoryList.size() ne 0 }">
+													<h4><label>교육 이력</label></h4>
 													<c:forEach items="${ requestScope.resultResume.educationHistoryList }" var="resume">
 														교육명 :<c:out value="${ resume.eduName }"/><br>
 														교육기관 : <c:out value="${ resume.eduAgency }"/><br>
@@ -231,6 +233,7 @@
 												</c:if>
 												
 												<c:if test="${ requestScope.resultResume.awardHistoryList.size() ne 0 }">
+													<h4><label>수상 이력</label></h4>
 													<c:forEach items="${ requestScope.resultResume.awardHistoryList }" var="resume">
 														수상명 :<c:out value="${ resume.awdName }"/><br>
 														수상기관 : <c:out value="${ resume.awdAgency }"/><br>

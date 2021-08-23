@@ -49,7 +49,7 @@
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_rightside_job_categories_wrapper">
 								<div class="jp_rightside_job_categories_heading">
-									<h4 style="font-weight: bold">My Page</h4>
+									<h4 style="font-weight: bold">Admin</h4>
 								</div>
 								<div class="jp_rightside_job_categories_content">
 									<div class="handyman_sec1_wrapper">
@@ -179,8 +179,15 @@
 												</c:if>
 
 												<td><c:out value="${ adminRefund.payChangeStatus }" /></td>
-												<td><c:out value="${ adminRefund.payChangeReason }" /></td>
-												<td><c:out value="${ adminRefund.payRejectReason }" /></td>
+												<td><button type=button onclick="refundBrowse(this);" >상세보기</button></td>
+												
+												<c:if test="${ adminRefund.payChangeStatus eq '환불거절' }">
+												<td><button type=button onclick="rejectBrowse(this);" >상세보기</button></td>
+												</c:if>
+												
+												<c:if test="${ adminRefund.payChangeStatus != '환불거절' }">
+												<td>-</td>
+												</c:if>
 
 												<c:if test="${ adminRefund.payChangeStatus eq '환불요청'  }">
 													<td><button type="submit" onclick="approval(this);">승인</button></td>
@@ -260,6 +267,26 @@
 
 			$form.submit();
 		}
+	</script>
+	
+	<script>
+		//환불사유 상세보기
+		function refundBrowse(button){
+			
+			var payChangeNo = button.parentNode.parentNode.children[0].children[0].value;
+		
+			location.href="${ pageContext.servletContext.contextPath }/admin/refundHistory/reason/select?payChangeNo="+payChangeNo
+					
+		}	
+		
+		//거절사유 상세보기
+		function rejectBrowse(button){
+			
+			var payChangeNo = button.parentNode.parentNode.children[0].children[0].value;
+			
+			location.href="${ pageContext.servletContext.contextPath }/admin/refundHistory/rejectReason/select?payChangeNo="+payChangeNo
+					
+		}	
 	</script>
 </body>
 </html>

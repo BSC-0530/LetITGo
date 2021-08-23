@@ -68,14 +68,14 @@ public class SelectExposureForUseServlet extends HttpServlet {
 		dto.setJobPostNo(jobPostNo);
 		dto.setRetainedProductCode(Integer.parseInt(request.getParameter("retainedProductCode")));
 		dto.setExposureEndDate(java.sql.Date.valueOf(request.getParameter("exposureEndDate")));
-		dto.setExposureUseDate(java.sql.Date.valueOf(request.getParameter("exposureUseDate")));
 		
 		/* 상품 번호를 이용해서 시간만큼 차감을 해야한다.*/
 		
 		/* 입력한 정보 초단위로 변환*/
-		Date useDate = java.sql.Date.valueOf(request.getParameter("exposureUseDate"));
+		Date date_now = new Date(System.currentTimeMillis());
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ : " + date_now);
 		Date endDate = java.sql.Date.valueOf(request.getParameter("exposureEndDate"));
-		int usingTime = (int) ((endDate.getTime() - useDate.getTime()) / 1000);		
+		int usingTime = (int) ((endDate.getTime() - date_now.getTime()) / 1000);		
 		
 		/* db에서 보유중인 상품 시간 가져오기 */
 		Integer restTime = service.selectExposureRestTime(dto);

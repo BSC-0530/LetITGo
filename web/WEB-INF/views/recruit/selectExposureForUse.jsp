@@ -68,12 +68,13 @@
 								</c:forEach>
 							</tbody>
 						</table>
-							<label>공고 노출 시작시간<input name="exposureUseDate" type="date"></label><br>
+						<br>
+							<label>노출권은 사용즉시 사용됩니다.</label><br>
 							<label>공고 노출 마감시간<input name="exposureEndDate" type="date"></label>
 						</div>
 						<div>
-						<button class="btn btn-info"type="submit">공고권 선택</button>
-						<button class="btn btn-info"type="button" onclick="closeTab()">닫기</button>
+						<button class="btn btn-info" type="submit">공고권 선택</button>
+						<button class="btn btn-info" type="button" onclick="closeTab()">닫기</button>
 						</div>
 					</div>
 				</div>
@@ -87,11 +88,23 @@
 	
 	<label>구입한 공고권이 없습니다.</label>
 	
-	<button onclick="closeSelectResume();">닫기</button>
+	<button class="btn btn-info" onclick="closeSelectResume();">닫기</button>
 	 
 	</c:if>
   
 </body>
+
+<script>
+	function closeSelectResume() {
+		
+		window.close();
+	}
+	
+   function closeTab() {
+      	
+      	window.close();
+    }
+</script>
 
 
 

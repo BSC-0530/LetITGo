@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Let IT Go</title>
+<title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/animate.css" />
 <link rel="stylesheet" type="text/css"

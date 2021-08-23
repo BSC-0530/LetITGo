@@ -67,7 +67,6 @@
 			var skillsNo = $("#skills option:selected").val();
 			var skillsName = $("#skills option:selected").text();
 			
-			alert(skillsNo);
 			
 			var appendSkills = "<div><input type='checkBox' value='" + skillsNo + "' name='selectSkills' id='s" + skillsNo + "' checked style='display:none;'>" +
 							   "<label id='skillsLabel' for='s" + skillsNo + "'>" + skillsName +skillsNo+ "</label></div> "
@@ -75,7 +74,6 @@
 							   
 			var checked_length = document.getElementsByName("selectSkills").length;
 			
-			alert(checked_length)
 			
 			for(var j = 0; j < checked_length; j++) {
 				
@@ -90,14 +88,8 @@
 					
 				}
 			}
-		
-			// 선택한 기술을 selectSkills 에 append
-			
-			alert(appendSkills)
 			
 			$("#selectSkills").append(appendSkills);
-			
-	
 			
 			
 		});
@@ -127,9 +119,7 @@
 					document.insertForm.method = "post";
 					document.insertForm.action = "${ pageContext.servletContext.contextPath }/recruit/insert"
 					document.insertForm.submit();
-				
 			}
-			
 		}
 		
 		}
@@ -268,8 +258,8 @@
                                 </div>
                             </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        	<input type="button" value="insert" onclick="btn_click('insert');">
-                        	<input type="button" value="preview" onclick="btn_click('preview');">
+                        	<input class="btn btn-info" type="button" value="insert" onclick="btn_click('insert');">
+                        	<input class="btn btn-info" type="button" value="preview" onclick="btn_click('preview');">
                         </div>
                     </div>
                 </div>

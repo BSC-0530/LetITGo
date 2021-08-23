@@ -90,21 +90,18 @@
 			<div class="jp_rightside_job_categories_content">
 				<div class="handyman_sec1_wrapper">
 					<div class="content">
-						
-						<h4 align="center">이력서를 선택해주세요</h4>
 						<c:forEach var="resumeList" items="${ requestScope.resumeList }" varStatus="status">
 						<div class="box">
 							<p>
 								<input type="radio" id="${ status.index }" value="${ resumeList.resumeNo }" name="resumeNo">
-								<button onclick="updateResult(this);">수정하기</button>
+								<button class="btn btn-info" onclick="updateResult(this);">수정하기</button>
 								<label for="${ status.index }"><c:out value="${ resumeList.resumeTitle }"/></label>
 								<label for="${ status.index }">/<c:out value="${ resumeList.resumeWriteDate }"/></label>
-								
 							</p>			
 						</div>
 						</c:forEach>
-						<button onclick="selectResume()">이력서 선택</button>
-						<button onclick="closeTab()">닫기</button>
+						<button class="btn btn-info" onclick="selectResume()">이력서 선택</button>
+						<button class="btn btn-info" onclick="closeTab()">닫기</button>
 					</div>
 				</div>
 			</div>

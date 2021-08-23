@@ -63,7 +63,7 @@
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_rightside_job_categories_wrapper">
 								<div class="jp_rightside_job_categories_heading">
-									<h4 style="font-weight: bold">My Page</h4>
+									<h4 style="font-weight: bold">Admin</h4>
 								</div>
 								<div class="jp_rightside_job_categories_content">
 									<div class="handyman_sec1_wrapper">
@@ -161,7 +161,7 @@
 
 				<div class="outer outer-skills-insert">
 					<br>
-					<h2 align="center">직무 분야 등록</h2>
+					<h2 align="center">기술 등록</h2>
 					<br>
 					<br>
 

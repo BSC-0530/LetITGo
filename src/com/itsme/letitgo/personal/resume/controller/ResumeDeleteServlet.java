@@ -15,17 +15,14 @@ public class ResumeDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		int resumeNo = Integer.parseInt(request.getParameter("selectedDeleteResumeNo"));
-		System.out.println(resumeNo);
 		
 		int result = new ResumeService().deleteResume(resumeNo);
 		
-		String path = "";
+		
 		if(result > 6) {
-			
-			path = "/WEB-INF/views/resume/resumeList.jsp";	
+			response.sendRedirect("/let/resume/list");			
 		}
 		
-		response.sendRedirect("/let/resume/list");
 		
 	}
 

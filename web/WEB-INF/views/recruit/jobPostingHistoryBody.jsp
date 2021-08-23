@@ -172,15 +172,15 @@
 										<td><c:out value="${ jobPosting.jobPostMinExperience }" />년 ~ <c:out value="${ jobPosting.jobPostMaxExperience }" />년</td>								
 										<td><c:out value="${ jobPosting.jobPostEnrollDate }" /></td>								
 										<td><c:out value="${ jobPosting.jobPostDeadline }" /></td>			
-										<td><button onclick="updateJobPosting(this);">수정</button></td>			
-										<td><button onclick="selectApplicant(this);">지원자</button></td>
+										<td><button class="btn btn-info" onclick="updateJobPosting(this);">수정</button></td>			
+										<td><button class="btn btn-info" onclick="selectApplicant(this);">지원자</button></td>
 										<c:if test="${ jobPosting.exposureEndDate eq null }">
 											<c:choose>
 												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }">
 													<td>마감된공고</td>
 												</c:when>
 												<c:otherwise>
-													<td><button type="submit" onclick="useExposure(this);">사용</button></td>	
+													<td><button class="btn btn-info" type="submit" onclick="useExposure(this);">사용</button></td>	
 												</c:otherwise>
 											</c:choose>
 										</c:if>
@@ -219,15 +219,15 @@
 										<td><c:out value="${ jobPosting.jobPostMinExperience }" />년 ~ <c:out value="${ jobPosting.jobPostMaxExperience }" />년</td>								
 										<td><c:out value="${ jobPosting.jobPostEnrollDate }" /></td>								
 										<td><c:out value="${ jobPosting.jobPostDeadline }" /></td>			
-										<td><button onclick="updateJobPosting(this);">수정</button></td>			
-										<td><button onclick="selectApplicant(this);">지원자</button></td>
+										<td><button class="btn btn-info" onclick="updateJobPosting(this);">수정</button></td>			
+										<td><button class="btn btn-info" onclick="selectApplicant(this);">지원자</button></td>
 										<c:if test="${ jobPosting.exposureEndDate eq null }">
 											<c:choose>
 												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }">
 													<td>마감된공고</td>
 												</c:when>
 												<c:otherwise>
-													<td><button type="submit" onclick="useExposure(this);">사용</button></td>	
+													<td><button class="btn btn-info" type="submit" onclick="useExposure(this);">사용</button></td>	
 												</c:otherwise>
 											</c:choose>
 										</c:if>
@@ -265,15 +265,15 @@
 										<td><c:out value="${ jobPosting.jobPostMinExperience }" />년 ~ <c:out value="${ jobPosting.jobPostMaxExperience }" />년</td>								
 										<td><c:out value="${ jobPosting.jobPostEnrollDate }" /></td>								
 										<td><c:out value="${ jobPosting.jobPostDeadline }" /></td>			
-										<td><button onclick="updateJobPosting(this);">수정</button></td>			
-										<td><button onclick="selectApplicant(this);">지원자</button></td>
+										<td><button class="btn btn-info" onclick="updateJobPosting(this);">수정</button></td>			
+										<td><button class="btn btn-info" onclick="selectApplicant(this);">지원자</button></td>
 										<c:if test="${ jobPosting.exposureEndDate eq null }">
 											<c:choose>
 												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }">
 													<td>마감된공고</td>
 												</c:when>
 												<c:otherwise>
-													<td><button type="submit" onclick="useExposure(this);">사용</button></td>	
+													<td><button class="btn btn-info" type="submit" onclick="useExposure(this);">사용</button></td>	
 												</c:otherwise>
 											</c:choose>
 										</c:if>

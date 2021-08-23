@@ -6,10 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css"
-	href="${ pageContext.servletContext.contextPath }/resources/css/animate.css" />
+<script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/animate.css" />
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/font-awesome.css" />
 <link rel="stylesheet" type="text/css"
@@ -28,27 +29,15 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/style_II.css" />
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-	<%-- 	<c:forEach items="${ detailList }" var="detail" varStatus="status"> --%>
-	<%-- 		<c:out value="${ detail.careerHistoryList }"></c:out><br> --%>
-	<%-- 		<c:out value="${ detail.inMemNo }"/><br> --%>
-	<%-- 		<c:out value="${ detail.portFolioList }"></c:out><br> --%>
-	<%-- 		<c:out value="${ detail.itemAndContentList }"></c:out><br> --%>
-	<%-- 		<c:out value="${ detail.awardHistoryList }"></c:out><br> --%>
-	<%-- 		<c:out value="${ detail.holdingAndSkillsList }"></c:out><br> --%>
-	<%-- 		<c:out value="${ detail.educationHistoryList }"></c:out><br><br><br> --%>
-	<%-- 		<c:out value="${ detail.awardHistoryList[status.index].awdAgency }"></c:out><br> --%>
-	<%-- 		<c:out value="${ detail.holdingAndSkillsList[status.index].skillsAndCategory.skillsName }"></c:out> --%>
-	<%-- 		<%-- <c:out value="${ detail.awardHistoryList.awdName }"></c:out> --%>
-	--%>
-	<%-- 	</c:forEach> --%>
-
 
 	<jsp:include page="../common/header/personalHeader.jsp" />
-
+	
 	<div class="jp_tittle_main_wrapper">
 		<div class="jp_tittle_img_overlay"></div>
 		<div class="container">
@@ -61,9 +50,12 @@
 						<div class="jp_tittle_breadcrumb_main_wrapper">
 							<div class="jp_tittle_breadcrumb_wrapper">
 								<ul>
-									<li><a href="#">Home</a> <i class="fa fa-angle-right"></i></li>
-									<li><a href="#">이력서</a> <i class="fa fa-angle-right"></i></li>
-									<li>상세 이력서</li>
+									<li><a href="${ pageContext.servletContext.contextPath }/mainPage/CoMember">Home</a></li>
+                                    <li>></li>
+                                    <li><a href="${ pageContext.servletContext.contextPath }/main/Scout/List">이력서</a></li>
+                                    <li>></li>
+                                    <li><a href="">상세 이력서</a></li>
+                                   
 								</ul>
 							</div>
 						</div>
@@ -73,1028 +65,239 @@
 		</div>
 	</div>
 
-	
 
-		<!-- jp ad post Wrapper Start -->
-		<c:forEach items="${ detailList }" var="detail" varStatus="status">
-
-
-			<div class="jp_adp_main_section_wrapper">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<div class="jp_adp_form_wrapper">
-								<h3>
-									이력서 제목<input type="text" placeholder="${ detail.resumeTitle }"
-										name="resumeTitle" disabled>
-								</h3>
-							</div>
-							<div class="jp_adp_form_wrapper">
-								<h3>직무 / 경력</h3>
-
-								<br>
-								<c:choose>
-									<c:when test="${ detail.jobNo eq 1 }">
-										<label> <input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="1" name="jobNo" checked disabled>서버/백엔드
-										</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="2" name="jobNo" disabled>프론트엔드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="3" name="jobNo" disabled>웹 풀스택</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="4" name="jobNo" disabled>모바일 웹</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="5" name="jobNo" disabled>게임 클라이언트</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="6" name="jobNo" disabled>게임 서버</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="7" name="jobNo" disabled>데이터
-											엔지니어(DBA)</label>
-										<br>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="8" name="jobNo" disabled>인공지능/머신러닝</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="9" name="jobNo" disabled>시스템 엔지니어</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="10" name="jobNo" disabled>보안</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="11" name="jobNo" disabled>QA</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="12" name="jobNo" disabled>프로젝트 매니저</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="13" name="jobNo" disabled>HW/임베디드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="14" name="jobNo" disabled>SW/솔루션</label>
-									</c:when>
-									<c:when test="${ detail.jobNo eq 2 }">
-										<label> <input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="1" name="jobNo" disabled>서버/백엔드
-										</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="2" name="jobNo" checked disabled>프론트엔드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="3" name="jobNo" disabled>웹 풀스택</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="4" name="jobNo" disabled>모바일 웹</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="5" name="jobNo" disabled>게임 클라이언트</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="6" name="jobNo" disabled>게임 서버</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="7" name="jobNo" disabled>데이터
-											엔지니어(DBA)</label>
-										<br>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="8" name="jobNo" disabled>인공지능/머신러닝</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="9" name="jobNo" disabled>시스템 엔지니어</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="10" name="jobNo" disabled>보안</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="11" name="jobNo" disabled>QA</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="12" name="jobNo" disabled>프로젝트 매니저</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="13" name="jobNo" disabled>HW/임베디드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="14" name="jobNo" disabled>SW/솔루션</label>
-									</c:when>
-									<c:when test="${ detail.jobNo eq 3 }">
-										<label> <input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="1" name="jobNo" disabled>서버/백엔드
-										</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="2" name="jobNo" disabled>프론트엔드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="3" name="jobNo" checked disabled>웹
-											풀스택</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="4" name="jobNo" disabled>모바일 웹</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="5" name="jobNo" disabled>게임 클라이언트</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="6" name="jobNo" disabled>게임 서버</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="7" name="jobNo" disabled>데이터
-											엔지니어(DBA)</label>
-										<br>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="8" name="jobNo" disabled>인공지능/머신러닝</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="9" name="jobNo" disabled>시스템 엔지니어</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="10" name="jobNo" disabled>보안</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="11" name="jobNo" disabled>QA</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="12" name="jobNo" disabled>프로젝트 매니저</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="13" name="jobNo" disabled>HW/임베디드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="14" name="jobNo" disabled>SW/솔루션</label>
-									</c:when>
-									<c:when test="${ detail.jobNo eq 4 }">
-										<label> <input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="1" name="jobNo" disabled>서버/백엔드
-										</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="2" name="jobNo" disabled>프론트엔드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="3" name="jobNo" disabled>웹 풀스택</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="4" name="jobNo" checked disabled>모바일
-											웹</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="5" name="jobNo" disabled>게임 클라이언트</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="6" name="jobNo" disabled>게임 서버</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="7" name="jobNo" disabled>데이터
-											엔지니어(DBA)</label>
-										<br>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="8" name="jobNo" disabled>인공지능/머신러닝</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="9" name="jobNo" disabled>시스템 엔지니어</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="10" name="jobNo" disabled>보안</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="11" name="jobNo" disabled>QA</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="12" name="jobNo" disabled>프로젝트 매니저</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="13" name="jobNo" disabled>HW/임베디드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="14" name="jobNo" disabled>SW/솔루션</label>
-									</c:when>
-									<c:when test="${ detail.jobNo eq 5 }">
-										<label> <input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="1" name="jobNo" checked disabled>서버/백엔드
-										</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="2" name="jobNo" disabled>프론트엔드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="3" name="jobNo" disabled>웹 풀스택</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="4" name="jobNo" disabled>모바일 웹</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="5" name="jobNo" disabled checked>게임
-											클라이언트</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="6" name="jobNo" disabled>게임 서버</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="7" name="jobNo" disabled>데이터
-											엔지니어(DBA)</label>
-										<br>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="8" name="jobNo" disabled>인공지능/머신러닝</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="9" name="jobNo" disabled>시스템 엔지니어</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="10" name="jobNo" disabled>보안</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="11" name="jobNo" disabled>QA</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="12" name="jobNo" disabled>프로젝트 매니저</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="13" name="jobNo" disabled>HW/임베디드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="14" name="jobNo" disabled>SW/솔루션</label>
-									</c:when>
-									<c:when test="${ detail.jobNo eq 6 }">
-										<label> <input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="1" name="jobNo" disabled>서버/백엔드
-										</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="2" name="jobNo" disabled>프론트엔드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="3" name="jobNo" disabled>웹 풀스택</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="4" name="jobNo" disabled>모바일 웹</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="5" name="jobNo" disabled>게임 클라이언트</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="6" name="jobNo" disabled checked>게임
-											서버</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="7" name="jobNo" disabled>데이터
-											엔지니어(DBA)</label>
-										<br>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="8" name="jobNo" disabled>인공지능/머신러닝</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="9" name="jobNo" disabled>시스템 엔지니어</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="10" name="jobNo" disabled>보안</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="11" name="jobNo" disabled>QA</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="12" name="jobNo" disabled>프로젝트 매니저</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="13" name="jobNo" disabled>HW/임베디드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="14" name="jobNo" disabled>SW/솔루션</label>
-									</c:when>
-									<c:when test="${ detail.jobNo eq 7 }">
-										<label> <input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="1" name="jobNo" disabled>서버/백엔드
-										</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="2" name="jobNo" disabled>프론트엔드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="3" name="jobNo" disabled>웹 풀스택</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="4" name="jobNo" disabled>모바일 웹</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="5" name="jobNo" disabled>게임 클라이언트</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="6" name="jobNo" disabled>게임 서버</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="7" name="jobNo" disabled checked>데이터
-											엔지니어(DBA)</label>
-										<br>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="8" name="jobNo" disabled>인공지능/머신러닝</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="9" name="jobNo" disabled>시스템 엔지니어</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="10" name="jobNo" disabled>보안</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="11" name="jobNo" disabled>QA</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="12" name="jobNo" disabled>프로젝트 매니저</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="13" name="jobNo" disabled>HW/임베디드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="14" name="jobNo" disabled>SW/솔루션</label>
-									</c:when>
-									<c:when test="${ detail.jobNo eq 8 }">
-										<label> <input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="1" name="jobNo" disabled>서버/백엔드
-										</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="2" name="jobNo" disabled>프론트엔드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="3" name="jobNo" disabled>웹 풀스택</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="4" name="jobNo" disabled>모바일 웹</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="5" name="jobNo" disabled>게임 클라이언트</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="6" name="jobNo" disabled>게임 서버</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="7" name="jobNo" disabled>데이터
-											엔지니어(DBA)</label>
-										<br>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="8" name="jobNo" disabled checked>인공지능/머신러닝</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="9" name="jobNo" disabled>시스템 엔지니어</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="10" name="jobNo" disabled>보안</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="11" name="jobNo" disabled>QA</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="12" name="jobNo" disabled>프로젝트 매니저</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="13" name="jobNo" disabled>HW/임베디드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="14" name="jobNo" disabled>SW/솔루션</label>
-									</c:when>
-									<c:when test="${ detail.jobNo eq 9 }">
-										<label> <input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="1" name="jobNo" disabled>서버/백엔드
-										</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="2" name="jobNo" disabled>프론트엔드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="3" name="jobNo" disabled>웹 풀스택</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="4" name="jobNo" disabled>모바일 웹</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="5" name="jobNo" disabled>게임 클라이언트</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="6" name="jobNo" disabled>게임 서버</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="7" name="jobNo" disabled>데이터
-											엔지니어(DBA)</label>
-										<br>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="8" name="jobNo" disabled>인공지능/머신러닝</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="9" name="jobNo" disabled checked>시스템
-											엔지니어</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="10" name="jobNo" disabled>보안</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="11" name="jobNo" disabled>QA</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="12" name="jobNo" disabled>프로젝트 매니저</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="13" name="jobNo" disabled>HW/임베디드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="14" name="jobNo" disabled>SW/솔루션</label>
-									</c:when>
-									<c:when test="${ detail.jobNo eq 10 }">
-										<label> <input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="1" name="jobNo" disabled>서버/백엔드
-										</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="2" name="jobNo" disabled>프론트엔드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="3" name="jobNo" disabled>웹 풀스택</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="4" name="jobNo" disabled>모바일 웹</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="5" name="jobNo" disabled>게임 클라이언트</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="6" name="jobNo" disabled>게임 서버</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="7" name="jobNo" disabled>데이터
-											엔지니어(DBA)</label>
-										<br>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="8" name="jobNo" disabled>인공지능/머신러닝</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="9" name="jobNo" disabled>시스템 엔지니어</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="10" name="jobNo" disabled checked>보안</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="11" name="jobNo" disabled>QA</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="12" name="jobNo" disabled>프로젝트 매니저</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="13" name="jobNo" disabled>HW/임베디드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="14" name="jobNo" disabled>SW/솔루션</label>
-									</c:when>
-									<c:when test="${ detail.jobNo eq 11 }">
-										<label> <input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="1" name="jobNo" disabled>서버/백엔드
-										</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="2" name="jobNo" disabled>프론트엔드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="3" name="jobNo" disabled>웹 풀스택</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="4" name="jobNo" disabled>모바일 웹</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="5" name="jobNo" disabled>게임 클라이언트</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="6" name="jobNo" disabled>게임 서버</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="7" name="jobNo" disabled>데이터
-											엔지니어(DBA)</label>
-										<br>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="8" name="jobNo" disabled>인공지능/머신러닝</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="9" name="jobNo" disabled>시스템 엔지니어</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="10" name="jobNo" disabled>보안</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="11" name="jobNo" disabled cheked>QA</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="12" name="jobNo" disabled>프로젝트 매니저</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="13" name="jobNo" disabled>HW/임베디드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="14" name="jobNo" disabled>SW/솔루션</label>
-									</c:when>
-									<c:when test="${ detail.jobNo eq 12 }">
-										<label> <input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="1" name="jobNo" disabled>서버/백엔드
-										</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="2" name="jobNo" disabled>프론트엔드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="3" name="jobNo" disabled>웹 풀스택</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="4" name="jobNo" disabled>모바일 웹</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="5" name="jobNo" disabled>게임 클라이언트</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="6" name="jobNo" disabled>게임 서버</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="7" name="jobNo" disabled>데이터
-											엔지니어(DBA)</label>
-										<br>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="8" name="jobNo" disabled>인공지능/머신러닝</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="9" name="jobNo" disabled>시스템 엔지니어</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="10" name="jobNo" disabled>보안</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="11" name="jobNo" disabled>QA</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="12" name="jobNo" disabled checked>프로젝트
-											매니저</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="13" name="jobNo" disabled>HW/임베디드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="14" name="jobNo" disabled>SW/솔루션</label>
-									</c:when>
-									<c:when test="${ detail.jobNo eq 13 }">
-										<label> <input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="1" name="jobNo" disabled>서버/백엔드
-										</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="2" name="jobNo" disabled>프론트엔드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="3" name="jobNo" disabled>웹 풀스택</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="4" name="jobNo" disabled>모바일 웹</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="5" name="jobNo" disabled>게임 클라이언트</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="6" name="jobNo" disabled>게임 서버</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="7" name="jobNo" disabled>데이터
-											엔지니어(DBA)</label>
-										<br>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="8" name="jobNo" disabled>인공지능/머신러닝</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="9" name="jobNo" disabled>시스템 엔지니어</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="10" name="jobNo" disabled>보안</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="11" name="jobNo" disabled>QA</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="12" name="jobNo" disabled>프로젝트 매니저</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="13" name="jobNo" disabled checked>HW/임베디드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="14" name="jobNo" disabled>SW/솔루션</label>
-									</c:when>
-									<c:when test="${ detail.jobNo eq 14 }">
-										<label> <input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="1" name="jobNo" disabled>서버/백엔드
-										</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="2" name="jobNo" disabled>프론트엔드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="3" name="jobNo" disabled>웹 풀스택</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="4" name="jobNo" disabled>모바일 웹</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="5" name="jobNo" disabled>게임 클라이언트</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="6" name="jobNo" disabled>게임 서버</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="7" name="jobNo" disabled>데이터
-											엔지니어(DBA)</label>
-										<br>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="8" name="jobNo" disabled>인공지능/머신러닝</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="9" name="jobNo" disabled>시스템 엔지니어</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="10" name="jobNo" disabled>보안</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="11" name="jobNo" disabled>QA</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="12" name="jobNo" disabled>프로젝트 매니저</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="13" name="jobNo" disabled>HW/임베디드</label>
-										<label><input
-											style="width: 20px; height: 20px; border: 1px;" type="radio"
-											id="jobNo" value="14" name="jobNo" disabled checked>SW/솔루션</label>
-									</c:when>
-								</c:choose>
+		<div class="jp_cp_profile_main_wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+						<div class="jp_cp_left_side_wrapper">
+							<div class="jp_cp_left_pro_wallpaper">
+								<img src="images/content/cp1.png" alt="profile_img">
+									
+									<h2>${ detailList[0].memName }</h2>						
+								
+								
 
 							</div>
+							<div class="jp_cp_rd_wrapper">
+							
+								
+								
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+						<div class="jp_cp_right_side_wrapper">
+							<div class="jp_cp_right_side_inner_wrapper">
+								<h2>인재 소개란</h2>
+								<table>
+									<tbody>
+										
+										<tr>
+											<td class="td-w25">이름</td>
+											<td class="td-w10">:</td>
+											
+											<td class="td-w65">${ requestScope.detailResume[0].memName }</td>
+											
+										</tr>
+										<tr>
+											<td class="td-w25">보유기술</td>
+											<td class="td-w10">:</td>
+											<c:forEach items="${ requestScope.detailSkills }" var="detailSkills" varStatus="status">
+												<td class="td-w65">
+													${ detailSkills.skillsName }
+												</td>
+											</c:forEach>
+										</tr>
+										<tr>
+											<td class="td-w25">직무</td>
+											<td class="td-w10">:</td>
+											
+											<td class="td-w65">${ requestScope.detailJobField[0].jobName }</td>
+											
+										</tr>
+										<tr>
+											<td class="td-w25">경력</td>
+											<td class="td-w10">:</td>
+											<c:forEach items="${ requestScope.detailCareer }" var="detail" varStatus="status">
+												<td class="td-w65">
+													${ detail.carHireDate } ~ ${ detail.carEntDate }
+												</td>
+											</c:forEach>
+										</tr>
 
-							<div class="row" id="inputCareer">
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-
-									<div class="jp_adp_form_wrapper">
-										<input type="text"
-											placeholder="${ detail.careerHistoryList[status.index].carComName }"
-											name="carComName" disabled>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-
-									<div class="jp_adp_form_wrapper">
-										<input type="text"
-											placeholder="${ detail.careerHistoryList[status.index].carDeptName }"
-											name="carDeptName" disabled>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-									<div class="jp_adp_form_wrapper">
-										<input type="text"
-											placeholder="${ detail.careerHistoryList[status.index].carJobName }"
-											name="carJobName" disabled>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-									<div class="jp_adp_form_wrapper">
-										<input type="text"
-											placeholder="${ detail.careerHistoryList[status.index].carWorkField }"
-											name="carWorkField" disabled>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-									<div class="jp_adp_form_wrapper">
-										<label>입사일 *</label> <input type="text"
-											placeholder="${ detail.careerHistoryList[status.index].carHireDate }"
-											name="carHireDate" disabled>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-									<div class="jp_adp_form_wrapper">
-										<label>퇴사일 *</label> <input type="text"
-											placeholder="${ detail.careerHistoryList[status.index].carEntDate }"
-											name="carEntDate" disabled>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-									<div class="jp_adp_form_wrapper">
-										<br> <br>
-										<c:choose>
-											<c:when
-												test="${ detail.careerHistoryList[status.index].carStatus eq 'Y' }">
-												<label><input
-													style="width: 17px; height: 17px; border: 1px;"
-													type="checkbox" name="carStatus" checked disabled>
-													현재 재직 중</label>
-											</c:when>
-											<c:otherwise>
-												<label><input
-													style="width: 17px; height: 17px; border: 1px;"
-													type="checkbox" name="carStatus" disabled> 현재 재직 중</label>
-											</c:otherwise>
-										</c:choose>
-									</div>
-								</div>
-
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-									<div class="jp_adp_form_wrapper">
-										<label> </label>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-									<div class="jp_adp_form_wrapper">
-										<label> </label>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-									<div class="jp_adp_form_wrapper">
-										<label> </label>
-									</div>
-								</div>
-
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-									<div class="jp_adp_form_wrapper">
-										<br> <input type="text"
-											placeholder="${ detail.careerHistoryList[status.index].projectName }"
-											name="projectName" disabled>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-									<div class="jp_adp_form_wrapper">
-										<br> <input type="text"
-											placeholder="${ detail.careerHistoryList[status.index].projectContent }"
-											name="projectContent" disabled>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-									<div class="jp_adp_form_wrapper">
-										<label>프로젝트 시작일</label> <input type="text"
-											placeholder="${ detail.careerHistoryList[status.index].projectStartDate }"
-											name="projectStartDate" disabled>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-									<div class="jp_adp_form_wrapper">
-										<label>프로젝트 퇴사일</label> <input type="text"
-											placeholder="${ detail.careerHistoryList[status.index].projectEndDate }"
-											name="projectEndDate" disabled>
-									</div>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+								<div class="jp_cp_accor_heading_wrapper">
+									<h2>상세이력서</h2>
+									<p>아래의 메뉴에서 상세한 이력서를 조회하세요.</p>
 								</div>
 							</div>
+							<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+								<div class="accordion_wrapper abt_page_2_wrapper">
+									<div class="panel-group" id="accordion_threeLeft">
 
-							<div class="jp_adp_form_wrapper">
-								<c:choose>
-									<c:when
-										test="${ detail.portFolioList[status.index].potKinds eq '링크' }">
-										<h3>포트폴리오 링크</h3>
-										<br> 깃랩, 노션으로 작성한 포트폴리오 주소 or 구글 드라이브 파일 등 업무 성과를 보여줄 수 있는
-										파일이 있다면 첨부해주세요. <input type="text"
-											placeholder="${ detail.portFolioList[status.index].potLinkAddress }"
-											name="potLinkAddress" disabled>
-									</c:when>
-									<c:otherwise>
 
-										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-											<div class="jp_adp_choose_resume">
-												<h3>포트폴리오 첨부</h3>
-												<div class="custom-input">
-													<span><i class="fa fa-upload"></i>파일선택</span> <input
-														type="file" name="potFilePath" id="potFilePath" disabled>
+										<!-- /.panel-default -->
+										<div class="panel panel-default">
+											<div class="panel-heading bell">
+												<h4 class="panel-title">
+													<a class="collapsed" data-toggle="collapse"
+														data-parent="#accordion_threeLeft"
+														href="#collapseTwentyLeftThree" aria-expanded="false">
+														포트폴리오
+													</a>
+												</h4>
+											</div>
+											<div id="collapseTwentyLeftThree"
+												class="panel-collapse collapse" aria-expanded="false"
+												role="tablist">
+												<div class="panel-body">	
+													<c:forEach items="${ requestScope.detailPot }" var="detail" varStatus="status">
+																${ detail.potLinkAddress }
+													</c:forEach>
 												</div>
-												<input type="text"
-													placeholder="${ detail.portFolioList[status.index].potFileOriginalName }"
-													name="potLinkAddress" disabled>
 											</div>
 										</div>
-									</c:otherwise>
-								</c:choose>
-							</div>
-						</div>
-
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<div class="jp_adp_textarea_main_wrapper">
-								<h3>자기소개서</h3>
-								<c:choose>
-									<c:when
-										test="${ detail.itemAndContentList[status.index].selfIntroItemNo eq 1 }">
-										<select name="selfIntroItemNo" disabled>
-											<option value="">-- 카테고리 선택 --</option>
-											<option value="1" selected>성장과정</option>
-											<option value="2">지원동기</option>
-											<option value="3">성격장단점</option>
-											<option value="4">입사후포부</option>
-										</select>
-									</c:when>
-									<c:when
-										test="${ detail.itemAndContentList[status.index].selfIntroItemNo eq 2 }">
-										<select name="selfIntroItemNo" disabled>
-											<option value="">-- 카테고리 선택 --</option>
-											<option value="1">성장과정</option>
-											<option value="2" selected>지원동기</option>
-											<option value="3">성격장단점</option>
-											<option value="4">입사후포부</option>
-										</select>
-									</c:when>
-									<c:when
-										test="${ detail.itemAndContentList[status.index].selfIntroItemNo eq 3 }">
-										<select name="selfIntroItemNo" disabled>
-											<option value="">-- 카테고리 선택 --</option>
-											<option value="1">성장과정</option>
-											<option value="2">지원동기</option>
-											<option value="3" selected>성격장단점</option>
-											<option value="4">입사후포부</option>
-										</select>
-									</c:when>
-									<c:when
-										test="${ detail.itemAndContentList[status.index].selfIntroItemNo eq 4 }">
-										<select name="selfIntroItemNo" disabled>
-											<option value="">-- 카테고리 선택 --</option>
-											<option value="1">성장과정</option>
-											<option value="2">지원동기</option>
-											<option value="3">성격장단점</option>
-											<option value="4" selected>입사후포부</option>
-										</select>
-									</c:when>
-								</c:choose>
-
-								<textarea rows="7"
-									placeholder="${ detail.itemAndContentList[status.index].selfIntroContent.selfIntroItemContent }"
-									name="selfIntroItemContent" disabled></textarea>
-							</div>
-						</div>
-						<br> <br>
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
-							<div class="row" id="inputLicense">
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-									<div class="jp_adp_form_wrapper">
-										<h3>자격증 이력</h3>
-										<input type="text"
-											placeholder="${ detail.licenseHistoryList[status.index].licenseName }"
-											name="licenseName" disabled>
+										<div class="panel panel-default">
+											<div class="panel-heading bell">
+												<h4 class="panel-title">
+													<a class="collapsed" data-toggle="collapse"
+														data-parent="#accordion_threeLeft"
+														href="#collapseTwentyLeftThree2" aria-expanded="false">
+														자기소개	
+													</a>
+												</h4>
+											</div>
+											<div id="collapseTwentyLeftThree2"
+												class="panel-collapse collapse" aria-expanded="false"
+												role="tablist">
+												<div class="panel-body">
+													<c:forEach items="${ requestScope.detailIntroContent }" var="detail" varStatus="status">
+														${ detail.selfIntroItemName }<br>
+														${ detail.selfIntroContent.selfIntroItemContent }<br><br>
+													</c:forEach>
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<div class="panel-heading bell">
+												<h4 class="panel-title">
+													<a class="collapsed" data-toggle="collapse"
+														data-parent="#accordion_threeLeft"
+														href="#collapseTwentyLeftThree3" aria-expanded="false">														
+														경력, 프로젝트 이력, 자격증, 교육, 수상 이력 	
+														</a>
+												</h4>
+											</div>
+											<div id="collapseTwentyLeftThree3"
+												class="panel-collapse collapse" aria-expanded="false"
+												role="tablist">
+												<div class="panel-body">
+													<h4><label>경력</label></h4>
+													<c:forEach items="${ requestScope.detailCareer }" var="detail" varStatus="status">
+														회사명 : ${ detail.carComName }<br>
+														부서명 : ${ detail.carDeptName }<br>
+														직책 : ${ detail.carJobName }<br>
+														업무 분야 : ${ detail.carWorkField }<br>
+														입사일 : ${ detail.carHireDate }<br>
+														퇴사일 : ${ detail.carEntDate }<br>
+														<br>
+													</c:forEach>
+													<h4><label>프로젝트 이력</label></h4>
+													<c:forEach items="${ requestScope.detailCareer }" var="detail" varStatus="status">
+														프로젝트명 : ${ detail.projectName }<br>
+														프로젝트 업무 내용 : ${ detail.projectContent }<br>
+														프로젝트 시작일 : ${ detail.projectStartDate }<br>
+														프로젝트 종료일 : ${ detail.projectEndDate }<br>
+														<br>
+														
+													</c:forEach>
+													<h4><label>자격증</label></h4>
+													<c:forEach items="${ requestScope.detailLicense }" var="detail" varStatus="status">
+														자격증 명 : ${ detail.licenseName }<br>
+														발행처 : ${ detail.licenseAgency }<br>
+														자격증 취득일 : ${ detail.licenseDate }<br>
+														<br>
+													
+													</c:forEach>
+													<h4><label>교육 이력</label></h4>
+													<c:forEach items="${ requestScope.detailEdu }" var="detail" varStatus="status">
+														교육명 : ${ detail.eduName }<br>
+														교육기관 : ${ detail.eduAgency }<br>
+														교육 시작일 : ${ detail.eduStartDate }<br> 
+														교육 종료일 : ${ detail.eduEndDate }<br>
+														교육 내용 : ${ detail.eduContent }<br>
+														<br>
+													
+													</c:forEach>
+													<h4><label>수상 이력</label></h4>
+													<c:forEach items="${ requestScope.detailAward }" var="detail" varStatus="status">
+														수상명 : ${ detail.awdName }<br>
+														수상기관 : ${ detail.awdAgency }<br>
+														수상일 : ${ detail.awdDate }<br>
+														수상내용 : ${ detail.awdContent }<br>
+														<br>
+													</c:forEach>
+														
+												</div>
+											</div>
+										</div>
+										<!-- /.panel-default -->
 									</div>
-								</div>
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-									<div class="jp_adp_form_wrapper">
-
-										<br> <input type="text"
-											placeholder="${ detail.licenseHistoryList[status.index].licenseAgency }"
-											name="licenseAgency" disabled>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-									<div class="jp_adp_form_wrapper">
-										<label>자격증 취득일</label> <input type="text"
-											placeholder="${ detail.licenseHistoryList[status.index].licenseDate }"
-											name="licenseDate" disabled>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
-							<div class="row" id="inputEdu">
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-									<div class="jp_adp_form_wrapper">
-										<h3>교육 이력</h3>
-										<input type="text"
-											placeholder="${ detail.educationHistoryList[status.index].eduName }"
-											name="eduName" disabled>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-									<div class="jp_adp_form_wrapper">
-										<br> <input type="text"
-											placeholder="${ detail.educationHistoryList[status.index].eduAgency }"
-											name="eduAgency" disabled>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-									<div class="jp_adp_form_wrapper">
-										<label>교육 시작일</label> <input type="text"
-											placeholder="${ detail.educationHistoryList[status.index].eduStartDate }"
-											name="eduStartDate" disabled>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-									<div class="jp_adp_form_wrapper">
-										<label>교육 종료일</label> <input type="text"
-											placeholder="${ detail.educationHistoryList[status.index].eduEndDate }"
-											name="eduEndDate" disabled>
-									</div>
-								</div>
-								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-									<div class="jp_adp_textarea_main_wrapper">
-										<h5>교육 내용</h5>
-										<textarea rows="7"
-											placeholder="${ detail.educationHistoryList[status.index].eduContent }"
-											name="eduContent" disabled></textarea>
-									</div>
+									<!--end of /.panel-group-->
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
-							<div class="row" id="inputAwd">
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-									<div class="jp_adp_form_wrapper">
-										<h3>수상 이력</h3>
-										<input type="text"
-											placeholder="${ detail.awardHistoryList[status.index].awdName }"
-											name="awdName" disabled>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-									<div class="jp_adp_form_wrapper">
-										<br> <input type="text"
-											placeholder="${ detail.awardHistoryList[status.index].awdAgency }"
-											name="awdAgency" disabled>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
-									<div class="jp_adp_form_wrapper">
-										<label>수상 일자</label> <input type="text"
-											placeholder="${ detail.awardHistoryList[status.index].awdDate }"
-											name="awdDate" disabled>
-									</div>
-								</div>
-								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-									<div class="jp_adp_textarea_main_wrapper">
-										<h5>수상 내용</h5>
-										<textarea rows="7"
-											placeholder="${ detail.awardHistoryList[status.index].awdContent }"
-											name="awdContent" disabled></textarea>
-									</div>
-								</div>
-							</div>
-						</div>
-
-
 					</div>
 				</div>
 			</div>
-		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 jp_cl_right_bar"></div>
-		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 jp_cl_right_bar">
-			<button class="btn-info" onClick="updateResume(this);" value="${ detail.resumeNo }">수정하기</button>
-			<button class="btn-info" onClick="deleteResume(this);" value="${ detail.resumeNo }">삭제하기</button>
 		</div>
-			<!-- jp ad post Wrapper End -->
-		</c:forEach>
-		
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 jp_cl_right_bar"></div>
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 jp_cl_right_bar"></div>
-	
-	<script type="text/javascript">
+	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 jp_cl_right_bar"></div>
+	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 jp_cl_right_bar">
+		<button class="btn-info" onClick="updateResume(this);"
+			value="${ requestScope.detailResume[0].resume[0].resumeNo }">수정하기</button>
+		<button class="btn-info" onClick="deleteResume(this);"
+			value="${ requestScope.detailResume[0].resume[0].resumeNo }">삭제하기</button>
+	</div>
+	<!-- jp ad post Wrapper End -->
 
+
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 jp_cl_right_bar"></div>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 jp_cl_right_bar"></div>
+
+	<script type="text/javascript">
 		function updateResume(button) {
-			
+
 			const selectedUpdateResumeNo = button.value;
-			location.href = "${ pageContext.servletContext.contextPath }/resume/update?selectedUpdateResumeNo=" 
+			location.href = "${ pageContext.servletContext.contextPath }/resume/update?selectedUpdateResumeNo="
 					+ selectedUpdateResumeNo;
-			
+
 		}
-		
+
 		function deleteResume(button) {
-			
+
 			const selectedDeleteResumeNo = button.value;
-			location.href = "${ pageContext.servletContext.contextPath }/resume/delete?selectedDeleteResumeNo=" 
-				+ selectedDeleteResumeNo;
+			location.href = "${ pageContext.servletContext.contextPath }/resume/delete?selectedDeleteResumeNo="
+					+ selectedDeleteResumeNo;
 		}
-		
+
 		$("input").filter("[value='null']").val("");
-		
 	</script>
+	<script type="text/javascript" src="/let/resources/js/jquery_min.js"></script>
+    <script type="text/javascript" src="/let/resources/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/let/resources/js/jquery.menu-aim.js"></script>
+    <script type="text/javascript" src="/let/resources/js/jquery.countTo.js"></script>
+    <script type="text/javascript" src="/let/resources/js/jquery.inview.min.js"></script>
+    <script type="text/javascript" src="/let/resources/js/owl.carousel.js"></script>
+    <script type="text/javascript" src="/let/resources/js/modernizr.js"></script>
+    <script type="text/javascript" src="/let/resources/js/jquery.magnific-popup.js"></script>
+    <script type="text/javascript" src="/let/resources/js/custom_II.js"></script>
+	
 
 	<jsp:include page="../common/footer.jsp" />
 </body>

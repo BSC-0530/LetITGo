@@ -315,7 +315,7 @@
 	<update id="updateExposureUsageHistory">
 		UPDATE 
 			   TBL_EXPOSURE_USAGE_HISTORY AH
-		   SET AH.EXPOSURE_USE_DATE = #{ exposureUseDate }
+		   SET AH.EXPOSURE_USE_DATE = SYSDATE
 		   	 , AH.EXPOSURE_END_DATE = #{ exposureEndDate }
 		 WHERE AH.JOB_POST_NO = #{ jobPostNo }
 		   AND AH.CO_MEM_NO = #{ coMemNo }
@@ -331,7 +331,7 @@
 		)
 		VALUES
 		(
-		  #{ exposureUseDate }, #{ exposureEndDate }, #{ jobPostNo }
+		  SYSDATE, #{ exposureEndDate }, #{ jobPostNo }
 		, #{ coMemNo }, #{ retainedProductCode }
 		)  
 	</insert>
@@ -343,14 +343,9 @@
 		 WHERE A.RETAINED_PRODUCT_CODE = #{ retainedProductCode }
 		   AND A.CO_MEM_NO = #{ coMemNo }
 	</update>
+
 	
-	<select id="selectExposureYn" resultMap="useExposureResultMap">
-		SELECT
-			   A.EXPOSURE_END_DATE
-			 , A.JOB_POST_NO
-		  FROM TBL_EXPOSURE_USAGE_HISTORY A
-		 WHERE SYSDATE BETWEEN EXPOSURE_USE_DATE AND EXPOSURE_END_DATE
-	</select>
+
 
 
 

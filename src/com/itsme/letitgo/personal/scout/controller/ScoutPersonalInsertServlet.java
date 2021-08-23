@@ -8,7 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.itsme.letitgo.login.model.dto.MemberLoginDTO;
+import com.itsme.letitgo.personal.scout.model.dto.MemNoAndResumeNoDTO;
 import com.itsme.letitgo.personal.scout.model.dto.ResumeDTO;
 import com.itsme.letitgo.personal.scout.model.service.PersonalScoutService;
 
@@ -17,7 +20,14 @@ public class ScoutPersonalInsertServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<ResumeDTO> resumeList = new PersonalScoutService().selectResume();
+		HttpSession session = request.getSession();
+		
+		MemberLoginDTO comDTO1 = (MemberLoginDTO) session.getAttribute("loginMember");
+		System.out.println("번호" + comDTO1.getMemNo());
+		//로그인된 멤버 번호
+		int memberNo = comDTO1.getMemNo();
+		
+		List<ResumeDTO> resumeList = new PersonalScoutService().selectResume(memberNo);
 		
 		System.out.println("con resumeList : " + resumeList);
 		
@@ -34,16 +44,23 @@ public class ScoutPersonalInsertServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		int resumeNo = Integer.parseInt(request.getParameter("resumeNo"));
+		HttpSession session = request.getSession();
+		
+		MemberLoginDTO comDTO1 = (MemberLoginDTO) session.getAttribute("loginMember");
+		System.out.println("번호" + comDTO1.getMemNo());
+		//로그인된 멤버 번호
+		int memberNo = comDTO1.getMemNo();
+		
+		MemNoAndResumeNoDTO mr = new MemNoAndResumeNoDTO();
+		
+		mr.setMemNo(memberNo);
+		mr.setResumeNo(resumeNo);
 		
 		System.out.println("con resumeNo : " + resumeNo);
 		
-		int result = new PersonalScoutService().updateScoutStatus(resumeNo);
+		new PersonalScoutService().updateScoutStatus(mr);
 		
-		String path = "";
-		if(result > 0) {
-			path = "/WEB-INF/views/scout/scoutPersonalComplete.jsp";
-			response.sendRedirect("/let/scout/personal/complete");
-		}
+		request.getRequestDispatcher("/WEB-INF/views/scout/scoutPersonalComplete.jsp").forward(request, response);
 	}
 
 }

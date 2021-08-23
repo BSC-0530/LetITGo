@@ -142,10 +142,10 @@
 							<thead>
 								<tr align="center">
 									<td>상품명</td>
-									<td>사유</td>
 									<td>상태</td>
 									<td>요청일</td>
 									<td>요청응답일</td>
+									<td>사유</td>
 									<td>환불취소</td>
 								</tr>
 							</thead>
@@ -156,7 +156,6 @@
 										<input type="hidden" name="payChangeNo" value="${ refund.payChangeNo }">
 										<input type="hidden" name="payNo" value="${ refund.payNo }">
 										<c:out value="${ refund.productName }" /></td>
-										<td><c:out value="${ refund.payChangeReason }" /></td>
 										<td><c:out value="${ refund.payChangeStatus }" /></td>
 										<td><c:out value="${ refund.payReqDate }" /></td>
 
@@ -169,6 +168,7 @@
 											<td><c:out value="${ refund.payAnsDate }" /></td>
 										</c:if>
 										
+										<td><button type=button onclick="browse(this);" >상세보기</button></td>
 										<c:if test="${refund.payAnsDate == null && refund.payChangeStatus eq '환불요청취소' }">
 											<td>-</td>
 										</c:if>
@@ -226,6 +226,15 @@
 
 			$form.submit();
 		}
+		
+		//상세보기시
+		function browse(button){
+			
+			const payChangeNo = button.parentNode.parentNode.children[0].children[0].value;
+			
+			location.href="${ pageContext.servletContext.contextPath }/company/refundHistory/reason/select?payChangeNo="+payChangeNo
+					
+		}	
 	</script>
 </body>
 </html>
