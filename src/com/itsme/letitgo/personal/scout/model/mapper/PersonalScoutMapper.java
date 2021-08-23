@@ -2,15 +2,15 @@ package com.itsme.letitgo.personal.scout.model.mapper;
 
 import java.util.List;
 
+import com.itsme.letitgo.personal.scout.model.dto.MemNoAndResumeNoDTO;
 import com.itsme.letitgo.personal.scout.model.dto.ReadingResumeListOfPersonalDTO;
 import com.itsme.letitgo.personal.scout.model.dto.ResumeDTO;
-import com.itsme.letitgo.personal.scout.model.dto.ScoutDetailResumeDTO;
 
 public interface PersonalScoutMapper {
 
-	int updateScoutStatus(int resumeNo);
+	int updateScoutStatus(MemNoAndResumeNoDTO mr);
 
-	List<ResumeDTO> selectResume();
+	List<ResumeDTO> selectResume(int memberNo);
 
 	// 개인 얕은 열람 카운트
 	int selectSimpleCount();

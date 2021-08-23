@@ -124,12 +124,16 @@ public class ResumeInsertServlet extends HttpServlet {
 		ir.setAwdAgency(awdAgency);
 		ir.setAwdDate(awdDate);
 		ir.setAwdContent(awdContent);
+		ir.setSkillsName(skillsName);
+		
 		
 		List<InsertResumeDTO> irList = new ArrayList<>();
 		irList.add(ir);
 		System.out.println("req irList : " + irList);
 		
-		int resumeNo = new ResumeService().insertResume(ir);
+		int resultResume = new ResumeService().insertResume(ir);
+		
+		int resumeNo = ir.getResumeNo();
 		
 		System.out.println("resumeNo : " + resumeNo);
 		

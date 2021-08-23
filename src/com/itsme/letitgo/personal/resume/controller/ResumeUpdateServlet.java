@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +22,7 @@ public class ResumeUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		int resumeNo = Integer.parseInt(request.getParameter("selectedUpdateResumeNo"));
-		List<DetailResumeDTO> detailResume = new ResumeService().selectDetailResumeList(resumeNo);	
+		List<DetailResumeDTO> detailResume = new ResumeService().selectDetailResumeListforUpdate(resumeNo);	
 		
 		String path = "";
 		

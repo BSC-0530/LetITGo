@@ -11,9 +11,7 @@ public class ResumeDTO implements java.io.Serializable {
 	private String resumeScoutStatus;
 	private int jobNo;
 
-	
 	public ResumeDTO() {}
-
 
 	public ResumeDTO(int resumeNo, String resumeTitle, int inMemNo, Date resumeWriteDate, String resumeScoutStatus,
 			int jobNo) {

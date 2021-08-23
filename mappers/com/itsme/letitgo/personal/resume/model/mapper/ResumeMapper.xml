@@ -168,6 +168,121 @@
 		<result property="awdContent" column="AWD_CONTENT"/>
 	</resultMap>
 	
+	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.CareerHistoryDTO" id="detailCareerHistoryResultMap">
+		<id property="carNo" column="CAR_NO"/>
+		<result property="carComName" column="CAR_COM_NAME"/>
+		<result property="carHireDate" column="CAR_HIRE_DATE"/>
+		<result property="carEntDate" column="CAR_ENT_DATE"/>
+		<result property="carStatus" column="CAR_STATUS"/>
+		<result property="carDeptName" column="CAR_DEPT_NAME"/>
+		<result property="carJobName" column="CAR_JOB_NAME"/>
+		<result property="projectName" column="PROJECT_NAME"/>
+		<result property="projectStartDate" column="PROJECT_START_DATE"/>
+		<result property="projectEndDate" column="PROJECT_END_DATE"/>
+		<result property="projectContent" column="PROJECT_CONTENT"/>
+		<result property="carWorkField" column="CAR_WORK_FIELD"/>
+		<result property="jobNo" column="JOB_NO"/>
+		<result property="resumeNo" column="RESUME_NO"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.SkillsDTO" id="detailSkillsResultMap">
+		<id property="skillsNo" column="SKILLS_NO"/>
+		<result property="skillsName" column="SKILLS_NAME"/>
+		<result property="categoryNo" column="CATEGORY_NO"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.ItemAndContentDTO" id="detailContentResultMap">
+		<id property="selfIntroItemNo" column="SELF_INTRO_ITEM_NO"/>
+		<result property="selfIntroItemName" column="SELF_INTRO_ITEM_NAME"/>
+		
+		<association property="selfIntroContent" javaType="com.itsme.letitgo.personal.resume.model.dto.SelfIntroductionContentDTO">
+				<id property="selfIntroItemNo" column="SELF_INTRO_ITEM_NO"/>
+				<result property="selfIntroItemContent" column="SELF_INTRO_ITEM_CONTENT"/>
+				<result property="resumeNo" column="RESUME_NO"/>
+			</association>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.AwardHistoryDTO" id="detailAwardResultMap">
+		<id property="awdNo" column="AWD_NO"/>
+		<result property="awdName" column="AWD_NAME"/>
+		<result property="awdAgency" column="AWD_AGENCY"/>
+		<result property="awdDate" column="AWD_DATE"/>
+		<result property="awdContent" column="AWD_CONTENT"/>
+		<result property="resumeNo" column="RESUME_NO"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.EducationHistoryDTO" id="detailEduResultMap">
+		<id property="eduNo" column="EDU_NO"/>
+		<result property="eduName" column="EDU_NAME"/>
+		<result property="eduAgency" column="EDU_AGENCY"/>
+		<result property="eduStartDate" column="EDU_START_DATE"/>
+		<result property="eduEndDate" column="EDU_END_DATE"/>
+		<result property="eduContent" column="EDU_CONTENT"/>
+		<result property="resumeNo" column="RESUME_NO"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.LicenseHistoryDTO" id="detailLicenseResultMap">
+		<id property="licenseNo" column="LICENSE_NO"/>
+		<result property="licenseName" column="LICENSE_NAME"/>
+		<result property="licenseAgency" column="LICENSE_AGENCY"/>
+		<result property="licenseDate" column="LICENSE_DATE"/>
+		<result property="resumeNo" column="RESUME_NO"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.company.scout.model.dto.NameAndResumeDTO" id="detailResumeNameResultMap1232">
+		<id property="memNo" column="MEM_NO"/>
+		<result property="memId" column="MEM_ID"/>
+		<result property="memPwd" column="MEM_PWD"/>
+		<result property="memName" column="MEM_NAME"/>
+		<result property="memEmail" column="MEM_EMAIL"/>
+		<result property="memPhone" column="MEM_PHONE"/>
+		
+		<collection property="resume" ofType="com.itsme.letitgo.personal.scout.model.dto.ResumeDTO">
+		
+			<id property="resumeNo" column="RESUME_NO"/>
+			<result property="resumeTitle" column="RESUME_TITLE"/>
+			<result property="inMemNo" column="IN_MEM_NO"/>
+			<result property="resumeWriteDate" column="RESUME_WRITE_DATE"/>
+			<result property="resumeScoutStatus" column="RESUME_SCOUT_STATUS"/>
+			<result property="jobNo" column="JOB_NO"/>
+		</collection>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.JobFieldDTO" id="detailJobFieldResultMap">
+		<id property="jobNo" column="JOB_NO"/>
+		<result property="jobName" column="JOB_NAME"/>
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.personal.resume.model.dto.PortfolioDTO" id="detailPortfolioResultMap">
+		<id property="potNo" column="POT_NO"/>
+		<result property="resumeNo" column="RESUME_NO"/>
+		<result property="potKinds" column="POT_KINDS"/>
+		<result property="potLinkAddress" column="POT_LINK_ADDRESS"/>
+		<result property="potFilePath" column="POT_FILE_PATH"/>
+		<result property="potFileOriginalName" column="POT_FILE_ORIGINAL_NAME"/>
+		<result property="potFileName" column="POT_FILE_NAME"/>
+		
+	</resultMap>
+	
+	<resultMap type="com.itsme.letitgo.company.scout.model.dto.NameAndResumeDTO" id="detailResumeNameResultMap">
+		<id property="memNo" column="MEM_NO"/>
+		<result property="memId" column="MEM_ID"/>
+		<result property="memPwd" column="MEM_PWD"/>
+		<result property="memName" column="MEM_NAME"/>
+		<result property="memEmail" column="MEM_EMAIL"/>
+		<result property="memPhone" column="MEM_PHONE"/>
+		
+		<collection property="resume" ofType="com.itsme.letitgo.personal.scout.model.dto.ResumeDTO">
+		
+			<id property="resumeNo" column="RESUME_NO"/>
+			<result property="resumeTitle" column="RESUME_TITLE"/>
+			<result property="inMemNo" column="IN_MEM_NO"/>
+			<result property="resumeWriteDate" column="RESUME_WRITE_DATE"/>
+			<result property="resumeScoutStatus" column="RESUME_SCOUT_STATUS"/>
+			<result property="jobNo" column="JOB_NO"/>
+		</collection>
+	</resultMap>
+	
 	
 	
 	<select id="selectAllResumeList" resultMap="resumeResultMap">
@@ -182,9 +297,145 @@
 		 WHERE A.IN_MEM_NO = #{ memberNo }
 	</select>
 	
+	<select id="selectDetailResume" parameterType="_int"
+		resultMap="detailResumeNameResultMap1232">
+		SELECT
+		       R.RESUME_NO
+		     , M.MEM_NAME
+		     , R.IN_MEM_NO
+		     , R.RESUME_TITLE
+		  FROM TBL_MEMBER M
+		  JOIN TBL_RESUME R ON (M.MEM_NO = R.IN_MEM_NO)
+		 WHERE R.RESUME_NO = #{ resumeNo }
+	</select>
+	
+	<select id="selectDetailCareer" parameterType="_int"
+		resultMap="detailCareerHistoryResultMap">
+		SELECT DISTINCT
+		       CH.CAR_COM_NAME
+		     , CH.CAR_HIRE_DATE
+		     , CH.CAR_ENT_DATE
+		     , CH.CAR_STATUS
+		     , CH.CAR_DEPT_NAME
+		     , CH.CAR_JOB_NAME
+		     , CH.PROJECT_NAME
+		     , CH.PROJECT_START_DATE
+		     , CH.PROJECT_END_DATE
+		     , CH.PROJECT_CONTENT
+		     , CH.CAR_WORK_FIELD
+		  FROM TBL_CAREER_HISTORY CH
+		 WHERE CH.RESUME_NO = #{ resumeNo }
+	</select>
+	
+	<select id="selectDetailSkills" parameterType="_int"
+		resultMap="detailSkillsResultMap">
+		SELECT
+                HS.RESUME_NO
+		 	  , LISTAGG(S.SKILLS_NAME,', ') WITHIN GROUP(ORDER BY S.SKILLS_NAME) as SKILLS_NAME
+		  FROM TBL_RESUME_HOLDING_SKILLS HS
+          JOIN TBL_SKILLS S ON (S.SKILLS_NO = HS.SKILLS_NO)
+         WHERE HS.RESUME_NO = #{ resumeNo }
+         GROUP BY HS.RESUME_NO
+	</select>
+	
+	<select id="selectDetailContent" parameterType="_int"
+		resultMap="detailContentResultMap">
+		SELECT
+		       SI.SELF_INTRO_ITEM_NAME
+		     , SIC.SELF_INTRO_ITEM_CONTENT
+		  FROM TBL_SELF_INTRODUCTION_ITEM SI
+		  JOIN TBL_SELF_INTRODUCTION_CONTENT SIC ON (SI.SELF_INTRO_ITEM_NO = SIC.SELF_INTRO_ITEM_NO)
+		 WHERE SIC.RESUME_NO = #{ resumeNo }
+	</select>
+	
+	<select id="selectDetailAward" parameterType="_int"
+		resultMap="detailAwardResultMap">
+		SELECT
+		       A.AWD_NO
+		     , A.AWD_NAME
+		     , A.AWD_AGENCY
+		     , A.AWD_DATE
+		     , A.AWD_CONTENT
+		     , A.RESUME_NO
+		 FROM TBL_AWARD_HISTORY A
+		WHERE A.RESUME_NO = #{ resumeNo }
+	</select>
+	
+	<select id="selectDetailEdu" parameterType="_int"
+		resultMap="detailEduResultMap">
+		SELECT
+		       E.EDU_NO
+		     , E.EDU_NAME
+		     , E.EDU_AGENCY
+		     , E.EDU_START_DATE
+		     , E.EDU_END_DATE
+		     , E.EDU_CONTENT
+		     , E.RESUME_NO
+		  FROM TBL_EDUCATION_HISTORY E
+		 WHERE E.RESUME_NO = #{ resumeNo }
+	</select>
+	
+	<select id="selectDetailLicense" parameterType="_int"
+		resultMap="detailLicenseResultMap">
+		SELECT
+		       L.LICENSE_NO
+		     , L.LICENSE_NAME
+		     , L.LICENSE_AGENCY
+		     , L.LICENSE_DATE
+		     , L.RESUME_NO
+		  FROM TBL_LICENSE_HISTORY L
+		 WHERE L.RESUME_NO = #{ resumeNo }
+	</select>
+	
+	<select id="selectDetailJobField" parameterType="_int"
+		resultMap="detailJobFieldResultMap">
+		SELECT
+		       JF.JOB_NAME
+		  FROM TBL_JOB_FIELD JF
+		  JOIN TBL_RESUME R ON (JF.JOB_NO = R.JOB_NO)
+		 WHERE R.RESUME_NO = #{ resumeNo }
+	</select>
+	
+	<select id="selectDetailPot" parameterType="_int"
+		resultMap="detailPortfolioResultMap">
+		SELECT DISTINCT
+		       P.POT_LINK_ADDRESS
+		  FROM TBL_PORTFOLIO P
+		  JOIN TBL_RESUME R ON (P.RESUME_NO = R.RESUME_NO)
+		 WHERE R.RESUME_NO = #{ resumeNo }	
+	</select>
+	
 	<select id="selectDetailResumeList" parameterType="_int" resultMap="detailResumeResultMap">
-		SELECT /* com.itsme.letitgo.personal.resume.model.mapper.ResumeMapper#selectDetailResumeList() */
-		       *
+		SELECT DISTINCT /* com.itsme.letitgo.personal.resume.model.mapper.ResumeMapper#selectDetailResumeList() */
+		       R.RESUME_TITLE
+		     , JF.JOB_NAME
+		     , CH.CAR_COM_NAME
+		     , CH.CAR_HIRE_DATE
+		     , CH.CAR_ENT_DATE
+		     , CH.CAR_STATUS
+		     , CH.CAR_DEPT_NAME
+		     , CH.CAR_JOB_NAME
+		     , CH.CAR_WORK_FIELD
+		     , CH.PROJECT_NAME
+		     , CH.PROJECT_START_DATE
+		     , CH.PROJECT_END_DATE
+		     , CH.PROJECT_CONTENT
+		     , P.POT_LINK_ADDRESS
+		     , P.POT_FILE_NAME
+		     , SIC.SELF_INTRO_ITEM_CONTENT
+		     , SIC.SELF_INTRO_ITEM_NO
+		     , LH.LICENSE_NAME
+		     , LH.LICENSE_AGENCY
+		     , LH.LICENSE_DATE
+		     , EH.EDU_NAME
+		     , EH.EDU_AGENCY
+		     , EH.EDU_START_DATE
+		     , EH.EDU_END_DATE
+		     , EH.EDU_CONTENT
+		     , AH.AWD_NAME
+		     , AH.AWD_AGENCY
+		     , AH.AWD_DATE
+		     , AH.AWD_CONTENT
 		  FROM TBL_RESUME R
 		  JOIN TBL_PORTFOLIO P ON (R.RESUME_NO = P.RESUME_NO)
 		  JOIN TBL_SELF_INTRODUCTION_CONTENT SIC ON (R.RESUME_NO = SIC.RESUME_NO)
@@ -217,7 +468,7 @@
 		VALUES
 		(
 		  SEQ_RESUME_NO.NEXTVAL, #{ inMemNo }, SYSDATE
-		, 'Y', #{ jobNo }, #{ resumeTitle }
+		, DEFAULT, #{ jobNo }, #{ resumeTitle }
 		)
 		
 		<selectKey keyColumn="RESUME_NO" keyProperty="resumeNo" resultType="_int" order="AFTER">
@@ -312,6 +563,26 @@
 		  SEQ_AWD_NO.NEXTVAL, #{ awdName }, #{ awdAgency }
 		, #{ awdDate }, #{ awdContent }, #{ resumeNo }
 		)
+	</insert>
+	
+	<insert id="insertSkill">
+		<selectKey keyColumn="SKILLS_NO" keyProperty="skillsNo" resultType="_int" order="BEFORE">
+			SELECT
+				   SKILLS_NO
+		  	  FROM TBL_SKILLS
+		  	 WHERE SKILLS_NAME = #{ skillsName }
+		</selectKey>
+		
+		INSERT
+		  INTO TBL_RESUME_HOLDING_SKILLS A
+		(
+		  A.RESUME_NO, A.SKILLS_NO
+		)
+		VALUES
+		(
+		  #{ resumeNo }, #{ skillsNo }
+		)
+		
 	</insert>
 	
 	<update id="updateResume">
@@ -431,4 +702,22 @@
 		  FROM TBL_RESUME_HOLDING_SKILLS A
 		 WHERE A.RESUME_NO = #{ resumeNo }
 	</delete>
+	
+	<select id="selectDetailResumeListforUpdate" parameterType="_int" resultMap="detailResumeResultMap">
+		SELECT /* com.itsme.letitgo.personal.resume.model.mapper.ResumeMapper#selectDetailResumeList() */
+		       *
+		  FROM TBL_RESUME R
+		  JOIN TBL_PORTFOLIO P ON (R.RESUME_NO = P.RESUME_NO)
+		  JOIN TBL_SELF_INTRODUCTION_CONTENT SIC ON (R.RESUME_NO = SIC.RESUME_NO)
+		  JOIN TBL_SELF_INTRODUCTION_ITEM SII ON (SII.SELF_INTRO_ITEM_NO = SIC.SELF_INTRO_ITEM_NO)
+		  JOIN TBL_AWARD_HISTORY AH ON (R.RESUME_NO = AH.RESUME_NO)
+		  JOIN TBL_EDUCATION_HISTORY EH ON (R.RESUME_NO = EH.RESUME_NO)
+		  JOIN TBL_LICENSE_HISTORY LH ON (R.RESUME_NO = LH.RESUME_NO)
+		  JOIN TBL_RESUME_HOLDING_SKILLS RH ON (R.RESUME_NO = RH.RESUME_NO)
+		  JOIN TBL_SKILLS S ON (S.SKILLS_NO = RH.SKILLS_NO)
+		  JOIN TBL_SKILLS_CATEGORY SC ON (SC.CATEGORY_NO = S.CATEGORY_NO)
+		  JOIN TBL_CAREER_HISTORY CH ON (R.RESUME_NO = CH.RESUME_NO)
+		  JOIN TBL_JOB_FIELD JF ON (R.JOB_NO = JF.JOB_NO)
+		 WHERE R.RESUME_NO = #{ resumeNo }
+	</select>
 </mapper>
