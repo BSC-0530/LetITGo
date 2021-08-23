@@ -30,12 +30,11 @@ public class CompanyScoutListSelectServlet extends HttpServlet {
 		
 		List<BrosweHistoryDTO> browselist = mainScoutListService.selectBrowseUsingHistroy(memNo);
 		
-		//경력뽑기용 몇개월
 		Map<String, Object> scoutList= mainScoutListService.selectAllScoutList();
 		
 		for(BrosweHistoryDTO BrowseUsingHistroy : browselist) {
 			 
-			System.out.println(BrowseUsingHistroy);
+			System.out.println("@@@@@@@" + BrowseUsingHistroy);
 			
 		}
 		

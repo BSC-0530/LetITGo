@@ -38,7 +38,7 @@ public interface CompanyScoutMapper {
 
 	List<Integer> careeaNumber(int onClickResumeNo);
 
-	int readingKindsInsert(int onClickResumeNo);
+	int readingKindsInsert(ResumeReadingHistoryDTO dto);
 
 	List<BrosweHistoryDTO> selectBrowseUsingHistroy(int memNo);
 
@@ -70,10 +70,10 @@ public interface CompanyScoutMapper {
 	int updateDetailStatus(int resumeNo);
 
 //	찜하기 목록 추가
-	int insertWishList(int resumeNo);
+	int insertWishList(CandidateRegistrationDTO dto);
 
 //	찜하기 리스트 조회
-	List<CandidateRegistrationDTO> selectWishInfoList();
+	List<CandidateRegistrationDTO> selectWishInfoList(CandidateRegistrationDTO dto);
 
 //	찜하기 보유 스킬 조회
 	List<CandidateRegisterSkillsDTO> selectWishSkillsList(int resumeNo);

@@ -200,12 +200,14 @@
 		
 		const num = button.parentNode.children[1].value;
 		
-// 		location.href="${ pageContext.servletContext.contextPath }/Company/Scout/List/Select?num="+num
+		alert(num);
 		
-		location.href="${ pageContext.servletContext.contextPath }/simple/browse/select?num=" + num;
+		location.href="${ pageContext.servletContext.contextPath }/Company/Scout/List/Select?num="+num
+		
+		location.href="${ pageContext.servletContext.contextPath }/simple/browse/select?num="+num;
 				
 	}	
-	$.support.cors = true;
+// 	$.support.cors = true;
 	
 </script>
 
