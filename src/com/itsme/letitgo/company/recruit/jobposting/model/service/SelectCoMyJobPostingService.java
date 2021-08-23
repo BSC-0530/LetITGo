@@ -198,7 +198,7 @@ public class SelectCoMyJobPostingService {
 		
 		String jobName = mapper.selectJobNameFromJobNo(jobNo);
 		 
-		return null;
+		return jobName;
 	}
 
 	public List<ExposureProductDTO> selectExposureProduct(int memNo) {
