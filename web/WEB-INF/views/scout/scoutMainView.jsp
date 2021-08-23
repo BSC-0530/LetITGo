@@ -199,8 +199,7 @@
 	function browse(button){
 		
 		const num = button.parentNode.children[1].value;
-		
-		alert(num);
+
 		
 		location.href="${ pageContext.servletContext.contextPath }/Company/Scout/List/Select?num="+num
 		

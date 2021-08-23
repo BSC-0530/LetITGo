@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.itsme.letitgo.admin.recruit.jobposting.model.service.UpdatePostRequestRejectService;
 
-/* 관리자 -> 공고등록요청 -> 승인 */
+/* 관리자 -> 공고등록요청 -> 거절 */
 @WebServlet("/admin/post/reject/update")
 public class UpdatePostRequestRejectServlet extends HttpServlet {
 	

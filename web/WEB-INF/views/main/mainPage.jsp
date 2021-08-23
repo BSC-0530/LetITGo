@@ -106,12 +106,12 @@
 	                            <div class="jp_banner_main_jobs">
 	                                <ul>
 	                                    <li><i class="fa fa-tags"></i> Trending Skills :</li>
-	                                    <li><a>ui designer,</a></li>
-	                                    <li><a>developer,</a></li>
-	                                    <li><a>senior</a></li>
-	                                    <li><a>it company,</a></li>
-	                                    <li><a>design,</a></li>
-	                                    <li><a>call center</a></li>
+	                                    <li><a>Java,</a></li>
+	                                    <li><a>JavaScript,</a></li>
+	                                    <li><a>MyBatis</a></li>
+	                                    <li><a>Spring,</a></li>
+	                                    <li><a>Oracle,</a></li>
+	                                    <li><a>Kotlin</a></li>
 	                                </ul>
 	                            </div>
 	                        </div>
