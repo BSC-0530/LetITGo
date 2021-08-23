@@ -26,4 +26,18 @@ public class SelectRefundListService {
 		
 	}
 
+	/* 결제변경번호를 통해서 환불거절사유를 가져옴. */
+	public String selectRejectReasonMessage(int payChangeNo) {
+		
+		SqlSession session = getSqlSession();
+		
+		AdminPaymentMapper mapper = session.getMapper(AdminPaymentMapper.class);
+		
+		String rejectReasonMessage = mapper.selectRejectReasonMessage(payChangeNo);
+		
+		session.close();
+				
+		return rejectReasonMessage;
+	}
+
 }

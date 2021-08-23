@@ -1,7 +1,6 @@
 package com.itsme.letitgo.admin.payment.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,25 +8,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itsme.letitgo.admin.payment.model.dto.AdminRefundHistoryDTO;
 import com.itsme.letitgo.admin.payment.model.service.SelectRefundListService;
 
-/* 관리자 -> 환불 요청 관리 */
-@WebServlet("/admin/refund/select")
-public class SelectRefundListServlet extends HttpServlet {
+/* 관리자 -> 환불 요청관리 -> 거절사유 상세보기*/
+@WebServlet("/admin/refundHistory/rejectReason/select")
+public class SelectRejectReasonMessageServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int payChangeNo = Integer.parseInt(request.getParameter("payChangeNo"));
+
 		SelectRefundListService service = new SelectRefundListService();
 		
-		/* 모든 환불내역조회 */
-		List<AdminRefundHistoryDTO> refundHistoryList = service.selectRefundList();
+		/* 결제변경번호를 통해서 환불거절사유를 가져옴. */
+		String refundRejectMessage = service.selectRejectReasonMessage(payChangeNo);
 
-		String path = "/WEB-INF/views/admin/adminRefund.jsp";
+		String path="";
+		path = "/WEB-INF/views/admin/refundReasonRejectMessage.jsp";
 		
-		request.setAttribute("refundHistoryList", refundHistoryList);
+		request.setAttribute("refundRejectMessage", refundRejectMessage);
 		request.getRequestDispatcher(path).forward(request, response);
 		
 	}
+
 
 }
