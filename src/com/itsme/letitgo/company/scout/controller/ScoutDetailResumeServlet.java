@@ -9,8 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.itsme.letitgo.company.scout.model.service.MainScoutListService;
+import com.itsme.letitgo.login.model.dto.MemberLoginDTO;
 
 @WebServlet("/detail/browse/select")
 public class ScoutDetailResumeServlet extends HttpServlet {
@@ -19,6 +21,14 @@ public class ScoutDetailResumeServlet extends HttpServlet {
 
 		int resumeNo = Integer.parseInt(request.getParameter("resumeNo"));
 		System.out.println(resumeNo);
+		HttpSession session = request.getSession();
+
+        MemberLoginDTO dto = (MemberLoginDTO) session.getAttribute("loginMember");
+
+        int coMemNo = dto.getMemNo();
+		
+		int resultReading = new MainScoutListService().modifyReadingTicket(coMemNo);
+		
 		Map<String, Object> detailMap = new MainScoutListService().selectDetailResume(resumeNo);
 
 		int result = new MainScoutListService().updateDetailStatus(resumeNo);

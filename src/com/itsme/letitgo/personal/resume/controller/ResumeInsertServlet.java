@@ -149,7 +149,6 @@ public class ResumeInsertServlet extends HttpServlet {
 		
 		if(result > 0) {
 			
-			path = "/WEB-INF/views/resume/resumeList.jsp";
 		}
 		response.setCharacterEncoding("UTF-8");
 		response.sendRedirect("/let/resume/list");
