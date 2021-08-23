@@ -35,7 +35,6 @@ public class CoMemInfoChangeServlet extends HttpServlet {
 		coMemDTO.setMemName(coMemName);
 		coMemDTO.setMemPhone(coMemPhone);
 		
-		System.out.println("!@###@################" + coMemDTO.getMemId());
 		System.out.println(email);
 		System.out.println(coMemName);
 		System.out.println(coMemPhone);

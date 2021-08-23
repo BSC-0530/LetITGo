@@ -194,7 +194,6 @@
 		
 		const num = button.parentNode.parentNode.children[6].innerText
 
-					alert(num);
 					
 		location.href="${ pageContext.servletContext.contextPath }/admin/Answer/Servlet?num="+num
 				
