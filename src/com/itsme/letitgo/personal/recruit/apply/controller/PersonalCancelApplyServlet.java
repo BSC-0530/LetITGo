@@ -35,8 +35,6 @@ public class PersonalCancelApplyServlet extends HttpServlet {
 		if(result >= 2) {
 			redirectText.append("<script>alert('공고 지원 취소이 정상적으로 처리되었습니다.'); location.href='/let/detail/jobPosting/select?jobPostNo=" + jobPostNo + "';</script>");
 			
-//			redirectText.append("<script>alert('이력서 수정을 완료했습니다.'); location.href='/let/resume/list';</script>");
-
 		
 		} else {
 			redirectText.append("<script>alert('공고 취소에 실패하였습니다.'); location.href='/let/detail/jobPosting/select?jobPostNo=" + jobPostNo + "';</script>");

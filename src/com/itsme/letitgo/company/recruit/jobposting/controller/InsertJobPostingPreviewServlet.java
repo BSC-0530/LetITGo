@@ -85,9 +85,7 @@ public class InsertJobPostingPreviewServlet extends HttpServlet {
 		
 		Map<String, String> filePath = new HashMap<>();
 		
-//		filePath = service.selectFilePath(memberLoginDTO.getMemNo());
-		filePath = service.selectFilePath(2);
-		
+		filePath = service.selectFilePath(memberLoginDTO.getMemNo());
 		
 		request.setAttribute("memberloginDTO", memberLoginDTO);
 		request.setAttribute("jobPostContents", jobPostContents);
