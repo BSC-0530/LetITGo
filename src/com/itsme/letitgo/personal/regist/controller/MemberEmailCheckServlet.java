@@ -31,9 +31,9 @@ public class MemberEmailCheckServlet extends HttpServlet {
 		/* 보내는 사람정보 작성 */
 		String memEmail = request.getParameter("memEmail");
 		String host = "smtp.naver.com";
-		String user = "itsme-letitgo@naver.com";
-		String password = "letitgoitsme";
-		String name = "김태훈";
+		String user = "hsjung3678@naver.com";
+		String password = "rhakqjsro12";
+		String name = "정현수";
 
 		Properties props = new Properties();
 		props.put("mail.smtp.host", host);
