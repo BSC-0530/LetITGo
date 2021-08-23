@@ -40,7 +40,7 @@ public class loginServlet extends HttpServlet {
 			int appResult = memberService.selectAppHistory(loginMember.getMemNo());
 			
 			/* 기업회원의 경우 회원의 가입이 거절된 경우 */
-			int rejectResult = memberService.selectRejectHistory(loginMember.getMemNo());
+			int rejectResult = memberService.selectAppHistory(loginMember.getMemNo());
 			
 			/* 기업회원의 경우 회원의 가입이 대기인 경우 */
 			int waitResult = memberService.selectWaitHistory(loginMember.getMemNo());
