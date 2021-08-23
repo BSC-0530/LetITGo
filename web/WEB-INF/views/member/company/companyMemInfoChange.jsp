@@ -79,7 +79,7 @@
 									<div class="handyman_sec1_wrapper">
 										<div class="content">
 											<div class="box">
-												<p align="center">
+												<p>
 													<a href="${ pageContext.servletContext.contextPath }/coMem/infomationServlet">회원정보</a>
 												</p>
 												<br><br>

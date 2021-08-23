@@ -59,7 +59,7 @@
 		if (re.test(what.value)) {
 			return true;
 		}
-		alert(message);
+
 		what.value = "";
 		what.focus();
 		return false;
@@ -106,7 +106,7 @@
 									<div class="handyman_sec1_wrapper">
 										<div class="content">
 											<div class="box">
-												<p align="center">
+												<p>
 													<a href="#">회원정보</a>
 												</p>
 												<br>
