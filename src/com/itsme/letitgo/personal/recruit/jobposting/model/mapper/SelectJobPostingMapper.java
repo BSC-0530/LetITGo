@@ -31,7 +31,7 @@ public interface SelectJobPostingMapper {
 
 	int insertApplyingChangeHistory(Map<String, Object> applyMap);
 
-	int insertBookmark(int jobPostNo);
+	int insertBookmark(BookmarkDTO bm);
 
 	List<BookmarkDTO> selectBookmark(int inMemNo);
 
