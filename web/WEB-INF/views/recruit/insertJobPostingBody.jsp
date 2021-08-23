@@ -46,7 +46,8 @@
 					
 					if(data != "") {
 						$("#skills").find("option").remove().end();
-						
+						$("#skills").append("<option disabled='disabled' selected>요구스킬을 선택해주세요</option>");
+
 						for(var i = 0; i < data.length; i++) {
 							$("#skills").append("<option value=" + data[i].skillsNo + ">" + data[i].skillsName + "</option>");
 
@@ -69,7 +70,7 @@
 			
 			
 			var appendSkills = "<div><input type='checkBox' value='" + skillsNo + "' name='selectSkills' id='s" + skillsNo + "' checked style='display:none;'>" +
-							   "<label id='skillsLabel' for='s" + skillsNo + "'>" + skillsName +skillsNo+ "</label></div>" +
+							   "<label id='skillsLabel' for='s" + skillsNo + "'>" + skillsName + "</label></div>" +
 							   "<div><input type='hidden' value='" + skillsName + "' name='selectSkillsName'></div>"
 							   
 			
@@ -102,12 +103,14 @@
 		function btn_click(str) {
 			
 			if(str == "preview") {
-
+				
+				
 				var previewWid = window.open('about:blank','preview','width=1920,height=1000')
 				document.insertForm.action = "${ pageContext.servletContext.contextPath }/previewJobPosting"
 				document.insertForm.target = "preview";
 				document.insertForm.method = "post";
 				document.insertForm.submit();
+
 				
 			} else if (str == "insert") {
 				
@@ -250,7 +253,7 @@
                             </div>
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
                                 <div class="jp_adp_form_wrapper">
-                                    <label id="titleFont">마감일 *</label> <input type="date" name="jobPostDeadLine" required> 
+                                    <label id="titleFont">마감일 *</label> <input type="date" name="jobPostDeadLine" required="required"> 
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">

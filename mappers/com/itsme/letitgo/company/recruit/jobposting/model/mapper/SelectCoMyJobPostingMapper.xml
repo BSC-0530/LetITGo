@@ -339,7 +339,7 @@
 	<update id="updateMemberHoldingProduct">
 		UPDATE
 		       TBL_MEMBER_HOLDING_PRODUCT A
-		   SET A.EXPOSURE_TIME = #{ usingTime }
+		   SET A.EXPOSURE_TIME = #{ resultTime }
 		 WHERE A.RETAINED_PRODUCT_CODE = #{ retainedProductCode }
 		   AND A.CO_MEM_NO = #{ coMemNo }
 	</update>

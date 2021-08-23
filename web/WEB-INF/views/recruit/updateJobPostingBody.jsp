@@ -46,6 +46,8 @@
 					
 					if(data != "") {
 						$("#skills").find("option").remove().end();
+						$("#skills").append("<option disabled='disabled' selected>요구스킬을 선택해주세요</option>");
+
 						
 						for(var i = 0; i < data.length; i++) {
 							$("#skills").append("<option value=" + data[i].skillsNo + ">" + data[i].skillsName + "</option>");
@@ -69,7 +71,7 @@
 			
 			
 			var appendSkills = "<div><input type='checkBox' value='" + skillsNo + "' name='selectSkills' id='s" + skillsNo + "' checked style='display:none;'>" +
-			   "<label id='skillsLabel' for='s" + skillsNo + "'>" + skillsName +skillsNo+ "</label></div>" +
+			   "<label id='skillsLabel' for='s" + skillsNo + "'>" + skillsName + "</label></div>" +
 			   "<div><input type='hidden' value='" + skillsName + "' name='selectSkillsName'></div>"
 			
 							   
@@ -91,7 +93,6 @@
 		
 			// 선택한 기술을 selectSkills 에 append
 			
-			alert(appendSkills)
 			
 			$("#selectSkills").append(appendSkills);
 			
@@ -270,7 +271,7 @@
                             </div>
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12">
                                 <div class="jp_adp_form_wrapper">
-                                    <label id="titleFont">마감일 *</label> <input type="date" name="jobPostDeadLine" value="${ jobPostInfo.jobPostDeadline }" required> 
+                                    <label id="titleFont">마감일 *</label><input type="date" name="jobPostDeadLine" value="${ jobPostInfo.jobPostDeadline }" required="required"> 
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 col-md-3 col-xs-12" style="width: 100%;">

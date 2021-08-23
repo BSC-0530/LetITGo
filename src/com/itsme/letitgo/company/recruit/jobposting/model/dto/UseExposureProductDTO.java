@@ -11,11 +11,12 @@ public class UseExposureProductDTO implements java.io.Serializable {
 	private java.sql.Date exposureUseDate;
 	private java.sql.Date exposureEndDate;
 	private int usingTime;
+	private int resultTime;
 	
 	public UseExposureProductDTO() {}
 
 	public UseExposureProductDTO(int coMemNo, int retainedProductCode, int jobPostNo, Date exposureUseDate,
-			Date exposureEndDate, int usingTime) {
+			Date exposureEndDate, int usingTime, int resultTime) {
 		super();
 		this.coMemNo = coMemNo;
 		this.retainedProductCode = retainedProductCode;
@@ -23,6 +24,7 @@ public class UseExposureProductDTO implements java.io.Serializable {
 		this.exposureUseDate = exposureUseDate;
 		this.exposureEndDate = exposureEndDate;
 		this.usingTime = usingTime;
+		this.resultTime = resultTime;
 	}
 
 	public int getCoMemNo() {
@@ -73,6 +75,20 @@ public class UseExposureProductDTO implements java.io.Serializable {
 		this.usingTime = usingTime;
 	}
 
+	public int getResultTime() {
+		return resultTime;
+	}
+
+	public void setResultTime(int resultTime) {
+		this.resultTime = resultTime;
+	}
+
+	@Override
+	public String toString() {
+		return "UseExposureProductDTO [coMemNo=" + coMemNo + ", retainedProductCode=" + retainedProductCode
+				+ ", jobPostNo=" + jobPostNo + ", exposureUseDate=" + exposureUseDate + ", exposureEndDate="
+				+ exposureEndDate + ", usingTime=" + usingTime + ", resultTime=" + resultTime + "]";
+	}
 
 	
 
