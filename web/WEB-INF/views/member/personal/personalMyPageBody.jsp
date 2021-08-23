@@ -141,7 +141,7 @@
 									<div class="gc_counter_cont_wrapper3">
 										<div class="count-description">
 											<span><c:out
-													value="${ requestScope.interviewProposalNum }" /></span> <i
+													value="0" /></span> <i
 												class="fa"></i>
 											<h5 class="con3">면접 제안</h5>
 										</div>
