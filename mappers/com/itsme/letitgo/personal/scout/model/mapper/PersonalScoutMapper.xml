@@ -27,6 +27,7 @@
 		       TBL_RESUME A
 		   SET A.RESUME_SCOUT_STATUS = 'Y'
 		 WHERE A.RESUME_NO = #{ resumeNo }
+		   AND A.IN_MEM_NO = #{ memNo }
 	</update>
 	
 	<select id="selectResume" resultMap="resumeResultMap">
@@ -35,7 +36,8 @@
 		     , A.RESUME_TITLE
 		     , A.RESUME_WRITE_DATE
 		  FROM TBL_RESUME A
-		 WHERE A.IN_MEM_NO = 3
+		 WHERE A.IN_MEM_NO = #{ memberNo }
+		   AND A.RESUME_SCOUT_STATUS = 'N'
 	</select>
 	
 	<select id="selectSimpleCount" resultType="_int">

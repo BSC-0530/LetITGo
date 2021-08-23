@@ -170,7 +170,7 @@
 										<td><c:out value="${ list.coStatus }"></c:out></td>
 										<td><c:out value="${ list.resumeBrowseKinds }"></c:out>
 										</td>
-										<td><button type="button" onclick="browse(this);">상세보기</button>
+										<td><button type="button" onclick="browse(this);" value="${ list.coMemNo }">상세보기</button>
 											
 									</tr>
 							</c:forEach>
@@ -263,6 +263,14 @@
 				location.href = encodeURI("${ pageContext.servletContext.contextPath }/personal/scout/response?selecteYN="
 						+ selectedYN + "&resumeNo=" + resumeNo + "&coMemNo=" + coMemNo);
 			}
+		}
+		
+		function browse(button) {
+			
+			const coMemNo = button.value;
+			
+			location.href = "${ pageContext.servletContext.contextPath }/aboutCompany/select?coMemNo=" + coMemNo;
+			
 		}
 
 

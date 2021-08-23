@@ -124,8 +124,6 @@
 						</div>
 					</div>
 				</div>
-				<!-- 옆에 넣으려면 여기에 넣어야함 -->
-				<!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
 				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -155,7 +153,6 @@
 								<br>
 								<br>
 							</div>
-							<!-- 데이터 테이들 -->
 							<h2>이력서 열람 이력</h2>
 							<br><br>
 							
@@ -209,10 +206,6 @@ function browse(button){
 	
 	const num = button.parentNode.children[1].value;
 	const kinds = button.parentNode.children[2].value;
-	
-	console.log(num);
-	alert(kinds);
-	
 	
 	if(kinds == '얕은열람') {
 		location.href = "${ pageContext.servletContext.contextPath }/simple/browse/select?num=" + num;

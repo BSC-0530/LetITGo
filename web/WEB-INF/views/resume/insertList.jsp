@@ -150,6 +150,11 @@
 									</label>
 								</div>
 							</div>
+							<div class="col-lg-12 col-md-12 col-md-12 col-xs-12">
+								<div class="jp_adp_form_wrapper">
+									<button id="addSkillBtn" type="button">추가 +</button>
+								</div>
+							</div>
 						</div>
 						
 						<div class="row" id="inputCareer">
@@ -508,23 +513,87 @@
  	 });
  	 
  	 $(document).on('click', '#addLicenseBtn', function() {
- 		 $('#inputLicense').append('<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">')
+ 		$('#inputLicense').append('<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">')
+			.append('<div class="jp_adp_form_wrapper">')
+			.append('<h3>자격증 이력</h3>')
+			.append('<input type="text" placeholder="자격증 명" name="licenseName">')
+			.append('</div></div>')
+			.append('<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">')
+			.append('<div class="jp_adp_form_wrapper">')
+			.append('<br> <input type="text" placeholder="발행처" name="licenseAgency">')
+			.append('</div></div>')
+			.append('<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">')
+			.append('<div class="jp_adp_form_wrapper">')
+			.append('<label>자격증 취득일</label> <input type="date" name="licenseDate">')
+			.append('</div></div>')
+			.append('<div class="col-lg-12 col-md-12 col-md-12 col-xs-12">')
+			.append('<div class="jp_adp_form_wrapper">')
+			.append('<button id="addLicenseBtn" type="button">추가 +</button>')
+			.append('</div></div>');
+ 	 });
+ 	 
+ 	 $(document).on('click', '#addEduBtn', function() {
+ 		 $('#inputEdu').append('<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">')
  		 				.append('<div class="jp_adp_form_wrapper">')
- 		 				.append('<h3>자격증 이력</h3>')
- 		 				.append('<input type="text" placeholder="자격증 명" name="licenseName">')
+ 		 				.append('<h3>교육 이력</h3>')
+ 		 				.append('<input type="text" placeholder="교육명" name="eduName">')
  		 				.append('</div></div>')
  		 				.append('<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">')
  		 				.append('<div class="jp_adp_form_wrapper">')
- 		 				.append('<br> <input type="text" placeholder="발행처" name="licenseAgency">')
+ 		 				.append('<br> <input type="text" placeholder="교육기관" name="eduAgency">')
  		 				.append('</div></div>')
  		 				.append('<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">')
  		 				.append('<div class="jp_adp_form_wrapper">')
- 		 				.append('<label>자격증 취득일</label> <input type="date" name="licenseDate">')
+ 		 				.append('<label>교육 시작일</label> <input type="date" name="eduStartDate">')
+ 		 				.append('</div></div>')
+ 		 				.append('<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">')
+ 		 				.append('<div class="jp_adp_form_wrapper">')
+ 		 				.append('<label>교육 종료일</label> <input type="date" data-placeholder="프로젝트 종료일" name="eduEndDate">')
+ 		 				.append('</div></div>')
+ 		 				.append('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">')
+ 		 				.append('<div class="jp_adp_textarea_main_wrapper">')
+ 		 				.append('<h5>교육 내용</h5>')
+ 		 				.append('<textarea rows="7" placeholder="교육 내용을 입력하세요" name="eduContent"></textarea>')
+ 		 				.append('</div></div>')
+ 		 				.append('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">')
+ 		 				.append('<div class="jp_adp_form_wrapper">')
+ 		 				.append('<button id="addEduBtn" type="button">추가 +</button>')
+ 		 				.append('</div></div>');
+ 	 });
+ 	 
+ 	 $(document).on('click', '#addAwdBtn', function() {
+ 		 $('#inputAwd').append('<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">')
+ 		 				.append('<div class="jp_adp_form_wrapper">')
+ 		 				.append('<h3>수상 이력</h3>')
+ 		 				.append('<input type="text" placeholder="수상 내역" name="awdName">')
+ 		 				.append('</div></div>')
+ 		 				.append('<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">')
+ 		 				.append('<div class="jp_adp_form_wrapper">')
+ 		 				.append('<br> <input type="text" placeholder="수여기관" name="awdAgency">')
+ 		 				.append('</div></div>')
+ 		 				.append('<div class="col-lg-3 col-md-3 col-md-3 col-xs-12">')
+ 		 				.append('<div class="jp_adp_form_wrapper">')
+ 		 				.append('<label>수상 일자</label> <input type="date" name="awdDate">')
+ 		 				.append('</div></div>')
+ 		 				.append('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">')
+ 		 				.append('<div class="jp_adp_textarea_main_wrapper">')
+ 		 				.append('<h5>수상 내용</h5>')
+ 		 				.append('<textarea rows="7" placeholder="수상 내용을 입력하세요" name="awdContent"></textarea>')
  		 				.append('</div></div>')
  		 				.append('<div class="col-lg-12 col-md-12 col-md-12 col-xs-12">')
  		 				.append('<div class="jp_adp_form_wrapper">')
- 		 				.append('<button id="addLicenseBtn" type="button">추가 +</button>')
+ 		 				.append('<button id="addAwdBtn" type="button">추가 +</button>')
  		 				.append('</div></div>');
+ 	 });
+ 	 
+ 	 $(document).on('click', '#addSkillBtn', function() {
+ 		$('#inputSkills').append('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">')
+ 						.append('<div class="jp_adp_form_wrapper">')
+ 						.append('<label for="searchSkillsAuto">')
+ 						.append('<input id="searchSkillsAuto" name="inputSkill">')
+ 						.append('</label></div></div>').trigger('create');
+ 	 });
+
 
  	</script>
 	<jsp:include page="../common/footer.jsp" />

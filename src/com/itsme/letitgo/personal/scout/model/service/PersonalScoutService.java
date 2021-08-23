@@ -6,18 +6,19 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.itsme.letitgo.personal.scout.model.dto.MemNoAndResumeNoDTO;
 import com.itsme.letitgo.personal.scout.model.dto.ReadingResumeListOfPersonalDTO;
 import com.itsme.letitgo.personal.scout.model.dto.ResumeDTO;
 import com.itsme.letitgo.personal.scout.model.mapper.PersonalScoutMapper;
 
 public class PersonalScoutService {
 
-	public int updateScoutStatus(int resumeNo) {
+	public int updateScoutStatus(MemNoAndResumeNoDTO mr) {
 
 		SqlSession session = getSqlSession();
 		PersonalScoutMapper mapper = session.getMapper(PersonalScoutMapper.class);
 		
-		int result = mapper.updateScoutStatus(resumeNo);
+		int result = mapper.updateScoutStatus(mr);
 		
 		if(result > 0) {
 			session.commit();
@@ -30,12 +31,12 @@ public class PersonalScoutService {
 		return result;
 	}
 
-	public List<ResumeDTO> selectResume() {
+	public List<ResumeDTO> selectResume(int memberNo) {
 
 		SqlSession session = getSqlSession();
 		PersonalScoutMapper mapper = session.getMapper(PersonalScoutMapper.class);
 		
-		List<ResumeDTO> resumeList = mapper.selectResume();
+		List<ResumeDTO> resumeList = mapper.selectResume(memberNo);
 		
 		session.close();
 		
@@ -107,6 +108,8 @@ public class PersonalScoutService {
 		
 		return scoutNum;
 	}
+
+	
 
 	
 	

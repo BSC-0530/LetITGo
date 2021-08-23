@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Let IT Go</title>
+<title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/animate.css" />
 <link rel="stylesheet" type="text/css"
@@ -147,11 +147,9 @@
 					<c:forEach items="${ requestScope.mainScoutList }" var="mainScout">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-								<input type="hidden" id="skillss" value="${ mainScout }">
 							<div class="jp_recent_resume_box_wrapper">
 								<div class="jp_recent_resume_img_wrapper" id="detailResume">
-<%-- 								<input type="text" id="skillss" value="${ mainScout.memNo }"> --%>
-									<img src="${ pageContext.servletContext.contextPath }${ mainScout.path }" style="width:80px; height:80px;" alt="resume_img" />
+									<img src="images/content/resume_img1.jpg" alt="resume_img" />
 								</div>
 								<div id="skills" class="jp_recent_resume_cont_wrapper">
 								<input type="hidden" id="skillss" value="${ holdingSkill.skillsAndCategory.skillsName }">
