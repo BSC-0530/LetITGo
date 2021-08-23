@@ -139,10 +139,10 @@
 					<h3>찜한 후보자</h3>
 				</div>
 
-				<c:forEach items="${ wishInfoList }" var="info">
 
 					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 jp_cl_right_bar">
 						<div class="row">
+				<c:forEach items="${ requestScope.wishInfoList }" var="info">
 							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12"></div>
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<div class="jp_recent_resume_box_wrapper">
@@ -172,12 +172,12 @@
 
 								</div>
 							</div>
+				</c:forEach>
 						</div>
 
 					</div>
 
 
-				</c:forEach>
 
 			</div>
 		</div>

@@ -9,11 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.itsme.letitgo.company.scout.model.dto.BrosweHistoryDTO;
 import com.itsme.letitgo.company.scout.model.dto.CountReadingNumDTO;
 import com.itsme.letitgo.company.scout.model.dto.ResumeReadingHistoryDTO;
 import com.itsme.letitgo.company.scout.model.service.MainScoutListService;
+import com.itsme.letitgo.login.model.dto.MemberLoginDTO;
 
 @WebServlet("/simple/browse/select")
 public class SimpleBrowseServlet extends HttpServlet {
@@ -21,22 +23,31 @@ public class SimpleBrowseServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("ASD!@#!@#!@ : " + request.getParameter("num"));
-		
+		HttpSession session = request.getSession();
+        MemberLoginDTO dto1 = (MemberLoginDTO) session.getAttribute("loginMember");
+        int memNo = dto1.getMemNo();
 			
 		int onClickResumeNo = Integer.parseInt(request.getParameter("num"));
 		
+		System.out.println("@@@@@@@@@@@@" + onClickResumeNo);
+		
 		MainScoutListService browseInfoService = new MainScoutListService();
+		
 		Map<String, Object> browseInfo = browseInfoService.browseSelectInfo(onClickResumeNo);
+		
 		List<ResumeReadingHistoryDTO> kinds = browseInfoService.brosweHistoryKindsSelect(onClickResumeNo);
 		
 		
 		System.out.println("kinds : " + kinds);
 		
+		ResumeReadingHistoryDTO dto = new ResumeReadingHistoryDTO();
+		dto.setCoMemNo(memNo);
+		dto.setResumeNo(onClickResumeNo);
 		
 		String path = "";
-		if(kinds == null) {
-			int kindsInsert = browseInfoService.readingKindsInsert(onClickResumeNo);
+		if(kinds.size() == 0) {
+			int kindsInsert = browseInfoService.readingKindsInsert(dto);
+			
 			request.setAttribute("path", browseInfo.get("path"));
 			request.setAttribute("browseName", browseInfo.get("browseName"));
 			request.setAttribute("jobName", browseInfo.get("jobName"));
@@ -46,9 +57,6 @@ public class SimpleBrowseServlet extends HttpServlet {
 			
 			path = "/WEB-INF/views/scout/scoutSimpleBrowse.jsp";
 			
-//		}else if(kinds != null && kinds.get(0).getResumeBrowseKinds().equals("얕은열람")) {
-//			int updateTime = browseInfoService.upDateTime(onClickResumeNo);
-//			path = "/WEB-INF/views/scout/scoutSimpleBrowse.jsp";
 		}else {
 			path="/WEB-INF/views/scout/scoutSimpleBrowse.jsp";
 			request.setAttribute("path", browseInfo.get("path"));

@@ -105,13 +105,13 @@ public class MainScoutListService {
 		return simpleInfo;
 	}
 	//구분 조회
-	public int readingKindsInsert(int onClickResumeNo) {
+	public int readingKindsInsert(ResumeReadingHistoryDTO dto) {
 		
 		SqlSession session = getSqlSession();
 		
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
 		
-		int result = mapper.readingKindsInsert(onClickResumeNo);
+		int result = mapper.readingKindsInsert(dto);
 		
 		if(result > 0) {
 			session.commit();
@@ -358,12 +358,12 @@ public class MainScoutListService {
 		
 		return 1;
 	}
-	public int insertWishList(int resumeNo) {
+	public int insertWishList(CandidateRegistrationDTO dto) {
 		
 		SqlSession session = getSqlSession();
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
 		
-		int result = mapper.insertWishList(resumeNo);
+		int result = mapper.insertWishList(dto);
 		
 		if(result > 0) {
 			session.commit();
@@ -377,12 +377,12 @@ public class MainScoutListService {
 	}
 	
 	// 찜하기 조회(회원 정보)
-	public List<CandidateRegistrationDTO> selectWishInfoList() {
+	public List<CandidateRegistrationDTO> selectWishInfoList(CandidateRegistrationDTO dto) {
 		
 		SqlSession session = getSqlSession();
 		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
 		
-		List<CandidateRegistrationDTO> wishInfoList = mapper.selectWishInfoList();
+		List<CandidateRegistrationDTO> wishInfoList = mapper.selectWishInfoList(dto);
 		
 		session.close();
 
