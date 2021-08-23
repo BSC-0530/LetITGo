@@ -506,6 +506,23 @@ public class MainScoutListService {
 		
 		return selectedByTwoScoutList;
 	}
+	public int modifyReadingTicket(int coMemNo) {
+		
+		SqlSession session = getSqlSession();
+		CompanyScoutMapper mapper = session.getMapper(CompanyScoutMapper.class);
+		
+		int result = mapper.modifyReadingTicket(coMemNo);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
 		
 
 //	public List<SkillsAndCategoryDTO> skillsSelect() {

@@ -918,5 +918,12 @@
 		   AND S.SKILLS_NAME LIKE '%'||#{ skill }||'%'
 		   AND CH.CAR_NO IS NOT NULL
 	</select>
+	
+	<update id="modifyReadingTicket">
+		UPDATE
+		       TBL_MEMBER_HOLDING_PRODUCT
+		   SET READING_LEFT_NUM = READING_LEFT_NUM - 1
+		 WHERE CO_MEM_NO = #{ coMemNo }
+	</update>
 
 </mapper>

@@ -118,6 +118,8 @@ public interface CompanyScoutMapper {
 	List<PortfolioDTO> selectDetailPot(int resumeNo);
 //이미지
 
+	int modifyReadingTicket(int coMemNo);
+
 //	List<SkillsAndCategoryDTO> skillsSelect();
 
 
