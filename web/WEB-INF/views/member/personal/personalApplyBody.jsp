@@ -165,7 +165,7 @@
 										</c:if>
 
 										<c:if test="${whole.jobPostApplyingKinds eq '플랫폼양식' }">
-											<td><button type="submit">확인</button></td>
+											<td><button type="button" onclick="resume(this);">확인</button></td>
 										</c:if>
 
 										<c:if test="${whole.jobPostApplyingKinds eq '자사양식' }">
@@ -225,7 +225,7 @@
 										</c:if>
 
 										<c:if test="${complete.jobPostApplyingKinds eq '플랫폼양식' }">
-											<td><button type="submit">확인</button></td>
+											<td><button type="button" onclick="resume(this);">확인</button></td>
 										</c:if>
 
 										<c:if test="${complete.jobPostApplyingKinds eq '자사양식' }">
@@ -326,6 +326,14 @@
 
 			location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?jobPostNo="
 					+ jobPostNo
+
+		}
+		
+		function resume(button) {
+
+			var resumeNo = button.parentNode.parentNode.children[0].children[0].value;
+
+			location.href = "${ pageContext.servletContext.contextPath }/resume/detail?selectedDetailResumeNo=" + resumeNo 
 
 		}
 	</script>
