@@ -593,10 +593,9 @@
 		       R.RESUME_NO
 		     , M.MEM_NAME
 		     , R.IN_MEM_NO
-		     , SUBSTR(A.MEM_FILE_PATH,21) AS MEM_FILE_PATH 
+		     , R.RESUME_TITLE
 		  FROM TBL_MEMBER M
 		  JOIN TBL_RESUME R ON (M.MEM_NO = R.IN_MEM_NO)
-		  JOIN TBL_ATTACHMENT A ON (M.MEM_NO = A.MEM_NO)
 		 WHERE R.RESUME_NO = #{ resumeNo }
 	</select>
 	
