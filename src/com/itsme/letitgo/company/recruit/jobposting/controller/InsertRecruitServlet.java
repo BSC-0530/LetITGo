@@ -39,7 +39,6 @@ public class InsertRecruitServlet extends HttpServlet {
 		request.getRequestDispatcher(path).forward(request, response);
 		
 		
-		
 	}
 
 	

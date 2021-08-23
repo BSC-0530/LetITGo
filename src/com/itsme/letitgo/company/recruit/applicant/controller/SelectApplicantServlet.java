@@ -53,7 +53,7 @@ public class SelectApplicantServlet extends HttpServlet {
 		
 		if(applicantResult != null) {
 			
-			applicantResult =	service.selectApplicant(requestDTO);
+			applicantResult = service.selectApplicant(requestDTO);
 			
 		}
 		

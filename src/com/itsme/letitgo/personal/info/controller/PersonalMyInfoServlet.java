@@ -34,8 +34,6 @@ public class PersonalMyInfoServlet extends HttpServlet {
 
 		request.setAttribute("titlePath", titlePath);
 		
-		System.out.println("servlet!@@@@@@@@@@@@ :" + titlePath);
-		
 		String path = "";
 		path = "/WEB-INF/views/member/personal/personalMyInfo.jsp";
 		request.getRequestDispatcher(path).forward(request, response);
