@@ -350,4 +350,11 @@
 		)
 	</insert>
 	
+	<select id="selectRefundMessage" resultType="String">
+		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#refundHistoryResultMap() */
+		       PAY_CHANGE_REASON
+		  FROM TBL_PAYMENT_CHANGE_HISTORY
+		 WHERE PAY_CHANGE_NO = #{ payChangeNo }
+	</select>
+	
 </mapper>

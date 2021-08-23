@@ -23,11 +23,7 @@ public class UpdateRejectRefundStatusServlet extends HttpServlet {
 		/* 페이지전환하면서 결제변경번호와 결제번호를 가져와서 환불요청메세지 작성화면에 전달 */
 		int payChangeNo = Integer.parseInt(request.getParameter("payChangeNo"));
 		int payNo = Integer.parseInt(request.getParameter("payNo"));
-		
-		System.out.println(payChangeNo);
-		System.out.println(payNo);
-		
-		
+
 		request.setAttribute("payChangeNo", payChangeNo);
 		request.setAttribute("payNo", payNo);
 		String path = "/WEB-INF/views/admin/adminRefundRejectMessage.jsp";
@@ -43,11 +39,7 @@ public class UpdateRejectRefundStatusServlet extends HttpServlet {
 		String rejectMessage = request.getParameter("rejectMessage");
 		String payChangeNo = request.getParameter("payChangeNo");
 		String payNo = request.getParameter("payNo");
-		System.out.println("rejectMessage : " + rejectMessage); 
-		System.out.println("payChangeNo : " + payChangeNo); 
-		System.out.println("payNo : " + payNo); 
 		
-
 		UpdateRefundStatusService UpdateRefundStatus = new UpdateRefundStatusService();	
 	
 		/* 거절사유, 결제변경번호, 결제번호를 담아서 전달 */

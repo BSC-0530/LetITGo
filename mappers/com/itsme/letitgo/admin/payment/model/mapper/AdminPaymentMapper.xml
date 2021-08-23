@@ -91,6 +91,14 @@
 		   SET PAY_KINDS = '환불거절'
 		 WHERE PAY_NO = #{ payNo }    
 	</update>
+	
+	<select id="selectRejectReasonMessage" resultType="String">
+		SELECT /* com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper#selectRejectReasonMessage() */
+		       PAY_REJECT_REASON
+		  FROM TBL_PAYMENT_CHANGE_HISTORY
+		 WHERE PAY_CHANGE_NO = #{ payChangeNo }
+	</select>
+	
 	<insert id="productInsert" parameterType="com.itsme.letitgo.admin.payment.model.dto.ProductListDTO">
 		INSERT
 		  INTO TBL_PRODUCT_LIST A

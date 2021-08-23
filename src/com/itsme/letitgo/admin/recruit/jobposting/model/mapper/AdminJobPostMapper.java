@@ -41,6 +41,9 @@ public interface AdminJobPostMapper {
 
 	/* 채용공고 승인여부이력의 응답구분을 승인으로 변경 */
 	int updatePostUpdateRejectRequest2(Map<String, Object> map);
+
+	/* 승인요청번호로 거절사유 조회 */
+	String selectPostRejectReasonMessage(int jobPostReqNo);
 	
 
 
