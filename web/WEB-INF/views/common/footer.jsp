@@ -18,7 +18,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="jp_footer_logo_wrapper">
                             <div class="jp_footer_logo">
-                                <a href=""><img src="${ pageContext.servletContext.contextPath }/resources/image/로고.PNG" style="width: 200px" alt="footer_logo"/></a>
+                                <a href="/let/mainPage/letitgo"><img src="${ pageContext.servletContext.contextPath }/resources/image/로고.PNG" style="width: 200px" alt="footer_logo"/></a>
                             </div>
                         </div>
                     </div>

@@ -9,6 +9,7 @@
 		<result property="resumeTitle" column="RESUME_TITLE"/>
 		<result property="memName" column="MEM_NAME"/>
 		<result property="jobPostBrowesStatus" column="JOB_POST_BROWES_STATUS"/>
+		<result property="memFilePath" column="MEM_FILE_PATH"/>
 	</resultMap>
 	
 	<resultMap type="com.itsme.letitgo.company.recruit.applicant.model.dto.DetailResumeDTO" id="detailResumeResultMap">
@@ -106,21 +107,24 @@
 			 , A.RESUME_TITLE
 			 , A.MEM_NAME
 			 , A.JOB_POST_BROWES_STATUS
-			 
+			 , A.MEM_FILE_PATH
 		  FROM (SELECT
 		  	   		   ROWNUM RNUM
 		  	   		 , B.RESUME_NO
 		  	   		 , B.RESUME_TITLE
 		  	   		 , B.MEM_NAME
 		  	   		 , B.JOB_POST_BROWES_STATUS
+		  	   		 , B.MEM_FILE_PATH
 		  	   	  FROM (SELECT 
 		  	   	  	   		   R.RESUME_NO
 		  	   	  	   		 , R.RESUME_TITLE
 		  	   	  	   		 , M.MEM_NAME
 		  	   	  	   		 , AH.JOB_POST_BROWES_STATUS
+		  	   	  	   		 , SUBSTR(B.MEM_FILE_PATH,21) AS MEM_FILE_PATH
 		  	   	  	      FROM TBL_APPLYING_HISTORY AH
 		  	   	  	      JOIN TBL_RESUME R ON (AH.RESUME_NO = R.RESUME_NO)
 		  	   	  	      JOIN TBL_MEMBER M ON (R.IN_MEM_NO = M.MEM_NO)
+		  	   	  	      LEFT JOIN TBL_ATTACHMENT B ON(R.IN_MEM_NO = B.MEM_NO)
 		  	   	  	     WHERE AH.JOB_POST_APPLYING_STATUS = '지원완료'
 		  	   	  	       AND AH.JOB_POST_NO = #{ jobPostNo }
 		  	   	  	     ORDER BY AH.JOB_POST_APPLYING_DATE DESC
@@ -158,7 +162,6 @@
 		  JOIN TBL_MEMBER M ON(R.IN_MEM_NO = M.MEM_NO)
 		  LEFT JOIN TBL_ATTACHMENT B ON(R.IN_MEM_NO = B.MEM_NO)
 		 WHERE R.RESUME_NO = #{ resumeNo }
-		   AND B.MEM_FILE_KINDS ='프로필사진'
 	</select>
 	
 	<select id="selectAwardHistory" resultMap="awardHistoryResultMap">

@@ -104,6 +104,8 @@
 					</div>
 				</div>
 			</div>
+			
+			<jsp:include page="../footer.jsp"/>
 <script>
 // 문의날짜에 오늘날짜넣기
 let today = new Date();   

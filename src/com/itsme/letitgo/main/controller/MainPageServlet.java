@@ -8,13 +8,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.itsme.letitgo.login.model.dto.MemberLoginDTO;
 import com.itsme.letitgo.main.model.service.MainPageService;
 
 @WebServlet("/mainPage/letitgo")
 public class MainPageServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+
+        MemberLoginDTO dto = (MemberLoginDTO) session.getAttribute("loginMember");
 
 		MainPageService service = new MainPageService();
 		
@@ -23,12 +29,28 @@ public class MainPageServlet extends HttpServlet {
 		
 		String path = "";
 		
-		
-		System.out.println(resultMap);
-		if(resultMap != null) {
-			request.setAttribute("resultMap", resultMap);
-			path = "/WEB-INF/views/main/main.jsp";			
+		if(dto != null) {
+			String memKinds = dto.getMemKinds();
+			
+			if(resultMap != null) {
+				request.setAttribute("resultMap", resultMap);
+				
+				if(memKinds.equals("기업회원")) {
+					path = "/WEB-INF/views/main/CoMainPage.jsp";			
+					
+				} else {
+					path = "/WEB-INF/views/main/InMainPage.jsp";	
+				}
+			} 
+			
+		} else {
+			
+			path = "/WEB-INF/views/main/main.jsp";
+			
 		}
+
+		
+		
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	}
