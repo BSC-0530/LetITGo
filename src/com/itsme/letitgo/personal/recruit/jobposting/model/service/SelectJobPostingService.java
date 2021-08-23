@@ -124,12 +124,12 @@ public class SelectJobPostingService {
 		return resumeList;
 	}
 
-	public int insertBookmark(int jobPostNo) {
+	public int insertBookmark(BookmarkDTO bm) {
 
 		SqlSession session = getSqlSession();
 		SelectJobPostingMapper mapper = session.getMapper(SelectJobPostingMapper.class);
 		
-		int result = mapper.insertBookmark(jobPostNo);
+		int result = mapper.insertBookmark(bm);
 		
 		if(result > 0) {
 			session.commit();

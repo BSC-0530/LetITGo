@@ -303,7 +303,7 @@
 	</select>
 	
 	<!-- 북마크 등록 mapper -->
-	<insert id="insertBookmark" parameterType="_int">
+	<insert id="insertBookmark">
 		INSERT /* com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper#insertBookmark(); */
 		  INTO TBL_BOOKMARK B
 		(
@@ -311,7 +311,7 @@
 		)
 		VALUES
 		(
-		  3, #{ jobPostNo }
+		  #{ inMemNo }, #{ jobPostNo }
 		)
 	</insert>
 	
