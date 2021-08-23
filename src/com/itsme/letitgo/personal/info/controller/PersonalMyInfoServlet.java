@@ -9,7 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.itsme.letitgo.login.model.dto.MemberLoginDTO;
 import com.itsme.letitgo.personal.info.model.dto.RestrictedCompanyDTO;
 import com.itsme.letitgo.personal.info.model.service.PersonalInfoService;
 
@@ -19,27 +21,23 @@ public class PersonalMyInfoServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-//		HttpSession session = request.getSession();
-//		
-//		int memNo = (int) session.getAttribute("memNo");
-//		
-//		System.out.println(memNo);
-		
-		int memNo = 2;
+		HttpSession session = request.getSession();
+
+        MemberLoginDTO dto = (MemberLoginDTO) session.getAttribute("loginMember");
+
+        int memNo = dto.getMemNo();
 		
 //		// 마이페이지 회원정보 확인 페이지로 이동
 		PersonalInfoService service = new PersonalInfoService();
 		
-		List<RestrictedCompanyDTO> restrictedCompanyList = new ArrayList<>();
-		restrictedCompanyList = service.selectRectrictedCompany(memNo);
+		String titlePath = service.selectTitlePath(memNo);
+
+		request.setAttribute("titlePath", titlePath);
+		
+		System.out.println("servlet!@@@@@@@@@@@@ :" + titlePath);
 		
 		String path = "";
-		if(restrictedCompanyList != null) {
-			path = "/WEB-INF/views/member/personal/personalMyInfo.jsp";
-			request.setAttribute("restrictedComapny", restrictedCompanyList);
-		}
-		
-		
+		path = "/WEB-INF/views/member/personal/personalMyInfo.jsp";
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 

@@ -28,6 +28,8 @@ public interface PersonalInfoMapper {
 	List<RestrictedCompanyDTO> selectRectrictedCompany(int memNo);
 
 	/*개인회원 정보수정*/
-	int modifyPersonalInfo(ModifyMemberDTO mdMemberDTO); 
+	int modifyPersonalInfo(ModifyMemberDTO mdMemberDTO);
+
+	String selectTitlePath(int memNo); 
 
 }
