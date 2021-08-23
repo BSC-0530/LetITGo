@@ -29,17 +29,39 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/style_II.css" />
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
-<link rel="stylesheet" type="text/css" href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css" />
 
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 
-<script type="text/javascript" src="/let/resources/js/datatables.js"></script>
-<link rel="stylesheet" type="text/css" href="/let/resources/css/datatables.css" />
+<!-- letitgo 제작 css -->
+<link rel="stylesheet" type="text/css"
+	href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css" />
+
+<style>
+.h4 {
+	font-weight: bold;
+}
+
+td {
+	width: 400px;
+}
+</style>
 
 </head>
+
 <body>
+
+	<!-- 사이드바 -->
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
@@ -138,134 +160,76 @@
 					</div>
 				</div>
 
+				<!-- 옆에 넣으려면 여기에 넣어야함 -->
+				<!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
+				<br> <br> <br>
 
 				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<br><br><br>
-							<h1>관리자 공지사항 조회</h1>
-<%-- 									<form action="${ pageContext.servletContext.contextPath }/notice/check/ynupdate" method="post" > --%>
-							<div class="jp_listing_tabs_wrapper">
-								<table id="table_payment" class="hover cell-border stripe">
-									<thead>
-										<tr>
-											<td align="center">번호</td>
-											<td align="center">제목</td>
-											<td align="center">등록일자</td>
-											<td align="center">상세보기</td>
-											<td align="center">수정일자</td>
-											<td align="center">노출여부</td>
-											<td align="center">노출수정</td>
-										</tr>
-									</thead>
-										<tbody align="center">
-								<c:forEach var="notice" items="${ requestScope.notice }">
-											<tr id="postNo">
-												<td><c:out value="${ notice.postNo }"/></td>									
-												<td><c:out value="${ notice.postTitle }"/></td>
-												<td><c:out value="${ notice.postRegistrationDate }"/></td>
-												<td><button type=button onclick="browse(this);" >상세보기</button></td>
-												<c:choose>
-												<c:when test="${empty notice.postModifiedDate }">
-												<td><c:out value="수정사항 없음 "/></td>
-												</c:when>
-												<c:otherwise>
-												<td><c:out value="${ notice.postModifiedDate }"/></td>
-												</c:otherwise>
-												</c:choose>
-												<td><c:out value="${ notice.postExposureStatus }"/></td>
-												<td><button type=button onclick="modify(this);" >Y/N수정</button></td>
-<%-- 												<td><input name="no" value="${ notice.postNo }"> --%>
-<!-- 												<td><button class="fa fa-plus-circle" type="submit" ></button></td> -->
-											</tr>
-								</c:forEach>					
-										</tbody>	
-								</table>
+							<br>
+							<br>
+							<br>
+
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="jp_contact_form_heading_wrapper">
+									<h2>개인정보 처리 방침 및 이용약관</h2>
 								</div>
-<!-- 						</form> -->
-								<br>
-								<br>
 							</div>
-							
+							<form
+								action="${ pageContext.servletContext.contextPath }/guideline/detail" 
+								method="post">
+								<div class="jp_contact_form_box">
+									<br><br>
+									
+									<div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+										<div
+											class="jp_contact_inputs_wrapper jp_contact_inputs2_wrapper">
+											<label>구분</label><input name="postKinds"
+												value="${ detailList.postKinds }" readonly="readonly">
+										</div>
+									</div>
+									
+									<div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+			<!-- 제목  -->					<div
+											class="jp_contact_inputs_wrapper jp_contact_inputs2_wrapper">
+											<label>제목</label><input name="postTitle"
+												value="${ detailList.postTitle }" readonly="readonly">
+										</div>
+									</div>				
+									
+			<!-- 내용 -->				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div
+											class="jp_contact_inputs_wrapper jp_contact_inputs4_wrapper">
+											<label>내용</label><textarea style="overflow-x: hidden; overflow-y: auto;"
+												rows="16" placeholder="${ detailList.postContent }" name="postContent" readonly="readonly"></textarea>
+										</div>
+									</div>
+
+									<button type="button" onClick="history.go(-1)">뒤로가기</button>
+									
+								</div>
+							</form>
 						</div>
-						
 					</div>
-					<div class="category-insert">
-										<button style="margin-left: 90%; margin-top: 5%;"
-											type="submit" class="btn btn-info" onclick="insert();">등록</button>
-					</div>
-					<br>
-					
 				</div>
-				
-				<br>
+			</div>
+
+ 			<!-- 내용 -->				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
+
+ 									<button type="button" onClick="history.go(-1)">취소하기</button> 
+ 									<button type="submit" 
+											onclick="href='${ pageContext.servletContext.contextPath }/personalinfopolicy/list'">수정하기</button> 
+
 			</div>
 		</div>
-<script>
-// 데이터테이블
-		$(document).ready(function() {
-			$('#table_payment').DataTable();
-		});
-</script>
+	</div>
 
-<script>
-//등록버튼
-		function insert(button) {
-			
-	 location.href = "${ pageContext.servletContext.contextPath }/notice/insert/servlet" 
-			
-		}
-</script>
-<script>
-//노출이력수정
-function modify(button){
-	
-		const no = button.parentNode.parentNode.children[0].innerText
-		const yn = button.parentNode.parentNode.children[5].innerText
-		
-// 		console.log(no);
-// 		console.log(yn);
-		
-		let postNo = no;
-		let postExposureStatus = yn;
-		
-		console.log(postNo);
-		console.log(postExposureStatus);
-		
-// 		let date = { "postNo":postNo, "postExposureStatus":postExposureStatus};
-		
-		$.ajax({
-			url:"${ pageContext.servletContext.contextPath }/notice/check/ynupdate",
-			type:'post',
-			data: {postNo:postNo,
-				   postExposureStatus:postExposureStatus
-			},
-			success: function(date) {
-				alert('노출사항을 변경하였습니다.');
-				window.location.reload();
-			},
-			error: function(xhr, error){
-				console.log(xhr);
-			}
-			
-		});
-}
-</script>
-<script>
-// 상세보기 버튼
-	function browse(button){
-		
-		const postNo = button.parentNode.parentNode.children[0].innerText
-		
-		
-		location.href="${ pageContext.servletContext.contextPath }/notice/details/servlet?postNo="+postNo
-				
-	}	
-</script>
+
+
 
 </body>
 </html>
-
 
 
 

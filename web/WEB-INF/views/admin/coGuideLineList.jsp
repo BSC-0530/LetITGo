@@ -29,17 +29,28 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/style_II.css" />
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
-<link rel="stylesheet" type="text/css" href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css" />
 
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="/let/resources/js/datatables.js"></script>
 <link rel="stylesheet" type="text/css" href="/let/resources/css/datatables.css" />
 
+<!-- letitgo 제작 css -->
+<link rel="stylesheet" type="text/css" href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css"/>
+
+<style>
+	.h4 {
+		font-weight: bold;
+	}
+	td {
+		width: 400px;
+	}
+</style>
+
 </head>
+
 <body>
+
+<!-- 사이드바 -->
 	<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
@@ -138,130 +149,74 @@
 					</div>
 				</div>
 
-
+				<!-- 옆에 넣으려면 여기에 넣어야함 -->
+				<!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
+				<br>
+				<br>
+				<br>
 				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<br><br><br>
-							<h1>관리자 공지사항 조회</h1>
-<%-- 									<form action="${ pageContext.servletContext.contextPath }/notice/check/ynupdate" method="post" > --%>
+							<h1>개인정보 처리 방침 및 이용약관</h1>
 							<div class="jp_listing_tabs_wrapper">
-								<table id="table_payment" class="hover cell-border stripe">
+
+								<!-- 이거는 이제 정보뜨는 칸 -->
+								<!-- 데이터 테이블 내역모음 -->
+								<table id="guide_line" class="hover cell-border stripe">
 									<thead>
 										<tr>
 											<td align="center">번호</td>
 											<td align="center">제목</td>
+				<!-- 상세보기 버튼 만들기 -->		<td align="center">상세보기</td>
 											<td align="center">등록일자</td>
-											<td align="center">상세보기</td>
-											<td align="center">수정일자</td>
-											<td align="center">노출여부</td>
-											<td align="center">노출수정</td>
+											<td align="center">분류</td>
 										</tr>
 									</thead>
 										<tbody align="center">
-								<c:forEach var="notice" items="${ requestScope.notice }">
-											<tr id="postNo">
-												<td><c:out value="${ notice.postNo }"/></td>									
-												<td><c:out value="${ notice.postTitle }"/></td>
-												<td><c:out value="${ notice.postRegistrationDate }"/></td>
-												<td><button type=button onclick="browse(this);" >상세보기</button></td>
-												<c:choose>
-												<c:when test="${empty notice.postModifiedDate }">
-												<td><c:out value="수정사항 없음 "/></td>
-												</c:when>
-												<c:otherwise>
-												<td><c:out value="${ notice.postModifiedDate }"/></td>
-												</c:otherwise>
-												</c:choose>
-												<td><c:out value="${ notice.postExposureStatus }"/></td>
-												<td><button type=button onclick="modify(this);" >Y/N수정</button></td>
-<%-- 												<td><input name="no" value="${ notice.postNo }"> --%>
-<!-- 												<td><button class="fa fa-plus-circle" type="submit" ></button></td> -->
+									<c:forEach var="controllGuideLine"
+										items="${ requestScope.guideLineList }">
+
+
+											<tr>
+												<td id="postNo"><c:out value="${ controllGuideLine.postNo }" /></td>
+												<td id="postTitle"><c:out value="${ controllGuideLine.postTitle }" /></td>
+ 	<!-- onClick 안에 상세보기 인터페이스 메소드명 넣어주기 -->	<td><button class="btn-info" onClick="detail(this);" value="${ controllGuideLine.postNo }">상세보기</button></td> 
+												<td id="postRegistrationDate"><c:out value="${ controllGuideLine.postRegistrationDate }" /></td>
+												<td id="postKinds"><c:out value="${ controllGuideLine.postKinds }" /></td>
 											</tr>
-								</c:forEach>					
-										</tbody>	
+									</c:forEach>
+										</tbody>
+
 								</table>
-								</div>
-<!-- 						</form> -->
 								<br>
 								<br>
+								
 							</div>
-							
 						</div>
-						
-					</div>
-					<div class="category-insert">
-										<button style="margin-left: 90%; margin-top: 5%;"
-											type="submit" class="btn btn-info" onclick="insert();">등록</button>
 					</div>
 					<br>
-					
+					<!-- end -->
 				</div>
-				
-				<br>
 			</div>
 		</div>
-<script>
-// 데이터테이블
-		$(document).ready(function() {
-			$('#table_payment').DataTable();
-		});
-</script>
+	</div>
 
-<script>
-//등록버튼
-		function insert(button) {
-			
-	 location.href = "${ pageContext.servletContext.contextPath }/notice/insert/servlet" 
-			
-		}
-</script>
-<script>
-//노출이력수정
-function modify(button){
-	
-		const no = button.parentNode.parentNode.children[0].innerText
-		const yn = button.parentNode.parentNode.children[5].innerText
-		
-// 		console.log(no);
-// 		console.log(yn);
-		
-		let postNo = no;
-		let postExposureStatus = yn;
-		
-		console.log(postNo);
-		console.log(postExposureStatus);
-		
-// 		let date = { "postNo":postNo, "postExposureStatus":postExposureStatus};
-		
-		$.ajax({
-			url:"${ pageContext.servletContext.contextPath }/notice/check/ynupdate",
-			type:'post',
-			data: {postNo:postNo,
-				   postExposureStatus:postExposureStatus
-			},
-			success: function(date) {
-				alert('노출사항을 변경하였습니다.');
-				window.location.reload();
-			},
-			error: function(xhr, error){
-				console.log(xhr);
-			}
-			
+	<script>
+		$(document).ready(function() {
+			$('#guide_line').DataTable();
 		});
-}
-</script>
-<script>
-// 상세보기 버튼
-	function browse(button){
+	</script>
+	
+	<script>
+	//상세보기 버튼
+	function detail(button){			/* 경로 변경해줘야함 (디테일뷰쪽으로) */
 		
-		const postNo = button.parentNode.parentNode.children[0].innerText
-		
-		
-		location.href="${ pageContext.servletContext.contextPath }/notice/details/servlet?postNo="+postNo
-				
+		const postNo = button.value; 
+	
+		location.href="${ pageContext.servletContext.contextPath }/guideline/detail?postNo="+postNo
+			
 	}	
-</script>
+	</script>
 
 </body>
 </html>
