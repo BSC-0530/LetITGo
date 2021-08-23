@@ -183,7 +183,7 @@
 														value="${ controllSelfIntroductionItem.selfIntroItemName }" /></td>
 
 												<!-- <td><button type="button" disabled>삭제</button></td> -->
-												<td><button class="btn-info" onClick="selfIntroductionItemDelete(this);" value="${ controllSelfIntroductionItem.selfIntroItemNo }">삭제</button></td>
+												<td><button class="btn btn-info"  onClick="selfIntroductionItemDelete(this);" value="${ controllSelfIntroductionItem.selfIntroItemNo }">삭제</button></td>
 
 											</tr>
 									</c:forEach>
@@ -193,7 +193,7 @@
 								<br>
 								<div class="self-introduction-item-insert-wrapper"
 									onclick="post(this);">
-									<button type="submit">등록하기</button>
+									<button class="btn btn-info"  type="submit">등록하기</button>
 								</div>
 							</div>
 						</div>

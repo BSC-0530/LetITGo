@@ -186,7 +186,7 @@
 												<td id="name"><c:out value="${ controllSkills.name }" /></td>
 
 												<!-- <td><button type="button" disabled>삭제</button></td> -->
-												<td><button class="btn-info" type="submit">삭제</button></td>
+												<td><button class="btn btn-info"  type="submit">삭제</button></td>
 											</tr>
 									</c:forEach>
 										</tbody>
@@ -196,7 +196,7 @@
 								<br>
 
 								<div class="skills-insert-wrapper" onclick="post(this);">
-									<button type="button">등록하기</button>
+									<button class="btn btn-info"  type="button">등록하기</button>
 								</div>
 
 							</div>

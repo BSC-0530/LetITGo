@@ -175,10 +175,10 @@
 												<td><c:out value="${ reqlist.coReqDate }"/></td>
 												<td><c:out value="${ reqlist.coAnsDate }"/> </td>
 												<td><c:out value="${ reqlist.coAnsKinds }"/></td>
-												<td><button type=button onclick="Image(this);" >이미지</button></td>
-												<td><button type=button onclick="detail(this);" >상세 보기</button></td>
+												<td><button class="btn btn-info" type=button  onclick="Image(this);" >이미지</button></td>
+												<td><button class="btn btn-info" type=button  onclick="detail(this);" >상세 보기</button></td>
 <%-- 												<c:if test="${ reqlist.coAnsKinds eq '거절'}"> --%>
-												<td><button type=button onclick="reason(this);" >거절 사유</button></td>
+												<td><button class="btn btn-info" type=button  onclick="reason(this);" >거절 사유</button></td>
 <%-- 												</c:if> --%>
 											</tr>
 										</c:if>

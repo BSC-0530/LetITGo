@@ -208,10 +208,10 @@
 							
 							<div align="center">
 								
-								<button type="button" onClick="history.go(-1)" >취소하기</button>
-								<button type="submit"
+								<button class="btn btn-info" type="button" onClick="history.go(-1)" >취소하기</button>
+								<button class="btn btn-info" type="submit"
 									onclick="href='${ pageContext.servletContext.contextPath }/admin/product/list'">등록하기</button>
-								<!-- <button type="reset" id="cancleInsert">취소하기</button> -->
+								<!-- <button class="btn btn-info" type="reset" id="cancleInsert">취소하기</button> -->
 							</div>
 
 						</form>

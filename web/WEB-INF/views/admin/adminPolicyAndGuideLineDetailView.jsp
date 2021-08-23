@@ -250,9 +250,9 @@ td {
 										</div>
 									</div>
 
-									<button type="button" onClick="history.go(-1)">뒤로가기</button>
+									<button class="btn btn-info" type="button" onClick="history.go(-1)">뒤로가기</button>
 									<!-- 경로 지정해주기 (list로 받아오게)-->
-									<button type="submit"
+									<button class="btn btn-info" type="submit"
 										onclick="href='${ pageContext.servletContext.contextPath }/personalinfopolicy/list'">수정하기</button>
 
 								</div>
@@ -264,8 +264,8 @@ td {
 
  			<!-- 내용 -->				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
 
- 									<button type="button" onClick="history.go(-1)">취소하기</button> 
- 									<button type="submit" 
+ 									<button class="btn btn-info" type="button" onClick="history.go(-1)">취소하기</button> 
+ 									<button class="btn btn-info" type="submit" 
 											onclick="href='${ pageContext.servletContext.contextPath }/personalinfopolicy/list'">수정하기</button> 
 
 			</div>

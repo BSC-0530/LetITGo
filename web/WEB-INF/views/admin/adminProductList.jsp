@@ -208,10 +208,10 @@ td {
 														value="${ productList.productReadingTicket }" /></td>
 												<td id="productStatus"><fmt:formatNumber
 														value="${ productList.productExposureTime/24/60/60 }" /></td>
-												<td><button type="button" onclick="modify(this)"
+												<td><button class="btn btn-info" type="button" onclick="modify(this)"
 														style="background: skyblue; border-radius: 5px; color: white; font-weight: 900;"
 														value="${ productList.productNo }">수정</button></td>
-												<td><button type="button"
+												<td><button class="btn btn-info" type="button"
 														style="background: red; border-radius: 5px; color: white; font-weight: 900;"
 														onclick="deletebutton(this)"
 														value="${ productList.productNo }">삭제</button>
@@ -223,7 +223,7 @@ td {
 
 								<div class="skills-category-insert-wrapper"
 									onclick="post(this);">
-									<button type="submit">등록하기</button>
+									<button class="btn btn-info" type="submit">등록하기</button>
 								</div>
 
 							</div>

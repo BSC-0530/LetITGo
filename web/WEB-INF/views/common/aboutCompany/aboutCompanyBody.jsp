@@ -90,7 +90,29 @@
 	                                        <div class="jp_career_cont_wrapper">
 	                                            <p><i class="fa fa-calendar"></i>&nbsp;&nbsp; <a><c:out value="${ myJobPosting.jobPostDeadline }"/></a></p>
 	                                            <h3><a href="#"><c:out value="${ myJobPosting.jobPostTitle }"/></a></h3>
-	                                            <P>경력 :<c:out value="${ myJobPosting.jobPostMinExperience }"/> ~ <c:out value="${ myJobPosting.jobPostMaxExperience }"/> 년</P><br>
+	                                            <P>
+		                                            <c:set var="minExp" value="${ myJobPosting.jobPostMinExperience }"/>
+													<c:set var="maxExp" value="${ myJobPosting.jobPostMaxExperience }"/>
+													<c:if test="${ minExp ne maxExp }">
+														<c:choose>
+															<c:when test="${ (minExp eq 0) && (maxExp eq 10) }">
+																<c:out value="경력 무관"></c:out>
+															</c:when>
+															<c:when test="${ (minExp eq 0) && (maxExp ne 10) }">
+																<c:out value="신입"/><c:out value="~${ maxExp }년"/>
+															</c:when>
+															<c:otherwise>
+																<c:out value="${ minExp }"/><c:out value="~${ maxExp }년"/>
+															</c:otherwise>
+														</c:choose>
+													</c:if>
+													<c:if test="${ (minExp eq maxExp) && (minExp eq 0)}">
+														<c:out value="신입"></c:out>
+													</c:if>
+													<c:if test="${( minExp eq maxExp) && (minExp ne 0)}">
+														<c:out value="${ maxExp }년 이상"/>
+													</c:if>
+	                                            </P><br>
 	                                            
 	                                        </div>
 	                                    </div>

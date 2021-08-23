@@ -199,8 +199,8 @@
 										placeholder="비밀번호 입력">
 								</div>
 								<br> <br>
-								<button type="submit" style="margin: 10px">확인</button>
-								<button type="button" style="margin: 10px" onclick="history.back(-1);">취소</button>
+								<button class="btn btn-info" type="submit" style="margin: 10px">확인</button>
+								<button class="btn btn-info" type="button" style="margin: 10px" onclick="history.back(-1);">취소</button>
 								<br>
 								<br>
 								<br>

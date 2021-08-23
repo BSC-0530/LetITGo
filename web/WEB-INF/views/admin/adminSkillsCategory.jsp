@@ -185,7 +185,7 @@
 														value="${ controllSkillsCategory.name }" /></td>
 
 												<!-- <td><button type="button" disabled>삭제</button></td> -->
-												<td><button type="button" class="btn-info" onClick="skillsCategoryDelete(this);" value="${ controllSkillsCategory.no }">삭제</button></td>
+												<td><button class="btn btn-info"  type="button" onClick="skillsCategoryDelete(this);" value="${ controllSkillsCategory.no }">삭제</button></td>
 											</tr>
 									</c:forEach>
 										</tbody>
@@ -195,7 +195,7 @@
 
 								<div class="skills-category-insert-wrapper"
 									onclick="post(this);">
-									<button type="submit">등록하기</button>
+									<button class="btn btn-info"  type="submit">등록하기</button>
 								</div>
 
 							</div>

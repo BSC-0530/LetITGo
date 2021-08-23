@@ -157,19 +157,19 @@
 										<td><c:out value="${ whole.jobPostBrowesStatus }" /></td>
 
 										<c:if test="${whole.jobPostApplyingStatus eq '지원완료' }">
-											<td><button type="submit" onclick="cancel(this);">취소</button></td>
+											<td><button class="btn btn-info" type="submit" onclick="cancel(this);">취소</button></td>
 										</c:if>
 
 										<c:if test="${whole.jobPostApplyingStatus != '지원완료' }">
-											<td><button disabled>취소완료</button></td>
+											<td><button class="btn btn-info" disabled>취소완료</button></td>
 										</c:if>
 
 										<c:if test="${whole.jobPostApplyingKinds eq '플랫폼양식' }">
-											<td><button type="button" onclick="resume(this);">확인</button></td>
+											<td><button class="btn btn-info" type="button" onclick="resume(this);">확인</button></td>
 										</c:if>
 
 										<c:if test="${whole.jobPostApplyingKinds eq '자사양식' }">
-											<td><button type="submit" disabled>자샤양식</button></td>
+											<td><button class="btn btn-info" type="submit" disabled>자샤양식</button></td>
 										</c:if>
 
 
@@ -217,19 +217,19 @@
 										<td><c:out value="${ complete.jobPostBrowesStatus }" /></td>
 
 										<c:if test="${complete.jobPostApplyingStatus eq '지원완료' }">
-											<td><button type="submit" onclick="cancel(this);">취소</button></td>
+											<td><button class="btn btn-info" type="submit" onclick="cancel(this);">취소</button></td>
 										</c:if>
 
 										<c:if test="${complete.jobPostApplyingStatus != '지원완료' }">
-											<td><button disabled>취소완료</button></td>
+											<td><button class="btn btn-info" disabled>취소완료</button></td>
 										</c:if>
 
 										<c:if test="${complete.jobPostApplyingKinds eq '플랫폼양식' }">
-											<td><button type="button" onclick="resume(this);">확인</button></td>
+											<td><button class="btn btn-info" type="button" onclick="resume(this);">확인</button></td>
 										</c:if>
 
 										<c:if test="${complete.jobPostApplyingKinds eq '자사양식' }">
-											<td><button type="submit" disabled>자샤양식</button></td>
+											<td><button class="btn btn-info" type="submit" disabled>자샤양식</button></td>
 										</c:if>
 									</tr>
 							</c:forEach>

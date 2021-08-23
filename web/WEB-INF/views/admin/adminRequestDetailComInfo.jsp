@@ -114,7 +114,7 @@
                               	<img name=businessRegistration src="${ pageContext.servletContext.contextPath }${ businessRegistration }" width="150" height="150">
                               	
                               	<input id="popNo" type="hidden" name="popNo" value="${ reqInfo.coReqNo }">
-                              	<button  value="${ reqInfo.coReqNo }" type="button" style="margin-left:80%;"
+                              	<button class="btn btn-info"  value="${ reqInfo.coReqNo }" type="button" style="margin-left:80%;"
                               	class="btn btn-info" onclick="negative();">거절</button>
                     	</div>
 								</div>
@@ -191,7 +191,7 @@
 					<div class="companyText">	
                            	<label>회사소개</label><input id="textArea" name="reqIntro" value="${ reqInfo.coIntro  }" readonly >
                            	
-						<button type="submit" style="margin-left:80%;"class="btn btn-info">수락</button>
+						<button class="btn btn-info" type="submit" style="margin-left:80%;"class="btn btn-info">수락</button>
                    	</div>
 									</div>
 								</div>
@@ -205,7 +205,7 @@
 							<br><br><br>
 								<div class="jp_contact_form_btn_wrapper">
 									<ul>
-										<li><a href="#"><button type="button" onclick="back();"
+										<li><a href="#"><button class="btn btn-info" type="button" onclick="back();"
 													style="background-color: transparent; border: 0px transparent solid; width: 150px; height: 50px;">&nbsp;
 													back</button>
 												<i class="fa fa-plus-circle"></i> </a></li>

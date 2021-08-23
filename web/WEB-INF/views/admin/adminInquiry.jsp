@@ -165,7 +165,7 @@
 												<td><c:out value="${ inq.inquiryDate }"/></td>
 												<td><c:out value="${ inq.inquiryEmail }"/></td>
 												<td><c:out value="${ inq.inquiryAnsYN }"/></td>
-												<td><button  type="submit" onclick="browse(this);" >상세보기</button></td>
+												<td><button class="btn btn-info"  type="submit" onclick="browse(this);" >상세보기</button></td>
 												<td style="font-size: 0px; width:0px; height:0px;"><c:out value="${ inq.inquiryNo }"/></td>
 											</tr>
 								</c:forEach>			

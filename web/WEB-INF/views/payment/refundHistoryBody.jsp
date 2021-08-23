@@ -168,25 +168,25 @@
 											<td><c:out value="${ refund.payAnsDate }" /></td>
 										</c:if>
 										
-										<td><button type=button onclick="browse(this);" >상세보기</button></td>
+										<td><button class="btn btn-info" type=button class="btn btn-info" onclick="browse(this);" >상세보기</button></td>
 										<c:if test="${refund.payAnsDate == null && refund.payChangeStatus eq '환불요청취소' }">
 											<td>-</td>
 										</c:if>
 
 										<c:if test="${ refund.payChangeStatus eq '환불요청' }">
-											<td><button type="submit" onclick="req(this);">환불취소</button></td>
+											<td><button class="btn btn-info" type="submit" onclick="req(this);">환불취소</button></td>
 										</c:if>
 
 										<c:if test="${ refund.payChangeStatus eq '환불거절'  }">
-											<td><button type="submit" disabled>환불불가</button></td>
+											<td><button class="btn btn-info" type="submit" disabled>환불불가</button></td>
 										</c:if>
 
 										<c:if test="${ refund.payChangeStatus eq '환불완료'  }">
-											<td><button type="submit" disabled>환불완료</button></td>
+											<td><button class="btn btn-info" type="submit" disabled>환불완료</button></td>
 										</c:if>
 
 										<c:if test="${ refund.payChangeStatus eq '환불요청취소'  }">
-											<td><button type="submit" disabled>요청취소완료</button></td>
+											<td><button class="btn btn-info" type="submit" disabled>요청취소완료</button></td>
 										</c:if>
 
 									</tr>

@@ -206,7 +206,7 @@
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<div class="jp_contact_form_btn_wrapper">
 									<ul>
-										<li><a href="#"><button onclick="back();"
+										<li><a href="#"><button class="btn btn-info"  onclick="back();"
 													style="background-color: transparent; border: 0px transparent solid; width: 150px; height: 50px;">&nbsp;
 													back</button>
 											<i class="fa fa-plus-circle"></i> </a>

@@ -182,11 +182,11 @@
 											<tr>
 												<td id="postNo"><c:out value="${ controllPersonalInfoPolicy.postNo }" /></td>
 												<td id="postTitle"><c:out value="${ controllPersonalInfoPolicy.postTitle }" /></td>
- 	<!-- onClick 안에 상세보기 인터페이스 메소드명 넣어주기 -->	<td><button class="btn-info" onClick="detail(this);" value="${ controllPersonalInfoPolicy.postNo }">상세보기</button></td> 
+ 	<!-- onClick 안에 상세보기 인터페이스 메소드명 넣어주기 -->	<td><button class="btn btn-info"  onClick="detail(this);" value="${ controllPersonalInfoPolicy.postNo }">상세보기</button></td> 
 												<td id="postRegistrationDate"><c:out value="${ controllPersonalInfoPolicy.postRegistrationDate }" /></td>
 												<td id="postKinds"><c:out value="${ controllPersonalInfoPolicy.postKinds }" /></td>
 												<td id="postModifiedDate"><c:out value="${ controllPersonalInfoPolicy.postModifiedDate }" /></td>
-	<!-- onClick 안에 수정 인터페이스 메소드명 넣어주기 -->	<td><button class="btn-info" onClick="modify(this);" value="${ controllPersonalInfoPolicy.postNo }">수정</button></td>
+	<!-- onClick 안에 수정 인터페이스 메소드명 넣어주기 -->	<td><button class="btn btn-info"  onClick="modify(this);" value="${ controllPersonalInfoPolicy.postNo }">수정</button></td>
 											</tr>
 									</c:forEach>
 										</tbody>
@@ -196,7 +196,7 @@
 								<br>
 
 								<div class="personal-info-policy-insert-wrapper" onclick="post(this);">
-									<button type="submit">등록</button>
+									<button class="btn btn-info"  type="submit">등록</button>
 								</div>
 
 							</div>

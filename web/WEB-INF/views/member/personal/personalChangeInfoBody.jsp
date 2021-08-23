@@ -108,14 +108,14 @@
 								<c:out value="d${ restricedComapny.coComName }"></c:out>
 								</c:forEach>
 								</c:if>
-								<button onclick="infoChange();" class="btn btn-info" id="infoChange" style="float: right;">열람제한기업 변경</button>
+								<button class="btn btn-info" onclick="infoChange();" class="btn btn-info" id="infoChange" style="float: right;">열람제한기업 변경</button>
 								
 							</div>
 						</div>
 					</div>
 					<br>
 					
-					<button type="submit" class="btn btn-info" id="infoChange" style="float: right;">회원 정보 변경</button>
+					<button class="btn btn-info" type="submit" class="btn btn-info" id="infoChange" style="float: right;">회원 정보 변경</button>
 					
 					</form>
 					

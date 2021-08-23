@@ -179,10 +179,10 @@
 												</c:if>
 
 												<td><c:out value="${ adminRefund.payChangeStatus }" /></td>
-												<td><button type=button onclick="refundBrowse(this);" >상세보기</button></td>
+												<td><button class="btn btn-info" type=button class="btn btn-info" onclick="refundBrowse(this);" >상세보기</button></td>
 												
 												<c:if test="${ adminRefund.payChangeStatus eq '환불거절' }">
-												<td><button type=button onclick="rejectBrowse(this);" >상세보기</button></td>
+												<td><button class="btn btn-info" type=button class="btn btn-info" onclick="rejectBrowse(this);" >상세보기</button></td>
 												</c:if>
 												
 												<c:if test="${ adminRefund.payChangeStatus != '환불거절' }">
@@ -190,13 +190,13 @@
 												</c:if>
 
 												<c:if test="${ adminRefund.payChangeStatus eq '환불요청'  }">
-													<td><button type="submit" onclick="approval(this);">승인</button></td>
-													<td><button type="submit" onclick="reject(this);">거절</button></td>
+													<td><button class="btn btn-info" type="submit" onclick="approval(this);">승인</button></td>
+													<td><button class="btn btn-info" type="submit" onclick="reject(this);">거절</button></td>
 												</c:if>
 
 												<c:if test="${ adminRefund.payChangeStatus != '환불요청'  }">
-													<td><button disabled>승인</button></td>
-													<td><button disabled>거절</button></td>
+													<td><button class="btn btn-info" disabled>승인</button></td>
+													<td><button class="btn btn-info" disabled>거절</button></td>
 												</c:if>
 											</tr>
 									</c:forEach>

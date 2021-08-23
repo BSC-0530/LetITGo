@@ -208,9 +208,9 @@ td {
 										</div>
 									</div>
 
-									<button type="button" onClick="history.go(-1)">취소하기</button>
+									<button class="btn btn-info" type="button" onClick="history.go(-1)">취소하기</button>
 									<!-- 경로 지정해주기 (list로 받아오게)-->
-									<button type="submit"
+									<button class="btn btn-info" type="submit"
 										onclick="href='${ pageContext.servletContext.contextPath }/personalinfopolicy/list'">등록하기</button>
 
 								</div>

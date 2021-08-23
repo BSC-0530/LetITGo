@@ -180,7 +180,7 @@
 											<tr>
 												<td id="postNo"><c:out value="${ controllGuideLine.postNo }" /></td>
 												<td id="postTitle"><c:out value="${ controllGuideLine.postTitle }" /></td>
- 	<!-- onClick 안에 상세보기 인터페이스 메소드명 넣어주기 -->	<td><button class="btn-info" onClick="detail(this);" value="${ controllGuideLine.postNo }">상세보기</button></td> 
+ 	<!-- onClick 안에 상세보기 인터페이스 메소드명 넣어주기 -->	<td><button class="btn btn-info"  onClick="detail(this);" value="${ controllGuideLine.postNo }">상세보기</button></td> 
 												<td id="postRegistrationDate"><c:out value="${ controllGuideLine.postRegistrationDate }" /></td>
 												<td id="postKinds"><c:out value="${ controllGuideLine.postKinds }" /></td>
 											</tr>

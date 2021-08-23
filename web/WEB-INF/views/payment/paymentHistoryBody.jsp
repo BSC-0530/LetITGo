@@ -210,24 +210,24 @@
 										<td><c:out value="${ payment.payKinds }" /></td>
 
 										<c:if test="${ payment.payKinds eq '결제완료' }">
-											<td><button type="submit" onclick="req(this);">환불요청</button></td>
+											<td><button class="btn btn-info"type="submit" onclick="req(this);">환불요청</button></td>
 										</c:if>
 
 										<c:if test="${ payment.payKinds eq '환불완료' }">
-											<td><button type="button" disabled>환불완료</button></td>
+											<td><button class="btn btn-info"type="button" disabled>환불완료</button></td>
 										</c:if>
 
 										<c:if test="${ payment.payKinds eq '환불거절' }">
-											<td><button type="button" disabled>환불불가</button></td>
+											<td><button class="btn btn-info"type="button" disabled>환불불가</button></td>
 										</c:if>
 
 										<c:if test="${ payment.payKinds eq '환불요청' }">
-											<td><button type="button" disabled>환불요청중</button></td>
+											<td><button class="btn btn-info"type="button" disabled>환불요청중</button></td>
 										</c:if>
 
 										<c:if
 											test="${ payment.payKinds != ('환불완료' or '환불거절' or '환불요청')  }">
-											<td><button type="submit" onclick="req(this);">환불요청</button></td>
+											<td><button class="btn btn-info"type="submit" onclick="req(this);">환불요청</button></td>
 										</c:if>
 									</tr>
 							</c:forEach>

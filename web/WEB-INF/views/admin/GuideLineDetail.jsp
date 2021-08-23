@@ -207,7 +207,7 @@ td {
 										</div>
 									</div>
 
-									<button type="button" onClick="history.go(-1)">뒤로가기</button>
+									<button class="btn btn-info"  type="button" onClick="history.go(-1)">뒤로가기</button>
 									
 								</div>
 							</form>

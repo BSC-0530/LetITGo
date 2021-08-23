@@ -174,16 +174,16 @@
 												<td><c:out value="${ insertRequestList.coAnsDate }"/></td>								
 												<td><c:out value="${ insertRequestList.coAnsKinds }"/></td>
 												<td><c:out value="${ insertRequestList.coRejectReason }"/></td>	
-												<td><button type="button" onclick="post3(this);">보기</button></td>
+												<td><button class="btn btn-info" type="button" onclick="post3(this);">보기</button></td>
 												
 												<c:if test="${  insertRequestList.coAnsDate != null }">
-												<td><button disabled>승인</button></td>
-												<td><button disabled>거절</button></td>
+												<td><button class="btn btn-info" disabled>승인</button></td>
+												<td><button class="btn btn-info" disabled>거절</button></td>
 												</c:if>
 												
 												<c:if test="${  insertRequestList.coAnsDate == null }">
-												<td><button type="button" onclick="jobPostApproval(this);">승인</button></td>
-												<td><button type="button" onclick="jobPostReject(this);">거절</button></td>
+												<td><button class="btn btn-info" type="button" onclick="jobPostApproval(this);">승인</button></td>
+												<td><button class="btn btn-info" type="button" onclick="jobPostReject(this);">거절</button></td>
 												</c:if>	
 											</tr>
 									</c:forEach>															

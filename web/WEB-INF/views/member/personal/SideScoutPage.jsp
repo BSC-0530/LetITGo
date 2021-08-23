@@ -146,7 +146,7 @@
 										<td><c:out value="${ list.coStatus }"></c:out></td>
 										<td><c:out value="${ list.resumeBrowseKinds }"></c:out>
 										</td>
-										<td><button type="button" onclick="browse(this);" value="${ list.coMemNo }">상세보기</button>
+										<td><button class="btn btn-info" type="button" onclick="browse(this);" value="${ list.coMemNo }">상세보기</button>
 											
 									</tr>
 							</c:forEach>
@@ -174,16 +174,16 @@
 										<td>
 											<c:choose>
 												<c:when test="${ list.scoutKinds eq '대기'}">
-													<button type="button" id="selectedYN" value="${ list.resumeNo }" onclick="acceptInterview(this);">수락</button>
+													<button class="btn btn-info" type="button" id="selectedYN" value="${ list.resumeNo }" onclick="acceptInterview(this);">수락</button>
 													
-													<button type="button" id="selectedYN" value="${ list.resumeNo }" onclick="refuseInterview(this);">
+													<button class="btn btn-info" type="button" id="selectedYN" value="${ list.resumeNo }" onclick="refuseInterview(this);">
 														거절
 													</button>											
 												</c:when>
 												<c:otherwise>
-													<button type="button" value="${ list.resumeNo }" onclick="acceptInterview(this);" disabled>수락</button>
+													<button class="btn btn-info" type="button" value="${ list.resumeNo }" onclick="acceptInterview(this);" disabled>수락</button>
 													
-													<button type="button" value="${ list.resumeNo }" onclick="refuseInterview(this);" disabled>거절</button>	
+													<button class="btn btn-info" type="button" value="${ list.resumeNo }" onclick="refuseInterview(this);" disabled>거절</button>	
 												</c:otherwise>
 											</c:choose>
 										</td>

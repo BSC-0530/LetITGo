@@ -164,7 +164,7 @@
 												<td><c:out value="${ notice.postNo }"/></td>									
 												<td><c:out value="${ notice.postTitle }"/></td>
 												<td><c:out value="${ notice.postRegistrationDate }"/></td>
-												<td><button type=button onclick="browse(this);" >상세보기</button></td>
+												<td><button class="btn btn-info" type=button class="btn btn-info" onclick="browse(this);" >상세보기</button></td>
 												<c:choose>
 												<c:when test="${empty notice.postModifiedDate }">
 												<td><c:out value="수정사항 없음 "/></td>
@@ -174,9 +174,9 @@
 												</c:otherwise>
 												</c:choose>
 												<td><c:out value="${ notice.postExposureStatus }"/></td>
-												<td><button type=button onclick="modify(this);" >Y/N수정</button></td>
+												<td><button class="btn btn-info" type=button class="btn btn-info" onclick="modify(this);" >Y/N수정</button></td>
 <%-- 												<td><input name="no" value="${ notice.postNo }"> --%>
-<!-- 												<td><button class="fa fa-plus-circle" type="submit" ></button></td> -->
+<!-- 												<td><button class="btn btn-info" class="fa fa-plus-circle" type="submit" ></button></td> -->
 											</tr>
 								</c:forEach>					
 										</tbody>	
@@ -184,7 +184,7 @@
 								</div>
 <!-- 						</form> -->
 					<div class="category-insert">
-										<button style="margin-left: 90%; margin-top: 5%;"
+										<button class="btn btn-info" style="margin-left: 90%; margin-top: 5%;"
 											type="submit" class="btn btn-info" onclick="insert();">등록</button>
 								<br>
 								<br>

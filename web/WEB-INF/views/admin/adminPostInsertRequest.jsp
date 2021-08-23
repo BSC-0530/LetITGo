@@ -188,7 +188,7 @@
 														value="${ adminPostRequest.jobPostAnsKinds }" /></td>
 
 												<c:if test="${ adminPostRequest.jobPostRejectReason != null }">
-												<td><button type=button onclick="rejectBrowse(this);" >상세보기</button></td>
+												<td><button class="btn btn-info" type=button class="btn btn-info" onclick="rejectBrowse(this);" >상세보기</button></td>
 												</c:if>
 
 												<c:if
@@ -196,17 +196,17 @@
 													<td>-</td>
 												</c:if>
 
-												<td><button type="submit" onclick="post2(this);">보기</button></td>
+												<td><button class="btn btn-info" type="submit" onclick="post2(this);">보기</button></td>
 
 												<c:if test="${  adminPostRequest.jobPostAnsDate != null }">
-													<td><button disabled>승인</button></td>
-													<td><button disabled>거절</button></td>
+													<td><button class="btn btn-info" disabled>승인</button></td>
+													<td><button class="btn btn-info" disabled>거절</button></td>
 												</c:if>
 
 												<c:if test="${  adminPostRequest.jobPostAnsDate == null }">
-													<td><button type="submit"
+													<td><button class="btn btn-info" type="submit"
 															onclick="jobPostApproval(this);">승인</button></td>
-													<td><button type="submit"
+													<td><button class="btn btn-info" type="submit"
 															onclick="jobPostReject(this);">거절</button></td>
 												</c:if>
 											</tr>
