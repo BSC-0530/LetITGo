@@ -122,31 +122,7 @@
 				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<div class="jp_counter_main_wrapper">
-								<h1 align="left">스카우트 현황</h1>
-								<br>
-								<div class="container">
-									<div class="gc_counter_cont_wrapper">
-										<div class="count-description">
-											<span class="timer"><c:out value="${ simpleOpen }"></c:out></span>
-											<h5 class="con1">얕은 열람</h5>
-										</div>
-									</div>
-									<div class="gc_counter_cont_wrapper2">
-										<div class="count-description">
-											<span class="timer"><c:out value="${ deepOpen }"></c:out> </span>
-											<h5 class="con2">깊은 열람</h5>
-										</div>
-									</div>
-									<div class="gc_counter_cont_wrapper3">
-										<div class="count-description">
-											<span class="timer"><c:out value="${ scoutNum }"></c:out></span>
-											<h5 class="con3">면접 제안</h5>
-										</div>
-									</div>
-								</div>
-								<br> <br>
-							</div>
+						<br><br><br>
 							<!-- 데이터 테이들 -->
 							<h2>이력서 열람 이력</h2>
 							<br>
