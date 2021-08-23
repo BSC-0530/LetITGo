@@ -277,7 +277,7 @@
 			</div>
 		</div>
 		
-		<input id="hiddenResumeNo" type="text" value="${ requestScope.detailResume[0].resume[0].resumeNo }">
+		<input id="hiddenResumeNo" type="hidden" value="${ requestScope.detailResume[0].resume[0].resumeNo }">
 <%-- 	<input type="hidden" value="${ detail.scoutResume[status.index].resumeNo }"> --%>
 		
 		

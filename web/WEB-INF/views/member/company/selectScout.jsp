@@ -204,15 +204,15 @@ $(document).ready(function() {
 
 function browse(button){
 	
-	const num = button.parentNode.children[1].value;
+	const resumeNo = button.parentNode.children[1].value;
 	const kinds = button.parentNode.children[2].value;
 	
 	if(kinds == '얕은열람') {
-		location.href = "${ pageContext.servletContext.contextPath }/simple/browse/select?num=" + num;
+		location.href = "${ pageContext.servletContext.contextPath }/simple/browse/select?resumeNo=" + resumeNo;
 	} else if(kinds == '깊은열람') {
-		location.href = "${ pageContext.servletContext.contextPath }/detail/browse/select?num=" + num;
+		location.href = "${ pageContext.servletContext.contextPath }/detail/browse/select?resumeNo=" + resumeNo;
 	} else {
-		location.href = "${ pageContext.servletContext.contextPath }/detail/browse/select?num=" + num;
+		location.href = "${ pageContext.servletContext.contextPath }/detail/browse/select?resumeNo=" + resumeNo;
 	}
 	
 			
