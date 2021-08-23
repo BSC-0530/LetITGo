@@ -71,18 +71,6 @@ public class modifyComapnyInfo extends HttpServlet {
 			String coPhone = mr.getParameter("coPhone");
 			String coPax = mr.getParameter("coPax");
 			
-			
-//			System.out.println("coNo " + coNo);
-//			System.out.println("comName " +comName );
-//			System.out.println(" ceoName" + ceoName);
-//			System.out.println(" coSectors" + coSectors);
-//			System.out.println(" coStatus" + coStatus);
-//			System.out.println("coAddress " + coAddress);
-//			System.out.println("webStie " + webStie);
-//			System.out.println(" contents : 나오냐?" + contents);
-//			System.out.println(" coPhone : 나오냐?" + coPhone);
-//			System.out.println(" coPax : 나오냐?" + coPax);
-			
 			//변경 요청한 회사추가  정보
 			
 			
@@ -106,15 +94,6 @@ public class modifyComapnyInfo extends HttpServlet {
 			System.out.println("번호" + comDTO.getMemNo());
 			int memNo = comDTO.getMemNo();
 			
-			System.out.println("로고" + coLogo);
-			System.out.println(coLogoOrginal);
-			System.out.println(coLogoFullPath);
-			System.out.println("coRepresentativImage : " + coRepresentativImage);
-			System.out.println("coRepresentativImageOrginal : " + coRepresentativImageOrginal);
-			System.out.println("coRepresentativImageFullPath : " + coRepresentativImageFullPath);
-			System.out.println("businessRegistration : " + businessRegistration);
-			System.out.println("businessRegistrationOrginal : " + businessRegistrationOrginal);
-			System.out.println("businessRegistrationFullPath : " + businessRegistrationFullPath);
 			
 			RequestService service = new RequestService();
 			CoMemberAppHistoryDTO comAd = new CoMemberAppHistoryDTO();

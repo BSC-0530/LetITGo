@@ -29,15 +29,11 @@ public class selectCompanyInfoServlet extends HttpServlet {
 		 int memberNo = comDTO1.getMemNo();
 		 
 		CompanyAddInfoDTO comDTO = new CompanyInfoService().selectedInfoCompany(memberNo);
-//		System.out.println("ASKDJAKSDAJSDH" + comDTO);
 		 
 		 FileUploadDTO logoImage = new CompanyInfoService().selectLogoFile(memberNo);
 		 FileUploadDTO representativeImage = new CompanyInfoService().selectRepresentFile(memberNo);
 		 FileUploadDTO businessRegistration = new CompanyInfoService().selectBusinessFile(memberNo);
 		 
-//		 System.out.println(logoImage);
-//		 System.out.println(representativeImage);
-//		 System.out.println(businessRegistration);
 		 
 		 String file1 =logoImage.getFilePath();
 		 System.out.println(file1.substring(20));
