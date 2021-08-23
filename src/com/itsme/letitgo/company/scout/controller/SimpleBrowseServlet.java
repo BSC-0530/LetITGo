@@ -29,8 +29,6 @@ public class SimpleBrowseServlet extends HttpServlet {
 			
 		int onClickResumeNo = Integer.parseInt(request.getParameter("num"));
 		
-		System.out.println("@@@@@@@@@@@@" + onClickResumeNo);
-		
 		MainScoutListService browseInfoService = new MainScoutListService();
 		
 		Map<String, Object> browseInfo = browseInfoService.browseSelectInfo(onClickResumeNo);
@@ -45,7 +43,7 @@ public class SimpleBrowseServlet extends HttpServlet {
 		dto.setResumeNo(onClickResumeNo);
 		
 		String path = "";
-		if(kinds.size() == 0) {
+		if(kinds != null) {
 			int kindsInsert = browseInfoService.readingKindsInsert(dto);
 			
 			request.setAttribute("path", browseInfo.get("path"));
