@@ -66,7 +66,7 @@ width: 100px; height: 50px; background-color:transparent;
                             <ul>
                                 <li><a href="#">Home</a></li>
                                 <li><a href="#">기업 마이페이지</a></li>
-                                <li>기업 마이페이지</li>
+                                <li>기업 정보 변경 요청</li>
                             </ul>
                         </div>
                     </div>
