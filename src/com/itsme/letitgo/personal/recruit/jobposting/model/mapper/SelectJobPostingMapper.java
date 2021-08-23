@@ -13,7 +13,6 @@ public interface SelectJobPostingMapper {
 	
 	List<Object> selectJobPosting(SelectRequestJobPostingDTO dto);
 
-
 	List<Object> selectJpSkills();
 
 	List<Object> selectJobNames();
@@ -28,7 +27,6 @@ public interface SelectJobPostingMapper {
 
 	List<JpResumeDTO> selectResumeForApplying(int inMemNo);
 
-
 	int insertApplyngHistory(Map<String, Object> applyMap);
 
 	int insertApplyingChangeHistory(Map<String, Object> applyMap);
@@ -41,7 +39,6 @@ public interface SelectJobPostingMapper {
 
 
 	int selectJpTotalCount(SelectRequestJobPostingDTO dto);
-
 
 
 	String selectTitleFilePath(int selectJobPostNo);

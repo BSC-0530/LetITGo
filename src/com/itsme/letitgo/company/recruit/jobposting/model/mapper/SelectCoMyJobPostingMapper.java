@@ -53,7 +53,10 @@ public interface SelectCoMyJobPostingMapper {
 
 	List<Object> selectDeteildeJpSkills();
 
-	
+	String selectTitleFilePath(int memNo);
+
+	String selectLogoFilePath(int memNo);
+
 
 
 }

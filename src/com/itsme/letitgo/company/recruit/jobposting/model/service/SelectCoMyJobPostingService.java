@@ -292,19 +292,23 @@ public class SelectCoMyJobPostingService {
 		
 	}
 
-	public List<Object> selectSkills() {
+	public Map<String, String> selectFilePath(int memNo) {
 		
 		SqlSession session = getSqlSession();
 		
 		SelectCoMyJobPostingMapper mapper = session.getMapper(SelectCoMyJobPostingMapper.class);
 		
-		List<Object> skillsList = mapper.selectSkills();
+		String titlePath = mapper.selectTitleFilePath(memNo);
+		String logoPath = mapper.selectLogoFilePath(memNo);
 		
-		session.close();
+		Map<String, String> filePath = new HashMap<>();
 		
-		return skillsList;
+		filePath.put("titlePath", titlePath);
+		filePath.put("logoPath", logoPath);
+		
+		
+		return filePath;
 	}
-
 
 	
 }
