@@ -42,6 +42,7 @@
 					</div>
 				</div>
 				<form action="${ pageContext.servletContext.contextPath }/request/inquiry/servlet" method="post" name="thePost" >
+				<input type="hidden" name="kinds" value="${ kinds }" >
 				<div class="jp_contact_form_box">
 						<div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
 							<div class="jp_contact_inputs_wrapper jp_contact_inputs2_wrapper">

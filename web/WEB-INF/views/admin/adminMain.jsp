@@ -189,7 +189,7 @@
 									</div>
 									<div class="gc_counter_cont_wrapper3">
 										<div class="count-description">
-											<span class="timer"><c:out value="${ notice }" /></span>
+											<span class="timer"><c:out value="${ notice }" /></span> <i class="fa"></i>
 											<h5 class="con3">공지사항</h5>
 										</div>
 									</div>

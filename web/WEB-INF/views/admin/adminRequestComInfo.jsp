@@ -49,7 +49,7 @@
 				<div
 					class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
 					<div class="row">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
 							<div class="jp_rightside_job_categories_wrapper">
 								<div class="jp_rightside_job_categories_heading">
 									<h4 style="font-weight: bold">Admin</h4>
@@ -159,9 +159,9 @@
 											<td align="center">요청 일자</td>
 											<td align="center">응답 일자</td>
 											<td align="center">상태</td>
-											<td align="center">거절 사유</td>
-											<td align="center">상세 보기</td>
 											<td align="center">이미지</td>
+											<td align="center">상세 보기</td>
+											<td align="center">거절 사유</td>
 										</tr>
 									</thead>
 										<tbody align="center">
@@ -175,9 +175,11 @@
 												<td><c:out value="${ reqlist.coReqDate }"/></td>
 												<td><c:out value="${ reqlist.coAnsDate }"/> </td>
 												<td><c:out value="${ reqlist.coAnsKinds }"/></td>
-												<td><button type=button onclick="reason(this);" >거절사유</button></td>
-												<td><button type=button onclick="detail(this);" >상세보기</button></td>
 												<td><button type=button onclick="Image(this);" >이미지</button></td>
+												<td><button type=button onclick="detail(this);" >상세 보기</button></td>
+<%-- 												<c:if test="${ reqlist.coAnsKinds eq '거절'}"> --%>
+												<td><button type=button onclick="reason(this);" >거절 사유</button></td>
+<%-- 												</c:if> --%>
 											</tr>
 										</c:if>
 								</c:forEach></c:forEach>						
@@ -233,13 +235,21 @@
 		}
 </script>
 <script>
-// 거절하기버튼
+// 거절사유
 	function reason(button){
 		
 // 		const memNo = document.getElementById("memNO").children[0].value;
 		const reqNo = button.parentNode.parentNode.children[1].innerText
 		
-		window.open("/let/reject/reason/pop?reqNo="+reqNo, "width=300, height=200, resizable = no, scorllbars = no")
+		let text = button.parentNode.parentNode.children[6].innerText;
+		
+		if(text === '거절'){
+			window.open("/let/reject/reason/pop?reqNo="+reqNo, "width=300, height=200, resizable = no, scorllbars = no")		
+			
+			}else if(text === '승인'){
+				
+			alert('거절 사유가 없습니다.')
+		}
 		
 	}
 </script>

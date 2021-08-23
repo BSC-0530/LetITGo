@@ -183,8 +183,6 @@
 <script>
 		function insert(button) {
 			
-			 alert('이이잉~');  
-			
 	 location.href = "${ pageContext.servletContext.contextPath }/admin/category/Insert/Servlet" 
 			
 		}

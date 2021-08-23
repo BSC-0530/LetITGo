@@ -72,10 +72,14 @@
 					<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 						<div class="jp_cp_left_side_wrapper">
 							<div class="jp_cp_left_pro_wallpaper">
-								<img src="images/content/cp1.png" alt="profile_img">
-									
+							<c:if test="${  requestScope.detailResume[0].path ne null}">
+								<img src="${ pageContext.servletContext.contextPath }${ requestScope.detailResume[0].path }" alt="profile_img">
+						  </c:if>
+						   <c:if test="${ requestScope.detailResume[0].path eq null }">	
+						     <img src="${ pageContext.servletContext.contextPath }/resources/image/basic.png" alt="profile_img" style="width:350px; height: 400px;">
+                            </c:if>
 									<h2>${ detailList[0].memName }</h2>						
-								
+									
 								
 
 							</div>
