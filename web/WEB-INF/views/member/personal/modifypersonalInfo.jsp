@@ -122,15 +122,14 @@
 						<img
 							alt="대표이미지없음" src="/let/resources/image/bmw.png"
 							style="width: 300px; height: 300px">
+						<!--                             이거는 이제 정보뜨는 칸 -->
+						<div class="tab-pane fade in active register_left_form"
+							id="contentOne-1">
 						<div class="form-group col-md-6 col-sm-6 col-xs-12 custom_input">
 						<input type="file" name="changeImage" id="changeImage" required>
 						<p></p>
 						<p>변경 할 이미지</p>
 						</div>
-						<!--                             이거는 이제 정보뜨는 칸 -->
-						<div class="tab-pane fade in active register_left_form"
-							id="contentOne-1">
-
 							<div class="jp_regiter_top_heading"></div>
 							<div class="row">
 								<!--Form Group-->
@@ -154,10 +153,7 @@
 						</div>
 						<div class="jp_listing_tabs_wrapper">
 							<label style="font-size: 30px;">열람제한기업</label><br>
-							<c:if test="${requestScope.restrictedCompany eq null }">
-								<label>등록된 열람제한 기업이 없습니다. 회원 정보 변경을 통해서 등록이 가능합니다.</label>
-							</c:if>
-							<c:if test="${requestScope.restrictedCompany ne null }">
+							<c:if test="${requestScope.restrictedCompany }">
 								<c:forEach var="restricedComapny"
 									items="${ requestScope.restricedCompany }">
 									<c:out value="d${ restricedComapny.coComName }"></c:out>
