@@ -39,7 +39,6 @@
             }
             function closeSelectResume(){
             	
-            	alert("");
             	
                 window.close();
             }
@@ -65,7 +64,6 @@
             			// 체크된 라디오 버튼의 value를 공고 상세페이지 쪽으로 넘겨줌
             			var resumeNo = document.getElementsByName("resumeNo")[i].value;
             			
-            			alert("선택한 이력서는 : " );
             			
                         window.opener.document.getElementById("resumeNo").value = resumeNo ;
                         window.close();

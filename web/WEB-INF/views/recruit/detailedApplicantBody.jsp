@@ -23,7 +23,7 @@
 	function selectPhone(a){
 		
 		var memPhone = a.children[0].value;
-		var phoneText = "지원자의 연락처느 : " + memPhone + "입니다.";
+		var phoneText = "지원자의 연락처는 : " + memPhone + "입니다.";
 		alert(phoneText);
 	}
 	
