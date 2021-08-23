@@ -292,6 +292,19 @@ public class SelectCoMyJobPostingService {
 		
 	}
 
+	public List<Object> selectSkills() {
+		
+		SqlSession session = getSqlSession();
+		
+		SelectCoMyJobPostingMapper mapper = session.getMapper(SelectCoMyJobPostingMapper.class);
+		
+		List<Object> skillsList = mapper.selectSkills();
+		
+		session.close();
+		
+		return skillsList;
+	}
+
 
 	
 }

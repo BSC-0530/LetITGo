@@ -1,6 +1,5 @@
 package com.itsme.letitgo.personal.recruit.jobposting.model.mapper;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

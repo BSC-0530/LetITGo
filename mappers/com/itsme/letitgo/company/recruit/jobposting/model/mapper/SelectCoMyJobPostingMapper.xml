@@ -343,6 +343,7 @@
 		 WHERE A.RETAINED_PRODUCT_CODE = #{ retainedProductCode }
 		   AND A.CO_MEM_NO = #{ coMemNo }
 	</update>
+
 	
 
 

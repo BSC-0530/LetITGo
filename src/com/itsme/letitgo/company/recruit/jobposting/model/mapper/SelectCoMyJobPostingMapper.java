@@ -51,6 +51,8 @@ public interface SelectCoMyJobPostingMapper {
 
 	int updateMemberHoldingProduct(UseExposureProductDTO dto);
 
+	List<Object> selectDeteildeJpSkills();
+
 	
 
 

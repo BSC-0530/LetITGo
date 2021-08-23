@@ -184,7 +184,7 @@
 											<c:forEach var="jobPosting"
 												items="${ requestScope.jobPostingList }">
 												<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-													<div class="jp_job_post_main_wra[]pper_cont jp_job_post_grid_main_wrapper_cont">
+													<div class="jp_job_post_main_wrapper_cont jp_job_post_grid_main_wrapper_cont">
 	
 														<!-- div 영역 클릭 시 상세 공고 페이지로 이동 -->
 														<div class="jp_job_post_main_wrapper jp_job_post_grid_main_wrapper" style="cursor: pointer; height: 250px"
@@ -218,12 +218,15 @@
 																		</div>
 																		<div>
 																		<label>
-																		<c:set var="minExp" value="${ pr.jobPostMinExperience }"/>
-																		<c:set var="maxExp" value="${ pr.jobPostMaxExperience }"/>
+																		<c:set var="minExp" value="${ jobPosting.jobPostMinExperience }"/>
+																		<c:set var="maxExp" value="${ jobPosting.jobPostMaxExperience }"/>
 																		<c:if test="${ minExp ne maxExp }">
 																			<c:choose>
 																				<c:when test="${ (minExp eq 0) && (maxExp eq 10) }">
 																					<c:out value="경력 무관"></c:out>
+																				</c:when>
+																				<c:when test="${ (minExp eq 0) && (maxExp ne 10) }">
+																					<c:out value="신입"/><c:out value="~${ maxExp }년"/>
 																				</c:when>
 																				<c:otherwise>
 																					<c:out value="${ minExp }"/><c:out value="~${ maxExp }년"/>

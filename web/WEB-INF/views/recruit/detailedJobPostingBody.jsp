@@ -48,7 +48,6 @@
                         <!-- 경로가 널이 아닐때 대표이미지 출력해줘야함 -->
                             <img style=" height: 280px;"src="${ pageContext.servletContext.contextPath }${ requestScope.titleFilePath }" alt="대표이미지 없음" />
                         </div>
-                        
                         <div class="jp_job_des">
                             <h2><c:out value="주요업무"/></h2>
                             <p>
@@ -181,20 +180,25 @@
                                                 <li>Experience:</li>
 												<c:set var="minExp" value="${ jobPosting.jobPostMinExperience }"></c:set>
 												<c:set var="maxExp" value="${ jobPosting.jobPostMaxExperience }"></c:set>
-												<c:choose>
-													<c:when test="${ minExp ne maxExp }">
-														<li><c:out value="${ minExp } ~ ${ maxEmp }"/></li>
-													</c:when>
-													<c:when test="${ (minExp eq maxExp) &&  (minExp eq 0)}">
-														<li><c:out value="신입"></c:out></li>
-													</c:when>
-													<c:when test="${( minExp eq maxExp) && (minExp ne 0)}">
-														<li><c:out value="${ maxExp }년 이상"/></li>
-													</c:when>
-													<c:when test="${ (minExp eq 0)  && (maxExp eq 10)}">
-														<li><c:out value="경력 무관"></c:out></li>
-													</c:when>
-												</c:choose>                                          
+												<c:if test="${ minExp ne maxExp }">
+													<c:choose>
+														<c:when test="${ (minExp eq 0) && (maxExp eq 10) }">
+															<c:out value="경력 무관"></c:out>
+														</c:when>
+														<c:when test="${ (minExp eq 0) && (maxExp ne 10) }">
+															<c:out value="신입"/><c:out value="~${ maxExp }년"/>
+														</c:when>
+														<c:otherwise>
+															<c:out value="${ minExp }"/><c:out value="~${ maxExp }년"/>
+														</c:otherwise>
+													</c:choose>
+												</c:if>
+												<c:if test="${ (minExp eq maxExp) && (minExp eq 0)}">
+													<c:out value="신입"></c:out>
+												</c:if>
+												<c:if test="${( minExp eq maxExp) && (minExp ne 0)}">
+													<c:out value="${ maxExp }년 이상"/>
+												</c:if>                                          
 											</ul>
                                         </div>
                                     </div>
