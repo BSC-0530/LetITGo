@@ -76,8 +76,6 @@ public class SelectJobPostingService {
 		String titleFilePath = mapper.selectTitleFilePath(selectJobPostNo);
 		String logoFilePath = mapper.selectLogoFilePath(selectJobPostNo);
 		
-		
-		
 		// return값으로 넘겨주기 위해 map에 담기 
 		
 		jp.put("detailedJobPosting", detailedJobPosting);

@@ -66,7 +66,7 @@
                     	
                         <div style="width:100%; height:300px;">
                         <!-- 경로가 널이 아닐때 대표이미지 출력해줘야함 -->
-                            <img style=" height: 280px;"src="images/content/web.png" alt="대표이미지 없음" />
+                            <img style=" height: 280px;"src="${ pageContext.servletContext.contextPath }${ requestScope.titleFilePath }" alt="대표이미지 없음" />
                         </div>
                         
                         <div class="jp_job_des">
@@ -130,7 +130,7 @@
                                 </div>
                                 <div class="jp_jop_overview_img_wrapper">
                                     <div class="jp_jop_overview_img">
-                                        <img src="images/content/web.png" alt="로고 없음" />
+                                        <img src="${ pageContext.servletContext.contextPath }${ requestScope.filePath.logoPath }" alt="로고 없음" />
                                     </div>
                                 </div>
                                 <div class="jp_job_listing_single_post_right_cont">
@@ -176,17 +176,9 @@
                                         <div class="jp_listing_list_icon_cont_wrapper">
                                             <ul>
                                                 <li>요구 기술</li>
-<%--                                                 <c:forEach var="selectSkills" items="${ requestScope.selectSkills }"> --%>
-<%--                                                 	<c:if test="${ selectSkills eq requestScope.skillsList.skillsNo }"> --%>
-<%--                                                 		<c:out value="${ requestScope.skilsList.skillsName }"/> --%>
-<%--                                                 	</c:if> --%>
-<%--                                                 </c:forEach> --%>
-                                                <c:out value="${ requestScope.selectSkills }"></c:out>
-                                                <c:out value="${ requestScope.skillsList }"></c:out>
-<%--                                                 <c:forEach var="skillsList" items="${ requestScope.skillsList }"> --%>
-<%--                                                 <c:if test="${ requestScope.selectSkills eq skillsList.skillsNo }"></c:if> --%>
-<%--                                                 <li><c:out value="${ skillsList.skillsName }"/></li> --%>
-<%--                                             	</c:forEach> --%>
+                                                <c:forEach var="selectSkills" items="${ requestScope.selectSkills }">
+                                                <li><c:out value="${ selectSkills }"/></li>
+                                            	</c:forEach>
                                             </ul>
                                         </div>
                                     </div>
@@ -291,6 +283,11 @@
 		        map.setCenter(coords);
 		    } 
 		});    
+		
+		function closeWin() {
+			
+			window.close();
+		}
 	</script>
 	
 

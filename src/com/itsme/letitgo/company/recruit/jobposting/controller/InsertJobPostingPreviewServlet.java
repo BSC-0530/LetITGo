@@ -2,7 +2,9 @@ package com.itsme.letitgo.company.recruit.jobposting.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,9 +36,9 @@ public class InsertJobPostingPreviewServlet extends HttpServlet {
 		// coMemNo 는 session에 담긴 회원 번호를 가져와야 한다
 		request.setCharacterEncoding("UTF-8");
 		String jobPostTitle = null;
-		List<Object> selectSkills = new ArrayList<>();
+		List<String> selectSkills = new ArrayList<>();
 		String[] getSkills = null;
-		List<Object> skillsList = new ArrayList<>();
+		List<String> skillsList = new ArrayList<>();
 		int jobNo = 0;
 		String jobName = null;
 		int jobPostMinExperience = Integer.parseInt(request.getParameter("jobPostMinExperience"));
@@ -50,12 +52,11 @@ public class InsertJobPostingPreviewServlet extends HttpServlet {
 		if(request.getParameter("jobPostTitle") != null) {
 			jobPostTitle = request.getParameter("jobPostTitle");
 		} 
-		if(request.getParameterValues("selectSkills") != null) {
-			getSkills = request.getParameterValues("selectSkills");
+		if(request.getParameterValues("selectSkillsName") != null) {
+			getSkills = request.getParameterValues("selectSkillsName");
 			for(String i: getSkills) {
-				selectSkills.add(Integer.parseInt(i));
+				selectSkills.add(i);
 			}
-			skillsList = service.selectSkills();
 			
 		}
 		if (request.getParameter("jobNo") != null) {
@@ -86,6 +87,12 @@ public class InsertJobPostingPreviewServlet extends HttpServlet {
 			jobPostMaxExperience = temp;
 		} 
 		
+		Map<String, String> filePath = new HashMap<>();
+		
+//		filePath = service.selectFilePath(memberLoginDTO.getMemNo());
+		filePath = service.selectFilePath(2);
+		
+		
 		request.setAttribute("memberloginDTO", memberLoginDTO);
 		request.setAttribute("jobPostContents", jobPostContents);
 		request.setAttribute("qualificationRequirements", qualificationRequirements);
@@ -100,6 +107,8 @@ public class InsertJobPostingPreviewServlet extends HttpServlet {
 		request.setAttribute("jobPostMaxExperience", jobPostMaxExperience);
 		request.setAttribute("jobPostContents", jobPostContents);
 		request.setAttribute("jobPostDeadLine", jobPostDeadLine);
+		request.setAttribute("titleFilePath", filePath.get("titleFilePath"));
+		request.setAttribute("logoFilePath", filePath.get("logoFilePath"));
 		
 		
 		String path = "/WEB-INF/views/recruit/insertJobPostingPreviewBody.jsp";

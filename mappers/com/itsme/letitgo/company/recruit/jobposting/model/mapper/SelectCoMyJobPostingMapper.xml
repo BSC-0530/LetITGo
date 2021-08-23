@@ -343,6 +343,23 @@
 		 WHERE A.RETAINED_PRODUCT_CODE = #{ retainedProductCode }
 		   AND A.CO_MEM_NO = #{ coMemNo }
 	</update>
+	
+		<select id="selectTitleFilePath" resultType="string">
+		SELECT
+		       SUBSTR(A.MEM_FILE_PATH,21)
+		  FROM TBL_ATTACHMENT A
+		 WHERE A.MEM_NO = #{ memNo }
+		   AND A.MEM_FILE_KINDS = '대표이미지'
+	</select>
+	
+	<select id="selectLogoFilePath" resultType="string">
+		SELECT
+		       SUBSTR(A.MEM_FILE_PATH,21)
+		  FROM TBL_ATTACHMENT A
+		 WHERE A.MEM_NO = #{ memNo }
+		   AND A.MEM_FILE_KINDS = '프로필사진'
+	</select>
+	
 
 	
 

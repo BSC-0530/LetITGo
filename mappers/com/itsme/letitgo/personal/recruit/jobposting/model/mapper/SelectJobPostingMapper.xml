@@ -346,7 +346,7 @@
 		   AND B.MEM_FILE_KINDS = '대표이미지'
 	</select>
 	
-		<select id="selectLogoFilePath" resultType="string">
+	<select id="selectLogoFilePath" resultType="string">
 		SELECT
 		       SUBSTR(B.MEM_FILE_PATH,21)
 		  FROM TBL_JOB_POSTING A
