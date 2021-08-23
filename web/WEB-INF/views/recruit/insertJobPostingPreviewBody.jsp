@@ -189,7 +189,7 @@
                                         <div class="jp_listing_list_icon_cont_wrapper">
                                             <ul>
                                                 <li>직무: </li>
-                                                <li><c:out value="${ requestScope.jobNo }"/></li>
+                                                <li><c:out value="${ requestScope.jobName }"/></li>
                                             </ul>
                                         </div>
                                     </div>
