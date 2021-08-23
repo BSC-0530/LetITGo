@@ -268,7 +268,7 @@
 												<input
 													style="width: 430px; height: 60px; border-radius: 5px;"
 													type="text" name="cmemPhone" id="cmemPhone"
-													placeholder="담당자 전화번호  ex) 010-1234-5678*" required>
+													placeholder="담당자 전화번호  ex) 01012345678*" required>
 											</div>
 
 											<div class="form-group col-md-6 col-sm-6 col-xs-12">
