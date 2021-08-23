@@ -67,7 +67,6 @@
 			var skillsNo = $("#skills option:selected").val();
 			var skillsName = $("#skills option:selected").text();
 			
-			alert(skillsNo);
 			
 			var appendSkills = "<div><input type='checkBox' value='" + skillsNo + "' name='selectSkills' id='s" + skillsNo + "' checked style='display:none;'>" +
 			   "<label id='skillsLabel' for='s" + skillsNo + "'>" + skillsName +skillsNo+ "</label></div>" +
@@ -75,9 +74,7 @@
 			
 							   
 			var checked_length = document.getElementsByName("selectSkills").length;
-			
-			alert(checked_length)
-			
+						
 			for(var j = 0; j < checked_length; j++) {
 				
 				if(document.getElementsByName("selectSkills")[j].value == skillsNo) {
@@ -291,7 +288,6 @@
                         	<input class="btn btn-info" type="button" value="insert" onclick="btn_click('insert');">
                         	<input class="btn btn-info" type="button" value="preview" onclick="btn_click('preview');">
                         </div>
-                        
                     </div>
                 </div>
             </div>

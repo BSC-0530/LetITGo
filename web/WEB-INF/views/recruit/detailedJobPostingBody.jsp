@@ -54,30 +54,43 @@
                             <c:if test="${ jobPosting.jobPostContents ne null}">
                             <c:out value="${ jobPosting.jobPostContents }"/>
                             </c:if>
+                            <c:if test="${ jobPosting.jobPostContents eq null}">
+                            <c:out value="등록된 주요 업무가 없습니다."/>
+                            </c:if>
                             </p>
                         </div>
                         <div class="jp_job_des">
                         <h2><c:out value="자격요건"/></h2>
                             <p>
-                            <c:if test="${ jobPosting.qualificationRequirements }">
+                            <c:if test="${ jobPosting.qualificationRequirements ne null}">
                             <c:out value="${ jobPosting.qualificationRequirements }"/>
+                            </c:if>
+                            <c:if test="${ jobPosting.qualificationRequirements eq null}">
+                            <c:out value="등록된 자격요건이 없습니다."/>
                             </c:if>
                             </p>
                         </div>
                         <div class="jp_job_des">
                             <h2><c:out value="우대사항"/></h2>
                             <p>
-                            <c:if test="${ jobPosting.preferentialMatters }">
+                            <c:if test="${ jobPosting.preferentialMatters ne null }">
                             <c:out value="${ jobPosting.preferentialMatters }"/>
+                            </c:if>
+                             <c:if test="${ jobPosting.preferentialMatters eq null}">
+                            <c:out value="등록된 우대사항이 없습니다."/>
                             </c:if>
                             </p>
                         </div>
                         <div class="jp_job_des">
                             <h2><c:out value="혜택 및 복지"/></h2>
                             <p>
-                            <c:if test="${ jobPosting.benefitAndWelfare }">
+                            <c:if test="${ jobPosting.benefitAndWelfare ne null }">
                             <c:out value="${ jobPosting.benefitAndWelfare }"/>
                             </c:if>
+                             <c:if test="${ jobPosting.benefitAndWelfare eq null}">
+                            <c:out value="등록된 혜택 및 복지가 없습니다."/>
+                            </c:if>
+                            
                             </p>
                         </div>
                         <div class="jp_job_des">

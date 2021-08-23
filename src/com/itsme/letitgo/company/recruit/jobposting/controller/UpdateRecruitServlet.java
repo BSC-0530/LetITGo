@@ -55,6 +55,7 @@ public class UpdateRecruitServlet extends HttpServlet {
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8");
 		// 세션에 담긴 회원정보 꺼내기
 		HttpSession session = request.getSession();
 
@@ -68,7 +69,6 @@ public class UpdateRecruitServlet extends HttpServlet {
 		
 //		 parameter로 받은 값들을 DB로 전달하기 위해 getParameter로 꺼내 DTO의 필드에 값을 저장하는 과정
 //		 coMemNo 는 session에 담긴 회원 번호를 가져와야 한다
-		request.setCharacterEncoding("UTF-8");
 		String[] getSkills = request.getParameterValues("selectSkills");
 		
 		ArrayList<Integer> skillsList = new ArrayList<>();
