@@ -277,7 +277,7 @@
 			</div>
 		</div>
 		
-		<input id="resumeNo" type="hidden" value="${ requestScope.detailResume[0].resume[0].resumeNo }">
+		<input id="hiddenResumeNo" type="text" value="${ requestScope.detailResume[0].resume[0].resumeNo }">
 <%-- 	<input type="hidden" value="${ detail.scoutResume[status.index].resumeNo }"> --%>
 		
 		
@@ -292,7 +292,7 @@
 			
 			if(answer == true) {
 				const memNo = a.children[0].value;
-				const resumeNo = document.getElementById("resumeNo").value;
+				const resumeNo = document.getElementById("hiddenResumeNo").value;
 				location.href = "${ pageContext.servletContext.contextPath }/company/scout/interview?memNo=" + memNo 
 										+"&resumeNo=" + resumeNo;
 			}
@@ -305,7 +305,7 @@
 			
 			if(answer == true) {
 				const inputPage = 'detail';
-				const resumeNo = document.getElementById("resumeNo").value;
+				const resumeNo = a.children[0].value;
 				location.href = "${ pageContext.servletContext.contextPath }/company/scout/wish/insert?resumeNo=" + resumeNo 
 						+ "&inputPage=" + inputPage;
 			}
