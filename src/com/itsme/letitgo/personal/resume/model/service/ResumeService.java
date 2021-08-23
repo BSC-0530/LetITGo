@@ -199,7 +199,6 @@ public class ResumeService {
 		ResumeMapper mapper = session.getMapper(ResumeMapper.class);
 		
 		List<DetailResumeDTO> detailList = mapper.selectDetailResumeListforUpdate(resumeNo);
-		System.out.println("serv detailList : " + detailList);
 		
 		session.close();
 		

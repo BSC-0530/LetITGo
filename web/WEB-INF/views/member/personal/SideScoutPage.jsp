@@ -196,7 +196,6 @@
 										<td><c:out value="${ list.coStatus }"></c:out></td>
 										<td><c:out value="${ list.scoutKinds }"></c:out></td>
 										<td>
-											<input  id="returnCoMemNo" value="${ list.coMemNo }">	
 											<c:choose>
 												<c:when test="${ list.scoutKinds eq '대기'}">
 													<button type="button" id="selectedYN" value="${ list.resumeNo }" onclick="acceptInterview(this);">수락</button>
@@ -258,7 +257,7 @@
 				const btn = document.getElementById("selectedYN");
 				const resumeNo = btn.value;
 				const selectedYN = 'N';
-				const coMemNo = document.getElementById("coMemNo");
+				const coMemNo = button.value;
 				document.getElementById("selectedYN").disabled = true;
 				location.href = encodeURI("${ pageContext.servletContext.contextPath }/personal/scout/response?selecteYN="
 						+ selectedYN + "&resumeNo=" + resumeNo + "&coMemNo=" + coMemNo);

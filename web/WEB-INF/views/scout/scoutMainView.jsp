@@ -128,10 +128,10 @@
 								<div class="jp_rightside_job_categories_heading">
 									<h4>보유기술</h4>
 								</div>
-								<div style="height: 200px; background: white;"
-									class="jp_form_location_wrapper">
-									<label for="searchSkillsAuto" style="border: 1px solid; width: 500px" >
-										<input id="searchSkillsAuto" name="inputSkill"  style="border: 1px solid; width: 260px">
+								<div 
+									class="jp_blog_right_search_wrapper">
+									<label for="searchSkillsAuto">
+										<input id="searchSkillsAuto" name="inputSkill">
 									</label>
 								</div>
 							</div>

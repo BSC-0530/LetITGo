@@ -41,7 +41,6 @@ public class ScoutResponseInterviewServlet extends HttpServlet {
 		
 		if(result > 0) {
 			
-			
 			response.sendRedirect("/let/scout/myPageList/servlet");
 		}
 	}
