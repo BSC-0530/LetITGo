@@ -351,7 +351,6 @@
 		
 		function pageButtonAction(text) {
 			
-			alert("");
 			$("#pagingForm").append("<input type='hidden' name='currentPage' value='" + text + "'>");
 			$("#pagingForm").method = "post";
 			$("#pagingForm").action = link;

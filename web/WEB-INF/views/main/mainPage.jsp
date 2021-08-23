@@ -152,7 +152,7 @@
 																	</div>
 																	<div class="jp_job_post_right_cont">
 																		<h4><c:out value="${ pr.jobPostTitle }"/></h4>
-																		<p style="cursor:pointer;" onclick="selectCompany(this);"><label style="font-size: 20px;"><c:out value="${ pr.coComName }"/></label></p>
+																		<p style="cursor:pointer;" onclick="selectCompany(this);"><label style="font-size: 20px; cursor:pointer;"><c:out value="${ pr.coComName }"/></label></p>
 																		
 																		<input name="coMemNo" type="hidden" value="${ pr.coMemNo }">
 																		<input name="jobPostNo" type="hidden" value="${ pr.jobPostNo }">

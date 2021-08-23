@@ -42,7 +42,6 @@ public class SelectCoMyJobPostingServlet extends HttpServlet {
 		
 		Map<String, List<Object>> jp = service.selectMyJobPosting(selectCoMyJobPostingDTO);
 		
-		
 		request.setAttribute("allJobPosting", jp.get("allJobPosting"));
 		request.setAttribute("recruitingJopPosting", jp.get("recruitingJopPosting"));
 		request.setAttribute("requestJobPosting", jp.get("requestJobPosting"));

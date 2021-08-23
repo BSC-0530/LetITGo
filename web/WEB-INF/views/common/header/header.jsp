@@ -16,7 +16,7 @@
 		<div class="gc_main_menu_wrapper">
 			<div class="jp_navi_right_btn_wrapper">
 				<ul>
-					<li><a href="${ pageContext.servletContext.contextPath }/loginPage">LOG IN</a></li>
+					<li><a href="/let/mainPage/letitgo">LOG IN</a></li>
 				</ul>
 			</div>
 			<div class="container-fluid">

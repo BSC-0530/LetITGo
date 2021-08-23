@@ -39,7 +39,7 @@
 						class="col-lg-2 col-md-2 col-sm-12 col-xs-12 hidden-xs hidden-sm full_width">
 						<div class="gc_header_wrapper">
 							<div class="gc_logo">
-								<a href="${ pageContext.servletContext.contextPath }/mainPage/CoMember"><img  src="${ pageContext.servletContext.contextPath }/resources/image/로고.PNG" alt="Logo" title="Job Pro" class="img-responsive"></a>
+								<a href="/let/mainPage/letitgo"><img  src="${ pageContext.servletContext.contextPath }/resources/image/로고.PNG" alt="Logo" title="Job Pro" class="img-responsive"></a>
 							</div>
 						</div>
 					</div>

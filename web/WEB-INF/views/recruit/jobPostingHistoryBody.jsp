@@ -171,29 +171,75 @@
 										</td>
 										<td><c:out value="${ jobPosting.jobPostMinExperience }" />년 ~ <c:out value="${ jobPosting.jobPostMaxExperience }" />년</td>								
 										<td><c:out value="${ jobPosting.jobPostEnrollDate }" /></td>								
-										<td><c:out value="${ jobPosting.jobPostDeadline }" /></td>			
-										<td><button class="btn btn-info" onclick="updateJobPosting(this);">수정</button></td>			
-										<td><button class="btn btn-info" onclick="selectApplicant(this);">지원자</button></td>
-										<c:if test="${ jobPosting.exposureEndDate eq null }">
+										<td><c:out value="${ jobPosting.jobPostDeadline }" /></td>		
+											
+										<td>
 											<c:choose>
-												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }">
-													<td>마감된공고</td>
+												<c:when test="${ jobPosting.jobPostKinds eq '승인된공고'}">
+													<button class="btn btn-info" onclick="updateJobPosting(this);">수정</button>
+												</c:when>
+												<c:when test="${ jobPosting.jobPostKinds eq '승인대기중인공고'}">
+													요청중
+												</c:when>
+												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고'}">
+													마감
 												</c:when>
 												<c:otherwise>
-													<td><button class="btn btn-info" type="submit" onclick="useExposure(this);">사용</button></td>	
+													거절된공고
 												</c:otherwise>
 											</c:choose>
-										</c:if>
-										<c:if test="${ jobPosting.exposureEndDate ne null }">
+										</td>			
+										<td>
 											<c:choose>
-												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }">
-													<td>마감된공고</td>
+												<c:when test="${ jobPosting.jobPostKinds eq '승인된공고'}">
+													<button class="btn btn-info" onclick="selectApplicant(this);">지원자</button>
+												</c:when>
+												<c:when test="${ jobPosting.jobPostKinds eq '승인대기중인공고'}">
+													요청중
+												</c:when>
+												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고'}">
+													마감
 												</c:when>
 												<c:otherwise>
-													<td><c:out value="~${ jobPosting.exposureEndDate }"/>
+													거절된공고
 												</c:otherwise>
 											</c:choose>
-										</c:if>
+										</td>
+										<td>
+											<c:choose>
+												<c:when test="${ jobPosting.jobPostKinds eq '승인된공고'}">
+													<c:if test="${ jobPosting.exposureEndDate eq null }">
+														<c:choose>
+															<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }">
+																마감된공고
+															</c:when>
+															<c:otherwise>
+																<button class="btn btn-info" type="submit" onclick="useExposure(this);">사용</button>
+															</c:otherwise>
+														</c:choose>
+													</c:if>
+													<c:if test="${ jobPosting.exposureEndDate ne null }">
+														<c:choose>
+															<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }">
+																마감된공고
+															</c:when>
+															<c:otherwise>
+																<c:out value="~${ jobPosting.exposureEndDate }"/>
+															</c:otherwise>
+														</c:choose>
+													</c:if>
+												</c:when>
+												<c:when test="${ jobPosting.jobPostKinds eq '승인대기중인공고'}">
+													요청중
+												</c:when>
+												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고'}">
+													마감
+												</c:when>
+												<c:otherwise>
+													거절된공고
+												</c:otherwise>
+											</c:choose>
+										</td>
 									</tr>
 								</c:forEach>
 								</tbody>
@@ -219,28 +265,73 @@
 										<td><c:out value="${ jobPosting.jobPostMinExperience }" />년 ~ <c:out value="${ jobPosting.jobPostMaxExperience }" />년</td>								
 										<td><c:out value="${ jobPosting.jobPostEnrollDate }" /></td>								
 										<td><c:out value="${ jobPosting.jobPostDeadline }" /></td>			
-										<td><button class="btn btn-info" onclick="updateJobPosting(this);">수정</button></td>			
-										<td><button class="btn btn-info" onclick="selectApplicant(this);">지원자</button></td>
-										<c:if test="${ jobPosting.exposureEndDate eq null }">
+										<td>
 											<c:choose>
-												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }">
-													<td>마감된공고</td>
+												<c:when test="${ jobPosting.jobPostKinds eq '승인된공고'}">
+													<button class="btn btn-info" onclick="updateJobPosting(this);">수정</button>
+												</c:when>
+												<c:when test="${ jobPosting.jobPostKinds eq '승인대기중인공고'}">
+													요청중
+												</c:when>
+												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고'}">
+													마감
 												</c:when>
 												<c:otherwise>
-													<td><button class="btn btn-info" type="submit" onclick="useExposure(this);">사용</button></td>	
+													거절된공고
 												</c:otherwise>
 											</c:choose>
-										</c:if>
-										<c:if test="${ jobPosting.exposureEndDate ne null }">
+										</td>			
+										<td>
 											<c:choose>
-												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }">
-													<td>마감된공고</td>
+												<c:when test="${ jobPosting.jobPostKinds eq '승인된공고'}">
+													<button class="btn btn-info" onclick="selectApplicant(this);">지원자</button>
+												</c:when>
+												<c:when test="${ jobPosting.jobPostKinds eq '승인대기중인공고'}">
+													요청중
+												</c:when>
+												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고'}">
+													마감
 												</c:when>
 												<c:otherwise>
-													<td><c:out value="~${ jobPosting.exposureEndDate }"/>
+													거절된공고
 												</c:otherwise>
 											</c:choose>
-										</c:if>
+										</td>
+										<td>
+											<c:choose>
+												<c:when test="${ jobPosting.jobPostKinds eq '승인된공고'}">
+													<c:if test="${ jobPosting.exposureEndDate eq null }">
+														<c:choose>
+															<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }">
+																마감된공고
+															</c:when>
+															<c:otherwise>
+																<button class="btn btn-info" type="submit" onclick="useExposure(this);">사용</button>
+															</c:otherwise>
+														</c:choose>
+													</c:if>
+													<c:if test="${ jobPosting.exposureEndDate ne null }">
+														<c:choose>
+															<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }">
+																마감된공고
+															</c:when>
+															<c:otherwise>
+																<c:out value="~${ jobPosting.exposureEndDate }"/>
+															</c:otherwise>
+														</c:choose>
+													</c:if>
+												</c:when>
+												<c:when test="${ jobPosting.jobPostKinds eq '승인대기중인공고'}">
+													요청중
+												</c:when>
+												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고'}">
+													마감
+												</c:when>
+												<c:otherwise>
+													거절된공고
+												</c:otherwise>
+											</c:choose>
+										</td>
 									</tr>
 								</c:forEach>
 								</tbody>
@@ -265,28 +356,73 @@
 										<td><c:out value="${ jobPosting.jobPostMinExperience }" />년 ~ <c:out value="${ jobPosting.jobPostMaxExperience }" />년</td>								
 										<td><c:out value="${ jobPosting.jobPostEnrollDate }" /></td>								
 										<td><c:out value="${ jobPosting.jobPostDeadline }" /></td>			
-										<td><button class="btn btn-info" onclick="updateJobPosting(this);">수정</button></td>			
-										<td><button class="btn btn-info" onclick="selectApplicant(this);">지원자</button></td>
-										<c:if test="${ jobPosting.exposureEndDate eq null }">
+										<td>
 											<c:choose>
-												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }">
-													<td>마감된공고</td>
+												<c:when test="${ jobPosting.jobPostKinds eq '승인된공고'}">
+													<button class="btn btn-info" onclick="updateJobPosting(this);">수정</button>
+												</c:when>
+												<c:when test="${ jobPosting.jobPostKinds eq '승인대기중인공고'}">
+													요청중
+												</c:when>
+												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고'}">
+													마감
 												</c:when>
 												<c:otherwise>
-													<td><button class="btn btn-info" type="submit" onclick="useExposure(this);">사용</button></td>	
+													거절된공고
 												</c:otherwise>
 											</c:choose>
-										</c:if>
-										<c:if test="${ jobPosting.exposureEndDate ne null }">
+										</td>			
+										<td>
 											<c:choose>
-												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }">
-													<td>마감된공고</td>
+												<c:when test="${ jobPosting.jobPostKinds eq '승인된공고'}">
+													<button class="btn btn-info" onclick="selectApplicant(this);">지원자</button>
+												</c:when>
+												<c:when test="${ jobPosting.jobPostKinds eq '승인대기중인공고'}">
+													요청중
+												</c:when>
+												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고'}">
+													마감
 												</c:when>
 												<c:otherwise>
-													<td><c:out value="~${ jobPosting.exposureEndDate }"/>
+													거절된공고
 												</c:otherwise>
 											</c:choose>
-										</c:if>
+										</td>
+										<td>
+											<c:choose>
+												<c:when test="${ jobPosting.jobPostKinds eq '승인된공고'}">
+													<c:if test="${ jobPosting.exposureEndDate eq null }">
+														<c:choose>
+															<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }">
+																마감된공고
+															</c:when>
+															<c:otherwise>
+																<button class="btn btn-info" type="submit" onclick="useExposure(this);">사용</button>
+															</c:otherwise>
+														</c:choose>
+													</c:if>
+													<c:if test="${ jobPosting.exposureEndDate ne null }">
+														<c:choose>
+															<c:when test="${ jobPosting.jobPostKinds eq '마감된공고' }">
+																마감된공고
+															</c:when>
+															<c:otherwise>
+																<c:out value="~${ jobPosting.exposureEndDate }"/>
+															</c:otherwise>
+														</c:choose>
+													</c:if>
+												</c:when>
+												<c:when test="${ jobPosting.jobPostKinds eq '승인대기중인공고'}">
+													요청중
+												</c:when>
+												<c:when test="${ jobPosting.jobPostKinds eq '마감된공고'}">
+													마감
+												</c:when>
+												<c:otherwise>
+													거절된공고
+												</c:otherwise>
+											</c:choose>
+										</td>
 									</tr>
 								</c:forEach>
 								</tbody>

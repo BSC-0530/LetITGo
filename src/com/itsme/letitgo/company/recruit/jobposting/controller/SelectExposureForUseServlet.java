@@ -73,9 +73,8 @@ public class SelectExposureForUseServlet extends HttpServlet {
 		
 		/* 입력한 정보 초단위로 변환*/
 		Date date_now = new Date(System.currentTimeMillis());
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ : " + date_now);
 		Date endDate = java.sql.Date.valueOf(request.getParameter("exposureEndDate"));
-		int usingTime = (int) ((endDate.getTime() - date_now.getTime()) / 1000);		
+		int usingTime = (int) ((endDate.getTime() - date_now.getTime()) / 1000);	
 		
 		/* db에서 보유중인 상품 시간 가져오기 */
 		Integer restTime = service.selectExposureRestTime(dto);
@@ -89,7 +88,9 @@ public class SelectExposureForUseServlet extends HttpServlet {
 			/* 공고권 사용 내역을 조회해서 이전에 사용한 이력이 있을 시 시작시간과 끝나는 시간을 update해준다. 
 			 * 이전 사용한 이력이 없다면 isnert해준다.*/
 			boolean checkResult = service.selectExposureHistory(dto);
-			dto.setUsingTime(usingTime);
+			
+			int resultTime = restTime - usingTime;
+			dto.setResultTime(resultTime);
 			
 			/* 사용이력이 있기 때문에 update*/
 			if(checkResult) {
