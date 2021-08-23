@@ -18,9 +18,7 @@ import com.itsme.letitgo.company.recruit.jobposting.model.dto.SelectCoMyJobPosti
 import com.itsme.letitgo.company.recruit.jobposting.model.service.SelectCoMyJobPostingService;
 import com.itsme.letitgo.login.model.dto.MemberLoginDTO;
 
-/**
- * Servlet implementation class UpdateRecruitServlet
- */
+
 @WebServlet("/recruit/update")
 public class UpdateRecruitServlet extends HttpServlet {
 
@@ -55,7 +53,7 @@ public class UpdateRecruitServlet extends HttpServlet {
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("euc-kr");
 		// 세션에 담긴 회원정보 꺼내기
 		HttpSession session = request.getSession();
 

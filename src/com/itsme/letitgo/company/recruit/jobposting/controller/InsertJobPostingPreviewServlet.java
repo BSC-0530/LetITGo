@@ -59,10 +59,6 @@ public class InsertJobPostingPreviewServlet extends HttpServlet {
 			}
 			
 		}
-		if (request.getParameter("jobNo") != null) {
-			jobNo = Integer.parseInt(request.getParameter("jobNo"));
-			jobName = service.selectJobName(jobNo);
-		}
 		if (request.getParameter("jobPostContents") != null) {
 			jobPostContents = request.getParameter("jobPostContents");
 		}	
