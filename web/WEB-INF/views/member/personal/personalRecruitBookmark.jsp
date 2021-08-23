@@ -154,7 +154,14 @@
 			alert('북마크 목록에서 삭제되었습니다.');
 			location.href = "${ pageContext.servletContext.contextPath }/jobposting/bookmark/delete?jobPostNo=" + jobPostNo;
 		}
+		
+		function onDetail(div) {
+			const jobPostNo = div.children[0].value;
+			location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?jobPostNo=" + jobPostNo;
+		}
 	</script>
+	
+	
 	
 	<jsp:include page="../../common/footer.jsp" />
 </body>
