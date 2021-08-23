@@ -52,7 +52,7 @@
 	<select id="selectReadingResumeListOfPersonal" resultMap="readKindsListResultMap">
 		SELECT
 			   C.CO_COM_NAME
-			 , SUBSTR(C.CO_ADDRESS,1,3)
+			 , SUBSTR(C.CO_ADDRESS,1,3) AS CO_ADDRESS
 		     , R.RESUME_BROWSE_KINDS
 			 , C.CO_STATUS
 			 , R.CO_MEM_NO
