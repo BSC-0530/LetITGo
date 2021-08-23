@@ -2,6 +2,7 @@ package com.itsme.letitgo.company.recruit.jobposting.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,56 +23,77 @@ public class InsertJobPostingPreviewServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		SelectCoMyJobPostingService service = new SelectCoMyJobPostingService();
 		
 		HttpSession session = request.getSession();
 
         MemberLoginDTO memberLoginDTO = (MemberLoginDTO) session.getAttribute("loginMember");
-           
+                 
+        
 		// parameter로 받은 값들을 DB로 전달하기 위해 getParameter로 꺼내 DTO의 필드에 값을 저장하는 과정
 		// coMemNo 는 session에 담긴 회원 번호를 가져와야 한다
 		request.setCharacterEncoding("UTF-8");
 		String jobPostTitle = null;
-		ArrayList<Integer> skillsList = new ArrayList<>();
+		List<Object> selectSkills = new ArrayList<>();
 		String[] getSkills = null;
+		List<Object> skillsList = new ArrayList<>();
 		int jobNo = 0;
 		String jobName = null;
-		String jobPostMinExperience = null;
-		String jobPostMaxExperience = null;
+		int jobPostMinExperience = Integer.parseInt(request.getParameter("jobPostMinExperience"));
+		int jobPostMaxExperience = Integer.parseInt(request.getParameter("jobPostMaxExperience"));
 		String jobPostContents = null;
+		String qualificationRequirements = null;
+		String preferentialMatters = null;
+		String benefitAndWelfare = null;
 		java.sql.Date jobPostDeadLine = null;
 		
 		if(request.getParameter("jobPostTitle") != null) {
 			jobPostTitle = request.getParameter("jobPostTitle");
-		} else if(request.getParameterValues("selectSkills") != null) {
+		} 
+		if(request.getParameterValues("selectSkills") != null) {
 			getSkills = request.getParameterValues("selectSkills");
-			
 			for(String i: getSkills) {
-				skillsList.add(Integer.parseInt(i));
+				selectSkills.add(Integer.parseInt(i));
 			}
-			
-		} else if (request.getParameter("jobNo") != null) {
-			jobNo = Integer.parseInt(request.getParameter("jobNo"));
-			SelectCoMyJobPostingService service = new SelectCoMyJobPostingService();
-			jobName = service.selectJobName(jobNo);
-			
-		} else if (request.getParameter("jobPostMinExperience") != null) {
-			jobPostMinExperience = request.getParameter("jobPostMinExperience");
-			
-		} else if (request.getParameter("jobPostMaxExperience") != null) {
-			jobPostMaxExperience = request.getParameter("jobPostMaxExperience");
-			
-		} else if (request.getParameter("jobPostContents") != null) {
-			jobPostContents = request.getParameter("jobPostContents");
-			
-		} else if (request.getParameter("jobPostDeadLine") != null) {
-			jobPostDeadLine = java.sql.Date.valueOf(request.getParameter("jobPostDeadLine"));
+			skillsList = service.selectSkills();
 			
 		}
+		if (request.getParameter("jobNo") != null) {
+			jobNo = Integer.parseInt(request.getParameter("jobNo"));
+			jobName = service.selectJobName(jobNo);
+		}
+		if (request.getParameter("jobPostContents") != null) {
+			jobPostContents = request.getParameter("jobPostContents");
+		}	
+		if (request.getParameter("jobPostDeadLine") != null) {
+			jobPostDeadLine = java.sql.Date.valueOf(request.getParameter("jobPostDeadLine"));
+		}
+		if (request.getParameter("qualificationRequirements") != null) {
+			qualificationRequirements = request.getParameter("qualificationRequirements");
+		}
+
+		if (request.getParameter("preferentialMatters") != null) {
+			preferentialMatters = request.getParameter("preferentialMatters");
+		}
+		if (request.getParameter("benefitAndWelfare") != null) {
+			benefitAndWelfare = request.getParameter("benefitAndWelfare");
+		}
+		if(jobPostMaxExperience > jobPostMaxExperience) {
+			// 대소 비교 후 값 1,2  의 값 바꿔 저장
+			int temp = 0;
+			temp = jobPostMinExperience;
+			jobPostMinExperience = jobPostMaxExperience;
+			jobPostMaxExperience = temp;
+		} 
 		
-        request.setAttribute("memberloginDTO", memberLoginDTO);
-		request.setAttribute("jobPostTitle", jobPostTitle);
-		request.setAttribute("skillsList", skillsList);
+		request.setAttribute("memberloginDTO", memberLoginDTO);
 		request.setAttribute("jobPostContents", jobPostContents);
+		request.setAttribute("qualificationRequirements", qualificationRequirements);
+		request.setAttribute("preferentialMatters", preferentialMatters);
+		request.setAttribute("benefitAndWelfare", benefitAndWelfare);
+		request.setAttribute("jobPostTitle", jobPostTitle);
+		request.setAttribute("selectSkills", selectSkills);
+		request.setAttribute("skillsList", skillsList);
 		request.setAttribute("jobNo", jobNo);
 		request.setAttribute("jobName", jobName);
 		request.setAttribute("jobPostMinExperience", jobPostMinExperience);

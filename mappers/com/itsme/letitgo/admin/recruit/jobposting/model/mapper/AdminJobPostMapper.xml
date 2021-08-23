@@ -127,4 +127,11 @@
 		 WHERE JOB_POST_NO = #{ changeReqJobPostNo }
 	</update>
 	
+	<select id="selectPostRejectReasonMessage" resultType="String">
+		SELECT /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#selectPostRejectReasonMessage() */
+		       JOB_POST_REJECT_REASON
+		  FROM TBL_JOB_POSTING_APP_HISTORY
+		 WHERE JOB_POST_REQ_NO = #{ jobPostReqNo }
+	</select>
+	
 </mapper>

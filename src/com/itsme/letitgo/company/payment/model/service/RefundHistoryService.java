@@ -71,5 +71,20 @@ public class RefundHistoryService {
 		return result2;
 	}
 
+	/* 결제변경번호를 통해서 변경사유를 가져옴. */
+	public String selectRefundMessage(int payChangeNo) {
+		
+		SqlSession session = getSqlSession();
+		
+		PaymentMapper mapper = session.getMapper(PaymentMapper.class);
+		
+		String result = mapper.selectRefundMessage(payChangeNo);
+
+		session.close();
+		
+		return result;
+
+	}
+
 
 }

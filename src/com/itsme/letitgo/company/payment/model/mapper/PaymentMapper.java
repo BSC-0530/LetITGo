@@ -78,4 +78,7 @@ public interface PaymentMapper {
 	/* 노출권 회원보유상품 추가 */
 	int insertHoldingExposureRightProduct(Map<String, Object> map);
 
+	/* 결제변경번호를 통해서 변경사유를 가져옴. */
+	String selectRefundMessage(int payChangeNo);
+
 }

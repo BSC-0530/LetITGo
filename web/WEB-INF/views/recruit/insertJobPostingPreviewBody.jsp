@@ -39,7 +39,7 @@
 	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 	
 	
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=97941150b25f0a25943e14669f10478b"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=78b48235e398b3e2421dd3b9095893d6&libraries=services"></script>
 </head>
 <body>
 
@@ -70,18 +70,49 @@
                         </div>
                         
                         <div class="jp_job_des">
-                            <h2><c:out value="The content of Job Posting"/></h2>
-                            <p><c:out value="${ requestScope.jobPostContents }"/></p>
+                            <h2><c:out value="주요업무"/></h2>
+                            <p>
+                            <c:if test="${ requestScope.jobPostContents ne null}">
+                            <c:out value="${ requestScope.jobPostContents }"/>
+                            </c:if>
+                            </p>
+                        </div>
+                        <div class="jp_job_des">
+                        <h2><c:out value="자격요건"/></h2>
+                            <p>
+                            <c:if test="${ requestScope.qualificationRequirements ne null}">
+                            <c:out value="${ requestScope.qualificationRequirements }"/>
+                            </c:if>
+                            </p>
+                        </div>
+                        <div class="jp_job_des">
+                            <h2><c:out value="우대사항"/></h2>
+                            <p>
+                            <c:if test="${ requestScope.preferentialMatters ne null}">
+                            <c:out value="${ requestScope.preferentialMatters }"/>
+                            </c:if>
+                            </p>
+                        </div>
+                        <div class="jp_job_des">
+                            <h2><c:out value="혜택 및 복지"/></h2>
+                            <p>
+                            <c:if test="${ requestScope.benefitAndWelfare ne null}">
+                            <c:out value="${ requestScope.benefitAndWelfare }"/>
+                            </c:if>
+                            </p>
+                        </div>
+                        <div class="jp_job_des">
                             <ul>
-                            	<c:if test="${ requestScope.memberloginDTO.coWebsite ne null }">
-                                <li><i class="fa fa-globe"></i>&nbsp;&nbsp; <a href="#"><c:out value="${ requestScope.memberloginDTO.coWebsite }"></c:out></a></li>
+                            	<li>website</li>
+                            	<c:if test="${ jobPosting.coMemberAddInfoDTO.coWebsite ne null }">
+                                <li><i class="fa fa-globe"></i>&nbsp;&nbsp; <a href="${ requestScope.memberloginDTO.coWebsite }"><c:out value="${ requestScope.memberloginDTO.coWebsite }"></c:out></a></li>
                                 </c:if>
-                                <c:if test="${ requestScope.memberloginDTO.coWebsite eq null }">
+                                <c:if test="${ jobPosting.coMemberAddInfoDTO.coWebsite eq null }">
                                 <li><i class="fa fa-globe"></i>&nbsp;&nbsp; <c:out value="등록된 웹사이트 주소가 없습니다."></c:out></li>
                                 </c:if>
-                                <!--  자사이력서 있을 경우에 그 경로 넣어주기 -->
-                                <li><i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp; <a href="#">Download Info</a></li>
-
+                                <c:if test="${ jobPosting.companyResumeLink ne null }">
+                                <li><i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp; <a href="${ jobPosting.companyResumeLink }">자사이력서 다운로드 링크</a></li>
+                                </c:if>
                             </ul>
                         </div>
                         <div class="jp_job_map">
@@ -112,11 +143,7 @@
                                     </div>
                                 </div>
                                 <div class="jp_job_post_right_overview_btn_wrapper">
-                                    <div class="jp_job_post_right_overview_btn">
-                                        <ul>
-                                            <li><a href="#">141 Jobs</a></li>
-                                        </ul>
-                                    </div>
+                                  
                                     <div class="jp_job_post_right_overview_btn">
                                         <ul>
                                         	<li><a id="bookmarkLink">북마크</a></li>
@@ -136,8 +163,8 @@
 												<c:set var="area" value="${fn:split(pageScope.coAddress,'$')[0]} ${fn:split(pageScope.coAddress,'$')[1]}"/>
 												<c:set var="postCode" value="${fn:split(pageScope.coAddress,'$')[2]}"/>
 												<li>
-													<c:out value="${ pageScope.area }"></c:out>
-													<c:out value="우)${ pageScope.postCode }"></c:out>
+													<c:out value="${ area }"></c:out>
+													<c:out value="우)${ postCode }"></c:out>
 												</li>
                                             </ul>
                                         </div>
@@ -149,9 +176,17 @@
                                         <div class="jp_listing_list_icon_cont_wrapper">
                                             <ul>
                                                 <li>요구 기술</li>
-                                                <c:forEach var="skillsList" items="${ requestScope.skillsList }">
-                                                <li><c:out value="${ skliisList }"/></li>
-                                            	</c:forEach>
+<%--                                                 <c:forEach var="selectSkills" items="${ requestScope.selectSkills }"> --%>
+<%--                                                 	<c:if test="${ selectSkills eq requestScope.skillsList.skillsNo }"> --%>
+<%--                                                 		<c:out value="${ requestScope.skilsList.skillsName }"/> --%>
+<%--                                                 	</c:if> --%>
+<%--                                                 </c:forEach> --%>
+                                                <c:out value="${ requestScope.selectSkills }"></c:out>
+                                                <c:out value="${ requestScope.skillsList }"></c:out>
+<%--                                                 <c:forEach var="skillsList" items="${ requestScope.skillsList }"> --%>
+<%--                                                 <c:if test="${ requestScope.selectSkills eq skillsList.skillsNo }"></c:if> --%>
+<%--                                                 <li><c:out value="${ skillsList.skillsName }"/></li> --%>
+<%--                                             	</c:forEach> --%>
                                             </ul>
                                         </div>
                                     </div>
@@ -162,7 +197,7 @@
                                         <div class="jp_listing_list_icon_cont_wrapper">
                                             <ul>
                                                 <li>직무: </li>
-                                                <li><c:out value="${ requestScope.jobName }"/></li>
+                                                <li><c:out value="${ requestScope.jobNo }"/></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -171,24 +206,29 @@
                                             <i class="fa fa-star"></i>
                                         </div>
                                         <div class="jp_listing_list_icon_cont_wrapper">
-                                            <ul>
+                                             <ul>
                                                 <li>Experience:</li>
 												<c:set var="minExp" value="${ requestScope.jobPostMinExperience }"></c:set>
 												<c:set var="maxExp" value="${ requestScope.jobPostMaxExperience }"></c:set>
-												<c:choose>
-													<c:when test="${ minExp ne maxExp }">
-														<li><c:out value="${ minExp } ~ ${ maxEmp }"/></li>
-													</c:when>
-													<c:when test="${ (minExp eq maxExp) &&  (minExp eq 0)}">
-														<li><c:out value="신입"></c:out></li>
-													</c:when>
-													<c:when test="${ (minExp eq maxExp) && (minExp ne 0)}">
-														<li><c:out value="${ maxExp }년 이상"/></li>
-													</c:when>
-													<c:when test="${ (minExp eq 0)  && (maxExp eq 10)}">
-														<li><c:out value="경력 무관"></c:out></li>
-													</c:when>
-												</c:choose>                                          
+												<c:if test="${ minExp ne maxExp }">
+													<c:choose>
+														<c:when test="${ (minExp eq 0) && (maxExp eq 10) }">
+															<c:out value="경력 무관"></c:out>
+														</c:when>
+														<c:when test="${ (minExp eq 0) && (maxExp ne 10) }">
+															<c:out value="신입"/><c:out value="~${ maxExp }년"/>
+														</c:when>
+														<c:otherwise>
+															<c:out value="${ minExp }"/><c:out value="~${ maxExp }년"/>
+														</c:otherwise>
+													</c:choose>
+												</c:if>
+												<c:if test="${ (minExp eq maxExp) && (minExp eq 0)}">
+													<c:out value="신입"></c:out>
+												</c:if>
+												<c:if test="${( minExp eq maxExp) && (minExp ne 0)}">
+													<c:out value="${ maxExp }년 이상"/>
+												</c:if>                                          
 											</ul>
                                         </div>
                                     </div>
@@ -226,14 +266,31 @@
 			center: new kakao.maps.LatLng(33.450701, 126.570667),
 			level: 3
 		};
-
+	
 		var map = new kakao.maps.Map(container, options);
 		
+		var geocoder = new daum.maps.services.Geocoder();
 		
-		function closeWin() {
-			
-			window.close();
-		}
+		var scriptCoAddress = document.getElementById('hiddenCoAddress').value;
+	
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch(scriptCoAddress, function(result, status) {
+	
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+	
+		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+	
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords);
+		    } 
+		});    
 	</script>
 	
 

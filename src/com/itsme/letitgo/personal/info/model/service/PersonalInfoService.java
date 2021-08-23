@@ -28,20 +28,26 @@ public class PersonalInfoService {
 	}
 
 	public int modifyPersonalInfo(ModifyMemberDTO mdMemberDTO) {
-
-		SqlSession session = getSqlSession();					//session 생성
+		/*session을 생성한다.*/
+		SqlSession session = getSqlSession();	
 		
-		PersonalInfoMapper mapper = session.getMapper(PersonalInfoMapper.class);		//mapper 생성
+		/*mapper 생성한다.*/
+		PersonalInfoMapper mapper = session.getMapper(PersonalInfoMapper.class);	
 		
-		int result = mapper.modifyPersonalInfo(mdMemberDTO);			//int 변수 선언 후 mapper에다가 값넘김
+		/*result 변수 선언 후 modifyPersonalInfo 메소드를 생성하고 mdMemberDTO값을 가져간다.*/
+		int result = mapper.modifyPersonalInfo(mdMemberDTO);			
 		
 		if(result > 0) {
+			/*성공시 커밋한다.*/
 			session.commit();
 		}else {
+			/*실패시 롤백한다.*/
 			session.rollback();
 		}
+		/*session을 닫는다.*/
 		session.close();
 		
+		/*result로 리턴한다.*/
 		return result;
 	}
 

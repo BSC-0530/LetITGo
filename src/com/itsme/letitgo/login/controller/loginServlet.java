@@ -50,14 +50,14 @@ public class loginServlet extends HttpServlet {
 
 				HttpSession session = request.getSession();
 				session.setAttribute("loginMember", loginMember);		
-				redirectText.append("<script>alert('로그인이 완료되었습니다.'); location.href='/let/mainPage/InMember';</script>");
+				redirectText.append("<script>alert('로그인이 완료되었습니다.'); location.href='/let/mainPage/letitgo';</script>");
 
 			/* 회원가입이 승인된 기업회원 로그인 */
 			} else if((loginMember != null) && (loginMember.getMemKinds().equals("기업회원")) && (appResult > 0) && (loginMember.getMemEntYn().equals("N"))) {
 
 				HttpSession session = request.getSession();
 				session.setAttribute("loginMember", loginMember);		
-				redirectText.append("<script>alert('로그인이 완료되었습니다.'); location.href='/let/mainPage/CoMember';</script>");
+				redirectText.append("<script>alert('로그인이 완료되었습니다.'); location.href='/let/mainPage/letitgo';</script>");
 
 			/* 회원가입이 거절된  기업회원 로그인 */
 			} else if((loginMember != null) && (loginMember.getMemKinds().equals("기업회원")) && (rejectResult > 0) && (loginMember.getMemEntYn().equals("N"))) {

@@ -168,7 +168,9 @@
 									<div style="width: 150px; float: left;"
 										class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 										<div class="jp_form_btn_wrapper">
-											<button type="submit" id="btn btn-info"><i class="fa fa-search"></i>Search</button>
+											<ul>
+	                                        <li><a><i class="fa fa-search"></i><button type="submit" style="background-color: transparent; border: 0px">Search</button></a></li>
+											</ul>
 										</div>
 									</div>
 								</div>
@@ -182,7 +184,7 @@
 											<c:forEach var="jobPosting"
 												items="${ requestScope.jobPostingList }">
 												<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-													<div class="jp_job_post_main_wra[]pper_cont jp_job_post_grid_main_wrapper_cont">
+													<div class="jp_job_post_main_wrapper_cont jp_job_post_grid_main_wrapper_cont">
 	
 														<!-- div 영역 클릭 시 상세 공고 페이지로 이동 -->
 														<div class="jp_job_post_main_wrapper jp_job_post_grid_main_wrapper" style="cursor: pointer; height: 250px"
@@ -216,12 +218,15 @@
 																		</div>
 																		<div>
 																		<label>
-																		<c:set var="minExp" value="${ pr.jobPostMinExperience }"/>
-																		<c:set var="maxExp" value="${ pr.jobPostMaxExperience }"/>
+																		<c:set var="minExp" value="${ jobPosting.jobPostMinExperience }"/>
+																		<c:set var="maxExp" value="${ jobPosting.jobPostMaxExperience }"/>
 																		<c:if test="${ minExp ne maxExp }">
 																			<c:choose>
 																				<c:when test="${ (minExp eq 0) && (maxExp eq 10) }">
 																					<c:out value="경력 무관"></c:out>
+																				</c:when>
+																				<c:when test="${ (minExp eq 0) && (maxExp ne 10) }">
+																					<c:out value="신입"/><c:out value="~${ maxExp }년"/>
 																				</c:when>
 																				<c:otherwise>
 																					<c:out value="${ minExp }"/><c:out value="~${ maxExp }년"/>
@@ -280,28 +285,28 @@
 					
 					<!-- 이전 페이지 버튼 -->
 					<c:if test="${ requestScope.selectCriteria.pageNo <= 1 }">
-						<button type="button" disabled>PRIV</button>
+						<button class="btn btn-info" type="button" disabled>PRIV</button>
 					</c:if>
 					<c:if test="${ requestScope.selectCriteria.pageNo > 1 }">
-						<button type="button" id="prevPage">PRIV</button>
+						<button class="btn btn-info" type="button" id="prevPage">PRIV</button>
 					</c:if>
 					
 					<!-- 숫자 버튼 -->
 					<c:forEach var="p" begin="${ requestScope.selectCriteria.startPage }" end="${ requestScope.selectCriteria.endPage }" step="1">
 						<c:if test="${ requestScope.selectCriteria.pageNo eq p }">
-							<button type="button" disabled><c:out value="${ p }"/></button>
+							<button class="btn btn-info" type="button" disabled><c:out value="${ p }"/></button>
 						</c:if>
 						<c:if test="${ requestScope.selectCriteria.pageNo ne p }">
-							<button type="button" onclick="pageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
+							<button class="btn btn-info" type="button" onclick="pageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
 						</c:if>
 					</c:forEach>
 					
 					<!-- 다음 페이지 버튼 -->
 					<c:if test="${ requestScope.selectCriteria.pageNo >= requestScope.selectCriteria.maxPage }">
-						<button type="button" disabled>NEXT</button>
+						<button class="btn btn-info" type="button" disabled>NEXT</button>
 					</c:if>
 					<c:if test="${ requestScope.selectCriteria.pageNo < requestScope.selectCriteria.maxPage }">
-						<button type="button" id="nextPage">NEXT</button>
+						<button class="btn btn-info" type="button" id="nextPage">NEXT</button>
 					</c:if>
 				</form>
 			</div>

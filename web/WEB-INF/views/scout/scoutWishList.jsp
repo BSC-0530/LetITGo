@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Let IT Go</title>
+<title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/animate.css" />
 <link rel="stylesheet" type="text/css"
@@ -188,6 +188,11 @@
 			const resumeNo = div.children[0].value;
 			alert('찜하기 목록에서 삭제되었습니다.');
 			location.href = "${ pageContext.servletContext.contextPath }/company/scout/wish/delete?resumeNo=" + resumeNo;
+		}
+		
+		function onDetail(div) {
+			const resumeNo = div.children[0].value;
+			location.href = "${ pageContext.servletContext.contextPath }/detail/browse/select?resumeNo=" + resumeNo;
 		}
 	</script>
 

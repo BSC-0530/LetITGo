@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Let IT Go</title>
+<title>Insert title here</title>
 <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/bootstrap.css" />
@@ -45,18 +45,17 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="jp_tittle_heading_wrapper">
 						<div class="jp_tittle_heading">
-							<h2>깊은열람</h2>
+							<h2>상세 이력서</h2>
 						</div>
 						<div class="jp_tittle_breadcrumb_main_wrapper">
 							<div class="jp_tittle_breadcrumb_wrapper">
 								<ul>
 									<li><a href="${ pageContext.servletContext.contextPath }/mainPage/CoMember">Home</a></li>
                                     <li>></li>
-                                    <li><a href="${ pageContext.servletContext.contextPath }/main/Scout/List">스카우트</a></li>
+                                    <li><a href="${ pageContext.servletContext.contextPath }/main/Scout/List">이력서</a></li>
                                     <li>></li>
-                                    <li><a href="">얕은열람</a></li>
-                                    <li>></li>
-                                    <li>깊은열람</li>
+                                    <li><a href="">상세 이력서</a></li>
+                                    
 								</ul>
 							</div>
 						</div>

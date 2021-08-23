@@ -16,21 +16,24 @@ public class ProductListDeleteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("UTF-8");		//UTF-8로 인코딩
+		/*UTF-8로 인코딩 하는 코드*/
+		request.setCharacterEncoding("UTF-8");		
 		
-		int productNo = Integer.parseInt(request.getParameter("productNo"));		//int형인 no를 담아서 가져온다.
+		/*클라이언트에서 필요한 productNo 정보를 가져온다.*/
+		int productNo = Integer.parseInt(request.getParameter("productNo"));		
 		
+		/*DTO 생성*/
 		ProductListDTO productListDTO = new ProductListDTO();
-		productListDTO.setProductNo(productNo);	//DTO에 productNo (no)에 담는다.
-		
-		System.out.println(productNo);
-		
+		/*DTO에 prductNo를  담는다.*/
+		productListDTO.setProductNo(productNo);	
+		/*ProductModifyService에 productDelete(productNo)메소드를 만든다.*/
 		int result = new ProductModifyService().productDelete(productNo);
 		
-		System.out.println(result);
+		/*빈 문자열 선언, 성공과 실패시 주소로 간다.*/
+		String path ="";
 		
-		String path =""; // 빈 문자열 선언, 성공과 실패시 주소로 간다.
-		
+		/*성공 실패 여부 
+		 * result가 성공일 경우 /let/admin/product/list 주소로 간다.*/
 		if(result > 0) {
 			path = "/WEB-INF/views/admin/adminSuccess.jsp";
 			request.setAttribute("successCode", "productListDelete");

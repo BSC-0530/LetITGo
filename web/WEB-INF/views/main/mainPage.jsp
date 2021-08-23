@@ -195,7 +195,11 @@
 														<div class="jp_job_post_keyword_wrapper">
 															<ul>
 																<li><i class="fa fa-tags"></i>요구 기술 : </li>
-																<li><a href="#">ui designer,</a></li>
+																<c:forEach var="skills" items="${ requestScope.resultMap.skillsList }">
+																	<c:if test="${ skills.jobPostNo eq pr.jobPostNo }">
+																		<li><a><c:out value="${ skills.skillsName }"></c:out></a></li>
+																	</c:if>
+																</c:forEach>
 															</ul>
 														</div>
 													</div>

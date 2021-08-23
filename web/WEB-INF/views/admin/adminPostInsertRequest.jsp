@@ -51,7 +51,7 @@
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_rightside_job_categories_wrapper">
 								<div class="jp_rightside_job_categories_heading">
-									<h4 style="font-weight: bold">My Page</h4>
+									<h4 style="font-weight: bold">Admin</h4>
 								</div>
 								<div class="jp_rightside_job_categories_content">
 									<div class="handyman_sec1_wrapper">
@@ -161,7 +161,7 @@
 											<td>응답일</td>
 											<td>상태</td>
 											<td>거절사유</td>
-											<td></td>
+											<td>공고</td>
 											<td></td>
 											<td></td>
 										</tr>
@@ -187,10 +187,8 @@
 												<td><c:out
 														value="${ adminPostRequest.jobPostAnsKinds }" /></td>
 
-												<c:if
-													test="${ adminPostRequest.jobPostRejectReason != null }">
-													<td><c:out
-															value="${ adminPostRequest.jobPostRejectReason }" /></td>
+												<c:if test="${ adminPostRequest.jobPostRejectReason != null }">
+												<td><button type=button onclick="rejectBrowse(this);" >상세보기</button></td>
 												</c:if>
 
 												<c:if
@@ -283,6 +281,15 @@
 					+ jobPostNo
 
 		}
+		
+		//거절사유 상세보기
+		function rejectBrowse(button){
+			
+			var jobPostReqNo = button.parentNode.parentNode.children[0].innerText;
+			
+			location.href="${ pageContext.servletContext.contextPath }/admin/post/rejectReason/select?jobPostReqNo="+jobPostReqNo
+					
+		}	
 	</script>
 </body>
 </html>
