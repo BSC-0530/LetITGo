@@ -183,6 +183,9 @@
 								</table>
 								</div>
 <!-- 						</form> -->
+					<div class="category-insert">
+										<button style="margin-left: 90%; margin-top: 5%;"
+											type="submit" class="btn btn-info" onclick="insert();">등록</button>
 								<br>
 								<br>
 							</div>
@@ -190,9 +193,6 @@
 						</div>
 						
 					</div>
-					<div class="category-insert">
-										<button style="margin-left: 90%; margin-top: 5%;"
-											type="submit" class="btn btn-info" onclick="insert();">등록</button>
 					</div>
 					<br>
 					
