@@ -108,9 +108,11 @@
                         <div class="jp_tittle_breadcrumb_main_wrapper">
                             <div class="jp_tittle_breadcrumb_wrapper">
                                 <ul>
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="#">마이페이지</a></li>
-                                    <li>회원탈퇴</li>
+                                    <li><a href="${ pageContext.servletContext.contextPath }/mainPage/InMember">Home</a></li>
+									<li>></li>
+									<li><a href="${ pageContext.servletContext.contextPath }/personal/myPage/select" >개인 마이페이지</a></li>
+									<li>></li>
+									<li>회원탈퇴</li>
                                 </ul>
                             </div>
                         </div>
@@ -152,6 +154,9 @@
 														href="${ pageContext.servletContext.contextPath }/scout/myPageList/servlet">스카우트현황</a>
 												</p>
 												<br> <br>
+												<p><a href="${ pageContext.servletContext.contextPath }/personal/bookmark/select">북마크</a></p>
+												<br> <br>
+												
 												<p>
 													<a href="${ pageContext.servletContext.contextPath }">회원탈퇴</a>
 												</p>

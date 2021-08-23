@@ -66,9 +66,7 @@ public class requestDetailComInfoServlet extends HttpServlet {
 		 String reqBusinFile = reqFile3.substring(20);
 		 request.setAttribute("reqBusinFile", reqBusinFile);
 		 }
-		 
-		 
-		 
+	 
 		 System.out.println("dasdsd : " + reqInfo);
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
