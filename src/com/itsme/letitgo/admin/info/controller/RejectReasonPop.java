@@ -16,8 +16,6 @@ public class RejectReasonPop extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int reqNo =  Integer.parseInt(request.getParameter("reqNo"));
-//		CoMemberAppHistoryDTO reason = new CoMemberAppHistoryDTO();
-//		reason.setCoReqNo(reqNo);
 		
 		CoMemberAppHistoryDTO result = new RequestService().ReasionSelected(reqNo);
 		String reason = result.getCoRejectReason();

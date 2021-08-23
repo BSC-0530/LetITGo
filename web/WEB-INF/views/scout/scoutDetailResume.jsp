@@ -35,9 +35,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-	<body>
-		<jsp:include page="../common/header/companyHeader.jsp" />
+<!-- 	<body> -->
 
+
+		<jsp:include page="../common/header/companyHeader.jsp" />
 	<div class="jp_tittle_main_wrapper">
 		<div class="jp_tittle_img_overlay"></div>
 		<div class="container">
@@ -52,9 +53,9 @@
 								<ul>
 									<li><a href="${ pageContext.servletContext.contextPath }/mainPage/CoMember">Home</a></li>
                                     <li>></li>
-                                    <li><a href="${ pageContext.servletContext.contextPath }/main/Scout/List">이력서</a></li>
+                                    <li><a href="${ pageContext.servletContext.contextPath }/main/Scout/List">얕은 열람</a></li>
                                     <li>></li>
-                                    <li><a href="">상세 이력서</a></li>
+                                    <li><a href="">깊은 열람</a></li>
                                     
 								</ul>
 							</div>
@@ -73,7 +74,7 @@
 						<div class="jp_cp_left_side_wrapper">
 							<div class="jp_cp_left_pro_wallpaper">
 							<c:if test="${  requestScope.detailResume[0].path ne null}">
-								<img src="${ pageContext.servletContext.contextPath }${ requestScope.detailResume[0].path }" alt="profile_img">
+								<img src="${ pageContext.servletContext.contextPath }${ requestScope.detailResume[0].path }" style="width:350px; height: 400px; alt="profile_img">
 						  </c:if>
 						   <c:if test="${ requestScope.detailResume[0].path eq null }">	
 						     <img src="${ pageContext.servletContext.contextPath }/resources/image/basic.png" alt="profile_img" style="width:350px; height: 400px;">
@@ -275,6 +276,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<input id="resumeNo" type="hidden" value="${ requestScope.detailResume[0].resume[0].resumeNo }">
 <%-- 	<input type="hidden" value="${ detail.scoutResume[status.index].resumeNo }"> --%>
 		

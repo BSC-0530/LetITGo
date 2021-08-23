@@ -244,7 +244,7 @@
 		let text = button.parentNode.parentNode.children[6].innerText;
 		
 		if(text === '거절'){
-			window.open("/let/reject/reason/pop?reqNo="+reqNo, "width=300, height=200, resizable = no, scorllbars = no")		
+			location.href="${ pageContext.servletContext.contextPath }/reject/reason/pop?reqNo="+reqNo	
 			
 			}else if(text === '승인'){
 				
