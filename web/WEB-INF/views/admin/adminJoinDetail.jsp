@@ -209,6 +209,18 @@
 							<label>회사소개</label><input id="textArea" type="text"
 								value="${ result.intro  }" readonly>
 						</div>
+						<label>로고</label>
+						<div>
+						<img style="width:400px; height: 400px" src="/let/resources/upload/CN.png">
+						</div>
+						<label>대표이미지</label>
+						<div>
+						<img style="width:700px; height: 400px" src="/let/resources/upload/CN대표이미지.jpg">
+						</div>
+						<label>사업자등록증</label>
+						<div>
+						<img style="width:300px;" src="/let/resources/upload/CN사업자.jpg">
+						</div>
 
 						<!-- end -->
 				</div>
