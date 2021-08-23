@@ -293,8 +293,9 @@
 			if(answer == true) {
 				const memNo = a.children[0].value;
 				const resumeNo = document.getElementById("hiddenResumeNo").value;
-				location.href = "${ pageContext.servletContext.contextPath }/company/scout/interview?memNo=" + memNo 
-										+"&resumeNo=" + resumeNo;
+// 				location.href = "${ pageContext.servletContext.contextPath }/company/scout/interview?memNo=" + memNo 
+// 										+"&resumeNo=" + resumeNo;
+				location.href = "/let/main/Scout/List";
 			}
 		}
 		
