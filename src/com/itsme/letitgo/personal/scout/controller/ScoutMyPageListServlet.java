@@ -25,7 +25,6 @@ public class ScoutMyPageListServlet extends HttpServlet {
 		HttpSession session = request.getSession();
         MemberLoginDTO dto = (MemberLoginDTO) session.getAttribute("loginMember");
         int memNo = dto.getMemNo();
-        System.out.println("번호함보자" + memNo);
 		
 		List<ReadingResumeListOfPersonalDTO> readList = new PersonalScoutService().selectReadingResumeListOfPersonal();
 		
