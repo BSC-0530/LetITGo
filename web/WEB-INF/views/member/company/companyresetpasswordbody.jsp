@@ -42,6 +42,29 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 </head>
+<script>
+	var form = document.coMemberRegist;
+	var re2 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*++-])(?=.*[0-9]).{8,18}$/; // 패스워드가 적합한지 검사할 정규식
+	var newPwd = document.getElementById("newPwd");
+
+	if (!check2(re2, newPwd, "패스워드는 8~18자의 영문 대소문자, 숫자, 특수문자를 모두 포함시켜 입력해주세요")) {
+		return false;
+	}
+	if (form.newPwd.value != form.newPwdCheck.value) {
+		alert("비밀번호를 동일하게 입력하세요.");
+		return false;
+	}
+	//유효성 검사에 따른 팝업창 띄움
+	function check2(re, what, message) {
+		if (re.test(what.value)) {
+			return true;
+		}
+		alert(message);
+		what.value = "";
+		what.focus();
+		return false;
+	}
+</script>
 <body>
   <div class="jp_tittle_main_wrapper">
         <div class="jp_tittle_img_overlay"></div>
@@ -134,7 +157,8 @@
 				</div>
 				<!-- body -->
 				<div align="center" >
-							<form action="${ pageContext.servletContext.contextPath }/company/resetpassword"method="post">
+							<form action="${ pageContext.servletContext.contextPath }/company/resetpassword"method="post"
+							 onSubmit="return checkValue2();">
 					<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 						<div class="row">
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -176,7 +200,7 @@
 								</div>
 								<br> <br>
 								<button type="submit" style="margin: 10px">확인</button>
-								<button type="reset" style="margin: 10px">취소</button>
+								<button type="button" style="margin: 10px" onclick="history.back(-1);">취소</button>
 								<br>
 								<br>
 								<br>

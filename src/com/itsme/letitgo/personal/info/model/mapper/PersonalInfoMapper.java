@@ -27,6 +27,7 @@ public interface PersonalInfoMapper {
 
 	List<RestrictedCompanyDTO> selectRectrictedCompany(int memNo);
 
-	int modifyPersonalInfo(ModifyMemberDTO mdMemberDTO); //개인회원 정보수정
+	/*개인회원 정보수정*/
+	int modifyPersonalInfo(ModifyMemberDTO mdMemberDTO); 
 
 }

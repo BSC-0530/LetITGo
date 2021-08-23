@@ -17,6 +17,7 @@ public class ProductInsert extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String path ="/WEB-INF/views/admin/adminProductInsert.jsp";
+		/*WEB-INF/views/admin/adminProductInsert.jsp 여기로 forwarding 해준다.*/
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 
@@ -25,17 +26,19 @@ public class ProductInsert extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("UTF-8");			//UTF-8 로 인코딩
+		/*UTF-8로 인코딩 한다.*/
+		request.setCharacterEncoding("UTF-8");			
 		
+		/*클라이언트에서 필요한  정보를 가져온다.*/
 		String productName = request.getParameter("productName");
 		int productPrice = Integer.parseInt(request.getParameter("productPrice"));
 		String productKinds = request.getParameter("productKinds");
 		String productStatus = request.getParameter("productStatus");
 		Integer productReadingTicket = Integer.parseInt(request.getParameter("productReadingTicket"));
 		String productExposureTime = request.getParameter("productExposureTime");
-		//view에 있는 text, nubmer name을 담는다
 		
 		
+		/*productListDTO에 setter를 가져온다.*/
 		ProductListDTO productListDTO = new ProductListDTO();
 		productListDTO.setProductName(productName);
 		productListDTO.setProductPrice(productPrice);
@@ -45,15 +48,15 @@ public class ProductInsert extends HttpServlet {
 		productListDTO.setProductExposureTime(productExposureTime);
 		
 		
-		//view에서 담은 값들을 service로 가기위해 담는다.
+		/*주소 담기위해 변수 선언*/
+		String path = ""; 
 		
-		String path = ""; //주소 담기위해 변수 선언
-		
+		/*view에서 담은 값들을 service로 가기위해 담는다.*/
 		int result = new ProductInsertService().productInsert(productListDTO);
 		
+		/*성공시 /let/admin/product/list 주소로 간다.*/
 		if(result > 0) {
-//			path = "/WEB-INF/views/admin/adminProductList.jsp";
-//			request.getRequestDispatcher(path).forward(request, response);
+
 			response.sendRedirect("/let/admin/product/list");
 		}
 		
