@@ -15,11 +15,13 @@ public class ProductListService {
 		
 		SqlSession session = getSqlSession();
 		
+		/*AdminPaymentMapper에 session을 넣는다*/
 		AdminPaymentMapper adminPaymentMapper = session.getMapper(AdminPaymentMapper.class);
 		
+		/*mapper에 productList 메소드 생성*/
 		List<ProductListDTO> productList = adminPaymentMapper.productList();
-		//List 할 때 이렇게 쓴다. 기억하자
 		
+		/*session을 닫는다(안 닫으면 DB에서 문제가 발생한다.)*/
 		session.close();
 		
 		return productList;

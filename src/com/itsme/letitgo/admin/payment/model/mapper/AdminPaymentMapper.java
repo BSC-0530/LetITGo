@@ -29,16 +29,21 @@ public interface AdminPaymentMapper {
 
 	/* 보유상품의 상태를 환불로 변경 */
 	int updateHoldingProductStatus(int payNo);
-	
+
+	/*상품 관리 등록 */
+
 	/* 결제변경번호를 통해서 환불거절사유를 가져옴. */
 	String selectRejectReasonMessage(int payChangeNo);
 	
 	int productInsert(ProductListDTO productListDTO);
-
+	
+	/*상품 관리 리스트*/
 	List<ProductListDTO> productList();
-
+	
+	/*상품 관리 수정*/
 	int productModify(ProductListDTO productListDTO);
-
+	
+	/*상품 관리 삭제*/
 	int productDelete(int productNo);
 
 

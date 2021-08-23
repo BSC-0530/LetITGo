@@ -10,46 +10,49 @@ import com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper;
 public class ProductModifyService {
 
 	public int productModify(ProductListDTO productListDTO) {
-
+		/*session을 생성한다.*/
 		SqlSession session = getSqlSession();
-		
+		/*mapper를 생성한다.*/
 		AdminPaymentMapper adminPaymentMapper = session.getMapper(AdminPaymentMapper.class);
 		
+		/*result 변수를 선언하고 adminPaymentMapper에 productMoidfy메소드를 생성한다. 그리고 productListDTO를 가지고 간다.*/
 		int result = adminPaymentMapper.productModify(productListDTO);
 		
 		if(result > 0) {
-			session.commit(); 	//세션이 1이상인경우 커밋
+			/*reuslt가 성공인경우 커밋*/
+			session.commit(); 	
 		}else {
-			session.rollback();			//세션이 0인경우 롤백
+			/*result가 실패인 경우*/
+			session.rollback();			
 		}
-		
+		/*session을 닫는다.*/
 		session.close();
-		
+		/*result로 리턴해준다.*/
 		return result;
 	}
 
 	public int productDelete(int productNo) {
-
+		/*session을 생성한다.*/
 		SqlSession session = getSqlSession();
-		
+		/*mapper를 생성한다.*/
 		AdminPaymentMapper adminPaymentMapper = session.getMapper(AdminPaymentMapper.class);
 		
-		int result = adminPaymentMapper.productDelete(productNo);			//productNo로 반환해준다?
+		/*result 변수를 선언하고 adminPaymentMapper에 productDelete메소드를 생성한다. 그리고 productListDTO를 가지고 간다.*/
+		int result = adminPaymentMapper.productDelete(productNo);			
 		
 		if(result > 0) {
-			session.commit(); 	//세션이 1이상인경우 커밋
+			/*reuslt가 성공인경우 커밋*/
+			session.commit(); 	
 		}else {
-			session.rollback();			//세션이 0인경우 롤백
+			/*result가 실패인 경우*/
+			session.rollback();			
 		}
-		
+		/*session을 닫는다*/
 		session.close();
-		
+		/*result로 리턴해준다.*/
 		return result;
 	}
 
-	public int productGo() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 }

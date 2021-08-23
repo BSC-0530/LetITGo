@@ -18,21 +18,20 @@ public class ProductListServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		/*서비스 생성*/
 		ProductListService productService = new ProductListService();
-		//서비스 생성
 		
+		
+		/*ProductListDTO의 리스트 생성*/
 		List<ProductListDTO> productList = productService.productList();
 	
-		//리스트 생성
-		String path = "";	//path 변수 선언
+		/*path 변수 선언 (주소 값을 넣기위해 생성)*/
+		String path = "";	
 		if(productList != null) {
 			path ="/WEB-INF/views/admin/adminProductList.jsp";
+			
+			/* product라는 name 속성 값을 value로 지정한다.*/
 			request.setAttribute("productList", productList);
-		// product라는 name 속성 값을 value로 지정한다.
-		
-			
-			
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);
