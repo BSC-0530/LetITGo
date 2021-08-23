@@ -34,14 +34,14 @@
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <div class="jp_footer_candidate_wrapper jp_footer_candidate_wrapper2">
                                 <div class="jp_footer_candidate">
-                                    <h2><a href="${ pageContext.servletContext.contextPath }/personalinfopolicy/list">이용약관</a></h2>
+                                    <h2><a href="${ pageContext.servletContext.contextPath }/personal/notice/list">공지사항</a></h2>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <div class="jp_footer_candidate_wrapper jp_footer_candidate_wrapper3">
                                 <div class="jp_footer_candidate">
-                                    <h2><a href="${ pageContext.servletContext.contextPath }/personalinfopolicy/list">개인정보 처리방침</a></h2>
+                                    <h2><a href="${ pageContext.servletContext.contextPath }/guideline/list">개인정보 처리 방침 <br><br>및<br><br> 이용약관</a></h2>
                                 </div>
                             </div>
                         </div>
@@ -49,6 +49,8 @@
                             <div class="jp_footer_candidate_wrapper jp_footer_candidate_wrapper4">
                                 <div class="jp_footer_candidate">
                                     <h2>고객센터</h2>
+                                    <br>
+                                    <p>itsme-letitgo@naver.com</p>
                                 </div>
                             </div>
                         </div>

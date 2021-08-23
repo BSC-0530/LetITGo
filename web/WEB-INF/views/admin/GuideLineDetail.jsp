@@ -61,42 +61,72 @@ td {
 
 <body>
 
-	<!-- 사이드바 -->
-	<div class="jp_listing_sidebar_main_wrapper">
+	<div class="gc_main_menu_wrapper">
+			<div class="jp_navi_right_btn_wrapper">
+				<ul>
+					<li><a href="${ pageContext.servletContext.contextPath }/loginPage">LOG IN</a></li>
+				</ul>
+			</div>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="jp_top_header_right_cont"></div>
+					<div
+						class="col-lg-2 col-md-2 col-sm-12 col-xs-12 hidden-xs hidden-sm full_width">
+						<div class="gc_header_wrapper">
+							<div class="gc_logo">
+								<a href="${ pageContext.servletContext.contextPath }/mainPage"><img
+									src="${ pageContext.servletContext.contextPath }/resources/image/로고.PNG"
+									class="img-responsive"></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 full_width">
+						<div class="header-area hidden-menu-bar stick" id="sticker">
+							<div class="mainmenu">
+								<ul class="float_left">
+									<li class="has-mega gc_main_navigation"><a
+										href="${ pageContext.servletContext.contextPath }/request/inquiry/servlet"
+										class="gc_main_navigation" class="gc_main_navigation">1:1
+											문의</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<br>
+		<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
-				<div style="height: 1000px;"
+				<div
 					class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_rightside_job_categories_wrapper">
 								<div class="jp_rightside_job_categories_heading">
-									<h4 align="left" style="font-weight: bold">My Page</h4>
+									<h4 style="font-weight : bold">고객센터</h4>
 								</div>
 								<div class="jp_rightside_job_categories_content">
 									<div class="handyman_sec1_wrapper">
 										<div class="content">
 											<div class="box">
-												<p>
-													<a
-														href="${ pageContext.servletContext.contextPath }/personalMyInfo">회원정보</a>
+												<p align="center">
+													<a href="${ pageContext.servletContext.contextPath }/coMem/infomationServlet">공지사항</a>
 												</p>
-												<br> <br>
-												<p>
-													<a
-														href="${ pageContext.servletContext.contextPath }/personal/apply/select">지원
-														현황</a>
+												<br><br>
+												<p align="center"> 
+													<a href="${ pageContext.servletContext.contextPath }/guideline/list">개인정보처리방침</a>
 												</p>
-												<br> <br>
-												<p>
-													<a
-														href="${ pageContext.servletContext.contextPath }/scout/myPageList/servlet">스카우트현황</a>
+												<br><br>
+
+												<p align="center">
+													<a href="${ pageContext.servletContext.contextPath }/guideline/list">이용약관</a>
 												</p>
-												<br> <br>
-												<p>
-													<a href="${ pageContext.servletContext.contextPath }">회원탈퇴</a>
-												</p>
-												<br> <br>
+												
+												<br><br>
 											</div>
 										</div>
 									</div>
@@ -105,6 +135,31 @@ td {
 						</div>
 					</div>
 				</div>
+
+<!-- 상단 검은색 -->
+   <div class="jp_tittle_main_wrapper">
+        <div class="jp_tittle_img_overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="jp_tittle_heading_wrapper">
+                        <div class="jp_tittle_heading">
+                            <h2>개인정보 처리 방침 및 이용약관</h2>
+                        </div>
+                        <div class="jp_tittle_breadcrumb_main_wrapper">
+                            <div class="jp_tittle_breadcrumb_wrapper">
+                                <ul>
+                                    <li><a href="#">Home >> </a></li>
+                                    <li><a href="#">개인정보 처리 방침 및 이용약관</a></li>
+                                 </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 				<!-- 옆에 넣으려면 여기에 넣어야함 -->
 				<!--   				111~114번이 있어야 사이드바 옆에 내용이 입력됨       -->
@@ -161,13 +216,13 @@ td {
 				</div>
 			</div>
 
- 			<!-- 내용 -->				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
+<!--  			내용				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">  -->
 
- 									<button type="button" onClick="history.go(-1)">취소하기</button> 
- 									<button type="submit" 
-											onclick="href='${ pageContext.servletContext.contextPath }/personalinfopolicy/list'">수정하기</button> 
+<!--  									<button type="button" onClick="history.go(-1)">취소하기</button>  -->
+<!--  									<button type="submit"  -->
+<%-- 											onclick="href='${ pageContext.servletContext.contextPath }/personalinfopolicy/list'">수정하기</button>  --%>
 
-			</div>
+<!-- 			</div> -->
 		</div>
 	</div>
 
