@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.List,javax.servlet.http.HttpSession, javax.servlet.http.HttpServlet, com.itsme.letitgo.login.model.dto.MemberLoginDTO"%>    
+
 <!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
@@ -38,7 +40,27 @@
 
 <body>
 
-<%-- 	<jsp:include page=""></jsp:include> --%>
+
+	<%
+    MemberLoginDTO dto = (MemberLoginDTO) session.getAttribute("loginMember");
+
+    String memKinds = dto.getMemKinds();
+
+%>
+<%
+    if(memKinds.equals("개인회원")) {
+%>
+    <jsp:include page="../../common/header/personalHeader.jsp"/>
+<%
+    }
+%>
+<%
+    if(memKinds.equals("기업회원")) {
+%>
+    <jsp:include page="../../common/header/companyHeader.jsp"/>
+<%
+    }
+%>
 	<jsp:include page="aboutCompanyBody.jsp"/>
 
 
