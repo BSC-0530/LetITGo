@@ -40,7 +40,7 @@
 	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 </head>
 <body>
-	<jsp:include page="../../common/header/personalHeader.jsp"/>
+	
 <!-- 상단 검은색 -->
    <div class="jp_tittle_main_wrapper">
         <div class="jp_tittle_img_overlay"></div>

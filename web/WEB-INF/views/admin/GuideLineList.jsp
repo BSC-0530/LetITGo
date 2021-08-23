@@ -51,45 +51,34 @@
 <body>
 
 <div class="gc_main_menu_wrapper">
-            <div class="jp_top_header_right_cont">
-                <ul>
-                    <li><a href="#" align="center" style="background:red; margin-right: 30px; border-radius: 10px; width:100px">로그아웃</a></li>
-                </ul>
-            </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 hidden-xs hidden-sm full_width">
-                        <div class="gc_header_wrapper">
-                            <div class="gc_logo">
-                                <a href="${ pageContext.servletContext.contextPath }/mainPage"><img src="${ pageContext.servletContext.contextPath }/resources/image/로고.PNG" class="img-responsive"></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 full_width">
-                        <div class="header-area hidden-menu-bar stick" id="sticker">
-                            <div class="mainmenu">
-                                 <ul class="float_left">
-                                 	<li class="has-mega gc_main_navigation">
-                                    	<a href="${ pageContext.servletContext.contextPath }/detail/browse/select" class="gc_main_navigation" class="gc_main_navigation">봉석</a>
-                                    </li>
-                                 	<li class="has-mega gc_main_navigation">
-                                    	<a href="${ pageContext.servletContext.contextPath }/regist/member" class="gc_main_navigation" class="gc_main_navigation">승수</a>
-                                    </li>
-                                 	<li class="has-mega gc_main_navigation">
-                                    	<a href="${ pageContext.servletContext.contextPath }/productList/select" id="paymentMainPage" class="gc_main_navigation" class="gc_main_navigation">현수</a>
-                                    </li>
-                                 	<li class="has-mega gc_main_navigation">
-                                    	<a href="${ pageContext.servletContext.contextPath }/companyTestServlet" class="gc_main_navigation" class="gc_main_navigation">본근</a>
-                                    </li>
-                                 	<li class="has-mega gc_main_navigation">
-                                    	<a href="${ pageContext.servletContext.contextPath }/admin/mainPage" class="gc_main_navigation" class="gc_main_navigation">태훈</a>
-                                    </li>
-                                    <li class="has-mega gc_main_navigation">
-										<%-- <a href="${ pageContext.servletContext.contextPath }/personal/memberInfo/select" class="gc_main_navigation" class="gc_main_navigation">동기</a> --%>
-                                    	<a href="${ pageContext.servletContext.contextPath }/member/allJobPosting/select" class="gc_main_navigation" class="gc_main_navigation">동기</a>
-                                    </li>                                    
-                                </ul>
-                            </div>
+			<div class="jp_navi_right_btn_wrapper">
+				<ul>
+					<li><a href="${ pageContext.servletContext.contextPath }/loginPage">LOG IN</a></li>
+				</ul>
+			</div>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="jp_top_header_right_cont"></div>
+					<div
+						class="col-lg-2 col-md-2 col-sm-12 col-xs-12 hidden-xs hidden-sm full_width">
+						<div class="gc_header_wrapper">
+							<div class="gc_logo">
+								<a href="${ pageContext.servletContext.contextPath }/mainPage"><img
+									src="${ pageContext.servletContext.contextPath }/resources/image/로고.PNG"
+									class="img-responsive"></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 full_width">
+						<div class="header-area hidden-menu-bar stick" id="sticker">
+							<div class="mainmenu">
+								<ul class="float_left">
+									<li class="has-mega gc_main_navigation"><a
+										href="${ pageContext.servletContext.contextPath }/request/inquiry/servlet"
+										class="gc_main_navigation" class="gc_main_navigation">1:1
+											문의</a></li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -109,7 +98,7 @@
                         <div class="jp_tittle_breadcrumb_main_wrapper">
                             <div class="jp_tittle_breadcrumb_wrapper">
                                 <ul>
-                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#">Home >> </a></li>
                                     <li><a href="#">개인정보 처리 방침 및 이용약관</a></li>
                                  </ul>
                             </div>
@@ -119,43 +108,38 @@
             </div>
         </div>
     </div>
-
-<!-- 사이드바 -->
-	<div class="jp_listing_sidebar_main_wrapper">
+<br>
+				<br>
+				<br>
+				<div class="jp_listing_sidebar_main_wrapper">
 		<div class="container">
 			<div class="row">
-				<div style="height: 1000px;"
+				<div
 					class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="jp_rightside_job_categories_wrapper">
 								<div class="jp_rightside_job_categories_heading">
-									<h4 align="left" style="font-weight: bold">My Page</h4>
+									<h4 style="font-weight : bold">고객센터</h4>
 								</div>
 								<div class="jp_rightside_job_categories_content">
 									<div class="handyman_sec1_wrapper">
 										<div class="content">
 											<div class="box">
-												<p>
-													<a
-														href="${ pageContext.servletContext.contextPath }/personalMyInfo">회원정보</a>
+												<p align="center">
+													<a href="${ pageContext.servletContext.contextPath }/coMem/infomationServlet">공지사항</a>
 												</p>
-												<br> <br>
-												<p>
-													<a
-														href="${ pageContext.servletContext.contextPath }/personal/apply/select">지원
-														현황</a>
+												<br><br>
+												<p align="center"> 
+													<a href="${ pageContext.servletContext.contextPath }/guideline/list">개인정보처리방침</a>
 												</p>
-												<br> <br>
-												<p>
-													<a
-														href="${ pageContext.servletContext.contextPath }/scout/myPageList/servlet">스카우트현황</a>
+												<br><br>
+
+												<p align="center">
+													<a href="${ pageContext.servletContext.contextPath }/guideline/list">이용약관</a>
 												</p>
-												<br> <br>
-												<p>
-													<a href="${ pageContext.servletContext.contextPath }">회원탈퇴</a>
-												</p>
-												<br> <br>
+												
+												<br><br>
 											</div>
 										</div>
 									</div>
