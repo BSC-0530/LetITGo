@@ -324,11 +324,11 @@
 
 			const jobPostNo = td.children[1].value;
 
-			location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?jobPostNo="
-					+ jobPostNo
+			location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?jobPostNo=" + jobPostNo;
 
 		}
 		
+		//이력서 확인 버튼을 눌렀을 시 이동
 		function resume(button) {
 
 			var resumeNo = button.parentNode.parentNode.children[0].children[0].value;
