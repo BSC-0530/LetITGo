@@ -53,71 +53,54 @@ public class UpdateRecruitServlet extends HttpServlet {
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("euc-kr");
-		// 세션에 담긴 회원정보 꺼내기
+		request.setCharacterEncoding("UTF-8");
+		
 		HttpSession session = request.getSession();
 
         MemberLoginDTO memberLoginDTO = (MemberLoginDTO) session.getAttribute("loginMember");
-
         int memNo = memberLoginDTO.getMemNo();
-        
-		RequestJobPostingDTO dto = new RequestJobPostingDTO();
 		
+		/* 최소경력과 최대경력의 경우 최소경력이 더 큰 경우 값을 바꿔서 저장 */
+		int minExperience = Integer.parseInt(request.getParameter("jobPostMinExperience"));
+		int maxExperience = Integer.parseInt(request.getParameter("jobPostMaxExperience"));
+		if(minExperience > maxExperience) {
+			int temp = 0;
+			temp = minExperience;
+			minExperience = maxExperience;
+			maxExperience = temp;
+		} 
 		int updateJobPostNo = Integer.parseInt(request.getParameter("jobPostNo"));
 		
-//		 parameter로 받은 값들을 DB로 전달하기 위해 getParameter로 꺼내 DTO의 필드에 값을 저장하는 과정
-//		 coMemNo 는 session에 담긴 회원 번호를 가져와야 한다
 		String[] getSkills = request.getParameterValues("selectSkills");
+		RequestJobPostingDTO dto = new RequestJobPostingDTO();
 		
+		/* 입력한 스킬 저장을 하기 위해 배열 인스턴스 생성 후 저장 */
 		ArrayList<Integer> skillsList = new ArrayList<>();
-		
 		for(String i: getSkills) {
 			skillsList.add(Integer.parseInt(i));
-			System.out.println("i" + Integer.parseInt(i));
 		}
-		System.out.println("skillsList : " + skillsList);
+		
+		/* 입력한 정보를 DB에 저장하기 위해 dto에 담아준다. */
 		dto.setCoMemNo(memNo);
 		dto.setJobPostTitle(request.getParameter("jobPostTitle"));
 		dto.setJobNo(Integer.parseInt(request.getParameter("jobNo")));
 		dto.setJobPostDeadLine(java.sql.Date.valueOf(request.getParameter("jobPostDeadLine")));
 		dto.setSkillsCodeList(skillsList);
 		dto.setUpdateJobPostNo(updateJobPostNo);
-		
 		dto.setJobPostContents(request.getParameter("jobPostContents"));
 		dto.setQualificationRequirements(request.getParameter("qualificationRequirements"));
 		dto.setPreferentialMatters(request.getParameter("preferentialMatters"));
-		dto.setBenefitAndWelfare(request.getParameter("benefitAndWelfare"));		
-		
-		// 전달받은 경력에 입력된 value에 따라 db에 다르게 저장해주기 위해 예외처리
-		
-		// 최소 경력과 최대경력이 널이 아닐때만 변수에 초기화 하기
-		
-		int minExperience = Integer.parseInt(request.getParameter("jobPostMinExperience"));
-		int maxExperience = Integer.parseInt(request.getParameter("jobPostMaxExperience"));
-		if(minExperience > maxExperience) {
-			// 대소 비교 후 값 1,2  의 값 바꿔 저장
-			int temp = 0;
-			temp = minExperience;
-			minExperience = maxExperience;
-			maxExperience = temp;
-		} 
-		
+		dto.setBenefitAndWelfare(request.getParameter("benefitAndWelfare"));	
 		dto.setJobPostMinExperience(minExperience);
 		dto.setJobPostMaxExperience(maxExperience);
 	
 		SelectCoMyJobPostingService service = new SelectCoMyJobPostingService();
-		
-		
 		boolean result = service.RequestUpdateJobPosting(dto);
-		
 		
 		StringBuilder redirectText = new StringBuilder();
 		
 		if(result) {
 			redirectText.append("<script>alert('공고 수정 요청이 정상적으로 처리되었습니다.'); location.href='/let/company/jobPostingHistory/select';</script>");
-			
-
-		
 		} else {
 			redirectText.append("<script>alert('공고 수정 요청에 실패하였습니다.'); location.href='/let/recruit/update';</script>");
 		}

@@ -105,6 +105,7 @@
 	       AND A.JOB_POST_KINDS = '승인대기중인공고'
 	</select>
 	
+	<!-- 공고 등록 화면에 출력을 위해 직무 조회 -->
 	<select id="selectJobName" resultMap="resultJobField">
 		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectJobName() */
 			   JF.JOB_NO
@@ -118,7 +119,7 @@
 		  FROM TBL_JOB_FIELD JF
 	</select>
 	
-	<!-- 스킬 카테고리 하위에 스킬이 있는 경우에만 카테고리 조회 -->
+	<!-- 스킬 카테고리 하위에 스킬이 있는 경우에만 공고 등록 화면에 출력을 위한 스킬 카테고리 조회 -->
 	<select id="selectSkillsCategory" resultMap="resultSkillsCategory">
 		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectSkillsCategory() */
 			   DISTINCT SC.CATEGORY_NO
@@ -305,15 +306,16 @@
 	
 	<!-- 상품 번호 회원번호로 남은시간 조회 -->
 	<select id="selectExposureRestTime" resultType="Integer">
-		SELECT
+		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectExposureRestTime() */
 			   A.EXPOSURE_TIME
 		  FROM TBL_MEMBER_HOLDING_PRODUCT A
 		 WHERE A.CO_MEM_NO = #{ coMemNo }
 		   AND A.RETAINED_PRODUCT_CODE = #{ retainedProductCode }
 	</select>
 	
+	<!-- 노출권 사용이력 있을때 update -->
 	<update id="updateExposureUsageHistory">
-		UPDATE 
+		UPDATE  /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#updateExposureUsageHistory() */
 			   TBL_EXPOSURE_USAGE_HISTORY AH
 		   SET AH.EXPOSURE_USE_DATE = SYSDATE
 		   	 , AH.EXPOSURE_END_DATE = #{ exposureEndDate }
@@ -321,9 +323,10 @@
 		   AND AH.CO_MEM_NO = #{ coMemNo }
 		   AND AH.RETAINED_PRODUCT_CODE = #{ retainedProductCode }
 	</update>
-		
+	
+	<!-- 노출권 사용이력 없을때 insert -->	
 	<insert id="insertExposureUsageHistory">
-		INSERT 
+		INSERT  /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#insertExposureUsageHistory() */
 		  INTO TBL_EXPOSURE_USAGE_HISTORY AH
 		(
 		  AH.EXPOSURE_USE_DATE, AH.EXPOSURE_END_DATE, AH.JOB_POST_NO
@@ -336,16 +339,17 @@
 		)  
 	</insert>
 	
+	<!--  상품 사용시간 계산 후 보유 상품 DB의 상품 잔여시간 update -->
 	<update id="updateMemberHoldingProduct">
-		UPDATE
+		UPDATE /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#updateMemberHoldingProduct() */
 		       TBL_MEMBER_HOLDING_PRODUCT A
 		   SET A.EXPOSURE_TIME = #{ resultTime }
 		 WHERE A.RETAINED_PRODUCT_CODE = #{ retainedProductCode }
 		   AND A.CO_MEM_NO = #{ coMemNo }
 	</update>
 	
-		<select id="selectTitleFilePath" resultType="string">
-		SELECT
+	<select id="selectTitleFilePath" resultType="string">
+		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectTitleFilePath() */
 		       SUBSTR(A.MEM_FILE_PATH,21)
 		  FROM TBL_ATTACHMENT A
 		 WHERE A.MEM_NO = #{ memNo }
@@ -353,7 +357,7 @@
 	</select>
 	
 	<select id="selectLogoFilePath" resultType="string">
-		SELECT
+		SELECT /* com.itsme.letitgo.company.recruit.jobposting.model.mapper.SelectCoMyJobPostingMapper#selectLogoFilePath() */
 		       SUBSTR(A.MEM_FILE_PATH,21)
 		  FROM TBL_ATTACHMENT A
 		 WHERE A.MEM_NO = #{ memNo }

@@ -22,7 +22,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
 	$(function() {
-		var select = "<option>선택좀해주세용</option>";
+		var select = "<option>요구스킬을 선택해주세요</option>";
 		$("#skillsCategory").change(function() {
 			if($("#skillsCategory").val() == "") {
 			$("#skills").find("option").remove().end().append(select);
@@ -82,28 +82,16 @@
 				if(document.getElementsByName("selectSkills")[j].value == skillsNo) {
 					
 					document.getElementsByName("selectSkills")[j].removeAll();
-					
-					
-					alert("삭제완료");
 				} else {
-					
-					
 				}
 			}
 		
-			// 선택한 기술을 selectSkills 에 append
-			
-			
+			/* 선택한 기술을 selectSkills 에 append */
 			$("#selectSkills").append(appendSkills);
-			
-	
-			
 			
 		});
 		
 	});
-    </script>
-    <script>
     function btn_click(str) {
 		
 		if(str == "preview") {
@@ -119,18 +107,14 @@
 			var skills_length = document.getElementsByName("selectSkills").length;
 			
 			if(skills_length == 0) {
-				
 				alert("기술을 한가지 이상 선택해주세요")
 			} else {
 
 				document.insertForm.method = "post";
 				document.insertForm.action = "${ pageContext.servletContext.contextPath }/recruit/update"
 				document.insertForm.submit();
-			
+			}
 		}
-		
-	}
-	
 	}
     </script>
 </head>
@@ -295,6 +279,4 @@
 		</div>
 	</form>
 </body>
-
-   
 </html>

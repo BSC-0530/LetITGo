@@ -44,20 +44,16 @@ public class RecruitApplicantService {
 		
 		RecruitApplicantMapper mapper = session.getMapper(RecruitApplicantMapper.class);
 		
-		
+		/* 이력서별 스킬과 이력서 내용, 사진, 회원정보 담아온다.*/
 		List<ApplicantDTO> applicant = mapper.selectApplicant(dto);
-		
 		List<ResumeSkillsAndNameDTO> skills = mapper.selectSkills(dto);
 		
 		ApplicantResultDTO applicantResult = new ApplicantResultDTO();
 		
 		if(applicant != null && skills != null) {
-			
 			applicantResult.setApplicantDTO(applicant);
 			applicantResult.setResumeSkillsAndNameDTO(skills);
-			
 		}
-		
 		session.close();
 		
 		return applicantResult;
@@ -65,17 +61,13 @@ public class RecruitApplicantService {
 
 	public SelectDetailedResumeDTO selectDetailedApplicantResume(int resumeNo) {
 		
-		// 세션열기
 		SqlSession session = getSqlSession();
 		
-		// 매퍼 가져오기
 		RecruitApplicantMapper mapper = session.getMapper(RecruitApplicantMapper.class);
 		
-		// mapper호출을 통해 db에서 가져올 값을 담을 dto 생성하기
 		SelectDetailedResumeDTO resultResume = new SelectDetailedResumeDTO();
 		
-		// 이력서에 들어가는 내용 호출을 통해서 값 가져오고 dto에 담기
-		
+		/* 이력서에 들어가는 내용 호출을 통해서 값 가져오고 dto에 담기 */
 		DetailResumeDTO detailResume = mapper.selectResume(resumeNo);
 		List<AwardHistoryDTO> awardHistoryList = mapper.selectAwardHistory(resumeNo);
 		List<CareerHistoryDTO> careerHistoryList = mapper.selectCareerHistory(resumeNo);
@@ -94,10 +86,7 @@ public class RecruitApplicantService {
 		resultResume.setResumeSkillsAndNameList(resumeSkillsAndNameList);
 		resultResume.setSelfIntroductionList(selfIntroductionList);
 		
-		// 세션 닫기
-		
 		session.close();
-		
 		
 		return resultResume;
 	}

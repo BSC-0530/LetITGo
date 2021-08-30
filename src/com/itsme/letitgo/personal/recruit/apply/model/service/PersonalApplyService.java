@@ -10,44 +10,44 @@ import com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper
 
 public class PersonalApplyService {
 
-	public int personalRecruitApply(Map<String, Integer> applyMap) {
+	public boolean personalRecruitApply(Map<String, Integer> applyMap) {
 
 		SqlSession session = getSqlSession();
 
 		PersonalApplyMapper mapper = session.getMapper(PersonalApplyMapper.class);
 
+		/* 공고번호와 이력서 번호를 이용해서 채용공고별 지원내역 그리고 지원내역 상태 변경이력 테이블에 insert 후 결과값 리턴 */
 		int result1 = mapper.insertApplyngHistory(applyMap);
-
 		int result2 = mapper.insertApplyingChangeHistory(applyMap);
-		
 		int result = result1 + result2;
 		
-		if(result1 + result2 >= 2) {
-			
+		if(result >= 2) {
 			session.commit();
 			
 		} else {
-			
 			session.rollback();
 		}
 		
 		session.close();
 
-
-		return result;
+		return result >= 2? true : false;
 	}
 
-	public int personalCancelApply(Map<String, Integer> applyMap) {
+	public boolean personalCancelApply(Map<String, Integer> applyMap) {
 		
 		SqlSession session = getSqlSession();
 		
 		PersonalApplyMapper mapper = session.getMapper(PersonalApplyMapper.class);
 		
-		int result1 = mapper.modifyApplyingHistory(applyMap);
-		
+		/* 
+		 * 공고번호와 이력서 번호를 이용해서 채용공고별 지원내역에 저장된 지원상태를 취소로 update 
+		 * 그리고 지원내역 상태 변경이력 테이블에 insert 후 결과값 리턴
+		 *  */
+		int result1 = mapper.updateApplyingHistory(applyMap);
 		int result2 = mapper.insertApplyingChangeHistory(applyMap);
-		
-		if (result1 + result2 >= 2) {
+		int result = result1 + result2;
+
+		if (result >= 2) {
 			session.commit();
 		} else {
 			session.rollback();
@@ -55,7 +55,7 @@ public class PersonalApplyService {
 		
 		session.close();
 		
-		return result1 + result2;
+		return result >= 2? true : false;
 	}
 
 }

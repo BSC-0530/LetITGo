@@ -17,118 +17,12 @@
             border-color: rgb(223, 223, 223);
             width: 25%;
         }
-
+        
+        button {
+        	width: 200px;
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script>
-	$(function() {
-		var select = "<option>선택좀해주세용</option>";
-		$("#skillsCategory").change(function() {
-			if($("#skillsCategory").val() == "") {
-			$("#skills").find("option").remove().end().append(select);
-			
-			} else {
-				categoryChange($(this).val());
-			}
-			
-		});
-		
-		function categoryChange() {
-			
-			var categoryNo = $("#skillsCategory option:selected").val();
-			
-			$.ajax({
-				type: "post",
-				url: "${ pageContext.servletContext.contextPath }/fromCategory/getSkills/select",
-				data: { categoryNo : categoryNo },
-				dataType : "json",
-				success: function(data) {
-					
-					if(data != "") {
-						$("#skills").find("option").remove().end();
-						$("#skills").append("<option disabled='disabled' selected>요구스킬을 선택해주세요</option>");
-
-						for(var i = 0; i < data.length; i++) {
-							$("#skills").append("<option value=" + data[i].skillsNo + ">" + data[i].skillsName + "</option>");
-
-						};
-					} else {
-						$("#skills").find("option").remove().end().append(select);
-					}
-				},
-				error:function(x,o,e){
-					var msg = "페이지 호출 중 에러 발생 \n" + x.status + " : " + o + " : " + e; 
-						alert(msg);
-				}
-			});
-			
-		}
-
-		$("#skills").change(function() {
-			var skillsNo = $("#skills option:selected").val();
-			var skillsName = $("#skills option:selected").text();
-			
-			
-			var appendSkills = "<div><input type='checkBox' value='" + skillsNo + "' name='selectSkills' id='s" + skillsNo + "' checked style='display:none;'>" +
-							   "<label id='skillsLabel' for='s" + skillsNo + "'>" + skillsName + "</label></div>" +
-							   "<div><input type='hidden' value='" + skillsName + "' name='selectSkillsName'></div>"
-							   
-			
-							   
-			var checked_length = document.getElementsByName("selectSkills").length;
-			
-			
-			for(var j = 0; j < checked_length; j++) {
-				
-				if(document.getElementsByName("selectSkills")[j].value == skillsNo) {
-					
-					document.getElementsByName("selectSkills")[j].removeAll();
-					
-					
-					alert("삭제완료");
-				} else {
-					
-					
-				}
-			}
-			
-			$("#selectSkills").append(appendSkills);
-			
-			
-		});
-		
-	});
-    </script>
-    <script>
-		function btn_click(str) {
-			
-			if(str == "preview") {
-				
-				
-				var previewWid = window.open('about:blank','preview','width=1920,height=1000')
-				document.insertForm.action = "${ pageContext.servletContext.contextPath }/previewJobPosting"
-				document.insertForm.target = "preview";
-				document.insertForm.method = "post";
-				document.insertForm.submit();
-
-				
-			} else if (str == "insert") {
-				
-				var skills_length = document.getElementsByName("selectSkills").length;
-				
-				if(skills_length == 0) {
-					
-					alert("기술을 한가지 이상 선택해주세요")
-				} else {
-
-					document.insertForm.method = "post";
-					document.insertForm.action = "${ pageContext.servletContext.contextPath }/recruit/insert"
-					document.insertForm.submit();
-			}
-		}
-		
-		}
-    </script>
 </head>
 <body>
 	<div class="jp_tittle_main_wrapper">
@@ -263,14 +157,122 @@
                                 </div>
                             </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        	<input class="btn btn-info" type="button" value="insert" onclick="btn_click('insert');">
-                        	<input class="btn btn-info" type="button" value="preview" onclick="btn_click('preview');">
+                        	<input style="width: 200px;" class="btn btn-info" type="button" value="insert" onclick="btn_click('insert');">
+                        	<input style="width: 200px;" class="btn btn-info" type="button" value="preview" onclick="btn_click('preview');">
                         </div>
                     </div>
                 </div>
             </div>
 		</div>
 	</form>
+	
+	<script>
+		$(function() {
+			
+			const select = "<option>카테고리를 선택해주세요</option>";
+			$("#skillsCategory").change(function() {
+				if($("#skillsCategory").val() == "") {
+				$("#skills").find("option").remove().end().append(select);
+				
+				} else {
+					categoryChange($(this).val());
+				}
+				
+			});
+			
+			function categoryChange() {
+				
+				var categoryNo = $("#skillsCategory option:selected").val();
+				
+				$.ajax({
+					type: "post",
+					url: "${ pageContext.servletContext.contextPath }/fromCategory/getSkills/select",
+					data: { categoryNo : categoryNo },
+					dataType : "json",
+					success: function(data) {
+						
+						/* 카테고리 선택 시 ajax를 이용해 카테고리에 해당하는 스킬들을 option에 추가해주는 과정 */
+						if(data != "") {
+							$("#skills").find("option").remove().end();
+							$("#skills").append("<option disabled='disabled' selected>요구스킬을 선택해주세요</option>");
+	
+							for(var i = 0; i < data.length; i++) {
+								$("#skills").append("<option value=" + data[i].skillsNo + ">" + data[i].skillsName + "</option>");
+	
+							};
+						} else {
+							$("#skills").find("option").remove().end().append(select);
+						}
+					},
+					error:function(x,o,e){
+						var msg = "페이지 호출 중 에러 발생 \n" + x.status + " : " + o + " : " + e; 
+							alert(msg);
+					}
+				});
+				
+			}
+	
+			$("#skills").change(function() {
+				
+				var skillsNo = $("#skills option:selected").val();
+				var skillsName = $("#skills option:selected").text();
+				
+				
+				var appendSkills = "<div><input type='checkBox' value='" + skillsNo + "' name='selectSkills' id='s" + skillsNo + "' checked style='display:none;'>" +
+								   "<label id='skillsLabel' for='s" + skillsNo + "'>" + skillsName + "</label></div>" +
+								   "<div><input type='hidden' value='" + skillsName + "' name='selectSkillsName'></div>"
+								   
+				
+								   
+				var checked_length = document.getElementsByName("selectSkills").length;
+				
+				
+				for(var j = 0; j < checked_length; j++) {
+					
+					if(document.getElementsByName("selectSkills")[j].value == skillsNo) {
+						
+						/* 이부분 오류를 발생시켜서 의도적으로 스킬이 중복되서 올라가지 않게 했는데 보완이 필요하다. */
+						document.getElementsByName("selectSkills")[j].removeAll();
+						
+					} else {
+						
+						
+					}
+				}
+				$("#selectSkills").append(appendSkills);
+			});
+			
+		});
+    </script>
+    <script>
+		function btn_click(str) {
+			
+			if(str == "preview") {
+				
+				
+				var previewWid = window.open('about:blank','preview','width=1920,height=1000')
+				document.insertForm.action = "${ pageContext.servletContext.contextPath }/previewJobPosting"
+				document.insertForm.target = "preview";
+				document.insertForm.method = "post";
+				document.insertForm.submit();
+
+				
+			} else if (str == "insert") {
+				
+				var skills_length = document.getElementsByName("selectSkills").length;
+				
+				if(skills_length == 0) {
+					
+					alert("기술을 한가지 이상 선택해주세요")
+				} else {
+
+					document.insertForm.method = "post";
+					document.insertForm.action = "${ pageContext.servletContext.contextPath }/recruit/insert"
+					document.insertForm.submit();
+				}
+			}
+		}
+    </script>
 </body>
 
    

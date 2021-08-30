@@ -19,7 +19,6 @@
 </style>
 </head>
 <body>
-
 	<div class="jp_tittle_main_wrapper">
 		<div class="jp_tittle_img_overlay"></div>
 		<div class="container">
@@ -49,9 +48,7 @@
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="jp_listing_heading_wrapper">
-							<h2>
-								We found <span><c:out value="${ requestScope.totalCount }"></c:out></span> Matches for you.
-							</h2>
+							<h2>We found <span><c:out value="${ requestScope.totalCount }"></c:out></span> Matches for you.</h2>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
@@ -116,32 +113,32 @@
 											<div class="content">
 												<div class="box">
 													<p>
-														<input type="checkbox" id="seoul" value="서울" name="area"> <label
-															for="seoul">서울</label>
+														<input type="checkbox" id="seoul" value="서울" name="area">
+														<label for="seoul">서울</label>
 													</p>
 													<p>
 														<input type="checkbox" id="kyungki" value="경기/인천" name="area">
 														<label for="kyungki">경기/인천</label>
 													</p>
 													<p>
-														<input type="checkbox" id="kangwon" value="강원" name="area"> <label
-															for="kangwon">강원</label>
+														<input type="checkbox" id="kangwon" value="강원" name="area">
+														<label for="kangwon">강원</label>
 													</p>
 													<p>
 														<input type="checkbox" id="chungchung" value="충청/대전" name="area">
 														<label for="chungchung">충청/대전</label>
 													</p>
 													<p>
-														<input type="checkbox" id="junra" value="전라/광주" name="area"> <label
-															for="junra">전라/광주</label>
+														<input type="checkbox" id="junra" value="전라/광주" name="area">
+														<label for="junra">전라/광주</label>
 													</p>
 													<p>
 														<input type="checkbox" id="kyungsang" value="경상/울산/부산/대구" name="area">
 														<label for="kyungsang">경상/울산/부산/대구</label>
 													</p>
 													<p>
-														<input type="checkbox" id="jeju" value="제주" name="area"> <label
-															for="jeju">제주</label>
+														<input type="checkbox" id="jeju" value="제주" name="area">
+														<label for="jeju">제주</label>
 													</p>
 												</div>
 											</div>
@@ -180,35 +177,33 @@
 								<div class="tab-content">
 									<div id="grid" class="tab-pane fade in active">
 										<div class="row">
-											<!--  jobPostKinds가 승인된 공고일때 forEach를 통해서 모두 출력 -->
-											<c:forEach var="jobPosting"
-												items="${ requestScope.jobPostingList }">
+										
+											<!-- 채용공고 List 출력 start -->
+											<c:forEach var="jobPosting" items="${ requestScope.jobPostingList }">
 												<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 													<div class="jp_job_post_main_wrapper_cont jp_job_post_grid_main_wrapper_cont">
 	
 														<!-- div 영역 클릭 시 상세 공고 페이지로 이동 -->
-														<div class="jp_job_post_main_wrapper jp_job_post_grid_main_wrapper" style="cursor: pointer; height: 250px"
-															onclick="selectJobPosting(this);"> 
-															<input type="hidden" id="postNo"
-																value="${ jobPosting.jobPostNo }">
-															<input type="hidden" id="coMemNo" value="${ jobPosting.coMemberAddInfoDTO.coMemNo }">
-	
+														<div class="jp_job_post_main_wrapper jp_job_post_grid_main_wrapper" style="cursor: pointer; height: 250px" onclick="selectJobPosting(this);"> 
+															<input type="hidden" id="postNo" value="${ jobPosting.jobPostNo }">
 															<div class="row">
 																<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	
-																	<!-- 이미지 경로  -->
+																	<!-- 기업 로고이미지  -->
 																	<div class="jp_job_post_side_img">
-																		<img src="${ pageContext.servletContext.contextPath }${ jobPosting.memFilePath }"
-																			style="width: 120px; height: 120px;" alt="post_img" />
+																		<img src="${ pageContext.servletContext.contextPath }${ jobPosting.memFilePath }" style="width: 120px; height: 120px;" alt="post_img" />
 																	</div>
 																	<div></div>
 																	<div class="jp_job_post_right_cont jp_job_post_grid_right_cont">
+																		
 																		<!-- 제목 -->
 																		<div style="height: 80px;">
 																			<label id="detailedJobPost" style="cursor:pointer; font-weight: bold; font-size: 20px; color: black;">
 																				<c:out value="${ jobPosting.jobPostTitle }" />
 																			</label>
 																		</div>
+																		
+																		<!-- 지역 -->
 																		<div>
 																		<label><c:out value="${ jobPosting.coMemberAddInfoDTO.coComName }"/></label>
 	   																	<c:set var="coAddress" value="${ jobPosting.coMemberAddInfoDTO.coAddress }"/>
@@ -216,6 +211,8 @@
 																		<c:set var="area" value="${ fn:split(address, ' ')[0] }"></c:set>
 																			<label><c:out value="(${ area })"></c:out></label>
 																		</div>
+																		
+																		<!-- 경력 -->
 																		<div>
 																		<label>
 																		<c:set var="minExp" value="${ jobPosting.jobPostMinExperience }"/>
@@ -241,11 +238,13 @@
 																		</c:if>
 																		</label>
 																		</div>
+																		
 																		<!-- 직무 -->
 																		<div>
 																		<label><c:out value="${ jobPosting.jobFieldDTO.jobName }"></c:out></label>
 																		</div>
-																		<!-- 채용공고 마감일 -->
+																		
+																		<!-- 채용공고 등록일 ~ 마감일 -->
 																		<div>
 																		<label><c:out value="${ jobPosting.jobPostEnrollDate }" /> ~ <c:out value="${ jobPosting.jobPostDeadline }" /></label>
 																		</div>
@@ -253,6 +252,7 @@
 																</div>
 															</div>
 														</div>
+														<!-- 공고별 요구 기술 start  -->
 														<div class="jp_job_post_keyword_wrapper">
 															<ul>
 																<li><i class="fa fa-tags">요구 기술 :</i></li>
@@ -263,9 +263,11 @@
 																</c:forEach>
 															</ul>
 														</div>
+														<!-- 공고별 요구 기술 end  -->
 													</div>
 												</div>
 											</c:forEach>
+											<!-- 채용공고 List 출력 end -->
 										</div>
 									</div>
 								</div>
@@ -276,6 +278,7 @@
 			</form>
 			<div class="pagingForm" align="center">
 				<form id="pagingForm"method="post">
+					<!-- 페이징 시 검색 조건을 같이 검색하기 위해 input태그의 type을 hidden으로 설정해 값을 숨기고 form태그를 이용해 값을 같이 전송 -->
 					<input type="hidden" name="skills" value="${ requestScope.skillsName }" readonly> 
 					<input type="hidden" name="experience" value="${ requestScope.experience }" readonly> 
 					<input type="hidden" name="jobNo" value="${ requestScope.jobNo }" readonly> 
@@ -317,16 +320,11 @@
 		function selectJobPosting(div) {
 
 			const jobPostNo = div.children[0].value;
-			const coMemNo = div.children[1].value;
 
-			location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?jobPostNo="
-					+ jobPostNo + "&coMemNo=" + coMemNo;
+			location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?jobPostNo=" + jobPostNo;
 		}
-	</script>
-	<script>
 	
 		const link = "${ pageContext.servletContext.contextPath }/member/allJobPosting/select";
-
 		
 		if(document.getElementById("prevPage")) {
 			const $prevPage = document.getElementById("prevPage");
@@ -347,7 +345,6 @@
 				$("#pagingForm").submit();			
 			}
 		}
-
 		
 		function pageButtonAction(text) {
 			
@@ -356,8 +353,6 @@
 			$("#pagingForm").action = link;
 			$("#pagingForm").submit();
 		}
-		
 	</script>
-
 </body>
 </html>

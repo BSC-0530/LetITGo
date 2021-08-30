@@ -1,7 +1,6 @@
 package com.itsme.letitgo.personal.info.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -22,17 +21,24 @@ public class PersonalMyInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-
         MemberLoginDTO dto = (MemberLoginDTO) session.getAttribute("loginMember");
-
         int memNo = dto.getMemNo();
 		
-//		// 마이페이지 회원정보 확인 페이지로 이동
-		PersonalInfoService service = new PersonalInfoService();
 		
+        PersonalInfoService service = new PersonalInfoService();
+        
+        /* 프로필사진 링크 조회 */
 		String titlePath = service.selectTitlePath(memNo);
-
-		request.setAttribute("titlePath", titlePath);
+		
+		/* 이력서 열람 제한 기업 조회 */
+		List<RestrictedCompanyDTO> restrictedCompany = service.selectRectrictedCompany(memNo);
+		
+		if(titlePath != null) {
+			request.setAttribute("titlePath", titlePath);
+		}
+		if(restrictedCompany != null) {
+			request.setAttribute("restrictedCompany", restrictedCompany);
+		}
 		
 		String path = "";
 		path = "/WEB-INF/views/member/personal/personalMyInfo.jsp";

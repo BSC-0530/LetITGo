@@ -20,16 +20,14 @@ public class MainPageService {
 		
 		MainPageMapper mapper = session.getMapper(MainPageMapper.class);
 		
+		/* 노출권 이용 공고 조회와 스킬 리스트 조회 */
 		List<PremiumRecruitDTO> premiumRecruitList = mapper.selectPremiumRecruit();
-		
 		List<JpSkillsDTO> skillsList = mapper.selectSkillsList();
 		
+		/* map에 담아서 전달*/
 		Map<String, Object> resultMap = new HashMap<>();
-		
 		resultMap.put("premiumRecruitList", premiumRecruitList);
 		resultMap.put("skillsList", skillsList);
-		
-		
 		
 		return resultMap;
 	}

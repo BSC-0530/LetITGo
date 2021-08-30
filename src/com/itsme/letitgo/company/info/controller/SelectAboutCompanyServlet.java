@@ -22,25 +22,18 @@ public class SelectAboutCompanyServlet extends HttpServlet {
 		int coMemNo = Integer.parseInt(request.getParameter("coMemNo"));
 		
 		CompanyAddInfoDTO dto = new CompanyAddInfoDTO();
-		
 		dto.setCoMemNo(coMemNo);
-		CompanyInfoService service = new CompanyInfoService();
 		
-		// 기업 정보 dto, 채용중인 공고 정보 리스트
+		CompanyInfoService service = new CompanyInfoService();
 		CompanyAddInfoDTO coAddInfoAndJobPosting = service.selectCoInfoAndJp(dto);
 		
-		// 담아온 값을 꺼내서 request영역에 담기
-		
-		System.out.println(coAddInfoAndJobPosting);
-		
+		/* 조회를 통해 받환받은 기업의 정보와 기업이 진행중인 공고 리스트를  jsp로 전달 */
 		request.setAttribute("companyAddInfo", coAddInfoAndJobPosting);
 		request.setAttribute("myJobPosting", coAddInfoAndJobPosting.getCoMyJobPostingList());
-		
 	
 		String path = "/WEB-INF/views/common/aboutCompany/aboutCompany.jsp";
 		
 		request.getRequestDispatcher(path).forward(request, response);
-		
 		
 	}
 

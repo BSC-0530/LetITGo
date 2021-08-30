@@ -89,7 +89,6 @@
 		               ) B
               ) A
 	</select>
-	
 		
 	<select id="selectSkillsList" resultMap="resultJpSkills">
 		SELECT /* com.itsme.letitgo.personal.recruit.jobposting.model.mapper.SelectJobPostingMapper#selectJpSkills() */

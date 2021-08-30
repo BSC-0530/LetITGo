@@ -132,8 +132,7 @@
 		   AND D.JOB_POST_APPLYING_STATUS = '지원취소'
 	</select>
 	
-	
-	<!-- 공고 지원 insert -->
+	<!-- 공고 지원내역 추가 -->
 	<insert id="insertApplyngHistory">
 		INSERT /* com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper#insertApplyngHistory() */
 		  INTO TBL_APPLYING_HISTORY AH
@@ -156,7 +155,7 @@
 		)
 	</insert>
 		
-	<!-- 공고 지원, 취소 시 지원내역상태변경이력에 저장 -->
+	<!-- 공고 지원, 취소 시 지원내역상태변경이력에 추가 -->
 	<insert id="insertApplyingChangeHistory">
 		INSERT /* com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper#insertApplyingChangeHistory() */
 		  INTO TBL_APPLYING_CHANGE_HISTORY CH
@@ -176,9 +175,10 @@
 		, '지원상태'
 		)
 	</insert>
-	<!-- 공고 지원 취소  -->
-	<update id="modifyApplyingHistory">
-		UPDATE 
+	
+	<!-- 지원내역에 저장된 지원상태를 취소로 update -->
+	<update id="updateApplyingHistory">
+		UPDATE /* com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper#updateApplyingHistory() */
 		       TBL_APPLYING_HISTORY AH
 		   SET AH.JOB_POST_APPLYING_STATUS = '지원취소'
 		     , AH.JOB_POST_APPLYING_CANCEL_DATE = SYSDATE

@@ -38,7 +38,6 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 	
-	
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=78b48235e398b3e2421dd3b9095893d6&libraries=services"></script>
 </head>
 <body>
@@ -159,7 +158,6 @@
                                             <ul>
                                                 <li>위치:</li>
 												<c:set var="coAddress" value="${ requestScope.memberloginDTO.coAddress }"/>
-												
 												<c:set var="area" value="${fn:split(pageScope.coAddress,'$')[0]} ${fn:split(pageScope.coAddress,'$')[1]}"/>
 												<c:set var="postCode" value="${fn:split(pageScope.coAddress,'$')[2]}"/>
 												<li>
@@ -250,8 +248,6 @@
             </div>
         </div>
     </div>
-    
-
 	<script>
 		var container = document.getElementById('map');
 		var options = {
@@ -289,9 +285,5 @@
 			window.close();
 		}
 	</script>
-	
-
-
- 
 </body>
 </html>

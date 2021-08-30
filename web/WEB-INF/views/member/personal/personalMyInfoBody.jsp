@@ -75,6 +75,7 @@
 				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<!-- 개인회원 개인정보조회 start  -->
 							<div class="jp_listing_tabs_wrapper">
 								<label style="font-size:30px;">개인회원 정보</label><br>
 								<c:if test="${ requestScope.titlePath ne null}">
@@ -88,7 +89,6 @@
 									<div class="jp_regiter_top_heading">
 									</div>
 									<div class="row">
-										<!--Form Group-->
 										<div class="form-group col-md-6 col-sm-6 col-xs-12">
 											<input type="text" name="id" value="${ sessionScope.loginMember.memId }" placeholder="아이디" readonly>
 										</div>
@@ -103,21 +103,23 @@
 										</div>
 									</div>
 								</div>
+								<!-- 이력서 열람 제한 기업 조회 start  -->
 								<div class="jp_listing_tabs_wrapper">
 									<label style="font-size:30px;">열람제한기업</label><br>
-									<c:if test="${requestScope.restrictedCompany eq null }">
-									<label>등록된 열람제한 기업이 없습니다. 회원 정보 변경을 통해서 등록이 가능합니다.</label>
+									<c:if test="${ requestScope.restrictedCompany eq null }">
+										<label>등록된 열람제한 기업이 없습니다. 회원 정보 변경을 통해서 등록이 가능합니다.</label>
 									</c:if>
-									<c:if test="${requestScope.restrictedCompany ne null }">
-									<c:forEach var="restricedComapny" items="${ requestScope.restricedCompany }">
-									<c:out value="d${ restricedComapny.coComName }"></c:out>
-									</c:forEach>
+									<c:if test="${ requestScope.restrictedCompany ne null }">
+										<c:forEach var="restricedComapny" items="${ requestScope.restricedCompany }">
+											<c:out value="d${ restricedComapny.coComName }"></c:out>
+										</c:forEach>
 									</c:if>
 								</div>
+								<!-- 이력서 열람 제한 기업 조회 end -->
 							</div>
+							<!-- 개인회원 개인정보조회 start  -->
 						</div>
 						<br>
-						
 						<button type="button" onclick="infoChange();" class="btn btn-info" id="coInfoChange" style="float: right;">회원 정보 변경</button>
 						<input type="hidden" id="memNo" value="${ sessionScope.loginMember.memNo }">
 					</div>
@@ -135,7 +137,6 @@
 	
 	function restrictedCompany() {
 		
-		alert("");
 		
 	}
 

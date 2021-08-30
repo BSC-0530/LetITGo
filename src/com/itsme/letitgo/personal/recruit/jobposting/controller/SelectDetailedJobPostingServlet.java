@@ -22,25 +22,18 @@ public class SelectDetailedJobPostingServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-
         MemberLoginDTO memberLoginDTO = (MemberLoginDTO) session.getAttribute("loginMember");
-
         int memNo = memberLoginDTO.getMemNo();
+        int jobPostNo = Integer.parseInt(request.getParameter("jobPostNo"));
         
-		// if문을 통해서 회원번호, 공고번호를 가져온다. 회원번호와 공고 번호를 넘겨줘서 이력서의 지원 여부를 확인한다. 지원여부를 가져온다. 이 때 지원여부가 	
+        /* 조회를 위해 dto에 값 set */
 		SelectApplyingYnDTO dto = new SelectApplyingYnDTO();
-		
-		int jobPostNo = Integer.parseInt(request.getParameter("jobPostNo"));
-		
 		dto.setMemNo(memNo);
 		dto.setJobPostNo(jobPostNo);
 		
+		/* 지원여부와 공고 상세정보 조회 */
 		SelectJobPostingService service = new SelectJobPostingService();
-		
-		// 지원여부 db에서 조회한다.
 		SelectApplyingYnDTO applyingResult = service.selectApplyingHistory(dto);
-		
-		// jobPostring에 대한 상세 정보를 db에서 조회한다.
 		Map<String, Object> jp = service.selectDetailedJobPosting(jobPostNo);
 		
 		request.setAttribute("detailedJobPosting", jp.get("detailedJobPosting"));
@@ -49,9 +42,7 @@ public class SelectDetailedJobPostingServlet extends HttpServlet {
 		request.setAttribute("titleFilePath", jp.get("titleFilePath"));
 		request.setAttribute("logoFilePath", jp.get("logoFilePath"));
 		
-		
 		String path = "/WEB-INF/views/recruit/detailedJobPosting.jsp";
-
 		
 		request.getRequestDispatcher(path).forward(request, response);
 		

@@ -7,29 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Let IT Go</title>
-
-<script>
-	function viewProfile() {
-		
-		var resumeNo = document.getElementById("resumeNo").value;
-		
-		var jobPostNo = document.getElementById("jobPostNo").value;
-		
-		location.href = "/let/applicantResume/select?resumeNo=" + resumeNo + "&jobPostNo=" + jobPostNo;
-	}
-</script>
 </head>
 <body>
 	<c:set var="selectCriteria" value="${ requestScope.applicant.selectCriteria }"/>
-	
     <div class="jp_listing_sidebar_main_wrapper">
         <div class="container">
             <div class="row">
             	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="jp_listing_heading_wrapper">
-                        <h2>
-                            We found <span><c:out value="${ selectCriteria.totalCount }"></c:out></span> resumes for you.
-                        </h2>
+                        <h2> We found <span><c:out value="${ selectCriteria.totalCount }"></c:out></span> resumes for you.</h2>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
@@ -40,7 +26,7 @@
 									<h4>기술</h4>
 								</div>
 								<div class="jp_blog_right_search_wrapper">
-									<input id="autocomplete" type="text" placeholder="Search" name="skills">
+									<input type="text" placeholder="Search" name="skills">
 								</div>
 							</div>
 						</div>
@@ -107,15 +93,15 @@
         </div>
     </div>
     <script>
-		function selectJobPosting(div) {
-
-			const jobPostNo = div.children[0].value;
-			const coMemNo = div.children[1].value;
-
-			location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?jobPostNo="
-					+ jobPostNo + "&coMemNo=" + coMemNo;
+		function viewProfile() {
+			
+			/* 선택한 프로필의 이력서 번호와 현재 조회중인 공고번호를 servlet으로 넘겨주기 위해 변수 선언 */
+			const resumeNo = document.getElementById("resumeNo").value;
+			const jobPostNo = document.getElementById("jobPostNo").value;
+			
+			/* 쿼리스트링으로 값 전달 */
+			location.href = "/let/applicantResume/select?resumeNo=" + resumeNo + "&jobPostNo=" + jobPostNo;
 		}
 	</script>
-
 </body>
 </html>

@@ -73,9 +73,9 @@
 	
 	</select>
 	
-	<!-- 동기 기업회원 추가정보 조회 select -->
+	<!-- 기업 상세조회 정보 조회 -->
 	<select id="companyAddInfo" parameterType="com.itsme.letitgo.company.info.model.dto.CompanyAddInfoDTO" resultMap="comAddInfoResultMap">
-		SELECT
+		SELECT /* com.itsme.letitgo.company.info.model.mapper.CompanyInfoMapper#companyAddInfo() */
 		       AI.CO_MEM_NO
 		     , AI.CO_INTRO
 		     , AI.CO_COM_NAME
@@ -92,7 +92,8 @@
 		 WHERE AI.CO_MEM_NO = #{ coMemNo }
 		   AND B.MEM_FILE_KINDS = '프로필사진'
 	</select>
-	<!--  기업정보 조회시 하단 기업의 jobPosting으로 이동하기 위해서 -->
+	
+	<!-- 선택한 기업에서 현재 채용중인 공고 조회 -->
 	<select id="myJobPosting" parameterType="com.itsme.letitgo.personal.recruit.jobposting.model.dto.SelectJobPostingDTO" resultMap="resultMyJobPosting">
 			SELECT
 	    	   JP.JOB_POST_NO

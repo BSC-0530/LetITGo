@@ -73,15 +73,15 @@
  		WHERE IN_MEM_NO = '3'
 	</select>
 	
-<!-- 	 개인 열람제한기업 조회 -->
-<!-- 	<select id="selectRectrictedCompany" parameterType="_int" resultMap="restricedCompanyResult"> -->
-<!-- 		SELECT -->
-<!-- 			   RC.IN_MEM_NO -->
-<!-- 			 , RC.CO_COM_NAME -->
-<!-- 			 , RC.CO_MEM_NO -->
-<!-- 		  FROM TBL_RESTRICTED_COMPANY RC -->
-<!-- 		 WHERE IN_MEM_NO = #{ memNo } -->
-<!-- 	</select> -->
+	<!-- 이력서 열람 제한 기업 조회 -->
+	<select id="selectRectrictedCompany" parameterType="_int" resultMap="restricedCompanyResult">
+		SELECT /* com.itsme.letitgo.personal.info.model.mapper.PersonalInfoMapper#selectRectrictedCompany() */
+			   RC.IN_MEM_NO
+			 , RC.CO_COM_NAME
+			 , RC.CO_MEM_NO
+		  FROM TBL_RESTRICTED_COMPANY RC
+		 WHERE IN_MEM_NO = #{ memNo }
+	</select>
 	
 	<!-- 개인정보 수정 -->
 	<update id="modifyPersonalInfo" parameterType="com.itsme.letitgo.personal.info.model.dto.ModifyMemberDTO">

@@ -25,6 +25,7 @@ public interface PersonalInfoMapper {
 	/* 북마크한 횟수 */
 	int selectBookmarkNum(int memNo);
 
+	/*이력서 열람 제한 기업 조회 */
 	List<RestrictedCompanyDTO> selectRectrictedCompany(int memNo);
 
 	/*개인회원 정보수정*/
