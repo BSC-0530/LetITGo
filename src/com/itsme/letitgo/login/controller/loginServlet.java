@@ -18,7 +18,8 @@ import com.itsme.letitgo.login.model.service.MemberLoginService;
 public class loginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		/* 사용자가 입력한 내용을 전달받음 */
 		String memId = request.getParameter("memId");
 		String memPwd = request.getParameter("memPwd");
 
@@ -83,12 +84,14 @@ public class loginServlet extends HttpServlet {
 
 			} 
 
-		/* 아이디와 비밀번호가 일치자하지 않는 경우 */
+		/* 아이디와 비밀번호가 일치하지 않는 경우 */
 		} else {
 			
 			redirectText.append("<script>alert('아이디와 비밀번호를 다시 확인해주세요.'); location.href='/let/loginPage';</script>");
 
 		}
+		
+		/* redirect로 메세지를 보내면서 location.href로 해당 url로 페이지를 이동시킴 */
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 

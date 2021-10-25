@@ -28,6 +28,7 @@
 	src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
 <style>
 .mainPostExposureText {
 	margin-left: 200px;
@@ -36,6 +37,142 @@
 </style>
 </head>
 <body>
+
+
+<%	
+	/* 르그인된 회원의 세션에서 값 꺼내오기 */
+	MemberLoginDTO dto = (MemberLoginDTO) session.getAttribute("loginMember");
+
+	String memEmail = dto.getMemEmail();
+	String memName = dto.getMemName();
+	String memPhone = dto.getMemPhone();
+%>
+
+<script>
+
+	/* 열람권 결제시  */
+	function payReadingRight(button) {
+		
+		/* 버튼을 기준으로  parentNode시 1단계 위 div / parentNode시 2단계 위 div / parentNode시 3단계 위 div / children[0]시 0번째 인덱스 div / children[0]시 h1의 텍스트 */ 
+		productName = button.parentNode.parentNode.parentNode.children[0].children[0].innerText; 
+		
+		/* 버튼을 기준으로  parentNode시 1단계 위 div / parentNode시 2단계 위 div / parentNode시 3단계 위 div / children[1]시 0번째 인덱스 div /  children[0]시 0번째 인덱스 div / children[0]시 h1의 텍스트 */ 
+		productPrice = button.parentNode.parentNode.parentNode.children[1].children[0].children[0].innerText; 
+			
+		/* 아임포트에서 계정에 부여된 테스트결제 번호  */
+		var IMP = window.IMP; 
+		IMP.init('imp86126357'); 
+	
+		/* 결제정보 및 구매자 정보 */
+	IMP.request_pay({
+	    pg : 'kakaopay',
+	    pay_method : 'card',
+	    merchant_uid : 'merchant_' + new Date().getTime(),
+	    name : productName,
+	    amount : productPrice,
+	    buyer_email : '<%=memEmail%>',
+	    buyer_name : '<%=memName%>',
+	    buyer_tel : '<%=memPhone%>',
+	    buyer_addr : '',
+	    buyer_postcode : ''
+	}, function(rsp) {
+	    if ( rsp.success ) {
+	    	
+	    	/* 결제가 정상적으로 진행시 ajax를 통해 해당 url에 post방식으로 productName을 전달 */
+	    	$.ajax({
+	    		type: "post",
+	    		url:  "/let/payments/reading/complete",
+	    		data: {
+	    		
+		    		productName : productName
+
+	    		},
+	    		
+	    		/* 결제가 성공하였을 경우 */
+				success : function(data) {
+					alert('결제가 성공적으로 완료되었습니다.');
+
+				},
+				
+				/* 결제를 실패하였을 경우 */
+				error:function(xhr) {
+					alert('결제를 실패하였습니다.');
+				}
+	    	})
+	    /* 결제 진행이 실패하였을 경우 */
+	    } else {
+	        var msg = '결제에 실패하였습니다.';
+	        msg += '에러내용 : ' + rsp.error_msg;
+	        
+	        alert(msg);
+	    }
+	});
+	} 
+</script>
+
+<script>
+
+	/* 노출권 결제시  */
+	function payExposureRight(button) {
+		
+		/* 버튼을 기준으로  parentNode시 1단계 위 div / parentNode시 2단계 위 div / parentNode시 3단계 위 div / children[0]시 0번째 인덱스 div / children[0]시 h1의 텍스트 */ 
+		productName = button.parentNode.parentNode.parentNode.children[0].children[0].innerText; 
+		
+		/* 버튼을 기준으로  parentNode시 1단계 위 div / parentNode시 2단계 위 div / parentNode시 3단계 위 div / children[1]시 0번째 인덱스 div /  children[0]시 0번째 인덱스 div / children[0]시 h1의 텍스트 */ 
+		productPrice = button.parentNode.parentNode.parentNode.children[1].children[0].children[0].innerText; 
+		
+		/* 아임포트에서 계정에 부여된 테스트결제 번호  */
+		var IMP = window.IMP; 
+		IMP.init('imp86126357');
+	
+		/* 결제정보 및 구매자 정보 */
+	IMP.request_pay({
+	    pg : 'kakaopay',
+	    pay_method : 'card',
+	    merchant_uid : 'merchant_' + new Date().getTime(),
+	    name : productName,
+	    amount : productPrice,
+	    buyer_email : '<%=memEmail%>',
+	    buyer_name : '<%=memName%>',
+	    buyer_tel : '<%=memPhone%>',
+	    buyer_addr : '',
+        buyer_postcode : ''
+		}, function(rsp) {
+			if (rsp.success) {
+
+				/* 결제가 정상적으로 진행시 ajax를 통해 해당 url에 post방식으로 productName을 전달 */
+				$.ajax({
+					type : "post",
+					url : "/let/payments/exposure/complete",
+					data : {
+
+						productName : productName
+
+					},
+					
+					/* 결제가 성공하였을 경우 */
+					success : function(data) {
+						alert('결제가 성공적으로 완료되었습니다.');
+
+					},
+					
+					/* 결제를 실패하였을 경우 */
+					error : function(xhr) {
+						alert('결제를 실패하였습니다.');
+					}
+				})
+				
+		    /* 결제 진행이 실패하였을 경우 */
+			} else {
+				var msg = '결제에 실패하였습니다.';
+				msg += '에러내용 : ' + rsp.error_msg;
+
+				alert(msg);
+			}
+		});
+	}
+</script>
+
 	<jsp:include page="../common/header/companyHeader.jsp" />
 
 	<!-- 검은색 바탕 -->
@@ -166,113 +303,7 @@
 		</div>
 	</div>
 
-	<!-- 세션에서 값 꺼내오기 -->
-	<%
-		MemberLoginDTO dto = (MemberLoginDTO) session.getAttribute("loginMember");
 
-		String memEmail = dto.getMemEmail();
-		String memName = dto.getMemName();
-		String memPhone = dto.getMemPhone();
-	%>
-
-	<!-- 열람권 결제 -->
-	<script>
-		function payReadingRight(button) {
-			productName = button.parentNode.parentNode.parentNode.children[0].children[0].innerText; 
-			productPrice = button.parentNode.parentNode.parentNode.children[1].children[0].children[0].innerText; 
-				
-			var IMP = window.IMP; 
-			IMP.init('imp86126357'); 
-		
-		IMP.request_pay({
-		    pg : 'kakaopay',
-		    pay_method : 'card',
-		    merchant_uid : 'merchant_' + new Date().getTime(),
-		    name : productName,
-		    amount : productPrice,
-		    buyer_email : '<%=memEmail%>',
-		    buyer_name : '<%=memName%>',
-		    buyer_tel : '<%=memPhone%>',
-		    buyer_addr : '',
-		    buyer_postcode : ''
-		}, function(rsp) {
-		    if ( rsp.success ) {
-		    	
-		    	$.ajax({
-		    		type: "post",
-		    		url:  "/let/payments/reading/complete",
-		    		data: {
-		    		
-			    		productName : productName
-
-		    		},
-					success : function(data) {
-						alert('결제가 성공적으로 완료되었습니다.');
-
-					},
-					error:function(xhr) {
-						alert('결제를 실패하였습니다.');
-					}
-		    	})
-		    } else {
-		        var msg = '결제에 실패하였습니다.';
-		        msg += '에러내용 : ' + rsp.error_msg;
-		        
-		        alert(msg);
-		    }
-		});
-		} 
-	</script>
-
-	<!-- 노출권 결제 -->
-
-	<script>
-		function payExposureRight(button) {
-			productName = button.parentNode.parentNode.parentNode.children[0].children[0].innerText; 
-			productPrice = button.parentNode.parentNode.parentNode.children[1].children[0].children[0].innerText; 
-			
-			var IMP = window.IMP; 
-			IMP.init('imp86126357');
-		
-		IMP.request_pay({
-		    pg : 'kakaopay',
-		    pay_method : 'card',
-		    merchant_uid : 'merchant_' + new Date().getTime(),
-		    name : productName,
-		    amount : productPrice,
-		    buyer_email : '<%=memEmail%>',
-		    buyer_name : '<%=memName%>',
-		    buyer_tel : '<%=memPhone%>',
-		    buyer_addr : '',
-	        buyer_postcode : ''
-			}, function(rsp) {
-				if (rsp.success) {
-
-					$.ajax({
-						type : "post",
-						url : "/let/payments/exposure/complete",
-						data : {
-
-							productName : productName
-
-						},
-						success : function(data) {
-							alert('결제가 성공적으로 완료되었습니다.');
-
-						},
-						error : function(xhr) {
-							alert('결제를 실패하였습니다.');
-						}
-					})
-				} else {
-					var msg = '결제에 실패하였습니다.';
-					msg += '에러내용 : ' + rsp.error_msg;
-
-					alert(msg);
-				}
-			});
-		}
-	</script>
 
 	<jsp:include page="../common/footer.jsp" />
 </html>

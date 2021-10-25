@@ -41,6 +41,7 @@
 		<result property="jobPostApplyingKinds" column="JOB_POST_APPLYING_KINDS"/>
 	</resultMap>
 
+	<!-- 전체지원조회 -->
 	<select id="selectPersonalApply" resultMap="selectPersonalApplyResultMap">
 		SELECT /* com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper#selectPersonalApply() */
 		       A.JOB_POST_NO
@@ -60,6 +61,7 @@
 		 WHERE E.IN_MEM_NO = '3'
 	</select>
 
+	<!-- 채용공고별지원내역의 지원상태를 지원취소로 변경  -->
 	<update id="updateApplyStatus">
 		UPDATE /* com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper#updateApplyStatus() */
 		       TBL_APPLYING_HISTORY
@@ -69,6 +71,7 @@
 		   AND JOB_POST_NO = #{ jobPostNo }
 	</update>
 	
+	<!-- 지원내역상태변경이력을 추가 -->
 	<insert id="insertApplyStatus" >
 		INSERT /* com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper#insertApplyStatus() */
 		  INTO TBL_APPLYING_CHANGE_HISTORY
@@ -89,6 +92,7 @@
 		  )
 	</insert>
 	
+	<!-- 지원완료조회 -->
 	<select id="selectPersonalCompletedApply" resultMap="selectPersonlCompletedApplyResultMap">
 		SELECT /* com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper#selectPersonalCompletedApply() */
 		       A.JOB_POST_NO
@@ -110,6 +114,7 @@
 		   AND D.JOB_POST_APPLYING_STATUS = '지원완료'
 	</select>
 	
+	<!-- 지원취소조회  -->
 	<select id="selectPersonalCanceledApply" resultMap="selectPersonlCanceledApplyResultMap">
 		SELECT /* com.itsme.letitgo.personal.recruit.apply.model.mapper.PersonalApplyMapper#selectPersonalCanceledApply() */
 			   A.JOB_POST_NO

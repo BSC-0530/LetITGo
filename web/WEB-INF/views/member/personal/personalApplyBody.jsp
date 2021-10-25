@@ -40,6 +40,65 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 </head>
+
+<script>
+	
+	/* 데이터 테이블 사용 */
+	$(document).ready(function() {
+		$('#table_apply_whole').DataTable();
+	});
+	$(document).ready(function() {
+		$('#table_apply_complete').DataTable();
+	});
+	$(document).ready(function() {
+		$('#table_apply_cancel').DataTable();
+	});
+
+	/* 지원취소 버튼을 눌렀을 시 */
+	function cancel(button) {
+	
+		/* 버튼을 기준으로  parentNode시 td / parentNode시 tr /  children[0]시 td / children[0]시 resumeNo */
+		var resumeNo = button.parentNode.parentNode.children[0].children[0].value;
+		
+		/* 버튼을 기준으로  parentNode시 td / parentNode시 tr/  children[0]시 td / children[1]시 jobPostNo */
+		var jobPostNo = button.parentNode.parentNode.children[0].children[1].value;
+		
+		/* 폼태그를 만드는 작업 */
+		var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/personal/apply/status/update").attr("method", "get");
+
+		/* 만든 폼태그에 hidden 타입의 input태그를 만들어서 값을 넣어줌 */
+		$form.append($("<input>").attr("name", "resumeNo").attr("type", "hidden").val(resumeNo));
+		$form.append($("<input>").attr("name", "jobPostNo").attr("type", "hidden").val(jobPostNo));
+	
+		/* 폼태그를 바디영역에 붙여줌 */
+		$("body").append($form);
+		
+		/* 폼태그 안에 값을 submit 함 */
+		$form.submit();
+	}
+	
+	/* 공고 제목을 눌렀을 시 이동 */
+	function post1(td) {
+		
+		/* td를 기준으로  children[1]시 jobPostNo */
+		const jobPostNo = td.children[1].value;
+		
+		/* url 주소를 다음과 같이 바꿔줌 */
+		location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?jobPostNo=" + jobPostNo;
+
+	}
+	
+	/* 이력서 확인 버튼을 눌렀을 시 이동 */
+	function resume(button) {
+		
+		/* 버튼을 기준으로  parentNode시 tr / parentNode시 body /  children[0]시 td / children[0]시 resumeNo */
+		var resumeNo = button.parentNode.parentNode.children[0].children[0].value;
+	
+		/* url 주소를 다음과 같이 바꿔줌 */
+		location.href = "${ pageContext.servletContext.contextPath }/resume/detail?selectedDetailResumeNo=" + resumeNo 
+
+	}
+</script>
 <body>
 
 	<!-- 상단 검은색 바탕 -->
@@ -286,56 +345,5 @@
 		</div>
 	</div>
 
-	<!-- 데이터 테이블 사용 -->
-	<script>
-		$(document).ready(function() {
-			$('#table_apply_whole').DataTable();
-		});
-		$(document).ready(function() {
-			$('#table_apply_complete').DataTable();
-		});
-		$(document).ready(function() {
-			$('#table_apply_cancel').DataTable();
-		});
-
-		//지원취소 버튼을 눌렀을 시
-		function cancel(button) {
-
-			var resumeNo = button.parentNode.parentNode.children[0].children[0].value;
-			var jobPostNo = button.parentNode.parentNode.children[0].children[1].value;
-
-			var $form = $("<form>")
-					.attr("action",
-							"${ pageContext.servletContext.contextPath }/personal/apply/status/update")
-					.attr("method", "get");
-
-			$form.append($("<input>").attr("name", "resumeNo").attr("type",
-					"hidden").val(resumeNo));
-			$form.append($("<input>").attr("name", "jobPostNo").attr("type",
-					"hidden").val(jobPostNo));
-
-			$("body").append($form);
-
-			$form.submit();
-		}
-		
-		//공고 제목을 눌렀을 시 이동
-		function post1(td) {
-
-			const jobPostNo = td.children[1].value;
-
-			location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?jobPostNo=" + jobPostNo;
-
-		}
-		
-		//이력서 확인 버튼을 눌렀을 시 이동
-		function resume(button) {
-
-			var resumeNo = button.parentNode.parentNode.children[0].children[0].value;
-
-			location.href = "${ pageContext.servletContext.contextPath }/resume/detail?selectedDetailResumeNo=" + resumeNo 
-
-		}
-	</script>
 </body>
 </html>

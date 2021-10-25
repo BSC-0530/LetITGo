@@ -23,8 +23,8 @@ public class SelectRefundListServlet extends HttpServlet {
 		/* 모든 환불내역조회 */
 		List<AdminRefundHistoryDTO> refundHistoryList = service.selectRefundList();
 
-		String path = "/WEB-INF/views/admin/adminRefund.jsp";
-		
+		/* request에 조회한 내용들을 key, value 형식으로 담아서 forward 방식으로 해당 페이지로 이동시킴 */
+		String path = "/WEB-INF/views/admin/adminRefund.jsp";	
 		request.setAttribute("refundHistoryList", refundHistoryList);
 		request.getRequestDispatcher(path).forward(request, response);
 		

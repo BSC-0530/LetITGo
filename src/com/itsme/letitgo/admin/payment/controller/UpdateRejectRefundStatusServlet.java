@@ -24,6 +24,7 @@ public class UpdateRejectRefundStatusServlet extends HttpServlet {
 		int payChangeNo = Integer.parseInt(request.getParameter("payChangeNo"));
 		int payNo = Integer.parseInt(request.getParameter("payNo"));
 
+		/* request에 조회한 내용들을 key, value 형식으로 담아서 forward 방식으로 해당 페이지로 이동시킴 */
 		request.setAttribute("payChangeNo", payChangeNo);
 		request.setAttribute("payNo", payNo);
 		String path = "/WEB-INF/views/admin/adminRefundRejectMessage.jsp";
@@ -36,6 +37,7 @@ public class UpdateRejectRefundStatusServlet extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 			
+		/* jsp로부터 거절메세지, 결제변경요청번호, 결제번호를 받아옴 */
 		String rejectMessage = request.getParameter("rejectMessage");
 		String payChangeNo = request.getParameter("payChangeNo");
 		String payNo = request.getParameter("payNo");
@@ -61,7 +63,8 @@ public class UpdateRejectRefundStatusServlet extends HttpServlet {
 		} else {
 			redirectText.append("<script>alert('환불요청거절을 실패하셨습니다.'); location.href='../../refund/select';</script>");
 		}
-		 							
+		 				
+		/* result 결과 값에 따라 redirect 방식으로 메세지를 보내면서 location.href에 해당하는 페이지로 이동시킴 */		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		

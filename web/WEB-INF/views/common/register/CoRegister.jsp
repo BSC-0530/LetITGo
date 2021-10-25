@@ -8,10 +8,13 @@
 </head>
 <body>
 
+	<!-- 비로그인 시 사용하는 헤더 -->
 	<jsp:include page="../../common/header/header.jsp"/>
 	
+	<!-- 기업회원가입란 -->
 	<jsp:include page="CoRegisterBody.jsp"/>
 	
+	<!-- 공용 풋터 -->
 	<jsp:include page="../../common/footer.jsp"/>
 
 </body>

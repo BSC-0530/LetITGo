@@ -13,6 +13,7 @@ public class logoutServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		/* 세션을  무효화시키는 역할을 한다. */
 		request.getSession().invalidate();	
 		response.sendRedirect(request.getContextPath());
 		

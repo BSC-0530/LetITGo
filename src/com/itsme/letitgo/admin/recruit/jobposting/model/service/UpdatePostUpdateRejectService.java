@@ -30,7 +30,7 @@ public class UpdatePostUpdateRejectService {
 		return result;
 	}
 
-	/* 채용공고 승인여부이력의 응답구분을 승인으로 변경 */
+	/* 채용공고 승인여부이력의 응답구분을 거절로 변경 */
 	public int updatePostRejectRequest2(Map<String, Object> map) {
 		
 		SqlSession session = getSqlSession();

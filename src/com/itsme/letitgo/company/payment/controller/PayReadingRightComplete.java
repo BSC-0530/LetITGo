@@ -21,6 +21,7 @@ public class PayReadingRightComplete extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		/* 열람권 결제시 상품이름을 jsp로부터 받아옴 */
 		String productName = request.getParameter("productName");
 		
 		PayCompleteService service = new PayCompleteService();

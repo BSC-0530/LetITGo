@@ -20,6 +20,7 @@ public class UpdatePostUpdateAppServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		/* 승인버튼클릭시 해당 공고에 지원한 이력서번호와 공고번호를 jsp로부터 받아옴 */
 		int jobPostNo = Integer.parseInt(request.getParameter("jobPostNo"));
 		int jobPostReqNo = Integer.parseInt(request.getParameter("jobPostReqNo"));
 		
@@ -45,7 +46,7 @@ public class UpdatePostUpdateAppServlet extends HttpServlet {
 			redirectText.append("<script>alert('채용공고수정승인에 실패하셨습니다.'); location.href='../../updateRequest/select';</script>");
 		}
 		 
-									
+		/* result 결과 값에 따라 redirect 방식으로 메세지를 보내면서 location.href에 해당하는 페이지로 이동시킴 */						
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		

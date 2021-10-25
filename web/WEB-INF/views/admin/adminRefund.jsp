@@ -38,6 +38,81 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 
+<script>
+
+	/* 데이터테이블 사용 */
+	$(document).ready(function() {
+		$('#table_refunded').DataTable();
+	});
+
+	/* 환불요청 승인시 */	
+	function approval(button) {
+		
+		/* 버튼을 기준으로  parentNode시 td / parentNode시 tr / children[0]시 td / children[0]시 payChangeNo 값 */
+		var payChangeNo = button.parentNode.parentNode.children[0].children[0].value;
+		
+		/* 버튼을 기준으로  parentNode시 td / parentNode시 tr / children[0]시 payNo 값 */
+		var payNo = button.parentNode.parentNode.children[0].innerText;
+
+		/* 폼태그를 만드는 작업 */
+		var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/admin/refund/app/update").attr("method", "get");
+
+		/* 만든 폼태그에 hidden 타입의 input태그를 만들어서 값을 넣어줌 */
+		$form.append($("<input>").attr("name", "payChangeNo").attr("type", "hidden").val(payChangeNo));
+		$form.append($("<input>").attr("name", "payNo").attr("type", "hidden").val(payNo));
+
+		/* 폼태그를 바디영역에 붙여줌 */
+		$("body").append($form);
+			
+		/* 폼태그 안에 값을 submit 함 */
+		$form.submit();
+	}
+
+	/* 환불요청 거절시 */
+	function reject(button) {
+
+		/* 버튼을 기준으로  parentNode시 td / parentNode시 tr / children[0]시 td / children[0]시 payChangeNo 값 */
+		var payChangeNo = button.parentNode.parentNode.children[0].children[0].value;
+		
+		/* 버튼을 기준으로  parentNode시 td / parentNode시 tr / children[0]시 payNo 값 */
+		var payNo = button.parentNode.parentNode.children[0].innerText;
+		
+		/* 폼태그를 만드는 작업 */
+		var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/admin/refund/reject/update").attr("method", "get");
+
+		/* 만든 폼태그에 hidden 타입의 input태그를 만들어서 값을 넣어줌 */
+		$form.append($("<input>").attr("name", "payChangeNo").attr("type", "hidden").val(payChangeNo));
+		$form.append($("<input>").attr("name", "payNo").attr("type", "hidden").val(payNo));
+
+		/* 폼태그를 바디영역에 붙여줌 */
+		$("body").append($form);
+
+		/* 폼태그 안에 값을 submit 함 */
+		$form.submit();
+	}
+
+	/* 환불사유 상세보기 */
+	function refundBrowse(button){
+		
+		/* 버튼을 기준으로  parentNode시 td / parentNode시 tr / children[0]시 td / children[0]시 payChangeNo 값 */
+		var payChangeNo = button.parentNode.parentNode.children[0].children[0].value;
+	
+		/* url 주소를 다음과 같이 바꿔줌 */
+		location.href="${ pageContext.servletContext.contextPath }/admin/refundHistory/reason/select?payChangeNo="+payChangeNo
+				
+	}	
+	
+	/* 거절사유 상세보기 */
+	function rejectBrowse(button){
+		
+		/* 버튼을 기준으로  parentNode시 td / parentNode시 tr / children[0]시 td / children[0]시 payChangeNo 값 */
+		var payChangeNo = button.parentNode.parentNode.children[0].children[0].value;
+		
+		/* url 주소를 다음과 같이 바꿔줌 */
+		location.href="${ pageContext.servletContext.contextPath }/admin/refundHistory/rejectReason/select?payChangeNo="+payChangeNo
+				
+	}	
+</script>
 </head>
 <body>
 	<div class="jp_listing_sidebar_main_wrapper">
@@ -214,79 +289,6 @@
 		</div>
 	</div>
 
-	<!-- 데이터테이블 사용 -->
 
-<script>
-		$(document).ready(function() {
-			$('#table_refunded').DataTable();
-		});
-</script>
-</body>
-
-	<!-- 환불 승인시 -->
-	<script>
-		function approval(button) {
-			var payChangeNo = button.parentNode.parentNode.children[0].children[0].value;
-			var payNo = button.parentNode.parentNode.children[0].innerText;
-
-			var $form = $("<form>")
-					.attr("action",
-							"${ pageContext.servletContext.contextPath }/admin/refund/app/update")
-					.attr("method", "get");
-
-			$form.append($("<input>").attr("name", "payChangeNo").attr("type",
-					"hidden").val(payChangeNo));
-			$form.append($("<input>").attr("name", "payNo").attr("type",
-					"hidden").val(payNo));
-
-			$("body").append($form);
-
-			$form.submit();
-		}
-	</script>
-
-	<!-- 환불 거절시 -->
-	
-	<script>
-		function reject(button) {
-
-			var payChangeNo = button.parentNode.parentNode.children[0].children[0].value;
-			var payNo = button.parentNode.parentNode.children[0].innerText;
-			
-			var $form = $("<form>")
-					.attr("action",
-							"${ pageContext.servletContext.contextPath }/admin/refund/reject/update")
-					.attr("method", "get");
-
-			$form.append($("<input>").attr("name", "payChangeNo").attr("type",
-					"hidden").val(payChangeNo));
-			$form.append($("<input>").attr("name", "payNo").attr("type",
-					"hidden").val(payNo));
-
-			$("body").append($form);
-
-			$form.submit();
-		}
-	</script>
-	
-	<script>
-		//환불사유 상세보기
-		function refundBrowse(button){
-			
-			var payChangeNo = button.parentNode.parentNode.children[0].children[0].value;
-		
-			location.href="${ pageContext.servletContext.contextPath }/admin/refundHistory/reason/select?payChangeNo="+payChangeNo
-					
-		}	
-		
-		//거절사유 상세보기
-		function rejectBrowse(button){
-			
-			var payChangeNo = button.parentNode.parentNode.children[0].children[0].value;
-			
-			location.href="${ pageContext.servletContext.contextPath }/admin/refundHistory/rejectReason/select?payChangeNo="+payChangeNo
-					
-		}	
-	</script>
 </body>
 </html>

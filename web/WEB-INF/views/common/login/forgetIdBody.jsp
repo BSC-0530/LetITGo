@@ -38,12 +38,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 
-	
+/* 이메일 인증을 하였는지에 대한 유효성 검사 */	
 function checkValue() {
-
+	
+	/* <form>의 정보를 var form 변수로 저장  */
 	var form = document.forgetId;
 
-	
+	/* form안의 태그 아이디가 certificationYn인 태그의 값이 true가 아닐경우 */
 	if(form.certificationYn.value != "true") {
 		alert("이메일 인증확인을 해주세요.");
 		return false;
@@ -52,11 +53,13 @@ function checkValue() {
 	
 }	
 	
-  
+/* 인증번호 전송시 */  
 function emailSend() {
 	
-	 memEmail = document.getElementById('memEmail').value;
-		
+	/* id가 memEmail이 태그의 값을 var memEmail로 저장*/
+	var memEmail = document.getElementById('memEmail').value;
+	
+	/* var memEamil의 값을 ajax를 통해 해당 url의 get방식으로 전달 */
 	$.ajax({
 		type:"get",
 		url:"/let/member/whole/email",
@@ -71,12 +74,16 @@ function emailSend() {
 			
 }
 
+/* 이메일에 보낸 인증번호와 사용자가 입력한 인증번호가 같은지 유효성 검사 */
 function checkEmailCode() {
 	
+	/* id가 certificationNumber이 태그의 값을 var certificationNumber로 저장*/
 	var certificationNumber = document.getElementById("certificationNumber").value;
 	
+	/* <form>의 정보를 var form 변수로 저장  */
 	var form = document.forgetId;
 	
+	/* var certificationNumber의 값을 ajax를 통해 해당 url의 get방식으로 전달 */
 	$.ajax({
 		type:"post",
 		url:"/let/member/whole/email",
@@ -84,11 +91,19 @@ function checkEmailCode() {
 		success : function(data) {
 			if(data == "true") {
 				alert('이메일 인증에 성공하였습니다.');
+				
+				/* 이메일 인증이 확인되어 value를 true로 변경함으로써 checkValue()의 유효성검사에 걸리지 않게함 */
 				form.certificationYn.value = "true";
 			} else {
 				alert('이메일 인증에 실패하였습니다.');
+				
+				/* 이메일 인증이 일치하지 않아 사용자가 작성한 입력칸을 빈칸으로 만든다. */
 				 form.certificationNumber.value = "";
+				
+				/* 이메일 인증이 일치하지 않아 커서를 인증번호입력칸으로 이동시킨다. */
 				 form.certificationNumber.focus();
+				
+				/* 임에리 인증이 일치하지 않아  checkValue() 유효성 검사에 걸리게끔 false로 변경 */
 				 form.certificationYn.value = "false";
 				 return false;
 			}
@@ -103,7 +118,8 @@ function checkEmailCode() {
 </script>
 </head>
 <body>
-
+	
+	<!-- 상단 검은색 바탕 -->
 	<div class="jp_tittle_main_wrapper">
         <div class="jp_tittle_img_overlay"></div>
         <div class="container">
@@ -123,6 +139,8 @@ function checkEmailCode() {
             </div>
         </div>
     </div>
+    
+    <!-- 이메일 인증하는 란 -->
 	  
 	<form action="${ pageContext.servletContext.contextPath }/member/forgetId" onSubmit="return checkValue();" name="forgetId" method="post">
     <div class="register_section">

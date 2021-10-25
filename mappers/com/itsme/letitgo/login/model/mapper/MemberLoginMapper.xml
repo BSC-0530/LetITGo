@@ -26,6 +26,7 @@
 		<result property="coWebsite" column="CO_WEBSITE"/>
 	</resultMap>
 	
+    <!-- 로그인하려는 회원의 비밀번호를 조회 -->
 	<select id="selectEncryptedPwd" resultType="java.lang.String">
 		SELECT /* com.itsme.letitgo.login.model.mapper.MemberLoginMapper#selectEncryptedPwd() */
 			   A.MEM_PWD
@@ -34,6 +35,7 @@
 		   AND A.MEM_ID = #{ memId } 
 	</select>
 	
+	<!-- 로그인 하려는 회원의 비밀번호와  조회된 회원의 비밀번호의 일치여부 확인하여 맞으면 정보를 가져옴 -->
 	<select id="selectLoginMember" resultMap="memberLoginResultMap">
 		SELECT /* com.itsme.letitgo.login.model.mapper.MemberLoginMapper#selectLoginMember() */
 			   A.MEM_NO
@@ -63,6 +65,7 @@
 		   AND MEM_ENT_YN = 'N'
 	</select>
 	
+	<!-- 기업회원의 경우 회원의 가입이 승인된 경우 -->
 	<select id="selectAppHistory" resultType="_int">
 		SELECT /* com.itsme.letitgo.login.model.mapper.MemberLoginMapper#selectAppHistory() */
 	   	       COUNT(*)
@@ -72,6 +75,7 @@
 		   AND CO_ANS_KINDS = '승인'
 	</select>
 	
+	<!-- 기업회원의 경우 회원의 가입이 거절된 경우 -->
 	<select id="selectRejectHistory" resultType="_int">
 		SELECT /* com.itsme.letitgo.login.model.mapper.MemberLoginMapper#selectAppHistory() */
 	   	       COUNT(*)
@@ -81,6 +85,7 @@
 		   AND CO_ANS_KINDS = '거절'
 	</select>
 	
+	<!-- 기업회원의 경우 회원의 가입이 대기인 경우 -->
 	<select id="selectWaitHistory" resultType="_int">
 		SELECT /* com.itsme.letitgo.login.model.mapper.MemberLoginMapper#selectAppHistory() */
 	   	       COUNT(*)
@@ -90,6 +95,7 @@
 		   AND CO_ANS_KINDS = '대기'
 	</select>
 	
+	<!-- 이메일을 통해서 아이디를 조회 -->
 	<select id="selectFogetId" resultType="string">
 		SELECT /* com.itsme.letitgo.login.model.mapper.MemberLoginMapper#selectAppHistory() */
 		       MEM_ID
@@ -97,6 +103,7 @@
 		 WHERE MEM_EMAIL = #{ memEmail }
 	</select>
 	
+	<!-- 아이디와 이메일을 통해 존재하는 회원이 있는지 확인 -->
 	<select id="checkIdEmail" resultType="_int">
 		SELECT
 		       COUNT(*)
@@ -105,6 +112,7 @@
 		   AND MEM_EMAIL = #{ memEmail }       
 	</select>
 	
+	<!-- 아이디에 암호회된 비밀번호를 넣어줌 -->
 	<update id="updateMemPwd">
 		UPDATE 
 		       TBL_MEMBER

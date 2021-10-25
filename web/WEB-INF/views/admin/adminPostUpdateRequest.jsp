@@ -38,6 +38,84 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 
+<script>
+
+/* 데이터테이블 사용 */
+$(document).ready(function() {
+	$('#table_postUpdate').DataTable();
+});
+
+/* 채용공고 승인시 */	
+function jobPostApproval(button) {
+	
+	/* 버튼을 기준으로  parentNode시 td / parentNode시 tr / children[0]시 td의 텍스트 값*/
+	var jobPostReqNo = button.parentNode.parentNode.children[0].innerText;
+	
+	/* 버튼을 기준으로  parentNode시 td / parentNode시 tr / children[1]시 td의 텍스트 값*/
+	var jobPostNo = button.parentNode.parentNode.children[1].innerText;
+	
+	/* 폼태그를 만드는 작업 */
+	var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/admin/post/update/app/update").attr("method", "get");
+		
+	/* 만든 폼태그에 hidden 타입의 input태그를 만들어서 값을 넣어줌 */
+	$form.append($("<input>").attr("name", "jobPostReqNo").attr("type", "hidden").val(jobPostReqNo));
+	$form.append($("<input>").attr("name", "jobPostNo").attr("type", "hidden").val(jobPostNo));
+		
+	/* 폼태그를 바디영역에 붙여줌 */
+	$("body").append($form);
+		
+	/* 폼태그 안에 값을 submit 함 */
+	$form.submit();
+}
+
+/* 채용공고 거절시 */	
+function jobPostReject(button) {
+		
+	/* 버튼을 기준으로  parentNode시 td / parentNode시 tr / children[0]시 td의 텍스트 값*/
+	var jobPostReqNo = button.parentNode.parentNode.children[0].innerText;
+	
+	/* 버튼을 기준으로  parentNode시 td / parentNode시 tr / children[1]시 td의 텍스트 값*/
+	var jobPostNo = button.parentNode.parentNode.children[1].innerText;
+		
+	/* 폼태그를 만드는 작업 */
+	var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/admin/post/update/reject/update").attr("method", "get");
+		
+	/* 만든 폼태그에 hidden 타입의 input태그를 만들어서 값을 넣어줌 */
+	$form.append($("<input>").attr("name", "jobPostReqNo").attr("type", "hidden").val(jobPostReqNo));
+	$form.append($("<input>").attr("name", "jobPostNo").attr("type", "hidden").val(jobPostNo));
+		
+	/* 폼태그를 바디영역에 붙여줌 */
+	$("body").append($form);
+		
+	/* 폼태그 안에 값을 submit 함 */
+	$form.submit();	
+		
+}
+
+/* 보기 버튼눌렀을 시 채용공고로 이동 */	
+function post3(button) { 
+	
+	/* 버튼을 기준으로  parentNode시 td / parentNode시 tr / children[1]시 td의 텍스트 값*/
+	const jobPostNo = button.parentNode.parentNode.children[1].innerText;
+		
+	/* url 주소를 다음과 같이 바꿔줌 */
+	location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?jobPostNo=" + jobPostNo;
+	
+				
+}	
+
+/* 거절사유 상세보기  */	
+function rejectBrowse(button){
+	
+	/* 버튼을 기준으로  parentNode시 td / parentNode시 tr / children[0]시 td의 텍스트 값*/
+	var jobPostReqNo = button.parentNode.parentNode.children[0].innerText;
+	
+	/* url 주소를 다음과 같이 바꿔줌 */
+	location.href="${ pageContext.servletContext.contextPath }/admin/post/rejectReason/select?jobPostReqNo="+jobPostReqNo
+			
+}
+
+</script>
 </head>
 
 <!-- 전체 묶음 -->
@@ -218,64 +296,5 @@
 		</div>
 	</div>
 	
-<!-- 데이터테이블 사용 -->	
-<script>
-	$(document).ready(function() {
-		$('#table_postUpdate').DataTable();
-	});
-
-//공고수정 승인시
-function jobPostApproval(button) {
-		
-	var jobPostReqNo = button.parentNode.parentNode.children[0].innerText;
-	var jobPostNo = button.parentNode.parentNode.children[1].innerText;
-		
-	var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/admin/post/update/app/update").attr("method", "get");
-		
-	$form.append($("<input>").attr("name", "jobPostReqNo").attr("type", "hidden").val(jobPostReqNo));
-	$form.append($("<input>").attr("name", "jobPostNo").attr("type", "hidden").val(jobPostNo));
-		
-	$("body").append($form);
-		
-	$form.submit();
-}
-
-//공고수정 거절시
-function jobPostReject(button) {
-		
-		var jobPostReqNo = button.parentNode.parentNode.children[0].innerText;
-		var jobPostNo = button.parentNode.parentNode.children[1].innerText;
-			
-		var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/admin/post/update/reject/update").attr("method", "get");
-			
-		$form.append($("<input>").attr("name", "jobPostReqNo").attr("type", "hidden").val(jobPostReqNo));
-		$form.append($("<input>").attr("name", "jobPostNo").attr("type", "hidden").val(jobPostNo));
-			
-		$("body").append($form);
-			
-		$form.submit();	
-		
-}
-
-//공고제목클릭시 공고로 이동
-function post3(button) { 
-	
-	const jobPostNo = button.parentNode.parentNode.children[1].innerText;
-		
-	location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?jobPostNo=" + jobPostNo;
-	
-				
-}	
-
-//거절사유 상세보기
-function rejectBrowse(button){
-	
-	var jobPostReqNo = button.parentNode.parentNode.children[0].innerText;
-	
-	location.href="${ pageContext.servletContext.contextPath }/admin/post/rejectReason/select?jobPostReqNo="+jobPostReqNo
-			
-}
-
-</script>
 </body>
 </html>

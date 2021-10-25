@@ -21,10 +21,12 @@ public class PayExposureRightComplete extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		/* 노출권 결제시 상품이름을 jsp로부터 받아옴 */
 		String productName = request.getParameter("productName");
 		
 		PayCompleteService service = new PayCompleteService();
 		
+		/* 상품이름으로 상품정보 가져오기 */
 		ProductDTO product = service.SelectProduct(productName);
 		
 		/* 세션에서 값 꺼내오기 */

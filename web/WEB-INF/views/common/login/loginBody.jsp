@@ -27,8 +27,6 @@
 	href="${ pageContext.servletContext.contextPath }/resources/css/style_II.css" />
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/responsive.css" />
-
-<!-- letitgo 제작 css -->
 <link rel="stylesheet" type="text/css" href="${ pageContext.servletContext.contextPath }/resources/css/letitgo/letitgo.css"/>
 </head>
 <body>
@@ -45,12 +43,12 @@
 							<h2>개인 / 기업 회원</h2>
 							<div class="formsix-pos">
 								<div class="form-group i-email">
-									<input type="text" name="memId" class="form-control" id="email2" placeholder="Username*">
+									<input type="text" name="memId" class="form-control" id="memId" placeholder="Username*">
 								</div>
 							</div>
 							<div class="formsix-e">
 								<div class="form-group i-password">
-									<input type="password" name="memPwd" class="form-control" id="password2" placeholder="Password *">
+									<input type="password" name="memPwd" class="form-control" id="memPwd" placeholder="Password *">
 								</div>
 							</div>
 							<div class="login_remember_box">

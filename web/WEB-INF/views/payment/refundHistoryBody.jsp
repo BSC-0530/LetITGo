@@ -37,6 +37,44 @@
 	src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
+<script>
+
+	/* 데이터 테이블 사용 */
+	$(document).ready(function() {
+		$('#table_refund').DataTable();
+	});
+
+	/* 환불요청 취소 시 */
+	function req(button) {
+
+		/* 버튼을 기준으로  parentNode시 td / parentNode시 tr /  children[0]시 td / children[0]시  refundNo */
+		var refundNo = button.parentNode.parentNode.children[0].children[0].value;
+		
+		/* 폼태그를 만드는 작업 */
+		var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/company/refundHistory/select").attr("method", "post");
+
+		/* 만든 폼태그에 hidden 타입의 input태그를 만들어서 값을 넣어줌 */
+		$form.append($("<input>").attr("name", "refundNo").attr("type", "hidden").val(refundNo));
+
+		/* 폼태그를 바디영역에 붙여줌 */
+		$("body").append($form);
+		
+		/* 폼태그 안에 값을 submit 함 */
+		$form.submit();
+	}
+	
+	/* 환불사유 상세보기 클릭 시 */
+	function browse(button){
+		
+		/* 버튼을 기준으로  parentNode시 td / parentNode시 tr /  children[0]시 td / children[0]시  payChangeNo */
+		var payChangeNo = button.parentNode.parentNode.children[0].children[0].value;
+		
+		/* url 주소를 다음과 같이 바꿔줌 */
+		location.href="${ pageContext.servletContext.contextPath }/company/refundHistory/reason/select?payChangeNo="+payChangeNo
+				
+	}	
+</script>	
 </head>
 <body>
 	<!-- 상단 검은색바탕 -->
@@ -201,40 +239,5 @@
 		</div>
 	</div>
 
-	<!-- 데이터테이블 사용 -->
-	<script>
-		$(document).ready(function() {
-			$('#table_refund').DataTable();
-		});
-
-		// 환불요청취소시 
-		function req(button) {
-
-			var refundNo = button.parentNode.parentNode.children[0].children[0].value;
-			
-			var $form = $("<form>")
-					.attr("action",
-							"${ pageContext.servletContext.contextPath }/company/refundHistory/select")
-					.attr("method", "post");
-
-			$form.append($("<input>").attr("name", "refundNo").attr("type",
-					"hidden").val(refundNo));
-
-			console.log($form.children().val());
-
-			$("body").append($form);
-
-			$form.submit();
-		}
-		
-		//상세보기시
-		function browse(button){
-			
-			const payChangeNo = button.parentNode.parentNode.children[0].children[0].value;
-			
-			location.href="${ pageContext.servletContext.contextPath }/company/refundHistory/reason/select?payChangeNo="+payChangeNo
-					
-		}	
-	</script>
 </body>
 </html>

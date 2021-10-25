@@ -36,7 +36,9 @@ public class SelectPaymentHistoryServlet extends HttpServlet {
 		List<PaymentHistoryDTO> paymentHistoryList = selectPaymentHistoryService.selectPaymentHistory(memNo);		
 		
 		/* 보유중인 이력서열람권 조회 */
-		List<ReadingLeftNumDTO> BrowsingNum = selectPaymentHistoryService.selectResumeBrowsingNum(memNo);					
+		List<ReadingLeftNumDTO> BrowsingNum = selectPaymentHistoryService.selectResumeBrowsingNum(memNo);		
+		
+		/* 여러개의 열람권 상품이 있을 경우 상품들의 열람권갯수를 더해줌 */
 		int resumeBrowsingNum = 0;		
 		for(int i = 0; i < BrowsingNum.size(); i++) {
 			resumeBrowsingNum += BrowsingNum.get(i).getReadingLeftNum();
@@ -48,21 +50,27 @@ public class SelectPaymentHistoryServlet extends HttpServlet {
 		/* 노출권 잔여시간 조회 */
 		List<ExposureLeftTimeDTO> exposureRestTime = selectPaymentHistoryService.selectExposureRestTime(memNo);	
 		
+		/* 여러개의 상품이 있을 경우 상품들의 노출시간을 더해줌 */
 		int exposureLeftTime = 0;
 		for(int i = 0; i < exposureRestTime.size(); i++) {
 			exposureLeftTime += exposureRestTime.get(i).getExposureTime();
 		}
 		
-		Integer exposureRestHour = null;
-		Integer exposureRestMinute = null;
+		/* 시간과 분을 따로 나타내기 위해서 나눔 */
+		int exposureRestHour = 0;
+		int exposureRestMinute = 0;
 		
 		if(exposureLeftTime != 0) {
 			
+			/* DB에 초단위로 저장되어있어서 시간을 나타내기 위해서 3600으로 나눔 */
 			exposureRestHour = exposureLeftTime / 3600;
+			
+			/* DB에 초단위로 저장되어있어서 분을 나타내기위해서 다음과 같이 작성함  */
 			exposureRestMinute = (exposureRestHour % 1) * 100 / 100 * 60;
 			request.setAttribute("exposureRestHour", exposureRestHour);
 			request.setAttribute("exposureRestMinute", exposureRestMinute);
 			
+		/* 노출권의 남은 시간이 없을 경우 시간과 분을 0으로 저장하고 jsp에 값을 넘겨줌 */	
 		} else {
 			
 			exposureRestHour = 0;
@@ -84,6 +92,7 @@ public class SelectPaymentHistoryServlet extends HttpServlet {
 		/* 노촐권 사용중인 공고의 요구기술 */
 		List<HoldingRequestingSkillsDTO> paymentrequestingSkillsList = selectPaymentHistoryService.selectRequestingSkills();
 			
+		/* request에 조회한 내용들을 key, value 형식으로 담아서 forward 방식으로 해당 페이지로 이동시킴 */
 		String path = "/WEB-INF/views/payment/paymentHistory.jsp";
 		
 		request.setAttribute("paymentHistoryList", paymentHistoryList);

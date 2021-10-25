@@ -13,7 +13,7 @@
 		<result property="changeReqJobPostNo" column="CHANGE_REQ_JOB_POST_NO"/>
 	</resultMap>
 
-	
+	<!-- 공고등록요청 리스트 조회  -->
 	<select id="selectPostRequest" resultMap="postInsertRuqeustResultMap">
 		SELECT /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#selectPostRequest() */ 
 		       A.JOB_POST_REQ_NO
@@ -31,6 +31,7 @@
 		 ORDER BY A.JOB_POST_REQ_NO ASC
 	</select>
 	
+	<!-- 채용공고의 분류를 승인된 공고로 변경 -->
 	<update id="updatePostRequestApp1">
 		UPDATE /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#updatePostRequestApp1() */
 		       TBL_JOB_POSTING
@@ -39,6 +40,7 @@
 		 WHERE JOB_POST_NO = #{ jobPostNo }
 	</update>
 	
+	<!-- 채용공고 승인여부이력 응답구분을 승인으로 변경  -->
 	<update id="updatePostRequestApp2">
 		UPDATE /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#updatePostRequestApp2() */
 		       TBL_JOB_POSTING_APP_HISTORY		       
@@ -47,6 +49,7 @@
 		 WHERE JOB_POST_REQ_NO = #{ jobPostReqNo }
 	</update>
 	
+	<!-- 채용공고의 분류를 거절된 공고로 변경 -->
 	<update id="updatePostRejectRequest1">
 		UPDATE /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#updatePostRejectRequest1() */
 		       TBL_JOB_POSTING		       
@@ -54,6 +57,7 @@
 		 WHERE JOB_POST_NO = #{ jobPostNo }
 	</update>
 	
+	<!-- 채용공고 승인여부이력 응답구분을 거절로 변경 -->
 	<update id="updatePostRejectRequest2">
 		UPDATE /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#updatePostRejectRequest2() */
 		       TBL_JOB_POSTING_APP_HISTORY		       
@@ -63,6 +67,7 @@
 		 WHERE JOB_POST_REQ_NO = #{ jobPostReqNo }
 	</update>
 	
+	<!-- 공고수정요청 리스트 조회 -->
 	<select id="selectPostInsertUpdate" resultMap="postInsertRuqeustResultMap">
 		SELECT /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#selectPostInsertUpdate() */ 
 		       A.JOB_POST_REQ_NO
@@ -81,6 +86,7 @@
 		 ORDER BY A.JOB_POST_REQ_NO
 	</select>
 	
+	<!--  채용공고의 분류를 승인된 공고로 변경 -->
 	<update id="updatePostUpdateApp1">
 		UPDATE /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#updatePostUpdateApp1() */
 		       TBL_JOB_POSTING
@@ -89,6 +95,7 @@
 		 WHERE JOB_POST_NO = #{ jobPostNo }
 	</update>
 	
+	<!-- 채용공고 승인여부이력의 응답구분을 승인으로 변경 -->
 	<update id="updatePostUpdateApp2">
 		UPDATE /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#updatePostUpdateApp2() */
 		       TBL_JOB_POSTING_APP_HISTORY		       
@@ -97,6 +104,7 @@
 		 WHERE JOB_POST_REQ_NO = #{ jobPostReqNo }
 	</update>
 	
+	<!-- 채용공고의 분류를 거절된 공고로 변경 -->
 	<update id="updatePostUpdateRejectRequest1">
 		UPDATE /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#updatePostUpdateRejectRequest1() */
 		       TBL_JOB_POSTING		       
@@ -104,6 +112,7 @@
 		 WHERE JOB_POST_NO = #{ jobPostNo }
 	</update>
 	
+	<!-- 채용공고 승인여부이력의 응답구분을 거절로 변경 -->
 	<update id="updatePostUpdateRejectRequest2">
 		UPDATE /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#updatePostUpdateRejectRequest2() */
 		       TBL_JOB_POSTING_APP_HISTORY		       
@@ -113,6 +122,7 @@
 		 WHERE JOB_POST_REQ_NO = #{ jobPostReqNo }
 	</update>
 	
+	<!-- 요청번호를 통해서 수정전 채용공고번호를 가져옴 -->
 	<select id="selectChangeReqJobPostNo" resultType="_int"> 
 		SELECT /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#selectChangeReqJobPostNo() */
 		       CHANGE_REQ_JOB_POST_NO
@@ -120,6 +130,7 @@
 		 WHERE JOB_POST_REQ_NO = #{ jobPostReqNo } 	
 	</select>
 	
+	<!-- 수정완료전공고의 분류를 수정완료전공고 로 변경 -->
 	<update id="updatePostUpdateApp3">
 		UPDATE /* com.itsme.letitgo.admin.recruit.jobposting.model.mapper.AdminJobPostMapper#updatePostUpdateApp3() */
 		       TBL_JOB_POSTING
