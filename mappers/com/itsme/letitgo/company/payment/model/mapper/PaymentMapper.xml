@@ -71,6 +71,7 @@
 		<result property="exposureTime" column="EXPOSURE_TIME"/>
 	</resultMap>
 
+	<!-- 상품목록 조회 -->
 	<select id="selectProductList" resultMap="productResultMap">
 	   SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectProductList() */
 	          PRODUCT_NO
@@ -85,6 +86,7 @@
 	    ORDER BY PRODUCT_NO
 	</select>
 	
+	<!-- 결제내역 조회 -->
 	<select id="selectPaymentHistory" resultMap="paymentHistoryResultMap">
 		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectPaymentHistory() */
                A.PAY_NO
@@ -98,6 +100,7 @@
          ORDER BY A.PAY_NO
 	</select>
 
+	<!-- 보유중인 이력서열람권 조회 -->
 	<select id="selectResumeBrowsingNum" resultMap="readingLeftNumResultMap">
 	   SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#SelectResumeBrowsingNum() */
               A.READING_LEFT_NUM
@@ -108,6 +111,7 @@
           AND A.CO_MEM_NO = #{ memNo }
 	</select>
 	
+	<!-- 노출권 사용중인 공고 조회  -->
 	<select id="selectExposureUsingPostNum" resultType="_int">
 		SELECT
 		       COUNT(*)
@@ -116,6 +120,7 @@
 		   AND SYSDATE BETWEEN EXPOSURE_USE_DATE AND EXPOSURE_END_DATE
 	</select>
 	
+	<!-- 노출권 잔여시간 조회 -->
 	<select id="selectExposureRestTime" resultMap="exposureLeftTimeResultMap">
 		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#SelectExposureRestTime() */
        		   A.EXPOSURE_TIME
@@ -126,6 +131,7 @@
            AND A.CO_MEM_NO = #{ memNo }
 	</select>
 	
+	<!-- 열람권 사용내역 조회 -->
 	<select id="selectBrowseUsingHistroyList" resultMap="browseUsingHistroyResultMap">
 		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#BrowseUsingHistroyList() */
 		       A.PRODUCT_USE_DATE
@@ -140,6 +146,7 @@
          WHERE A.CO_MEM_NO = #{ memNo }
 	</select>
 	
+	<!-- 이력서 내 모든 보유기술 조회 -->
 	<select id="selectHoldingSkillsList" resultMap="holdingRequestingSkillsResultMap">
 		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectHoldingSkillsList() */
 		       A.RESUME_NO
@@ -149,6 +156,7 @@
           JOIN TBL_SKILLS C ON(B.SKILLS_NO = C.SKILLS_NO)              
 	</select>
 	
+	<!-- 노출권 사용이력 -->
 	<select id="selectExposureUsingHistoryList" resultMap="exposureUsingHistoryResultMap">
 		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectExposureUsingHistoryList() */
 		       A.JOB_POST_NO
@@ -163,6 +171,7 @@
          WHERE A.CO_MEM_NO = #{ memNo }
 	</select>
 	
+	<!-- 노촐권 사용중인 공고의 요구기술  -->
 	<select id="selectRequestingSkillsList" resultMap="holdingRequestingSkillsResultMap">
 		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectRequestingSkillsList() */
 		       A.JOB_POST_NO
@@ -172,6 +181,7 @@
           JOIN TBL_SKILLS C ON (B.SKILLS_NO = C.SKILLS_NO)
 	</select>
 	
+	<!-- 결제번호, 회원번호를 통해서 환불할 상품정보를 받아옴 -->
 	<select id="selectRefundRequestProduct" resultMap="refundRequestProductResultMap">
 		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectRefundRequestProduct() */
                A.PAY_NO
@@ -184,6 +194,7 @@
            AND A.PAY_NO = #{ payNo }
 	</select>
 	
+	<!-- 환불요청을 함으로 결제상태변경이력 추가 -->
 	<insert id="insertRefundMessage">
 	    INSERT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#insertRefundMessage() */
           INTO TBL_PAYMENT_CHANGE_HISTORY
@@ -206,6 +217,7 @@
         )
 	</insert>
 	
+	<!-- 환불내역 가져오기 -->
 	<select id="selectRefundHistory" resultMap="refundHistoryResultMap">
 	   SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectRefundHistory() */
               A.PAY_NO
@@ -224,6 +236,7 @@
         ORDER BY B.PAY_CHANGE_NO
 	</select>
 	
+	<!-- 결제상태변경이력을 환불요쳥취소로 변경 -->
 	<update id="updateRefundRequest" parameterType="_int">
 		 UPDATE /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#updateRefundRequest() */
                 TBL_PAYMENT_CHANGE_HISTORY
@@ -231,6 +244,7 @@
           WHERE PAY_CHANGE_NO = #{ payChangeNo }
 	</update>
 	
+	<!-- 결제내역을 결제완료로 변경 -->
 	<update id="updateRefundRequest2" parameterType="_int">
 		 UPDATE /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#updateRefundRequest2() */
                 TBL_PAYMENT_HISTORY
@@ -238,6 +252,7 @@
           WHERE PAY_NO = #{ payNo }
 	</update>
 	
+	<!-- 결제내역을 변경하기위해 결제변경내역번호를 통해서 결제번호를 조회함 -->
 	<select id="selectPayNo" resultType="_int">
 		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#selectPayNo() */
 		       A.PAY_NO
@@ -245,6 +260,7 @@
 		 WHERE A.PAY_CHANGE_NO = #{ payChangeNo }
 	</select>
 	
+	<!-- 환불요청을 함으로써 결제내역 변경 -->
 	<update id="updatePaymentStatus">
 		UPDATE /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#updatePaymentStatus() */
 		       TBL_PAYMENT_HISTORY
@@ -252,6 +268,7 @@
 		 WHERE PAY_NO = #{ payNo }
 	</update>
 	
+	<!--상품이름으로 상품정보 가져오기  -->
 	<select id="SelectProduct" resultMap="productResultMap">
 		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#updatePaymentStatus() */
 			   PRODUCT_NO
@@ -262,6 +279,7 @@
 		 WHERE PRODUCT_NAME = #{ productName }			   
 	</select>
 	
+	<!-- 열람권 결제내역 추가 -->
 	<insert id="insertPaymentReadingRightHistory" parameterType="HashMap">
 		INSERT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#insertPaymentHistory() */
 		  INTO TBL_PAYMENT_HISTORY
@@ -284,6 +302,7 @@
 		)	
 	</insert>
 	
+	<!-- 열람권  회원보유상품 추가 -->
 	<insert id="insertHoldingReadingRightProduct" parameterType="HashMap">
 		INSERT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#insertHoldingProduct() */
 		  INTO TBL_MEMBER_HOLDING_PRODUCT
@@ -306,6 +325,7 @@
 		)
 	</insert>
 	
+	<!-- 노출권 결제내역 추가 -->
 	<insert id="insertPaymentExposureRightHistory" parameterType="HashMap">
 		INSERT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#insertPaymentExposureRightHistory() */
 		  INTO TBL_PAYMENT_HISTORY
@@ -328,6 +348,7 @@
 		)	
 	</insert>
 	
+	<!-- 노출권 회원보유상품 추가 -->
 	<insert id="insertHoldingExposureRightProduct" parameterType="HashMap">
 		INSERT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#insertHoldingExposureRightProduct() */
 		  INTO TBL_MEMBER_HOLDING_PRODUCT
@@ -350,6 +371,7 @@
 		)
 	</insert>
 	
+	<!-- 결제변경번호를 통해서 변경사유를 가져옴 -->
 	<select id="selectRefundMessage" resultType="String">
 		SELECT /* com.itsme.letitgo.company.payment.model.mapper.PaymentMapper#refundHistoryResultMap() */
 		       PAY_CHANGE_REASON

@@ -21,6 +21,7 @@ public class InMemberRegistServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		/* forward 방식으로 해당 페이지로 이동시킴 */
 		String path = "/WEB-INF/views/common/register/InRegister.jsp";
 		
 		request.getRequestDispatcher(path).forward(request, response);
@@ -31,6 +32,7 @@ public class InMemberRegistServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("euc-kr");
 
+		/* 사용자가 입력한  정보을 받음 */
 		String memberId = request.getParameter("memId");		
 		String memberRawPwd= request.getParameter("memPwd");
 		String memberPwd = new BCryptPasswordEncoder().encode(memberRawPwd);
@@ -58,7 +60,8 @@ public class InMemberRegistServlet extends HttpServlet {
 		} else {
 			redirectText.append("<script>alert('회원가입을 실패하였습니다.'); location.href='/let/loginPage';</script>");
 		}
-								
+		
+		/* redirect 방식으로 메세지를 보내면서 location.href에 해당하는 페이지로 이동시킴 */
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		

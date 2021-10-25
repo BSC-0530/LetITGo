@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper">
-
+	
+	<!-- 입력된 정보로 기업회원가입 등록 -->
 	<insert id="coMemberRegist">
 		INSERT /* com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper#coMemberRegist() */
 		  INTO TBL_MEMBER A
@@ -34,6 +35,7 @@
 		  )
 	</insert>
 	
+	<!-- 입력된 정보로 회원번호 조회  -->
 	<select id="SelectCoMemberNo" resultType="_int">
 	   SELECT /* com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper#SelectCoMemberNo() */
 	          MEM_NO
@@ -41,6 +43,7 @@
 	    WHERE MEM_ID = #{ memId }
 	</select>
 	
+	<!-- 회원번호로 기업회원 추가정보 등록 -->
 	<insert id="coMemberAddInfoRegist">
 		INSERT /* com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper#coMemberAddInfoRegist() */
 		  INTO TBL_CO_MEMBER_ADD_INFO A
@@ -80,6 +83,7 @@
 		 WHERE MEM_ID = #{ memId }
 	</select>
 	
+	<!-- 기업회원가입 승인여부이력 생성 -->
 	<insert id="insertRequestAppHistory">
 		INSERT /* com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper#insertRequestAppHistory() */
 	      INTO TBL_CO_MEMBER_APP_HISTORY
@@ -104,6 +108,7 @@
 	    )
 	</insert>
 	
+	<!-- 로고이미지 저장 -->
 	<insert id="insertCoLogoAttachment">
 		INSERT /* com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper#insertCoLogoAttachment() */
 		  INTO TBL_ATTACHMENT
@@ -126,6 +131,7 @@
 		)	
 	</insert>
 	
+	<!-- 대표이미지 저장 -->
 	<insert id="insertCoRepresentativImageAttachment">
 		INSERT /* com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper#insertCoLogoAttachment() */
 		  INTO TBL_ATTACHMENT
@@ -148,6 +154,7 @@
 		)	
 	</insert>
 	
+	<!-- 사업자등록증 저장  -->
 	<insert id="insertBusinessRegistrationAttachment">
 		INSERT /* com.itsme.letitgo.company.regist.model.mapper.RegistCoMemberMapper#insertBusinessRegistrationAttachment() */
 		  INTO TBL_ATTACHMENT

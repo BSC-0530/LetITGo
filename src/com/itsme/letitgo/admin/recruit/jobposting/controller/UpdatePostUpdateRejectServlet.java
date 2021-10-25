@@ -17,11 +17,13 @@ import com.itsme.letitgo.admin.recruit.jobposting.model.service.UpdatePostUpdate
 @WebServlet("/admin/post/update/reject/update")
 public class UpdatePostUpdateRejectServlet extends HttpServlet {
 	
+	/* 같은  기능안의 같은 채용공고번호와 채용공고등록요청번호를 사용하기 때문에 거절메세지 작성 화면과 공유*/
 	private int jobPostNo;
 	private int jobPostReqNo;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		/* 거절할 시 어떤 채용공고를 거절한지 알아야 하기 때문에, JSP로부터 채용공고번호와 채용공고등록요청번호를 받음 */
 		jobPostNo = Integer.parseInt(request.getParameter("jobPostNo"));
 		jobPostReqNo = Integer.parseInt(request.getParameter("jobPostReqNo"));
 		
@@ -36,6 +38,7 @@ public class UpdatePostUpdateRejectServlet extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 		
+		/* 거절사유등록시 거절사유를 jsp로부터 받아옴 */
 		String rejectMessage = request.getParameter("rejectMessage");	
 
 		UpdatePostUpdateRejectService updatePostRejectUpdateApp = new UpdatePostUpdateRejectService();	
@@ -59,7 +62,8 @@ public class UpdatePostUpdateRejectServlet extends HttpServlet {
 		} else {
 			redirectText.append("<script>alert('채용공고수정 거절을 실패하셨습니다.'); location.href='../../updateRequest/select';</script>");
 		}
-		 							
+		 					
+		/* result 결과 값에 따라 redirect 방식으로 메세지를 보내면서 location.href에 해당하는 페이지로 이동시킴 */
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		

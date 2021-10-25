@@ -23,6 +23,7 @@ public class SelectRejectReasonMessageServlet extends HttpServlet {
 		/* 결제변경번호를 통해서 환불거절사유를 가져옴. */
 		String refundRejectMessage = service.selectRejectReasonMessage(payChangeNo);
 
+		/* request에 조회한 내용들을 key, value 형식으로 담아서 forward 방식으로 해당 페이지로 이동시킴 */
 		String path="";
 		path = "/WEB-INF/views/admin/refundReasonRejectMessage.jsp";
 		

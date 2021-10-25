@@ -45,6 +45,7 @@ public class CoMemberRegistServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		/* forward 방식으로 해당 페이지로 이동시킴 */
 		String path = "/WEB-INF/views/common/register/CoRegister.jsp";
 
 		request.getRequestDispatcher(path).forward(request, response);
@@ -59,6 +60,7 @@ public class CoMemberRegistServlet extends HttpServlet {
 			/* 파일첨부와 동시에 정보를 받을때 사용 */
 			MultipartRequest multi = new MultipartRequest(request, rootLocation, maxFileSize, encodingType, new DefaultFileRenamePolicy());
 
+			/* 사용자가 입력한  정보을 받음 */
 			String memId = multi.getParameter("cmemId");
 			String memEmail = multi.getParameter("memEmail");
 			String memRawPwd = multi.getParameter("cmemPwd");
@@ -169,6 +171,7 @@ public class CoMemberRegistServlet extends HttpServlet {
 
 			}
 
+			/* redirect 방식으로 메세지를 보내면서 location.href에 해당하는 페이지로 이동시킴 */
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 

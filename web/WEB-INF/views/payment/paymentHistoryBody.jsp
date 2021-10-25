@@ -37,6 +37,61 @@
 	src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+<script>
+
+	/* 데이터 테이블 사용 */
+	$(document).ready(function() {
+		$('#table_payment').DataTable();
+	});
+
+	$(document).ready(function() {
+		$('#table_Browsing').DataTable();
+	});
+	$(document).ready(function() {
+		$('#table_exposure').DataTable();
+	});
+
+	/* 환불요청시 환불사유 작성화면으로 이동 */
+	function req(button) {
+		
+		/* 버튼을 기준으로  parentNode시 td / parentNode시 tr /  children[0]시 td / children[0]시 payNo */
+		var payNo = button.parentNode.parentNode.children[0].innerText;
+
+		/* 폼태그를 만드는 작업 */
+		var $form = $("<form>").attr("action", "${ pageContext.servletContext.contextPath }/refund/request/insert").attr("method", "get");
+
+		/* 만든 폼태그에 hidden 타입의 input태그를 만들어서 값을 넣어줌 */
+		$form.append($("<input>").attr("name", "payNo").attr("type", "hidden").val(payNo));
+	
+		/* 폼태그를 바디영역에 붙여줌 */
+		$("body").append($form);
+		
+		/* 폼태그 안에 값을 submit 함 */
+		$form.submit();
+	}
+	
+	/*이력서 제목 눌렀을 시 이력서 화면으로 이동 */
+	function openResume(td) {
+		
+		/* td를 기준으로  children[0]시 resumeNo */
+		var resumeNo = td.children[0].value;
+
+		/* url 주소를 다음과 같이 바꿔줌 */
+		location.href = "${ pageContext.servletContext.contextPath }/detail/browse/select?resumeNo=" + resumeNo;
+
+	}
+	
+	/* 공고제목 눌렀을 시 공고화면으로 이동 */
+	function openPost(td) {
+		
+		/* td를 기준으로  children[0]시 jobPostNo */
+		var jobPostNo = td.children[0].value;
+		
+		/* url 주소를 다음과 같이 바꿔줌 */
+		location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?jobPostNo="+ jobPostNo;
+
+	}
+</script>
 </head>
 <body>
 	<!-- 상단 검은색바탕 -->
@@ -319,61 +374,6 @@
 			<br> <br>
 		</div>
 	</div>
-
-
-	<!-- 데이터테이블 사용 -->
-
-
-	<script>
-		$(document).ready(function() {
-			$('#table_payment').DataTable();
-		});
-
-		$(document).ready(function() {
-			$('#table_Browsing').DataTable();
-		});
-		$(document).ready(function() {
-			$('#table_exposure').DataTable();
-		});
-
-		//환불요청시 화면전환
-		function req(button) {
-
-			var payNo = button.parentNode.parentNode.children[0].innerText;
-
-			var $form = $("<form>")
-					.attr("action",
-							"${ pageContext.servletContext.contextPath }/refund/request/insert")
-					.attr("method", "get");
-
-			$form.append($("<input>").attr("name", "payNo").attr("type",
-					"hidden").val(payNo));
-
-			console.log($form.children().val());
-
-			$("body").append($form);
-
-			$form.submit();
-		}
-		
-		//이력서 눌렀을 시 이력서 화면으로 이동
-		function openResume(td) {
-			
-			const resumeNo = td.children[0].value;
-
-			location.href = "${ pageContext.servletContext.contextPath }/detail/browse/select?resumeNo=" + resumeNo
-
-		}
-		
-		//공고제목 눌렀을 시 공고화면으로 이동
-		function openPost(td) {
-			
-			const jobPostNo = td.children[0].value;
-			
-			location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?jobPostNo="
-				+ jobPostNo
-
-		}
-	</script>
+	
 </body>
 </html>

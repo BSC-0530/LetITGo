@@ -40,6 +40,7 @@ public class SelectPersonalApplyServlet extends HttpServlet {
 
 		String path = "/WEB-INF/views/member/personal/personalApply.jsp";	
 		
+		/* request에 조회한 내용들을 key, value 형식으로 담아서 forward 방식으로 해당 페이지로 이동시킴 */
 		request.setAttribute("PersonalApplyList", PersonalApplyList);
 		request.setAttribute("PersonalApplyCompletedList", PersonalApplyCompletedList);
 		request.setAttribute("PersonalApplyCanceledList", PersonalApplyCanceledList);

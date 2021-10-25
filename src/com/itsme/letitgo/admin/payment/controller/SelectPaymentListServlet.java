@@ -23,6 +23,7 @@ public class SelectPaymentListServlet extends HttpServlet {
 		/* 모든 결제내역조회 */
 		List<AdminPaymentHistoryDTO> adminPaymentHistory = service.selectPaymentList();
 
+		/* request에 조회한 내용들을 key, value 형식으로 담아서 forward 방식으로 해당 페이지로 이동시킴 */
 		String path = "/WEB-INF/views/admin/adminPayment.jsp";
 		request.setAttribute("adminPaymentHistory", adminPaymentHistory);
 		request.getRequestDispatcher(path).forward(request, response);

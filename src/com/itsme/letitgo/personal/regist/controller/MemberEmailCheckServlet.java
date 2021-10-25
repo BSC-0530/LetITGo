@@ -34,7 +34,8 @@ public class MemberEmailCheckServlet extends HttpServlet {
 		String user = "hsjung3777@naver.com";
 		String password = "rhakqjsro12!";
 		String name = "정현수";
-
+		
+		/* 메일 프로그램 환경 설정에 따라 작성 */
 		Properties props = new Properties();
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.port", 465);
@@ -56,16 +57,18 @@ public class MemberEmailCheckServlet extends HttpServlet {
 
 		}
 
+		
 		AuthenticationKey = temp.toString();
-		System.out.println(AuthenticationKey); //삭제해야함
-
+		System.out.println(AuthenticationKey);
+		
+		//email 전송
 		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(user,password);
 			}
 		});
 
-		//email 전송
+
 		try {
 			MimeMessage msg = new MimeMessage(session);
 			msg.setFrom(new InternetAddress(user, name));
@@ -82,6 +85,7 @@ public class MemberEmailCheckServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
+		/* ajax를 통한 통신에서 인증번호를 반환해줌 */
 		String jsonString = new Gson().toJson(AuthenticationKey);
 
 		response.setContentType("application/json; charset=UTF-8");

@@ -32,6 +32,8 @@
 		<result property="productKinds" column="PRODUCT_KINDS"/>
 		<result property="productExposureTime" column="UPPER_EXPOSURE_TIME"/>
 	</resultMap>
+	
+	<!-- 모든 결제내역조회 -->
 	<select id="selectAdminPaymentHistory" resultMap="adminPaymentHistoryResultMap">
 	   SELECT /* com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper#selectAdminPaymentHistory() */
 	          A.PAY_NO
@@ -45,6 +47,7 @@
   	 	 JOIN TBL_PRODUCT_LIST D ON (A.PRODUCT_NO = D.PRODUCT_NO)
 	</select>
 	
+	<!-- 모든 환불내역조회 -->
 	<select id="selectAdminRefundHistory" resultMap="adminRefundHistoryResultMap">
 		SELECT /* com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper#selectAdminRefundHistory() */
 		       A.PAY_CHANGE_NO
@@ -61,6 +64,7 @@
 		 ORDER BY A.PAY_CHANGE_NO 
 	</select>
 	
+	<!-- 결제상태변경이력 환불완료로 변경 -->
 	<update id="updateRefundAppStatus">
 		UPDATE /* com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper#updateRefundStatus() */
 		       TBL_PAYMENT_CHANGE_HISTORY
@@ -69,6 +73,7 @@
 		 WHERE PAY_CHANGE_NO = #{ payChangeNo }
 	</update>
 	
+	<!--  결제내역 환불완료로 변경 -->
 	<update id="updateRefundAppStatus2">
 		UPDATE /* com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper#updateRefundStatus2() */
 		       TBL_PAYMENT_HISTORY
@@ -76,6 +81,7 @@
 		 WHERE PAY_NO = #{ payNo }    
 	</update>
 	
+	<!-- 결제변경이력에 거절사유를 입력하고 상태를 환불거절로 변경 -->
 	<update id="updateRefundRejectStatus1">
 		UPDATE /* com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper#updateRefundRejectStatus() */
 		       TBL_PAYMENT_CHANGE_HISTORY
@@ -85,6 +91,7 @@
 		 WHERE PAY_CHANGE_NO = #{ payChangeNo }
 	</update>
 	
+	<!-- 결제의 상태를 환불거절로 변경 -->
 	<update id="updateRefundRejectStatus2">
 		UPDATE /* com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper#updateRefundRejectStatus2() */
 		       TBL_PAYMENT_HISTORY
@@ -92,6 +99,7 @@
 		 WHERE PAY_NO = #{ payNo }    
 	</update>
 	
+	<!-- 결제변경번호를 통해서 환불거절사유를 가져옴 -->
 	<select id="selectRejectReasonMessage" resultType="String">
 		SELECT /* com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper#selectRejectReasonMessage() */
 		       PAY_REJECT_REASON
@@ -151,7 +159,7 @@
 	</delete>
 	
 	<update id="updateHoldingProductStatus">
-		UPDATE 
+		UPDATE /* com.itsme.letitgo.admin.payment.model.mapper.AdminPaymentMapper#updateHoldingProductStatus() */
 		       TBL_MEMBER_HOLDING_PRODUCT
 		   SET PRODUCT_STATUS = '환불'
 		 WHERE RETAINED_PRODUCT_CODE = #{ payNo }

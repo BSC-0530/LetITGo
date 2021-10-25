@@ -16,7 +16,8 @@ import com.itsme.letitgo.login.model.service.ForgetService;
 public class ForgetId extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		
+		/* forward 방식으로 해당 페이지로 이동시킴 */
 		String path = "/WEB-INF/views/common/login/forgetId.jsp";
 		
 		request.getRequestDispatcher(path).forward(request, response);
@@ -24,7 +25,8 @@ public class ForgetId extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		
+		/* 사용자가 입력한 이메일을 받음 */
 		String memEmail = request.getParameter("memEmail");
 
 		ForgetService service = new ForgetService();
@@ -47,7 +49,8 @@ public class ForgetId extends HttpServlet {
             .append("location.href='/let/loginPage'; </script>");
 						
 		}
-		 								
+		
+		/* redirect 방식으로 메세지를 보내면서 location.href에 해당하는 페이지로 이동시킴 */
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		

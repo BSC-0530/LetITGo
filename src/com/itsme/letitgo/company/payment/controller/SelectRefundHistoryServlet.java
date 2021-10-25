@@ -31,16 +31,16 @@ public class SelectRefundHistoryServlet extends HttpServlet {
 		/* 환불내역 가져오기 */
 		List<RefundHistoryDTO> refundHistoryList = refundHistoryService.selectRefundHistoryList(memNo);
 		
+		/* request에 조회한 내용을 key, value 형식으로 담아서 forward 방식으로 해당 페이지로 이동시킴 */
 		String path = "/WEB-INF/views/payment/refundHistory.jsp";
-
-		request.setAttribute("refundHistoryList", refundHistoryList);
-		
+		request.setAttribute("refundHistoryList", refundHistoryList);		
 		request.getRequestDispatcher(path).forward(request, response);
 		
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		/* 취소버튼클릭시 결제변경요청번호를 jsp로부터 받아옴 */
 		int payChangeNo = Integer.parseInt(request.getParameter("refundNo"));
 	
 		RefundHistoryService refundHistoryService = new RefundHistoryService();
@@ -58,7 +58,8 @@ public class SelectRefundHistoryServlet extends HttpServlet {
 		} else {
 			redirectText.append("<script>alert('환불요청취소를 실패하였습니다.'); location.href='../../company/refundHistory/select';</script>");
 		}
-		 								
+		 				
+		/* result 결과 값에 따라 redirect 방식으로 메세지를 보내면서 location.href에 해당하는 페이지로 이동시킴 */
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		

@@ -16,7 +16,8 @@ import com.itsme.letitgo.admin.payment.model.service.UpdateRefundStatusService;
 public class UpdateAppRefundStatusServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		/* 환불 승인시, 어떤 결제번호, 어떤 결제변경요청번호인지를 알아야하기 때문에 jsp로부터 값을 받아옴 */
 		int payChangeNo = Integer.parseInt(request.getParameter("payChangeNo"));
 		int payNo = Integer.parseInt(request.getParameter("payNo"));
 		
@@ -39,7 +40,7 @@ public class UpdateAppRefundStatusServlet extends HttpServlet {
 			redirectText.append("<script>alert('환불요청승인에 실패하셨습니다.'); location.href='../../refund/select';</script>");
 		}
 		 
-									
+		/* result 결과 값에 따라 redirect 방식으로 메세지를 보내면서 location.href에 해당하는 페이지로 이동시킴 */			
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		

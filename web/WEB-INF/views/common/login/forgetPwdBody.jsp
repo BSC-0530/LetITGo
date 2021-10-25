@@ -38,19 +38,24 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 
-	
+/* 유효성 검사 */
 function checkValue() {
 	
+	/* <form>의 정보를 var form 변수로 저장  */
 	var form = document.forgetPwd;
-	var re = /^[a-zA-Z0-9]{4,12}$/; // 아이디가 적합한지 검사할 정규식
+	
+	/* 아이디가 적합한지 검사할 정규식 */
+	var re = /^[a-zA-Z0-9]{4,12}$/;
 
+	/* id가 memId이 태그의 값을 var memId로 저장*/
 	var memId = document.getElementById("memId");
 
-
+	/* memId가 re의 정규식에 적합하지 않을 경우 */
     if(!check(re,memId, "아이디는 4~12자의 영문 대소문자와 숫자로 입력해주세요")){
     	return false;
     }
 	
+    /* form안의 태그 아이디가 certificationYn인 태그의 값이 true가 아닐경우 */
 	if(form.certificationYn.value != "true") {
 		alert("이메일 인증확인을 해주세요.");
 		return false;
@@ -59,21 +64,28 @@ function checkValue() {
 	
 }	
 	
-
+  /* 아이디가 적합한지 검사할 정규식, 사용자가 입력한 아이디, alert를 통해 내보낼 메세지를 통한 유효성 검사 */
   function check(re, what, message) {
+	  
+	  /* 정규식에 적합한 경우 */
        if(re.test(what.value)) {
            return true;
        }
+	  
+	  /* 정규식에 적합하지 않은 경우 */
        alert(message);
        what.value = "";
        what.focus();
        return false;
    }
   
+/* 인증번호 전송시 */ 
 function emailSend() {
 	
-	 memEmail = document.getElementById('memEmail').value;
+	/* id가 memEmail이 태그의 값을 var memEmail로 저장*/
+	memEmail = document.getElementById('memEmail').value;
 		
+	/* var memEamil의 값을 ajax를 통해 해당 url의 get방식으로 전달 */
 	$.ajax({
 		type:"get",
 		url:"/let/member/whole/email",
@@ -88,12 +100,16 @@ function emailSend() {
 			
 }
 
+/* 이메일에 보낸 인증번호와 사용자가 입력한 인증번호가 같은지 유효성 검사 */
 function checkEmailCode() {
 	
+	/* id가 certificationNumber이 태그의 값을 var certificationNumber로 저장*/
 	var certificationNumber = document.getElementById("certificationNumber").value;
 	
+	/* <form>의 정보를 var form 변수로 저장  */
 	var form = document.forgetPwd;
 	
+	/* var certificationNumber의 값을 ajax를 통해 해당 url의 get방식으로 전달 */
 	$.ajax({
 		type:"post",
 		url:"/let/member/whole/email",
@@ -101,11 +117,19 @@ function checkEmailCode() {
 		success : function(data) {
 			if(data == "true") {
 				alert('이메일 인증에 성공하였습니다.');
+				
+				/* 이메일 인증이 확인되어 value를 true로 변경함으로써 checkValue()의 유효성검사에 걸리지 않게함 */
 				form.certificationYn.value = "true";
 			} else {
 				alert('이메일 인증에 실패하였습니다.');
+				
+				/* 이메일 인증이 일치하지 않아 사용자가 작성한 입력칸을 빈칸으로 만든다. */
 				 form.certificationNumber.value = "";
+				
+				/* 이메일 인증이 일치하지 않아 커서를 인증번호입력칸으로 이동시킨다. */
 				 form.certificationNumber.focus();
+				
+				/* 임에리 인증이 일치하지 않아  checkValue() 유효성 검사에 걸리게끔 false로 변경 */
 				 form.certificationYn.value = "false";
 				 return false;
 			}
@@ -121,6 +145,7 @@ function checkEmailCode() {
 </head>
 <body>
 
+	<!-- 상단 검은색 바탕 -->
 	<div class="jp_tittle_main_wrapper">
         <div class="jp_tittle_img_overlay"></div>
         <div class="container">
@@ -140,6 +165,8 @@ function checkEmailCode() {
             </div>
         </div>
     </div>
+    
+     <!-- 이메일 인증하는 란 -->
 	  
 	<form action="${ pageContext.servletContext.contextPath }/member/forgetPwd" onSubmit="return checkValue();" name="forgetPwd" method="post">
     <div class="register_section">

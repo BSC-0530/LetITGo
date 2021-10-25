@@ -36,134 +36,210 @@
 	href="${ pageContext.servletContext.contextPath }/resources/image/header/favicon.ico" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 
-	//유효성 검사
-	function checkValue2() {
-
-		var form = document.coMemberRegist;
-
-		var re = /^[a-zA-Z0-9]{4,12}$/; 									// 아이디가 적합한지 검사할 정규식
-		var re2 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*++-])(?=.*[0-9]).{8,18}$/;   // 패스워드가 적합한지 검사할 정규식
-		var re3 = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/; 					//핸드폰 번호 정규식
-		var re4 = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/;						// 전화번호/팩스번호 입력하는 정규식
-		var re5 = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/; 			//이름 정규식
-
-		var cmemId = document.getElementById("cmemId");
-		var cmemPwd = document.getElementById("cmemPwd");
-
-		if (!check2(re, cmemId, "아이디는 4~12자의 영문 대소문자와 숫자로 입력해주세요")) {
-			return false;
-		}
-
-		if (form.idDuplication.value != "idCheck2") {
-			alert("아이디 중복체크를 해주세요.")
-			return false;
-		}
-
-		if (form.certificationYn.value != "true") {
-			alert("이메일 인증확인을 해주세요.");
-			return false;
-		}
-
-		if (!check2(re2, cmemPwd,
-				"패스워드는 8~18자의 영문 대소문자, 숫자, 특수문자를 모두 포함시켜 입력해주세요")) {
-			return false;
-		}
-
-		if (form.cmemPwd.value != form.cmemPwd2.value) {
-			alert("비밀번호를 동일하게 입력하세요.");
-			return false;
-		}
-
-	}
+/* 유효성 검사 */
+function checkValue2() {
 	
-	//유효성 검사에 따른 팝업창 띄움
-	function check2(re, what, message) {
-		if (re.test(what.value)) {
-			return true;
-		}
-		alert(message);
-		what.value = "";
-		what.focus();
+	/* <form>의 정보를 var form 변수로 저장  */
+	var form = document.coMemberRegist;
+
+	/* <form>의 정보를 var form 변수로 저장  */
+	var form = document.inMemberRegist;
+	
+	/* 아이디가 적합한지 검사할 정규식 */
+	var re = /^[a-zA-Z0-9]{4,12}$/; 	
+	
+	//  패스워드가 적합한지 검사할 정규식
+	var re2 =  /^(?=.*[a-zA-Z])(?=.*[!@#$%^*++-])(?=.*[0-9]).{8,18}$/;			
+
+	/* id가 cmemId이 태그의 값을 var cmemId로 저장*/
+	var cmemId = document.getElementById("cmemId");
+	
+	/* id가 cmemPwd이 태그의 값을 var cmemPwd로 저장*/
+	var cmemPwd = document.getElementById("cmemPwd");
+
+	/* cmemId가 re의 정규식에 적합하지 않을 경우 */
+	if (!check2(re, cmemId, "아이디는 4~12자의 영문 대소문자와 숫자로 입력해주세요")) {
 		return false;
 	}
-</script>
 
-<!-- 중복확인시 화면을 띄움 -->
-<script>
-	function openIdChk2() {
-
-		window.name = "parentForm";
-		window.open("/let/member/coporate/idCheck2", "chkForm",
-				"width=500, height=300, resizable = no, scorllbars = no");
-
+	/* form안의 태그 아이디가 idDuplication인 태그의 값이 idCheck가 아닐경우 */
+	if (form.idDuplication.value != "idCheck2") {
+		alert("아이디 중복체크를 해주세요.")
+		return false;
 	}
-</script>
 
-<!--중복확인 후 다시 아이디를 입력했을 때, 다시 중복체크할 수 있도록 함 -->
-<script>
-	function inputIdChk2() {
-		document.coMemberRegist.idDuplication.value = "idUncheck";
+	/* form안의 태그 아이디가 certificationYn인 태그의 값이 true가 아닐경우 */
+	if (form.certificationYn.value != "true") {
+		alert("이메일 인증확인을 해주세요.");
+		return false;
 	}
-</script>
 
-<!-- 이메일 인증을 위해 이메일을 보냄 -->
-<script>
-	function emailSend2() {
+	/* memPwd가 re2의 정규식에 적합하지 않을 경우 */
+	if (!check2(re2, cmemPwd,
+			"패스워드는 8~18자의 영문 대소문자, 숫자, 특수문자를 모두 포함시켜 입력해주세요")) {
+		return false;
+	}
 
-		let memEmail = document.getElementById('memEmail').value;
+	/* id가 memPwd인 태그의 값과 id가 memPwd2인 태그의 값이 다를 경우 */ 
+	if (form.cmemPwd.value != form.cmemPwd2.value) {
+		alert("비밀번호를 동일하게 입력하세요.");
+		return false;
+	}
 
-		$.ajax({
-			type : "get",
-			url : "/let/member/whole/email",
-			data : {
-				memEmail : memEmail
-			},
-			success : function(data) {
-				alert('인증번호가 전송되었습니다.');
+}
 
-			},
-			error : function(xhr) {
-				alert('jsp : 인증번호 전송을 실패하였습니다.')
+/* 아이디가 적합한지 검사할 정규식, 사용자가 입력한 아이디, alert를 통해 내보낼 메세지를 통한 유효성 검사 */
+function check(re, what, message) {
+	  
+	 /* 정규식에 적합한 경우 */
+     if(re.test(what.value)) {
+         return true;
+     }
+	  
+	 /* 정규식에 적합하지 않은 경우 */
+     alert(message);
+     what.value = "";
+     what.focus();
+     return false;
+ }
+
+/* 중복확인시 화면을 띄움 */
+function openIdChk2() {
+
+	/* 새창의 이름 */
+	window.name = "parentForm";
+	
+	/* 새창의 url, 크기, 높이, 크기/높이 조절가능여부, 스크롤바생성여부 등을 지정 */
+	window.open("/let/member/coporate/idCheck2", "chkForm", "width=500, height=300, resizable = no, scorllbars = no");
+
+}
+
+/* 중복확인 후 다시 아이디를 입력했을 때, idDuplication의 값을 idUnCheck로 바꿈으로 중복체크를 다시해야하는 유효성 검사에 걸리게 함 */
+function inputIdChk2() {
+	
+	document.coMemberRegist.idDuplication.value = "idUncheck";
+	
+}
+
+/* 인증번호 전송시 */ 
+function emailSend2() {
+
+	/* id가 memEmail이 태그의 값을 var memEmail로 저장*/
+	var memEmail = document.getElementById('memEmail').value;
+
+	/* var memEmail의 값을 ajax를 통해 해당 url의 get방식으로 전달 */
+	$.ajax({
+		type : "get",
+		url : "/let/member/whole/email",
+		data : {
+			memEmail : memEmail
+		},
+		success : function(data) {
+			alert('인증번호가 전송되었습니다.');
+
+		},
+		error : function(xhr) {
+			alert('jsp : 인증번호 전송을 실패하였습니다.')
+		}
+	});
+
+}
+
+/* 이메일에 보낸 인증번호와 사용자가 입력한 인증번호가 같은지 유효성 검사 */
+function checkEmailCode2() {
+	
+	/* id가 certificationNumber이 태그의 값을 var certificationNumber로 저장*/
+	var certificationNumber = document.getElementById("certificationNumber").value;
+	
+	/* <form>의 정보를 var form 변수로 저장  */
+	var form = document.coMemberRegist;
+	
+	/* var certificationNumber의 값을 ajax를 통해 해당 url의 get방식으로 전달 */
+	$.ajax({
+		type:"post",
+		url:"/let/member/whole/email",
+		data:{certificationNumber: certificationNumber},
+		success : function(data) {
+			if(data == "true") {
+				alert('이메일 인증에 성공하였습니다.');
+				
+				/* 이메일 인증이 확인되어 value를 true로 변경함으로써 checkValue()의 유효성검사에 걸리지 않게함 */
+				form.certificationYn.value = "true";
+			} else {
+				alert('이메일 인증에 실패하였습니다.');
+				
+				/* 이메일 인증이 일치하지 않아 사용자가 작성한 입력칸을 빈칸으로 만든다. */
+				 form.certificationNumber.value = "";
+				
+				/* 이메일 인증이 일치하지 않아 커서를 인증번호입력칸으로 이동시킨다. */
+				 form.certificationNumber.focus();
+				
+				/* 임에리 인증이 일치하지 않아  checkValue() 유효성 검사에 걸리게끔 false로 변경 */
+				 form.certificationYn.value = "false";
+				 return false;
 			}
-		});
+		},
+		error: function(xhr) {
+			alert('인증번호를 발송해주세요')
+		}
+	});
+}
 
+/* id가 searchZipCode이 태그의 값을 const $certificationNumber로 저장*/
+const $searchZipCode = document.getElementById("searchZipCode");
+
+$searchZipCode.onclick = function() {
+
+	new daum.Postcode({
+		oncomplete : function(data) {
+			document.getElementById("zipCode").value = data.zonecode;
+			document.getElementById("address1").value = data.address;
+			document.getElementById("address2").focus();
+		}
+	}).open();
+}
+
+/* 사업자 등록증 번호 유효한지 체크  */
+function noCheck(button) {
+
+	let coNo = $("#coNo").val();
+
+	if (!checkCorporateRegistrationNumber(coNo.replaceAll("-", ""))) {
+		alert("유효한 사업자번호를 입력하세요");
+		$("#coNo").focus();
+		$("#coNo").val("");
+		return;
 	}
-</script>
+	alert('사용가능한 사업자 번호입니다.');
 
-<!-- 보낸 인증번호와 작성한 인증번호 일치여부 확인 -->
-<script>
-	function checkEmailCode2() {
+}
 
-		var certificationNumber = document
-				.getElementById("certificationNumber").value;
+/* 사업자 등록증 번호 유효한지 체크  */
+function checkCorporateRegistrationNumber(value) {
+	var valueMap = value.replace(/-/gi, '').split('').map(
+			function(item) {
+				return parseInt(item, 10);
+			});
 
-		var form = document.coMemberRegist;
+	if (valueMap.length === 10) {
+		var multiply = new Array(1, 3, 7, 1, 3, 7, 1, 3, 5);
+		var checkSum = 0;
 
-		$.ajax({
-			type : "post",
-			url : "/let/member/whole/email",
-			data : {
-				certificationNumber : certificationNumber
-			},
-			success : function(data) {
-				if (data == "true") {
-					alert('이메일 인증에 성공하였습니다.');
-					form.certificationYn.value = "true";
-				} else {
-					alert('이메일 인증에 실패하였습니다.');
-					form.certificationNumber.value = "";
-					form.certificationNumber.focus();
-					form.certificationYn.value = "false";
-					return false;
-				}
-			},
-			error : function(xhr) {
-				alert('jsp : 이메일 인증에 오류가 있습니다.');
-			}
-		});
+		for (var i = 0; i < multiply.length; ++i) {
+			checkSum += multiply[i] * valueMap[i];
+		}
+
+		checkSum += parseInt((multiply[8] * valueMap[8]) / 10, 10);
+		return Math.floor(valueMap[9]) === (10 - (checkSum % 10));
 	}
+
+	return false;
+}
+
 </script>
 </head>
 <body>
@@ -317,8 +393,8 @@
 												<input
 													style="width: 430px; height: 60px; magin-left: 20px; border-radius: 5px;"
 													type="text" name="zipCode" id="zipCode" id="zipCode"
-													readonly placeholder="우편번호 *"> <input
-													style="width: 120px; border: 2px solid black; height: 50px; border-radius: 10px;"
+													readonly placeholder="우편번호 *"> 
+													<input style="width: 120px; border: 2px solid black; height: 50px; border-radius: 10px;"
 													type="button" value="검색" class="btn btn-yg"
 													id="searchZipCode">
 											</div>
@@ -425,68 +501,6 @@
 			</div>
 		</div>
 	</form>
-	
-	<!-- 주소 검색 -->
-	<script
-		src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js">
-		
-	</script>
-
-	<script>
-		const $searchZipCode = document.getElementById("searchZipCode");
-
-		$searchZipCode.onclick = function() {
-
-			new daum.Postcode({
-				oncomplete : function(data) {
-					document.getElementById("zipCode").value = data.zonecode;
-					document.getElementById("address1").value = data.address;
-					document.getElementById("address2").focus();
-				}
-			}).open();
-		}
-	</script>
-	
-	<!-- 사업자 등록증 번호 유효한지 체크 -->
-	<script>
-		function noCheck(button) {
-
-			let coNo = $("#coNo").val();
-
-			if (!checkCorporateRegistrationNumber(coNo.replaceAll("-", ""))) {
-				alert("유효한 사업자번호를 입력하세요");
-				$("#coNo").focus();
-				$("#coNo").val("");
-				return;
-			}
-			alert('사용가능한 사업자 번호입니다.');
-
-		}
-	</script>
-	
-	<!-- 사업자 등록증 번호 유효한지 체크 -->
-	<script>
-		function checkCorporateRegistrationNumber(value) {
-			var valueMap = value.replace(/-/gi, '').split('').map(
-					function(item) {
-						return parseInt(item, 10);
-					});
-
-			if (valueMap.length === 10) {
-				var multiply = new Array(1, 3, 7, 1, 3, 7, 1, 3, 5);
-				var checkSum = 0;
-
-				for (var i = 0; i < multiply.length; ++i) {
-					checkSum += multiply[i] * valueMap[i];
-				}
-
-				checkSum += parseInt((multiply[8] * valueMap[8]) / 10, 10);
-				return Math.floor(valueMap[9]) === (10 - (checkSum % 10));
-			}
-
-			return false;
-		}
-	</script>
 
 </body>
 </html>

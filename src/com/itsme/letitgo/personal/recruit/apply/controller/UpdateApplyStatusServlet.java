@@ -19,6 +19,7 @@ public class UpdateApplyStatusServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		/* 취소버튼클릭시 해당 공고에 지원한 이력서번호와 공고번호를 jsp로부터 받아옴 */
 		int resumeNo = Integer.parseInt(request.getParameter("resumeNo"));
 		int jobPostNo = Integer.parseInt(request.getParameter("jobPostNo"));
 
@@ -42,7 +43,8 @@ public class UpdateApplyStatusServlet extends HttpServlet {
 		} else {
 			redirectText.append("<script>alert('지원취소를 실패하셨습니다..'); location.href='../../apply/select';</script>");
 		}
-		 								
+		 					
+		/* redirect 방식으로 메세지를 보내면서 location.href에 해당하는 페이지로 이동시킴 */
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		

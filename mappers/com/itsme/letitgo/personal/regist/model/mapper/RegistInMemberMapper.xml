@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itsme.letitgo.personal.regist.model.mapper.RegistInMemberMapper">
 	
+	<!-- 개인회원가입 등록 -->
 	<insert id="InMemberReigst" parameterType="com.itsme.letitgo.personal.regist.model.dto.InMemberDTO">
 		INSERT /* com.itsme.letitgo.personal.regist.model.mapper.RegistInMemberMapper#MemberReigst() */
 		  INTO TBL_MEMBER A
@@ -34,6 +35,7 @@
 		  )
 	</insert>
 	
+	<!-- 중복된 아이디가 있는지 확인 -->
 	<select id="duplicateIdCheck" resultType="_int">
 		SELECT
 	           COUNT(*)

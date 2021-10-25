@@ -20,11 +20,14 @@ import com.itsme.letitgo.login.model.dto.MemberLoginDTO;
 @WebServlet("/refund/request/insert")
 public class InsertRefundReqServlet extends HttpServlet {
 
+	/* 같은  기능안의 같은 결제번호를 사용하기 때문에 환불요청 메세지 작성 화면과 공유*/
 	int payNo;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
+		
+		/* 환불요청할 시 어떤 결제를 환불할 것인지 알아야하기 때문에, JSP로부터 채용공고번호와 채용공고등록요청번호를 받음 */
 		payNo = Integer.parseInt(request.getParameter("payNo"));
 		
 		InsertRefundRequestProductService product = new InsertRefundRequestProductService();
@@ -42,6 +45,7 @@ public class InsertRefundReqServlet extends HttpServlet {
 		/* 결제번호, 회원번호를 통해서 환불할 상품정보를 받아옴 */
 		RefundRequestProductDTO refundRequestProduct = product.selectRefundRequestProduct(map);
 	
+		/* request에 조회한 내용을 key, value 형식으로 담아서 forward 방식으로 해당 페이지로 이동시킴 */
 		String path = "/WEB-INF/views/payment/refundRequest.jsp";
 		
 		request.setAttribute("refundRequestProduct", refundRequestProduct);
@@ -75,7 +79,8 @@ public class InsertRefundReqServlet extends HttpServlet {
 		} else {
 			redirectText.append("<script>alert('환불요청에 실패하였습니다.'); location.href='../../company/paymentHistory/select';</script>");
 		}
-		 								
+		 					
+		/* result 결과 값에 따라 redirect 방식으로 메세지를 보내면서 location.href에 해당하는 페이지로 이동시킴 */
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		

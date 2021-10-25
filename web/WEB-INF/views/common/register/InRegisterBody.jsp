@@ -39,34 +39,47 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 
-//유효성 검사 
+/* 유효성 검사 */
 function checkValue() {
 	
+	/* <form>의 정보를 var form 변수로 저장  */
 	var form = document.inMemberRegist;
-	var re = /^[a-zA-Z0-9]{4,12}$/; 									// 아이디가 적합한지 검사할 정규식
-	var re2 =  /^(?=.*[a-zA-Z])(?=.*[!@#$%^*++-])(?=.*[0-9]).{8,18}$/;  // 패스워드가 적합한지 검사할 정규식
+	
+	/* 아이디가 적합한지 검사할 정규식 */
+	var re = /^[a-zA-Z0-9]{4,12}$/; 	
+	
+	//  패스워드가 적합한지 검사할 정규식
+	var re2 =  /^(?=.*[a-zA-Z])(?=.*[!@#$%^*++-])(?=.*[0-9]).{8,18}$/;
 
+	/* id가 memId이 태그의 값을 var memId로 저장*/
 	var memId = document.getElementById("memId");
+	
+	/* id가 memPwd이 태그의 값을 var memPwd로 저장*/
     var memPwd = document.getElementById("memPwd");
 
+    /* memId가 re의 정규식에 적합하지 않을 경우 */
     if(!check(re,memId, "아이디는 4~12자의 영문 대소문자와 숫자로 입력해주세요")){
     	return false;
     }
 	
+    /* form안의 태그 아이디가 idDuplication인 태그의 값이 idCheck가 아닐경우 */
 	if(form.idDuplication.value != "idCheck") {
 		alert("아이디 중복체크를 해주세요.");
 		return false;
 	}
 	
+	 /* form안의 태그 아이디가 certificationYn인 태그의 값이 true가 아닐경우 */
 	if(form.certificationYn.value != "true") {
 		alert("이메일 인증확인을 해주세요.");
 		return false;
 	}
 
+	 /* memPwd가 re2의 정규식에 적합하지 않을 경우 */
     if(!check(re2,memPwd, "패스워드는 8~18자의 영문 대소문자, 숫자, 특수문자를 모두 포함시켜 입력해주세요")){
     	return false;
     }
     
+	/* id가 memPwd인 태그의 값과 id가 memPwd2인 태그의 값이 다를 경우 */ 
 	if(form.memPwd.value != form.memPwd2.value ){
         alert("비밀번호를 동일하게 입력하세요.");
         return false;
@@ -74,35 +87,44 @@ function checkValue() {
 	
 }	
 
-//유효성 검사한 것을 팝업창 띄움
+/* 아이디가 적합한지 검사할 정규식, 사용자가 입력한 아이디, alert를 통해 내보낼 메세지를 통한 유효성 검사 */
 function check(re, what, message) {
-    if(re.test(what.value)) {
-        return true;
-    }
-    alert(message);
-    what.value = "";
-    what.focus();
-    return false;
-}
+	  
+	  /* 정규식에 적합한 경우 */
+     if(re.test(what.value)) {
+         return true;
+     }
+	  
+	  /* 정규식에 적합하지 않은 경우 */
+     alert(message);
+     what.value = "";
+     what.focus();
+     return false;
+ }
 
-//중복확인시 화면을 띄움
+/* 중복확인시 화면을 띄움 */
 function openIdChk() {
 	 
+	/* 새창의 이름 */
 	 window.name = "parentForm";
+	
+	/* 새창의 url, 크기, 높이, 크기/높이 조절가능여부, 스크롤바생성여부 등을 지정 */
 	 window.open("/let/member/individual/idCheck", "chkForm", "width=500, height=300, resizable = no, scorllbars = no");
 	 
 }
 
-//중복확인 후 다시 아이디를 입력했을 때, 다시 중복체크할 수 있도록 함
+/* 중복확인 후 다시 아이디를 입력했을 때, idDuplication의 값을 idUnCheck로 바꿈으로 중복체크를 다시해야하는 유효성 검사에 걸리게 함 */
 function inputIdChk(){
     document.inMemberRegist.idDuplication.value ="idUncheck";
 }	
 
-//이메일 인증을 위해 이메일을 보냄
+/* 인증번호 전송시 */ 
 function emailSend() {
 	
-	 memEmail = document.getElementById('memEmail').value;
+	/* id가 memEmail이 태그의 값을 var memEmail로 저장*/
+	var memEmail = document.getElementById('memEmail').value;
 		
+	/* var memEmail의 값을 ajax를 통해 해당 url의 get방식으로 전달 */
 	$.ajax({
 		type:"get",
 		url:"/let/member/whole/email",
@@ -117,13 +139,16 @@ function emailSend() {
 			
 }
 
-//보낸 인증번호와 작성한 인증번호 일치여부 확인
+/* 이메일에 보낸 인증번호와 사용자가 입력한 인증번호가 같은지 유효성 검사 */
 function checkEmailCode() {
 	
+	/* id가 certificationNumber이 태그의 값을 var certificationNumber로 저장*/
 	var certificationNumber = document.getElementById("certificationNumber").value;
 	
+	/* <form>의 정보를 var form 변수로 저장  */
 	var form = document.inMemberRegist;
 	
+	/* var certificationNumber의 값을 ajax를 통해 해당 url의 get방식으로 전달 */
 	$.ajax({
 		type:"post",
 		url:"/let/member/whole/email",
@@ -131,17 +156,25 @@ function checkEmailCode() {
 		success : function(data) {
 			if(data == "true") {
 				alert('이메일 인증에 성공하였습니다.');
+				
+				/* 이메일 인증이 확인되어 value를 true로 변경함으로써 checkValue()의 유효성검사에 걸리지 않게함 */
 				form.certificationYn.value = "true";
 			} else {
 				alert('이메일 인증에 실패하였습니다.');
+				
+				/* 이메일 인증이 일치하지 않아 사용자가 작성한 입력칸을 빈칸으로 만든다. */
 				 form.certificationNumber.value = "";
+				
+				/* 이메일 인증이 일치하지 않아 커서를 인증번호입력칸으로 이동시킨다. */
 				 form.certificationNumber.focus();
+				
+				/* 임에리 인증이 일치하지 않아  checkValue() 유효성 검사에 걸리게끔 false로 변경 */
 				 form.certificationYn.value = "false";
 				 return false;
 			}
 		},
 		error: function(xhr) {
-			alert('jsp : 이메일 인증에 오류가 있습니다.')
+			alert('인증번호를 발송해주세요')
 		}
 	});
 }

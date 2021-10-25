@@ -37,7 +37,14 @@
 	src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+<script>
 
+	/* 데이터테이블 사용 */
+	$(document).ready(function() {
+		$('#table_payment').DataTable();
+	});
+		
+</script>
 </head>
 <body>
 	<div class="jp_listing_sidebar_main_wrapper">
@@ -182,11 +189,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- 데이터테이블 사용 -->
-	<script>
-		$(document).ready(function() {
-			$('#table_payment').DataTable();
-		});
-</script>
+
 </body>
 </html>
