@@ -19,27 +19,21 @@ public class PersonalApplyServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 이력서 번호와 JOBPOST번호 받기 
+		/* 쿼리스트링으로 넘겨준 이력서 번호와 공고번호 저장 */
 		int resumeNo = Integer.parseInt(request.getParameter("resumeNo"));
 		int jobPostNo = Integer.parseInt(request.getParameter("jobPostNo"));
 		
 		Map<String, Integer> applyMap = new HashMap<>();
-		
 		applyMap.put("resumeNo", resumeNo);
 		applyMap.put("jobPostNo", jobPostNo);
 		
 		PersonalApplyService service = new PersonalApplyService();
-		
-		int result = service.personalRecruitApply(applyMap);
+		boolean result = service.personalRecruitApply(applyMap);
 			
-		// insert성공
-		
 		StringBuilder redirectText = new StringBuilder();
 		
-		if(result >= 2) {
+		if(result) {
 			redirectText.append("<script>alert('공고 지원이 정상적으로 처리되었습니다.'); location.href='/let/detail/jobPosting/select?jobPostNo=" + jobPostNo + "';</script>");
-
-		
 		} else {
 			redirectText.append("<script>alert('공고 지원에 실패하였습니다.'); location.href='/let/detail/jobPosting/select?jobPostNo=" + jobPostNo + "';</script>");
 		}

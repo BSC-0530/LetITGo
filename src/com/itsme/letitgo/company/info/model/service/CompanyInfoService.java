@@ -33,18 +33,13 @@ public class CompanyInfoService {
 		
 		SqlSession session = getSqlSession();
 		
-		
 		CompanyInfoMapper mapper = session.getMapper(CompanyInfoMapper.class);
 		
-		// 기업 회사 정보 담아오기
+		/* 선택한 기업의 정보 조회 */
 		CompanyAddInfoDTO companyAddInfo = mapper.companyAddInfo(dto);
 		
-		
-		// 공고List를 담아오기 위해 변수 선언
-		List<SelectCoMyJobPostingDTO> myJobPosting = new ArrayList<>();
-		
-		// coMemNo를 담은 dto 넘겨서 일치하는 공고 정보 담아오기
-		myJobPosting = mapper.myJobPosting(dto);
+		/* 선택한 기업에서 현재 채용중인 공고 조회 */
+		List<SelectCoMyJobPostingDTO> myJobPosting = mapper.myJobPosting(dto);
 		
 		companyAddInfo.setCoMyJobPostingList(myJobPosting);
 		

@@ -7,35 +7,6 @@
 <html>
 <head>
 
-
-<script>
-	if(document.getElementById("searchForm")) {
-		const $searchForm = document.getElementById("searchForm");
-		$searchForm.onclick = function() {
-			$("#searchForm").method = "post";
-			$("#searchForm").action =  "${ pageContext.servletContext.contextPath }/member/allJobPosting/select";
-			$("#searchForm").submit();
-		}
-	}
-	
-	function selectJobPost(li) {
-		
-		var jobPostNo = li.parentNode.parentNode.parentNode.parentNode.children[0].children[1].children[3].value;
-		
-		var coMemNo = li.parentNode.parentNode.parentNode.parentNode.children[0].children[1].children[2].value;
-		
-		location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?jobPostNo="
-			+ jobPostNo + "&coMemNo=" + coMemNo;
-		
-	}
-	function selectCompany(p) {
-		
-		var coMemNo = p.parentNode.children[2].value;
-
-		location.href = "${ pageContext.servletContext.contextPath }/aboutCompany/select?coMemNo="+ coMemNo;
-		
-	}
-</script>
 </head>
 <body>
 
@@ -127,13 +98,10 @@
 			<div class="row">
 				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="width: 100%;">
 					<div class="row">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						
-						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="cc_featured_product_main_wrapper">
-								<div
-									class="jp_hiring_heading_wrapper jp_job_post_heading_wrapper">
+								<div class="jp_hiring_heading_wrapper jp_job_post_heading_wrapper">
 									<h2> LetITGo 엄선 추천 공고 </h2>
 								</div>
 							</div>
@@ -204,7 +172,6 @@
 														</div>
 													</div>
 												</c:forEach>
-												</div>
 											</div>
 										</div>
 									</div>
@@ -212,47 +179,72 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<div class="jp_register_section_main_wrapper">
-							<div class="jp_regis_left_side_box_wrapper">
-								<div class="jp_regis_left_side_box">
-									<img src="${ pageContext.servletContext.contextPath }/resources/image/content/regis_icon.png" alt="icon" />
-									<h4>좋은 직장을 찾고 싶어요</h4>
-									<p>
-										LetITGo의 회원이 되시면 <br>원하는 직장을 입맛대로 찾으실 수 있어요!
-									</p>
-									<ul>
-										<li><a href="#"><i class="fa fa-plus-circle"></i>
-												&nbsp;개인회원가입</a></li>
-									</ul>
-								</div>
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="jp_register_section_main_wrapper">
+						<div class="jp_regis_left_side_box_wrapper">
+							<div class="jp_regis_left_side_box">
+								<img src="${ pageContext.servletContext.contextPath }/resources/image/content/regis_icon.png" alt="icon" />
+								<h4>좋은 직장을 찾고 싶어요</h4>
+								<p>
+									LetITGo의 회원이 되시면 <br>원하는 직장을 입맛대로 찾으실 수 있어요!
+								</p>
+								<ul>
+									<li><a href="#"><i class="fa fa-plus-circle"></i>
+											&nbsp;개인회원가입</a></li>
+								</ul>
 							</div>
-							<div class="jp_regis_right_side_box_wrapper">
-								<div class="jp_regis_right_img_overlay"></div>
-								<div class="jp_regis_right_side_box">
-									<img
-										src="${ pageContext.servletContext.contextPath }/resources/image/content/regis_icon2.png"
-										alt="icon" />
-									<h4>꼭 필요한 가족을 찾고 싶어요</h4>
-									<p>
-										LetITGo의 회원이 되시면<br>회사에 꼭 맞는 일원을 찾으실 수 있어요!
-									</p>
-									<ul>
-										<li><a href="#"><i class="fa fa-plus-circle"></i>
-												&nbsp;기업회원가입</a></li>
-									</ul>
-								</div>
-								<div class="jp_regis_center_tag_wrapper">
-									<p>OR</p>
-								</div>
+						</div>
+						<div class="jp_regis_right_side_box_wrapper">
+							<div class="jp_regis_right_img_overlay"></div>
+							<div class="jp_regis_right_side_box">
+								<img src="${ pageContext.servletContext.contextPath }/resources/image/content/regis_icon2.png" alt="icon" />
+								<h4>꼭 필요한 가족을 찾고 싶어요</h4>
+								<p>
+									LetITGo의 회원이 되시면<br>회사에 꼭 맞는 일원을 찾으실 수 있어요!
+								</p>
+								<ul>
+									<li><a href="#"><i class="fa fa-plus-circle"></i> &nbsp;기업회원가입</a></li>
+								</ul>
+							</div>
+							<div class="jp_regis_center_tag_wrapper">
+								<p>OR</p>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	<!-- jp first sidebar Wrapper End -->
-	<!--main js file start-->
+	</div>
+	
+	<script>
+		if(document.getElementById("searchForm")) {
+			const $searchForm = document.getElementById("searchForm");
+			$searchForm.onclick = function() {
+				$("#searchForm").method = "post";
+				$("#searchForm").action =  "${ pageContext.servletContext.contextPath }/member/allJobPosting/select";
+				$("#searchForm").submit();
+			}
+		}
+		
+		function selectJobPost(li) {
+			
+			var jobPostNo = li.parentNode.parentNode.parentNode.parentNode.children[0].children[1].children[3].value;
+			
+			var coMemNo = li.parentNode.parentNode.parentNode.parentNode.children[0].children[1].children[2].value;
+			
+			location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?jobPostNo="
+				+ jobPostNo + "&coMemNo=" + coMemNo;
+			
+		}
+		function selectCompany(p) {
+			
+			var coMemNo = p.parentNode.children[2].value;
+	
+			location.href = "${ pageContext.servletContext.contextPath }/aboutCompany/select?coMemNo="+ coMemNo;
+			
+		}
+	</script>
 	<script
 		src="${ pageContext.servletContext.contextPath }/resources/js/jquery_min.js"></script>
 	<script

@@ -12,22 +12,7 @@
 <script type="text/javascript" src="/let/resources/js/datatables.js"></script>
 <link rel="stylesheet" type="text/css" href="/let/resources/css/datatables.css"/>
 
-<script>
-	function selectEmail(a){
-		
-		var memEmail = a.children[0].value;
-		var mailText = "지원자의 이메일은 : " + memEmail + "입니다.";
-		alert(mailText);
-	}
-	
-	function selectPhone(a){
-		
-		var memPhone = a.children[0].value;
-		var phoneText = "지원자의 연락처는 : " + memPhone + "입니다.";
-		alert(phoneText);
-	}
-	
-</script>
+
 <body>
 
 	<div class="jp_cp_profile_main_wrapper">
@@ -255,6 +240,23 @@
 			</div>
 		</div>
 	</div>
+	
+	<script>
+		function selectEmail(a){
+			
+			var memEmail = a.children[0].value;
+			var mailText = "지원자의 이메일은 : " + memEmail + "입니다.";
+			alert(mailText);
+		}
+		
+		function selectPhone(a){
+			
+			var memPhone = a.children[0].value;
+			var phoneText = "지원자의 연락처는 : " + memPhone + "입니다.";
+			alert(phoneText);
+		}
+		
+	</script>
 	
 	<script type="text/javascript" src="/let/resources/js/jquery_min.js"></script>
     <script type="text/javascript" src="/let/resources/js/bootstrap.js"></script>

@@ -19,23 +19,22 @@ public class PersonalCancelApplyServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		/* 쿼리스트링으로 넘겨준 이력서 번호와 공고번호 저장 */
 		int jobPostNo = Integer.parseInt(request.getParameter("jobPostNo"));
 		int resumeNo = Integer.parseInt(request.getParameter("resumeNo"));
 		
 		Map<String, Integer> applyMap = new HashMap<>();
-		
 		applyMap.put("jobPostNo", jobPostNo);
 		applyMap.put("resumeNo", resumeNo);
-		PersonalApplyService service = new PersonalApplyService();
 		
-		int result = service.personalCancelApply(applyMap);
+		PersonalApplyService service = new PersonalApplyService();
+		boolean result = service.personalCancelApply(applyMap);
 		
 		StringBuilder redirectText = new StringBuilder();
 
-		if(result >= 2) {
+		if(result) {
 			redirectText.append("<script>alert('공고 지원 취소이 정상적으로 처리되었습니다.'); location.href='/let/detail/jobPosting/select?jobPostNo=" + jobPostNo + "';</script>");
 			
-		
 		} else {
 			redirectText.append("<script>alert('공고 취소에 실패하였습니다.'); location.href='/let/detail/jobPosting/select?jobPostNo=" + jobPostNo + "';</script>");
 		}
@@ -46,10 +45,6 @@ public class PersonalCancelApplyServlet extends HttpServlet {
 		out.print(redirectText.toString());
 		out.flush();
 		out.close();
-		
-		
-		
-		
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -22,19 +22,18 @@ public class MainPageServlet extends HttpServlet {
 
         MemberLoginDTO dto = (MemberLoginDTO) session.getAttribute("loginMember");
 
+        /* 공고 노출권 사용중인 공고 조회 */
 		MainPageService service = new MainPageService();
-		
 		Map<String, Object> resultMap = service.selectPremiumRecruit();
 		
-		
 		String path = "";
-		
 		if(dto != null) {
 			String memKinds = dto.getMemKinds();
 			
 			if(resultMap != null) {
 				request.setAttribute("resultMap", resultMap);
 				
+				/* 기업회원 개인회원 여부에 따라서 경로를 다르게 지정 */
 				if(memKinds.equals("기업회원")) {
 					path = "/WEB-INF/views/main/CoMainPage.jsp";			
 					
@@ -42,16 +41,9 @@ public class MainPageServlet extends HttpServlet {
 					path = "/WEB-INF/views/main/InMainPage.jsp";	
 				}
 			} 
-			
 		} else {
-			
 			path = "/WEB-INF/views/main/main.jsp";
-			
 		}
-
-		
-		
-		
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 

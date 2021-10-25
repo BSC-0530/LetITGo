@@ -22,32 +22,29 @@ public class SelectJobPostingService {
 
 		SqlSession session = getSqlSession();
 		
-		
 		SelectJobPostingMapper mapper = session.getMapper(SelectJobPostingMapper.class);
 		
+		/* 현재 채용중인 공고 그리고 기업정보에 대한 내용 select */
 		List<Object> jpAndInfo = mapper.selectJobPosting(dto);
 		
+		/* 공고별 스킬을 보여주기 위해 스킬 select */
 		List<Object> jpSkills = mapper.selectJpSkills();
 		
+		/* 공고 조회시 조건 검색을 위해 옵션에 넣어줄 직무 조회 */
 		List<Object> jobNameList = mapper.selectJobNames();
-		
-		List<Object> skillsList = mapper.selectSkills();
-		System.out.println(jobNameList);
+
 		
 		Map<String, List<Object>> jp = new HashMap<>();
 		jp.put("jpAndInfo", jpAndInfo);
 		jp.put("jpSkills", jpSkills);
 		jp.put("jobNameList", jobNameList);
-		jp.put("skillsList", skillsList);
 		
-		System.out.println("service jpAndInfo : " + jpAndInfo);
 		session.close();
 		
 		return jp;
 		
 	}
 	
-	// 페이징을 위해 게시글 카운트
 	public int selectJpTotalCount(SelectRequestJobPostingDTO dto) {
 		
 		SqlSession session = getSqlSession();
@@ -67,17 +64,14 @@ public class SelectJobPostingService {
 		
 		SelectJobPostingMapper mapper = session.getMapper(SelectJobPostingMapper.class);
 		
-		// 선택한 공고 정보와 공고의 요구 스킬을 담아줄 Map 인스턴스 생성
-		Map<String, Object> jp = new HashMap<>();
-		
-		// 조회 후 값을 변수에 담음
+		/* mapper에서 채용공고, 공고별 스킬, 대표이미지 경로, 로고이미지 경로 조회 */
 		SelectJobPostingDTO detailedJobPosting = mapper.selectDetailedJobPosting(selectJobPostNo);
 		List<Object> deteildeJpSkills = mapper.selectDeteildeJpSkills(selectJobPostNo);
 		String titleFilePath = mapper.selectTitleFilePath(selectJobPostNo);
 		String logoFilePath = mapper.selectLogoFilePath(selectJobPostNo);
 		
-		// return값으로 넘겨주기 위해 map에 담기 
-		
+		/* 선택한 공고 정보와 공고의 요구 스킬을 담아줄 Map 인스턴스 생성 */
+		Map<String, Object> jp = new HashMap<>();
 		jp.put("detailedJobPosting", detailedJobPosting);
 		jp.put("deteildeJpSkills", deteildeJpSkills);
 		jp.put("titleFilePath", titleFilePath);
@@ -90,29 +84,21 @@ public class SelectJobPostingService {
 
 	public SelectApplyingYnDTO selectApplyingHistory(SelectApplyingYnDTO dto) {
 		
-		
 		SqlSession session = getSqlSession();
-		
 		
 		SelectJobPostingMapper mapper = session.getMapper(SelectJobPostingMapper.class);
 		
-		dto = mapper.selectApplyingHistory(dto);
-		
-		
-		System.out.println("applying service : " +  dto);
+		/* 공고에 대한 지원 여부 조회 */
+		SelectApplyingYnDTO applyingResult = mapper.selectApplyingHistory(dto);
 		
 		session.close();
 		
-				
-		
-		// 반환받은 dto가 null일 경우 0 null이 아닐경우 1반환
-		return dto;
+		return applyingResult;
 	}
 
 	public List<JpResumeDTO> selectResumeForApplying(int inMemNo) {
 
-		SqlSession session = getSqlSession();
-		
+		SqlSession session = getSqlSession();		
 		
 		SelectJobPostingMapper mapper = session.getMapper(SelectJobPostingMapper.class);
 		

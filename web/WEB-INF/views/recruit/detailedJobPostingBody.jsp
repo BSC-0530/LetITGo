@@ -45,64 +45,63 @@
                     <div class="jp_listing_left_sidebar_wrapper">
                     	
                         <div style="width:100%; height:300px;">
-                        <!-- 경로가 널이 아닐때 대표이미지 출력해줘야함 -->
+                        <!-- 경로가 널이 아닐때 대표이미지 출력 기업회원은 회원가입 시 대표이미지 필수로 첨부  -->
                             <img style=" height: 280px;"src="${ pageContext.servletContext.contextPath }${ requestScope.titleFilePath }" alt="대표이미지 없음" />
                         </div>
                         <div class="jp_job_des">
                             <h2><c:out value="주요업무"/></h2>
                             <p>
-                            <c:if test="${ jobPosting.jobPostContents ne null}">
-                            <c:out value="${ jobPosting.jobPostContents }"/>
-                            </c:if>
-                            <c:if test="${ jobPosting.jobPostContents eq null}">
-                            <c:out value="등록된 주요 업무가 없습니다."/>
-                            </c:if>
+	                            <c:if test="${ jobPosting.jobPostContents ne null}">
+	                            	<c:out value="${ jobPosting.jobPostContents }"/>
+	                            </c:if>
+	                            <c:if test="${ jobPosting.jobPostContents eq null}">
+	                            	<c:out value="등록된 주요 업무가 없습니다."/>
+	                            </c:if>
                             </p>
                         </div>
                         <div class="jp_job_des">
                         <h2><c:out value="자격요건"/></h2>
                             <p>
-                            <c:if test="${ jobPosting.qualificationRequirements ne null}">
-                            <c:out value="${ jobPosting.qualificationRequirements }"/>
-                            </c:if>
-                            <c:if test="${ jobPosting.qualificationRequirements eq null}">
-                            <c:out value="등록된 자격요건이 없습니다."/>
-                            </c:if>
+	                            <c:if test="${ jobPosting.qualificationRequirements ne null}">
+	                            	<c:out value="${ jobPosting.qualificationRequirements }"/>
+	                            </c:if>
+	                            <c:if test="${ jobPosting.qualificationRequirements eq null}">
+	                           		<c:out value="등록된 자격요건이 없습니다."/>
+	                            </c:if>
                             </p>
                         </div>
                         <div class="jp_job_des">
                             <h2><c:out value="우대사항"/></h2>
                             <p>
-                            <c:if test="${ jobPosting.preferentialMatters ne null }">
-                            <c:out value="${ jobPosting.preferentialMatters }"/>
-                            </c:if>
-                             <c:if test="${ jobPosting.preferentialMatters eq null}">
-                            <c:out value="등록된 우대사항이 없습니다."/>
-                            </c:if>
+	                            <c:if test="${ jobPosting.preferentialMatters ne null }">
+	                            	<c:out value="${ jobPosting.preferentialMatters }"/>
+	                            </c:if>
+	                             <c:if test="${ jobPosting.preferentialMatters eq null}">
+	                            	<c:out value="등록된 우대사항이 없습니다."/>
+	                            </c:if>
                             </p>
                         </div>
                         <div class="jp_job_des">
                             <h2><c:out value="혜택 및 복지"/></h2>
                             <p>
-                            <c:if test="${ jobPosting.benefitAndWelfare ne null }">
-                            <c:out value="${ jobPosting.benefitAndWelfare }"/>
-                            </c:if>
-                             <c:if test="${ jobPosting.benefitAndWelfare eq null}">
-                            <c:out value="등록된 혜택 및 복지가 없습니다."/>
-                            </c:if>
-                            
+	                            <c:if test="${ jobPosting.benefitAndWelfare ne null }">
+	                            	<c:out value="${ jobPosting.benefitAndWelfare }"/>
+	                            </c:if>
+	                             <c:if test="${ jobPosting.benefitAndWelfare eq null}">
+	                            	<c:out value="등록된 혜택 및 복지가 없습니다."/>
+                            	</c:if>
                             </p>
                         </div>
                         <div class="jp_job_des">
                             <ul><li>website</li>
                             	<c:if test="${ jobPosting.coMemberAddInfoDTO.coWebsite ne null }">
-                                <li><i class="fa fa-globe"></i>&nbsp;&nbsp; <a href="${ jobPosting.coMemberAddInfoDTO.coWebsite }"><c:out value="${ jobPosting.coMemberAddInfoDTO.coWebsite }"></c:out></a></li>
+                                	<li><i class="fa fa-globe"></i>&nbsp;&nbsp; <a href="${ jobPosting.coMemberAddInfoDTO.coWebsite }"><c:out value="${ jobPosting.coMemberAddInfoDTO.coWebsite }"></c:out></a></li>
                                 </c:if>
                                 <c:if test="${ jobPosting.coMemberAddInfoDTO.coWebsite eq null }">
-                                <li><i class="fa fa-globe"></i>&nbsp;&nbsp; <c:out value="등록된 웹사이트 주소가 없습니다."></c:out></li>
+                                	<li><i class="fa fa-globe"></i>&nbsp;&nbsp; <c:out value="등록된 웹사이트 주소가 없습니다."></c:out></li>
                                 </c:if>
                                 <c:if test="${ jobPosting.companyResumeLink ne null }">
-                                <li><i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp; <a href="${ jobPosting.companyResumeLink }">자사이력서 다운로드 링크</a></li>
+                                	<li><i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp; <a href="${ jobPosting.companyResumeLink }">자사이력서 다운로드 링크</a></li>
                                 </c:if>
                             </ul>
                         </div>
@@ -228,7 +227,6 @@
                                     </div>
                                     <div class="jp_listing_right_bar_btn_wrapper">
                                         <div class="jp_listing_right_bar_btn">
-	                                        
 	                                        <%
 											    MemberLoginDTO dto = (MemberLoginDTO) session.getAttribute("loginMember");
 											    String memKinds = dto.getMemKinds();
@@ -272,9 +270,6 @@
         </div>
     </div>
     </div>
-    
-
-	
 	<script>
 		function goBack() {
 			window.history.back();
@@ -290,11 +285,11 @@
 		
 		function selectResume() {
 			
-			// 공고번호 변수에 저장
-			var jobPostNo = "${ requestScope.detailedJobPosting.jobPostNo }";
+			/* 공고번호 변수에 저장 */
+			const jobPostNo = "${ requestScope.detailedJobPosting.jobPostNo }";
 			 
 			 
-			var path = "${ pageContext.servletContext.contextPath }/resumeForApply/select?jobPostNo="+ jobPostNo;
+			const path = "${ pageContext.servletContext.contextPath }/resumeForApply/select?jobPostNo="+ jobPostNo;
 			 
 			window.open( path , "이력서 선택", "width=600, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 
@@ -302,24 +297,20 @@
 		
 		function apply() {
 			
-			// 이력서 번호 변수에 저장
-			var resumeNo = document.getElementById("resumeNo").value;
+			/* 이력서 번호와 공고번호 변수에 저장 */
+			const resumeNo = document.getElementById("resumeNo").value;
+			const jobPostNo = "${ requestScope.detailedJobPosting.jobPostNo }";
 			
-			// 공고번호 변수에 저장
-			var jobPostNo = "${ requestScope.detailedJobPosting.jobPostNo }";
-			
-			// 이력서를 선택했을때만 지원 가능
+			/* 이력서를 선택했을때만 지원 가능 */
 			if(resumeNo != "") {
-				var answer;
 				
-				// confirm창으로 확인 후  확인시에 경로 이동
-				answer = confirm('공고에 지원 하시겠습니까?');
+				const answer = confirm('공고에 지원 하시겠습니까?');
 				
+				/* confirm창으로 확인 후  확인시에 경로 이동 */
 				if(answer == true) {
 					var path = "${ pageContext.servletContext.contextPath }/recruit/apply/insert?resumeNo=" + resumeNo + "&jobPostNo=" + jobPostNo;				
 		  			location.href = path;
 				}
-	  			
 			} else {
 				alert("이력서를 선택하지 않았습니다. 이력서를 선택해주세요");
 			}
@@ -327,16 +318,12 @@
 		
 		function cancel() {
 
-			// 이력서 번호 변수에 저장
-			var resumeNo = document.getElementById("resumeNo").value;
+			/* 이력서 번호와 공고번호 변수에 저장 */
+			const resumeNo = document.getElementById("resumeNo").value;
+			const jobPostNo = "${ requestScope.detailedJobPosting.jobPostNo }";
 
-			// 공고번호 변수에 저장
-			var jobPostNo = "${ requestScope.detailedJobPosting.jobPostNo }";
-
-			var answer;
-
-			// confirm창으로 확인 후  확인시에 경로 이동
-			answer = confirm('공고에 취소 하시겠습니까? \n (지원 취소 후 같은 이력서로 재 지원이 불가능합니다.)');
+			/* confirm창으로 확인 후  확인시에 경로 이동 */
+			const answer = confirm('공고에 취소 하시겠습니까? \n (지원 취소 후 같은 이력서로 재 지원이 불가능합니다.)');
 
 			if (answer == true) {
 				

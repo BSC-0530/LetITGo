@@ -25,13 +25,10 @@ public class SelectCoMyJobPostingService {
 		
 		SelectCoMyJobPostingMapper mapper = session.getMapper(SelectCoMyJobPostingMapper.class);
 		
-		
+		/* 전체공고, 진행중인 공고, 요청중인 공고 조회 */
 		Map<String, List<Object>> selectJobPosting = new HashMap<>();
-		
 		List<Object> allJobPosting = mapper.selectCoMyJobPosting(selectCoMyJobPostingDTO);
-		
 		List<Object> recruitingJopPosting = mapper.selectRecruitingMyJobPosting(selectCoMyJobPostingDTO);
-		
 		List<Object> requestJobPosting = mapper.selectRequestMyJobPosting(selectCoMyJobPostingDTO);
 		
 		selectJobPosting.put("allJobPosting", allJobPosting);
@@ -44,25 +41,23 @@ public class SelectCoMyJobPostingService {
 	}
 
 	public Map<String, List<Object>> selectRecruitOption() {
+		
 		SqlSession session = getSqlSession();
 		
 		SelectCoMyJobPostingMapper mapper = session.getMapper(SelectCoMyJobPostingMapper.class);
 		
-		Map<String, List<Object>> recruitOption = new HashMap<>();
-		
+		/* 공고 등록 화면에 출력을 위해 DB에 있는 직무, 스킬 카테고리 조회  */
 		List<Object> jobNameList = mapper.selectJobName();
 		List<Object> skillsCategoryList = mapper.selectSkillsCategory();
-		List<Object> skillsList = mapper.selectSkills();
-
 		
+		/* 조회한 List를 map에 담아서 리턴 */
+		Map<String, List<Object>> recruitOption = new HashMap<>();
 		recruitOption.put("jobNameList", jobNameList);
 		recruitOption.put("skillsCategoryList", skillsCategoryList);
-		recruitOption.put("skillsList", skillsList);
 
 		session.close();
 				
 		return recruitOption;
-		
 	}
 
 	public boolean RequestInsertJobPosting(RequestJobPostingDTO dto) {
@@ -120,29 +115,32 @@ public class SelectCoMyJobPostingService {
 		
 		SelectCoMyJobPostingMapper mapper = session.getMapper(SelectCoMyJobPostingMapper.class);
 		
-		// TBL_JOB_POSTING에 insert한 후 결과 리턴 받음 
+		/* TBL_JOB_POSTING에 insert한 후 결과 리턴 받음 */ 
 		int result1 = mapper.insertJobPosting(dto);
 		int result2 = 0;
 		int result3 = 0;
-		
 		
 		if(result1 > 0) {
 			
 			JpSkillsDTO skillsDTO = new JpSkillsDTO();
 			
-			// TBL_JOB_POSTING_REQ_SKILLS에 가져온 skills 모두를 insert
+			/* TBL_JOB_POSTING_REQ_SKILLS에 가져온 skills 모두를 insert */
 			result2 = 0;
 			for(int skillsNo : dto.getSkillsCodeList()) {
-				// 위에서 insert한 getJobPostNo를 이용해 그 채용공고에 해당하는 요구 스킬 insert 하기 위해 dto에 담아준다.
+				
+				/* 위에서 insert한 getJobPostNo를 이용해 그 채용공고에 해당하는 요구 스킬 insert 하기 위해 dto에 담아준다. */
 				skillsDTO.setJobPostNo(dto.getJobPostNo());
 				skillsDTO.setSkillsNo(skillsNo);
 				
-				// insert 결과를 모두 result2에 합
+				/* insert 결과를 모두 result2에 합 */
 				result2 += mapper.insertSkills(skillsDTO);
 				
 			}
-			// result2의 결과가 list의 사이즈보다 크면 모두 insert 성공
-			// 이때 TBL_JOB_POSTING_APP_HISTORY에 insert
+			
+			/* 
+			 * result2의 결과가 list의 사이즈보다 크면 모두 insert 성공 
+			 * 이때 TBL_JOB_POSTING_APP_HISTORY에 insert
+			 * */
 			if(result2 >= dto.getSkillsCodeList().size()) {
 				
 				result3 = mapper.updateJobPostingAppHistory(dto);
@@ -152,13 +150,11 @@ public class SelectCoMyJobPostingService {
 					session.commit();
 				}
 			}
-			
 		} else {
 			session.rollback();
 		}
 		
 		session.close();
-		
 		
 		return result3 > 0? true : false;
 	}

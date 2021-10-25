@@ -454,7 +454,7 @@
 	function updateJobPosting(button) {
 		
 		
-		let jobPostNo = button.parentNode.parentNode.children[0].children[0].value;
+		const jobPostNo = button.parentNode.parentNode.children[0].children[0].value;
 		
 		location.href = "${ pageContext.servletContext.contextPath }/recruit/update?jobPostNo=" + jobPostNo
 		
@@ -462,7 +462,7 @@
 	
 	function selectApplicant(button) {
 		
-		let jobPostNo = button.parentNode.parentNode.children[0].children[0].value;
+		const jobPostNo = button.parentNode.parentNode.children[0].children[0].value;
 		
 		location.href = "${ pageContext.servletContext.contextPath }/applicant/select?jobPostNo=" + jobPostNo
 
@@ -470,9 +470,9 @@
 	
 	function useExposure(button) {
 		
-		let jobPostNo = button.parentNode.parentNode.children[0].children[0].value;
+		const jobPostNo = button.parentNode.parentNode.children[0].children[0].value;
 		 
-		var path = "${ pageContext.servletContext.contextPath }/exposureForuse/select?jobPostNo="+ jobPostNo;
+		const path = "${ pageContext.servletContext.contextPath }/exposureForuse/select?jobPostNo="+ jobPostNo;
 		 
 		window.open( path , "이력서 선택", "width=400, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 

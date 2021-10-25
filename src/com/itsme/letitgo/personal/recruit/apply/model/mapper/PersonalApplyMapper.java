@@ -24,12 +24,14 @@ public interface PersonalApplyMapper {
 	/* 지원취소조회 */
 	List<SelectPersonlCanceledApplyDTO> selectPersonalCanceledApply(int memNo);
 
-	// 동기 지원하기 시 insert
+	/* 지원하기 지원내역에 추가 */
 	int insertApplyngHistory(Map<String, Integer> applyMap);
 
+	/* 지원,지원취소 시 지원내역 상태 변경이력 테이블에 추가 */
 	int insertApplyingChangeHistory(Map<String, Integer> applyMap);
 
-	int modifyApplyingHistory(Map<String, Integer> applyMap);
+	/* 지원내역에 저장된 지원상태를 취소로 update */
+	int updateApplyingHistory(Map<String, Integer> applyMap);
 
 
 

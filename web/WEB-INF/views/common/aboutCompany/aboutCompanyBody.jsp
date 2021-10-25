@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
     
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Let IT Go</title>
 </head>
 <body>
-
     <div class="jp_tittle_main_wrapper">
         <div class="jp_tittle_img_overlay"></div>
 	        <div class="container">
@@ -44,9 +44,12 @@
                         </div>
                        	<br>
                         <ul>
+							<c:set var="coAddress" value="${ requestScope.companyAddInfo.coAddress }"/>
+							<c:set var="area" value="${ fn:split(coAddress,'$')[0]} ${fn:split(coAddress,'$')[1]}"/>
+							<c:set var="postCode" value="${ fn:split(coAddress,'$')[2]}"/>
                             <li><i class="fa fa-check-square" aria-hidden="true"></i><a>대표자명 : <c:out value="${ requestScope.companyAddInfo.coCeoName }"/></a></li>
                             <li><i class="fa fa-check-square" aria-hidden="true"></i><a>업종       : <c:out value="${ requestScope.companyAddInfo.coSectors }"/></a></li>
-                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a>회사주소 : <c:out value="${ requestScope.companyAddInfo.webSite }"/></a></li>
+                            <li><i class="fa fa-check-square" aria-hidden="true"></i><a>회사주소 : <c:out value="${ area }우)${ postCode }"/></a></li>
                             <li><i class="fa fa-check-square" aria-hidden="true"></i><a href="${ requestScope.companyAddInfo.webSite }">홈페이지 : <c:out value="${ companyAddInfo.coCeoName }"/></a></li>
                             <li><i class="fa fa-check-square" aria-hidden="true"></i><a>사업장전화번호 : <c:out value="${ requestScope.companyAddInfo.coPhone }"/></a></li>
                             <li><i class="fa fa-check-square" aria-hidden="true"></i><a>사업장팩스번호 : <c:out value="${ requestScope.companyAddInfo.coPax }"/></a></li>
@@ -69,7 +72,6 @@
             </div>
         </div>
     </div>
-
     <div class="jp_career_main_wrapper">
         <div class="container">
             <div class="row">
@@ -89,8 +91,11 @@
 	                                        </div>
 	                                        <div class="jp_career_cont_wrapper">
 	                                            <p><i class="fa fa-calendar"></i>&nbsp;&nbsp; <a><c:out value="${ myJobPosting.jobPostDeadline }"/></a></p>
-	                                            <h3><a href="#"><c:out value="${ myJobPosting.jobPostTitle }"/></a></h3>
-	                                            <P>
+	                                            <h3>
+	                                            <a style="cursor: pointer;" onclick="selectJobPosting(this);"><c:out value="${ myJobPosting.jobPostTitle }"/></a>
+	                                            <input type="hidden" value="${ myJobPosting.jobPostNo }">
+	                                            </h3>
+	                                            <P>요구 경력 : 
 		                                            <c:set var="minExp" value="${ myJobPosting.jobPostMinExperience }"/>
 													<c:set var="maxExp" value="${ myJobPosting.jobPostMaxExperience }"/>
 													<c:if test="${ minExp ne maxExp }">
@@ -113,7 +118,6 @@
 														<c:out value="${ maxExp }년 이상"/>
 													</c:if>
 	                                            </P><br>
-	                                            
 	                                        </div>
 	                                    </div>
 	                                </div>
@@ -121,11 +125,19 @@
                             </div>
                         </div>
                     </div>
-                </div><c:out value=""/>
+                </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="/web/resources/js/jquery_min.js"></script>
+    <script>
+		function selectJobPosting(a) {
+	
+			const jobPostNo = a.parentNode.children[1].value;
+	
+			location.href = "${ pageContext.servletContext.contextPath }/detail/jobPosting/select?jobPostNo=" + jobPostNo;
+		}
+    </script>
+    <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery_min.js"></script>
     <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/bootstrap.js"></script>
     <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery.menu-aim.js"></script>
     <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery.countTo.js"></script>

@@ -85,11 +85,8 @@
 	</form>
   
 	<c:if test="${ requestScope.exposureProduct eq null }">
-	
-	<label>구입한 공고권이 없습니다.</label>
-	
-	<button class="btn btn-info" onclick="closeSelectResume();">닫기</button>
-	 
+		<label>구입한 공고권이 없습니다.</label>
+		<button class="btn btn-info" onclick="closeSelectResume();">닫기</button>
 	</c:if>
   
 </body>
@@ -105,7 +102,4 @@
       	window.close();
     }
 </script>
-
-
-
 </html>
